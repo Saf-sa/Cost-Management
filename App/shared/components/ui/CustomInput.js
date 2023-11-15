@@ -1,15 +1,16 @@
 import { View, Text, TextInput, StyleSheet} from 'react-native'
 import React from 'react'
 
-const CustomInput = () => {
+const CustomInput = (props) => {
+    const {label, placeholder, error, secure} = props;
+
   return (
-    <View style={StyleSheet.container}>
-      <Text style={styles.text}>Email</Text>
-        <TextInput style={styles.input}  placeholder='Your Email' />
+    <View style={styles.container}>
+      <Text style={styles.text}>{label}</Text>
+        <TextInput style={styles.input} placeholder={ placeholder} secureTextEntry={secure} />
         <Text style={styles.errorMsg}>Error</Text>
-        <Text style={styles.text}>Password</Text>
-        <TextInput  style={styles.input} placeholder='Your Password' />
-        <Text style={styles.errorMsg}>Error</Text>
+
+        
     </View>
   )
 }
@@ -43,7 +44,7 @@ const styles = StyleSheet.create({
         borderColor: '#0283a8',
     },
     errorMsg:{
-        color: '	#BEBEBE',
+        color: '#ff8080',
         margintop: 10,
         marginBottom: 20,
         fontWeight: 'bold',
