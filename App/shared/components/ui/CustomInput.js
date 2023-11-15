@@ -9,7 +9,6 @@ const CustomInput = (props) => {
       <Text style={styles.text}>{label}</Text>
         <TextInput style={styles.input} placeholder={ placeholder} secureTextEntry={secure} />
         <Text style={styles.errorMsg}>Error</Text>
-
         
     </View>
   )
