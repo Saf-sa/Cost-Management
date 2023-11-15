@@ -34,13 +34,12 @@
        
     },
 
-    loginText: {
+    subtext: {
         fontSize: 15,
-        fontWeight: 'bold', 
+        fontWeight: 'bold',
         color: '#fff',
         textAlign: 'center',
-        marginTop: 10,
-        marginBottom: 10,
+        marginTop: 30,
        
     },
 

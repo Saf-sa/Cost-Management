@@ -7,11 +7,11 @@ const login = () => {
     <View style={styles.root}>
        <AuthHeader subtext="Please Login"/>  
        
-    {/* container Start */}
+    {/* Container Start */}
     <View style={styles.content}></View>
 
 
-     {/* container End */}
+     {/* Container End */}
 
           </View>
   )
@@ -25,10 +25,11 @@ const styles = StyleSheet.create({
         flex: 1,  
     },
     content: {
-        flex: 2,
+        flex: 2.7,
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
+    
     },
 
 })
