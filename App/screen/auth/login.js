@@ -1,48 +1,34 @@
 import { View, Text, StyleSheet } from 'react-native'
 import React from 'react'
+import AuthHeader from '../../shared/components/AuthHeader'
 
 const login = () => {
   return (
     <View style={styles.root}>
+       <AuthHeader subtext="Please Login"/>  
+       
+    {/* container Start */}
+    <View style={styles.content}></View>
 
-        {/* debut du header */}
 
-      <View style={styles.header}>
-
-        <Text style={styles.mainText}>COST MANAGER</Text>
-        <Text style={styles.mainText}>Expense Tracker</Text>
-        
-      </View>
-
-      { /*  fin du header */ }
+     {/* container End */}
 
           </View>
-
-        
   )
-}
+};
 
-export default login
+export default login;
 
 const styles = StyleSheet.create({
 
     root: {
         flex: 1,  
     },
-    header: {
-        flex: 1,
-        backgroundColor: '#0283a8',
+    content: {
+        flex: 2,
+        backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
-    },
-
-    mainText: {
-        fontSize: 30,
-        fontWeight: 'bold',
-        color: '#fff',
-        textAlign: 'center',
-       
-       
     },
 
 })
