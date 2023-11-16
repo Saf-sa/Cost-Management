@@ -1,14 +1,21 @@
 import { View, Text, TextInput, StyleSheet} from 'react-native'
-import React from 'react'
+import React  from 'react'
+
+
 
 const CustomInput = (props) => {
     const {label, placeholder, error, secure} = props;
 
+    
+
   return (
+    
     <View style={styles.container}>
       <Text style={styles.text}>{label}</Text>
-        <TextInput style={styles.input} placeholder={ placeholder} secureTextEntry={secure} />
+        <TextInput style={styles.input} placeholder={ placeholder} secureTextEntry={secure}  />
+        
         <Text style={styles.errorMsg}>Error</Text>
+        
         
     </View>
   )
@@ -29,8 +36,6 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: 'bold',
         marginBottom: 10,
-
-
     },
 
     input: {
@@ -44,10 +49,7 @@ const styles = StyleSheet.create({
     },
     errorMsg:{
         color: '#ff8080',
-        margintop: 10,
-        marginBottom: 20,
-        fontWeight: 'bold',
-
 
     },
+
     });

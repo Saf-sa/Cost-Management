@@ -1,9 +1,9 @@
 import { View, Text, TouchableOpacity, StyleSheet  } from 'react-native'
 import React from 'react'
 
-const CustomButton = () => {
+const CustomButton = ({onPress}) => {
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
     
     <Text style={styles.text}> Login</Text> 
 
@@ -16,6 +16,7 @@ export default CustomButton
 
 const styles = StyleSheet.create({
   container: {
+    marginTop: 20,
     width: '40%',
     backgroundColor: '#0283a8',
     padding: 15,
