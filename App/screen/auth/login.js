@@ -37,9 +37,9 @@ const login = () => {
         {/* Button Start */}
         <CustomButton style={styles.button} buttonText={"Login"} />
 
-        <Text style={styles.register}>Or Create an Account</Text>
+        <Text style={styles.register}>New to Expense Manager?</Text>
 
-        <CustomButton style={styles.button} buttonText={"Register"} />
+        <CustomButton style={styles.button} buttonText={"Sign up Now"} />
         {/* Button End */}
       </View>
     </View>
@@ -57,7 +57,6 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   button: {
-    
     marginTop: 20,
   },
   register: {

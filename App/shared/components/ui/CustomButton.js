@@ -14,7 +14,7 @@ export default CustomButton
 const styles = StyleSheet.create({
   container: {
    
-    marginTop: 20,
+    marginTop: 40,
     width: '40%',
     backgroundColor: '#0283a8',
     padding: 15,
