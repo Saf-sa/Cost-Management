@@ -18,6 +18,7 @@ const CustomInput = (props) => {
         
         
     </View>
+    
   )
 }
 
@@ -28,6 +29,7 @@ const styles = StyleSheet.create({
     container: {
         width: '100%',
         marginBottom: 0,
+        
 
 },
 
@@ -39,6 +41,7 @@ const styles = StyleSheet.create({
     },
 
     input: {
+        color: '#000',
         marginBottom: 10,
         marginTop: 5,
         padding: 10,

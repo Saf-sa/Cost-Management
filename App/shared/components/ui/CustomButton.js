@@ -1,21 +1,19 @@
 import { View, Text, TouchableOpacity, StyleSheet  } from 'react-native'
 import React from 'react'
 
-const CustomButton = ({onPress}) => {
+const CustomButton = ({ buttonText, onPress }) => {
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
-    
-    <Text style={styles.text}> Login</Text> 
-
-
+      <Text style={styles.text}> {buttonText}</Text>
     </TouchableOpacity>
-  )
-}
+  );
+};
 
 export default CustomButton
 
 const styles = StyleSheet.create({
   container: {
+   
     marginTop: 20,
     width: '40%',
     backgroundColor: '#0283a8',
