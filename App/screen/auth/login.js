@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     flex: 2,
     padding: 20,
   },
-  
+
   button: {
     marginTop: 20,
 
