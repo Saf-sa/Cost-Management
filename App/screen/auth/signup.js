@@ -1,15 +1,21 @@
 import { View, Text, StyleSheet } from "react-native";
 import React, { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 import AuthHeader from "../../shared/components/AuthHeader";
 import CustomInput from "../../shared/components/ui/CustomInput";
 import CustomButton from "../../shared/components/ui/CustomButton";
-import links from "../../shared/components/ui/link";
 
-const signup = () => {
-  const [email, setEmail, FirstName, setfirstName, lastName, setlastName] = useState("");
+
+const Signup = () => {
+  const navigation = useNavigation();
+
   const [placeholder, setPlaceholder] = useState("");
   const [password, setPassword] = useState("");
-
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [FirstName, setFirstName] = useState("");
+  const [lastName, setlastName] = useState("");
+  const [email, setEmail] = useState("");
+  
   return (
     <View style={styles.root}>
       <AuthHeader subtext="Please Register" />
@@ -58,19 +64,19 @@ const signup = () => {
         {/* input area  End*/}
 
         {/* Button Start */}
-        <CustomButton style={styles.button} buttonText={"Login"} />
-
-        <Text style={styles.register}>New to Expense Manager?</Text>
-
-        <CustomButton style={styles.button} buttonText={"Sign up Now"} />
+        <CustomButton
+          style={styles.button}
+          buttonText={"Register"}
+          onPress={() => navigation.navigate("Login")}
+        />
 
         {/* Button End */}
       </View>
     </View>
   );
-};
+}
 
-export default signup;
+export default Signup;
 
 const styles = StyleSheet.create({
   root: {
