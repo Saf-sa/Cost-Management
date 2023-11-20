@@ -9,7 +9,7 @@ const CustomButton = ({ buttonText, onPress }) => {
   );
 };
 
-export default CustomButton
+export default CustomButton;
 
 const styles = StyleSheet.create({
   container: {
@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     
   },
+  
     text: {
         color: '#fff',
         fontSize: 15,

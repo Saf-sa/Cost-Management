@@ -5,7 +5,6 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Login from "./screen/auth/login";
 import Signup from "./screen/auth/signup";
 
-
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -18,9 +17,6 @@ export default function App() {
     </NavigationContainer>
   );
 }
-
-
-
 
 const styles = StyleSheet.create({
   container: {

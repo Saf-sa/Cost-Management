@@ -5,7 +5,6 @@ import AuthHeader from "../../shared/components/AuthHeader";
 import CustomInput from "../../shared/components/ui/CustomInput";
 import CustomButton from "../../shared/components/ui/CustomButton";
 
-
 const Signup = () => {
   const navigation = useNavigation();
 
@@ -15,7 +14,7 @@ const Signup = () => {
   const [FirstName, setFirstName] = useState("");
   const [lastName, setlastName] = useState("");
   const [email, setEmail] = useState("");
-  
+
   return (
     <View style={styles.root}>
       <AuthHeader subtext="Please Register" />
@@ -74,7 +73,7 @@ const Signup = () => {
       </View>
     </View>
   );
-}
+};
 
 export default Signup;
 
