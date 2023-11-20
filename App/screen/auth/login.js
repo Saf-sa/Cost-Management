@@ -10,10 +10,16 @@ const isValidEmail = (email) => {
   return re.test(email);
 };
 
+const isValidPassword = (password) => {
+  const re = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/;
+  return re.test(password);
+};
+
 const formIsValid = (DataObj) => {
   return (
     Object.values(DataObj).every((value) => value.trim() !== "") &&
-    isValidEmail(DataObj.email)
+    isValidEmail(DataObj.email) &&
+    isValidPassword(DataObj.password)
   );
 };
 
