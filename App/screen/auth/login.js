@@ -56,16 +56,17 @@ const styles = StyleSheet.create({
     flex: 2,
     padding: 20,
   },
+  
   button: {
     marginTop: 20,
+
   },
   register: {
-    marginTop: 30,
+    marginTop: 40,
     marginBottom: 10,
     color: "#0283a8",
-    
     fontSize: 15,
     fontWeight: "bold",
-  },
-});
+  }
+})
 
