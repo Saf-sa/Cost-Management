@@ -61,7 +61,8 @@ const Signup = () => {
 
   const handleSubmit = () => {
     if (formIsValid(formData)) {
-      console.warn("Form is valid");
+      console.warn("Successfully registered");
+      navigation.navigate("Login");
     } else {
       console.warn("Invalid Form");
     }
@@ -77,14 +78,14 @@ const Signup = () => {
           label="First Name"
           value={formData.FirstName}
           onChangeText={(value) => handleChange(value, "FirstName")}
-          placeholder="Your First Name"
+          placeholder="Your First Name (min 3 letters) "
           secure={false}
         />
         <CustomInput
           label="last Name"
           value={formData.lastName}
           onChangeText={(value) => handleChange(value, "lastName")}
-          placeholder="Your Last Name"
+          placeholder="Your Last Name (min 3 letters)"
           secure={false}
         />
         <CustomInput
@@ -98,7 +99,7 @@ const Signup = () => {
           label="Password"
           value={formData.password}
           onChangeText={(value) => handleChange(value, "password")}
-          placeholder="Your Password"
+          placeholder="1 number & 1 special digits & min 8 with 1 capital letter"
           secure={true}
         />
         <CustomInput
@@ -108,17 +109,14 @@ const Signup = () => {
           placeholder="Confirm Password"
           secure={true}
         />
-      
-        <CustomButton
-          onPress={handleSubmit}  
-          style={styles.button}
-          buttonText={"Register"}
-
-        />
         {/* input area  End*/}
 
         {/* Button Start */}
-
+        <CustomButton
+          onPress={handleSubmit}
+          style={styles.button}
+          buttonText={"Register"}
+        />
         {/* Button End */}
       </View>
     </View>
