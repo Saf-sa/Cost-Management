@@ -6,27 +6,28 @@ import CustomInput from "../../shared/components/ui/CustomInput";
 import CustomButton from "../../shared/components/ui/CustomButton";
 
 const isValidEmail = (email) => {
-  const re = /\S+@\S+\.\S+/;
+  const re = /\S+@\S+\.\S+/; // Should contain @
   return re.test(email);
 };
 
 const isValidPassword = (password) => {
   const re = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/;
+ // Should contain at least one number, one special character and minimum 8 characters
   return re.test(password);
 };
 
 const isValidFirstName = (FirstName) => {
-  const re = /^[a-zA-Z]+$/;
+  const re = /^[a-zA-Z]{3,}$/; // all letter and min 3
   return re.test(FirstName);
-}
+};
 
 const isValidlastName = (lastName) => {
-  const re = /^[a-zA-Z]+$/;
+  const re = /^[a-zA-Z]{3,}$/; // all letter and min 3
   return re.test(lastName);
-}
+};
 const formIsValid = (DataObj) => {
   return (
-    Object.values(DataObj).every((value) => value.trim() !== "") &&
+    Object.values(DataObj).every((value) => value.trim().length > 0) && // check all value is not empty
     isValidEmail(DataObj.email) &&
     isValidPassword(DataObj.password) &&
     isValidFirstName(DataObj.FirstName) &&
