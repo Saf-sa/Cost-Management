@@ -5,69 +5,118 @@ import AuthHeader from "../../shared/components/AuthHeader";
 import CustomInput from "../../shared/components/ui/CustomInput";
 import CustomButton from "../../shared/components/ui/CustomButton";
 
-const Signup = () => {
-  const navigation = useNavigation();
+const isValidEmail = (email) => {
+  const re = /\S+@\S+\.\S+/;
+  return re.test(email);
+};
 
-  const [placeholder, setPlaceholder] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [FirstName, setFirstName] = useState("");
-  const [lastName, setlastName] = useState("");
-  const [email, setEmail] = useState("");
+const isValidPassword = (password) => {
+  const re = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/;
+  return re.test(password);
+};
+
+const isValidFirstName = (FirstName) => {
+  const re = /^[a-zA-Z]+$/;
+  return re.test(FirstName);
+}
+
+const isValidlastName = (lastName) => {
+  const re = /^[a-zA-Z]+$/;
+  return re.test(lastName);
+}
+const formIsValid = (DataObj) => {
+  return (
+    Object.values(DataObj).every((value) => value.trim() !== "") &&
+    isValidEmail(DataObj.email) &&
+    isValidPassword(DataObj.password) &&
+    isValidFirstName(DataObj.FirstName) &&
+    isValidlastName(DataObj.lastName) &&
+    DataObj.password === DataObj.confirmPassword
+  );
+};
+
+const Signup = () => {
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [FirstName, setFirstName] = useState("");
+    const [lastName, setlastName] = useState("");
+    const [email, setEmail] = useState("");
+  const navigation = useNavigation();
+  const [formData, setFormData] = useState({
+    FirstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const handleChange = (value, type) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [type]: value,
+    }));
+  };
+
+
+  const handleSubmit = () => {
+    if (formIsValid(formData)) {
+      console.warn("Form is valid");
+    } else {
+      console.warn("Invalid Form");
+    }
+  };
+
+
 
   return (
     <View style={styles.root}>
       <AuthHeader subtext="Please Register" />
-
-      {/* Container Start */}
-
-      {/* input area Start */}
-
       <View style={styles.content}>
         <CustomInput
           label="First Name"
-          value={FirstName}
+          value={formData.FirstName}
           onChangeText={(value) => handleChange(value, "FirstName")}
           placeholder="Your First Name"
           secure={false}
         />
         <CustomInput
           label="last Name"
-          value={lastName}
+          value={formData.lastName}
           onChangeText={(value) => handleChange(value, "lastName")}
           placeholder="Your Last Name"
           secure={false}
         />
         <CustomInput
           label="Email"
-          value={email}
+          value={formData.email}
           onChangeText={(value) => handleChange(value, "email")}
           placeholder="Your Email"
           secure={false}
         />
         <CustomInput
           label="Password"
-          value={password}
+          value={formData.password}
           onChangeText={(value) => handleChange(value, "password")}
           placeholder="Your Password"
           secure={true}
         />
-
         <CustomInput
           label="Confirm Password"
-          value={confirmPassword}
+          value={formData.confirmPassword}
           onChangeText={(value) => handleChange(value, "confirmPassword")}
           placeholder="Confirm Password"
           secure={true}
         />
+      
+        <CustomButton
+          onPress={handleSubmit}  
+          style={styles.button}
+          buttonText={"Register"}
+
+        />
         {/* input area  End*/}
 
         {/* Button Start */}
-        <CustomButton
-          style={styles.button}
-          buttonText={"Register"}
-          onPress={() => navigation.navigate("Login")}
-        />
 
         {/* Button End */}
       </View>
