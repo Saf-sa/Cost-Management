@@ -58,10 +58,6 @@ const [showPassword, setShowPassword] = useState(false);
         password: !isValidPassword(formData.password)
           ? "Invalid password"
           : null,
-        confirmPassword:
-          formData.password !== formData.confirmPassword
-            ? "Passwords do not match"
-            : null,
       });
       console.warn("Invalid Form");
     }
@@ -78,7 +74,7 @@ const [showPassword, setShowPassword] = useState(false);
           onChangeText={(value) => handleChange(value, "email")}
           placeholder="Your Email"
           secure={false}
-          errorMessage={formErrors.password}
+          errorMessage={formErrors.email}
         />
         <CustomInputLog
           label="Password"

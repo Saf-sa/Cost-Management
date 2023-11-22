@@ -7,4 +7,6 @@ first instal Xcode IOS globaly
 - npm run ios (first instal Xcode)
 - npm run web (for the web App install :  npx expo install react-native-web)
 
+4- install react native vector icons for show hide password :
 
+npm i react-native-vector-icons
