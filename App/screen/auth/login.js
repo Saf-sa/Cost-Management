@@ -25,10 +25,21 @@ const formIsValid = (DataObj) => {
 
 const Login = () => {
   const navigation = useNavigation();
+
+  const [formErrors, setFormErrors] = useState({
+    FirstName: null,
+    lastName: null,
+    email: null,
+    password: null,
+    confirmPassword: null,
+  });
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+  
+
 
   const handleChange = (value, type) => {
     setFormData((prevFormData) => ({
@@ -39,8 +50,18 @@ const Login = () => {
 
   const handleSubmit = () => {
     if (formIsValid(formData)) {
-      console.warn("Form is valid");
+      console.warn("Successfully logged");
     } else {
+      setFormErrors({
+        email: !isValidEmail(formData.email) ? "Invalid email" : null,
+        password: !isValidPassword(formData.password)
+          ? "Invalid password"
+          : null,
+        confirmPassword:
+          formData.password !== formData.confirmPassword
+            ? "Passwords do not match"
+            : null,
+      });
       console.warn("Invalid Form");
     }
   };
@@ -56,6 +77,7 @@ const Login = () => {
           onChangeText={(value) => handleChange(value, "email")}
           placeholder="Your Email"
           secure={false}
+          errorMessage={formErrors.password}
         />
         <CustomInput
           label="Password"
@@ -63,6 +85,7 @@ const Login = () => {
           onChangeText={(value) => handleChange(value, "password")}
           placeholder="Your Password"
           secure={true}
+          errorMessage={formErrors.password}
         />
 
         <CustomButton

@@ -143,7 +143,7 @@ const handleSubmit = () => {
           onPress={handleSubmit}
           style={styles.button}
           buttonText={"Register"}
-          errorMessage={formErrors.FirstName}
+         
         />
         {/* Button End */}
       </View>
