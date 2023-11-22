@@ -5,6 +5,8 @@ import AuthHeader from "../../shared/components/AuthHeader";
 import CustomInput from "../../shared/components/ui/CustomInput";
 import CustomButton from "../../shared/components/ui/CustomButton";
 
+
+
 const isValidEmail = (email) => {
   const re = /\S+@\S+\.\S+/; // Should contain @
   return re.test(email);
@@ -60,6 +62,8 @@ const Signup = () => {
     password: "",
     confirmPassword: "",
   });
+
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (value, type) => {
     setFormData((prevFormData) => ({
@@ -125,16 +129,17 @@ const handleSubmit = () => {
           value={formData.password}
           onChangeText={(value) => handleChange(value, "password")}
           placeholder="1 number & 1 special digits & min 8 with 1 capital letter"
-          secure={true}
+          secure={!showPassword}
           errorMessage={formErrors.password}
+          onIconPress={() => setShowPassword(!showPassword)}
         />
         <CustomInput
           label="Confirm Password"
           value={formData.confirmPassword}
           onChangeText={(value) => handleChange(value, "confirmPassword")}
-          placeholder="Confirm Password"
-          secure={true}
-          errorMessage={formErrors.confirmPassword}
+          secure={!showPassword}
+          errorMessage={formErrors.password}
+          onIconPress={() => setShowPassword(!showPassword)}
         />
         {/* input area  End*/}
 
@@ -143,7 +148,6 @@ const handleSubmit = () => {
           onPress={handleSubmit}
           style={styles.button}
           buttonText={"Register"}
-         
         />
         {/* Button End */}
       </View>

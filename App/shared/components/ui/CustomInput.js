@@ -1,19 +1,24 @@
 import {
-  View,
-  Text,
-  TextInput,
-  StyleSheet,
-  TouchableOpacity,
-  TouchableOpacity,
-} from "react-native";
+  View, Text, TextInput, StyleSheet, TouchableOpacity,} from "react-native";
 import React from "react";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 const CustomInput = (props) => {
-  const { label, placeholder, error, secure, onChangeText, value, errorMessage } = props;
+  const {
+    label,
+    placeholder,
+    error,
+    secure,
+    onChangeText,
+    value,
+    errorMessage,
+    onIconPress,
+  } = props;
 
   return (
     <View style={styles.container}>
       <Text style={styles.text}>{label}</Text>
+      <View style={styles.inputContainer}></View>
       <TextInput
         style={styles.input}
         placeholder={placeholder}
@@ -21,6 +26,11 @@ const CustomInput = (props) => {
         onChangeText={onChangeText}
         value={value}
       />
+      {label === "Password" && (
+        <TouchableOpacity onPress={onIconPress}>
+          <Icon name={secure ? "eye-slash" : "eye"} size={20} color="gray" />
+        </TouchableOpacity>
+      )}
       {errorMessage && <Text style={styles.errorMsg}>{errorMessage}</Text>}
     </View>
   );

@@ -22,7 +22,6 @@ const formIsValid = (DataObj) => {
     isValidPassword(DataObj.password)
   );
 };
-const [showPassword, setShowPassword] = useState(false);
 
 const Login = () => {
   const navigation = useNavigation();
@@ -40,6 +39,7 @@ const Login = () => {
     password: "",
   });
   
+const [showPassword, setShowPassword] = useState(false);
 
 
   const handleChange = (value, type) => {
