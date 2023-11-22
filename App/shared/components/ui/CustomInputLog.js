@@ -1,9 +1,10 @@
 import {
-  View, Text, TextInput, StyleSheet, TouchableOpacity,} from "react-native";
+  View,
+  Text, TextInput, StyleSheet, TouchableOpacity,} from "react-native";
 import React from "react";
 import Icon from "react-native-vector-icons/FontAwesome";
 
-const CustomInput = (props) => {
+const CustomInputLog = (props) => {
   const {
     label,
     placeholder,
@@ -36,7 +37,7 @@ const CustomInput = (props) => {
   );
 };
 
-export default CustomInput;
+export default CustomInputLog;
 
 const styles = StyleSheet.create({
   container: {

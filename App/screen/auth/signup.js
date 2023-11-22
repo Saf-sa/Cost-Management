@@ -2,7 +2,7 @@ import { View, Text, StyleSheet } from "react-native";
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import AuthHeader from "../../shared/components/AuthHeader";
-import CustomInput from "../../shared/components/ui/CustomInput";
+import CustomInputSingup from "../../shared/components/ui/CustomInputSignup";
 import CustomButton from "../../shared/components/ui/CustomButton";
 
 
@@ -100,7 +100,7 @@ const handleSubmit = () => {
     <View style={styles.root}>
       <AuthHeader subtext="Please Register" />
       <View style={styles.content}>
-        <CustomInput
+        <CustomInputSingup
           label="First Name"
           value={formData.FirstName}
           onChangeText={(value) => handleChange(value, "FirstName")}
@@ -108,7 +108,7 @@ const handleSubmit = () => {
           secure={false}
           errorMessage={formErrors.FirstName}
         />
-        <CustomInput
+        <CustomInputSingup
           label="last Name"
           value={formData.lastName}
           onChangeText={(value) => handleChange(value, "LastName")}
@@ -116,7 +116,7 @@ const handleSubmit = () => {
           secure={false}
           errorMessage={formErrors.lastName}
         />
-        <CustomInput
+        <CustomInputSingup
           label="Email"
           value={formData.email}
           onChangeText={(value) => handleChange(value, "email")}
@@ -124,19 +124,20 @@ const handleSubmit = () => {
           secure={false}
           errorMessage={formErrors.email}
         />
-        <CustomInput
+        <CustomInputSingup
           label="Password"
           value={formData.password}
           onChangeText={(value) => handleChange(value, "password")}
-          placeholder="1 number & 1 special digits & min 8 with 1 capital letter"
+          placeholder=" min 8 with 1 capital char, 1 number,1 special char "
           secure={!showPassword}
           errorMessage={formErrors.password}
           onIconPress={() => setShowPassword(!showPassword)}
         />
-        <CustomInput
+        <CustomInputSingup
           label="Confirm Password"
           value={formData.confirmPassword}
           onChangeText={(value) => handleChange(value, "confirmPassword")}
+          placeholder="Comfirm your password"
           secure={!showPassword}
           errorMessage={formErrors.password}
           onIconPress={() => setShowPassword(!showPassword)}

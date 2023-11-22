@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import AuthHeader from "../../shared/components/AuthHeader";
-import CustomInput from "../../shared/components/ui/CustomInput";
+import CustomInputLog from "../../shared/components/ui/CustomInputLog";
 import CustomButton from "../../shared/components/ui/CustomButton";
 
 const isValidEmail = (email) => {
@@ -72,7 +72,7 @@ const [showPassword, setShowPassword] = useState(false);
       <AuthHeader subtext="Please Login" />
 
       <View style={styles.content}>
-        <CustomInput
+        <CustomInputLog
           label="Email"
           value={formData.email}
           onChangeText={(value) => handleChange(value, "email")}
@@ -80,7 +80,7 @@ const [showPassword, setShowPassword] = useState(false);
           secure={false}
           errorMessage={formErrors.password}
         />
-        <CustomInput
+        <CustomInputLog
           label="Password"
           value={formData.password}
           onChangeText={(value) => handleChange(value, "password")}
