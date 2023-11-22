@@ -2,7 +2,7 @@ import { View, Text, TextInput, StyleSheet } from "react-native";
 import React from "react";
 
 const CustomInput = (props) => {
-  const { label, placeholder, error, secure, onChangeText, value } = props;
+  const { label, placeholder, error, secure, onChangeText, value, errorMessage } = props;
 
   return (
     <View style={styles.container}>
@@ -14,7 +14,7 @@ const CustomInput = (props) => {
         onChangeText={onChangeText}
         value={value}
       />
-      <Text style={styles.errorMsg}>Error</Text>
+      {errorMessage && <Text style={styles.errorMsg}>{errorMessage}</Text>}
     </View>
   );
 };
