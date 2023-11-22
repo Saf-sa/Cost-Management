@@ -52,6 +52,7 @@ const [showPassword, setShowPassword] = useState(false);
   const handleSubmit = () => {
     if (formIsValid(formData)) {
       console.warn("Successfully logged");
+      navigation.navigate("Start"); 
     } else {
       setFormErrors({
         email: !isValidEmail(formData.email) ? "Invalid email" : null,
