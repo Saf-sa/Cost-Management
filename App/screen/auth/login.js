@@ -22,6 +22,7 @@ const formIsValid = (DataObj) => {
     isValidPassword(DataObj.password)
   );
 };
+const [showPassword, setShowPassword] = useState(false);
 
 const Login = () => {
   const navigation = useNavigation();
@@ -84,8 +85,9 @@ const Login = () => {
           value={formData.password}
           onChangeText={(value) => handleChange(value, "password")}
           placeholder="Your Password"
-          secure={true}
+          secure={!showPassword}
           errorMessage={formErrors.password}
+          onIconPress={() => setShowPassword(!showPassword)}
         />
 
         <CustomButton
