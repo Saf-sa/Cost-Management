@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
   forgetPass: {
     flexDirection: "row",
     alignSelf: "flex-end",
-    marginTop: 0,
+    marginTop: 20,
     marginBottom: 10,
     color: "#0283a8",
     fontSize: 15,
