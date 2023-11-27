@@ -42,3 +42,42 @@ const registerUser = async (req, res) => {
 };
 
 
+const listUser = async (req, res) => {
+  const token = req.header("Authorization");
+
+  try {
+    jwt.verify(token, process.env.SECRET_KEY);
+  } catch (err) {
+    return res.status(401).send("The token is not valid!");
+  }
+
+  User.find().then((arr) => {
+    return res.send(arr);
+  });
+};
+
+
+
+const updateUser = async (req, res) => {
+  try {
+    const { name, email, password } = req.body;
+    // Check if the request includes a password
+    if (password) {
+      const hashedPassword = await bcrypt.hash(password, 10);
+      req.body.password = hashedPassword;
+    }
+    const updatedUser = await User.findByIdAndUpdate(
+      req.params.id,
+      req.body, // Use req.body directly to update the fields
+      { new: true, runValidators: true } // Ensure validators are run for updates
+    ).select("-password");
+    if (!updatedUser) {
+      return res.status(404).send({ error: "User not found" });
+    }
+    res.send(updatedUser);
+  } catch (error) {
+    res.status(500).send({ error: "Internal server error" });
+  }
+};
+
+export { registerUser, userLogin, listUser, updateUser };
