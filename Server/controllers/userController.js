@@ -1,4 +1,5 @@
 import generateToken from "../utils/generateToken.js";
+import { validationResult } from "express-validator";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
@@ -7,13 +8,30 @@ import User from "../models/userModel.js";
 
 // define functions to handle requests for the user routes that we defined in Server/routes/userRoutes.js
 const userLogin = async (req, res, next) => {
-  const { user } = req.body;
+  const { email, password } = req.body;
 
+  // Check if user exists
+  const user = await User.findOne({ email });
+
+  if (!user) {
+    return res.status(401).json({ message: "Invalid email or password" });
+  }
+
+  // Check if password matches
+  const isMatch = await bcrypt.compare(password, user.password);
+
+  if (!isMatch) {
+    return res.status(401).json({ message: "Invalid email or password" });
+  }
+
+  // Generate token
+  const token = generateToken(user._id);
+
+  // Send response
   res.json({
     _id: user._id,
     email: user.email,
-    password: user.password,
-    token: generateToken(user._id),
+    token: token,
   });
 };
 
@@ -27,6 +45,12 @@ const registerUser = async (req, res, next) => {
     if (!firstName || !lastName || !email || !password) {
       return res.status(400).json({ message: "Please fill all fields" });
     }
+
+    // validate the email
+    if (!validator.isEmail(email)) {
+      return res.status(400).json({ message: "Invalid email" });
+    }
+
     // check if the email is valid
     const userExists = await User.findOne({ email });
 
@@ -46,11 +70,13 @@ const registerUser = async (req, res, next) => {
     const result = await user.save();
     console.log(result);
 
-    return res.status(201).json({
-      email: user.email,
-    });
+     return res.status(201).json({
+        _id: result._id,
+        email: result.email,
+        token: generateToken(result._id),
+      });
   } catch (error) {
-    console.log(error);
+     res.status(500).send({ error: error.message });
   }
 };
 
@@ -73,22 +99,27 @@ const listUser = async (req, res) => {
   const token = req.header("Authorization");
 
   // check if the token is valid with jwt to be sure that the user is authenticated
+  let decoded;
   try {
-    jwt.verify(token, process.env.SECRET_KEY);
+    decoded = jwt.verify(token, process.env.SECRET_KEY);
   } catch (err) {
     return res.status(401).send("The token is not valid!");
   }
 
-  // get all users from the database
-  User.find().then((arr) => {
-    return res.send(arr);
-  });
-};
+  // get the user who made the request
+  const user = await User.findById(decoded.id).select("-password");
 
+  // get all users from the database
+  try {
+    const users = await User.find();
+    return res.send({ user, users });
+  } catch (error) {
+    return res.status(500).send("Error retrieving users");
+  }
+};
 
 // define functions to handle requests for the user routes that we defined in Server/routes/userRoutes.js
 const updateUser = async (req, res) => {
-  
   try {
     const { name, email, password } = req.body;
     // Check if the request includes a password
@@ -101,7 +132,7 @@ const updateUser = async (req, res) => {
       req.params.id,
       req.body, // Use req.body directly to update the fields
       { new: true, runValidators: true } // Ensure validators are run for updates
-    ).select("-password");
+    ).select("-password"); // Exclude password from the response
     // If no user was found with the provided ID, return 404
     if (!updatedUser) {
       return res.status(404).send({ error: "User not found" });
