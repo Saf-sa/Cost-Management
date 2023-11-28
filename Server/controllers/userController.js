@@ -1,10 +1,11 @@
 import generateToken from "../utils/generateToken.js";
 import bcrypt from "bcrypt";
-import User from "../models/userModel.js";
 import jwt from "jsonwebtoken";
 
+import User from "../models/userModel.js";
+
 const userLogin = async (req, res, next) => {
-  const { user } = req;
+  const { user } = req.body;
 
   res.json({
     _id: user._id,
@@ -35,12 +36,19 @@ const registerUser = async (req, res) => {
   await user.save();
 
   return res.status(201).json({
-    id: user.id,
-    name: user.name,
     email: user.email,
   });
 };
 
+const resetLogin = async (req, res, next) => {
+  const { user } = req.body;
+
+  res.json({
+    _id: user._id,
+    email: user.email,
+    token: generateToken(user._id),
+  });
+};
 
 const listUser = async (req, res) => {
   const token = req.header("Authorization");
@@ -80,4 +88,4 @@ const updateUser = async (req, res) => {
   }
 };
 
-export { registerUser, userLogin, listUser, updateUser };
+export { registerUser, userLogin, listUser, updateUser, resetLogin };

@@ -1,23 +1,32 @@
 import express from "express";
 import dotenv from "dotenv";
+import mongoose from "mongoose";
 import connectDB from "./config/db.js";
 import userRoutes from "./routes/userRoutes.js";
 
+// Initialize dotenv
 dotenv.config();
-connectDB();
 
+// Initialize express
 const app = express();
 const port = process.env.PORT || 5555;
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Connect to DataBase = MongoDB
+connectDB();  // This is the function we imported from Server/config/db.js
+
+// Start the server
 app.listen(port, () => {
   console.log(`Server started and running on port : ${port}`);
 });
 
+// Routes
 app.use("/api/users", userRoutes);
 
+// Error handler
 app.use ( (error, rea, res, next)=>{
 error.statusCoder = error.statusCode || 500
 error.message = error.message || 'Something went wrong'
