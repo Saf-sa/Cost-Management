@@ -1,10 +1,15 @@
 import mongoose from "mongoose";
 
-const userSchema = mongoose.Schema(
+// use mongoose to create a schema to define the structure of the data
+const userSchema = new mongoose.Schema(
   {
-    name: {
+    firstName: {
       type: String,
       required: [true, "The first name is required"],
+    },
+    lastName: {
+      type: String,
+      required: [true, "The last name is required"],
     },
     email: {
       type: String,
@@ -17,12 +22,14 @@ const userSchema = mongoose.Schema(
       minLength: 4,
     },
     id: {
-     type: String 
+      type: String,
     },
   },
+  // add timestamps to the schema to know when document was created or modified
   { timestamps: true }
 );
 
+// use mongoose to create a model from the schema and export it
 const User = mongoose.model("User", userSchema);
 
 export default User;

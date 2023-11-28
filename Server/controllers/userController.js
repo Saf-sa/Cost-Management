@@ -2,71 +2,93 @@ import generateToken from "../utils/generateToken.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
+// Import User model
 import User from "../models/userModel.js";
 
+// define functions to handle requests for the user routes that we defined in Server/routes/userRoutes.js
 const userLogin = async (req, res, next) => {
   const { user } = req.body;
 
   res.json({
     _id: user._id,
     email: user.email,
+    password: user.password,
     token: generateToken(user._id),
   });
 };
 
+// define functions to handle requests for the user routes that we defined in Server/routes/userRoutes.js
+const registerUser = async (req, res, next) => {
+  try {
+    // get the name, email and password from the request body
+    const { firstName, lastName, email, password } = req.body;
 
-const registerUser = async (req, res) => {
-  const { name, email, password } = req.body;
+    // check if the name, email and password are not empty
+    if (!firstName || !lastName || !email || !password) {
+      return res.status(400).json({ message: "Please fill all fields" });
+    }
+    // check if the email is valid
+    const userExists = await User.findOne({ email });
 
-  if (!name || !email || !password) {
-    return res.status(400).json({ message: "Please fill all fields" });
+    // check if the email is already in use
+    if (userExists) {
+      return res.status(400).json({ message: "Email already in use" });
+    }
+    // create a new user object for the user that wants to register
+    const user = new User({ firstName, lastName, email, password });
+
+    // hash the password to make it secure
+    const salt = await bcrypt.genSalt(10);
+    // set the user password to the hashed password and save it
+    user.password = await bcrypt.hash(password, salt);
+
+    // save the user to the database
+    const result = await user.save();
+    console.log(result);
+
+    return res.status(201).json({
+      email: user.email,
+    });
+  } catch (error) {
+    console.log(error);
   }
-
-  const userExists = await User.findOne({ email });
-
-  if (userExists) {
-    return res.status(400).json({ message: "Email already in use" });
-  }
-
-  const user = new User({ name, email, password });
-
-  const salt = await bcrypt.genSalt(10);
-  user.password = await bcrypt.hash(password, salt);
-
-  await user.save();
-
-  return res.status(201).json({
-    email: user.email,
-  });
 };
 
+// define functions to handle requests for the user routes that we defined in Server/routes/userRoutes.js
 const resetLogin = async (req, res, next) => {
+  // get the name, email and password from the request body
   const { user } = req.body;
 
+  // check if the name, email and password are not empty
   res.json({
-    _id: user._id,
+  
     email: user.email,
-    token: generateToken(user._id),
+    
   });
 };
 
+// define functions to handle requests for the user routes that we defined in Server/routes/userRoutes.js
 const listUser = async (req, res) => {
+  // get the token from the request header
   const token = req.header("Authorization");
 
+  // check if the token is valid with jwt to be sure that the user is authenticated
   try {
     jwt.verify(token, process.env.SECRET_KEY);
   } catch (err) {
     return res.status(401).send("The token is not valid!");
   }
 
+  // get all users from the database
   User.find().then((arr) => {
     return res.send(arr);
   });
 };
 
 
-
+// define functions to handle requests for the user routes that we defined in Server/routes/userRoutes.js
 const updateUser = async (req, res) => {
+  
   try {
     const { name, email, password } = req.body;
     // Check if the request includes a password
@@ -74,18 +96,22 @@ const updateUser = async (req, res) => {
       const hashedPassword = await bcrypt.hash(password, 10);
       req.body.password = hashedPassword;
     }
+    // Update the user with the provided ID
     const updatedUser = await User.findByIdAndUpdate(
       req.params.id,
       req.body, // Use req.body directly to update the fields
       { new: true, runValidators: true } // Ensure validators are run for updates
     ).select("-password");
+    // If no user was found with the provided ID, return 404
     if (!updatedUser) {
       return res.status(404).send({ error: "User not found" });
     }
+    // Return the updated user if successful
     res.send(updatedUser);
   } catch (error) {
     res.status(500).send({ error: "Internal server error" });
   }
 };
 
+// define functions to handle requests for the user routes that we defined in Server/routes/userRoutes.js
 export { registerUser, userLogin, listUser, updateUser, resetLogin };
