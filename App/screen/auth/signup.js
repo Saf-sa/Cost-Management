@@ -6,28 +6,37 @@ import CustomInputSingup from "../../shared/components/ui/CustomInputSignup";
 import CustomButton from "../../shared/components/ui/CustomButton";
 import axios from "axios";
 
+// import the API_URL from the @env file
+import { API_URL } from "@env";
 
+// declare a variable to store the response from the server
+const response = await axios.post(API_URL + "/signup", formData);
 
+// check if the email is valid using a regular expression
 const isValidEmail = (email) => {
   const re = /\S+@\S+\.\S+/; // Should contain @
   return re.test(email);
 };
 
+// check if the password is valid using a regular expression
 const isValidPassword = (password) => {
   const re = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/;
- // Should contain at least one number, one special character and minimum 8 characters
+  // Should contain at least one number, one special character and minimum 8 characters
   return re.test(password);
 };
 
+// check if the first name is valid using a regular expression
 const isValidFirstName = (FirstName) => {
   const re = /^[a-zA-Z]{3,}$/; // all letter and min 3
   return re.test(FirstName);
 };
 
+// check if the last name is valid using a regular expression
 const isValidlastName = (lastName) => {
   const re = /^[a-zA-Z]{3,}$/; // all letter and min 3
   return re.test(lastName);
 };
+// check if the form is valid with all fields filled in correctly
 const formIsValid = (DataObj) => {
   return (
     Object.values(DataObj).every((value) => value.trim().length > 0) && // check all value is not empty
@@ -39,14 +48,13 @@ const formIsValid = (DataObj) => {
   );
 };
 
+// define a functional component to display the signup form
 const Signup = () => {
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
-    const [FirstName, setFirstName] = useState("");
-    const [lastName, setlastName] = useState("");
-    const [email, setEmail] = useState("");
+
+  // use the useNavigation hook to get access to the navigation object
   const navigation = useNavigation();
 
+  // define state variables for the form errors, form data and show password
   const [formErrors, setFormErrors] = useState({
     FirstName: null,
     lastName: null,
@@ -55,8 +63,7 @@ const Signup = () => {
     confirmPassword: null,
   });
 
-  
-  
+  // define state variables for the form data and show password
   const [formData, setFormData] = useState({
     FirstName: "",
     lastName: "",
@@ -65,8 +72,10 @@ const Signup = () => {
     confirmPassword: "",
   });
 
+  // define state variable for the show password
   const [showPassword, setShowPassword] = useState(false);
 
+  // define a function to handle the form data
   const handleChange = (value, type) => {
     setFormData((prevFormData) => ({
       ...prevFormData,
@@ -74,32 +83,44 @@ const Signup = () => {
     }));
   };
 
+  // define a function to handle the form submission
+  const handleSubmit = async () => {
 
-const handleSubmit = () => {
-  if (formIsValid(formData)) {
-    console.warn("Successfully registered");
-    navigation.navigate("Login");
-  } else {
-    setFormErrors({
-      FirstName: !isValidFirstName(formData.FirstName)
-        ? "Invalid first name"
-        : null,
-      lastName: !isValidlastName(formData.lastName)
-        ? "Invalid last name"
-        : null,
-      email: !isValidEmail(formData.email) ? "Invalid email" : null,
-      password: !isValidPassword(formData.password) ? "Invalid password" : null,
-      confirmPassword:
-        formData.password !== formData.confirmPassword
-          ? "Passwords do not match"
+    // check if the form is valid
+    if (formIsValid(formData)) {
+      try {
+        const response = await axios.post(
+          "http://your-api-url/signup",
+          formData
+        );
+        console.log(response.data);
+        navigation.navigate("Login");
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
+      // set the form errors if the form is invalid
+      setFormErrors({
+        FirstName: !isValidFirstName(formData.FirstName)
+          ? "Invalid first name"
           : null,
-    });
-    console.warn("Invalid Form");
-  }
-};
+        lastName: !isValidlastName(formData.lastName)
+          ? "Invalid last name"
+          : null,
+        email: !isValidEmail(formData.email) ? "Invalid email" : null,
+        password: !isValidPassword(formData.password)
+          ? "Invalid password"
+          : null,
+        confirmPassword:
+          formData.password !== formData.confirmPassword
+            ? "Passwords do not match"
+            : null,
+      });
+      console.warn("Invalid Form");
+    }
+  };
 
-
-
+  // return the JSX code to display the form
   return (
     <View style={styles.root}>
       <AuthHeader subtext="Please Register" />
@@ -112,13 +133,15 @@ const handleSubmit = () => {
           secure={false}
           errorMessage={formErrors.FirstName}
         />
+        /
         <CustomInputSingup
-          label="last Name"
-          value={formData.lastName}
-          onChangeText={(value) => handleChange(value, "LastName")}
-          placeholder="Your Last Name (min 3 letters)"
-          secure={false}
-          errorMessage={formErrors.lastName}
+          label="Confirm Password"
+          value={formData.confirmPassword}
+          onChangeText={(value) => handleChange(value, "confirmPassword")}
+          placeholder="Comfirm your password"
+          secure={!showPassword}
+          errorMessage={formErrors.confirmPassword}
+          onIconPress={() => setShowPassword(!showPassword)}
         />
         <CustomInputSingup
           label="Email"
@@ -149,6 +172,8 @@ const handleSubmit = () => {
         {/* input area  End*/}
 
         {/* Button Start */}
+
+      
         <CustomButton
           onPress={handleSubmit}
           style={styles.button}
@@ -160,8 +185,10 @@ const handleSubmit = () => {
   );
 };
 
+// export the component so it can be imported into other files
 export default Signup;
 
+// define your styles
 const styles = StyleSheet.create({
   root: {
     flex: 1,

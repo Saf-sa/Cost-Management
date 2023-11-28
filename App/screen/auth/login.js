@@ -6,6 +6,8 @@ import CustomInputLog from "../../shared/components/ui/CustomInputLog";
 import CustomButton from "../../shared/components/ui/CustomButton";
 import axios from "axios";
 
+import { API_URL } from "@env";
+
 const isValidEmail = (email) => {
   const re = /\S+@\S+\.\S+/;
   return re.test(email);
@@ -50,10 +52,31 @@ const [showPassword, setShowPassword] = useState(false);
     }));
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (formIsValid(formData)) {
-      console.warn("Successfully logged");
-      navigation.navigate("Start"); 
+      try {
+        const response = await axios.post(API_URL + "/login", formData);
+        if (response.data.success) {
+          console.warn("Successfully logged");
+          navigation.navigate("Start");
+        } else {
+          // Handle server-side validation errors
+          if (response.data.error === "INVALID_EMAIL") {
+            setFormErrors((prevErrors) => ({
+              ...prevErrors,
+              email: "Email not found",
+            }));
+          } else if (response.data.error === "INVALID_PASSWORD") {
+            setFormErrors((prevErrors) => ({
+              ...prevErrors,
+              password: "Incorrect password",
+            }));
+          }
+          console.warn(response.data.error);
+        }
+      } catch (error) {
+        console.error(error);
+      }
     } else {
       setFormErrors({
         email: !isValidEmail(formData.email) ? "Invalid email" : null,
