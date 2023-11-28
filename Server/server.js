@@ -17,3 +17,9 @@ app.listen(port, () => {
 });
 
 app.use("/api/users", userRoutes);
+
+app.use ( (error, rea, res, next)=>{
+error.statusCoder = error.statusCode || 500
+error.message = error.message || 'Something went wrong'
+res.status(error.statusCode).send(error.message)
+});
