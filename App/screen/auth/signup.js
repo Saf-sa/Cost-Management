@@ -7,7 +7,7 @@ import CustomButton from "../../shared/components/ui/CustomButton";
 /*  import { REACT_APP_BE_URL } from "../../.env"; */
 import  axios  from 'axios';
 
-
+/* test("should return 200 if user is logged in", async () => { */
 
 
 const isValidEmail = (email) => {
