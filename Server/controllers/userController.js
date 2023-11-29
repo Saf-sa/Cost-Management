@@ -1,5 +1,6 @@
 import generateToken from "../utils/generateToken.js";
 import { validationResult } from "express-validator";
+import validator from "validator";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
@@ -38,7 +39,7 @@ const userLogin = async (req, res, next) => {
 // define functions to handle requests for the user routes that we defined in Server/routes/userRoutes.js
 const registerUser = async (req, res, next) => {
   try {
-    // get the name, email and password from the request body
+    console.log("test")   // get the name, email and password from the request body
     const { firstName, lastName, email, password } = req.body;
 
     // check if the name, email and password are not empty
@@ -75,7 +76,9 @@ const registerUser = async (req, res, next) => {
         email: result.email,
         token: generateToken(result._id),
       });
+      
   } catch (error) {
+    console.log(error);
      res.status(500).send({ error: error.message });
   }
 };

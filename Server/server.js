@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import connectDB from "./config/db.js";
 import userRoutes from "./routes/userRoutes.js";
+import cors from "cors";
 
 // Initialize dotenv
 dotenv.config();
@@ -11,9 +12,11 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 5555;
 
-
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use('/api/user', userRoutes);
 
 // Connect to DataBase = MongoDB
 connectDB();  // This is the function we imported from Server/config/db.js
