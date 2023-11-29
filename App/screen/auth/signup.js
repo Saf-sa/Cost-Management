@@ -88,7 +88,7 @@ const handleSubmit = async (e) => {
     confirmPassword:confirmPassword,
   });
 
-  try {si
+  try {
     const response = await axios.post(
       `http://localhost:5555/api/user/register`,
       formData
