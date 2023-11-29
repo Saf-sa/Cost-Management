@@ -1,3 +1,5 @@
+To Do for a better code for login.js
+
 1- Extraction des fonctions de validation : Les fonctions isValidEmail et isValidPassword pourraient être extraites dans un fichier séparé (par exemple, validation.js) et importées dans ce fichier. Cela rendrait votre code plus modulaire et réutilisable.
 
 2- Utilisation de async/await avec axios : Vous utilisez déjà async/await avec axios.post, ce qui est une bonne pratique. Cependant, vous pourriez également utiliser un try/catch pour gérer les erreurs réseau qui pourraient survenir lors de l'appel à axios.post.

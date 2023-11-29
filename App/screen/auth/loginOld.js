@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import AuthHeader from "../../shared/components/AuthHeader";
@@ -38,8 +38,9 @@ const Login = () => {
     email: "",
     password: "",
   });
+  
+const [showPassword, setShowPassword] = useState(false);
 
-  const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (value, type) => {
     setFormData((prevFormData) => ({
@@ -51,7 +52,7 @@ const Login = () => {
   const handleSubmit = () => {
     if (formIsValid(formData)) {
       console.warn("Successfully logged");
-      navigation.navigate("Start");
+      navigation.navigate("Start"); 
     } else {
       setFormErrors({
         email: !isValidEmail(formData.email) ? "Invalid email" : null,

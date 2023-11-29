@@ -4,55 +4,50 @@ import { useNavigation } from "@react-navigation/native";
 import AuthHeader from "../../shared/components/AuthHeader";
 import CustomInputSingup from "../../shared/components/ui/CustomInputSignup";
 import CustomButton from "../../shared/components/ui/CustomButton";
-/*  import { REACT_APP_BE_URL } from "../../.env"; */
-import  axios  from 'axios';
+import axios from "axios";
+import { API_URL } from "../../.env";
 
+// declare a variable to store the response from the server
+const response = await axios.post(API_URL + "/signup", formData);
 
-
-
+// check if the email is valid
 const isValidEmail = (email) => {
   const re = /\S+@\S+\.\S+/; // Should contain @
   return re.test(email);
 };
 
+// check if the response is successful
 const isValidPassword = (password) => {
   const re = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/;
   // Should contain at least one number, one special character and minimum 8 characters
   return re.test(password);
 };
-// should at least 3 letter
-const isValidfirstName = (firstName) => {
+
+const isValidFirstName = (FirstName) => {
   const re = /^[a-zA-Z]{3,}$/; // all letter and min 3
-  return re.test(firstName);
+  return re.test(FirstName);
 };
-// should at least 3 letter
+
 const isValidlastName = (lastName) => {
   const re = /^[a-zA-Z]{3,}$/; // all letter and min 3
   return re.test(lastName);
 };
-// check all value is not empty
 const formIsValid = (DataObj) => {
   return (
     Object.values(DataObj).every((value) => value.trim().length > 0) && // check all value is not empty
     isValidEmail(DataObj.email) &&
     isValidPassword(DataObj.password) &&
-    isValidfirstName(DataObj.firstName) &&
+    isValidFirstName(DataObj.FirstName) &&
     isValidlastName(DataObj.lastName) &&
     DataObj.password === DataObj.confirmPassword
   );
 };
-//
+
 const Signup = () => {
-   
-  const [password, setPassword] = useState(""); 
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [firstName, setfirstName] = useState("");
-  const [lastName, setlastName] = useState(""); 
-  const [email, setEmail] = useState("");
-  const navigation = useNavigation(); 
-  const [formErrors, setFormErrors] = useState({ 
-  
-    firstName: null,
+  const navigation = useNavigation();
+
+  const [formErrors, setFormErrors] = useState({
+    FirstName: null,
     lastName: null,
     email: null,
     password: null,
@@ -60,7 +55,7 @@ const Signup = () => {
   });
 
   const [formData, setFormData] = useState({
-    firstName: "",
+    FirstName: "",
     lastName: "",
     email: "",
     password: "",
@@ -76,68 +71,59 @@ const Signup = () => {
     }));
   };
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
-
-  // update formData with form values
-  setFormData({
-    firstNameirstName: firstName,
-    lastName:lastName ,
-    email:email,
-    password: password,
-    confirmPassword:confirmPassword,
-  });
-
-  try {si
-    const response = await axios.post(
-      `http://localhost:5555/api/user/register`,
-      formData
-    );
-    console.log(response.data);
-  } catch (err) {
-    console.log(err.message);
-  }
-
-  if (formIsValid(formData)) {
-    console.warn("Successfully registered");
-    navigation.navigate("Login");
-  } else {
-    setFormErrors({
-      firstName: !isValidfirstName(formData.firstName)
-        ? "Invalid first name"
-        : null,
-      lastName: !isValidlastName(formData.lastName)
-        ? "Invalid last name"
-        : null,
-      email: !isValidEmail(formData.email) ? "Invalid email" : null,
-      password: !isValidPassword(formData.password) ? "Invalid password" : null,
-      confirmPassword:
-        formData.password !== formData.confirmPassword
-          ? "Passwords do not match"
+  const handleSubmit = async () => {
+    if (formIsValid(formData)) {
+      try {
+        const response = await axios.post(
+          "http://your-api-url/signup",
+          formData
+        );
+        console.log(response.data);
+        navigation.navigate("Login");
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
+      setFormErrors({
+        FirstName: !isValidFirstName(formData.FirstName)
+          ? "Invalid first name"
           : null,
-    });
-    console.warn("Invalid Form");
-  }
-};
+        lastName: !isValidlastName(formData.lastName)
+          ? "Invalid last name"
+          : null,
+        email: !isValidEmail(formData.email) ? "Invalid email" : null,
+        password: !isValidPassword(formData.password)
+          ? "Invalid password"
+          : null,
+        confirmPassword:
+          formData.password !== formData.confirmPassword
+            ? "Passwords do not match"
+            : null,
+      });
+      console.warn("Invalid Form");
+    }
+  };
+
   return (
     <View style={styles.root}>
       <AuthHeader subtext="Please Register" />
       <View style={styles.content}>
         <CustomInputSingup
           label="First Name"
-          value={formData.firstName}
-          onChangeText={(value) => handleChange(value, "firstName")}
+          value={formData.FirstName}
+          onChangeText={(value) => handleChange(value, "FirstName")}
           placeholder="Your First Name (min 3 letters) "
           secure={false}
-          errorMessage={formErrors.firstName}
+          errorMessage={formErrors.FirstName}
         />
         <CustomInputSingup
-          label="last Name"
-          value={formData.lastName}
-          onChangeText={(value) => handleChange(value, "lastName")}
-          placeholder="Your Laste Name (min 3 letters) "
-          secure={false}
-          errorMessage={formErrors.firstName}
+          label="Confirm Password"
+          value={formData.confirmPassword}
+          onChangeText={(value) => handleChange(value, "confirmPassword")}
+          placeholder="Comfirm your password"
+          secure={!showPassword}
+          errorMessage={formErrors.confirmPassword}
+          onIconPress={() => setShowPassword(!showPassword)}
         />
         <CustomInputSingup
           label="Email"

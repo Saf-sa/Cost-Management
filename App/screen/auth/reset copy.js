@@ -4,16 +4,19 @@ import { useNavigation } from "@react-navigation/native";
 import AuthHeader from "../../shared/components/AuthHeader";
 import CustomInputLog from "../../shared/components/ui/CustomInputLog";
 import CustomButton from "../../shared/components/ui/CustomButton";
+import axios from "axios";
+
 
 const isValidEmail = (email) => {
   const re = /\S+@\S+\.\S+/;
   return re.test(email);
 };
 
+
 const formIsValid = (DataObj) => {
   return (
     Object.values(DataObj).every((value) => value.trim() !== "") &&
-    isValidEmail(DataObj.email)
+    isValidEmail(DataObj.email) 
   );
 };
 
@@ -21,11 +24,14 @@ const Reset = () => {
   const navigation = useNavigation();
 
   const [formErrors, setFormErrors] = useState({
+   
     email: null,
+    
   });
 
   const [formData, setFormData] = useState({
     email: "",
+    
   });
 
   const [showPassword, setShowPassword] = useState(false);
@@ -37,17 +43,26 @@ const Reset = () => {
     }));
   };
 
-  const handleSubmit = () => {
-    if (formIsValid(formData)) {
-      console.warn("Check your email to reset your password");
-      navigation.navigate("Login");
-    } else {
-      setFormErrors({
-        email: !isValidEmail(formData.email) ? "Invalid email" : null,
-      });
-      console.warn("Please review your credentials");
+const handleSubmit = async () => {
+  if (formIsValid(formData)) {
+    try {
+      const response = await axios.post(API_URL + "/reset-password", formData);
+      if (response.data.success) {
+        console.warn("Check your email to reset your password");
+        navigation.navigate("Login");
+      } else {
+        console.warn(response.data.error);
+      }
+    } catch (error) {
+      console.error(error);
     }
-  };
+  } else {
+    setFormErrors({
+      email: !isValidEmail(formData.email) ? "Invalid email" : null,
+    });
+    console.warn("Please review your credentials");
+  }
+};
 
   return (
     <View style={styles.root}>
@@ -62,12 +77,16 @@ const Reset = () => {
           secure={false}
           errorMessage={formErrors.email}
         />
+   
+        
 
         <CustomButton
           onPress={handleSubmit}
           style={styles.button}
           buttonText={"Reset password"}
         />
+
+    
       </View>
     </View>
   );
@@ -94,4 +113,5 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: "bold",
   },
+  
 });

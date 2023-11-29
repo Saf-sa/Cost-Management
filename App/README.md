@@ -55,3 +55,7 @@ module.exports = {
     ['module:react-native-dotenv']
   ],
 };
+
+how to reset the cache in react native :
+
+npm start -- --reset-cache

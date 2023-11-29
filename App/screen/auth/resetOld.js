@@ -10,33 +10,26 @@ const isValidEmail = (email) => {
   return re.test(email);
 };
 
-const isValidPassword = (password) => {
-  const re = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/;
-  return re.test(password);
-};
 
 const formIsValid = (DataObj) => {
   return (
     Object.values(DataObj).every((value) => value.trim() !== "") &&
-    isValidEmail(DataObj.email) &&
-    isValidPassword(DataObj.password)
+    isValidEmail(DataObj.email) 
   );
 };
 
-const Login = () => {
+const Reset = () => {
   const navigation = useNavigation();
 
   const [formErrors, setFormErrors] = useState({
-    FirstName: null,
-    lastName: null,
+   
     email: null,
-    password: null,
-    confirmPassword: null,
+    
   });
 
   const [formData, setFormData] = useState({
     email: "",
-    password: "",
+    
   });
 
   const [showPassword, setShowPassword] = useState(false);
@@ -50,14 +43,12 @@ const Login = () => {
 
   const handleSubmit = () => {
     if (formIsValid(formData)) {
-      console.warn("Successfully logged");
-      navigation.navigate("Start");
+      console.warn("Check your email to reset your password");
+      navigation.navigate("Login");
     } else {
       setFormErrors({
         email: !isValidEmail(formData.email) ? "Invalid email" : null,
-        password: !isValidPassword(formData.password)
-          ? "Password = min 8 char with 1 cap , 1 number,1 special char"
-          : null,
+       
       });
       console.warn("Please review your credentials");
     }
@@ -76,40 +67,22 @@ const Login = () => {
           secure={false}
           errorMessage={formErrors.email}
         />
-        <CustomInputLog
-          label="Password"
-          value={formData.password}
-          onChangeText={(value) => handleChange(value, "password")}
-          placeholder="Your Password"
-          secure={!showPassword}
-          errorMessage={formErrors.password}
-          onIconPress={() => setShowPassword(!showPassword)}
-        />
-        <Text
-          style={styles.forgetPass}
-          onPress={() => navigation.navigate("Reset")}
-        >
-          Forget Your Password?
-        </Text>
+   
+        
 
         <CustomButton
           onPress={handleSubmit}
           style={styles.button}
-          buttonText={"Login"}
+          buttonText={"Reset password"}
         />
 
-        <Text style={styles.register}>New to Expense Manager?</Text>
-        <CustomButton
-          style={styles.button}
-          buttonText={"Sign up Now"}
-          onPress={() => navigation.navigate("Signup")}
-        />
+    
       </View>
     </View>
   );
 };
 
-export default Login;
+export default Reset;
 
 const styles = StyleSheet.create({
   root: {
@@ -130,13 +103,5 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: "bold",
   },
-  forgetPass: {
-    flexDirection: "row",
-    alignSelf: "flex-end",
-    marginTop: 20,
-    marginBottom: 10,
-    color: "#0283a8",
-    fontSize: 15,
-    fontWeight: "bold",
-  },
+  
 });
