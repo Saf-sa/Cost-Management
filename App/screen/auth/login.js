@@ -31,8 +31,7 @@ const Login = () => {
   const navigation = useNavigation();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState(""); 
-
-  const [formErrors, setFormErrors] = useState({
+    const [formErrors, setFormErrors] = useState({
     firstName: null,
     lastName: null,
     email: null,
@@ -61,11 +60,12 @@ const handleSubmit = async (e) => {
   setFormData({
     email: email,
     password: password,
-    
   });
+
   if (!formIsValid(formData)) {
     setFormErrors({
-      email: !isValidEmail(formData.email) ? "Invalid email" : null,
+      email: !isValidEmail(formData.email) ? "Invalid email" 
+        : null,
       password: !isValidPassword(formData.password)
         ? "Password = min 8 char with 1 cap , 1 number,1 special char"
         : null,
@@ -77,15 +77,14 @@ try {
     `http://localhost:5555/api/user/login`,
     formData
   );
-  console.log(response.data);
-  console.warn("Successfully logged");
-  navigation.navigate("Start");
-} catch (err) {
-  console.log(err.message);
-  console.warn("Login failed");
-  
-}
-  
+    console.log(response.data);
+    console.warn("Successfully logged");
+    navigation.navigate("Start");
+  }
+   catch (err) {
+    console.log(err.message);
+    console.warn("Login failed");
+  }
 };
 
   return (

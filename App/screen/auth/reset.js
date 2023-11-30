@@ -4,8 +4,10 @@ import { useNavigation } from "@react-navigation/native";
 import AuthHeader from "../../shared/components/AuthHeader";
 import CustomInputLog from "../../shared/components/ui/CustomInputLog";
 import CustomButton from "../../shared/components/ui/CustomButton";
+import axios from "axios";
 
 const isValidEmail = (email) => {
+  // Should contain @
   const re = /\S+@\S+\.\S+/;
   return re.test(email);
 };
@@ -19,7 +21,7 @@ const formIsValid = (DataObj) => {
 
 const Reset = () => {
   const navigation = useNavigation();
-
+  const [email, setEmail] = useState("");
   const [formErrors, setFormErrors] = useState({
     email: null,
   });
@@ -37,15 +39,33 @@ const Reset = () => {
     }));
   };
 
-  const handleSubmit = () => {
-    if (formIsValid(formData)) {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // update formData with form values
+    setFormData({
+      email: email,
+    });
+
+    if (!formIsValid(formData)) {
+          setFormErrors({
+            email: !isValidEmail(formData.email) ? "Invalid email" 
+            : null,
+          });
+          console.warn("Email does not exist");
+        }
+        try{
+           const response = await axios.post(
+           `http://localhost:5555/api/user/reset`,
+            formData
+  );
+      console.log(response.data);
       console.warn("Check your email to reset your password");
       navigation.navigate("Login");
-    } else {
-      setFormErrors({
-        email: !isValidEmail(formData.email) ? "Invalid email" : null,
-      });
-      console.warn("Please review your credentials");
+    } 
+      catch (err) {
+      console.log(err.message);
+      console.warn("Reset Password failed");
     }
   };
 
