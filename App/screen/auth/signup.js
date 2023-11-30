@@ -80,27 +80,15 @@ const handleSubmit = async (e) => {
 
   // update formData with form values
   setFormData({
-    firstNameirstName: firstName,
-    lastName:lastName ,
+    firstName: firstName,
+    lastName:lastName,
     email:email,
     password: password,
     confirmPassword:confirmPassword,
   });
 
-  try {
-    const response = await axios.post(
-      `http://localhost:5555/api/user/register`,
-      formData
-    );
-    console.log(response.data);
-  } catch (err) {
-    console.log(err.message);
-  }
-
-  if (formIsValid(formData)) {
-    console.warn("Successfully registered");
-    navigation.navigate("Login");
-  } else {
+  if (!formIsValid(formData)) {
+  
     setFormErrors({
       firstName: !isValidfirstName(formData.firstName)
         ? "Invalid first name"
@@ -117,6 +105,19 @@ const handleSubmit = async (e) => {
     });
     console.warn("Invalid Form");
   }
+  try {
+    const response = await axios.post(
+      `http://localhost:5555/api/user/register`,
+      formData
+    );
+    console.log(response.data);
+    console.warn("Successfully registered");
+    navigation.navigate("Login");
+  } catch (err) {
+    console.log(err.message);
+    console.warn('Registration failed')
+  }
+
 };
   return (
     <View style={styles.root}>

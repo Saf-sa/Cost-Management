@@ -9,6 +9,8 @@ first instal Xcode IOS globaly
 2- npx create-expo-app App 
 
 3- - cd App
+npm install 
+
 - npm run android (need solution for Android not allow by Apple)
 - npm run ios (first instal Xcode)
 - npm run web (for the web App install : 
