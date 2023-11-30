@@ -7,15 +7,18 @@ import CustomButton from "../../shared/components/ui/CustomButton";
 import axios from "axios";
 
 const isValidEmail = (email) => {
+  // Should contain @
   const re = /\S+@\S+\.\S+/;
   return re.test(email);
 };
 
 const isValidPassword = (password) => {
+  // Should contain at least one number, one special character and minimum 8 characters
+
   const re = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/;
   return re.test(password);
 };
-
+// check all value is not empty
 const formIsValid = (DataObj) => {
   return (
     Object.values(DataObj).every((value) => value.trim() !== "") &&
@@ -60,19 +63,7 @@ const handleSubmit = async (e) => {
     password: password,
     
   });
-try {
-  const response = await axios.post(
-    `http://localhost:5555/api/user/`,
-    formData
-  );
-  console.log(response.data);
-} catch (err) {
-  console.log(err.message);
-}
-  if (formIsValid(formData)) {
-    console.warn("Successfully logged");
-    navigation.navigate("Start");
-  } else {
+  if (!formIsValid(formData)) {
     setFormErrors({
       email: !isValidEmail(formData.email) ? "Invalid email" : null,
       password: !isValidPassword(formData.password)
@@ -81,6 +72,20 @@ try {
     });
     console.warn("Please review your credentials");
   }
+try {
+  const response = await axios.post(
+    `http://localhost:5555/api/user/login`,
+    formData
+  );
+  console.log(response.data);
+  console.warn("Successfully logged");
+  navigation.navigate("Start");
+} catch (err) {
+  console.log(err.message);
+  console.warn("Login failed");
+  
+}
+  
 };
 
   return (
