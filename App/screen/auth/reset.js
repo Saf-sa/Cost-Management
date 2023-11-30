@@ -4,6 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 import AuthHeader from "../../shared/components/AuthHeader";
 import CustomInputLog from "../../shared/components/ui/CustomInputLog";
 import CustomButton from "../../shared/components/ui/CustomButton";
+/*  import { REACT_APP_BE_URL } from "../../.env"; */
 import axios from "axios";
 
 const isValidEmail = (email) => {
@@ -11,15 +12,15 @@ const isValidEmail = (email) => {
   const re = /\S+@\S+\.\S+/;
   return re.test(email);
 };
-
+// check all value is not empty
 const formIsValid = (DataObj) => {
   return (
-    Object.values(DataObj).every((value) => value.trim() !== "") &&
+    Object.values(DataObj).every((value) => value.trim().length > 0) && // check all value is not empty
     isValidEmail(DataObj.email)
   );
 };
 
-const Reset = () => {
+const ResetLogin = () => {
   const navigation = useNavigation();
   const [email, setEmail] = useState("");
   const [formErrors, setFormErrors] = useState({
@@ -29,8 +30,6 @@ const Reset = () => {
   const [formData, setFormData] = useState({
     email: "",
   });
-
-  const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (value, type) => {
     setFormData((prevFormData) => ({
@@ -52,7 +51,7 @@ const Reset = () => {
             email: !isValidEmail(formData.email) ? "Invalid email" 
             : null,
           });
-          console.warn("Email does not exist");
+          console.warn("Please review your credentials");
         }
         try{
            const response = await axios.post(
@@ -71,7 +70,7 @@ const Reset = () => {
 
   return (
     <View style={styles.root}>
-      <AuthHeader subtext="Please Login" />
+      <AuthHeader subtext="Please Reset your Password" />
 
       <View style={styles.content}>
         <CustomInputLog
@@ -93,7 +92,7 @@ const Reset = () => {
   );
 };
 
-export default Reset;
+export default ResetLogin;
 
 const styles = StyleSheet.create({
   root: {

@@ -6,6 +6,8 @@ import CustomInputLog from "../../shared/components/ui/CustomInputLog";
 import CustomButton from "../../shared/components/ui/CustomButton";
 import axios from "axios";
 
+/*  import { REACT_APP_BE_URL } from "../../.env"; */
+
 const isValidEmail = (email) => {
   // Should contain @
   const re = /\S+@\S+\.\S+/;

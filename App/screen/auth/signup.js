@@ -88,7 +88,6 @@ const handleSubmit = async (e) => {
   });
 
   if (!formIsValid(formData)) {
-  
     setFormErrors({
       firstName: !isValidfirstName(formData.firstName)
         ? "Invalid first name"

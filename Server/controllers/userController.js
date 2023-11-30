@@ -83,17 +83,34 @@ const registerUser = async (req, res, next) => {
   }
 };
 
-// define functions to handle requests for the user routes that we defined in Server/routes/userRoutes.js
+/// define functions to handle requests for the user routes that we defined in Server/routes/userRoutes.js
 const resetLogin = async (req, res, next) => {
-  // get the name, email and password from the request body
-  const { user } = req.body;
+  const { email } = req.body;
 
-  // check if the name, email and password are not empty
-  res.json({
-  
-    email: user.email,
-    
+  // Check if user exists
+  const user = await User.findOne({ email });
+
+  if (!user) {
+    return res.status(401).json({ message: "Invalid email" });
+  }
+
+  // Generate reset token and expiry time
+  const resetToken = jwt.sign({ id: user._id }, process.env.SECRET_KEY, {
+    expiresIn: "1h",
   });
+  user.resetToken = resetToken;
+  user.resetTokenExpire = Date.now() + 3600000; // Token expires in 1 hour
+
+  await user.save();
+
+  // Send reset email
+
+  // i need to implement this function to send an email to the user with a link to my password reset form
+  // The link should include the reset token as a parameter :
+  // bellow the declaration const resetToken = jwt.sign({ id: user._id }, process.env.SECRET_KEY, {
+  /*  sendResetEmail(user.email, resetToken); */
+
+  res.json({ message: "Password reset email sent." });
 };
 
 // define functions to handle requests for the user routes that we defined in Server/routes/userRoutes.js
