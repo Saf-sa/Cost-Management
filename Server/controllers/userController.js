@@ -3,6 +3,9 @@ import { validationResult } from "express-validator";
 import validator from "validator";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import nodemailer from "nodemailer";
+import hbs from "nodemailer-express-handlebars";
+
 
 // Import User model
 import User from "../models/userModel.js";
@@ -82,36 +85,24 @@ const registerUser = async (req, res, next) => {
      res.status(500).send({ error: error.message });
   }
 };
-
+// Configure your transporter
+let transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'your-email@gmail.com',
+    pass: 'your-password'
+  }
+});
 /// define functions to handle requests for the user routes that we defined in Server/routes/userRoutes.js
 const resetLogin = async (req, res, next) => {
   const { email } = req.body;
-
+}
   // Check if user exists
   const user = await User.findOne({ email });
 
   if (!user) {
     return res.status(401).json({ message: "Invalid email" });
   }
-
-  // Generate reset token and expiry time
-  const resetToken = jwt.sign({ id: user._id }, process.env.SECRET_KEY, {
-    expiresIn: "1h",
-  });
-  user.resetToken = resetToken;
-  user.resetTokenExpire = Date.now() + 3600000; // Token expires in 1 hour
-
-  await user.save();
-
-  // Send reset email
-
-  // i need to implement this function to send an email to the user with a link to my password reset form
-  // The link should include the reset token as a parameter :
-  // bellow the declaration const resetToken = jwt.sign({ id: user._id }, process.env.SECRET_KEY, {
-  /*  sendResetEmail(user.email, resetToken); */
-
-  res.json({ message: "Password reset email sent." });
-};
 
 // define functions to handle requests for the user routes that we defined in Server/routes/userRoutes.js
 const listUser = async (req, res) => {
@@ -165,4 +156,4 @@ const updateUser = async (req, res) => {
 };
 
 // define functions to handle requests for the user routes that we defined in Server/routes/userRoutes.js
-export { registerUser, userLogin, listUser, updateUser, resetLogin };
+export { registerUser, userLogin, listUser, updateUser, resetLogin,  };

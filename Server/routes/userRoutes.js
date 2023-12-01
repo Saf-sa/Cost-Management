@@ -20,4 +20,5 @@ router.post("/register", registerUser);
 router.post("/reset", resetPasswordMiddleware, resetLogin);
 router.put("/:id", updateUser);
 
+
 export default router;
