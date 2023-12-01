@@ -8,6 +8,11 @@ import CustomButton from "../../shared/components/ui/CustomButton";
 import  axios  from 'axios';
 
 
+// comment this line because solution not found if using .env file
+// go to ligne 84
+//import { API_URL, API_TOKEN } from "@env";
+/*  import { REACT_APP_BE_URL } from "../../.env";  */
+
 
 const isValidEmail = (email) => {
   const re = /\S+@\S+\.\S+/; // Should contain @
