@@ -8,13 +8,36 @@
 first instal Xcode IOS globaly
 2- npx create-expo-app App 
 
+
+
 3- - cd App
 npm install 
+
+
 
 - npm run android (need solution for Android not allow by Apple)
 - npm run ios (first instal Xcode)
 - npm run web (for the web App install : 
  npx expo install react-native-web)
+
+ command Expo Go
+
+ › Using Expo Go
+› Press s │ switch to development build
+
+› Press a │ open Android
+› Press i │ open iOS simulator
+› Press w │ open web
+
+› Press j │ open debugger
+› Press r │ reload app
+› Press m │ toggle menu
+› Press o │ open project code in your editor
+
+› Press ? │ show all commands
+
+› Open in the web browser...
+› Press ? │ show all commands
 
 4- install react native vector icons for show/hide password :
 

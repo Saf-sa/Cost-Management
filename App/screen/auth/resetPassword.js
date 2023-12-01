@@ -7,9 +7,6 @@ import CustomButton from "../../shared/components/ui/CustomButton";
 /*  import { REACT_APP_BE_URL } from "../../.env"; */
 import  axios  from 'axios';
 
-
-
-
 const isValidPassword = (password) => {
   const re = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/;
   // Should contain at least one number, one special character and minimum 8 characters
@@ -75,7 +72,7 @@ const handleSubmit = async (e) => {
       formData
     );
     console.log(response.data);
-    console.warn("Successfully registered");
+    console.warn("Successfully reset password");
     navigation.navigate("resetPassword");
   } catch (err) {
     console.log(err.message);

@@ -6,7 +6,10 @@ import CustomInputLog from "../../shared/components/ui/CustomInputLog";
 import CustomButton from "../../shared/components/ui/CustomButton";
 import axios from "axios";
 
-/*  import { REACT_APP_BE_URL } from "../../.env"; */
+// comment this line because solution not found if using .env file
+// go to ligne 84
+//import { API_URL, API_TOKEN } from "@env";
+/*  import { REACT_APP_BE_URL } from "../../.env";  */
 
 const isValidEmail = (email) => {
   // Should contain @
@@ -75,9 +78,16 @@ const handleSubmit = async (e) => {
     console.warn("Please review your credentials");
   }
 try {
+
   const response = await axios.post(
     `http://localhost:5555/api/user/login`,
     formData
+    // comment this line because solution not found if using .env file
+    /*     fetch(`${API_URL}/users`, {
+  headers: {
+    'Authorization': `Bearer ${API_TOKEN}`
+  }
+}) */
   );
     console.log(response.data);
     console.warn("Successfully logged");

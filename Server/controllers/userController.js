@@ -4,8 +4,12 @@ import validator from "validator";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import nodemailer from "nodemailer";
+import dotenv from "dotenv";
 import hbs from "nodemailer-express-handlebars";
 
+// Initialize dotenv
+dotenv.config();
+const SECRET_KEY2 = process.env.SECRET_KEY2;
 
 // Import User model
 import User from "../models/userModel.js";
@@ -90,7 +94,7 @@ let transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
     user: "lesafsafi@gmail.com",
-    pass: "xvnk mppt rbyz ypjw",
+    pass: (SECRET_KEY2),
   },
 });
 const resetLogin = async (req, res, next) => {
