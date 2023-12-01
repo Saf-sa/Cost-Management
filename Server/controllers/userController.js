@@ -11,6 +11,7 @@ import hbs from "nodemailer-express-handlebars";
 dotenv.config();
 const SECRET_KEY2 = process.env.SECRET_KEY2;
 
+
 // Import User model
 import User from "../models/userModel.js";
 
@@ -106,10 +107,10 @@ let transporter = nodemailer.createTransport({
     pass: (SECRET_KEY2),
   },
 });
-const resetLogin = async (req, res, next) => {
+
+const resetLogin = async (req, res) => {
   console.log("Reset login called");
   const { email, Code } = req.body;
-
 
   console.log("Checking if user exists");
   const user = await User.findOne({ email });
@@ -118,32 +119,20 @@ const resetLogin = async (req, res, next) => {
     console.log("User not found");
     return res.status(401).json({ message: "Invalid  email or password" });
   }
-// Generate token for password reset old system
-  /*   console.log("Generating reset token");
-  const resetToken = jwt.sign({ id: user._id }, process.env.SECRET_KEY, {
-    expiresIn: "30m",
-  });
-  user.resetToken = resetToken;
-  user.resetTokenExpire = Date.now() + 1800000; // Token expires in 1 hour
 
-  console.log("Saving user");
+  const resetCode = Math.random().toString(36).substring(2, 8).toUpperCase();
+  user.resetCode = resetCode;
+  user.resetCodeExpiry = Date.now() + 1800000;
+
+  console.log("Saving user"); // Log to save user
+  console.log(resetCode); // Log to reset code 
+
   await user.save();
 
-  console.log("Preparing reset email");
-  const resetUrl = `http://localhost:5555/resetPassword?token=${resetToken}`;
- */
-
-  // Generate reset code with 6 random digits
-
-    const resetCode = Math.random().toString(36).substring(2, 8).toUpperCase();
-    user.resetCode = resetCode;
-    user.resetCodeExpiry = Date.now() + 1800000;
-    console.log("Saving user"); // Log to save user
-    console.log(resetCode); // Log to reset code 
-  console
-    await user.save();
-    res.status(200).json({ message: "Your Reset code is sent to your email" });
-
+  console.log("Generating token...");
+  // Generate a JWT for the user
+  const token = jwt.sign({ id: user._id }, SECRET_KEY2, { expiresIn: "1h" });
+console.log("Token generated:", token);
   // Send reset code to user's email
   const mailOptions = {
     from: "expense@salahsafsaf.art", // User Email Id
@@ -164,7 +153,7 @@ const resetLogin = async (req, res, next) => {
       res.status(500).json({ message: "Failed to send reset email" });
     } else {
       console.log("Email sent:", info.response);
-      res.status(200).json({ message: "Reset token sent to your email" });
+      res.status(200).json({ message: "Reset token sent to your email", token });
     }
   });
 };

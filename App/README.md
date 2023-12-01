@@ -81,6 +81,10 @@ module.exports = {
   ],
 };
 
+13- imstall react-native-async-storage/async-storage
+
+npm install @react-native-async-storage/async-storage
+
 how to reset the cache in react native :
 
 npm start -- --reset-cache
