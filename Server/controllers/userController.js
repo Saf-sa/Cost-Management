@@ -103,6 +103,29 @@ const resetLogin = async (req, res, next) => {
   if (!user) {
     return res.status(401).json({ message: "Invalid email" });
   }
+  // Generate reset token and expiry time
+  const resetToken = jwt.sign({ id: user._id }, process.env.SECRET_KEY, {
+    expiresIn: "1h",
+  });
+  user.resetToken = resetToken;
+  user.resetTokenExpire = Date.now() + 3600000; // Token expires in 1 hour
+
+  await user.save();
+
+  // Send reset email
+  const resetUrl = `http://my-frontend-url/reset-password?token=${resetToken}`;
+
+const mailOptions = {
+  from: "expense@salahsafsaf.art", // User Email Id
+  to: user.email, // Recepient Email Id
+  subject: "Password Reset",
+  html: `
+    <h2>Hello ${user.firstName},</h2>
+    <p>You requested a password reset. Please click on the link below to reset your password:</p>
+    <a href="${resetUrl}">Reset Password</a>
+    <p>If you did not request a password reset, please ignore this email.</p>
+  `,
+};
 
 // define functions to handle requests for the user routes that we defined in Server/routes/userRoutes.js
 const listUser = async (req, res) => {
