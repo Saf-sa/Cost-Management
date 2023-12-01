@@ -18,7 +18,7 @@ const userLogin = async (req, res, next) => {
   const user = await User.findOne({ email });
 
   if (!user) {
-    return res.status(401).json({ message: "Invalid email or password" });
+    return res.status(401).json({ message: "Invalid email or password" })
   }
 
   // Check if password matches
@@ -93,27 +93,29 @@ let transporter = nodemailer.createTransport({
     pass: 'your-password'
   }
 });
+
+
 /// define functions to handle requests for the user routes that we defined in Server/routes/userRoutes.js
 const resetLogin = async (req, res, next) => {
   const { email } = req.body;
-}
+
   // Check if user exists
   const user = await User.findOne({ email });
 
   if (!user) {
-    return res.status(401).json({ message: "Invalid email" });
-  }
+    return res.status(401).json({ message: "Invalid  email or password" })
+  };
   // Generate reset token and expiry time
   const resetToken = jwt.sign({ id: user._id }, process.env.SECRET_KEY, {
-    expiresIn: "1h",
+    expiresIn: "30m",
   });
   user.resetToken = resetToken;
-  user.resetTokenExpire = Date.now() + 3600000; // Token expires in 1 hour
+  user.resetTokenExpire = Date.now() + 1800000; // Token expires in 1 hour
 
   await user.save();
 
-  // Send reset email
-  const resetUrl = `http://my-frontend-url/reset-password?token=${resetToken}`;
+    // Send reset email
+  const resetUrl = `http://localhost:5555/resetPassword?token=${resetToken}`;
 
 const mailOptions = {
   from: "expense@salahsafsaf.art", // User Email Id
@@ -127,6 +129,16 @@ const mailOptions = {
   `,
 };
 
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.error("Email error:", error);
+      res.status(500).json({ message: "Failed to send reset email" });
+    } else {
+      console.log("Email sent:", info.response);
+      res.status(200).json({ message: "Reset token sent to your email" });
+    }
+  });
+} // Cette accolade fermante doit être ici pour fermer la fonction resetLogin
 // define functions to handle requests for the user routes that we defined in Server/routes/userRoutes.js
 const listUser = async (req, res) => {
   // get the token from the request header
