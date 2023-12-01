@@ -60,7 +60,7 @@ const ResetLogin = () => {
   );
       console.log(response.data);
       console.warn("Check your email to reset your password");
-      navigation.navigate("Login");
+      navigation.navigate("ResetPassword");
     } 
       catch (err) {
       console.log(err.message);

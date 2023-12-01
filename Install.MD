@@ -16,16 +16,17 @@ npm i express
 
 5- install dependencies
 
-      "@expo/webpack-config": "^19.0.0",
-    "@react-navigation/stack": "^6.3.20",
-    "axios": "^1.6.2",
-    "expo": "~49.0.15",
-    "expo-module-scripts": "^3.1.0",
-    "expo-status-bar": "~1.6.0",
-    "react": "18.2.0",
-    "react-native": "0.72.6",
-    "react-native-dotenv": "^3.4.9",
-    "react-native-vector-icons": "^10.0.2",
-    "react-native-web": "~0.19.6"
+
+      "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-validator": "^7.0.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.0.1",
+    "nodemailer": "^6.9.7",
+    "nodemailer-express-handlebars": "^6.1.0",
+    "react-native-dotenv": "^3.4.9"
 
 
