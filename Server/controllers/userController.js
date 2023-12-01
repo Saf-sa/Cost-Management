@@ -87,48 +87,50 @@ const registerUser = async (req, res, next) => {
 };
 // Configure your transporter
 let transporter = nodemailer.createTransport({
-  service: 'gmail',
+  service: "gmail",
   auth: {
-    user: 'your-email@gmail.com',
-    pass: 'your-password'
-  }
+    user: "lesafsafi@gmail.com",
+    pass: "xvnk mppt rbyz ypjw",
+  },
 });
-
-
-/// define functions to handle requests for the user routes that we defined in Server/routes/userRoutes.js
 const resetLogin = async (req, res, next) => {
+  console.log("Reset login called");
   const { email } = req.body;
 
-  // Check if user exists
+  console.log("Checking if user exists");
   const user = await User.findOne({ email });
 
   if (!user) {
-    return res.status(401).json({ message: "Invalid  email or password" })
-  };
-  // Generate reset token and expiry time
+    console.log("User not found");
+    return res.status(401).json({ message: "Invalid  email or password" });
+  }
+
+  console.log("Generating reset token");
   const resetToken = jwt.sign({ id: user._id }, process.env.SECRET_KEY, {
     expiresIn: "30m",
   });
   user.resetToken = resetToken;
   user.resetTokenExpire = Date.now() + 1800000; // Token expires in 1 hour
 
+  console.log("Saving user");
   await user.save();
 
-    // Send reset email
+  console.log("Preparing reset email");
   const resetUrl = `http://localhost:5555/resetPassword?token=${resetToken}`;
 
-const mailOptions = {
-  from: "expense@salahsafsaf.art", // User Email Id
-  to: user.email, // Recepient Email Id
-  subject: "Password Reset",
-  html: `
-    <h2>Hello ${user.firstName},</h2>
-    <p>You requested a password reset. Please click on the link below to reset your password:</p>
-    <a href="${resetUrl}">Reset Password</a>
-    <p>If you did not request a password reset, please ignore this email.</p>
-  `,
-};
+  const mailOptions = {
+    from: "expense@salahsafsaf.art", // User Email Id
+    to: user.email, // Recepient Email Id
+    subject: "Password Reset",
+    html: `
+      <h2>Hello ${user.firstName},</h2>
+      <p>You requested a password reset. Please click on the link below to reset your password:</p>
+      <a href="${resetUrl}">Reset Password</a>
+      <p>If you did not request a password reset, please ignore this email.</p>
+    `,
+  };
 
+  console.log("Sending email");
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
       console.error("Email error:", error);
@@ -138,7 +140,7 @@ const mailOptions = {
       res.status(200).json({ message: "Reset token sent to your email" });
     }
   });
-} // Cette accolade fermante doit être ici pour fermer la fonction resetLogin
+};
 // define functions to handle requests for the user routes that we defined in Server/routes/userRoutes.js
 const listUser = async (req, res) => {
   // get the token from the request header
