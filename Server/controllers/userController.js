@@ -14,6 +14,8 @@ const SECRET_KEY2 = process.env.SECRET_KEY2;
 // Import User model
 import User from "../models/userModel.js";
 
+
+// Start of userLogin
 // define functions to handle requests for the user routes that we defined in Server/routes/userRoutes.js
 const userLogin = async (req, res, next) => {
   const { email, password } = req.body;
@@ -42,7 +44,9 @@ const userLogin = async (req, res, next) => {
     token: token,
   });
 };
+//End of userLogin
 
+// Start of registerUser
 // define functions to handle requests for the user routes that we defined in Server/routes/userRoutes.js
 const registerUser = async (req, res, next) => {
   try {
@@ -89,6 +93,11 @@ const registerUser = async (req, res, next) => {
      res.status(500).send({ error: error.message });
   }
 };
+//End of registerUser
+
+
+//start of resetLogin
+
 // Configure your transporter
 let transporter = nodemailer.createTransport({
   service: "gmail",
@@ -99,7 +108,8 @@ let transporter = nodemailer.createTransport({
 });
 const resetLogin = async (req, res, next) => {
   console.log("Reset login called");
-  const { email } = req.body;
+  const { email, Code } = req.body;
+
 
   console.log("Checking if user exists");
   const user = await User.findOne({ email });
@@ -108,8 +118,8 @@ const resetLogin = async (req, res, next) => {
     console.log("User not found");
     return res.status(401).json({ message: "Invalid  email or password" });
   }
-
-  console.log("Generating reset token");
+// Generate token for password reset old system
+  /*   console.log("Generating reset token");
   const resetToken = jwt.sign({ id: user._id }, process.env.SECRET_KEY, {
     expiresIn: "30m",
   });
@@ -121,15 +131,28 @@ const resetLogin = async (req, res, next) => {
 
   console.log("Preparing reset email");
   const resetUrl = `http://localhost:5555/resetPassword?token=${resetToken}`;
+ */
 
+  // Generate reset code with 6 random digits
+
+    const resetCode = Math.random().toString(36).substring(2, 8).toUpperCase();
+    user.resetCode = resetCode;
+    user.resetCodeExpiry = Date.now() + 1800000;
+    console.log("Saving user"); // Log to save user
+    console.log(resetCode); // Log to reset code 
+  console
+    await user.save();
+    res.status(200).json({ message: "Your Reset code is sent to your email" });
+
+  // Send reset code to user's email
   const mailOptions = {
     from: "expense@salahsafsaf.art", // User Email Id
     to: user.email, // Recepient Email Id
-    subject: "Password Reset",
+    subject: "Your Code to Reset Your Password",
     html: `
       <h2>Hello ${user.firstName},</h2>
-      <p>You requested a password reset. Please click on the link below to reset your password:</p>
-      <a href="${resetUrl}">Reset Password</a>
+      <p>You requested a password reset. Please copy this code  ${resetCode} to reset your password:</p>
+     
       <p>If you did not request a password reset, please ignore this email.</p>
     `,
   };
@@ -145,6 +168,10 @@ const resetLogin = async (req, res, next) => {
     }
   });
 };
+
+//End of resetLogin
+
+
 // define functions to handle requests for the user routes that we defined in Server/routes/userRoutes.js
 const listUser = async (req, res) => {
   // get the token from the request header
@@ -169,6 +196,11 @@ const listUser = async (req, res) => {
     return res.status(500).send("Error retrieving users");
   }
 };
+//End of listUser
+
+
+//Start of updateUser
+
 
 // define functions to handle requests for the user routes that we defined in Server/routes/userRoutes.js
 const updateUser = async (req, res) => {
@@ -195,6 +227,6 @@ const updateUser = async (req, res) => {
     res.status(500).send({ error: "Internal server error" });
   }
 };
-
+//End of updateUser
 // define functions to handle requests for the user routes that we defined in Server/routes/userRoutes.js
 export { registerUser, userLogin, listUser, updateUser, resetLogin,  };
