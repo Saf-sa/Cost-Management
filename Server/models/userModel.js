@@ -23,22 +23,24 @@ const userSchema = new mongoose.Schema(
     },
     resetCode: {
       type: String,
-      required: [true, "Code is required"],
-      minLength: 6,
+      default: null,
     },
     resetCodeExpiry: {
       type: Date,
-      required: [true, "Code expiry is required"],
+      default: Date.now,
     },
-    id: {
+    /*  role: {
       type: String,
-    },
+      enum: ["user", "admin"],
+      default: "user",
+    }, */
   },
   // add timestamps to the schema to know when document was created or modified
   { timestamps: true }
 );
 
 // use mongoose to create a model from the schema and export it
+
 const User = mongoose.model("User", userSchema);
 
 export default User;

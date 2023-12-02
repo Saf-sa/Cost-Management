@@ -1,11 +1,16 @@
 import { View, Text, StyleSheet } from "react-native";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import AuthHeader from "../../shared/components/AuthHeader";
 import CustomInputSingup from "../../shared/components/ui/CustomInputSignup";
 import CustomButton from "../../shared/components/ui/CustomButton";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
+
+const isValidEmail = (email) => {
+  // Should contain @
+  const re = /\S+@\S+\.\S+/;
+  return re.test(email);
+};
 
 const isValidPassword = (password) => {
   const re = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/;
@@ -20,53 +25,22 @@ const formIsValid = (DataObj) => {
   );
 };
 
-  const ResetPassword = () => {
-  const [code, setCode] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const navigation = useNavigation();
-  const [token, setToken] = useState(null);
-  const [formErrors, setFormErrors] = useState({
-    code: "",
-    password: null,
-    confirmPassword: null,
-  });
-
-  useEffect(() => {
-    const getToken = async () => {
-      try {
-        const storedToken = await AsyncStorage.getItem("token");
-        console.log("Token from AsyncStorage:", storedToken); // add to verifie if token is stored
-        if (storedToken) {
-          setToken(storedToken);
-        }
-      } catch (error) {
-       
-      }
-    };
-
-    getToken();
-    console.log("Token from useEffect:", token);
-  }, []);
-
-   const saveTokenToStorage = async (token) => {
-      
-     try {
-       await AsyncStorage.setItem("token", token);
-       console.log("Token saved to AsyncStorage:", token);
-       console.log("Token from saveTokenToStorage:", saveTokenToStorage);
-     } catch (error) {
-       console.error("Error saving token to AsyncStorage:", error);
-     }
-   };
-
-
+const ResetPassword = () => {
   const [formData, setFormData] = useState({
+    email: "",
     code: "",
     password: "",
     confirmPassword: "",
   });
   const [showPassword, setShowPassword] = useState(false);
+  const [formErrors, setFormErrors] = useState({
+    code: "",
+    email: "",
+    password: null,
+    confirmPassword: null,
+  });
+  const [errorMessage, setErrorMessage] = useState(null);
+  const navigation = useNavigation();
 
   const handleChange = (value, type) => {
     setFormData((prevFormData) => ({
@@ -76,8 +50,10 @@ const formIsValid = (DataObj) => {
   };
 
   const handleSubmit = async () => {
+    setErrorMessage(null);
     if (!formIsValid(formData)) {
       setFormErrors({
+        email: !isValidEmail(formData.email) ? "Invalid email" : null,
         password: !isValidPassword(formData.password)
           ? "Invalid password"
           : null,
@@ -89,44 +65,43 @@ const formIsValid = (DataObj) => {
 
       console.warn("Invalid Form");
     } else {
-      if (token) {
-        console.log("Token before sending request:", token);
-        try {
-          const response = await axios.post(
-            "http://localhost:5555/api/users/resetPassword",
-            formData,
-            { headers: { Authorization: `Bearer ${token}` } }
-          );
-          console.log("Server response:", response.data);
-          const tokenFromServer = response.data.token;
-          console.log("Token received from server:", tokenFromServer); // Log du token reçu du serveur
-
-          // Stocker le token reçu dans AsyncStorage
-          await AsyncStorage.setItem("token", tokenFromServer);
-
-          navigation.navigate("resetPassword");
-        } catch (err) {
-          console.log("Request error:", err.message);
-          console.warn("Password reset failed");
-        }
-      } else {
-        console.warn("No token found");
+      try {
+        const response = await axios.post(
+          "http://localhost:5555/api/users/reset",
+          {
+            code: formData.code, // Include the code in the request
+            password: formData.password,
+            confirmPassword: formData.confirmPassword,
+          }
+        );
+        console.log("Server response:", response.data);
+        navigation.navigate("resetPassword");
+      } catch (err) {
+        console.log("Request error:", err.message);
+        console.warn("Password reset failed");
       }
     }
   };
 
-  
   return (
     <View style={styles.root}>
       <AuthHeader subtext="Please Reset Your Password" />
       <View style={styles.content}>
         <CustomInputSingup
           label="Code"
-          value={formData.code} // change this line
+          value={formData.code}
           onChangeText={(value) => handleChange(value, "code")}
           placeholder=" Code received by email "
           secure={false}
           errorMessage={formErrors.code}
+        />
+        <CustomInputSingup
+          label="Email"
+          value={formData.email}
+          onChangeText={(value) => handleChange(value, "email")}
+          placeholder="Your Email"
+          secure={false}
+          errorMessage={formErrors.email}
         />
         <CustomInputSingup
           label="Password"
@@ -141,13 +116,14 @@ const formIsValid = (DataObj) => {
           label="Confirm Password"
           value={formData.confirmPassword}
           onChangeText={(value) => handleChange(value, "confirmPassword")}
-          placeholder="Comfirm your password"
+          placeholder="Confirm your password"
           secure={!showPassword}
-          errorMessage={formErrors.password}
+          errorMessage={formErrors.confirmPassword}
           onIconPress={() => setShowPassword(!showPassword)}
         />
+        {/* Display the error message if it exists */}
+        {errorMessage && <Text style={{ color: "red" }}>{errorMessage}</Text>}
         {/* input area  End*/}
-
         {/* Button Start */}
         <CustomButton
           onPress={handleSubmit}
@@ -160,20 +136,17 @@ const formIsValid = (DataObj) => {
   );
 };
 
-  export default ResetPassword;
+export default ResetPassword;
 
 const styles = StyleSheet.create({
   root: {
     flex: 1,
   },
-
   content: {
     flex: 2,
     padding: 20,
   },
-
   button: {
     marginTop: 20,
   },
-
 });

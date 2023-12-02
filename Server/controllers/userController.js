@@ -99,7 +99,7 @@ const registerUser = async (req, res, next) => {
 
 //start of resetLogin
 
-// Configure your transporter
+/// Configure your transporter
 let transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
@@ -108,9 +108,9 @@ let transporter = nodemailer.createTransport({
   },
 });
 
-const resetLogin = async (req, res) => {
+ const resetLogin = async (req, res) => {
   console.log("Reset login called");
-  const { email, Code } = req.body;
+      const { email } = req.body;
 
   console.log("Checking if user exists");
   const user = await User.findOne({ email });
@@ -122,17 +122,13 @@ const resetLogin = async (req, res) => {
 
   const resetCode = Math.random().toString(36).substring(2, 8).toUpperCase();
   user.resetCode = resetCode;
-  user.resetCodeExpiry = Date.now() + 1800000;
+  user.resetCodeExpiry = Date.now() + 3680000;
 
   console.log("Saving user"); // Log to save user
   console.log(resetCode); // Log to reset code 
 
   await user.save();
 
-  console.log("Generating token...");
-  // Generate a JWT for the user
-  const token = jwt.sign({ id: user._id }, SECRET_KEY2, { expiresIn: "1h" });
-console.log("Token generated:", token);
   // Send reset code to user's email
   const mailOptions = {
     from: "expense@salahsafsaf.art", // User Email Id
@@ -153,12 +149,47 @@ console.log("Token generated:", token);
       res.status(500).json({ message: "Failed to send reset email" });
     } else {
       console.log("Email sent:", info.response);
-      res.status(200).json({ message: "Reset token sent to your email", token });
+      res.status(200).json({ message: "Reset code sent to your email" });
     }
   });
 };
-
 //End of resetLogin
+
+//Start of resetPassword
+ const resetPassword = async (req, res) => {
+
+
+  console.log("Checking if user exists");
+
+  const { email, code, password, confirmPassword } = req.body;
+
+  const user = await User.findOne({ resetCode: code }, { email });
+
+  if (!user) {
+    return res.status(400).json({ message: "Invalid code" });
+  }
+  // Check if the reset code has expired
+  if (Date.now() > user.resetCodeExpiry) {
+    return res.status(400).json({ message: "Reset code has expired" });
+  }
+  if (password !== confirmPassword) {
+    return res.status(400).json({ message: "Passwords do not match" });
+  }
+
+  // Update the user's password
+  const salt = await bcrypt.genSalt(10);
+  user.password = await bcrypt.hash(password, salt);
+  user.email = email;
+  user.password = password;
+  user.resetCode = undefined;
+  user.resetCodeExpiry = undefined;
+
+  await user.save();
+
+  res.status(200).json({ message: "Password reset successful" });
+};
+
+//End of resetPassword
 
 
 // define functions to handle requests for the user routes that we defined in Server/routes/userRoutes.js
@@ -218,4 +249,4 @@ const updateUser = async (req, res) => {
 };
 //End of updateUser
 // define functions to handle requests for the user routes that we defined in Server/routes/userRoutes.js
-export { registerUser, userLogin, listUser, updateUser, resetLogin,  };
+export { registerUser, userLogin, listUser, updateUser, resetLogin, resetPassword  };

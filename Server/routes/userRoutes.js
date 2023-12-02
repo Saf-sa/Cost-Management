@@ -1,11 +1,13 @@
 import authMiddleware from "../middlewares/authMiddleware.js";
 import resetPasswordMiddleware from "../middlewares/resetPasswordMiddleware.js";
 import express from "express";
+const route = express.Router();
 
 // Import userController
 import {
   registerUser,
   userLogin,
+  resetPassword,
   listUser,
   updateUser,
   resetLogin,
@@ -17,8 +19,10 @@ const router = express.Router();
 // Routes
 router.post("/login", authMiddleware, userLogin);
 router.post("/register", registerUser);
-router.post("/reset", resetPasswordMiddleware, resetLogin);
+router.post("/reset", resetLogin);
+router.post("/update", updateUser);
 router.put("/:id", updateUser);
+router.get("/", listUser);
 
 
 export default router;
