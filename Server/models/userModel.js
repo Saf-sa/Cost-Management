@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import resetPasswordMiddleware from "../middlewares/resetPasswordMiddleware.js";
 
 // use mongoose to create a schema to define the structure of the data
 const userSchema = new mongoose.Schema(
@@ -19,7 +20,7 @@ const userSchema = new mongoose.Schema(
     password: {
       type: String,
       required: [true, "Password is required"],
-      minLength: 4,
+      minLength: 8,
     },
     resetCode: {
       type: String,

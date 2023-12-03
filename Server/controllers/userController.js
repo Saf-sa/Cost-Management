@@ -11,10 +11,8 @@ import hbs from "nodemailer-express-handlebars";
 dotenv.config();
 const SECRET_KEY2 = process.env.SECRET_KEY2;
 
-
 // Import User model
 import User from "../models/userModel.js";
-
 
 // Start of userLogin
 // define functions to handle requests for the user routes that we defined in Server/routes/userRoutes.js
@@ -25,7 +23,7 @@ const userLogin = async (req, res, next) => {
   const user = await User.findOne({ email });
 
   if (!user) {
-    return res.status(401).json({ message: "Invalid email or password" })
+    return res.status(401).json({ message: "Invalid email or password" });
   }
 
   // Check if password matches
@@ -51,7 +49,7 @@ const userLogin = async (req, res, next) => {
 // define functions to handle requests for the user routes that we defined in Server/routes/userRoutes.js
 const registerUser = async (req, res, next) => {
   try {
-    console.log("test")   // get the name, email and password from the request body
+    console.log("test"); // get the name, email and password from the request body
     const { firstName, lastName, email, password } = req.body;
 
     // check if the name, email and password are not empty
@@ -83,19 +81,17 @@ const registerUser = async (req, res, next) => {
     const result = await user.save();
     console.log(result);
 
-     return res.status(201).json({
-        _id: result._id,
-        email: result.email,
-        token: generateToken(result._id),
-      });
-      
+    return res.status(201).json({
+      _id: result._id,
+      email: result.email,
+      token: generateToken(result._id),
+    });
   } catch (error) {
     console.log(error);
-     res.status(500).send({ error: error.message });
+    res.status(500).send({ error: error.message });
   }
 };
 //End of registerUser
-
 
 //start of resetLogin
 
@@ -104,13 +100,13 @@ let transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
     user: "lesafsafi@gmail.com",
-    pass: (SECRET_KEY2),
+    pass: SECRET_KEY2,
   },
 });
 
- const resetLogin = async (req, res) => {
+const resetLogin = async (req, res) => {
   console.log("Reset login called");
-      const { email } = req.body;
+  const { email } = req.body;
 
   console.log("Checking if user exists");
   const user = await User.findOne({ email });
@@ -125,7 +121,7 @@ let transporter = nodemailer.createTransport({
   user.resetCodeExpiry = Date.now() + 3680000;
 
   console.log("Saving user"); // Log to save user
-  console.log(resetCode); // Log to reset code 
+  console.log(resetCode); // Log to reset code
 
   await user.save();
 
@@ -156,14 +152,13 @@ let transporter = nodemailer.createTransport({
 //End of resetLogin
 
 //Start of resetPassword
- const resetPassword = async (req, res) => {
-
-
+const resetPassword = async (req, res) => {
   console.log("Checking if user exists");
 
-  const { email, code, password, confirmPassword } = req.body;
+  const { code, password, confirmPassword } = req.body;
 
-  const user = await User.findOne({ resetCode: code }, { email });
+  const user = await User.findOne({ resetCode: code });
+  console.log(user)
 
   if (!user) {
     return res.status(400).json({ message: "Invalid code" });
@@ -179,7 +174,6 @@ let transporter = nodemailer.createTransport({
   // Update the user's password
   const salt = await bcrypt.genSalt(10);
   user.password = await bcrypt.hash(password, salt);
-  user.email = email;
   user.password = password;
   user.resetCode = undefined;
   user.resetCodeExpiry = undefined;
@@ -190,7 +184,6 @@ let transporter = nodemailer.createTransport({
 };
 
 //End of resetPassword
-
 
 // define functions to handle requests for the user routes that we defined in Server/routes/userRoutes.js
 const listUser = async (req, res) => {
@@ -218,9 +211,7 @@ const listUser = async (req, res) => {
 };
 //End of listUser
 
-
 //Start of updateUser
-
 
 // define functions to handle requests for the user routes that we defined in Server/routes/userRoutes.js
 const updateUser = async (req, res) => {
@@ -249,4 +240,11 @@ const updateUser = async (req, res) => {
 };
 //End of updateUser
 // define functions to handle requests for the user routes that we defined in Server/routes/userRoutes.js
-export { registerUser, userLogin, listUser, updateUser, resetLogin, resetPassword  };
+export {
+  registerUser,
+  userLogin,
+  listUser,
+  updateUser,
+  resetLogin,
+  resetPassword,
+};

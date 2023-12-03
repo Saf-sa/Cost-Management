@@ -17,13 +17,13 @@ const resetPasswordMiddleware = async (req, res, next) => {
   }
 
   const user = await User.findOne({ resetPasswordCode: code });
-
   if (!user) {
     return res.status(400).send("Invalid code");
   }
 
   req.user = user;
   next();
+  
 };
 
 export default resetPasswordMiddleware;

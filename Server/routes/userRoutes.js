@@ -20,6 +20,7 @@ const router = express.Router();
 router.post("/login", authMiddleware, userLogin);
 router.post("/register", registerUser);
 router.post("/reset", resetLogin);
+router.post("/password", resetPassword);
 router.post("/update", updateUser);
 router.put("/:id", updateUser);
 router.get("/", listUser);

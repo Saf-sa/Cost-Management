@@ -5,6 +5,7 @@ import AuthHeader from "../../shared/components/AuthHeader";
 import CustomInputSingup from "../../shared/components/ui/CustomInputSignup";
 import CustomButton from "../../shared/components/ui/CustomButton";
 import axios from "axios";
+import Login from './login';
 
 const isValidEmail = (email) => {
   // Should contain @
@@ -67,15 +68,18 @@ const ResetPassword = () => {
     } else {
       try {
         const response = await axios.post(
-          "http://localhost:5555/api/users/reset",
+          "http://localhost:5555/api/users/password",
           {
             code: formData.code, // Include the code in the request
             password: formData.password,
             confirmPassword: formData.confirmPassword,
           }
+         
         );
+
         console.log("Server response:", response.data);
-        navigation.navigate("resetPassword");
+           navigation.navigate("login");
+            console.warn("Password updated, please login");
       } catch (err) {
         console.log("Request error:", err.message);
         console.warn("Password reset failed");
