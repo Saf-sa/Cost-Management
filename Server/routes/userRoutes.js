@@ -1,6 +1,6 @@
 import authMiddleware from "../middlewares/authMiddleware.js";
-import resetPasswordMiddleware from "../middlewares/resetPasswordMiddleware.js";
 import express from "express";
+import resetPasswordMiddleware from "../middlewares/resetPasswordMiddleware.js";
 const route = express.Router();
 
 // Import userController

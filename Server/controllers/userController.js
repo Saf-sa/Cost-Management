@@ -21,27 +21,27 @@ const userLogin = async (req, res, next) => {
 
   // Check if user exists
   const user = await User.findOne({ email });
-
   if (!user) {
     return res.status(401).json({ message: "Invalid email or password" });
   }
 
   // Check if password matches
   const isMatch = await bcrypt.compare(password, user.password);
-
+console.log(user.password)
   if (!isMatch) {
     return res.status(401).json({ message: "Invalid email or password" });
   }
 
   // Generate token
   const token = generateToken(user._id);
-
+console.log(token)
   // Send response
   res.json({
     _id: user._id,
     email: user.email,
     token: token,
   });
+  console.log(user)
 };
 //End of userLogin
 
@@ -158,7 +158,7 @@ const resetPassword = async (req, res) => {
   const { code, password, confirmPassword } = req.body;
 
   const user = await User.findOne({ resetCode: code });
-  console.log("find user in DB ",user)
+  console.log("find user in DB ", user);
 
   if (!user) {
     return res.status(400).json({ message: "Invalid code" });
@@ -172,14 +172,19 @@ const resetPassword = async (req, res) => {
   }
 
   // Update the user's password
+
+  // hash the password to make it secure
   const salt = await bcrypt.genSalt(10);
+  // set the user password to the hashed password and save it
   user.password = await bcrypt.hash(password, salt);
+
+/* 
   user.password = password;
   user.resetCode = undefined;
-  user.resetCodeExpiry = undefined;
+  user.resetCodeExpiry = undefined; */
 
   await user.save();
-console.log("new password changed", user)
+  console.log("new password changed", user);
   res.status(200).json({ message: "Password reset successful" });
 };
 
