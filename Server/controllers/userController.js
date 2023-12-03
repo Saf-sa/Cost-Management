@@ -158,7 +158,7 @@ const resetPassword = async (req, res) => {
   const { code, password, confirmPassword } = req.body;
 
   const user = await User.findOne({ resetCode: code });
-  console.log(user)
+  console.log("find user in DB ",user)
 
   if (!user) {
     return res.status(400).json({ message: "Invalid code" });
@@ -179,7 +179,7 @@ const resetPassword = async (req, res) => {
   user.resetCodeExpiry = undefined;
 
   await user.save();
-
+console.log("new password changed", user)
   res.status(200).json({ message: "Password reset successful" });
 };
 

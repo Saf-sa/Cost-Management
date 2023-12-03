@@ -74,12 +74,14 @@ const ResetPassword = () => {
             password: formData.password,
             confirmPassword: formData.confirmPassword,
           }
-         
         );
+      
+     
+      
+        navigation.navigate("Login"); // Navigate to Login screen
+      
+        console.warn("Password updated, please login");
 
-        console.log("Server response:", response.data);
-           navigation.navigate("login");
-            console.warn("Password updated, please login");
       } catch (err) {
         console.log("Request error:", err.message);
         console.warn("Password reset failed");
