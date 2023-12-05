@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import AuthHeader from "../../shared/components/AuthHeader";
@@ -50,6 +50,16 @@ const Login = () => {
   });
 
   const [showPassword, setShowPassword] = useState(false);
+    const timeoutIdRef = useRef(null);
+
+  useEffect(() => {
+        return () => {
+          if (timeoutIdRef.current) {
+            clearTimeout(timeoutIdRef.current);
+          }
+        };
+      }, []);
+
 
   const handleChange = (value, type) => {
     setFormData((prevFormData) => ({
@@ -57,6 +67,28 @@ const Login = () => {
       [type]: value,
     }));
   };
+
+
+const updateError = (type, errorMessage) => {
+  setFormErrors((prevFormErrors) => ({
+    ...prevFormErrors,
+    [type]: errorMessage,
+  }));
+
+if (errorMessage) {
+  timeoutIdRef.current = setTimeout(() => {
+    setFormErrors((prevFormErrors) => ({
+      ...prevFormErrors,
+      [type]: null,
+    }));
+  }, 3000); // 3000 milliseconds = 3 seconds
+}
+};
+const isValidForm = () => {
+  if(!formIsValid(formData)) {
+    updateError("email", !isValidEmail(formData.email) ? "Invalid email" : null);
+  }
+};
 
 const handleSubmit = async (e) => {
   e.preventDefault();
@@ -68,13 +100,17 @@ const handleSubmit = async (e) => {
   });
 
   if (!formIsValid(formData)) {
-    setFormErrors({
-      email: !isValidEmail(formData.email) ? "Invalid email" 
-        : null,
-      password: !isValidPassword(formData.password)
+    updateError(
+      "email",
+      !isValidEmail(formData.email) ? "Invalid email" : null
+    );
+    updateError(
+      "password",
+      !isValidPassword(formData.password)
         ? "Password = min 8 char with 1 cap , 1 number,1 special char"
-        : null,
-    });
+        : null
+    );
+
     console.warn("Please review your credentials");
   }
 try {
@@ -88,7 +124,7 @@ try {
     'Authorization': `Bearer ${API_TOKEN}`
   }
 }) */
-  );
+  );r
     console.log(response.data);
     console.warn("Successfully logged");
     navigation.navigate("Start");
