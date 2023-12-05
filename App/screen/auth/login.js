@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import Toast from "react-native-toast-message";
 import { View, Text, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import AuthHeader from "../../shared/components/AuthHeader";
@@ -110,8 +111,14 @@ const handleSubmit = async (e) => {
         ? "Password = min 8 char with 1 cap , 1 number,1 special char"
         : null
     );
-
-    console.warn("Please review your credentials");
+    Toast.show({
+      type: "success",
+      position: "bottom",
+      text1: "Please review your credentials",
+      visibilityTime: 3000,
+      autoHide: true,
+    });
+/*  for debogue  console.warn("Please review your credentials"); */
   }
 try {
 
@@ -126,12 +133,26 @@ try {
 }) */
   );r
     console.log(response.data);
-    console.warn("Successfully logged");
+  /*  for debogue console.warn("Successfully logged"); */
+ Toast.show({
+   type: "success",
+   position: "bottom",
+   text1: "Successfully logged",
+   visibilityTime: 3000,
+   autoHide: true,
+ });
     navigation.navigate("Start");
   }
    catch (err) {
     console.log(err.message);
-    console.warn("Login failed");
+   /* for degogue  console.warn("Login failed"); */
+       Toast.show({
+         type: "success",
+         position: "bottom",
+         text1: "Login failed",
+         visibilityTime: 3000,
+         autoHide: true,
+       });
   }
 };
 
@@ -177,6 +198,7 @@ try {
           onPress={() => navigation.navigate("Signup")}
         />
       </View>
+      <Toast ref={(ref) => Toast.setRef(ref)} />
     </View>
   );
 };
