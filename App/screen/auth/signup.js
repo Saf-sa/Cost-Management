@@ -126,8 +126,8 @@ const Signup = () => {
        );
 
       updateError(
-        "confirmPassword",
-        !isValidConfirmPassword(formData.password, formData.confirmPassword)
+        "Password",
+        !isValidConfirmPassword(formData.password, formData.Password)
           ? "Passwords do not match"
           : null,
       );
@@ -172,7 +172,10 @@ const handleSubmit = async (e) => {
    );
      updateError(
        "confirmPassword",
-       !isValidConfirmPassword(formData.password, formData.confirmPassword)
+       !isValidConfirmPassword(
+         formData.isValidConfirmPassword,
+         formData.confirmPassword
+       )
          ? "Passwords do not match"
          : null
      );
@@ -196,7 +199,7 @@ const handleSubmit = async (e) => {
 };
   return (
     <View style={styles.root}>
-      <AuthHeader subtext="Please Register" />
+      <AuthHeader subtext="Please Signup" />
       <View style={styles.content}>
         <CustomInputSingup
           label="First Name"

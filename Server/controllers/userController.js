@@ -50,12 +50,16 @@ console.log(token)
 const registerUser = async (req, res, next) => {
   try {
     console.log("test"); // get the name, email and password from the request body
-    const { firstName, lastName, email, password } = req.body;
+    const { firstName, lastName, email, password, confirmPassword } = req.body;
 
     // check if the name, email and password are not empty
-    if (!firstName || !lastName || !email || !password) {
+    if (!firstName || !lastName || !email || !password || !confirmPassword) {
       return res.status(400).json({ message: "Please fill all fields" });
     }
+    // check if the password is === confirmPassword 
+     if (password === confirmPassword) {
+       return res.status(400).json({ message: "Password not match" });
+     }
 
     // validate the email
     if (!validator.isEmail(email)) {

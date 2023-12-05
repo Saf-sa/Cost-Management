@@ -15,12 +15,14 @@ const isValidEmail = (email) => {
 
 const isValidPassword = (password) => {
   const re = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/;
+  // Should contain at least one number, one special character and minimum 8 characters
   return re.test(password);
 };
 
 const isValidConfirmPassword = (password, confirmPassword) => {
   return password === confirmPassword;
 };
+
 const formIsValid = (DataObj) => {
   return (
     Object.values(DataObj).every((value) => value.trim().length > 0) &&
