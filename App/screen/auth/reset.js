@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import AuthHeader from "../../shared/components/AuthHeader";
@@ -31,6 +31,17 @@ const ResetLogin = () => {
     email: "",
   });
 
+    const [showPassword, setShowPassword] = useState(false);
+    const timeoutIdRef = useRef(null);
+
+    useEffect(() => {
+      return () => {
+        if (timeoutIdRef.current) {
+          clearTimeout(timeoutIdRef.current);
+        }
+      };
+    }, []);
+
   const handleChange = (value, type) => {
     setFormData((prevFormData) => ({
       ...prevFormData,
@@ -38,31 +49,58 @@ const ResetLogin = () => {
     }));
   };
 
+
+const updateError = (type, errorMessage) => {
+  setFormErrors((prevFormErrors) => ({
+    ...prevFormErrors,
+    [type]: errorMessage,
+  }));
+
+  if (errorMessage) {
+    timeoutIdRef.current = setTimeout(() => {
+      setFormErrors((prevFormErrors) => ({
+        ...prevFormErrors,
+        [type]: null,
+      }));
+    }, 3000); // 3000 milliseconds = 3 seconds
+  }
+};
+const isValidForm = () => {
+  if (!formIsValid(formData)) {
+    updateError(
+      "email",
+      !isValidEmail(formData.email) ? "Invalid email" : null
+    );
+  }
+};
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     // update formData with form values
     setFormData({
       email: email,
+  
     });
 
     if (!formIsValid(formData)) {
-          setFormErrors({
-            email: !isValidEmail(formData.email) ? "Invalid email" 
-            : null,
-          });
-          console.warn("Please review your credentials");
-        }
-        try{
-           const response = await axios.post(
-           `http://localhost:5555/api/user/reset`,
-            formData
-  );
+      updateError(
+        "email",
+        !isValidEmail(formData.email) ? "Invalid email" : null
+      );
+  
+
+      console.warn("Please review your credentials");
+    }
+    try {
+      const response = await axios.post(
+        `http://localhost:5555/api/user/reset`,
+        formData
+      );
       console.log(response.data);
       console.warn("Check your email to reset your password");
       navigation.navigate("ResetPassword");
-    } 
-      catch (err) {
+    } catch (err) {
       console.log(err.message);
       console.warn("Reset Password failed");
     }
