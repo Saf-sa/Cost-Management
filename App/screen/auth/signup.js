@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import AuthHeader from "../../shared/components/AuthHeader";
 import CustomInputSingup from "../../shared/components/ui/CustomInputSignup";
@@ -24,6 +24,10 @@ const isValidPassword = (password) => {
   // Should contain at least one number, one special character and minimum 8 characters
   return re.test(password);
 };
+
+const isValidConfirmPassword = (password, confirmPassword) => {
+  return password === confirmPassword;
+};
 // should at least 3 letter
 const isValidfirstName = (firstName) => {
   const re = /^[a-zA-Z]{3,}$/; // all letter and min 3
@@ -34,7 +38,7 @@ const isValidlastName = (lastName) => {
   const re = /^[a-zA-Z]{3,}$/; // all letter and min 3
   return re.test(lastName);
 };
-// check all value is not empty
+// check all value is valid
 const formIsValid = (DataObj) => {
   return (
     Object.values(DataObj).every((value) => value.trim().length > 0) && // check all value is not empty
@@ -55,7 +59,6 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const navigation = useNavigation(); 
   const [formErrors, setFormErrors] = useState({ 
-  
     firstName: null,
     lastName: null,
     email: null,
@@ -72,6 +75,15 @@ const Signup = () => {
   });
 
   const [showPassword, setShowPassword] = useState(false);
+  const timeoutIdRef = useRef(null);
+
+  useEffect(() => {
+    return () => {
+      if (timeoutIdRef.current) {
+        clearTimeout(timeoutIdRef.current);
+      }
+    };
+  }, []);
 
   const handleChange = (value, type) => {
     setFormData((prevFormData) => ({
@@ -80,34 +92,93 @@ const Signup = () => {
     }));
   };
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
 
-  // update formData with form values
-  setFormData({
-    firstName: firstName,
-    lastName:lastName,
-    email:email,
-    password: password,
-    confirmPassword:confirmPassword,
-  });
+  const updateError = (type, errorMessage) => {
+    setFormErrors((prevFormErrors) => ({
+      ...prevFormErrors,
+      [type]: errorMessage,
+    }));
 
-  if (!formIsValid(formData)) {
-    setFormErrors({
-      firstName: !isValidfirstName(formData.firstName)
-        ? "Invalid first name"
-        : null,
-      lastName: !isValidlastName(formData.lastName)
-        ? "Invalid last name"
-        : null,
-      email: !isValidEmail(formData.email) ? "Invalid email" : null,
-      password: !isValidPassword(formData.password) ? "Invalid password" : null,
-      confirmPassword:
-        formData.password !== formData.confirmPassword
+    if (errorMessage) {
+      timeoutIdRef.current = setTimeout(() => {
+        setFormErrors((prevFormErrors) => ({
+          ...prevFormErrors,
+          [type]: null,
+        }));
+      }, 3000); // 3000 milliseconds = 3 seconds
+    }
+  };
+  const isValidForm = () => {
+    if (!formIsValid(formData)) {
+      updateError(
+        "email",
+        !isValidEmail(formData.email) ? "Invalid email" : null
+      );
+       updateError(
+         "firstName",
+         !isValidEmail(formData.firstName)
+           ? "First Name should 3 char min"
+           : null
+       );
+       updateError(
+         "lastName",
+         !isValidEmail(formData.lastName) ? "Last Name should 3 char min" : null
+       );
+
+      updateError(
+        "confirmPassword",
+        !isValidConfirmPassword(formData.password, formData.confirmPassword)
           ? "Passwords do not match"
           : null,
-    });
-    console.warn("Invalid Form");
+      );
+       updateError(
+         "confirmPassword",
+         !isValidConfirmPassword(formData.password, formData.confirmPassword)
+           ? "Passwords do not match"
+           : null
+       );
+
+       
+    }
+  }
+
+
+const handleSubmit = async (e) => {
+  if (!formIsValid(formData)) {
+      e.preventDefault();
+
+      setFormData({
+        firstName: firstName,
+        lastName:lastName,
+        email:email,
+        password: password,
+        confirmPassword:confirmPassword,
+      });
+ if (!formIsValid(formData)) {
+   updateError(
+     "firstName",
+     !isValidEmail(formData.firstName) ? "First Name should 3 char min" : null
+   );
+    updateError(
+      "lastName",
+      !isValidEmail(formData.lastName) ? "Last Name should 3 char min" : null
+    );
+   updateError("email", !isValidEmail(formData.email) ? "Invalid email" : null);
+   updateError(
+     "password",
+     !isValidPassword(formData.password)
+       ? "Password = min 8 char with 1 cap , 1 number,1 special char"
+       : null
+   );
+     updateError(
+       "confirmPassword",
+       !isValidConfirmPassword(formData.password, formData.confirmPassword)
+         ? "Passwords do not match"
+         : null
+     );
+   console.warn("Invalid Form");
+ }
+
   }
   try {
     const response = await axios.post(
@@ -166,8 +237,8 @@ const handleSubmit = async (e) => {
           onChangeText={(value) => handleChange(value, "confirmPassword")}
           placeholder="Comfirm your password"
           secure={!showPassword}
-          errorMessage={formErrors.password}
-          onIconPress={() => setShowPassword(!showPassword)}
+          errorMessage={formErrors.confirmPassword}
+
         />
         {/* input area  End*/}
 

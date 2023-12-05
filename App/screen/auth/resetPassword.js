@@ -18,6 +18,9 @@ const isValidPassword = (password) => {
   return re.test(password);
 };
 
+const isValidConfirmPassword = (password, confirmPassword) => {
+  return password === confirmPassword;
+};
 const formIsValid = (DataObj) => {
   return (
     Object.values(DataObj).every((value) => value.trim().length > 0) &&
@@ -30,6 +33,8 @@ const ResetPassword = () => {
   const [code, setCode] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+  const navigation = useNavigation(); 
   const [formErrors, setFormErrors] = useState({
     email: null,
     code: null,
@@ -106,12 +111,12 @@ const ResetPassword = () => {
           ? "Password = min 8 char with 1 cap , 1 number,1 special char"
           : null
       );
-      updateError(
-        "confirmPassword",
-        !isValidPassword(formData.confirmPasswordassword)
-          ? "Password = min 8 char with 1 cap , 1 number,1 special char"
-          : null
-      );
+   updateError(
+     "confirmPassword",
+     !isValidConfirmPassword(formData.password, formData.confirmPassword)
+       ? "Passwords do not match"
+       : null
+   );
       console.warn("Invalid Form");
     }
     try {
