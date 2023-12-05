@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { View, Text, StyleSheet } from "react-native";
+import Toast from "react-native-toast-message";
 import { useNavigation } from "@react-navigation/native";
 import AuthHeader from "../../shared/components/AuthHeader";
 import CustomInputLog from "../../shared/components/ui/CustomInputLog";
@@ -88,9 +89,16 @@ const isValidForm = () => {
         "email",
         !isValidEmail(formData.email) ? "Invalid email" : null
       );
-  
 
-      console.warn("Please review your credentials");
+  /* for degogue console.warn("Please review your credentials"); */
+  Toast.show({
+    type: "success",
+    position: "bottom",
+    text1: "Please review your credentials",
+    visibilityTime: 3000,
+    autoHide: true,
+  });
+
     }
     try {
       const response = await axios.post(
@@ -98,11 +106,27 @@ const isValidForm = () => {
         formData
       );
       console.log(response.data);
-      console.warn("Check your email to reset your password");
+      /*  for debogue console.warn("Check your email to reset your password"); */
+    Toast.show({
+      type: "success",
+      position: "bottom",
+      text1: "Check your email to reset your password",
+      visibilityTime: 3000,
+      autoHide: true,
+    });
+      
       navigation.navigate("ResetPassword");
     } catch (err) {
       console.log(err.message);
-      console.warn("Reset Password failed");
+    /*  for deboge  console.warn("Reset Password failed"); */
+     Toast.show({
+       type: "success",
+       position: "bottom",
+       text1: "Reset Password failed",
+       visibilityTime: 3000,
+       autoHide: true,
+     });
+
     }
   };
 
@@ -126,6 +150,7 @@ const isValidForm = () => {
           buttonText={"Reset password"}
         />
       </View>
+      <Toast ref={(ref) => Toast.setRef(ref)} />
     </View>
   );
 };
