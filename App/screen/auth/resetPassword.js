@@ -119,7 +119,14 @@ const ResetPassword = () => {
        ? "Passwords do not match"
        : null
    );
-      console.warn("Invalid Form");
+      /* for debogue console.warn("Invalid Form"); */
+        Toast.show({
+             type: "success",
+             position: "bottom",
+             text1: "Invalid Form",
+             visibilityTime: 3000,
+             autoHide: true,
+           });
     }
     try {
       const response = await axios.post(
@@ -131,12 +138,27 @@ const ResetPassword = () => {
         }
       );
 
-      navigation.navigate("Login"); // Navigate to Login screen
-
-      console.warn("Password updated, please login");
-    } catch (err) {
+      // Navigate to Login screen
+    /* for debug  console.warn("Password reset successfully");"); */
+           Toast.show({
+             type: "success",
+             position: "bottom",
+             text1: "Password reset successfully",
+             visibilityTime: 3000,
+             autoHide: true,
+           });
+            navigation.navigate("Login");
+    }
+      catch (err) {
       console.log("Request error:", err.message);
-      console.warn("Password reset failed");
+     /* for debug console.warn("Password reset failed"); */
+           Toast.show({
+             type: "success",
+             position: "bottom",
+             text1: "Reset Password failed",
+             visibilityTime: 3000,
+             autoHide: true,
+           });
     }
   };
 
@@ -178,7 +200,7 @@ const ResetPassword = () => {
           errorMessage={formErrors.confirmPassword}
           onIconPress={() => setShowPassword(!showPassword)}
         />
-    
+
         <CustomButton
           onPress={handleSubmit}
           style={styles.button}
@@ -186,6 +208,7 @@ const ResetPassword = () => {
         />
         {/* Button End */}
       </View>
+      <Toast ref={(ref) => Toast.setRef(ref)} />
     </View>
   );
 };

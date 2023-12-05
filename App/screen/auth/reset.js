@@ -116,7 +116,8 @@ const isValidForm = () => {
     });
       
       navigation.navigate("ResetPassword");
-    } catch (err) {
+    }
+     catch (err) {
       console.log(err.message);
     /*  for deboge  console.warn("Reset Password failed"); */
      Toast.show({
