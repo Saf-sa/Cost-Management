@@ -1,5 +1,6 @@
 import { View, Text, StyleSheet } from "react-native";
 import React, { useState, useRef, useEffect } from "react";
+import Toast from "react-native-toast-message";
 import { useNavigation } from "@react-navigation/native";
 import AuthHeader from "../../shared/components/AuthHeader";
 import CustomInputSingup from "../../shared/components/ui/CustomInputSignup";
@@ -116,13 +117,13 @@ const Signup = () => {
       );
        updateError(
          "firstName",
-         !isValidEmail(formData.firstName)
+         !isValidFirstName(formData.firstName)
            ? "First Name should 3 char min"
            : null
        );
        updateError(
          "lastName",
-         !isValidEmail(formData.lastName) ? "Last Name should 3 char min" : null
+         !isValidlastName(formData.lastName) ? "Last Name should 3 char min" : null
        );
 
       updateError(
@@ -179,7 +180,13 @@ const handleSubmit = async (e) => {
          ? "Passwords do not match"
          : null
      );
-   console.warn("Invalid Form");
+  Toast.show({
+    type: "error",
+    position: "bottom",
+    text1: "Invalid Form",
+    visibilityTime: 3000,
+    autoHide: true,
+  });
  }
 
   }
@@ -189,11 +196,26 @@ const handleSubmit = async (e) => {
       formData
     );
     console.log(response.data);
-    console.warn("Successfully registered");
+      Toast.show({
+        type: "success",
+        position: "bottom",
+        text1: "Successfully registered",
+        visibilityTime: 3000,
+        autoHide: true,
+      });
+
+   /*  for debogu console.warn("Successfully registered"); */
     navigation.navigate("Login");
   } catch (err) {
     console.log(err.message);
-    console.warn('Registration failed')
+  /* for debugue  console.warn('Registration failed') */
+      Toast.show({
+        type: "success",
+        position: "bottom",
+        text1: "Registration failed",
+        visibilityTime: 3000,
+        autoHide: true,
+      });
   }
 
 };
@@ -241,7 +263,6 @@ const handleSubmit = async (e) => {
           placeholder="Comfirm your password"
           secure={!showPassword}
           errorMessage={formErrors.confirmPassword}
-
         />
         {/* input area  End*/}
 
@@ -253,6 +274,7 @@ const handleSubmit = async (e) => {
         />
         {/* Button End */}
       </View>
+      <Toast ref={(ref) => Toast.setRef(ref)} />
     </View>
   );
 };
