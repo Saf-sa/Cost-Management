@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import AuthHeader from "../../shared/components/AuthHeader";
 import CustomInputSingup from "../../shared/components/ui/CustomInputSignup";
@@ -27,21 +27,32 @@ const formIsValid = (DataObj) => {
 };
 
 const ResetPassword = () => {
-  const [formData, setFormData] = useState({
-    email: "",
-    code: "",
-    password: "",
-    confirmPassword: "",
-  });
-  const [showPassword, setShowPassword] = useState(false);
+  const [code, setCode] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [formErrors, setFormErrors] = useState({
-    code: "",
-    email: "",
+    email: null,
+    code: null,
     password: null,
     confirmPassword: null,
   });
-  const [errorMessage, setErrorMessage] = useState(null);
-  const navigation = useNavigation();
+
+  const [formData, setFormData] = useState({
+    code: "",
+    email: "",
+    password: "",
+  });
+
+  const [showPassword, setShowPassword] = useState(false);
+  const timeoutIdRef = useRef(null);
+
+  useEffect(() => {
+    return () => {
+      if (timeoutIdRef.current) {
+        clearTimeout(timeoutIdRef.current);
+      }
+    };
+  }, []);
 
   const handleChange = (value, type) => {
     setFormData((prevFormData) => ({
@@ -50,42 +61,75 @@ const ResetPassword = () => {
     }));
   };
 
-  const handleSubmit = async () => {
-    setErrorMessage(null);
+  const updateError = (type, errorMessage) => {
+    setFormErrors((prevFormErrors) => ({
+      ...prevFormErrors,
+      [type]: errorMessage,
+    }));
+
+    if (errorMessage) {
+      timeoutIdRef.current = setTimeout(() => {
+        setFormErrors((prevFormErrors) => ({
+          ...prevFormErrors,
+          [type]: null,
+        }));
+      }, 3000); // 3000 milliseconds = 3 seconds
+    }
+  };
+  const isValidForm = () => {
     if (!formIsValid(formData)) {
-      setFormErrors({
-        email: !isValidEmail(formData.email) ? "Invalid email" : null,
-        password: !isValidPassword(formData.password)
-          ? "Invalid password"
-          : null,
-        confirmPassword:
-          formData.password !== formData.confirmPassword
-            ? "Passwords do not match"
-            : null,
-      });
+      updateError(
+        "email",
+        !isValidEmail(formData.email) ? "Invalid email" : null
+      );
+    }
+  };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // update formData with form values
+    setFormData({
+      code: code,
+      email: email,
+      password: password,
+    });
+
+    if (!formIsValid(formData)) {
+      updateError("code", !isValidEmail(formData.code) ? "Invalid code" : null);
+      updateError(
+        "email",
+        !isValidEmail(formData.email) ? "Invalid email" : null
+      );
+      updateError(
+        "password",
+        !isValidPassword(formData.password)
+          ? "Password = min 8 char with 1 cap , 1 number,1 special char"
+          : null
+      );
+      updateError(
+        "confirmPassword",
+        !isValidPassword(formData.confirmPasswordassword)
+          ? "Password = min 8 char with 1 cap , 1 number,1 special char"
+          : null
+      );
       console.warn("Invalid Form");
-    } else {
-      try {
-        const response = await axios.post(
-          "http://localhost:5555/api/users/password",
-          {
-            code: formData.code, // Include the code in the request
-            password: formData.password,
-            confirmPassword: formData.confirmPassword,
-          }
-        );
-      
-     
-      
-        navigation.navigate("Login"); // Navigate to Login screen
-      
-        console.warn("Password updated, please login");
+    }
+    try {
+      const response = await axios.post(
+        "http://localhost:5555/api/users/password",
+        {
+          code: formData.code, // Include the code in the request
+          password: formData.password,
+          confirmPassword: formData.confirmPassword,
+        }
+      );
 
-      } catch (err) {
-        console.log("Request error:", err.message);
-        console.warn("Password reset failed");
-      }
+      navigation.navigate("Login"); // Navigate to Login screen
+
+      console.warn("Password updated, please login");
+    } catch (err) {
+      console.log("Request error:", err.message);
+      console.warn("Password reset failed");
     }
   };
 
@@ -127,10 +171,7 @@ const ResetPassword = () => {
           errorMessage={formErrors.confirmPassword}
           onIconPress={() => setShowPassword(!showPassword)}
         />
-        {/* Display the error message if it exists */}
-        {errorMessage && <Text style={{ color: "red" }}>{errorMessage}</Text>}
-        {/* input area  End*/}
-        {/* Button Start */}
+    
         <CustomButton
           onPress={handleSubmit}
           style={styles.button}
@@ -141,7 +182,6 @@ const ResetPassword = () => {
     </View>
   );
 };
-
 export default ResetPassword;
 
 const styles = StyleSheet.create({
