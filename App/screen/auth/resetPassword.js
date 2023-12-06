@@ -27,6 +27,8 @@ const isValidConfirmPassword = (password, confirmPassword) => {
 const formIsValid = (DataObj) => {
   return (
     Object.values(DataObj).every((value) => value.trim().length > 0) &&
+    isValidEmail(DataObj.code) &&
+    isValidEmail(DataObj.email) &&
     isValidPassword(DataObj.password) &&
     DataObj.password === DataObj.confirmPassword
   );
@@ -49,6 +51,7 @@ const ResetPassword = () => {
     code: "",
     email: "",
     password: "",
+    confirmPassword: "",
   });
 
   const [showPassword, setShowPassword] = useState(false);
@@ -84,14 +87,39 @@ const ResetPassword = () => {
       }, 3000); // 3000 milliseconds = 3 seconds
     }
   };
-  const isValidForm = () => {
-    if (!formIsValid(formData)) {
-      updateError(
-        "email",
-        !isValidEmail(formData.email) ? "Invalid email" : null
-      );
-    }
-  };
+const isValidForm = () => {
+  if (!formIsValid(formData.firstName)) {
+    updateError(
+      "code",
+      !isValidfirstName(formData.firstName)
+        ? "code is invalid"
+        : null
+    );
+  }
+  if (!formIsValid(formData)) {
+    updateError(
+      "email",
+      !isValidEmail(formData.email) ? "Invalid email" : null
+    );
+  }
+  if (!formIsValid(formData.password)) {
+    updateError(
+      "Password",
+      !isValidConfirmPassword(formData.password, formData.Password)
+        ? "Passwords do not match"
+        : null
+    );
+  }
+  if (!formIsValid(formData.confirmPassword)) {
+    updateError(
+      "confirmPassword",
+      !isValidConfirmPassword(formData.password, formData.confirmPassword)
+        ? "Passwords do not match"
+        : null
+    );
+  }
+};
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -100,67 +128,63 @@ const ResetPassword = () => {
       code: code,
       email: email,
       password: password,
+      confirmPassword: confirmPassword,
     });
 
-    if (!formIsValid(formData)) {
-      updateError("code", !isValidEmail(formData.code) ? "Invalid code" : null);
-      updateError(
+    if (!formIsValid(code, email, password, confirmPassword)) {
+      Toast.show({
+        type: "error",
+        position: "bottom",
+        text1: "Please review your credentials",
+        visibilityTime: 3000,
+        autoHide: true,
+      });
+       updateError(
+        "code",
+        !isValidEmail(formData.code) ? "Invalid code" : null
+      );
+       updateError(
         "email",
         !isValidEmail(formData.email) ? "Invalid email" : null
       );
-      updateError(
+     updateError(
         "password",
         !isValidPassword(formData.password)
           ? "Password = min 8 char with 1 cap , 1 number,1 special char"
           : null
       );
-      updateError(
+       updateError(
         "confirmPassword",
         !isValidConfirmPassword(formData.password, formData.confirmPassword)
           ? "Passwords do not match"
           : null
       );
       /* for debogue console.warn("Invalid Form"); */
-      Toast.show({
-        type: "success",
-        position: "bottom",
-        text1: "Invalid Form",
-        visibilityTime: 3000,
-        autoHide: true,
-      });
     }
     try {
-      Toast.show({
-        type: "success",
-        position: "bottom",
-        text1: "Password reset successfully",
-        visibilityTime: 3000,
-        autoHide: true,
-      });
-      setTimeout(() => {
-        navigation.navigate("Start"); // Navigation après 3 secondes
-      }, 3000); // Délai de 3000 millisecondes (3 secondes)
-
-      const response = await axios.post(
-        "http://localhost:5555/api/users/password",
-        {
-          code: formData.code, // Include the code in the request
-          password: formData.password,
-          confirmPassword: formData.confirmPassword,
-        }
-      );
-
-      // Navigate to Login screen
-      /* for debug  console.warn("Password reset successfully");"); */
-
-      navigation.navigate("Login");
+         const response = await axios.post(
+        "http://localhost:5555/api/user/password",
+        formData
+         );
+         console.log(response.data);
+         Toast.show({
+           type: "success",
+           position: "bottom",
+           text1: "Check your email to reset your password",
+           visibilityTime: 3000,
+           autoHide: true,
+         });
+    setTimeout(() => {
+        navigation.navigate("Login");
+      }, 3000); 
+  
     } catch (err) {
-      console.log("Request error:", err.message);
+      console.log(err.response.data.message);
       /* for debug console.warn("Password reset failed"); */
       Toast.show({
-        type: "success",
+        type: "error",
         position: "bottom",
-        text1: "Reset Password failed",
+        text1: err.response.data.message,
         visibilityTime: 3000,
         autoHide: true,
       });
@@ -213,7 +237,7 @@ const ResetPassword = () => {
         />
         {/* Button End */}
       </View>
-      <Toast ref={(ref) => Toast.setRef(ref)} />
+      <Toast />
     </View>
   );
 };

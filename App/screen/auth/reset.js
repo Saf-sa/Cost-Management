@@ -83,47 +83,41 @@ const ResetLogin = () => {
     });
 
     if (!formIsValid(formData)) {
-      updateError(
+          Toast.show({
+            type: "error",
+            position: "bottom",
+            text1: "Please review your credentials",
+            visibilityTime: 3000,
+            autoHide: true,
+          }); 
+      return updateError(
         "email",
         !isValidEmail(formData.email) ? "Invalid email" : null
       );
 
-      /* for degogue console.warn("Please review your credentials"); */
-      Toast.show({
-        type: "success",
-        position: "bottom",
-        text1: "Please review your credentials",
-        visibilityTime: 3000,
-        autoHide: true,
-      });
     }
     try {
-      Toast.show({
-        type: "success",
-        position: "bottom",
-        text1: "Check your email to reset your password",
-        visibilityTime: 3000,
-        autoHide: true,
-      });
-      setTimeout(() => {
-        navigation.navigate("Start"); // Navigation après 3 secondes
-      }, 3000); // Délai de 3000 millisecondes (3 secondes)
-
-      const response = await axios.post(
+         const response = await axios.post(
         `http://localhost:5555/api/user/reset`,
         formData
       );
       console.log(response.data);
-      /*  for debogue console.warn("Check your email to reset your password"); */
-
-      navigation.navigate("ResetPassword");
+         Toast.show({
+           type: "success",
+           position: "bottom",
+           text1: "Check your email to reset your password",
+           visibilityTime: 3000,
+           autoHide: true,
+         });
+      setTimeout(() => {
+        navigation.navigate("ResetPassword"); // Navigation après 3 secondes
+      }, 3000); // Délai de 3000 millisecondes (3 secondes)
     } catch (err) {
-      console.log(err.message);
-      /*  for deboge  console.warn("Reset Password failed"); */
+      console.log(err.response.data.message);
       Toast.show({
-        type: "success",
+        type: "error",
         position: "bottom",
-        text1: "Reset Password failed",
+        text1: err.response.data.message,
         visibilityTime: 3000,
         autoHide: true,
       });
@@ -150,7 +144,7 @@ const ResetLogin = () => {
           buttonText={"Reset password"}
         />
       </View>
-      <Toast ref={(ref) => Toast.setRef(ref)} />
+    <Toast/>
     </View>
   );
 };

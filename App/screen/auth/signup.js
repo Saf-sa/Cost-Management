@@ -70,6 +70,7 @@ const Signup = () => {
     email: "",
     password: "",
     confirmPassword: "",
+    
   });
 
   const [showPassword, setShowPassword] = useState(false);
@@ -106,30 +107,36 @@ const Signup = () => {
     }
   };
   const isValidForm = () => {
-    if (!formIsValid(formData)) {
-      updateError(
-        "email",
-        !isValidEmail(formData.email) ? "Invalid email" : null
-      );
-      updateError(
-        "firstName",
-        !isValidFirstName(formData.firstName)
-          ? "First Name should 3 char min"
-          : null
-      );
+ 
+     if (!formIsValid (formData.firstName)) {
+     updateError(
+       "firstName",
+       !isValidfirstName(formData.firstName) ? "First Name should 3 char min" : null
+     );
+  }
+  if (!formIsValid (formData.lastName)) {
       updateError(
         "lastName",
         !isValidlastName(formData.lastName)
           ? "Last Name should 3 char min"
           : null
       );
-
+}
+   if (!formIsValid(formData)) {
+     updateError(
+       "email",
+       !isValidEmail(formData.email) ? "Invalid email" : null
+     );
+   }  
+    if (!formIsValid (formData.password)) {
       updateError(
         "Password",
         !isValidConfirmPassword(formData.password, formData.Password)
           ? "Passwords do not match"
           : null
       );
+      }
+      if (!formIsValid (formData.confirmPassword)) {
       updateError(
         "confirmPassword",
         !isValidConfirmPassword(formData.password, formData.confirmPassword)
@@ -139,86 +146,88 @@ const Signup = () => {
     }
   };
 
-  const handleSubmit = async (e) => {
-    if (!formIsValid(formData)) {
-      e.preventDefault();
 
-      setFormData({
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
-        password: password,
-        confirmPassword: confirmPassword,
-      });
-      if (!formIsValid(formData)) {
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // update formData with form values
+        setFormData({
+          firstName: firstName,
+          lastName: lastName,
+          email: email,
+          password: password,
+          confirmPassword: confirmPassword,
+         
+        });
+
+    if (!formIsValid(email, password, confirmPassword, firstName, lastName)) {
+       Toast.show({
+         type: "error",
+         position: "bottom",
+         text1: "Please review your credentials",
+         visibilityTime: 3000,
+         autoHide: true,
+       });
+
         updateError(
-          "firstName",
-          !isValidEmail(formData.firstName)
-            ? "First Name should 3 char min"
-            : null
+        "firstName",
+        !isValidEmail(formData.firstName)
+          ? "First Name should be at least 3 characters "
+          : null
+      );
+      updateError(
+        "lastName",
+        !isValidEmail(formData.lastName)
+          ? "Last Name should be at least 3 characters"
+          : null
+      );
+      updateError(
+        "email",
+        !isValidEmail(formData.email) ? "Invalid email" : null
+      );
+      updateError(
+        "password",
+        !isValidPassword(formData.password)
+          ? "Password should be at least 8 characters with 1 uppercase letter, 1 number, and 1 special character"
+          : null
+      );
+      updateError(
+        "confirmPassword",
+        !isValidConfirmPassword(formData.confirmPassword, formData.password)
+          ? "Passwords do not match"
+          : null
+      );
+    }
+
+    try {
+        const response = await axios.post(
+          `http://localhost:5555/api/user/register`,
+          formData
         );
-        updateError(
-          "lastName",
-          !isValidEmail(formData.lastName)
-            ? "Last Name should 3 char min"
-            : null
-        );
-        updateError(
-          "email",
-          !isValidEmail(formData.email) ? "Invalid email" : null
-        );
-        updateError(
-          "password",
-          !isValidPassword(formData.password)
-            ? "Password = min 8 char with 1 cap , 1 number,1 special char"
-            : null
-        );
-        updateError(
-          "confirmPassword",
-          !isValidConfirmPassword(
-            formData.isValidConfirmPassword,
-            formData.confirmPassword
-          )
-            ? "Passwords do not match"
-            : null
-        );
+        console.log(response.data);
         Toast.show({
-          type: "error",
+          type: "success",
           position: "bottom",
-          text1: "Invalid Form",
+          text1: "Registrai failed",
           visibilityTime: 3000,
           autoHide: true,
         });
-      }
-    }
-    try {
-      const response = await axios.post(
-        `http://localhost:5555/api/user/register`,
-        formData
-      );
-      console.log(response.data);
-      Toast.show({
-        type: "success",
-        position: "bottom",
-        text1: "Successfully registered",
-        visibilityTime: 3000,
-        autoHide: true,
-      });
-
-      /*  for debogu console.warn("Successfully registered"); */
-      navigation.navigate("Login");
+      setTimeout(() => {
+        navigation.navigate("Login"); 
+      }, 3000); 
     } catch (err) {
-      console.log(err.message);
-      /* for debugue  console.warn('Registration failed') */
-      Toast.show({
-        type: "success",
-        position: "bottom",
-        text1: "Registration failed",
-        visibilityTime: 3000,
-        autoHide: true,
-      });
+          console.log(err.response.data.message);
+          Toast.show({
+            type: "error",
+            position: "bottom",
+            text1: err.response.data.message,
+            visibilityTime: 3000,
+            autoHide: true,
+          });
     }
   };
+
   return (
     <View style={styles.root}>
       <AuthHeader subtext="Please Signup" />
@@ -274,7 +283,7 @@ const Signup = () => {
         />
         {/* Button End */}
       </View>
-      <Toast ref={(ref) => Toast.setRef(ref)} />
+      <Toast />
     </View>
   );
 };

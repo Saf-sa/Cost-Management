@@ -22,14 +22,14 @@ const userLogin = async (req, res, next) => {
   // Check if user exists
   const user = await User.findOne({ email });
   if (!user) {
-    return res.status(401).json({ message: "Invalid email or password" });
+     return res.status(401).json({ message: "User not registered  " });
   }
 
   // Check if password matches
   const isMatch = await bcrypt.compare(password, user.password);
 console.log(user.password)
   if (!isMatch) {
-    return res.status(401).json({ message: "Invalid email or password" });
+     return res.status(401).json({ message: "Password not match  " });
   }
 
   // Generate token
@@ -49,26 +49,28 @@ console.log(token)
 // define functions to handle requests for the user routes that we defined in Server/routes/userRoutes.js
 const registerUser = async (req, res, next) => {
   try {
-    console.log("test"); // get the name, email and password from the request body
+    console.log(" first test", req.body); // get the name, email and password from the request body
     const { firstName, lastName, email, password, confirmPassword } = req.body;
 
     // check if the name, email and password are not empty
     if (!firstName || !lastName || !email || !password || !confirmPassword) {
-      return res.status(400).json({ message: "Please fill all fields" });
+  
+      return res.status(400).json({ message: "Please fill all the fields" });
     }
     // check if the password is === confirmPassword 
-     if (password === confirmPassword) {
-       return res.status(400).json({ message: "Password not match" });
+     if (password !== confirmPassword) {
+       return res.status(400).json({ message: "Confirm Password not match with Password" });
      }
-
+     console.log('third check')
     // validate the email
     if (!validator.isEmail(email)) {
-      return res.status(400).json({ message: "Invalid email" });
+        return res.status(401).json({ message: "Email is not valid " });
     }
 
     // check if the email is valid
     const userExists = await User.findOne({ email });
 
+    console.log('user exists', userExists)
     // check if the email is already in use
     if (userExists) {
       return res.status(400).json({ message: "Email already in use" });
@@ -78,7 +80,7 @@ const registerUser = async (req, res, next) => {
 
     // hash the password to make it secure
     const salt = await bcrypt.genSalt(10);
-    // set the user password to the hashed password and save it
+    // set the user password to the hasheweb.comd password and save it
     user.password = await bcrypt.hash(password, salt);
 
     // save the user to the database
@@ -117,7 +119,7 @@ const resetLogin = async (req, res) => {
 
   if (!user) {
     console.log("User not found");
-    return res.status(401).json({ message: "Invalid  email or password" });
+    return res.status(401).json({ message: "Email not registered  " });
   }
 
   const resetCode = Math.random().toString(36).substring(2, 8).toUpperCase();

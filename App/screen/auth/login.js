@@ -87,9 +87,16 @@ const Login = () => {
     if (!formIsValid(formData)) {
       updateError(
         "email",
-        !isValidEmail(formData.email) ? "Invalid email" : null
+        !isValidEmail(formData.email) ? "Invalid email coucou  " : null
       );
     }
+     if (!formIsValid(formData.password)) {
+       updateError(
+         "password",
+         !isValidEmail(formData.password) ? "Invalid password coucou  " : null
+       );
+     }
+      
   };
 
   const handleSubmit = async (e) => {
@@ -102,53 +109,54 @@ const Login = () => {
     });
 
     if (!formIsValid(formData)) {
-      updateError(
-        "email",
-        !isValidEmail(formData.email) ? "Invalid email" : null
-      );
-      updateError(
-        "password",
-        !isValidPassword(formData.password)
-          ? "Password = min 8 char with 1 cap , 1 number,1 special char"
-          : null
-      );
-      Toast.show({
-        type: "success",
-        position: "bottom",
-        text1: "Please review your credentials",
-        visibilityTime: 3000,
-        autoHide: true,
-      });
-      /*  for debogue  console.warn("Please review your credentials"); */
+       Toast.show({
+         type: "error",
+         position: "bottom",
+         text1: "Please review your credentials",
+         visibilityTime: 3000,
+         autoHide: true,
+       });
+    return updateError(
+      "email",
+      !isValidEmail(formData.email)
+        ? "Invalid email "
+        : null,
+    updateError(
+      "password",
+      !isValidPassword(formData.password)
+        ? "Invalid password "
+        : null
+    )
+        
+    );
+   
     }
+    
     try {
-      Toast.show({
-        type: "success",
-        position: "bottom",
-        text1: "Successfully logged",
-        visibilityTime: 3000,
-        autoHide: true,
-      });
-      setTimeout(() => {
-        navigation.navigate("Start"); // Navigation après 3 secondes
-      }, 3000); // Délai de 3000 millisecondes (3 secondes)
-
       const response = await axios.post(
         `http://localhost:5555/api/user/login`,
         formData
       );
-
       console.log(response.data);
-      /*  for debogue console.warn("Successfully logged"); */
+            Toast.show({
+              type: "success",
+              position: "bottom",
+              text1: "Successfully logged",
+              visibilityTime: 3000,
+              autoHide: true,
+            });
+      setTimeout(() => {
+        navigation.navigate("Start"); // Navigation après 3 secondes
+      }, 3000); // Délai de 3000 millisecondes (3 secondes)
 
-      navigation.navigate("Start");
+      
+      /*  for debogue console.warn("Successfully logged"); */
     } catch (err) {
-      console.log(err.message);
-      /* for degogue  console.warn("Login failed"); */
+      console.log(err.response.data.message);
       Toast.show({
-        type: "success",
+        type: "error",
         position: "bottom",
-        text1: "Login failed",
+        text1: err.response.data.message,
         visibilityTime: 3000,
         autoHide: true,
       });
@@ -197,7 +205,7 @@ const Login = () => {
           onPress={() => navigation.navigate("Signup")}
         />
       </View>
-      <Toast ref={(ref) => Toast.setRef(ref)} />
+      <Toast />
     </View>
   );
 };
