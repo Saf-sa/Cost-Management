@@ -130,6 +130,17 @@ const ResetPassword = () => {
       });
     }
     try {
+      Toast.show({
+        type: "success",
+        position: "bottom",
+        text1: "Password reset successfully",
+        visibilityTime: 3000,
+        autoHide: true,
+      });
+      setTimeout(() => {
+        navigation.navigate("Start"); // Navigation après 3 secondes
+      }, 3000); // Délai de 3000 millisecondes (3 secondes)
+
       const response = await axios.post(
         "http://localhost:5555/api/users/password",
         {
@@ -141,13 +152,7 @@ const ResetPassword = () => {
 
       // Navigate to Login screen
       /* for debug  console.warn("Password reset successfully");"); */
-      Toast.show({
-        type: "success",
-        position: "bottom",
-        text1: "Password reset successfully",
-        visibilityTime: 3000,
-        autoHide: true,
-      });
+
       navigation.navigate("Login");
     } catch (err) {
       console.log("Request error:", err.message);
