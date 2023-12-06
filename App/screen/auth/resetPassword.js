@@ -1,11 +1,12 @@
 import { View, Text, StyleSheet } from "react-native";
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
+import Toast from "react-native-toast-message";
 import AuthHeader from "../../shared/components/AuthHeader";
 import CustomInputSingup from "../../shared/components/ui/CustomInputSignup";
 import CustomButton from "../../shared/components/ui/CustomButton";
 import axios from "axios";
-import Login from './login';
+import Login from "./login";
 
 const isValidEmail = (email) => {
   // Should contain @
@@ -35,8 +36,8 @@ const ResetPassword = () => {
   const [code, setCode] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
-  const navigation = useNavigation(); 
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const navigation = useNavigation();
   const [formErrors, setFormErrors] = useState({
     email: null,
     code: null,
@@ -113,20 +114,20 @@ const ResetPassword = () => {
           ? "Password = min 8 char with 1 cap , 1 number,1 special char"
           : null
       );
-   updateError(
-     "confirmPassword",
-     !isValidConfirmPassword(formData.password, formData.confirmPassword)
-       ? "Passwords do not match"
-       : null
-   );
+      updateError(
+        "confirmPassword",
+        !isValidConfirmPassword(formData.password, formData.confirmPassword)
+          ? "Passwords do not match"
+          : null
+      );
       /* for debogue console.warn("Invalid Form"); */
-        Toast.show({
-             type: "success",
-             position: "bottom",
-             text1: "Invalid Form",
-             visibilityTime: 3000,
-             autoHide: true,
-           });
+      Toast.show({
+        type: "success",
+        position: "bottom",
+        text1: "Invalid Form",
+        visibilityTime: 3000,
+        autoHide: true,
+      });
     }
     try {
       const response = await axios.post(
@@ -139,26 +140,25 @@ const ResetPassword = () => {
       );
 
       // Navigate to Login screen
-    /* for debug  console.warn("Password reset successfully");"); */
-           Toast.show({
-             type: "success",
-             position: "bottom",
-             text1: "Password reset successfully",
-             visibilityTime: 3000,
-             autoHide: true,
-           });
-            navigation.navigate("Login");
-    }
-      catch (err) {
+      /* for debug  console.warn("Password reset successfully");"); */
+      Toast.show({
+        type: "success",
+        position: "bottom",
+        text1: "Password reset successfully",
+        visibilityTime: 3000,
+        autoHide: true,
+      });
+      navigation.navigate("Login");
+    } catch (err) {
       console.log("Request error:", err.message);
-     /* for debug console.warn("Password reset failed"); */
-           Toast.show({
-             type: "success",
-             position: "bottom",
-             text1: "Reset Password failed",
-             visibilityTime: 3000,
-             autoHide: true,
-           });
+      /* for debug console.warn("Password reset failed"); */
+      Toast.show({
+        type: "success",
+        position: "bottom",
+        text1: "Reset Password failed",
+        visibilityTime: 3000,
+        autoHide: true,
+      });
     }
   };
 

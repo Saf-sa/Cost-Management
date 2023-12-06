@@ -6,14 +6,12 @@ import AuthHeader from "../../shared/components/AuthHeader";
 import CustomInputSingup from "../../shared/components/ui/CustomInputSignup";
 import CustomButton from "../../shared/components/ui/CustomButton";
 /*  import { REACT_APP_BE_URL } from "../../.env"; */
-import  axios  from 'axios';
-
+import axios from "axios";
 
 // comment this line because solution not found if using .env file
 // go to ligne 84
 //import { API_URL, API_TOKEN } from "@env";
 /*  import { REACT_APP_BE_URL } from "../../.env";  */
-
 
 const isValidEmail = (email) => {
   const re = /\S+@\S+\.\S+/; // Should contain @
@@ -52,14 +50,13 @@ const formIsValid = (DataObj) => {
 };
 //
 const Signup = () => {
-   
-  const [password, setPassword] = useState(""); 
+  const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [firstName, setfirstName] = useState("");
-  const [lastName, setlastName] = useState(""); 
+  const [lastName, setlastName] = useState("");
   const [email, setEmail] = useState("");
-  const navigation = useNavigation(); 
-  const [formErrors, setFormErrors] = useState({ 
+  const navigation = useNavigation();
+  const [formErrors, setFormErrors] = useState({
     firstName: null,
     lastName: null,
     email: null,
@@ -93,7 +90,6 @@ const Signup = () => {
     }));
   };
 
-
   const updateError = (type, errorMessage) => {
     setFormErrors((prevFormErrors) => ({
       ...prevFormErrors,
@@ -115,87 +111,92 @@ const Signup = () => {
         "email",
         !isValidEmail(formData.email) ? "Invalid email" : null
       );
-       updateError(
-         "firstName",
-         !isValidFirstName(formData.firstName)
-           ? "First Name should 3 char min"
-           : null
-       );
-       updateError(
-         "lastName",
-         !isValidlastName(formData.lastName) ? "Last Name should 3 char min" : null
-       );
+      updateError(
+        "firstName",
+        !isValidFirstName(formData.firstName)
+          ? "First Name should 3 char min"
+          : null
+      );
+      updateError(
+        "lastName",
+        !isValidlastName(formData.lastName)
+          ? "Last Name should 3 char min"
+          : null
+      );
 
       updateError(
         "Password",
         !isValidConfirmPassword(formData.password, formData.Password)
           ? "Passwords do not match"
-          : null,
+          : null
       );
-       updateError(
-         "confirmPassword",
-         !isValidConfirmPassword(formData.password, formData.confirmPassword)
-           ? "Passwords do not match"
-           : null
-       );
-
-       
+      updateError(
+        "confirmPassword",
+        !isValidConfirmPassword(formData.password, formData.confirmPassword)
+          ? "Passwords do not match"
+          : null
+      );
     }
-  }
+  };
 
-
-const handleSubmit = async (e) => {
-  if (!formIsValid(formData)) {
+  const handleSubmit = async (e) => {
+    if (!formIsValid(formData)) {
       e.preventDefault();
 
       setFormData({
         firstName: firstName,
-        lastName:lastName,
-        email:email,
+        lastName: lastName,
+        email: email,
         password: password,
-        confirmPassword:confirmPassword,
+        confirmPassword: confirmPassword,
       });
- if (!formIsValid(formData)) {
-   updateError(
-     "firstName",
-     !isValidEmail(formData.firstName) ? "First Name should 3 char min" : null
-   );
-    updateError(
-      "lastName",
-      !isValidEmail(formData.lastName) ? "Last Name should 3 char min" : null
-    );
-   updateError("email", !isValidEmail(formData.email) ? "Invalid email" : null);
-   updateError(
-     "password",
-     !isValidPassword(formData.password)
-       ? "Password = min 8 char with 1 cap , 1 number,1 special char"
-       : null
-   );
-     updateError(
-       "confirmPassword",
-       !isValidConfirmPassword(
-         formData.isValidConfirmPassword,
-         formData.confirmPassword
-       )
-         ? "Passwords do not match"
-         : null
-     );
-  Toast.show({
-    type: "error",
-    position: "bottom",
-    text1: "Invalid Form",
-    visibilityTime: 3000,
-    autoHide: true,
-  });
- }
-
-  }
-  try {
-    const response = await axios.post(
-      `http://localhost:5555/api/user/register`,
-      formData
-    );
-    console.log(response.data);
+      if (!formIsValid(formData)) {
+        updateError(
+          "firstName",
+          !isValidEmail(formData.firstName)
+            ? "First Name should 3 char min"
+            : null
+        );
+        updateError(
+          "lastName",
+          !isValidEmail(formData.lastName)
+            ? "Last Name should 3 char min"
+            : null
+        );
+        updateError(
+          "email",
+          !isValidEmail(formData.email) ? "Invalid email" : null
+        );
+        updateError(
+          "password",
+          !isValidPassword(formData.password)
+            ? "Password = min 8 char with 1 cap , 1 number,1 special char"
+            : null
+        );
+        updateError(
+          "confirmPassword",
+          !isValidConfirmPassword(
+            formData.isValidConfirmPassword,
+            formData.confirmPassword
+          )
+            ? "Passwords do not match"
+            : null
+        );
+        Toast.show({
+          type: "error",
+          position: "bottom",
+          text1: "Invalid Form",
+          visibilityTime: 3000,
+          autoHide: true,
+        });
+      }
+    }
+    try {
+      const response = await axios.post(
+        `http://localhost:5555/api/user/register`,
+        formData
+      );
+      console.log(response.data);
       Toast.show({
         type: "success",
         position: "bottom",
@@ -204,11 +205,11 @@ const handleSubmit = async (e) => {
         autoHide: true,
       });
 
-   /*  for debogu console.warn("Successfully registered"); */
-    navigation.navigate("Login");
-  } catch (err) {
-    console.log(err.message);
-  /* for debugue  console.warn('Registration failed') */
+      /*  for debogu console.warn("Successfully registered"); */
+      navigation.navigate("Login");
+    } catch (err) {
+      console.log(err.message);
+      /* for debugue  console.warn('Registration failed') */
       Toast.show({
         type: "success",
         position: "bottom",
@@ -216,9 +217,8 @@ const handleSubmit = async (e) => {
         visibilityTime: 3000,
         autoHide: true,
       });
-  }
-
-};
+    }
+  };
   return (
     <View style={styles.root}>
       <AuthHeader subtext="Please Signup" />

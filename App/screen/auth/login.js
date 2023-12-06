@@ -35,9 +35,9 @@ const formIsValid = (DataObj) => {
 
 const Login = () => {
   const navigation = useNavigation();
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState(""); 
-    const [formErrors, setFormErrors] = useState({
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [formErrors, setFormErrors] = useState({
     firstName: null,
     lastName: null,
     email: null,
@@ -51,16 +51,15 @@ const Login = () => {
   });
 
   const [showPassword, setShowPassword] = useState(false);
-    const timeoutIdRef = useRef(null);
+  const timeoutIdRef = useRef(null);
 
   useEffect(() => {
-        return () => {
-          if (timeoutIdRef.current) {
-            clearTimeout(timeoutIdRef.current);
-          }
-        };
-      }, []);
-
+    return () => {
+      if (timeoutIdRef.current) {
+        clearTimeout(timeoutIdRef.current);
+      }
+    };
+  }, []);
 
   const handleChange = (value, type) => {
     setFormData((prevFormData) => ({
@@ -69,92 +68,99 @@ const Login = () => {
     }));
   };
 
-
-const updateError = (type, errorMessage) => {
-  setFormErrors((prevFormErrors) => ({
-    ...prevFormErrors,
-    [type]: errorMessage,
-  }));
-
-if (errorMessage) {
-  timeoutIdRef.current = setTimeout(() => {
+  const updateError = (type, errorMessage) => {
     setFormErrors((prevFormErrors) => ({
       ...prevFormErrors,
-      [type]: null,
+      [type]: errorMessage,
     }));
-  }, 3000); // 3000 milliseconds = 3 seconds
-}
-};
-const isValidForm = () => {
-  if(!formIsValid(formData)) {
-    updateError("email", !isValidEmail(formData.email) ? "Invalid email" : null);
-  }
-};
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
+    if (errorMessage) {
+      timeoutIdRef.current = setTimeout(() => {
+        setFormErrors((prevFormErrors) => ({
+          ...prevFormErrors,
+          [type]: null,
+        }));
+      }, 3000); // 3000 milliseconds = 3 seconds
+    }
+  };
+  const isValidForm = () => {
+    if (!formIsValid(formData)) {
+      updateError(
+        "email",
+        !isValidEmail(formData.email) ? "Invalid email" : null
+      );
+    }
+  };
 
-  // update formData with form values
-  setFormData({
-    email: email,
-    password: password,
-  });
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  if (!formIsValid(formData)) {
-    updateError(
-      "email",
-      !isValidEmail(formData.email) ? "Invalid email" : null
-    );
-    updateError(
-      "password",
-      !isValidPassword(formData.password)
-        ? "Password = min 8 char with 1 cap , 1 number,1 special char"
-        : null
-    );
-    Toast.show({
-      type: "success",
-      position: "bottom",
-      text1: "Please review your credentials",
-      visibilityTime: 3000,
-      autoHide: true,
+    // update formData with form values
+    setFormData({
+      email: email,
+      password: password,
     });
-/*  for debogue  console.warn("Please review your credentials"); */
-  }
-try {
 
-  const response = await axios.post(
-    `http://localhost:5555/api/user/login`,
-    formData
-    // comment this line because solution not found if using .env file
-    /*     fetch(`${API_URL}/users`, {
+    if (!formIsValid(formData)) {
+      updateError(
+        "email",
+        !isValidEmail(formData.email) ? "Invalid email" : null
+      );
+      updateError(
+        "password",
+        !isValidPassword(formData.password)
+          ? "Password = min 8 char with 1 cap , 1 number,1 special char"
+          : null
+      );
+      Toast.show({
+        type: "success",
+        position: "bottom",
+        text1: "Please review your credentials",
+        visibilityTime: 3000,
+        autoHide: true,
+      });
+      /*  for debogue  console.warn("Please review your credentials"); */
+    }
+    try {
+      Toast.show({
+        type: "success",
+        position: "bottom",
+        text1: "Successfully logged",
+        visibilityTime: 3000,
+        autoHide: true,
+      });
+      setTimeout(() => {
+        navigation.navigate("Start"); // Navigation après 3 secondes
+      }, 3000); // Délai de 3000 millisecondes (3 secondes)
+
+      const response = await axios.post(
+        `http://localhost:5555/api/user/login`,
+        formData
+
+        // comment this line because solution not found if using .env file
+        /*     fetch(`${API_URL}/users`, {
   headers: {
     'Authorization': `Bearer ${API_TOKEN}`
   }
 }) */
-  );r
-    console.log(response.data);
-  /*  for debogue console.warn("Successfully logged"); */
- Toast.show({
-   type: "success",
-   position: "bottom",
-   text1: "Successfully logged",
-   visibilityTime: 3000,
-   autoHide: true,
- });
-    navigation.navigate("Start");
-  }
-   catch (err) {
-    console.log(err.message);
-   /* for degogue  console.warn("Login failed"); */
-       Toast.show({
-         type: "success",
-         position: "bottom",
-         text1: "Login failed",
-         visibilityTime: 3000,
-         autoHide: true,
-       });
-  }
-};
+      );
+
+      console.log(response.data);
+      /*  for debogue console.warn("Successfully logged"); */
+
+      navigation.navigate("Start");
+    } catch (err) {
+      console.log(err.message);
+      /* for degogue  console.warn("Login failed"); */
+      Toast.show({
+        type: "success",
+        position: "bottom",
+        text1: "Login failed",
+        visibilityTime: 3000,
+        autoHide: true,
+      });
+    }
+  };
 
   return (
     <View style={styles.root}>

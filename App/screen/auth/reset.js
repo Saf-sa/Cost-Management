@@ -32,16 +32,16 @@ const ResetLogin = () => {
     email: "",
   });
 
-    const [showPassword, setShowPassword] = useState(false);
-    const timeoutIdRef = useRef(null);
+  const [showPassword, setShowPassword] = useState(false);
+  const timeoutIdRef = useRef(null);
 
-    useEffect(() => {
-      return () => {
-        if (timeoutIdRef.current) {
-          clearTimeout(timeoutIdRef.current);
-        }
-      };
-    }, []);
+  useEffect(() => {
+    return () => {
+      if (timeoutIdRef.current) {
+        clearTimeout(timeoutIdRef.current);
+      }
+    };
+  }, []);
 
   const handleChange = (value, type) => {
     setFormData((prevFormData) => ({
@@ -50,30 +50,29 @@ const ResetLogin = () => {
     }));
   };
 
+  const updateError = (type, errorMessage) => {
+    setFormErrors((prevFormErrors) => ({
+      ...prevFormErrors,
+      [type]: errorMessage,
+    }));
 
-const updateError = (type, errorMessage) => {
-  setFormErrors((prevFormErrors) => ({
-    ...prevFormErrors,
-    [type]: errorMessage,
-  }));
-
-  if (errorMessage) {
-    timeoutIdRef.current = setTimeout(() => {
-      setFormErrors((prevFormErrors) => ({
-        ...prevFormErrors,
-        [type]: null,
-      }));
-    }, 3000); // 3000 milliseconds = 3 seconds
-  }
-};
-const isValidForm = () => {
-  if (!formIsValid(formData)) {
-    updateError(
-      "email",
-      !isValidEmail(formData.email) ? "Invalid email" : null
-    );
-  }
-};
+    if (errorMessage) {
+      timeoutIdRef.current = setTimeout(() => {
+        setFormErrors((prevFormErrors) => ({
+          ...prevFormErrors,
+          [type]: null,
+        }));
+      }, 3000); // 3000 milliseconds = 3 seconds
+    }
+  };
+  const isValidForm = () => {
+    if (!formIsValid(formData)) {
+      updateError(
+        "email",
+        !isValidEmail(formData.email) ? "Invalid email" : null
+      );
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -81,7 +80,6 @@ const isValidForm = () => {
     // update formData with form values
     setFormData({
       email: email,
-  
     });
 
     if (!formIsValid(formData)) {
@@ -90,15 +88,14 @@ const isValidForm = () => {
         !isValidEmail(formData.email) ? "Invalid email" : null
       );
 
-  /* for degogue console.warn("Please review your credentials"); */
-  Toast.show({
-    type: "success",
-    position: "bottom",
-    text1: "Please review your credentials",
-    visibilityTime: 3000,
-    autoHide: true,
-  });
-
+      /* for degogue console.warn("Please review your credentials"); */
+      Toast.show({
+        type: "success",
+        position: "bottom",
+        text1: "Please review your credentials",
+        visibilityTime: 3000,
+        autoHide: true,
+      });
     }
     try {
       const response = await axios.post(
@@ -107,27 +104,25 @@ const isValidForm = () => {
       );
       console.log(response.data);
       /*  for debogue console.warn("Check your email to reset your password"); */
-    Toast.show({
-      type: "success",
-      position: "bottom",
-      text1: "Check your email to reset your password",
-      visibilityTime: 3000,
-      autoHide: true,
-    });
-      
-      navigation.navigate("ResetPassword");
-    }
-     catch (err) {
-      console.log(err.message);
-    /*  for deboge  console.warn("Reset Password failed"); */
-     Toast.show({
-       type: "success",
-       position: "bottom",
-       text1: "Reset Password failed",
-       visibilityTime: 3000,
-       autoHide: true,
-     });
+      Toast.show({
+        type: "success",
+        position: "bottom",
+        text1: "Check your email to reset your password",
+        visibilityTime: 3000,
+        autoHide: true,
+      });
 
+      navigation.navigate("ResetPassword");
+    } catch (err) {
+      console.log(err.message);
+      /*  for deboge  console.warn("Reset Password failed"); */
+      Toast.show({
+        type: "success",
+        position: "bottom",
+        text1: "Reset Password failed",
+        visibilityTime: 3000,
+        autoHide: true,
+      });
     }
   };
 
