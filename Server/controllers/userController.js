@@ -184,10 +184,8 @@ const resetPassword = async (req, res) => {
   // set the user password to the hashed password and save it
   user.password = await bcrypt.hash(password, salt);
 
-/* 
-  user.password = password;
   user.resetCode = undefined;
-  user.resetCodeExpiry = undefined; */
+  user.resetCodeExpiry = undefined;
 
   await user.save();
   console.log("new password changed", user);

@@ -170,7 +170,7 @@ const isValidForm = () => {
          Toast.show({
            type: "success",
            position: "bottom",
-           text1: "Check your email to reset your password",
+           text1: "password reset successfully",
            visibilityTime: 3000,
            autoHide: true,
          });
