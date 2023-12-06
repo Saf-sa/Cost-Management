@@ -136,13 +136,6 @@ const Login = () => {
       const response = await axios.post(
         `http://localhost:5555/api/user/login`,
         formData
-
-        // comment this line because solution not found if using .env file
-        /*     fetch(`${API_URL}/users`, {
-  headers: {
-    'Authorization': `Bearer ${API_TOKEN}`
-  }
-}) */
       );
 
       console.log(response.data);

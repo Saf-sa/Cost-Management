@@ -98,12 +98,6 @@ const ResetLogin = () => {
       });
     }
     try {
-      const response = await axios.post(
-        `http://localhost:5555/api/user/reset`,
-        formData
-      );
-      console.log(response.data);
-      /*  for debogue console.warn("Check your email to reset your password"); */
       Toast.show({
         type: "success",
         position: "bottom",
@@ -111,6 +105,16 @@ const ResetLogin = () => {
         visibilityTime: 3000,
         autoHide: true,
       });
+      setTimeout(() => {
+        navigation.navigate("Start"); // Navigation après 3 secondes
+      }, 3000); // Délai de 3000 millisecondes (3 secondes)
+
+      const response = await axios.post(
+        `http://localhost:5555/api/user/reset`,
+        formData
+      );
+      console.log(response.data);
+      /*  for debogue console.warn("Check your email to reset your password"); */
 
       navigation.navigate("ResetPassword");
     } catch (err) {
