@@ -18,6 +18,8 @@ const isValidEmail = (email) => {
   return re.test(email);
 };
 
+
+
 const isValidPassword = (password) => {
   const re = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/;
   // Should contain at least one number, one special character and minimum 8 characters

@@ -139,10 +139,7 @@ const isValidForm = () => {
         visibilityTime: 3000,
         autoHide: true,
       });
-       updateError(
-        "code",
-        !isValidEmail(formData.code) ? "Invalid code" : null
-      );
+      
        updateError(
         "email",
         !isValidEmail(formData.email) ? "Invalid email" : null

@@ -112,6 +112,8 @@ const ResetLogin = () => {
       setTimeout(() => {
         navigation.navigate("ResetPassword"); // Navigation après 3 secondes
       }, 3000); // Délai de 3000 millisecondes (3 secondes)
+    
+    
     } catch (err) {
       console.log(err.response.data.message);
       Toast.show({

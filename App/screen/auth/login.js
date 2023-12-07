@@ -27,7 +27,7 @@ const isValidPassword = (password) => {
 // check all value is not empty
 const formIsValid = (DataObj) => {
   return (
-    Object.values(DataObj).every((value) => value.trim() !== "") &&
+    Object.values(DataObj).every((value) => value.trim().length > 0) && // check all value is not empty
     isValidEmail(DataObj.email) &&
     isValidPassword(DataObj.password)
   );
@@ -38,11 +38,9 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [formErrors, setFormErrors] = useState({
-    firstName: null,
-    lastName: null,
     email: null,
     password: null,
-    confirmPassword: null,
+
   });
 
   const [formData, setFormData] = useState({
@@ -87,16 +85,15 @@ const Login = () => {
     if (!formIsValid(formData)) {
       updateError(
         "email",
-        !isValidEmail(formData.email) ? "Invalid email coucou  " : null
+        !isValidEmail(formData.email) ? "Invalid email" : null
       );
     }
-     if (!formIsValid(formData.password)) {
-       updateError(
-         "password",
-         !isValidEmail(formData.password) ? "Invalid password coucou  " : null
-       );
-     }
-      
+    if (!formIsValid(formData)) {
+      updateError(
+        "password",
+        !isValidPassword(formData.password) ? "Invalid email" : null
+      );
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -109,13 +106,13 @@ const Login = () => {
     });
 
     if (!formIsValid(formData)) {
-       Toast.show({
+      Toast.show({
          type: "error",
          position: "bottom",
          text1: "Please review your credentials",
          visibilityTime: 3000,
          autoHide: true,
-       });
+       }); 
     return updateError(
       "email",
       !isValidEmail(formData.email)
@@ -126,10 +123,9 @@ const Login = () => {
       !isValidPassword(formData.password)
         ? "Invalid password "
         : null
-    )
-        
+    )    
     );
-   
+
     }
     
     try {
@@ -149,14 +145,13 @@ const Login = () => {
         navigation.navigate("Start"); // Navigation après 3 secondes
       }, 3000); // Délai de 3000 millisecondes (3 secondes)
 
-      
-      /*  for debogue console.warn("Successfully logged"); */
+    
     } catch (err) {
-      console.log(err.response.data.message);
+      console.log('test',err.response.data );
       Toast.show({
         type: "error",
         position: "bottom",
-        text1: err.response.data.message,
+        text1: err.response.data,
         visibilityTime: 3000,
         autoHide: true,
       });
