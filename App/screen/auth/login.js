@@ -147,11 +147,11 @@ const Login = () => {
 
     
     } catch (err) {
-      console.log('test',err.response.data );
+      console.log('test',err.response.data.message );
       Toast.show({
         type: "error",
         position: "bottom",
-        text1: err.response.data,
+        text1: err.response.data.message,
         visibilityTime: 3000,
         autoHide: true,
       });

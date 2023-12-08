@@ -115,7 +115,7 @@ const ResetLogin = () => {
     
     
     } catch (err) {
-      console.log(err.response.data.message);
+      console.log('Test signup',err.response.data.message);
       Toast.show({
         type: "error",
         position: "bottom",
