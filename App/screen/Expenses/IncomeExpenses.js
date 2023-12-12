@@ -83,7 +83,7 @@ import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
               PREMIUM ACCOUNT ={" TITANIUM"}
             </AppText>
 
-            <AppText style={{ color: "black", fontSize: 12 }}>BALANCE</AppText>
+            <AppText style={{ color: "black", fontSize: 15 }}>BALANCE</AppText>
 
             <AppText style={{ color: "red", fontSize: 12 }}>3000</AppText>
 
@@ -118,7 +118,7 @@ import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
                   alignItems: "center",
                 }}
               >
-                <AntDesign name="arrowdown" color="#25F333" size={30 * 0.5} />
+                <AntDesign name="arrowup" color="#25F333" size={30 * 0.5} />
               </View>
               <View style={{ marginLeft: 10 }}>
                 <AppText style={{ color: "black", fontSize: 12 }}>
@@ -147,7 +147,7 @@ import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
                   alignItems: "center",
                 }}
               >
-                <AntDesign name="arrowup" color="#FB5D5D" size={30 * 0.5} />
+                <AntDesign name="arrowdown" color="#FB5D5D" size={30 * 0.5} />
               </View>
               <View style={{ marginLeft: 10 }}>
                 <AppText style={{ color: "black", fontSize: 12 }}>
