@@ -173,9 +173,7 @@ import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
             />
             <Text style={{ fontSize: 15, paddingTop: 5 }}> Income</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => navigation.push("ViewAllTransactions")}
-          >
+          <TouchableOpacity onPress={() => navigation.push("MyExpense")}>
             <Icon
               name="shopping-cart"
               size={60}
