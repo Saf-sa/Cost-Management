@@ -10,6 +10,7 @@ import ResetPassword from "./screen/auth/resetPassword";
 import BottomHomeNav from "../App/screen/nav/BottomHomeNav";
 import IncomeExpenses from "./screen/Expenses/IncomeExpenses";
 import ViewAllTransac from "./screen/Expenses/ViewAllTransac";
+import MyIncome from "./screen/Pages/MyIncome";
 
 
 
@@ -33,6 +34,7 @@ export default function App() {
         <Stack.Screen name="ResetPassword" component={ResetPassword} />
         <Stack.Screen name="ViewAllTransactions" component={ViewAllTransac} />
         <Stack.Screen name="IncomeExpenses" component={IncomeExpenses} />
+        <Stack.Screen name="MyIncome" component={MyIncome} />
         <Stack.Screen name="HomeNav" component={BottomHomeNav} />
       </Stack.Navigator>
     </NavigationContainer>

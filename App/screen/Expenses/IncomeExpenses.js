@@ -164,9 +164,7 @@ import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
           <AppText style={styles.dashboardTitle}>Dashboard</AppText>
         </View>
         <View style={styles.dashboard}>
-          <TouchableOpacity
-            onPress={() => navigation.push("ViewAllTransactions")}
-          >
+          <TouchableOpacity onPress={() => navigation.push("MyIncome")}>
             <Icon
               name="dollar-sign"
               size={60}
