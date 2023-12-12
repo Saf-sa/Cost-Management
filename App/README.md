@@ -124,7 +124,7 @@ Expo Modules allow you to write native code in a way that feels natural with min
 
  18- innstall moment (date library for parsing, validating, manipulating, and formatting dates)
 
- npm i moment
+npm i moment
 
  19- install formik (https://formik.org/docs/guides/react-native)
 (useFormik() is a custom React hook that will return all Formik state and helpers directly.)
@@ -143,3 +143,31 @@ By using KeyboardAwareScrollView , your entire screen becomes scrollable. Furthe
 21- instll React Native (Paper is the cross-platform UI kit library containing a collection of customizable and production-ready components, which by default are following and respecting the Google's Material Design guidelines.)
 
 npm i react-native-paper
+
+22- install keyboard-aware-scroll-view
+
+npm i react-native-keyboard-aware-scroll-view
+
+23- install react-native-chart-kit
+ npm i react-native-chart-kit
+
+24- install yup
+npm i yup
+
+25- intall react-native-dropdown-picker
+
+npm i react-native-dropdown-picker
+
+26- install expo/vector-icons
+
+npm i @expo/vector-icons
+
+27 - Install our component, the SVG core, and the react-native-svg library:
+
+npm i --save @fortawesome/react-native-fontawesome @fortawesome/fontawesome-svg-core react-native-svg
+
+28 Install component, the SVG core, and the react-native-svg library :
+
+npm i --save @fortawesome/free-solid-svg-icons
+npm i --save @fortawesome/free-brands-svg-icons
+npm i --save @fortawesome/free-regular-svg-icons

@@ -1,12 +1,17 @@
 import { View, Text, TouchableOpacity, StyleSheet  } from 'react-native'
 import React from 'react'
+import { LinearGradient } from "expo-linear-gradient";
 
 const CustomButton = ({ buttonText, onPress }) => {
   return (
+         
     <TouchableOpacity style={styles.container} onPress={onPress}>
+    
       <Text style={styles.text}> {buttonText}</Text>
-    </TouchableOpacity>
+    
+     </TouchableOpacity>
   );
+ 
 };
 
 export default CustomButton;

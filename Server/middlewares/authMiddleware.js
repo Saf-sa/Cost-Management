@@ -1,6 +1,6 @@
 import User from "../models/userModel.js";
 import matchPassword from "../utils/matchPassword.js";
-
+import bcrypt from "bcrypt";
 const authMiddleware = async (req, res, next) => {
   const { email, password } = req.body;
 
@@ -16,10 +16,9 @@ const authMiddleware = async (req, res, next) => {
   }
 
   // Check if password matches
-  const isMatch = await matchPassword(password, user.password);
-
+  const isMatch = await bcrypt.compare(password, user.password);
   if (!isMatch) {
-    return res.status(400).send("Invalid password");
+    return res.status(401).json({ message: "Password not match" });
   }
 
   req.user = user;

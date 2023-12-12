@@ -7,10 +7,22 @@ import Signup from "./screen/auth/signup";
 import Reset from "./screen/auth/reset";
 import Start from "./screen/Pages/start";
 import ResetPassword from "./screen/auth/resetPassword";
+import BottomHomeNav from "../App/screen/nav/BottomHomeNav";
+import IncomeExpenses from "./screen/Expenses/IncomeExpenses";
+import ViewAllTransac from "./screen/Expenses/ViewAllTransac";
+
+
+
+
+
+
+
 
 const Stack = createStackNavigator();
 
 export default function App() {
+  
+  
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Login">
@@ -19,6 +31,9 @@ export default function App() {
         <Stack.Screen name="Reset" component={Reset} />
         <Stack.Screen name="Start" component={Start} />
         <Stack.Screen name="ResetPassword" component={ResetPassword} />
+        <Stack.Screen name="ViewAllTransactions" component={ViewAllTransac} />
+        <Stack.Screen name="IncomeExpenses" component={IncomeExpenses} />
+        <Stack.Screen name="HomeNav" component={BottomHomeNav} />
       </Stack.Navigator>
     </NavigationContainer>
   );

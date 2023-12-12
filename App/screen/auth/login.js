@@ -142,7 +142,7 @@ const Login = () => {
               autoHide: true,
             });
       setTimeout(() => {
-        navigation.navigate("Start"); // Navigation après 3 secondes
+        navigation.navigate("IncomeExpenses"); // Navigation après 3 secondes
       }, 3000); // Délai de 3000 millisecondes (3 secondes)
 
     
@@ -194,11 +194,13 @@ const Login = () => {
         />
 
         <Text style={styles.register}>New to Expense Manager?</Text>
+
         <CustomButton
           style={styles.button}
           buttonText={"Sign up Now"}
           onPress={() => navigation.navigate("Signup")}
         />
+        
       </View>
       <Toast />
     </View>
@@ -227,6 +229,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   forgetPass: {
+ 
     flexDirection: "row",
     alignSelf: "flex-end",
     marginTop: 20,

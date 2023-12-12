@@ -18,16 +18,22 @@ import User from "../models/userModel.js";
 // define functions to handle requests for the user routes that we defined in Server/routes/userRoutes.js
 
 const userLogin = async (req, res) => {
-
   console.log(" login called");
-  const { email } = req.body;
+  const { email, password } = req.body;
 
   console.log("Checking if user exists");
-  const user = await User.findOne({email});
+  const user = await User.findOne({ email });
 
   if (!user) {
-    return res.status(401).json({ message: "Email not registered"});
+    return res.status(401).json({ message: "Email not registered" });
     console.log(!user);
+  }
+
+  // Check if password matches
+  const isMatch = await bcrypt.compare(password, user.password);
+  console.log(user.password);
+  if (!isMatch) {
+    return res.status(401).json({ message: "Password not match " });
   }
 
   // Generate token
@@ -67,7 +73,7 @@ const registerUser = async (req, res, next) => {
     if (password !== confirmPassword) {
       return res
         .status(400)
-        .json({ message: "Confirm Password not match with Password" });
+        .json({ message: "Password not match with Password" });
     }
     console.log("third check");
     // validate the email
@@ -117,16 +123,24 @@ let transporter = nodemailer.createTransport({
 
 const resetLogin = async (req, res) => {
   console.log("Reset login called");
-  const { email } = req.body;
+  const { email, } = req.body;
+
+   /*    // check if the name, email and password are not empty */
 
   console.log("Checking if user exists");
   const user = await User.findOne({ email });
 
+ 
   if (!user) {
         return res.status(401).json({ message: "Email not registered  " });
     console.log("User not found");
 
   }
+ /*    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(401).json({ message: "Invalid credentials" });
+    } */
+  
 
   const resetCode = Math.random().toString(36).substring(2, 8).toUpperCase();
   user.resetCode = resetCode;

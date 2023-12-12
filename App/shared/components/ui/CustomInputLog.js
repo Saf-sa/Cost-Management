@@ -18,8 +18,14 @@ const CustomInputLog = (props) => {
 
   return (
     <View style={styles.container}>
+
       <Text style={styles.text}>{label}</Text>
-      <View style={styles.inputContainer}></View>
+      
+      
+
+      <View style={styles.inputContainer}>
+        
+      </View>
       <TextInput
         style={styles.input}
         placeholder={placeholder}
@@ -34,6 +40,9 @@ const CustomInputLog = (props) => {
       )}
       {errorMessage && <Text style={styles.errorMsg}>{errorMessage}</Text>}
     </View>
+
+
+
   );
 };
 

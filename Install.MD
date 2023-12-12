@@ -1,3 +1,11 @@
+when upload repo, please run :
+npm install in each directories
+-app
+& copie .env for App
+&
+server
+& copie .env for Server
+
 1 install Xcode globaly
 2 - npx create-expo-app App   
 - cd App
