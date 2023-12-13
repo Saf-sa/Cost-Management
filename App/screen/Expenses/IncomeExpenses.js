@@ -182,9 +182,7 @@ import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
             />
             <Text style={{ fontSize: 15, paddingTop: 5 }}>Expenses</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => navigation.push("ViewAllTransactions")}
-          >
+          <TouchableOpacity onPress={() => navigation.push("MyInvoices")}>
             <Icon
               name="file-invoice-dollar"
               size={60}
@@ -193,7 +191,7 @@ import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
             />
             <Text style={{ fontSize: 15, paddingTop: 5 }}> Invoices</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.push("MyInvoices")}>
+          <TouchableOpacity onPress={() => navigation.push("Statistics")}>
             <Icon
               name="chart-line"
               size={60}

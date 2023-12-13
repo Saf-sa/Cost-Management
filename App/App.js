@@ -13,7 +13,7 @@ import ViewAllTransac from "./screen/Expenses/ViewAllTransac";
 import MyIncomes from "./screen/Pages/MyIncomes";
 import MyExpenses from "./screen/Pages/MyExpenses";
 import MyInvoices from "./screen/Pages/MyInvoices";
-
+import Statistics from "./screen/Pages/Statistics";
 
 
 
@@ -39,6 +39,7 @@ export default function App() {
         <Stack.Screen name="MyIncomes" component={MyIncomes} />
         <Stack.Screen name="MyExpenses" component={MyExpenses} />
         <Stack.Screen name="MyInvoices" component={MyInvoices} />
+        <Stack.Screen name="Statistics" component={Statistics} />
         <Stack.Screen name="HomeNav" component={BottomHomeNav} />
       </Stack.Navigator>
     </NavigationContainer>
