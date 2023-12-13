@@ -21,7 +21,7 @@ import { useRoute } from "@react-navigation/native";
 import AccountsTransac from "../Pages/Accounts";
 import MyExpenses from "../Pages/MyExpenses";
 import Predictions from "../Pages/Predictions";
-import HistoryTransaction from "../Pages/HistoryTransaction";
+import HistoryTransaction from "../Pages/History";
 
 const Tab = createBottomTabNavigator();
 

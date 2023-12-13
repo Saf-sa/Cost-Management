@@ -200,9 +200,7 @@ import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
             />
             <Text style={{ fontSize: 15, paddingTop: 5 }}>Statistics</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => navigation.push("ViewAllTransactions")}
-          >
+          <TouchableOpacity onPress={() => navigation.push("History")}>
             <Icon
               name="history"
               size={60}
@@ -216,9 +214,7 @@ import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
           <AppText style={styles.dashboardTitle}>Categories</AppText>
         </View>
         <View style={styles.dashboardCat}>
-          <TouchableOpacity
-            onPress={() => navigation.push("ViewAllTransactions")}
-          >
+          <TouchableOpacity onPress={() => navigation.push("Clothes")}>
             <Icon
               name="tshirt"
               size={60}
