@@ -30,11 +30,47 @@ const userSchema = new mongoose.Schema(
       type: Date,
       default: Date.now,
     },
-    /*  role: {
+    clothes: {
       type: String,
-      enum: ["user", "admin"],
-      default: "user",
-    }, */
+      default: null,
+    },
+    foods: {
+      type: String,
+      default: null,
+    },
+    transport: {
+      type: String,
+      default: null,
+    },
+    studies: {
+      type: String,
+      default: null,
+    },
+    invoice: {
+      type: String,
+      default: null,
+    },
+    taxes: {
+      type: String,
+      default: null,
+    },
+    hobbies: {
+      type: String,
+      default: null,
+    },
+    money: {
+      type: String,
+      default: null,
+    },
+    erpargne: {
+      type: String,
+      default: null,
+    },
+    holiday: {
+      type: String,
+      default: null,
+    },
+
   },
   // add timestamps to the schema to know when document was created or modified
   { timestamps: true }
