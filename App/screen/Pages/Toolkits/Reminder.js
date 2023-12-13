@@ -1,12 +1,12 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-const Calc = () => {
+const Reminder = () => {
   return (
     <View>
-      <Text>C</Text>
+      <Text>Reminder</Text>
     </View>
   )
 }
 
-export default Calc;
+export default Reminder

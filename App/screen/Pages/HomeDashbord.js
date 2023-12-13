@@ -344,9 +344,7 @@ import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
         </View>
 
         <View style={styles.dashboard}>
-          <TouchableOpacity
-            onPress={() => navigation.push("ViewAllTransactions")}
-          >
+          <TouchableOpacity onPress={() => navigation.push("Calculator")}>
             <Icon
               name="calculator"
               size={60}
@@ -355,9 +353,7 @@ import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
             />
             <Text style={{ fontSize: 15, paddingTop: 5 }}>calculator</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => navigation.push("ViewAllTransactions")}
-          >
+          <TouchableOpacity onPress={() => navigation.push("Agenda")}>
             <Icon
               name="calendar-alt"
               size={60}
@@ -366,9 +362,7 @@ import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
             />
             <Text style={{ fontSize: 15, paddingTop: 5 }}> Agenda</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => navigation.push("ViewAllTransactions")}
-          >
+          <TouchableOpacity onPress={() => navigation.push("Reminder")}>
             <Icon
               name="bell"
               size={60}
@@ -377,9 +371,7 @@ import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
             />
             <Text style={{ fontSize: 15, paddingTop: 5 }}>Reminder</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => navigation.push("ViewAllTransactions")}
-          >
+          <TouchableOpacity onPress={() => navigation.push("Download")}>
             <Icon
               name="download"
               size={60}
@@ -388,9 +380,7 @@ import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
             />
             <Text style={{ fontSize: 15, paddingTop: 5 }}>Download</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => navigation.push("ViewAllTransactions")}
-          >
+          <TouchableOpacity onPress={() => navigation.push("Accounts")}>
             <Icon
               name="user-cog"
               size={60}

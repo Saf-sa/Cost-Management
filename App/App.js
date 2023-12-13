@@ -25,6 +25,12 @@ import Hobbies from "./screen/Pages/Categories/Hobbies";
 import Money from "./screen/Pages/Categories/Money";
 import Epargne from "./screen/Pages/Categories/Epargne";
 import Holidays from "./screen/Pages/Categories/Holidays";
+import Calculator from "./screen/Pages/Toolkits/Calculator";
+import Agenda from "./screen/Pages/Toolkits/Agenda";
+import Reminder from "./screen/Pages/Toolkits/Reminder";
+import Download from "./screen/Pages/Toolkits/Download";
+import Accounts from "./screen/Pages/Toolkits/Accounts";
+
 
 
 const Stack = createStackNavigator();
@@ -58,6 +64,11 @@ export default function App() {
         <Stack.Screen name="Money" component={Money} />
         <Stack.Screen name="Epargne" component={Epargne} />
         <Stack.Screen name="Holidays" component={Holidays} />
+        <Stack.Screen name="Calculator" component={Calculator} />
+        <Stack.Screen name="Agenda" component={Agenda} />
+        <Stack.Screen name="Reminder" component={Reminder} />
+        <Stack.Screen name="Download" component={Download} />
+        <Stack.Screen name="Accounts" component={Accounts} />
       </Stack.Navigator>
     </NavigationContainer>
   );
