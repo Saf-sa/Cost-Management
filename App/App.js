@@ -16,6 +16,7 @@ import MyInvoices from "./screen/Pages/MyInvoices";
 import Statistics from "./screen/Pages/Statistics";
 import History from "./screen/Pages/History";
 import Clothes from "./screen/Pages/Categories/Clothes";
+import Foods from "./screen/Pages/Categories/Foods";
 
 
 
@@ -43,6 +44,7 @@ export default function App() {
         <Stack.Screen name="Statistics" component={Statistics} />
         <Stack.Screen name="History" component={History} />
         <Stack.Screen name="Clothes" component={Clothes} />
+        <Stack.Screen name="Foods" component={Foods} />
         <Stack.Screen name="BottomHomeNav" component={BottomHomeNav} />
       </Stack.Navigator>
     </NavigationContainer>

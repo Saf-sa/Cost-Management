@@ -226,9 +226,7 @@ import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
               Clothes
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => navigation.push("ViewAllTransactions")}
-          >
+          <TouchableOpacity onPress={() => navigation.push("Foods")}>
             <Icon
               name="utensils"
               size={60}
