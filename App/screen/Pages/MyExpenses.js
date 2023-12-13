@@ -21,7 +21,7 @@ const MyExpenses = () => {
   const [incomes, setIncomes] = useState([]);
 
   useEffect(() => {
-    fetch("http://your-api-url/expenses")
+    fetch("http://your-api-url/expenses") 
       .then((response) => response.json())
       .then((data) => setIncomes(data))
       .catch((error) => console.error(error));
@@ -30,15 +30,9 @@ const MyExpenses = () => {
   return (
     <Screen2>
       <UserNav
-        image={require("../../assets/iconPerson.png")}
+        image={require("../../assets/iconPerson.png")} //to be changed to the right icon
         title="MY Expenses"
       />
-      <LinearGradient
-        style={styles.parentContainer}
-        colors={["#f9f295", "#E0AA3E", "#F7EF8A", "#B88A44"]}
-        start={{ x: 0.1, y: 0.1 }}
-        end={{ x: 1, y: 3 }}
-      ></LinearGradient>
 
       <View>
         <Text>History of my Expenses</Text>
