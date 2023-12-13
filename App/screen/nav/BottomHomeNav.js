@@ -20,7 +20,7 @@ import IncomeExpenses from "../Pages/HomeDashbord";
 import { useRoute } from "@react-navigation/native";
 import AccountsTransac from "../Pages/Accounts";
 import MyExpenses from "../Pages/MyExpenses";
-import Predictions from "../Pages/Predictions";
+import Predictions from "../Pages/Forecast";
 import HistoryTransaction from "../Pages/History";
 
 const Tab = createBottomTabNavigator();

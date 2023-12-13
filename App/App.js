@@ -12,11 +12,14 @@ import HomeDashbord from "./screen//Pages/HomeDashbord";
 import ViewAllTransac from "./screen/Expenses/ViewAllTransac";
 import MyIncomes from "./screen/Pages/MyIncomes";
 import MyExpenses from "./screen/Pages/MyExpenses";
-import MyInvoices from "./screen/Pages/MyInvoices";
+import Forecast from "./screen/Pages/Forecast";
 import Statistics from "./screen/Pages/Statistics";
 import History from "./screen/Pages/History";
 import Clothes from "./screen/Pages/Categories/Clothes";
 import Foods from "./screen/Pages/Categories/Foods";
+import Transport from "./screen/Pages/Categories/Transport";
+import Studies from "./screen/Pages/Categories/Studies";
+import MyInvoices from "./screen/Pages/Categories/MyInvoices";
 
 
 
@@ -36,16 +39,19 @@ export default function App() {
         <Stack.Screen name="Reset" component={Reset} />
         <Stack.Screen name="Start" component={Start} />
         <Stack.Screen name="ResetPassword" component={ResetPassword} />
+        <Stack.Screen name="BottomHomeNav" component={BottomHomeNav} />
         <Stack.Screen name="ViewAllTransactions" component={ViewAllTransac} />
         <Stack.Screen name="HomeDashbord" component={HomeDashbord} />
         <Stack.Screen name="MyIncomes" component={MyIncomes} />
         <Stack.Screen name="MyExpenses" component={MyExpenses} />
-        <Stack.Screen name="MyInvoices" component={MyInvoices} />
+        <Stack.Screen name="Forecast" component={Forecast} />
         <Stack.Screen name="Statistics" component={Statistics} />
         <Stack.Screen name="History" component={History} />
         <Stack.Screen name="Clothes" component={Clothes} />
         <Stack.Screen name="Foods" component={Foods} />
-        <Stack.Screen name="BottomHomeNav" component={BottomHomeNav} />
+        <Stack.Screen name="Transport" component={Transport} />
+        <Stack.Screen name="Studies" component={Studies} />
+        <Stack.Screen name="MyInvoices" component={MyInvoices} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -182,14 +182,14 @@ import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
             />
             <Text style={{ fontSize: 15, paddingTop: 5 }}>Expenses</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.push("MyInvoices")}>
+          <TouchableOpacity onPress={() => navigation.push("Forecast")}>
             <Icon
               name="file-invoice-dollar"
               size={60}
               backgroundColor="#E0AA3E"
               iconColor="black"
             />
-            <Text style={{ fontSize: 15, paddingTop: 5 }}> Invoices</Text>
+            <Text style={{ fontSize: 15, paddingTop: 5 }}>Forecast</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.push("Statistics")}>
             <Icon
@@ -239,9 +239,7 @@ import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
               Foods
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => navigation.push("ViewAllTransactions")}
-          >
+          <TouchableOpacity onPress={() => navigation.push("Transport")}>
             <Icon
               name="subway"
               size={60}
@@ -253,9 +251,7 @@ import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
               Transport
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => navigation.push("ViewAllTransactions")}
-          >
+          <TouchableOpacity onPress={() => navigation.push("Studies")}>
             <Icon
               name="university"
               size={60}
@@ -269,9 +265,7 @@ import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
             </Text>
           </TouchableOpacity>
 
-          <TouchableOpacity
-            onPress={() => navigation.push("ViewAllTransactions")}
-          >
+          <TouchableOpacity onPress={() => navigation.push("MyInvoices")}>
             <Icon
               name="house-user"
               size={60}
