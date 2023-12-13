@@ -279,9 +279,7 @@ import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
             </Text>
           </TouchableOpacity>
 
-          <TouchableOpacity
-            onPress={() => navigation.push("ViewAllTransactions")}
-          >
+          <TouchableOpacity onPress={() => navigation.push("Taxes")}>
             <Icon
               name="cash-register"
               size={60}
@@ -292,9 +290,7 @@ import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
             <Text style={{ fontSize: 15, paddingTop: 5 }}> Taxes</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity
-            onPress={() => navigation.push("ViewAllTransactions")}
-          >
+          <TouchableOpacity onPress={() => navigation.push("Hobbies")}>
             <Icon
               styles={styles.icon}
               name="laugh-wink"
@@ -306,9 +302,7 @@ import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
             <Text style={{ fontSize: 15, paddingTop: 5 }}>Hobbies</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity
-            onPress={() => navigation.push("ViewAllTransactions")}
-          >
+          <TouchableOpacity onPress={() => navigation.push("Money")}>
             <Icon
               styles={styles.icon}
               name="hand-holding-usd"
@@ -320,9 +314,7 @@ import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
             <Text style={{ fontSize: 15, paddingTop: 5 }}> Money</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity
-            onPress={() => navigation.push("ViewAllTransactions")}
-          >
+          <TouchableOpacity onPress={() => navigation.push("Epargne")}>
             <Icon
               styles={styles.icon}
               name="search-dollar"
@@ -334,9 +326,7 @@ import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
             <Text style={{ fontSize: 15, paddingTop: 5 }}>Epargne</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity
-            onPress={() => navigation.push("ViewAllTransactions")}
-          >
+          <TouchableOpacity onPress={() => navigation.push("Holidays")}>
             <Icon
               styles={styles.icon}
               name="plane-departure"

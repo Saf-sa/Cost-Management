@@ -20,10 +20,11 @@ import Foods from "./screen/Pages/Categories/Foods";
 import Transport from "./screen/Pages/Categories/Transport";
 import Studies from "./screen/Pages/Categories/Studies";
 import MyInvoices from "./screen/Pages/Categories/MyInvoices";
-
-
-
-
+import Taxes from "./screen/Pages/Categories/Taxes";
+import Hobbies from "./screen/Pages/Categories/Hobbies";
+import Money from "./screen/Pages/Categories/Money";
+import Epargne from "./screen/Pages/Categories/Epargne";
+import Holidays from "./screen/Pages/Categories/Holidays";
 
 
 const Stack = createStackNavigator();
@@ -52,6 +53,11 @@ export default function App() {
         <Stack.Screen name="Transport" component={Transport} />
         <Stack.Screen name="Studies" component={Studies} />
         <Stack.Screen name="MyInvoices" component={MyInvoices} />
+        <Stack.Screen name="Taxes" component={Taxes} />
+        <Stack.Screen name="Hobbies" component={Hobbies} />
+        <Stack.Screen name="Money" component={Money} />
+        <Stack.Screen name="Epargne" component={Epargne} />
+        <Stack.Screen name="Holidays" component={Holidays} />
       </Stack.Navigator>
     </NavigationContainer>
   );
