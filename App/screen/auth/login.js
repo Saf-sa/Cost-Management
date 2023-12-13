@@ -142,7 +142,7 @@ const Login = () => {
               autoHide: true,
             });
       setTimeout(() => {
-        navigation.navigate("IncomeExpenses"); // Navigation après 3 secondes
+        navigation.navigate("HomeDashbord"); // Navigation après 3 secondes
       }, 3000); // Délai de 3000 millisecondes (3 secondes)
 
     

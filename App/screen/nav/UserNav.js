@@ -14,7 +14,7 @@ import Icon from "../../shared/components/IncomExpenseComponent/Icon";
 import AppText from "../../shared/components/uiApp/AppText";
 import { useNavigation } from "@react-navigation/native";
 
-function UserNav({ title, subtitle, image }) {
+function HomeNav({ title, subtitle, image }) {
   const [modalVisible, setModalVisible] = useState(false);
   const navigation = useNavigation();
   // const ContactLinking = () => {
@@ -89,15 +89,15 @@ function UserNav({ title, subtitle, image }) {
                 <AppText style={styles.textsAbout}>Policies</AppText>
               </TouchableOpacity>
               <TouchableOpacity onPress={() => navigation.navigate("AboutUs")}>
-                <AppText style={styles.textsAbout}>Terms of use</AppText>
+                <AppText style={styles.textsAbout}>Terms of use </AppText>
               </TouchableOpacity>
               <TouchableOpacity onPress={() => navigation.navigate("AboutUs")}>
-                <AppText style={styles.textsAbout}>Code of condect</AppText>
+                <AppText style={styles.textsAbout}>Code of conduct </AppText>
               </TouchableOpacity>
               <AppText style={styles.textsAbout}>Privacy</AppText>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => navigation.navigate("AboutUs")}>
-              <AppText style={styles.textsAbout}> AboutUs</AppText>
+              <AppText style={styles.textsAbout}> About us</AppText>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => BackHandler.exitApp()}>
               <AppText style={[styles.textsAbout, { color: "blue" }]}>
@@ -147,4 +147,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default UserNav;
+export default HomeNav;

@@ -13,15 +13,15 @@ import { useNavigation } from "@react-navigation/native";
 import moment from "moment";
 import Icon from "../../shared/components/IncomExpenseComponent/Icon";
 import AppText from "../../shared/components/uiApp/AppText";
-import UserNav from "../../screen/nav/UserNav";
+import UserNav from "../nav/UserNav";
 import Screen2 from "../../shared/components/Screen";
-import ExpenseCat from "../../screen/AddIncomeExpense/Categories/ExpenseCategorie";
+import ExpenseCat from "../AddIncomeExpense/Categories/ExpenseCategorie";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
 
 
 
-  function IncomeExpenses() {
+  function HomeDashbord() {
     const [balance, setBalance] = useState();
     const [totalIncome, setTotalIncome] = useState();
     const [totalExpense, setTotalExpense] = useState();
@@ -515,4 +515,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default IncomeExpenses;
+export default HomeDashbord;
