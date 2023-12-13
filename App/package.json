@@ -36,7 +36,7 @@
     "react-native-dropdown-picker": "^5.4.6",
     "react-native-keyboard-aware-scroll-view": "^0.9.5",
     "react-native-paper": "^5.11.3",
-    "react-native-svg": "^14.1.0",
+    "react-native-svg": "13.9.0",
     "react-native-toast-message": "^2.1.8",
     "react-native-vector-icons": "^10.0.2",
     "react-native-web": "~0.19.6",

@@ -19,7 +19,7 @@ import IncomeExpenses from "../Expenses/IncomeExpenses";
 
 import { useRoute } from "@react-navigation/native";
 import AccountsTransac from "../Pages/Accounts";
-import MyExpenses from "../Pages/MyExpense";
+import MyExpenses from "../Pages/MyExpenses";
 import Predictions from "../Pages/Predictions";
 import HistoryTransaction from "../Pages/HistoryTransaction";
 

@@ -164,23 +164,23 @@ import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
           <AppText style={styles.dashboardTitle}>Dashboard</AppText>
         </View>
         <View style={styles.dashboard}>
-          <TouchableOpacity onPress={() => navigation.push("MyIncome")}>
+          <TouchableOpacity onPress={() => navigation.push("MyIncomes")}>
             <Icon
               name="dollar-sign"
               size={60}
               backgroundColor="#E0AA3E"
               iconColor="black"
             />
-            <Text style={{ fontSize: 15, paddingTop: 5 }}> Income</Text>
+            <Text style={{ fontSize: 15, paddingTop: 5 }}> Incomes</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.push("MyExpense")}>
+          <TouchableOpacity onPress={() => navigation.push("MyExpenses")}>
             <Icon
               name="shopping-cart"
               size={60}
               backgroundColor="#E0AA3E"
               iconColor="black"
             />
-            <Text style={{ fontSize: 15, paddingTop: 5 }}>Expense</Text>
+            <Text style={{ fontSize: 15, paddingTop: 5 }}>Expenses</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => navigation.push("ViewAllTransactions")}
@@ -191,11 +191,9 @@ import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
               backgroundColor="#E0AA3E"
               iconColor="black"
             />
-            <Text style={{ fontSize: 15, paddingTop: 5 }}> Invoice</Text>
+            <Text style={{ fontSize: 15, paddingTop: 5 }}> Invoices</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => navigation.push("ViewAllTransactions")}
-          >
+          <TouchableOpacity onPress={() => navigation.push("MyInvoices")}>
             <Icon
               name="chart-line"
               size={60}
