@@ -5,10 +5,6 @@ import mongoose from "mongoose";
 // use mongoose to create a schema to define the structure of the data
 const expensesSchema = new mongoose.Schema(
   {
-    userId: {
-      type: String,
-      required: true,
-    },
     date: {
       type: String,
       default: Date,
@@ -17,18 +13,18 @@ const expensesSchema = new mongoose.Schema(
     categories: {
       type: String,
       enum: [
-        "house",
-        "clothes",
-        "foods",
-        "transport",
-        "studies",
-        "invoice",
-        "taxes",
-        "hobbies",
-        "money",
-        "erpargne",
-        "holiday",
-        "other",
+        "House",
+        "Clothes",
+        "Foods",
+        "Transport",
+        "Studies",
+        "Invoice",
+        "Taxes",
+        "Hobbies",
+        "Money",
+        "Mrpargne",
+        "Holiday",
+        "Óther",
       ],
       required: true,
       default: "other",

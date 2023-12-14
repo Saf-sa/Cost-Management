@@ -14,26 +14,20 @@ const registerExpense = async (req, res, next) => {
     const { date, categories, otherCategories, label, amount } = req.body;
 
     //check if the userId, categories, amount and date are not empty
-    if (!date || !categories || !otherCategories || !label || !amount) {
+   /*  if (!date || !categories || !otherCategories || !label || !amount) {
       return res.status(400).json({ message: "Please fill all the fields" });
-    }
-    const expenseExists = await Expense.findOne({ date, categories, otherCategories, label, amount });
-    if (expense) {
-      return res.status(400).json({ message: "expense already exists" });
-    }
-    const expense = new Expense({
+    } */
+   
+    const newExpense = new Expenses({
       date,
       categories,
       otherCategories,
       label,
       amount,
     });
-   const result = await expense.save();
+    const result = await newExpense.save();
     console.log(result);
-    
-    return
-
-    res.json({ message: "Expense created successfully" });
+    return  res.json({ message: "Expense created successfully" });
   } 
   catch (error) {
     console.log(error);

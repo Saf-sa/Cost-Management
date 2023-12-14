@@ -1,10 +1,12 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, DatePickerIOS } from "react-native";
 import React, { useState, useRef, useEffect } from "react";
 import Toast from "react-native-toast-message";
 import { useNavigation } from "@react-navigation/native";
 import AuthHeader from "../../shared/components/AuthHeader";
 import CustomInputSingup from "../../shared/components/ui/CustomInputSignup";
 import CustomButton from "../../shared/components/ui/CustomButton";
+import DateTimePicker from "@react-native-community/datetimepicker";
+import moment from "moment";
 /*  import { REACT_APP_BE_URL } from "../../.env"; */
 import axios from "axios";
 
@@ -12,6 +14,9 @@ import axios from "axios";
 // go to ligne 84
 //import { API_URL, API_TOKEN } from "@env";
 /*  import { REACT_APP_BE_URL } from "../../.env";  */
+
+
+
 
 
 const isValidDate = (date) => {
@@ -79,10 +84,21 @@ const MyExpense = () => {
     };
   }, []);
 
-  const handleChange = (value, type) => {
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [type]: value,
+  const handleChange = (value, fieldName) => {
+    let formattedValue = value;
+
+    if (fieldName === "date") {
+      formattedValue = moment(value, "DD/MM/YYYY");
+      if (!formattedValue.isValid()) {
+        // Handle invalid date here
+        console.error("Invalid date");
+        return;
+      }
+    }
+
+    setFormData((prevState) => ({
+      ...prevState,
+      [fieldName]: formattedValue,
     }));
   };
 
@@ -221,11 +237,12 @@ const MyExpense = () => {
         <CustomInputSingup
           label="Date"
           value={formData.date}
-          onChangeText={(value) => handleChange(value, "firstName")}
+          onChangeText={(value) => handleChange(value, "date")}
           placeholder="DD/MM/YYYY"
           secure={false}
           errorMessage={formErrors.date}
         />
+        
         <CustomInputSingup
           label="Categories"
           value={formData.categories}

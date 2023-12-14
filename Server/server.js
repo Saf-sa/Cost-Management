@@ -32,10 +32,11 @@ app.listen(port, () => {
 
 // Routes
 app.use("/api/users", userRoutes);
+app.use("/api/users/:_id/expenses", userRoutes);
 
 
 // Error handler
-app.use ( (error, rea, res, next)=>{
+app.use( (error, rea, res, next)=>{
 error.statusCoder = error.statusCode || 500
 error.message = error.message || 'Something went wrong'
 res.status(error.statusCode).send(error.message)

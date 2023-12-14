@@ -127,6 +127,7 @@ const Login = () => {
         `http://localhost:5555/api/users/login`,
         formData
       );
+      response.data; // data from the server
       console.log(response.data);
       Toast.show({
         type: "success",

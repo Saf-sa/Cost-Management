@@ -13,6 +13,8 @@ const SECRET_KEY2 = process.env.SECRET_KEY2;
 
 // Import User model
 import User from "../models/userModel.js";
+import Expenses from "../models/expenseModel.js";
+
 
 // Start of userLogin
 // define functions to handle requests for the user routes that we defined in Server/routes/userRoutes.js
@@ -61,7 +63,7 @@ const registerUser = async (req, res, next) => {
       return res.status(400).json({ message: "Please fill all the fields" });
     }
 
-    // check if the email is valid
+    // check if the email exist
     const userExists = await User.findOne({ email });
 
     console.log("user exists", userExists);
@@ -88,6 +90,7 @@ const registerUser = async (req, res, next) => {
 
     // create a new user object for the user that wants to register
     const user = new User({ firstName, lastName, email, password });
+    
 
     // hash the password to make it secure
     const salt = await bcrypt.genSalt(10);
@@ -103,6 +106,7 @@ const registerUser = async (req, res, next) => {
       email: result.email,
       token: generateToken(result._id),
     });
+
   } catch (error) {
     console.log(error);
     res.status(500).send({ error: error.message });
@@ -264,6 +268,8 @@ const updateUser = async (req, res) => {
     res.status(500).send({ error: "Internal server error" });
   }
 };
+
+
 //End of updateUser
 // define functions to handle requests for the user routes that we defined in Server/routes/userRoutes.js
 export {
@@ -273,4 +279,5 @@ export {
   updateUser,
   resetLogin,
   resetPassword,
+  
 };
