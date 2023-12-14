@@ -13,8 +13,8 @@ import {
   resetLogin,
 } from "../controllers/userController.js";
 
-import { expenseUser }
- from "../controllers/expenseController.js";
+
+import { registerExpense } from "../controllers/expensesController.js";
  
 // Initialize express router
 const router = express.Router();
@@ -27,7 +27,7 @@ router.post("/password", resetPassword);
 router.post("/update", updateUser);
 router.put("/:id", updateUser);
 router.get("/", listUser);
-router.post("/expense", expenseUser);
+router.post("/expenses", registerExpense);
 
 
 

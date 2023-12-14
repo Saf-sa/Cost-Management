@@ -199,7 +199,7 @@ const Signup = () => {
 
     try {
       const response = await axios.post(
-        `http://localhost:5555/api/user/register`,
+        `http://localhost:5555/api/users/register`,
         formData
       );
       console.log(response.data.message);

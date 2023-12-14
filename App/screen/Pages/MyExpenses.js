@@ -188,7 +188,7 @@ const MyExpense = () => {
 
     try {
       const response = await axios.post(
-        `http://localhost:5555/api/user/expense`,
+        `http://localhost:5555/api/users/expenses`,
         formData
       );
       console.log(response.data.message);
