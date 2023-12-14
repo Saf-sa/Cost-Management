@@ -18,21 +18,18 @@ export default CustomButton;
 
 const styles = StyleSheet.create({
   container: {
-   
     marginTop: 40,
-    width: '40%',
-    backgroundColor: '#0283a8',
+    width: "40%",
+    backgroundColor: "#E0AA3E",
     padding: 15,
     borderRadius: 8,
-    alignItems: 'center',
-    justifyContent: 'center',
-    
+    alignItems: "center",
+    justifyContent: "center",
   },
-  
-    text: {
-        color: '#fff',
-        fontSize: 15,
-        fontWeight: 'bold',
-    } 
 
-})
+  text: {
+    color: "#fff",
+    fontSize: 15,
+    fontWeight: "bold",
+  },
+});

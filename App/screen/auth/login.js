@@ -40,7 +40,6 @@ const Login = () => {
   const [formErrors, setFormErrors] = useState({
     email: null,
     password: null,
-
   });
 
   const [formData, setFormData] = useState({
@@ -107,47 +106,40 @@ const Login = () => {
 
     if (!formIsValid(formData)) {
       Toast.show({
-         type: "error",
-         position: "bottom",
-         text1: "Please review your credentials",
-         visibilityTime: 3000,
-         autoHide: true,
-       }); 
-    return updateError(
-      "email",
-      !isValidEmail(formData.email)
-        ? "Invalid email "
-        : null,
-    updateError(
-      "password",
-      !isValidPassword(formData.password)
-        ? "Invalid password "
-        : null
-    )    
-    );
-
+        type: "error",
+        position: "bottom",
+        text1: "Please review your credentials",
+        visibilityTime: 3000,
+        autoHide: true,
+      });
+      return updateError(
+        "email",
+        !isValidEmail(formData.email) ? "Invalid email " : null,
+        updateError(
+          "password",
+          !isValidPassword(formData.password) ? "Invalid password " : null
+        )
+      );
     }
-    
+
     try {
       const response = await axios.post(
-        `http://localhost:5555/api/user/login`,
+        `http://localhost:5555/api/users/login`,
         formData
       );
       console.log(response.data);
-            Toast.show({
-              type: "success",
-              position: "bottom",
-              text1: "Successfully logged",
-              visibilityTime: 3000,
-              autoHide: true,
-            });
+      Toast.show({
+        type: "success",
+        position: "bottom",
+        text1: "Successfully logged",
+        visibilityTime: 3000,
+        autoHide: true,
+      });
       setTimeout(() => {
         navigation.navigate("HomeDashbord"); // Navigation après 3 secondes
       }, 3000); // Délai de 3000 millisecondes (3 secondes)
-
-    
     } catch (err) {
-      console.log('test',err.response.data.message );
+      console.log("testy", err.response.data.message);
       Toast.show({
         type: "error",
         position: "bottom",
@@ -200,7 +192,6 @@ const Login = () => {
           buttonText={"Sign up Now"}
           onPress={() => navigation.navigate("Signup")}
         />
-        
       </View>
       <Toast />
     </View>
@@ -224,17 +215,16 @@ const styles = StyleSheet.create({
   register: {
     marginTop: 40,
     marginBottom: 10,
-    color: "#0283a8",
+    color: "#E0AA3E",
     fontSize: 15,
     fontWeight: "bold",
   },
   forgetPass: {
- 
     flexDirection: "row",
     alignSelf: "flex-end",
     marginTop: 20,
     marginBottom: 10,
-    color: "#0283a8",
+    color: "#E0AA3E",
     fontSize: 15,
     fontWeight: "bold",
   },

@@ -70,7 +70,6 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: null,
     },
-
   },
   // add timestamps to the schema to know when document was created or modified
   { timestamps: true }

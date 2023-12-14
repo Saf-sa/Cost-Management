@@ -6,10 +6,9 @@
    return (
      <LinearGradient
        style={styles.header}
-      
-       colors={["#0283a8", "#F7EF8A", "#0000FF", "#0283a8"]}
-       start={{ x: 0.5, y: 0.6 }}
-       end={{ x: 3, y: 2 }}
+       colors={["#f9f295", "#E0AA3E", "#F7EF8A", "#B88A44"]}
+       start={{ x: 0.1, y: 0.1 }}
+       end={{ x: 1, y: 3 }}
      >
        <View style={styles.header}>
          <Text style={styles.mainText}>EXPENSE MANAGER</Text>
@@ -22,33 +21,26 @@
  export default AuthHeader
 
  const styles = StyleSheet.create({
+   header: {
+     flex: 0.5,
+     /*   backgroundColor: '#E0AA3E', */
+     alignItems: "center",
+     justifyContent: "center",
+     borderRadius: 7,
+   },
 
-    header: {
-        flex: 0.5,
-      /*   backgroundColor: '#0283a8', */
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: 7,
-    },
+   mainText: {
+     fontSize: 30,
+     fontWeight: "bold",
+     color: "#fff",
+     textAlign: "center",
+   },
 
-    mainText: {
-        fontSize: 30,
-        fontWeight: 'bold',
-        color: '#fff',
-        textAlign: 'center',
-
-       
-    },
-
-    subtext: {
-        fontSize: 15,
-        fontWeight: 'bold',
-        color: '#fff',
-        textAlign: 'center',
-        marginTop: 30,
-       
-    },
-
-
-
- })
+   subtext: {
+     fontSize: 15,
+     fontWeight: "bold",
+     color: "#fff",
+     textAlign: "center",
+     marginTop: 30,
+   },
+ });

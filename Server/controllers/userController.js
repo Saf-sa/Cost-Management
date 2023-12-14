@@ -123,24 +123,21 @@ let transporter = nodemailer.createTransport({
 
 const resetLogin = async (req, res) => {
   console.log("Reset login called");
-  const { email, } = req.body;
+  const { email } = req.body;
 
-   /*    // check if the name, email and password are not empty */
+  /*    // check if the name, email and password are not empty */
 
   console.log("Checking if user exists");
   const user = await User.findOne({ email });
 
- 
   if (!user) {
-        return res.status(401).json({ message: "Email not registered  " });
+    return res.status(401).json({ message: "Email not registered  " });
     console.log("User not found");
-
   }
- /*    const isMatch = await bcrypt.compare(password, user.password);
+  /*    const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(401).json({ message: "Invalid credentials" });
     } */
-  
 
   const resetCode = Math.random().toString(36).substring(2, 8).toUpperCase();
   user.resetCode = resetCode;

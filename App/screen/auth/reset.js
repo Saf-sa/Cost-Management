@@ -168,7 +168,7 @@ const styles = StyleSheet.create({
   register: {
     marginTop: 40,
     marginBottom: 10,
-    color: "#0283a8",
+    color: "#E0AA3E",
     fontSize: 15,
     fontWeight: "bold",
   },

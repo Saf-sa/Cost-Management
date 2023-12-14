@@ -1,82 +1,297 @@
-import React, { useState, useEffect } from "react";
-import {
-  Text,
-  View,
-  StyleSheet,
-  FlatList,
-  Toast,
-  useWindowDimensions,
-  TouchableOpacity,
-} from "react-native";
-
-import { LinearGradient } from "expo-linear-gradient";
+import { View, Text, StyleSheet } from "react-native";
+import React, { useState, useRef, useEffect } from "react";
+import Toast from "react-native-toast-message";
 import { useNavigation } from "@react-navigation/native";
-import moment from "moment";
-import Screen2 from "../../shared/components/Screen";
-import UserNav from "../nav/UserNav";
-import History from "./History";
+import AuthHeader from "../../shared/components/AuthHeader";
+import CustomInputSingup from "../../shared/components/ui/CustomInputSignup";
+import CustomButton from "../../shared/components/ui/CustomButton";
+/*  import { REACT_APP_BE_URL } from "../../.env"; */
+import axios from "axios";
+
+// comment this line because solution not found if using .env file
+// go to ligne 84
+//import { API_URL, API_TOKEN } from "@env";
+/*  import { REACT_APP_BE_URL } from "../../.env";  */
 
 
-const MyExpenses = () => {
-  const [incomes, setIncomes] = useState([]);
+const isValidDate = (date) => {
+};
+
+const isValidCategories = (categories) => {
+
+};
+
+const isValidformOtherCategories = (otherCategories) => {
+
+};
+
+const isValidlabel = (label) => {
+
+};
+
+const isValidAmount = (amount) => {
+
+  
+};
+
+// check all value is valid
+const formIsValid = (DataObj) => {
+  return (
+    Object.values(DataObj).every((value) => value.trim().length > 0) && // check all value is not empty
+    isValidDate(DataObj.date) &&
+    isValidCategories(DataObj.categories) &&
+    isValidformOtherCategories(DataObj.otherCategories) &&
+    isValidlabel(DataObj.label) &&
+    isValidAmount(DataObj.amount)
+  );
+};
+//
+const MyExpense = () => {
+  const [date, setDate] = useState("");
+  const [categories, setCategories] = useState("");
+  const [otherCategories, setOtherCategories] = useState("");
+  const [label, setLabel] = useState("");
+  const [amount, setAmount] = useState("");
+  const navigation = useNavigation();
+  const [formErrors, setFormErrors] = useState({
+    date: null,
+    categories: null,
+    otherCategories: null,
+    label: null,
+    amount: null,
+  });
+
+  const [formData, setFormData] = useState({
+    date: null,
+    categories: null,
+    otherCategories: "",
+    label: "",
+    amount: "",
+  });
+
+  const timeoutIdRef = useRef(null);
 
   useEffect(() => {
-    fetch("http://your-api-url/expenses") 
-      .then((response) => response.json())
-      .then((data) => setIncomes(data))
-      .catch((error) => console.error(error));
+    return () => {
+      if (timeoutIdRef.current) {
+        clearTimeout(timeoutIdRef.current);
+      }
+    };
   }, []);
 
+  const handleChange = (value, type) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [type]: value,
+    }));
+  };
+
+  const updateError = (type, errorMessage) => {
+    setFormErrors((prevFormErrors) => ({
+      ...prevFormErrors,
+      [type]: errorMessage,
+    }));
+
+    if (errorMessage) {
+      timeoutIdRef.current = setTimeout(() => {
+        setFormErrors((prevFormErrors) => ({
+          ...prevFormErrors,
+          [type]: null,
+        }));
+      }, 3000); // 3000 milliseconds = 3 seconds
+    }
+  };
+  const isValidForm = () => {
+    if (!formIsValid(formData.date)) {
+      updateError(
+        "date",
+        !isValidDate(formData.date) ? "Please enter a valid date" : null
+      );
+    }
+    if (!formIsValid(formData.categories)) {
+      updateError(
+        "categories",
+        !isValidCategories(formData.categories)
+          ? "Please choose a valid categories"
+          : null
+      );
+    }
+    if (!formIsValid(formData)) {
+      updateError(
+        "otherCategories",
+        !isValidformOtherCategories(formData.otherCategories)
+          ? "please choose  Other categories"
+          : null
+      );
+    }
+    if (!formIsValid(formData.amount)) {
+      updateError(
+        "Password",
+        !isValidAmount(formData.amount, formData.amount)
+          ? "please enter a valid amount"
+          : null
+      );
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // update formData with form values
+    setFormData({
+      date: date,
+      categories: categories,
+      otherCategories: categories,
+      label: label,
+      amount: amount,
+    });
+
+    if (!formIsValid(date, categories, otherCategories, label, amount)) {
+      Toast.show({
+        type: "error",
+        position: "bottom",
+        text1: "Please review your form",
+        visibilityTime: 3000,
+        autoHide: true,
+      });
+
+      updateError(
+        "date",
+        !isValidDate(formData.date)
+          ? "please enter a valid date"
+          : null
+      );
+      updateError(
+        "categories",
+        !isValidCategories(formData.categories)
+          ? "please choose a valid categories"
+          : null
+      );
+      updateError(
+        "otherCategories",
+        !isValidformOtherCategories(formData.otherCategories) 
+        ? "please choose other categories" : null
+      );
+      updateError(
+        "label",
+        !isValidlabel(formData.label)
+          ? "please enter a a description in label"
+          : null
+      );
+      updateError(
+        "amount",
+        !isValidAmount(formData.amount)
+          ? "please enter a valid amount"
+          : null
+      );
+    }
+
+    try {
+      const response = await axios.post(
+        `http://localhost:5555/api/user/expense`,
+        formData
+      );
+      console.log(response.data.message);
+      Toast.show({
+        type: "success",
+        position: "bottom",
+        text1: "Expense created successfully",
+        visibilityTime: 3000,
+        autoHide: true,
+      });
+      setTimeout(() => {
+        navigation.navigate("MyExpenses");
+      }, 3000);
+    } catch (err) {
+      console.log("Test MyExpense", err.response.data.message);
+      Toast.show({
+        type: "error",
+        position: "bottom",
+        text1: err.response.data.message,
+        visibilityTime: 3000,
+        autoHide: true,
+      });
+    }
+  };
+
   return (
-    <Screen2>
-      <UserNav
-        image={require("../../assets/iconPerson.png")} //to be changed to the right icon
-        title="MY Expenses"
-      />
+    <View style={styles.root}>
+      <AuthHeader subtext="Please Add a new Expense" />
+      <View style={styles.content}>
+        <CustomInputSingup
+          label="Date"
+          value={formData.date}
+          onChangeText={(value) => handleChange(value, "firstName")}
+          placeholder="DD/MM/YYYY"
+          secure={false}
+          errorMessage={formErrors.date}
+        />
+        <CustomInputSingup
+          label="Categories"
+          value={formData.categories}
+          onChangeText={(value) => handleChange(value, "categories")}
+          placeholder="Please choose a categories"
+          secure={false}
+          errorMessage={formErrors.categories}
+        />
+        <CustomInputSingup
+          label="OtherCategories"
+          value={formData.otherCategories}
+          onChangeText={(value) => handleChange(value, "otherCategories")}
+          placeholder="Please choose a categories"
+          secure={false}
+          errorMessage={formErrors.otherCategories}
+        />
+        <CustomInputSingup
+          label="Label"
+          value={formData.label}
+          onChangeText={(value) => handleChange(value, "label")}
+          placeholder=" min 8 with 1 capital char, 1 number,1 special char "
+          secure={false}
+          errorMessage={formErrors.label}
+        />
+        <CustomInputSingup
+          label="Amount"
+          value={formData.amount}
+          onChangeText={(value) => handleChange(value, "amount")}
+          placeholder="please enter a valid amount"
+          secure={false}
+          errorMessage={formErrors.amount}
+        />
+        {/* input area  End*/}
 
-      <View>
-        <Text>History of my Expenses</Text>
+        {/* Button Start */}
+        <CustomButton
+          onPress={handleSubmit}
+          style={styles.button}
+          buttonText={"new Expense"}
+        />
+        {/* Button End */}
       </View>
-
-      <FlatList
-        data={incomes}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => (
-          <View style={styles.itemContainer}>
-            <Text>{item.date}</Text>
-            <Text>{item.label}</Text>
-            <Text>{item.amount}</Text>
-          </View>
-        )}
-      />
-    </Screen2>
+      <Toast />
+    </View>
   );
 };
 
+export default MyExpense;
+
 const styles = StyleSheet.create({
-  parentContainer: {
-    flexDirection: "column",
-    borderRadius: 10,
-    marginHorizontal: 20,
-    marginVertical: 5,
-    shadowColor: "black",
-    shadowOpacity: 0.05,
-    shadowOffset: {
-      width: 15,
-      height: 15,
-    },
-    elevation: 8,
+  root: {
+    flex: 1,
   },
-  itemContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    padding: 10,
-    marginVertical: 5,
-    borderColor: "#ccc",
-    borderWidth: 1,
-    borderRadius: 5,
+  content: {
+    flex: 2,
+    padding: 20,
+  },
+  button: {
+    marginTop: 20,
+  },
+  register: {
+    marginTop: 30,
+    marginBottom: 10,
+    color: "#0283a8",
+
+    fontSize: 15,
+    fontWeight: "bold",
   },
 });
-
-export default MyExpenses;

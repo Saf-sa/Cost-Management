@@ -16,10 +16,14 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/api/user', userRoutes);
+
+
+
 
 // Connect to DataBase = MongoDB
 connectDB();  // This is the function we imported from Server/config/db.js
+
+
 
 // Start the server
 app.listen(port, () => {
@@ -28,6 +32,7 @@ app.listen(port, () => {
 
 // Routes
 app.use("/api/users", userRoutes);
+
 
 // Error handler
 app.use ( (error, rea, res, next)=>{

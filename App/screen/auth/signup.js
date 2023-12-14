@@ -18,8 +18,6 @@ const isValidEmail = (email) => {
   return re.test(email);
 };
 
-
-
 const isValidPassword = (password) => {
   const re = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/;
   // Should contain at least one number, one special character and minimum 8 characters
@@ -72,7 +70,6 @@ const Signup = () => {
     email: "",
     password: "",
     confirmPassword: "",
-    
   });
 
   const [showPassword, setShowPassword] = useState(false);
@@ -109,36 +106,37 @@ const Signup = () => {
     }
   };
   const isValidForm = () => {
- 
-     if (!formIsValid (formData.firstName)) {
-     updateError(
-       "firstName",
-       !isValidfirstName(formData.firstName) ? "First Name should 3 char min" : null
-     );
-  }
-  if (!formIsValid (formData.lastName)) {
+    if (!formIsValid(formData.firstName)) {
+      updateError(
+        "firstName",
+        !isValidfirstName(formData.firstName)
+          ? "First Name should 3 char min"
+          : null
+      );
+    }
+    if (!formIsValid(formData.lastName)) {
       updateError(
         "lastName",
         !isValidlastName(formData.lastName)
           ? "Last Name should 3 char min"
           : null
       );
-}
-   if (!formIsValid(formData)) {
-     updateError(
-       "email",
-       !isValidEmail(formData.email) ? "Invalid email" : null
-     );
-   }  
-    if (!formIsValid (formData.password)) {
+    }
+    if (!formIsValid(formData)) {
+      updateError(
+        "email",
+        !isValidEmail(formData.email) ? "Invalid email" : null
+      );
+    }
+    if (!formIsValid(formData.password)) {
       updateError(
         "Password",
         !isValidConfirmPassword(formData.password, formData.Password)
           ? "Passwords do not match"
           : null
       );
-      }
-      if (!formIsValid (formData.confirmPassword)) {
+    }
+    if (!formIsValid(formData.confirmPassword)) {
       updateError(
         "confirmPassword",
         !isValidConfirmPassword(formData.password, formData.confirmPassword)
@@ -148,31 +146,28 @@ const Signup = () => {
     }
   };
 
-
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     // update formData with form values
-        setFormData({
-          firstName: firstName,
-          lastName: lastName,
-          email: email,
-          password: password,
-          confirmPassword: confirmPassword,
-         
-        });
+    setFormData({
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      password: password,
+      confirmPassword: confirmPassword,
+    });
 
     if (!formIsValid(email, password, confirmPassword, firstName, lastName)) {
-       Toast.show({
-         type: "error",
-         position: "bottom",
-         text1: "Please review your credentials",
-         visibilityTime: 3000,
-         autoHide: true,
-       });
+      Toast.show({
+        type: "error",
+        position: "bottom",
+        text1: "Please review your credentials",
+        visibilityTime: 3000,
+        autoHide: true,
+      });
 
-        updateError(
+      updateError(
         "firstName",
         !isValidEmail(formData.firstName)
           ? "First Name should be at least 3 characters "
@@ -203,30 +198,30 @@ const Signup = () => {
     }
 
     try {
-        const response = await axios.post(
-          `http://localhost:5555/api/user/register`,
-          formData
-        );
-        console.log(response.data.message);
-        Toast.show({
-          type: "success",
-          position: "bottom",
-          text1: "Registrai failed",
-          visibilityTime: 3000,
-          autoHide: true,
-        });
+      const response = await axios.post(
+        `http://localhost:5555/api/user/register`,
+        formData
+      );
+      console.log(response.data.message);
+      Toast.show({
+        type: "success",
+        position: "bottom",
+        text1: "Registrai failed",
+        visibilityTime: 3000,
+        autoHide: true,
+      });
       setTimeout(() => {
-        navigation.navigate("Login"); 
-      }, 3000); 
+        navigation.navigate("Login");
+      }, 3000);
     } catch (err) {
-          console.log('Test signup',err.response.data.message);
-          Toast.show({
-            type: "error",
-            position: "bottom",
-            text1: err.response.data.message,
-            visibilityTime: 3000,
-            autoHide: true,
-          });
+      console.log("Test signup", err.response.data.message);
+      Toast.show({
+        type: "error",
+        position: "bottom",
+        text1: err.response.data.message,
+        visibilityTime: 3000,
+        autoHide: true,
+      });
     }
   };
 

@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
   },
 
   text: {
-    color: "#0283a8",
+    color: "#E0AA3E",
     fontSize: 18,
     fontWeight: "bold",
     marginBottom: 10,
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: "#0283a8",
+    borderColor: "#E0AA3E",
   },
   errorMsg: {
     color: "#ff8080",

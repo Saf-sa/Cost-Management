@@ -13,6 +13,9 @@ import {
   resetLogin,
 } from "../controllers/userController.js";
 
+import { expenseUser }
+ from "../controllers/expenseController.js";
+ 
 // Initialize express router
 const router = express.Router();
 
@@ -24,9 +27,11 @@ router.post("/password", resetPassword);
 router.post("/update", updateUser);
 router.put("/:id", updateUser);
 router.get("/", listUser);
+router.post("/expense", expenseUser);
+
+
 
 // Import App routes
-router.get
 
 
 export default router;
