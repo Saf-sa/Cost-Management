@@ -142,7 +142,7 @@ const MyExpense = () => {
     }
     if (!formIsValid(formData.amount)) {
       updateError(
-        "Password",
+        "amount",
         !isValidAmount(formData.amount, formData.amount)
           ? "please enter a valid amount"
           : null
@@ -303,12 +303,5 @@ const styles = StyleSheet.create({
   button: {
     marginTop: 20,
   },
-  register: {
-    marginTop: 30,
-    marginBottom: 10,
-    color: "#0283a8",
 
-    fontSize: 15,
-    fontWeight: "bold",
-  },
 });
