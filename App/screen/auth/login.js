@@ -5,6 +5,7 @@ import { useNavigation } from "@react-navigation/native";
 import AuthHeader from "../../shared/components/AuthHeader";
 import CustomInputLog from "../../shared/components/ui/CustomInputLog";
 import CustomButton from "../../shared/components/ui/CustomButton";
+
 import axios from "axios";
 
 // comment this line because solution not found if using .env file
@@ -183,10 +184,13 @@ const Login = () => {
         <CustomButton
           onPress={handleSubmit}
           style={styles.button}
+          colors={["#f9f295", "#E0AA3E", "#F7EF8A", "#B88A44"]}
+          start={{ x: 0.1, y: 0.1 }}
+          end={{ x: 1, y: 3 }}
           buttonText={"Login"}
         />
 
-        <Text style={styles.register}>New to Expense Manager?</Text>
+        <Text style={styles.login}>New to Expense Manager?</Text>
 
         <CustomButton
           style={styles.button}
@@ -213,7 +217,7 @@ const styles = StyleSheet.create({
   button: {
     marginTop: 20,
   },
-  register: {
+  login: {
     marginTop: 40,
     marginBottom: 10,
     color: "#E0AA3E",

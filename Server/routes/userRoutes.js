@@ -15,6 +15,7 @@ import {
 
 
 import { registerExpense } from "../controllers/expensesController.js";
+
  
 // Initialize express router
 const router = express.Router();
@@ -28,6 +29,7 @@ router.post("/update", updateUser);
 router.put("/:id", updateUser);
 router.get("/", listUser);
 router.post("/expenses", registerExpense);
+
 
 
 

@@ -17,11 +17,11 @@ const CustomInputLog = (props) => {
   } = props;
 
   return (
+
+    
     <View style={styles.container}>
 
       <Text style={styles.text}>{label}</Text>
-      
-      
 
       <View style={styles.inputContainer}>
         

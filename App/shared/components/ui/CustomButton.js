@@ -5,11 +5,13 @@ import { LinearGradient } from "expo-linear-gradient";
 const CustomButton = ({ buttonText, onPress }) => {
   return (
          
+    
     <TouchableOpacity style={styles.container} onPress={onPress}>
     
       <Text style={styles.text}> {buttonText}</Text>
     
-     </TouchableOpacity>
+     </TouchableOpacity>   
+     
   );
  
 };
@@ -25,6 +27,8 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     alignItems: "center",
     justifyContent: "center",
+    
+     
   },
 
   text: {
