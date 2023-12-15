@@ -11,6 +11,7 @@ import BottomHomeNav from "../App/screen/nav/BottomHomeNav";
 import HomeDashbord from "./screen//Pages/HomeDashbord";
 import ViewAllTransac from "./screen/Expenses/ViewAllTransac";
 import MyIncomes from "./screen/Pages/MyIncomes";
+import ViewExpenses from "./screen/Pages/ViewExpenses";
 import MyExpenses from "./screen/Pages/MyExpenses";
 import Forecast from "./screen/Pages/Forecast";
 import Statistics from "./screen/Pages/Statistics";
@@ -51,6 +52,7 @@ export default function App() {
         <Stack.Screen name="ViewAllTransactions" component={ViewAllTransac} />
         <Stack.Screen name="HomeDashbord" component={HomeDashbord} />
         <Stack.Screen name="MyIncomes" component={MyIncomes} />
+        <Stack.Screen name="ViewExpenses" component={ViewExpenses} />
         <Stack.Screen name="MyExpenses" component={MyExpenses} />
         <Stack.Screen name="Forecast" component={Forecast} />
         <Stack.Screen name="Statistics" component={Statistics} />
