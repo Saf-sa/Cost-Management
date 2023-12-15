@@ -157,7 +157,7 @@ const MyExpense = () => {
     setFormData({
       date: date,
       categories: categories,
-      otherCategories: categories,
+      otherCategories: otherCategories,
       label: label,
       amount: amount,
     });
@@ -219,11 +219,11 @@ const MyExpense = () => {
         navigation.navigate("MyExpenses");
       }, 3000);
     } catch (err) {
-      console.log("Test MyExpense", err.response.data.message);
+      console.log("Test MyExpense", err.response.data);
       Toast.show({
         type: "error",
         position: "bottom",
-        text1: err.response.data.message,
+        text1: err.response.data,
         visibilityTime: 3000,
         autoHide: true,
       });
