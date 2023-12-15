@@ -5,6 +5,7 @@ import { useNavigation } from "@react-navigation/native";
 import AuthHeader from "../../shared/components/AuthHeader";
 import CustomInputLog from "../../shared/components/ui/CustomInputLog";
 import CustomButton from "../../shared/components/ui/CustomButton";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import axios from "axios";
 
@@ -12,6 +13,7 @@ import axios from "axios";
 // go to ligne 84
 //import { API_URL, API_TOKEN } from "@env";
 /*  import { REACT_APP_BE_URL } from "../../.env";  */
+
 
 const isValidEmail = (email) => {
   // Should contain @
@@ -109,7 +111,7 @@ const Login = () => {
       Toast.show({
         type: "error",
         position: "bottom",
-        text1: "Pleasefill all the fields",
+        text1: "Please fill all the fields",
         visibilityTime: 3000,
         autoHide: true,
       });
@@ -128,30 +130,53 @@ const Login = () => {
         `http://localhost:5555/api/users/login`,
         formData
       );
-      response.data; // data from the server
-      console.log(response.data);
-      Toast.show({
-        type: "success",
-        position: "bottom",
-        text1: "Successfully logged",
-        visibilityTime: 3000,
-        autoHide: true,
-      });
-      setTimeout(() => {
-        navigation.navigate("HomeDashbord"); // Navigation après 3 secondes
-      }, 3000); // Délai de 3000 millisecondes (3 secondes)
+
+      if (response) {
+        console.log(response.data);
+
+        // Store user data in AsyncStorage
+        const user = {
+          id: response.data.user, // replace with actual user id key
+          token: response.data.token, // replace with actual user token key
+        };
+        try {
+          const jsonValue = JSON.stringify(user);
+          await AsyncStorage.setItem("@storage_Key", jsonValue);
+          Toast.show({
+            type: "success",
+            position: "bottom",
+            text1: "Successfully logged",
+            visibilityTime: 3000,
+            autoHide: true,
+          });
+
+          setTimeout(() => {
+            navigation.navigate("HomeDashbord"); // Navigation après 3 secondes
+          }, 3000); // Délai de 3000 millisecondes (3 secondes)
+        } catch (e) {
+          console.error("Failed to save the data to the storage");
+          Toast.show({
+            type: "error",
+            position: "bottom",
+            text1: "Failed to save user data. Please try again.",
+            visibilityTime: 3000,
+            autoHide: true,
+          });
+        }
+      } else {
+        console.error("No response from server");
+      }
     } catch (err) {
-      console.log("testy", err.response.data);
+      console.log("testy", err.response ? err.response.data : err);
       Toast.show({
         type: "error",
         position: "bottom",
-        text1: err.response.data,
+        text1: err.response ? err.response.data : "Error",
         visibilityTime: 3000,
         autoHide: true,
       });
     }
   };
-
   return (
     <View style={styles.root}>
       <AuthHeader subtext="Please Login" />

@@ -203,11 +203,18 @@ const MyExpense = () => {
     }
 
     try {
-         
-      const response = await axios.post(
-        `http://localhost:5555/api/users/expenses`,
-        formData
-      );
+      // Récupérer les données de l'utilisateur à partir de AsyncStorage
+      const user = JSON.parse(await AsyncStorage.getItem("@storage_Key"));
+
+       const response = await axios.post(
+      `http://localhost:5555/api/users/expenses`,
+      formData,
+      {
+        headers: {
+          Authorization: `Bearer ${user.token}` // Remplacez par la clé d'autorisation attendue par votre backend
+        }
+      }
+    );
       console.log(response.data.message);
       Toast.show({
         type: "success",

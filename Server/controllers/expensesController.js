@@ -39,7 +39,7 @@ const getExpenses = async (req, res, next) => {
   try {
     const expenses = await Expenses.find().populate({
       path: "user",
-      select: "firstName, lastName, email",
+      select: "token",
     });
     res.json(expenses);
   } catch (error) {
