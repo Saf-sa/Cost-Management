@@ -17,7 +17,7 @@ const registerExpense = async (req, res, next) => {
    /*  if (!date || !categories || !otherCategories || !label || !amount) {
       return res.status(400).json({ message: "Please fill all the fields" });
     } */
-   
+
     const newExpense = new Expenses({
       date,
       categories,

@@ -237,6 +237,7 @@ const MyExpense = () => {
       <View style={styles.content}>
         <CustomInputSingup
           label="Date"
+          path="date"
           value={formData.date}
           onChangeText={(value) => handleChange(value, "date")}
           placeholder="DD/MM/YYYY"
@@ -246,6 +247,7 @@ const MyExpense = () => {
         
         <CustomInputSingup
           label="Categories"
+          path="categories"
           value={formData.categories}
           onChangeText={(value) => handleChange(value, "categories")}
           placeholder="Please choose a categories"
@@ -254,6 +256,7 @@ const MyExpense = () => {
         />
         <CustomInputSingup
           label="OtherCategories"
+          path="otherCategories"
           value={formData.otherCategories}
           onChangeText={(value) => handleChange(value, "otherCategories")}
           placeholder="Please choose a categories"
@@ -262,6 +265,7 @@ const MyExpense = () => {
         />
         <CustomInputSingup
           label="Label"
+          path="label"
           value={formData.label}
           onChangeText={(value) => handleChange(value, "label")}
           placeholder=" min 8 with 1 capital char, 1 number,1 special char "
