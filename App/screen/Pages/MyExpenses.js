@@ -67,8 +67,8 @@ const MyExpense = () => {
   });
 
   const [formData, setFormData] = useState({
-    date: null,
-    categories: null,
+    date: "",
+    categories: "",
     otherCategories: "",
     label: "",
     amount: "",
@@ -203,6 +203,7 @@ const MyExpense = () => {
     }
 
     try {
+         
       const response = await axios.post(
         `http://localhost:5555/api/users/expenses`,
         formData

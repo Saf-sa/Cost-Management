@@ -59,7 +59,12 @@ const MyExpense = () => {
     label: "",
     amount: "",
   });
-
+  const handleChange = (value, type) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [type]: value,
+    }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();

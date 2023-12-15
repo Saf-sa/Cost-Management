@@ -35,7 +35,7 @@ const registerExpense = async (req, res, next) => {
   }
 
 };
-/* const getExpenses = async (req, res, next) => {
+const getExpenses = async (req, res, next) => {
   try {
     const expenses = await Expenses.find().populate({
       path: "user",
@@ -45,7 +45,7 @@ const registerExpense = async (req, res, next) => {
   } catch (error) {
     res.status(500).send({ error: error.message });
   }
-}; */
+};
 
-export { registerExpense, /* getExpenses  */};
+export { registerExpense, getExpenses };
 
