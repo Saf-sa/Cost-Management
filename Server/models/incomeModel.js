@@ -11,7 +11,7 @@ const incomesSchema = new mongoose.Schema(
     categories: {
       type: String,
       enum: [
-        "Saleary",
+        "Salary",
         "taxes refund",
         "Bonus",
         "loan",

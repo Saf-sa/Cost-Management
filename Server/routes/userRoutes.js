@@ -15,6 +15,7 @@ import {
 
 
 import { registerExpense } from "../controllers/expensesController.js";
+import { registerIncome } from "../controllers/incomesController.js";
 
  
 // Initialize express router
@@ -29,6 +30,7 @@ router.post("/update", updateUser);
 router.put("/:id", updateUser);
 router.get("/", listUser);
 router.post("/expenses", registerExpense);
+router.post("/incomes", registerIncome);
 
 
 

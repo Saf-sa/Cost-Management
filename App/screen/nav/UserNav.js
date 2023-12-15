@@ -31,11 +31,12 @@ function HomeNav({ title, subtitle, image }) {
           </View>
         </View>
         <TouchableOpacity onPress={() => setModalVisible(true)}>
+          
           <Icon
             name="bars"
             size={40}
-            backgroundColor="white"
-            iconColor="gray"
+            backgroundColor="#E0BC3E"
+            iconColor="black"
           />
         </TouchableOpacity>
       </View>
@@ -73,7 +74,7 @@ function HomeNav({ title, subtitle, image }) {
               <Icon
                 name={"bars"}
                 backgroundColor={colors.primarySecondPair}
-                iconColor={colors.white}
+                iconColor={colors.Yellow}
                 size={45}
                 bRadius={2}
                 styles={{

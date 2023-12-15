@@ -109,7 +109,7 @@ const Login = () => {
       Toast.show({
         type: "error",
         position: "bottom",
-        text1: "Please review your credentials",
+        text1: "Pleasefill all the fields",
         visibilityTime: 3000,
         autoHide: true,
       });
@@ -141,11 +141,11 @@ const Login = () => {
         navigation.navigate("HomeDashbord"); // Navigation après 3 secondes
       }, 3000); // Délai de 3000 millisecondes (3 secondes)
     } catch (err) {
-      console.log("testy", err.response.data.message);
+      console.log("testy", err.response.data);
       Toast.show({
         type: "error",
         position: "bottom",
-        text1: err.response.data.message,
+        text1: err.response.data,
         visibilityTime: 3000,
         autoHide: true,
       });
