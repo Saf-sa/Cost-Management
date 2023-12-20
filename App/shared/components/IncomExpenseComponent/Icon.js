@@ -11,7 +11,7 @@ function Icon({
   size = 60,
 
   bRadius = 10,
-  iconColor = "#fff",
+  iconColor = "black",
 }) {
   return (
         <LinearGradient
@@ -31,7 +31,7 @@ function Icon({
           borderRadius: size / bRadius,
           justifyContent: "center",
           alignItems: "center",
-          borderColor: "lightGray",
+          borderColor: "gray",
           borderWidth: 1,
         },
         styles,

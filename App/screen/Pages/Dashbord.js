@@ -15,10 +15,6 @@ import Icon from "../../shared/components/IncomExpenseComponent/Icon";
 import AppText from "../../shared/components/uiApp/AppText";
 import UserNav from "../nav/UserNav";
 import Screen2 from "../../shared/components/Screen";
-import ExpenseCat from "../AddIncomeExpense/Categories/ExpenseCategorie";
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
-import CustomIcon from "../../shared/components/ui/CustomIcon";
 
 
 
@@ -28,8 +24,6 @@ import CustomIcon from "../../shared/components/ui/CustomIcon";
     const [totalIncome, setTotalIncome] = useState();
     const [totalExpense, setTotalExpense] = useState();
     const [username, setUsername] = useState();
-    const [loading, setLoading] = useState(false);
-    const [flatListItems, setFlatListItems] = useState([]);
     const navigation = useNavigation();
     
     //get Date Today default
@@ -48,8 +42,7 @@ import CustomIcon from "../../shared/components/ui/CustomIcon";
 
     //get Category when Clicked
     const [firstName, setFirstName] = useState("All");
-    const [lasttName, setLasttName] = useState("All");
-    const setSelectCategoryByName = (lastName) => {
+    const setSelectCategoryByName = (firstName) => {
       if (firstName === "All") {
         dispatch({ type: "all", payload: flatListItems });
       } else {
@@ -71,7 +64,7 @@ import CustomIcon from "../../shared/components/ui/CustomIcon";
       <Screen2>
         <UserNav
           image={require("../../assets/iconPerson.png")}
-          title="Welcome Back = User"
+          title="Welcome Back, name=firstName"
           /* subtitle="Titanium" */
         />
         <LinearGradient
@@ -169,45 +162,43 @@ import CustomIcon from "../../shared/components/ui/CustomIcon";
           <TouchableOpacity onPress={() => navigation.push("ViewIncomes")}>
             <Icon
               name="dollar-sign"
-              size={60}
-             
-              iconColor="black"
+              size={65}
             />
             <Text style={{ fontSize: 15, paddingTop: 5 }}> Incomes</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.push("ViewExpenses")}>
             <Icon
               name="shopping-cart"
-              size={60}
-              backgroundColor="#E0AA3E"
-              iconColor="black"
+              size={65}
+        
+             
             />
             <Text style={{ fontSize: 15, paddingTop: 5 }}>Expenses</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.push("Forecast")}>
             <Icon
               name="file-invoice-dollar"
-              size={60}
-              backgroundColor="#E0AA3E"
-              iconColor="black"
+              size={65}
+             
+             
             />
             <Text style={{ fontSize: 15, paddingTop: 5 }}>Forecast</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.push("Statistics")}>
             <Icon
               name="chart-line"
-              size={60}
-              backgroundColor="#E0AA3E"
-              iconColor="black"
+              size={65}
+             
+             
             />
             <Text style={{ fontSize: 15, paddingTop: 5 }}>Statistics</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.push("History")}>
             <Icon
               name="history"
-              size={60}
-              backgroundColor="#E0AA3E"
-              iconColor="black"
+              size={65}
+             
+             
             />
             <Text style={{ fontSize: 15, paddingTop: 5 }}> History</Text>
           </TouchableOpacity>
@@ -219,9 +210,9 @@ import CustomIcon from "../../shared/components/ui/CustomIcon";
           <TouchableOpacity onPress={() => navigation.push("Clothes")}>
             <Icon
               name="tshirt"
-              size={60}
-              backgroundColor="#E0AA3E"
-              iconColor="black"
+              size={65}
+             
+             
             />
 
             <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10 }}>
@@ -231,9 +222,9 @@ import CustomIcon from "../../shared/components/ui/CustomIcon";
           <TouchableOpacity onPress={() => navigation.push("Foods")}>
             <Icon
               name="utensils"
-              size={60}
-              backgroundColor="#E0AA3E"
-              iconColor="black"
+              size={65}
+             
+             
             />
 
             <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10 }}>
@@ -244,9 +235,9 @@ import CustomIcon from "../../shared/components/ui/CustomIcon";
           <TouchableOpacity onPress={() => navigation.push("Transport")}>
             <Icon
               name="subway"
-              size={60}
-              backgroundColor="#E0AA3E"
-              iconColor="black"
+              size={65}
+             
+             
             />
 
             <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10 }}>
@@ -256,9 +247,9 @@ import CustomIcon from "../../shared/components/ui/CustomIcon";
           <TouchableOpacity onPress={() => navigation.push("Studies")}>
             <Icon
               name="university"
-              size={60}
-              backgroundColor="#E0AA3E"
-              iconColor="black"
+              size={65}
+             
+             
             />
 
             <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10 }}>
@@ -270,9 +261,9 @@ import CustomIcon from "../../shared/components/ui/CustomIcon";
           <TouchableOpacity onPress={() => navigation.push("MyInvoices")}>
             <Icon
               name="house-user"
-              size={60}
-              backgroundColor="#E0AA3E"
-              iconColor="black"
+              size={65}
+             
+             
             />
 
             <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10 }}>
@@ -284,9 +275,9 @@ import CustomIcon from "../../shared/components/ui/CustomIcon";
           <TouchableOpacity onPress={() => navigation.push("Taxes")}>
             <Icon
               name="cash-register"
-              size={60}
-              backgroundColor="#E0AA3E"
-              iconColor="black"
+              size={65}
+             
+             
             />
 
             <Text style={{ fontSize: 15, paddingTop: 5 }}> Taxes</Text>
@@ -296,9 +287,9 @@ import CustomIcon from "../../shared/components/ui/CustomIcon";
             <Icon
               styles={styles.icon}
               name="laugh-wink"
-              size={60}
-              backgroundColor="#E0AA3E"
-              iconColor="black"
+              size={65}
+             
+             
             />
 
             <Text style={{ fontSize: 15, paddingTop: 5 }}>Hobbies</Text>
@@ -308,9 +299,9 @@ import CustomIcon from "../../shared/components/ui/CustomIcon";
             <Icon
               styles={styles.icon}
               name="hand-holding-usd"
-              size={60}
-              backgroundColor="#E0AA3E"
-              iconColor="black"
+              size={65}
+             
+             
             />
 
             <Text style={{ fontSize: 15, paddingTop: 5 }}> Money</Text>
@@ -320,9 +311,9 @@ import CustomIcon from "../../shared/components/ui/CustomIcon";
             <Icon
               styles={styles.icon}
               name="search-dollar"
-              size={60}
-              backgroundColor="#E0AA3E"
-              iconColor="black"
+              size={65}
+             
+             
             />
 
             <Text style={{ fontSize: 15, paddingTop: 5 }}>Epargne</Text>
@@ -332,9 +323,9 @@ import CustomIcon from "../../shared/components/ui/CustomIcon";
             <Icon
               styles={styles.icon}
               name="plane-departure"
-              size={60}
-              backgroundColor="#E0AA3E"
-              iconColor="black"
+              size={65}
+             
+             
             />
 
             <Text style={{ fontSize: 15, paddingTop: 5 }}>Holidays</Text>
@@ -349,45 +340,45 @@ import CustomIcon from "../../shared/components/ui/CustomIcon";
           <TouchableOpacity onPress={() => navigation.push("Calculator")}>
             <Icon
               name="calculator"
-              size={60}
-              backgroundColor="#E0AA3E"
-              iconColor="black"
+              size={65}
+             
+             
             />
             <Text style={{ fontSize: 15, paddingTop: 5 }}>calculator</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.push("Agenda")}>
             <Icon
               name="calendar-alt"
-              size={60}
-              backgroundColor="#E0AA3E"
-              iconColor="black"
+              size={65}
+             
+             
             />
             <Text style={{ fontSize: 15, paddingTop: 5 }}> Agenda</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.push("Reminder")}>
             <Icon
               name="bell"
-              size={60}
-              backgroundColor="#E0AA3E"
-              iconColor="black"
+              size={65}
+             
+             
             />
             <Text style={{ fontSize: 15, paddingTop: 5 }}>Reminder</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.push("Download")}>
             <Icon
               name="download"
-              size={60}
-              backgroundColor="#E0AA3E"
-              iconColor="black"
+              size={65}
+             
+             
             />
             <Text style={{ fontSize: 15, paddingTop: 5 }}>Download</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.push("Accounts")}>
             <Icon
               name="user-cog"
-              size={60}
-              backgroundColor="#E0AA3E"
-              iconColor="black"
+              size={65}
+             
+             
             />
             <Text style={{ fontSize: 15, paddingTop: 5 }}>Settings</Text>
           </TouchableOpacity>
@@ -411,12 +402,14 @@ const styles = StyleSheet.create({
     elevation: 8,
   },
   balanceContainer: {
+  
     justifyContent: "center",
     alignItems: "center",
     paddingVertical: 30,
     width: "100%",
   },
   parentIncomeContainer: {
+      
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
@@ -424,25 +417,16 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
   containerRender: {
+
     height: 100,
     marginHorizontal: 10,
     width: 50,
   },
-  LGStyle: {
-    height: 60,
-    width: 60,
-    flexDirection: "row",
-    borderRadius: 0 / 4,
-    justifyContent: "center",
-    alignItems: "center",
-    marginRight: 10,
-    shadowColor: "#b3aba2",
-    elevation: 5,
-    backgroundColor: "black",
-  },
+
   dashboard: {
+    
     flexWrap: "wrap",
-    color: "black",
+    color: "grey",
     flexDirection: "row",
     justifyContent: "space-between",
     paddingHorizontal: 20,
@@ -452,7 +436,8 @@ const styles = StyleSheet.create({
 
   dashboardCat: {
     flexWrap: "wrap",
-    color: "black",
+    color: "grey",
+    fontWeight: 'bold',
     flexDirection: "row",
     justifyContent: "space-between",
     paddingHorizontal: 20,
@@ -471,7 +456,6 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   textCategory: {
-    color: "#9E9E9E",
     textAlignVertical: "center",
     alignSelf: "center",
     height: 35,
