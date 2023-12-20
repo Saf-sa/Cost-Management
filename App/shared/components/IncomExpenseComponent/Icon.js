@@ -1,35 +1,45 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
+import { LinearGradient } from "expo-linear-gradient";
+import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";;
+import { icon } from '@fortawesome/fontawesome-svg-core';
 
 
 function Icon({
   name,
   styles,
-  size = 80,
-  backgroundColor = "red",
-  bRadius = 4,
+  size = 60,
+
+  bRadius = 10,
   iconColor = "#fff",
 }) {
   return (
+        <LinearGradient
+     
+       colors={["#f9f295", "#E0AA3E", "#F7EF8A", "#B88A44"]}
+       start={{ x: 0.1, y: 0.1 }}
+       end={{ x: 1, y: 3 }}
+
+
+     >
     <View
+    
       style={[
         {
           width: size,
           height: size,
           borderRadius: size / bRadius,
-          backgroundColor,
           justifyContent: "center",
           alignItems: "center",
-          borderColor: "gray",
-          borderWidth: 2,
+          borderColor: "lightGray",
+          borderWidth: 1,
         },
         styles,
       ]}
     >
       <FontAwesome5Icon name={name} color={iconColor} size={size * 0.4} />
     </View>
+     </LinearGradient>
   );
 }
 

@@ -18,6 +18,8 @@ import Screen2 from "../../shared/components/Screen";
 import ExpenseCat from "../AddIncomeExpense/Categories/ExpenseCategorie";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
+import CustomIcon from "../../shared/components/ui/CustomIcon";
+
 
 
 
@@ -29,7 +31,7 @@ import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
     const [loading, setLoading] = useState(false);
     const [flatListItems, setFlatListItems] = useState([]);
     const navigation = useNavigation();
-
+    
     //get Date Today default
     const dateToday = moment(new Date()).format("YYYYMMDD");
     const yesterday = moment().subtract(1, "days");
@@ -168,7 +170,7 @@ import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
             <Icon
               name="dollar-sign"
               size={60}
-              backgroundColor="#E0AA3E"
+             
               iconColor="black"
             />
             <Text style={{ fontSize: 15, paddingTop: 5 }}> Incomes</Text>
