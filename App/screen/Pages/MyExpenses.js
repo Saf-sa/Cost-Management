@@ -7,6 +7,9 @@ import CustomInputSingup from "../../shared/components/ui/CustomInputSignup";
 import CustomButton from "../../shared/components/ui/CustomButton";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import moment from "moment";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+
 /*  import { REACT_APP_BE_URL } from "../../.env"; */
 import axios from "axios";
 
@@ -14,9 +17,6 @@ import axios from "axios";
 // go to ligne 84
 //import { API_URL, API_TOKEN } from "@env";
 /*  import { REACT_APP_BE_URL } from "../../.env";  */
-
-
-
 
 
 const isValidDate = (date) => {
@@ -85,20 +85,9 @@ const MyExpense = () => {
   }, []);
 
   const handleChange = (value, fieldName) => {
-    let formattedValue = value;
-
-    if (fieldName === "date") {
-      formattedValue = moment(value, "DD/MM/YYYY");
-      if (!formattedValue.isValid()) {
-        // Handle invalid date here
-        console.error("Invalid date");
-        return;
-      }
-    }
-
     setFormData((prevState) => ({
       ...prevState,
-      [fieldName]: formattedValue,
+      [fieldName]: value,
     }));
   };
 
@@ -117,6 +106,7 @@ const MyExpense = () => {
       }, 3000); // 3000 milliseconds = 3 seconds
     }
   };
+
   const isValidForm = () => {
     if (!formIsValid(formData.date)) {
       updateError(
@@ -150,8 +140,18 @@ const MyExpense = () => {
     }
   };
 
+  // ... Reste du code
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Validate date
+    const dateMoment = moment(formData.date, "DD/MM/YYYY");
+    if (!dateMoment.isValid()) {
+      // Handle invalid date here
+      console.error("Invalid date");
+      return;
+    }
 
     // update formData with form values
     setFormData({
@@ -162,7 +162,7 @@ const MyExpense = () => {
       amount: amount,
     });
 
-    if (!formIsValid(date, categories, otherCategories, label, amount)) {
+    if (!formIsValid( date, categories, otherCategories, label, amount)) {
       Toast.show({
         type: "error",
         position: "bottom",
@@ -171,12 +171,7 @@ const MyExpense = () => {
         autoHide: true,
       });
 
-      updateError(
-        "date",
-        !isValidDate(formData.date)
-          ? "please enter a valid date"
-          : null
-      );
+     
       updateError(
         "categories",
         !isValidCategories(formData.categories)
@@ -185,8 +180,9 @@ const MyExpense = () => {
       );
       updateError(
         "otherCategories",
-        !isValidformOtherCategories(formData.otherCategories) 
-        ? "please choose other categories" : null
+        !isValidformOtherCategories(formData.otherCategories)
+          ? "please choose other categories"
+          : null
       );
       updateError(
         "label",
@@ -196,25 +192,35 @@ const MyExpense = () => {
       );
       updateError(
         "amount",
-        !isValidAmount(formData.amount)
-          ? "please enter a valid amount"
-          : null
+        !isValidAmount(formData.amount) ? "please enter a valid amount" : null
       );
     }
 
     try {
       // Récupérer les données de l'utilisateur à partir de AsyncStorage
-      const user = JSON.parse(await AsyncStorage.getItem("@storage_Key"));
+      const user = JSON.parse(await AsyncStorage.getItem("user"));
 
-       const response = await axios.post(
-      `http://localhost:5555/api/users/expenses`,
-      formData,
-      {
-        headers: {
-          Authorization: `Bearer ${user.token}` // Remplacez par la clé d'autorisation attendue par votre backend
-        }
-      }
-    );
+      const response = await axios.post(
+        `http://localhost:5555/api/expenses`,
+        formData,
+       
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // Remplacez par la clé d'autorisation attendue par votre backend
+            
+          },   
+         
+        });
+            console.log("Authorization token",headers.Authorization);
+           return headers;
+         if (response) {
+           console.log(' test apres token',response.headers.token);
+        
+         } else {
+           console.log("No response from server");
+           return message;
+         }
+     
       console.log(response.data.message);
       Toast.show({
         type: "success",
@@ -238,6 +244,8 @@ const MyExpense = () => {
     }
   };
 
+  // ... Reste du code
+
   return (
     <View style={styles.root}>
       <AuthHeader subtext="Please Add a new Expense" />
@@ -247,11 +255,11 @@ const MyExpense = () => {
           path="date"
           value={formData.date}
           onChangeText={(value) => handleChange(value, "date")}
-          placeholder="DD/MM/YYYY"
+          placeholder="please enter a valid date"
           secure={false}
           errorMessage={formErrors.date}
         />
-        
+
         <CustomInputSingup
           label="Categories"
           path="categories"

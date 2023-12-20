@@ -38,7 +38,7 @@ const registerExpense = async (req, res, next) => {
 const getExpenses = async (req, res, next) => {
   try {
     const expenses = await Expenses.find().populate({
-      path: "user",
+      path: "headers",
       select: "token",
     });
     res.json(expenses);

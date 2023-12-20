@@ -249,6 +249,11 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   button: {
-    marginTop: 20,
+    width: "100%",
+    height: "30%",
+    borderRadius: 8,
+    alignItems: "center",
+    justifyContent: "center",
+
   },
 });

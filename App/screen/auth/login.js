@@ -139,9 +139,11 @@ const Login = () => {
           id: response.data.user, // replace with actual user id key
           token: response.data.token, // replace with actual user token key
         };
+     
         try {
           const jsonValue = JSON.stringify(user);
           await AsyncStorage.setItem("@storage_Key", jsonValue);
+          console.log("Data successfully saved" + " User Token", user.token)  ;
           Toast.show({
             type: "success",
             position: "bottom",
@@ -151,7 +153,7 @@ const Login = () => {
           });
 
           setTimeout(() => {
-            navigation.navigate("HomeDashbord"); // Navigation après 3 secondes
+            navigation.navigate("Dashbord"); // Navigation après 3 secondes
           }, 3000); // Délai de 3000 millisecondes (3 secondes)
         } catch (e) {
           console.error("Failed to save the data to the storage");
@@ -167,11 +169,12 @@ const Login = () => {
         console.error("No response from server");
       }
     } catch (err) {
-      console.log("testy", err.response ? err.response.data : err);
+      console.log("testy", err.response ? err.response.message : err);
+    
       Toast.show({
         type: "error",
         position: "bottom",
-        text1: err.response ? err.response.data : "Error",
+        text1: err.response ? err.response.message : "Error",
         visibilityTime: 3000,
         autoHide: true,
       });
@@ -240,11 +243,12 @@ const styles = StyleSheet.create({
   },
 
   button: {
-    marginTop: 20,
+    marginTop: 10,
   },
   login: {
-    marginTop: 40,
-    marginBottom: 10,
+    flexDirection: "row",
+    marginTop: -100,
+    marginBottom: 40,
     color: "#E0AA3E",
     fontSize: 15,
     fontWeight: "bold",
@@ -252,8 +256,8 @@ const styles = StyleSheet.create({
   forgetPass: {
     flexDirection: "row",
     alignSelf: "flex-end",
-    marginTop: 20,
-    marginBottom: 10,
+    marginTop: 10,
+    marginBottom: 40,
     color: "#E0AA3E",
     fontSize: 15,
     fontWeight: "bold",

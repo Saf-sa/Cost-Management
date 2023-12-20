@@ -138,16 +138,26 @@ const ResetLogin = () => {
           placeholder="Your Email"
           secure={false}
           errorMessage={formErrors.email}
+          
         />
-
-        <CustomButton
-          onPress={handleSubmit}
-          style={styles.button}
-          buttonText={"Reset password"}
-        />
+        <Text style={styles.textEmail}>
+          We'll send you an email to reset your password
+        </Text>
+        
+       
       </View>
+       {/* Button Start */}
+        <CustomButton style={styles.button}
+          onPress={handleSubmit}
+          buttonText={"Reset"}
+        />
+        {/* Button End */}
+
+      
     <Toast/>
+     
     </View>
+    
   );
 };
 
@@ -158,18 +168,24 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   content: {
-    flex: 2,
-    padding: 20,
+    flex: 1,
+    paddingHorizontal: 20,
+    marginTop: 80,
+    
   },
-
-  button: {
-    marginTop: 20,
-  },
-  register: {
+  textEmail: {
+    fontSize: 12,
+    color: "#000",
+    textAlign: "center",
     marginTop: 40,
-    marginBottom: 10,
     color: "#E0AA3E",
     fontSize: 15,
     fontWeight: "bold",
   },
+  button: {
+    marginTop: 20,
+   
+  },
+
+ 
 });

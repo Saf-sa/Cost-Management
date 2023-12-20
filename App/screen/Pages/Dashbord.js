@@ -21,7 +21,7 @@ import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
 
 
 
-  function HomeDashbord() {
+  function Dashbord() {
     const [balance, setBalance] = useState();
     const [totalIncome, setTotalIncome] = useState();
     const [totalExpense, setTotalExpense] = useState();
@@ -483,4 +483,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeDashbord;
+export default Dashbord;
