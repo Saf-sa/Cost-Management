@@ -16,14 +16,14 @@ import AppText from "../../shared/components/uiApp/AppText";
 import UserNav from "../nav/UserNav";
 import Screen2 from "../../shared/components/Screen";
 
-
+import axios from "axios";
 
 
   function Dashbord() {
-    const [balance, setBalance] = useState();
-    const [totalIncome, setTotalIncome] = useState();
-    const [totalExpense, setTotalExpense] = useState();
-    const [username, setUsername] = useState();
+    const [balance, setBalance] = useState("");
+    const [totalIncome, setTotalIncome] = useState("");
+    const [totalExpense, setTotalExpense] = useState("");
+    const [username, setUsername] = useState("");
     const navigation = useNavigation();
     
     //get Date Today default
@@ -54,6 +54,7 @@ import Screen2 from "../../shared/components/Screen";
         } else {
           dispatch({ type: firstName, payload: firstName });
         }
+        console.log(payload);
       }
     };
 
@@ -64,7 +65,8 @@ import Screen2 from "../../shared/components/Screen";
       <Screen2>
         <UserNav
           image={require("../../assets/iconPerson.png")}
-          title="Welcome Back, name=firstName"
+          title="Welcome Back" 
+          firstName = {firstName}
           /* subtitle="Titanium" */
         />
         <LinearGradient
@@ -162,14 +164,14 @@ import Screen2 from "../../shared/components/Screen";
           <TouchableOpacity onPress={() => navigation.push("ViewIncomes")}>
             <Icon
               name="dollar-sign"
-              size={65}
+              size={66}
             />
             <Text style={{ fontSize: 15, paddingTop: 5 }}> Incomes</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.push("ViewExpenses")}>
             <Icon
               name="shopping-cart"
-              size={65}
+              size={66}
         
              
             />
@@ -178,7 +180,7 @@ import Screen2 from "../../shared/components/Screen";
           <TouchableOpacity onPress={() => navigation.push("Forecast")}>
             <Icon
               name="file-invoice-dollar"
-              size={65}
+              size={66}
              
              
             />
@@ -187,7 +189,7 @@ import Screen2 from "../../shared/components/Screen";
           <TouchableOpacity onPress={() => navigation.push("Statistics")}>
             <Icon
               name="chart-line"
-              size={65}
+              size={66}
              
              
             />
@@ -196,7 +198,7 @@ import Screen2 from "../../shared/components/Screen";
           <TouchableOpacity onPress={() => navigation.push("History")}>
             <Icon
               name="history"
-              size={65}
+              size={66}
              
              
             />
@@ -210,7 +212,7 @@ import Screen2 from "../../shared/components/Screen";
           <TouchableOpacity onPress={() => navigation.push("Clothes")}>
             <Icon
               name="tshirt"
-              size={65}
+              size={66}
              
              
             />
@@ -222,7 +224,7 @@ import Screen2 from "../../shared/components/Screen";
           <TouchableOpacity onPress={() => navigation.push("Foods")}>
             <Icon
               name="utensils"
-              size={65}
+              size={66}
              
              
             />
@@ -235,7 +237,7 @@ import Screen2 from "../../shared/components/Screen";
           <TouchableOpacity onPress={() => navigation.push("Transport")}>
             <Icon
               name="subway"
-              size={65}
+              size={66}
              
              
             />
@@ -247,7 +249,7 @@ import Screen2 from "../../shared/components/Screen";
           <TouchableOpacity onPress={() => navigation.push("Studies")}>
             <Icon
               name="university"
-              size={65}
+              size={66}
              
              
             />
@@ -261,7 +263,7 @@ import Screen2 from "../../shared/components/Screen";
           <TouchableOpacity onPress={() => navigation.push("MyInvoices")}>
             <Icon
               name="house-user"
-              size={65}
+              size={66}
              
              
             />
@@ -275,7 +277,7 @@ import Screen2 from "../../shared/components/Screen";
           <TouchableOpacity onPress={() => navigation.push("Taxes")}>
             <Icon
               name="cash-register"
-              size={65}
+              size={66}
              
              
             />
@@ -287,7 +289,7 @@ import Screen2 from "../../shared/components/Screen";
             <Icon
               styles={styles.icon}
               name="laugh-wink"
-              size={65}
+              size={66}
              
              
             />
@@ -299,7 +301,7 @@ import Screen2 from "../../shared/components/Screen";
             <Icon
               styles={styles.icon}
               name="hand-holding-usd"
-              size={65}
+              size={66}
              
              
             />
@@ -311,7 +313,7 @@ import Screen2 from "../../shared/components/Screen";
             <Icon
               styles={styles.icon}
               name="search-dollar"
-              size={65}
+              size={66}
              
              
             />
@@ -323,7 +325,7 @@ import Screen2 from "../../shared/components/Screen";
             <Icon
               styles={styles.icon}
               name="plane-departure"
-              size={65}
+              size={66}
              
              
             />
@@ -340,7 +342,7 @@ import Screen2 from "../../shared/components/Screen";
           <TouchableOpacity onPress={() => navigation.push("Calculator")}>
             <Icon
               name="calculator"
-              size={65}
+              size={66}
              
              
             />
@@ -349,7 +351,7 @@ import Screen2 from "../../shared/components/Screen";
           <TouchableOpacity onPress={() => navigation.push("Agenda")}>
             <Icon
               name="calendar-alt"
-              size={65}
+              size={66}
              
              
             />
@@ -358,7 +360,7 @@ import Screen2 from "../../shared/components/Screen";
           <TouchableOpacity onPress={() => navigation.push("Reminder")}>
             <Icon
               name="bell"
-              size={65}
+              size={66}
              
              
             />
@@ -367,7 +369,7 @@ import Screen2 from "../../shared/components/Screen";
           <TouchableOpacity onPress={() => navigation.push("Download")}>
             <Icon
               name="download"
-              size={65}
+              size={66}
              
              
             />
@@ -376,7 +378,7 @@ import Screen2 from "../../shared/components/Screen";
           <TouchableOpacity onPress={() => navigation.push("Accounts")}>
             <Icon
               name="user-cog"
-              size={65}
+              size={66}
              
              
             />
@@ -393,7 +395,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginHorizontal: 20,
     marginVertical: 5,
-    shadowColor: "black",
+    shadowColor: "grey",
     shadowOpacity: 0.05,
     shadowOffset: {
       width: 15,
@@ -424,9 +426,7 @@ const styles = StyleSheet.create({
   },
 
   dashboard: {
-    
     flexWrap: "wrap",
-    color: "grey",
     flexDirection: "row",
     justifyContent: "space-between",
     paddingHorizontal: 20,
@@ -436,7 +436,7 @@ const styles = StyleSheet.create({
 
   dashboardCat: {
     flexWrap: "wrap",
-    color: "grey",
+
     fontWeight: 'bold',
     flexDirection: "row",
     justifyContent: "space-between",

@@ -5,12 +5,6 @@ import mongoose from "mongoose";
 // use mongoose to create a schema to define the structure of the data
 const expensesSchema = new mongoose.Schema(
   {
-    user:{
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
-
-    },
     date: {
       type: String,
       default: Date.now,

@@ -7,6 +7,9 @@ import CustomInputSingup from "../../shared/components/ui/CustomInputSignup";
 import CustomButton from "../../shared/components/ui/CustomButton";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import moment from "moment";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+
 /*  import { REACT_APP_BE_URL } from "../../.env"; */
 import axios from "axios";
 
@@ -15,15 +18,26 @@ import axios from "axios";
 //import { API_URL, API_TOKEN } from "@env";
 /*  import { REACT_APP_BE_URL } from "../../.env";  */
 
-const isValidDate = (date) => {};
 
-const isValidCategories = (categories) => {};
+const isValidDate = (date) => {
+};
 
-const isValidformOtherCategories = (otherCategories) => {};
+const isValidCategories = (categories) => {
 
-const isValidlabel = (label) => {};
+};
 
-const isValidAmount = (amount) => {};
+const isValidformOtherCategories = (otherCategories) => {
+
+};
+
+const isValidlabel = (label) => {
+
+};
+
+const isValidAmount = (amount) => {
+
+  
+};
 
 // check all value is valid
 const formIsValid = (DataObj) => {
@@ -37,7 +51,7 @@ const formIsValid = (DataObj) => {
   );
 };
 //
-const MyIncome = () => {
+const MyExpense = () => {
   const [date, setDate] = useState("");
   const [categories, setCategories] = useState("");
   const [otherCategories, setOtherCategories] = useState("");
@@ -53,8 +67,8 @@ const MyIncome = () => {
   });
 
   const [formData, setFormData] = useState({
-    date: null,
-    categories: null,
+    date: "",
+    categories: "",
     otherCategories: "",
     label: "",
     amount: "",
@@ -71,20 +85,9 @@ const MyIncome = () => {
   }, []);
 
   const handleChange = (value, fieldName) => {
-    let formattedValue = value;
-
-    if (fieldName === "date") {
-      formattedValue = moment(value, "DD/MM/YYYY");
-      if (!formattedValue.isValid()) {
-        // Handle invalid date here
-        console.error("Invalid date");
-        return;
-      }
-    }
-
     setFormData((prevState) => ({
       ...prevState,
-      [fieldName]: formattedValue,
+      [fieldName]: value,
     }));
   };
 
@@ -103,8 +106,9 @@ const MyIncome = () => {
       }, 3000); // 3000 milliseconds = 3 seconds
     }
   };
+
   const isValidForm = () => {
-     if (!formIsValid(formData.date)) {
+    if (!formIsValid(formData.date)) {
       updateError(
         "date",
         !isValidDate(formData.date) ? "Please enter a valid date" : null
@@ -136,31 +140,38 @@ const MyIncome = () => {
     }
   };
 
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Validate date
+    const dateMoment = moment(formData.date, "DD/MM/YYYY");
+    if (!dateMoment.isValid()) {
+      // Handle invalid date here
+      console.error("Invalid date");
+      return;
+    }
 
     // update formData with form values
     setFormData({
       date: date,
       categories: categories,
-      otherCategories: categories,
+      otherCategories: otherCategories,
       label: label,
       amount: amount,
     });
-
-    if (!formIsValid(date, categories, otherCategories, label, amount)) {
+console.log("test",formData);
+    if (!formIsValid( date, categories, otherCategories, label, amount)) {
       Toast.show({
         type: "error",
         position: "bottom",
-        text1: "Please review your form",
+        text1: "Please review your Data form",
         visibilityTime: 3000,
         autoHide: true,
       });
 
-      updateError(
-        "date",
-        !isValidDate(formData.date) ? "please enter a valid date" : null
-      );
+     
       updateError(
         "categories",
         !isValidCategories(formData.categories)
@@ -186,48 +197,72 @@ const MyIncome = () => {
     }
 
     try {
+      // Récupérer les données de l'utilisateur à partir de AsyncStorage
+      const user = JSON.parse(await AsyncStorage.getItem("user"));
+
       const response = await axios.post(
-        `http://localhost:5555/api/users/incomes`,
-        formData
-      );
+        `http://localhost:5555/api/users/expenses`,
+        formData,
+       
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // Remplacez par la clé d'autorisation attendue par votre backend
+            
+          },   
+         
+        });
+            console.log("Authorization token",headers.Authorization);
+           return headers;
+         if (response) {
+           console.log(' test apres token',response.headers.token);
+        
+         } else {
+           console.log("No response from server");
+           return message;
+         }
+     
       console.log(response.data.message);
       Toast.show({
         type: "success",
         position: "bottom",
-        text1: "Income created successfully",
+        text1: "Expense created successfully",
         visibilityTime: 3000,
         autoHide: true,
       });
       setTimeout(() => {
-        navigation.navigate("MyIncomes");
+        navigation.navigate("MyExpenses");
       }, 3000);
     } catch (err) {
-      console.log("Test MyIncome", err.response.data.message);
+      console.log("Test MyExpense", err.response.data);
       Toast.show({
         type: "error",
         position: "bottom",
-        text1: err.response.data.message,
+        text1: err.response.data,
         visibilityTime: 3000,
         autoHide: true,
       });
     }
   };
 
+  // ... Reste du code
+
   return (
     <View style={styles.root}>
-      <AuthHeader subtext="Please Add a new Income" />
+      <AuthHeader subtext="Please Add a new Expense" />
       <View style={styles.content}>
         <CustomInputSingup
           label="Date"
+          path="date"
           value={formData.date}
           onChangeText={(value) => handleChange(value, "date")}
-          placeholder="DD/MM/YYYY"
+          placeholder="please enter a valid date"
           secure={false}
           errorMessage={formErrors.date}
         />
 
         <CustomInputSingup
           label="Categories"
+          path="categories"
           value={formData.categories}
           onChangeText={(value) => handleChange(value, "categories")}
           placeholder="Please choose a categories"
@@ -236,6 +271,7 @@ const MyIncome = () => {
         />
         <CustomInputSingup
           label="OtherCategories"
+          path="otherCategories"
           value={formData.otherCategories}
           onChangeText={(value) => handleChange(value, "otherCategories")}
           placeholder="Please choose a categories"
@@ -244,6 +280,7 @@ const MyIncome = () => {
         />
         <CustomInputSingup
           label="Label"
+          path="label"
           value={formData.label}
           onChangeText={(value) => handleChange(value, "label")}
           placeholder=" min 8 with 1 capital char, 1 number,1 special char "
@@ -264,7 +301,7 @@ const MyIncome = () => {
         <CustomButton
           onPress={handleSubmit}
           style={styles.button}
-          buttonText={"new Income"}
+          buttonText={"new Expense"}
         />
         {/* Button End */}
       </View>
@@ -273,7 +310,7 @@ const MyIncome = () => {
   );
 };
 
-export default MyIncome;
+export default MyExpense;
 
 const styles = StyleSheet.create({
   root: {
@@ -286,4 +323,5 @@ const styles = StyleSheet.create({
   button: {
     marginTop: 20,
   },
+
 });
