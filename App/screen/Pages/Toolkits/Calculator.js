@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, SafeAreaView , onPress } from 'react-native'
 import { useState } from 'react';
 import { StatusBar } from 'react-native'; 
+import AuthHeader from "../../../shared/components/AuthHeader";
 
 const Calculator = () => {
   const [input, setInput] = useState("");
@@ -22,33 +23,70 @@ const onButtonPress =(value) => {
 else {
   setInput(input + value);
 }
-}
+};
+  const getButtonTextColor = (value) => {
+    switch (value) {
+      case "/":
+      case "*":
+      return "blue";
+      
+      case "+":
+      case "=":
+        return "green";
+      case "C":
+        case "-":
+        return "red";
+      default:
+        return "black";
+    }
+  };
+    const getButtonBackgroundColor = (value) => {
+    switch (value) {
+      case "/":
+      case "*":
+      case "-":
+      case "+":
+      case "=":
+        return "#E0AA3E";
+      case "C":
+        return "#B88A44";
+      default:
+        return "#F7EF8A";
+    }
+  };
 
   return (
-    <SafeAreaView style={styles.container}>
 
+   
+   
+    <SafeAreaView style={styles.container}>
+      <AuthHeader subtext="Calculator" />
       <StatusBar style="auto" />
+       
 
     <View style={styles.resultContainer}>
-      <Text style={styles.resultText}>{result}</Text>
+      
+      <Text style={styles.resultText  }>{result}</Text>
     </View>
       <View style={styles.inputContainer}>
-        <TextInput style={styles.InputText} 
+        <TextInput style={styles.ButtonText} 
+        
         value={input} 
         onChangeText={setInput}
         keyboardType='numeric'
         />
 
+
        <View style={styles.buttonContainer}>
 
         {["7", "8", "9", "/","4","5","6","*","1", "2", "3", "-", "0", "C", "=", "+"].map(
           (item,index) => (
-         
-         <TouchableOpacity style={styles.button}
+ 
+         <TouchableOpacity style={[styles.button, { backgroundColor: getButtonBackgroundColor(item) }]}
           key={index}
           onPress={() => onButtonPress(item)}
           >
-            <Text style={styles.ButtonText}>{item}</Text>
+            <Text style={[styles.ButtonText, { color: getButtonTextColor(item) }]}>{item}</Text>
           
           </TouchableOpacity>
 
@@ -59,6 +97,7 @@ else {
         
         </View>
          </View>
+           
     
     </SafeAreaView>
   );
@@ -67,18 +106,25 @@ else {
 export default Calculator;
 
 const styles = StyleSheet.create({
+
+  header :{
+    flex: 2,
+    justifyContent: 'center',
+
+  },
+
   container : {
     flex: 1,
   },
 
   resultContainer : {
-    flex: 2,
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'flex-end',
    
   },
     inputContainer : {
-    flex: 3,
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 20,
@@ -109,19 +155,20 @@ const styles = StyleSheet.create({
 
 },
 button: {
-  width: '25%',
-  height: '25%',
+  width: '22%',
+  height: '22%',
   alignItems: 'center',
   justifyContent: 'center',
+  margin: 6,
   fontSize: 24,
-  borderWidth:1,
+  borderWidth:0.2,
   borderColor: 'lightGrey',
-  borderRadius: 100,
+  borderRadius: 20
+  ,
   
 },
 ButtonText: {
-  fontSize: 24,
-  color: 'black',
+  fontSize: 30,
   fontWeight: 'bold',
 },
 
