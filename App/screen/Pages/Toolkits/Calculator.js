@@ -6,7 +6,7 @@ const Calculator = () => {
     <View>
       <Text>Calculator</Text>
     </View>
-  );
-};
+  )
+}
 
-export default Calculator;
+export default Calculator

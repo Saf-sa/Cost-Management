@@ -82,7 +82,13 @@ const registerUser = async (req, res, next) => {
     if (!validator.isEmail(email)) {
       return res.status(401).json({ message: "Email is not valid " });
     }
-
+// check if the password is === confirmPassword
+    if (password !== password) {
+      return res
+        .status(400)
+        .json({ message: "Password not match with thius email" });
+    }
+  
     // check if the email is already in use
     if (userExists) {
       return res.status(400).json({ message: "Email already in use" });

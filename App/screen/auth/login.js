@@ -93,7 +93,7 @@ const Login = () => {
     if (!formIsValid(formData)) {
       updateError(
         "password",
-        !isValidPassword(formData.password) ? "Invalid email" : null
+        !isValidPassword(formData.password) ? "Invalid password" : null
       );
     }
   };
@@ -169,12 +169,12 @@ const Login = () => {
         console.error("No response from server");
       }
     } catch (err) {
-      console.log("testy", err.response ? err.response.message : err);
+      console.log("testy passowrd", err.response ? err.response.data.message : err);
     
       Toast.show({
         type: "error",
         position: "bottom",
-        text1: err.response ? err.response.message : "Error",
+        text1: err.response ? err.response.data.message : "Error",
         visibilityTime: 3000,
         autoHide: true,
       });
