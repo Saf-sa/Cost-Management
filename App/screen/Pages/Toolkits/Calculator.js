@@ -47,11 +47,10 @@ else {
       case "-":
       case "+":
       case "=":
+        case "C":
         return "#E0AA3E";
-      case "C":
-        return "#B88A44";
       default:
-        return "#F7EF8A";
+        return "#E0CE3E";
     }
   };
 
