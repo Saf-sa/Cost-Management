@@ -30,7 +30,7 @@ else {
       <StatusBar style="auto" />
 
     <View style={styles.resultContainer}>
-      <Text style={styles.resultText}></Text>
+      <Text style={styles.resultText}>{result}</Text>
     </View>
       <View style={styles.inputContainer}>
         <TextInput style={styles.InputText} 
@@ -74,9 +74,55 @@ const styles = StyleSheet.create({
   resultContainer : {
     flex: 2,
     justifyContent: 'center',
-    aloignItems: 'flex-end',
+    alignItems: 'flex-end',
    
   },
+    inputContainer : {
+    flex: 3,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 20,
+    
+  
+    
+  },
+  buttonContainer : {
+    flex: 7,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  },
+  resultText : {
+    color: 'green',
+    fontSize: 50,
+    justifyContent: 'center',
+    marginRight: 30,
+    
    
+  },
+
+  InputText:{
+  fontSize: 30,
+  marginBottom: 20,
+ 
+  
+  
+
+},
+button: {
+  width: '25%',
+  height: '25%',
+  alignItems: 'center',
+  justifyContent: 'center',
+  fontSize: 24,
+  borderWidth:1,
+  borderColor: 'lightGrey',
+  borderRadius: 100,
+  
+},
+ButtonText: {
+  fontSize: 24,
+  color: 'black',
+  fontWeight: 'bold',
+},
 
 });
