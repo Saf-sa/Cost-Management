@@ -59,20 +59,45 @@ useEffect(() => {
   }, []);
 
   return (
+
+     
+
+    
     <View style={styles.container}>
+       
       <StatusBar style="auto" />
          <TextInput
         onChangeText={setFriendNameText}
         value={friendNameText}
-        placeholder="Enter the name of your friend"
+        placeholder="           Enter the name of your friend"
         style={styles.input}
       />
+      
       <CalendarPicker onDateChange={setSelectedStartDate} />
       <Text style={styles.dateText}>Birthday: {startDate}</Text>
     </View>
+  
   );
 }
 
-const styles = StyleSheet.create({
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+ 
+  input: {
+    height: 50,
+    margin: 12,
+    width: 300,
+    borderWidth: 1,
+    borderRadius: 10, 
+  },
+  dateText: {
+    margin: 16,
+   
+  },
 });
