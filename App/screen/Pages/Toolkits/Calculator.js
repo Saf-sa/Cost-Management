@@ -49,6 +49,7 @@ else {
       case "=":
         case "C":
         return "#E0AA3E";
+
       default:
         return "#E0CE3E";
     }
@@ -78,7 +79,7 @@ else {
 
        <View style={styles.buttonContainer}>
 
-        {["7", "8", "9", "/","4","5","6","*","1", "2", "3", "-", "0", "C", "=", "+"].map(
+        {["C", "+/-", "%", "/","7", "8", "9", "*","4","5","6","-","1", "2", "3", "+", ".", "0", "<", "="].map(
           (item,index) => (
  
          <TouchableOpacity style={[styles.button, { backgroundColor: getButtonBackgroundColor(item) }]}
@@ -107,17 +108,19 @@ export default Calculator;
 const styles = StyleSheet.create({
 
   header :{
-    flex: 2,
+    flex: 1,
     justifyContent: 'center',
 
   },
 
   container : {
     flex: 1,
+    
   },
 
   resultContainer : {
     flex: 1,
+  
     justifyContent: 'center',
     alignItems: 'flex-end',
    
@@ -132,7 +135,7 @@ const styles = StyleSheet.create({
     
   },
   buttonContainer : {
-    flex: 7,
+    flex: 3,
     flexDirection: 'row',
     flexWrap: 'wrap',
   },
@@ -155,15 +158,15 @@ const styles = StyleSheet.create({
 },
 button: {
   width: '22%',
-  height: '22%',
+  height: '18%',
   alignItems: 'center',
   justifyContent: 'center',
   margin: 6,
   fontSize: 24,
   borderWidth:0.2,
   borderColor: 'lightGrey',
-  borderRadius: 20
-  ,
+  borderRadius: 10,
+  
   
 },
 ButtonText: {
