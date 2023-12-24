@@ -19,7 +19,7 @@ import Screen2 from "../../shared/components/Screen";
 import axios from "axios";
 
 
-  function Dashbord() {
+  function Dashboard() {
     const [balance, setBalance] = useState("");
     const [totalIncome, setTotalIncome] = useState("");
     const [totalExpense, setTotalExpense] = useState("");
@@ -290,8 +290,6 @@ import axios from "axios";
               styles={styles.icon}
               name="laugh-wink"
               size={66}
-             
-             
             />
 
             <Text style={{ fontSize: 15, paddingTop: 5 }}>Hobbies</Text>
@@ -469,4 +467,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Dashbord;
+export default Dashboard;

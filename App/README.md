@@ -176,3 +176,11 @@ npm i --save @fortawesome/free-regular-svg-icons
 29 - install datetimepicker to handle date 
 
 npm i @react-native-community/datetimepicker
+
+30 - react-native-calendar-picker "moment already installed"
+
+npm i react-native-calendar-picker
+
+31-  install expo-calendar
+
+expo install expo-calendar

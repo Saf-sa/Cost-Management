@@ -153,7 +153,7 @@ const Login = () => {
           });
 
           setTimeout(() => {
-            navigation.navigate("Dashbord"); // Navigation après 3 secondes
+            navigation.navigate("Dashboard"); // Navigation après 3 secondes
           }, 3000); // Délai de 3000 millisecondes (3 secondes)
         } catch (e) {
           console.error("Failed to save the data to the storage");

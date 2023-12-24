@@ -1,12 +1,78 @@
-import { View, Text } from 'react-native'
-import React from 'react'
 
-const Agenda = () => {
-  return (
-    <View>
-      <Text>Agenda</Text>
-    </View>
-  )
+import { StatusBar } from 'expo-status-bar';
+import React, { useState, useEffect,  } from 'react';
+import { StyleSheet, Text, View, TextInput } from 'react-native';
+import CalendarPicker from 'react-native-calendar-picker';
+import  {Calendar} from 'expo-calendar';
+import AuthHeader from "../../../shared/components/AuthHeader";
+
+
+async function getDefaultCalendarSource() {
+  const calendars = await Calendar.getCalendarsAsync(
+    Calendar.EntityTypes.EVENT
+  );
+  const defaultCalendars = calendars.filter(
+    (each) => each.source.name === 'Default'
+  );
+  return defaultCalendars.length
+    ? defaultCalendars[0].source
+    : calendars[0].source;
 }
 
-export default Agenda
+async function createCalendar() {
+  const defaultCalendarSource =
+    Platform.OS === 'ios'
+      ? await getDefaultCalendarSource()
+      : { isLocalAccount: true, name: 'Expo Calendar' };
+  const newCalendarID = await Calendar.createCalendarAsync({
+    title: 'Expo Calendar',
+    color: 'blue',
+    entityType: Calendar.EntityTypes.EVENT,
+    sourceId: defaultCalendarSource.id,
+    source: defaultCalendarSource,
+    name: 'internalCalendarName',
+    ownerAccount: 'personal',
+    accessLevel: Calendar.CalendarAccessLevel.OWNER,
+  });
+  console.log(`Your new calendar ID is: ${newCalendarID}`);
+  return newCalendarID;
+}
+
+export default function Agenda() {
+  const [selectedStartDate, setSelectedStartDate] = useState(null);
+  const [friendNameText, setFriendNameText] = useState("");
+  const startDate = selectedStartDate
+    ? selectedStartDate.format('YYYY-MM-DD').toString()
+    : '';
+
+useEffect(() => {
+    (async () => {
+      const { status } = await Calendar.requestCalendarPermissionsAsync();
+      if (status === 'granted') {
+        const calendars = await Calendar.getCalendarsAsync(
+          Calendar.EntityTypes.EVENT
+        );
+        console.log('Here are all your calendars:');
+        console.log({ calendars });
+      }
+    })();
+  }, []);
+
+  return (
+    <View style={styles.container}>
+      <StatusBar style="auto" />
+         <TextInput
+        onChangeText={setFriendNameText}
+        value={friendNameText}
+        placeholder="Enter the name of your friend"
+        style={styles.input}
+      />
+      <CalendarPicker onDateChange={setSelectedStartDate} />
+      <Text style={styles.dateText}>Birthday: {startDate}</Text>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+
+});
