@@ -23,9 +23,9 @@ async function createCalendar() {
   const defaultCalendarSource =
     Platform.OS === 'ios'
       ? await getDefaultCalendarSource()
-      : { isLocalAccount: true, name: 'Expo Calendar' };
+      : { isLocalAccount: true, name: 'My Calendar' };
   const newCalendarID = await Calendar.createCalendarAsync({
-    title: 'Expo Calendar',
+    title: 'My Calendar',
     color: 'blue',
     entityType: Calendar.EntityTypes.EVENT,
     sourceId: defaultCalendarSource.id,
@@ -40,10 +40,25 @@ async function createCalendar() {
 
 export default function Agenda() {
   const [selectedStartDate, setSelectedStartDate] = useState(null);
-  const [friendNameText, setFriendNameText] = useState("");
+  const [selectedEndDate, setSelectedEndDate] = useState(null);
+  const [contractEmail, setSelectedContractEmail] = useState("");
+  const [selectedEndtDate, setselectedEndDate] = useState("");
+  const [contractNameText, setcontractNameText] = useState('');
+
   const startDate = selectedStartDate
     ? selectedStartDate.format('YYYY-MM-DD').toString()
     : '';
+
+     const endDate = selectedEndtDate
+    ? selectedStartDate.format('YYYY-MM-DD').toString()
+    : '';
+
+    const email = contractEmail;
+
+
+    const name = contractNameText;
+
+
 
 useEffect(() => {
     (async () => {
@@ -67,14 +82,40 @@ useEffect(() => {
        
       <StatusBar style="auto" />
          <TextInput
-        onChangeText={setFriendNameText}
-        value={friendNameText}
+        onChangeText={setcontractNameText}
+        value={contractNameText}
+        placeholder="           Enter the name of your Contract"
+        style={styles.input}
+      />
+          <TextInput
+        onChangeText={setSelectedStartDate}
+        value={selectedStartDate}
+        placeholder="           Enter new contract start date"
+        style={styles.input}
+      />
+       <TextInput
+        onChangeText={setSelectedEndDate}
+        value={selectedEndDate}
+        placeholder="           Enter new contract expire date"
+
+        style={styles.input}
+      />
+       <TextInput
+        onChangeText={setSelectedContractEmail}
+        value={contractEmail}
         placeholder="           Enter the name of your friend"
         style={styles.input}
       />
       
+       <Text style={styles.nameText}>contract End: {name}</Text>
       <CalendarPicker onDateChange={setSelectedStartDate} />
-      <Text style={styles.dateText}>Birthday: {startDate}</Text>
+      
+        <Text style={styles.dateText}>contract Start: {startDate}</Text>
+        <Text style={styles.dateText}>contract End: {selectedEndDate}</Text>
+        <Text style={styles.emailText}>contract End: {email}</Text>
+       
+
+     
     </View>
   
   );

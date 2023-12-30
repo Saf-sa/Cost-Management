@@ -8,7 +8,7 @@ import CustomButton from "../../shared/components/ui/CustomButton";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import moment from "moment";
 import { SelectList } from 'react-native-dropdown-select-list';
-
+import CatPicker from "../../shared/components/IncomExpenseComponent/CategoryPickerItem";
 /*  import { REACT_APP_BE_URL } from "../../.env"; */
 import axios from "axios";
 
@@ -42,7 +42,7 @@ const formIsValid = (DataObj) => {
 const MyExpense = () => {
   const [date, setDate] = useState("");
   const [categories, setCategories] = useState("");
-
+/*   const [otherCategories, setOtherCategories] = useState(""); */
   const [label, setLabel] = useState("");
   const [amount, setAmount] = useState("");
   const [selected, setSelected] = React.useState("");
@@ -59,6 +59,7 @@ const MyExpense = () => {
   const [formData, setFormData] = useState({
     date: "",
     categories: "",
+  /*   otherCategories: "", */
     label: "",
     amount: "",
   });
@@ -73,32 +74,23 @@ const MyExpense = () => {
     };
   }, []);
 
- const handleChange = (value, fieldName) => {
-  let formattedValue = value;
+  const handleChange = (value, fieldName) => {
+    let formattedValue = value;
 
-  if (fieldName === "date") {
-    formattedValue = moment(value, "DD/MM/YYYY");
-    if (!formattedValue.isValid()) {
-      console.error("Invalid date");
-      return;
+    if (fieldName === "date") {
+      formattedValue = moment(value, "DD/MM/YYYY");
+      if (!formattedValue.isValid()) {
+        // Handle invalid date here
+        console.error("Invalid date");
+        return;
+      }
     }
-  } else if (fieldName === "categories") {
-    if (!value || !Array.isArray(value) || !value.length) {
-      console.error("Invalid categories");
-      return;
-    }
-    formattedValue = value.map((selected) => selected.value);
-    console.log("formattedValue",value);
-  }
 
-
-  setFormData((prevState) => ({
-    ...prevState,
-    [fieldName]: formattedValue,
-  }));
-};
-
-
+    setFormData((prevState) => ({
+      ...prevState,
+      [fieldName]: formattedValue,
+    }));
+  };
 
   const updateError = (type, errorMessage) => {
     setFormErrors((prevFormErrors) => ({
@@ -130,14 +122,7 @@ const MyExpense = () => {
           : null
       );
     }
-   /*  if (!formIsValid(formData)) {
-      updateError(
-        "otherCategories",
-        !isValidformOtherCategories(formData.otherCategories)
-          ? "please choose  Other categories"
-          : null
-      );
-    } */
+
     if (!formIsValid(formData.amount)) {
       updateError(
         "amount",
@@ -147,33 +132,26 @@ const MyExpense = () => {
       );
     }
   };
-    const data = () => {
-    return [
-    "House",
-    "Transport",
-    "Clothes",
-    "Studies",
-    "Invoice",
-    "Taxes",
-    "Hobbies",
-    "Money",
-    "MyEpargne",
-    "Holiday",
-    "Other",
-      
 
-      
-    ]; 
+  const Categories = ['House', 'Transport', 'Clothes', 'Studies', 'Invoice', 'Taxes', 'Hobbies', 'Money', 'epargne', 'Holiday' ];
+    const SelectList = () => {
+  
 
-    }
+  {Categories.map((item, index) => (
+    <option key={index} value={item.Value}>
+        {item.label}
+    </option>
+))}
+
+    };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     // update formData with form values
-     setFormData({
+    setFormData({
       date: date,
-      categories: selected, // Utilisez la valeur sélectionnée
+      categories: data.values,
       label: label,
       amount: amount,
     });
@@ -265,28 +243,22 @@ const MyExpense = () => {
           errorMessage={formErrors.categories}
 
         /> */}
-       
+         {/*  <SelectList 
           
-<SelectList 
-  label="Categories"
-  value={selected}
-  onChange={(value) => handleChange(value, "categories")}
-  setSelected={(value) => setSelected(value)}
-  data={data} 
-  save="value"
-  categories={"value"}
-  errorMessage={formErrors.categories}
-/>
+        label="Categories"
+         value={formData.categories}
+        onChange={(value) => handleChange(value, "categories")}
+        setSelected={(value) => setSelected(value, "categories")} 
+        data={data} 
+        save="value"
+        categories={"value"}
+        errorMessage={formErrors.categories}
+    /> */}
 
-        {/* <CustomInputSingup
-          label="OtherCategories"
-          value={formData.otherCategories}
-          onChangeText={(value) => handleChange(value, "otherCategories")}
-          placeholder="Please choose a categories"
-          secure={false}
-          errorMessage={formErrors.otherCategories}
-        /> */}
-        <CustomInputSingup
+    <CatPicker/>
+
+     
+       {/*  <CustomInputSingup
           label="Label"
           value={formData.label}
           onChangeText={(value) => handleChange(value, "label")}
@@ -301,7 +273,7 @@ const MyExpense = () => {
           placeholder="please enter a valid amount"
           secure={false}
           errorMessage={formErrors.amount}
-        />
+        /> */}
         {/* input area  End*/}
 
         {/* Button Start */}
@@ -330,35 +302,4 @@ const styles = StyleSheet.create({
   button: {
     marginTop: 20,
   },
-    /*  wrapper:{ borderWidth:1,
-      borderRadius:10,
-      borderColor:'gray',
-      paddingHorizontal:20,
-      paddingVertical:12,
-      flexDirection:'row',
-      justifyContent:'space-between' 
-    },
-
-    dropdown:{ 
-      borderWidth:1,
-      borderRadius:10,
-      borderColor:'gray',
-      marginTop:10,
-      overflow:'hidden'
-    },
-
-    option:{ 
-      paddingHorizontal:20,
-      paddingVertical:8,
-      overflow:'hidden' 
-    },
-
-     disabledoption:{ 
-      paddingHorizontal:20,
-      paddingVertical:8,
-      flexDirection:'row',
-      alignItems:'center', 
-      backgroundColor:'whitesmoke',
-      opacity:0.9
-    } */
 });

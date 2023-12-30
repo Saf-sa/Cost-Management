@@ -184,3 +184,8 @@ npm i react-native-calendar-picker
 31-  install expo-calendar
 
 expo install expo-calendar
+
+
+32 - install react-native-dropdown-select-list
+
+npm i react-native-dropdown-select-list

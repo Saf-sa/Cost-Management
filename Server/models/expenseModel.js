@@ -11,7 +11,7 @@ const expensesSchema = new mongoose.Schema(
       required: true,
     },
     categories: {
-      type: String,
+      type: [String],
       enum: [
         "House",
         "Clothes",
@@ -22,16 +22,12 @@ const expensesSchema = new mongoose.Schema(
         "Taxes",
         "Hobbies",
         "Money",
-        "Mrpargne",
+        "MyEpargne",
         "Holiday",
-        "Óther",
+        "Other",
       ],
       required: true,
-      default: "other",
-    },
-
-    otherCategories: {
-      type: String,
+  
     },
 
     label: {

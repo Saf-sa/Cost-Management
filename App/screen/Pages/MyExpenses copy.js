@@ -21,8 +21,6 @@ const isValidDate = (date) => {};
 
 const isValidCategories = (categories) => {};
 
-const isValidformOtherCategories = (otherCategories) => {};
-
 const isValidlabel = (label) => {};
 
 const isValidAmount = (amount) => {};
@@ -42,7 +40,6 @@ const formIsValid = (DataObj) => {
 const MyExpense = () => {
   const [date, setDate] = useState("");
   const [categories, setCategories] = useState("");
-
   const [label, setLabel] = useState("");
   const [amount, setAmount] = useState("");
   const [selected, setSelected] = React.useState("");
@@ -59,6 +56,7 @@ const MyExpense = () => {
   const [formData, setFormData] = useState({
     date: "",
     categories: "",
+  /*   otherCategories: "", */
     label: "",
     amount: "",
   });
@@ -73,32 +71,23 @@ const MyExpense = () => {
     };
   }, []);
 
- const handleChange = (value, fieldName) => {
-  let formattedValue = value;
+  const handleChange = (value, fieldName) => {
+    let formattedValue = value;
 
-  if (fieldName === "date") {
-    formattedValue = moment(value, "DD/MM/YYYY");
-    if (!formattedValue.isValid()) {
-      console.error("Invalid date");
-      return;
+    if (fieldName === "date") {
+      formattedValue = moment(value, "DD/MM/YYYY");
+      if (!formattedValue.isValid()) {
+        // Handle invalid date here
+        console.error("Invalid date");
+        return;
+      }
     }
-  } else if (fieldName === "categories") {
-    if (!value || !Array.isArray(value) || !value.length) {
-      console.error("Invalid categories");
-      return;
-    }
-    formattedValue = value.map((selected) => selected.value);
-    console.log("formattedValue",value);
-  }
 
-
-  setFormData((prevState) => ({
-    ...prevState,
-    [fieldName]: formattedValue,
-  }));
-};
-
-
+    setFormData((prevState) => ({
+      ...prevState,
+      [fieldName]: formattedValue,
+    }));
+  };
 
   const updateError = (type, errorMessage) => {
     setFormErrors((prevFormErrors) => ({
@@ -128,7 +117,9 @@ const MyExpense = () => {
         !isValidCategories(formData.categories)
           ? "Please choose a valid categories"
           : null
+         
       );
+       console.log('test categories',categories);
     }
    /*  if (!formIsValid(formData)) {
       updateError(
@@ -136,7 +127,6 @@ const MyExpense = () => {
         !isValidformOtherCategories(formData.otherCategories)
           ? "please choose  Other categories"
           : null
-      );
     } */
     if (!formIsValid(formData.amount)) {
       updateError(
@@ -148,7 +138,7 @@ const MyExpense = () => {
     }
   };
     const data = () => {
-    return [
+  const data = [
     "House",
     "Transport",
     "Clothes",
@@ -160,23 +150,23 @@ const MyExpense = () => {
     "MyEpargne",
     "Holiday",
     "Other",
-      
+  ];
 
-      
-    ]; 
 
     }
+    console.log('test data ', data);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     // update formData with form values
-     setFormData({
+    setFormData({
       date: date,
-      categories: selected, // Utilisez la valeur sélectionnée
+      categories: categories.key,
       label: label,
       amount: amount,
     });
+    console.log("formData", formData);
 
     if (!formIsValid(date, categories,  label, amount)) {
       Toast.show({
@@ -192,11 +182,14 @@ const MyExpense = () => {
         !isValidDate(formData.date) ? "please enter a valid date" : null
       );
       updateError(
+        
         "categories",
+     
         !isValidCategories(formData.categories)
           ? "please choose a valid categories"
           : null
       );
+         
     /*   updateError(
         "otherCategories",
         !isValidformOtherCategories(formData.otherCategories)
@@ -217,10 +210,11 @@ const MyExpense = () => {
 
     try {
       const response = await axios.post(
+             
         `http://localhost:5555/api/users/expenses`,
         formData
       );
-      console.log('data send to BE',response.data.message);
+     
       Toast.show({
         type: "success",
         position: "bottom",
@@ -232,6 +226,7 @@ const MyExpense = () => {
         navigation.navigate("ViewExpenses");
       }, 3000);
     } catch (err) {
+       
       console.log("Test Myexpense", err.response.data);
       Toast.show({
         type: "error",
@@ -265,19 +260,18 @@ const MyExpense = () => {
           errorMessage={formErrors.categories}
 
         /> */}
-       
+       {/*    <SelectList 
           
-<SelectList 
-  label="Categories"
-  value={selected}
-  onChange={(value) => handleChange(value, "categories")}
-  setSelected={(value) => setSelected(value)}
-  data={data} 
-  save="value"
-  categories={"value"}
-  errorMessage={formErrors.categories}
-/>
-
+        label="Categories"
+         value={formData.categories}
+        onChange={(value) => handleChange(value, "categories")}
+        setSelected={(value) => setSelected(value, "categories")} 
+        data={data} 
+        save="value"
+        categories={"value"}
+        errorMessage={formErrors.categories}
+    />
+ */}
         {/* <CustomInputSingup
           label="OtherCategories"
           value={formData.otherCategories}
@@ -330,35 +324,4 @@ const styles = StyleSheet.create({
   button: {
     marginTop: 20,
   },
-    /*  wrapper:{ borderWidth:1,
-      borderRadius:10,
-      borderColor:'gray',
-      paddingHorizontal:20,
-      paddingVertical:12,
-      flexDirection:'row',
-      justifyContent:'space-between' 
-    },
-
-    dropdown:{ 
-      borderWidth:1,
-      borderRadius:10,
-      borderColor:'gray',
-      marginTop:10,
-      overflow:'hidden'
-    },
-
-    option:{ 
-      paddingHorizontal:20,
-      paddingVertical:8,
-      overflow:'hidden' 
-    },
-
-     disabledoption:{ 
-      paddingHorizontal:20,
-      paddingVertical:8,
-      flexDirection:'row',
-      alignItems:'center', 
-      backgroundColor:'whitesmoke',
-      opacity:0.9
-    } */
 });

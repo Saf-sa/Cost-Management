@@ -6,12 +6,12 @@ dotenv.config();
 
 
 // Import expense model
-/* import Expenses from "../models/expenseModel.js"; */
+import Expenses from "../models/expenseModel.js";
 
 const registerExpense = async (req, res, next) => {
   try {
     console.log(" first test", req.body);
-    const { date, categories, otherCategories, label, amount } = req.body;
+    const { date, categories, label, amount } = req.body;
 
     //check if the userId, categories, amount and date are not empty
    /*  if (!date || !categories || !otherCategories || !label || !amount) {
@@ -21,7 +21,6 @@ const registerExpense = async (req, res, next) => {
     const newExpense = new Expenses({
       date,
       categories,
-      otherCategories,
       label,
       amount,
     });

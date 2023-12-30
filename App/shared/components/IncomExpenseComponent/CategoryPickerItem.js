@@ -1,12 +1,27 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+/* import React from 'react';
+import axios from 'axios';
 
-const CategoryPickerItem = () => {
-  return (
-    <View>
-      <Text>CategoryPickerItem</Text>
-    </View>
-  )
-}
 
-export default CategoryPickerItem
+const CatPicker = ({ label, value, setSelected, data, errorMessage }) => {
+    const handleChange = (selectedOption) => {
+        setSelected(selectedOption.value);
+    };
+
+    return (
+        
+        <div>
+            <label>{label}</label>
+            <select value={value} onChange={handleChange}>
+                {data.map((item, index) => (
+                    <option key={index} value={item.value}>
+                        {item.label}
+                    </option>
+                ))}
+            </select>
+            {errorMessage && <div>{errorMessage}</div>}
+        </div>
+        
+    );
+};
+
+export default CatPicker; */
