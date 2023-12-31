@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, DatePickerIOS , } from "react-native";
+import { View, Text, StyleSheet, DatePickerIOS ,TextInput } from "react-native";
 import React, { useState, useRef, useEffect } from "react";
 import Toast from "react-native-toast-message";
 import { useNavigation } from "@react-navigation/native";
@@ -130,14 +130,7 @@ const MyExpense = () => {
           : null
       );
     }
-   /*  if (!formIsValid(formData)) {
-      updateError(
-        "otherCategories",
-        !isValidformOtherCategories(formData.otherCategories)
-          ? "please choose  Other categories"
-          : null
-      );
-    } */
+
     if (!formIsValid(formData.amount)) {
       updateError(
         "amount",
@@ -154,16 +147,13 @@ const MyExpense = () => {
     "Clothes",
     "Studies",
     "Invoice",
-    "Taxes",
+    "Taxs",
     "Hobbies",
     "Money",
     "MyEpargne",
     "Holiday",
-    "Other",
-      
-
-      
-    ]; 
+    "Other", 
+    ] 
 
     }
 
@@ -197,12 +187,7 @@ const MyExpense = () => {
           ? "please choose a valid categories"
           : null
       );
-    /*   updateError(
-        "otherCategories",
-        !isValidformOtherCategories(formData.otherCategories)
-          ? "please choose other categories"
-          : null
-      ); */
+
       updateError(
         "label",
         !isValidlabel(formData.label)
@@ -255,37 +240,26 @@ const MyExpense = () => {
           secure={false}
           errorMessage={formErrors.date}
         />
+          <TextInput style={styles.categorie} >Categories</TextInput>
 
-     {/*    <CustomInputSingup
+      <SelectList 
+      dropdownStyles={{ 
+        borderColor: '#E0AA3E',
+        borderWidth: 1,
+        borderRadius: 6,}}
+      
+      boxStyles={{borderRadius:6, borderColor:'#E0AA3E',height:41}} //override default styles
+      defaultOption={{ key:'1', value:'Select a categorie' }} 
           label="Categories"
-          value={formData.categories}
-          onChangeText={(value) => handleChange(value, "categories")}
-          placeholder="Please choose a categories"
-          secure={false}
+          value={selected}
+          onChange={(value) => handleChange(value, "categories")}
+          setSelected={(value) => setSelected(value)}
+          data={data} 
+          save="value"
+          categories={"value"}
           errorMessage={formErrors.categories}
+      />
 
-        /> */}
-       
-          
-<SelectList 
-  label="Categories"
-  value={selected}
-  onChange={(value) => handleChange(value, "categories")}
-  setSelected={(value) => setSelected(value)}
-  data={data} 
-  save="value"
-  categories={"value"}
-  errorMessage={formErrors.categories}
-/>
-
-        {/* <CustomInputSingup
-          label="OtherCategories"
-          value={formData.otherCategories}
-          onChangeText={(value) => handleChange(value, "otherCategories")}
-          placeholder="Please choose a categories"
-          secure={false}
-          errorMessage={formErrors.otherCategories}
-        /> */}
         <CustomInputSingup
           label="Label"
           value={formData.label}
@@ -325,40 +299,24 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 2,
-    padding: 20,
+    padding: 10,
+    marginTop: 10,
+   
   },
   button: {
     marginTop: 20,
   },
-    /*  wrapper:{ borderWidth:1,
-      borderRadius:10,
-      borderColor:'gray',
-      paddingHorizontal:20,
-      paddingVertical:12,
-      flexDirection:'row',
-      justifyContent:'space-between' 
-    },
+categorie:{
+    color: "#E0AA3E",
+    fontSize: 18,
+    fontWeight: "bold",
+    marginBottom: 10,
 
-    dropdown:{ 
-      borderWidth:1,
-      borderRadius:10,
-      borderColor:'gray',
-      marginTop:10,
-      overflow:'hidden'
-    },
+},
+   
+SelectList:{
+marginBottom: 20,
 
-    option:{ 
-      paddingHorizontal:20,
-      paddingVertical:8,
-      overflow:'hidden' 
-    },
-
-     disabledoption:{ 
-      paddingHorizontal:20,
-      paddingVertical:8,
-      flexDirection:'row',
-      alignItems:'center', 
-      backgroundColor:'whitesmoke',
-      opacity:0.9
-    } */
+}
+     
 });

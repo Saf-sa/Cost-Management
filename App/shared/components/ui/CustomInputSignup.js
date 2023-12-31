@@ -64,5 +64,7 @@ const styles = StyleSheet.create({
   },
   errorMsg: {
     color: "#ff8080",
-  },
+  }
 });
+
+

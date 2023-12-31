@@ -19,7 +19,7 @@ const expensesSchema = new mongoose.Schema(
         "Transport",
         "Studies",
         "Invoice",
-        "Taxes",
+        "Taxs",
         "Hobbies",
         "Money",
         "MyEpargne",

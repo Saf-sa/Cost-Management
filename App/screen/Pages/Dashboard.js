@@ -166,7 +166,7 @@ import axios from "axios";
               name="dollar-sign"
               size={66}
             />
-            <Text style={{ fontSize: 15, paddingTop: 5 }}> Incomes</Text>
+            <Text style={{ fontSize: 15, paddingTop: 5 }}> Income</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.push("ViewExpenses")}>
             <Icon
@@ -175,7 +175,7 @@ import axios from "axios";
         
              
             />
-            <Text style={{ fontSize: 15, paddingTop: 5 }}>Expenses</Text>
+            <Text style={{ fontSize: 15, paddingTop: 5 }}>Expense</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.push("Forecast")}>
             <Icon
@@ -341,10 +341,11 @@ import axios from "axios";
             <Icon
               name="calculator"
               size={66}
+              
              
              
             />
-            <Text style={{ fontSize: 15, paddingTop: 5 }}>calculator</Text>
+            <Text style={{ fontSize: 15, paddingTop: 5 }}>Calculator</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.push("Agenda")}>
             <Icon
