@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, DatePickerIOS ,TextInput } from "react-native";
+import { View, Text, StyleSheet, DatePickerIOS ,TextInput, ScrollView } from "react-native";
 import React, { useState, useRef, useEffect } from "react";
 import Toast from "react-native-toast-message";
 import { useNavigation } from "@react-navigation/native";
@@ -153,7 +153,7 @@ const MyIncome = () => {
         "Refund",
         "Gambling",
         "Stocks",
-        "Óther",
+        "Other",
     ] 
 
     }
@@ -233,6 +233,7 @@ const MyIncome = () => {
     <View style={styles.root}>
       <AuthHeader subtext="Please Add a new expense" />
       <View style={styles.content}>
+         <ScrollView style={styles.scrollView}>
         <CustomInputSingup
           label="Date"
           value={formData.date}
@@ -250,7 +251,7 @@ const MyIncome = () => {
         borderRadius: 6,
       }}
    
-      boxStyles={{borderRadius:6, borderColor:'#E0AA3E',height:40}} //override default styles
+      boxStyles={{borderRadius:8, borderColor:'#E0AA3E',height:42}} //override default styles
       defaultOption={{ key:'1', value:'Select a categorie'}} 
           label="Categories"
           value={selected}
@@ -288,7 +289,9 @@ const MyIncome = () => {
           buttonText={"new Expense"}
         />
         {/* Button End */}
+         </ScrollView>
       </View>
+     
       <Toast />
     </View>
   );
