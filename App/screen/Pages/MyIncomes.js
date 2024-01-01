@@ -281,19 +281,22 @@ const MyIncome = () => {
           secure={false}
           errorMessage={formErrors.amount}
         />
+        
         {/* input area  End*/}
 
         {/* Button Start */}
-        <CustomButton
-          onPress={handleSubmit}
-          style={styles.button}
-          buttonText={"new Expense"}
-        />
+      
         {/* Button End */}
          </ScrollView>
+         
       </View>
-     
+       <CustomButton style={styles.button}
+          onPress={handleSubmit}
+          
+          buttonText={"new Expense"}
+        />
       <Toast />
+      
     </View>
   );
 };
@@ -310,10 +313,11 @@ const styles = StyleSheet.create({
     marginTop: 10,
    
   },
-  button: {
-    marginTop: 20,
+  scrollView: {
+    marginHorizontal: 1
   },
-categorie:{
+
+  categorie:{
     color: "#E0AA3E",
     fontSize: 18,
     fontWeight: "bold",
