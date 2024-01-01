@@ -246,10 +246,11 @@ const MyExpense = () => {
       dropdownStyles={{ 
         borderColor: '#E0AA3E',
         borderWidth: 1,
-        borderRadius: 6,}}
+        borderRadius: 6,
+      }}
       
-      boxStyles={{borderRadius:6, borderColor:'#E0AA3E',height:41}} //override default styles
-      defaultOption={{ key:'1', value:'Select a categorie' }} 
+      boxStyles={{borderRadius:6, borderColor:'#E0AA3E',height:40}} //override default styles
+      defaultOption={{ key:'1', value:'Select a categorie'}} 
           label="Categories"
           value={selected}
           onChange={(value) => handleChange(value, "categories")}
@@ -257,6 +258,8 @@ const MyExpense = () => {
           data={data} 
           save="value"
           categories={"value"}
+          search={false}
+        
           errorMessage={formErrors.categories}
       />
 
@@ -272,7 +275,7 @@ const MyExpense = () => {
           label="Amount"
           value={formData.amount}
           onChangeText={(value) => handleChange(value, "amount")}
-          placeholder="please enter a valid amount"
+          placeholder="amount should be a number 0000.00"
           secure={false}
           errorMessage={formErrors.amount}
         />

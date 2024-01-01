@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, DatePickerIOS } from "react-native";
+import { View, Text, StyleSheet, DatePickerIOS ,TextInput } from "react-native";
 import React, { useState, useRef, useEffect } from "react";
 import Toast from "react-native-toast-message";
 import { useNavigation } from "@react-navigation/native";
@@ -7,6 +7,8 @@ import CustomInputSingup from "../../shared/components/ui/CustomInputSignup";
 import CustomButton from "../../shared/components/ui/CustomButton";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import moment from "moment";
+import { SelectList } from 'react-native-dropdown-select-list';
+
 /*  import { REACT_APP_BE_URL } from "../../.env"; */
 import axios from "axios";
 
@@ -40,9 +42,10 @@ const formIsValid = (DataObj) => {
 const MyIncome = () => {
   const [date, setDate] = useState("");
   const [categories, setCategories] = useState("");
-  const [otherCategories, setOtherCategories] = useState("");
+
   const [label, setLabel] = useState("");
   const [amount, setAmount] = useState("");
+  const [selected, setSelected] = React.useState("");
   const navigation = useNavigation();
   const [formErrors, setFormErrors] = useState({
     date: null,
@@ -52,10 +55,10 @@ const MyIncome = () => {
     amount: null,
   });
 
+   
   const [formData, setFormData] = useState({
-    date: null,
-    categories: null,
-    otherCategories: "",
+    date: "",
+    categories: "",
     label: "",
     amount: "",
   });
@@ -70,23 +73,32 @@ const MyIncome = () => {
     };
   }, []);
 
-  const handleChange = (value, fieldName) => {
-    let formattedValue = value;
+ const handleChange = (value, fieldName) => {
+  let formattedValue = value;
 
-    if (fieldName === "date") {
-      formattedValue = moment(value, "DD/MM/YYYY");
-      if (!formattedValue.isValid()) {
-        // Handle invalid date here
-        console.error("Invalid date");
-        return;
-      }
+  if (fieldName === "date") {
+    formattedValue = moment(value, "DD/MM/YYYY");
+    if (!formattedValue.isValid()) {
+      console.error("Invalid date");
+      return;
     }
+  } else if (fieldName === "categories") {
+    if (!value || !Array.isArray(value) || !value.length) {
+      console.error("Invalid categories");
+      return;
+    }
+    formattedValue = value.map((selected) => selected.value);
+    console.log("formattedValue",value);
+  }
 
-    setFormData((prevState) => ({
-      ...prevState,
-      [fieldName]: formattedValue,
-    }));
-  };
+
+  setFormData((prevState) => ({
+    ...prevState,
+    [fieldName]: formattedValue,
+  }));
+};
+
+
 
   const updateError = (type, errorMessage) => {
     setFormErrors((prevFormErrors) => ({
@@ -118,14 +130,7 @@ const MyIncome = () => {
           : null
       );
     }
-    if (!formIsValid(formData)) {
-      updateError(
-        "otherCategories",
-        !isValidformOtherCategories(formData.otherCategories)
-          ? "please choose  Other categories"
-          : null
-      );
-    }
+
     if (!formIsValid(formData.amount)) {
       updateError(
         "amount",
@@ -135,20 +140,36 @@ const MyIncome = () => {
       );
     }
   };
+    const data = () => {
+    return [
+   "Salary",
+        "taxes refund",
+        "Bonus",
+        "loan",
+        "Sales",
+        "Gift",
+        "Rent",
+        "Allowance",
+        "Refund",
+        "Gambling",
+        "Stocks",
+        "Óther",
+    ] 
+
+    }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     // update formData with form values
-    setFormData({
+     setFormData({
       date: date,
-      categories: categories,
-      otherCategories: categories,
+      categories: selected, // Utilisez la valeur sélectionnée
       label: label,
       amount: amount,
     });
 
-    if (!formIsValid(date, categories, otherCategories, label, amount)) {
+    if (!formIsValid(date, categories,  label, amount)) {
       Toast.show({
         type: "error",
         position: "bottom",
@@ -167,12 +188,7 @@ const MyIncome = () => {
           ? "please choose a valid categories"
           : null
       );
-      updateError(
-        "otherCategories",
-        !isValidformOtherCategories(formData.otherCategories)
-          ? "please choose other categories"
-          : null
-      );
+
       updateError(
         "label",
         !isValidlabel(formData.label)
@@ -187,22 +203,22 @@ const MyIncome = () => {
 
     try {
       const response = await axios.post(
-        `http://localhost:5555/api/users/incomes`,
+        `http://localhost:5555/api/users/expenses`,
         formData
       );
-      console.log(response.data.message);
+      console.log('data send to BE',response.data.message);
       Toast.show({
         type: "success",
         position: "bottom",
-        text1: "Income created successfully",
+        text1: "expense created successfully",
         visibilityTime: 3000,
         autoHide: true,
       });
       setTimeout(() => {
-        navigation.navigate("MyIncomes");
+        navigation.navigate("ViewExpenses");
       }, 3000);
     } catch (err) {
-      console.log("Test MyIncome", err.response.data.message);
+      console.log("Test Myexpense", err.response.data);
       Toast.show({
         type: "error",
         position: "bottom",
@@ -215,7 +231,7 @@ const MyIncome = () => {
 
   return (
     <View style={styles.root}>
-      <AuthHeader subtext="Please Add a new Income" />
+      <AuthHeader subtext="Please Add a new expense" />
       <View style={styles.content}>
         <CustomInputSingup
           label="Date"
@@ -225,23 +241,28 @@ const MyIncome = () => {
           secure={false}
           errorMessage={formErrors.date}
         />
+          <TextInput style={styles.categorie} >Categories</TextInput>
 
-        <CustomInputSingup
+      <SelectList 
+      dropdownStyles={{ 
+        borderColor: '#E0AA3E',
+        borderWidth: 1,
+        borderRadius: 6,
+      }}
+   
+      boxStyles={{borderRadius:6, borderColor:'#E0AA3E',height:40}} //override default styles
+      defaultOption={{ key:'1', value:'Select a categorie'}} 
           label="Categories"
-          value={formData.categories}
-          onChangeText={(value) => handleChange(value, "categories")}
-          placeholder="Please choose a categories"
-          secure={false}
+          value={selected}
+          onChange={(value) => handleChange(value, "categories")}
+          setSelected={(value) => setSelected(value)}
+          data={data} 
+          save="value"
+          categories={"value"}
+          search={false}
+        
           errorMessage={formErrors.categories}
-        />
-        <CustomInputSingup
-          label="OtherCategories"
-          value={formData.otherCategories}
-          onChangeText={(value) => handleChange(value, "otherCategories")}
-          placeholder="Please choose a categories"
-          secure={false}
-          errorMessage={formErrors.otherCategories}
-        />
+      />
         <CustomInputSingup
           label="Label"
           value={formData.label}
@@ -254,7 +275,7 @@ const MyIncome = () => {
           label="Amount"
           value={formData.amount}
           onChangeText={(value) => handleChange(value, "amount")}
-          placeholder="please enter a valid amount"
+          placeholder="amount should be a number 0000.00"
           secure={false}
           errorMessage={formErrors.amount}
         />
@@ -264,7 +285,7 @@ const MyIncome = () => {
         <CustomButton
           onPress={handleSubmit}
           style={styles.button}
-          buttonText={"new Income"}
+          buttonText={"new Expense"}
         />
         {/* Button End */}
       </View>
@@ -281,9 +302,24 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 2,
-    padding: 20,
+    padding: 10,
+    marginTop: 10,
+   
   },
   button: {
     marginTop: 20,
   },
+categorie:{
+    color: "#E0AA3E",
+    fontSize: 18,
+    fontWeight: "bold",
+    marginBottom: 10,
+
+},
+   
+SelectList:{
+marginBottom: 20,
+
+}
+     
 });

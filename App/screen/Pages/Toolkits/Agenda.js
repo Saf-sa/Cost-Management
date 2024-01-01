@@ -41,7 +41,7 @@ async function createCalendar() {
 export default function Agenda() {
   const [selectedStartDate, setSelectedStartDate] = useState(null);
   const [selectedEndDate, setSelectedEndDate] = useState(null);
-  const [contractEmail, setSelectedContractEmail] = useState("");
+  const [selectedEmail, setSelectedEmail] = useState("");
   const [selectedEndtDate, setselectedEndDate] = useState("");
   const [contractNameText, setcontractNameText] = useState('');
 
@@ -74,9 +74,6 @@ useEffect(() => {
   }, []);
 
   return (
-
-     
-
     
     <View style={styles.container}>
        
@@ -100,19 +97,23 @@ useEffect(() => {
 
         style={styles.input}
       />
-       <TextInput
-        onChangeText={setSelectedContractEmail}
-        value={contractEmail}
-        placeholder="           Enter the name of your friend"
+
+          <TextInput
+        onChangeText={setSelectedEmail}
+        value={selectedEmail}
+        placeholder="           Enter email of your Contract"
+
         style={styles.input}
       />
+  
       
-       <Text style={styles.nameText}>contract End: {name}</Text>
+      
       <CalendarPicker onDateChange={setSelectedStartDate} />
       
         <Text style={styles.dateText}>contract Start: {startDate}</Text>
-        <Text style={styles.dateText}>contract End: {selectedEndDate}</Text>
-        <Text style={styles.emailText}>contract End: {email}</Text>
+        <Text style={styles.endText}>contract End: {selectedEndDate}</Text>
+        <Text style={styles.emailText}>contract Email: {selectedEmail}</Text>
+    
        
 
      
