@@ -24,10 +24,41 @@ import axios from "axios";
     const [balance, setBalance] = useState("");
     const [totalIncome, setTotalIncome] = useState("");
     const [totalExpense, setTotalExpense] = useState("");
-    const [username, setUsername] = useState("");
+
     const navigation = useNavigation();
     
+      useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const jsonValue = await AsyncStorage.getItem('@storage_Key');
+        if (jsonValue != null) {
+          const user = JSON.parse(jsonValue);
+          setFirstName(user.firstName); // Update this line to use setFirstName
+        }
+      } catch (e) {
+        console.error("Failed to fetch user data from storage");
+      }
+    };
 
+    fetchUserData();
+  }, []);
+
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const jsonValue = await AsyncStorage.getItem('@storage_Key');
+        if (jsonValue != null) {
+          const user = JSON.parse(jsonValue);
+          setFirstName(user.firstName); // Update this line to use setFirstName
+        }
+      } catch (e) {
+        console.error("Failed to fetch user data from storage");
+      }
+    };
+
+    fetchUserData();
+  }, []);
 
 
     //get Date Today default
