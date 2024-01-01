@@ -143,9 +143,10 @@ const MyIncome = () => {
     const data = () => {
     return [
    "Salary",
-        "taxes refund",
+        "Salary",
+        "Taxes refund",
         "Bonus",
-        "loan",
+        "Loan",
         "Sales",
         "Gift",
         "Rent",
