@@ -232,7 +232,7 @@ const MyIncome = () => {
 
   return (
     <View style={styles.root}>
-      <AuthHeader subtext="Please Add a new expense" />
+      <AuthHeader subtext="Please add a new Income" />
       <View style={styles.content}>
          <ScrollView style={styles.scrollView}>
         <CustomInputSingup
@@ -313,9 +313,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
    
   },
-  scrollView: {
-    marginHorizontal: 1
-  },
+
 
   categorie:{
     color: "#E0AA3E",

@@ -135,11 +135,13 @@ const Login = () => {
         console.log(response.data);
 
         // Store user data in AsyncStorage
-        const user = {
-          id: response.data.user, // replace with actual user id key
-          token: response.data.token, // replace with actual user token key
-        };
-     
+     const user = {
+ id: response.data._id, // replace with actual user id key
+  token: response.data.token, // replace with actual user token key
+  firstName: response.data.firstName, // replace with actual user firstName key
+  lastName: response.data.lastName, // replace with actual user lastName key
+};
+     console.log("user stored in asyncSorage", user);
         try {
           const jsonValue = JSON.stringify(user);
           await AsyncStorage.setItem("@storage_Key", jsonValue);
@@ -169,7 +171,7 @@ const Login = () => {
         console.error("No response from server");
       }
     } catch (err) {
-      console.log("testy passowrd", err.response ? err.response.data.message : err);
+      console.log("testy passowrd", err.response ? err.response.data : err);
     
       Toast.show({
         type: "error",

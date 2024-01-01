@@ -53,7 +53,7 @@ export default function Agenda() {
     ? selectedStartDate.format('YYYY-MM-DD').toString()
     : '';
 
-    const email = contractEmail;
+    const email = selectedEmail;
 
 
     const name = contractNameText;

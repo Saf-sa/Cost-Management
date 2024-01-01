@@ -15,6 +15,7 @@ import Icon from "../../shared/components/IncomExpenseComponent/Icon";
 import AppText from "../../shared/components/uiApp/AppText";
 import UserNav from "../nav/UserNav";
 import Screen2 from "../../shared/components/Screen";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import axios from "axios";
 
@@ -26,6 +27,9 @@ import axios from "axios";
     const [username, setUsername] = useState("");
     const navigation = useNavigation();
     
+
+
+
     //get Date Today default
     const dateToday = moment(new Date()).format("YYYYMMDD");
     const yesterday = moment().subtract(1, "days");
@@ -41,7 +45,7 @@ import axios from "axios";
     });
 
     //get Category when Clicked
-    const [firstName, setFirstName] = useState("All");
+    const [firstName, setFirstName] = useState("");
     const setSelectCategoryByName = (firstName) => {
       if (firstName === "All") {
         dispatch({ type: "all", payload: flatListItems });
@@ -65,8 +69,7 @@ import axios from "axios";
       <Screen2>
         <UserNav
           image={require("../../assets/iconPerson.png")}
-          title="Welcome Back" 
-          firstName = {firstName}
+         title={`Welcome Back ${firstName}`}
           /* subtitle="Titanium" */
         />
         <LinearGradient

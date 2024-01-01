@@ -5,7 +5,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Login from "./screen/auth/login";
 import Signup from "./screen/auth/signup";
 import Reset from "./screen/auth/reset";
-import Start from "./screen/Pages/start";
+
 import ResetPassword from "./screen/auth/resetPassword";
 import BottomHomeNav from "../App/screen/nav/BottomHomeNav";
 import Dashboard from "./screen//Pages/Dashboard";
@@ -47,7 +47,7 @@ export default function App() {
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Signup" component={Signup} />
         <Stack.Screen name="Reset" component={Reset} />
-        <Stack.Screen name="Start" component={Start} />
+
         <Stack.Screen name="ResetPassword" component={ResetPassword} />
         <Stack.Screen name="BottomHomeNav" component={BottomHomeNav} />
         <Stack.Screen name="ViewAllTransactions" component={ViewAllTransac} />

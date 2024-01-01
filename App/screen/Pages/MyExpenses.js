@@ -8,6 +8,7 @@ import CustomButton from "../../shared/components/ui/CustomButton";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import moment from "moment";
 import { SelectList } from 'react-native-dropdown-select-list';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 /*  import { REACT_APP_BE_URL } from "../../.env"; */
 import axios from "axios";
@@ -201,6 +202,10 @@ const MyExpense = () => {
     }
 
     try {
+        // Récupérer les données de l'utilisateur à partir de AsyncStorage
+      const user = JSON.parse(await AsyncStorage.getItem("user"));
+
+      console.log("user", user);
       const response = await axios.post(
         `http://localhost:5555/api/users/expenses`,
         formData
@@ -230,7 +235,7 @@ const MyExpense = () => {
 
   return (
     <View style={styles.root}>
-      <AuthHeader subtext="Please Add a new expense" />
+      <AuthHeader subtext="Please add a new expense" />
       <View style={styles.content}>
          <ScrollView style={styles.scrollView}>
         <CustomInputSingup
@@ -283,14 +288,15 @@ const MyExpense = () => {
         {/* input area  End*/}
 
         {/* Button Start */}
-        <CustomButton
+    
+        {/* Button End */}
+        </ScrollView>
+      </View>
+          <CustomButton
           onPress={handleSubmit}
           style={styles.button}
           buttonText={"new Expense"}
         />
-        {/* Button End */}
-        </ScrollView>
-      </View>
       <Toast />
     </View>
   );
