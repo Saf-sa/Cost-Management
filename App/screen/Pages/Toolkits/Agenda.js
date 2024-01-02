@@ -62,7 +62,7 @@ export default function Agenda() {
   return (
     
     <View style={styles.container}>
-       
+        <CalendarPicker onDateChange={setSelectedStartDate} />
       <StatusBar style="auto" />
          <TextInput
         onChangeText={setcontractNameText}
@@ -94,7 +94,7 @@ export default function Agenda() {
   
       
       
-      <CalendarPicker onDateChange={setSelectedStartDate} />
+     
       
         <Text style={styles.dateText}>contract Start: {startDate}</Text>
         <Text style={styles.endText}>contract End: {selectedEndDate}</Text>
