@@ -6,6 +6,7 @@ import CalendarPicker from 'react-native-calendar-picker';
 import  {Calendar} from 'expo-calendar';
 import AuthHeader from "../../../shared/components/AuthHeader";
 import CustomInputSingup from "../../../shared/components/ui/CustomInputSignup";
+import CustomButton from "../../../shared/components/ui/CustomButton";
 
 
 async function getDefaultCalendarSource() {
@@ -94,13 +95,21 @@ export default function Agenda() {
         style={styles.input}
       />
   
-      
+              <CustomButton
+          onPress={createCalendar
+          }
+          style={styles.button}
+          colors={["#f9f295", "#E0AA3E", "#F7EF8A", "#B88A44"]}
+          start={{ x: 0.1, y: 0.1 }}
+          end={{ x: 1, y: 3 }}
+          buttonText={"add Event"}
+        />
       
      
       
-        <Text style={styles.dateText}>contract Start: {startDate}</Text>
+{/*         <Text style={styles.dateText}>contract Start: {startDate}</Text>
         <Text style={styles.endText}>contract End: {selectedEndDate}</Text>
-        <Text style={styles.emailText}>contract Email: {selectedEmail}</Text>
+        <Text style={styles.emailText}>contract Email: {selectedEmail}</Text> */}
     
        
 
@@ -113,15 +122,14 @@ export default function Agenda() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 2,
+    flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
     padding: 20,
+    paddingBottom: 20,
   },
 
-
- 
   input: {
     height: 50,
     margin: 12,

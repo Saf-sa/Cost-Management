@@ -176,7 +176,7 @@ const Login = () => {
       Toast.show({
         type: "error",
         position: "bottom",
-        text1: err.response ? err.response.data.message : "Error",
+        text1: err.response ? err.response.data : "Error",
         visibilityTime: 3000,
         autoHide: true,
       });
