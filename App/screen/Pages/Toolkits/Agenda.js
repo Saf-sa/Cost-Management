@@ -5,6 +5,7 @@ import { StyleSheet, Text, View, TextInput } from 'react-native';
 import CalendarPicker from 'react-native-calendar-picker';
 import  {Calendar} from 'expo-calendar';
 import AuthHeader from "../../../shared/components/AuthHeader";
+import CustomInputSingup from "../../../shared/components/ui/CustomInputSignup";
 
 
 async function getDefaultCalendarSource() {
@@ -62,21 +63,22 @@ export default function Agenda() {
   return (
     
     <View style={styles.container}>
+    
         <CalendarPicker onDateChange={setSelectedStartDate} />
       <StatusBar style="auto" />
-         <TextInput
+         <CustomInputSingup
         onChangeText={setcontractNameText}
         value={contractNameText}
         placeholder="           Enter the name of your Contract"
         style={styles.input}
       />
-          <TextInput
+          <CustomInputSingup
         onChangeText={setSelectedStartDate}
         value={selectedStartDate}
         placeholder="           Enter new contract start date"
         style={styles.input}
       />
-       <TextInput
+       <CustomInputSingup
         onChangeText={setSelectedEndDate}
         value={selectedEndDate}
         placeholder="           Enter new contract expire date"
@@ -84,7 +86,7 @@ export default function Agenda() {
         style={styles.input}
       />
 
-          <TextInput
+          <CustomInputSingup
         onChangeText={setSelectedEmail}
         value={selectedEmail}
         placeholder="           Enter email of your Contract"
@@ -111,11 +113,14 @@ export default function Agenda() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 2,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    padding: 20,
   },
+
+
  
   input: {
     height: 50,
