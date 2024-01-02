@@ -374,7 +374,7 @@ import axios from "axios";
           <TouchableOpacity onPress={() => navigation.push("Calculator")}>
             <Icon
               name="calculator"
-              size={66}
+              size={68}
               
              
              
@@ -402,7 +402,7 @@ import axios from "axios";
           <TouchableOpacity onPress={() => navigation.push("Download")}>
             <Icon
               name="download"
-              size={66}
+              size={68}
              
              
             />
