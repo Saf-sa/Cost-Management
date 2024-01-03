@@ -80,7 +80,34 @@ export default function AddReminder() {
                 }
             </View> 
 
-      
+  <CustomInputSingup
+        onChangeText={setContractName}
+        value={contractName}
+        placeholder="           Enter the Name of your Contract"
+
+        style={styles.input}
+      />
+  
+
+             <CustomInputSingup
+        onChangeText={setSelectedLabel}
+        value={selectedLabel}
+        placeholder="           Enter email of your Contract"
+
+        style={styles.input}
+      />
+             <CustomInputSingup
+        onChangeText={setSelectedEmail}
+        value={selectedEmail}
+        placeholder="           Enter email of your Contract"
+
+        style={styles.input}
+      />
+
+       
+
+
+            
         </View>
     );
 }
@@ -99,5 +126,31 @@ const styles = StyleSheet.create({
         justifyContent: "space-around",
         width: "60%",
     },
-   
+    expireDate: {
+        flex: 8,
+        marginTop: 20,
+        flexDirection: "row",
+        justifyContent: "space-around",
+        width: "60%",
+    },
+    datePart: {
+      
+        width: 100,
+        alignItems: "center",
+    },
+    content: {
+        flex: 20,
+        padding: 10,
+        marginTop: 10,
+       
+    },
+    title: {
+     
+        fontSize: 15,
+        fontWeight: "100",
+        marginBottom: 5,
+    },
+    digit: {
+        fontSize: 20,
+    } 
 });
