@@ -7,7 +7,8 @@ import CustomButton from "../../../shared/components/ui/CustomButton";
 
 export default function AddReminder() {
     const [date, setDate] = useState();
-   
+    const [expireDate, setExpireDate] = useState(false);
+    
     const navigation = useNavigation();
 
 
@@ -46,7 +47,8 @@ export default function AddReminder() {
                 }
                 
             </View>
-              
+         
+            
         </View>
     );
 }
@@ -58,5 +60,12 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "space-around",
     },
- 
+   date: {
+    flex: 2,
+        marginTop: 20,
+        flexDirection: "row",
+        justifyContent: "space-around",
+        width: "60%",
+    },
+   
 });
