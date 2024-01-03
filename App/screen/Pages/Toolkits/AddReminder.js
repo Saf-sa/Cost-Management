@@ -105,7 +105,14 @@ export default function AddReminder() {
       />
 
        
-
+   <View style={styles.content}>
+        <CustomButton
+          style={styles.button}
+          buttonText={"  Submit   "}
+          onPress={() => navigation.navigate("Reminder")}
+        />
+         
+</View>
 
             
         </View>
