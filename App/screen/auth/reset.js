@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import Toast from "react-native-toast-message";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation , ScrollView,} from "@react-navigation/native";
 import AuthHeader from "../../shared/components/AuthHeader";
 import CustomInputLog from "../../shared/components/ui/CustomInputLog";
 import CustomButton from "../../shared/components/ui/CustomButton";

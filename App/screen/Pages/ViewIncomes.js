@@ -4,6 +4,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   DatePickerIOS,
+  ScrollView,
 } from "react-native";
 import React, { useState, useRef, useEffect } from "react";
 import Toast from "react-native-toast-message";

@@ -131,7 +131,7 @@ npm i moment
 
 npm install formik --save
 
-20- datetimepicker (ross platform react native date picker component for android and ios. It includes 3 different modes: date, time, and datetime. )
+20- datetimepicker (ross platform react native Time date picker component for android and ios. It includes 3 different modes: date, time, and datetime. )
 https://github.com/react-native-datetimepicker/datetimepicker
 
 npm install @react-native-community/datetimepicker --save
@@ -189,3 +189,19 @@ expo install expo-calendar
 32 - install react-native-dropdown-select-list
 
 npm i react-native-dropdown-select-list
+
+33 - install react-native-date-picker
+
+npm install react-native-date-picker
+
+34 -  install @dietime/react-native-date-picker --save
+
+npm install @dietime/react-native-date-picker --save
+
+35 -install   @mui/x-date-pickers
+
+npm i @mui/x-date-pickers
+
+npm i @emotion/styled
+
+npm i @emotion/react

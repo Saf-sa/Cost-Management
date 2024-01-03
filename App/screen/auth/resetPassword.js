@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet } from "react-native";
 import React, { useState, useRef, useEffect } from "react";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation,   ScrollView, } from "@react-navigation/native";
 import Toast from "react-native-toast-message";
 import AuthHeader from "../../shared/components/AuthHeader";
 import CustomInputSingup from "../../shared/components/ui/CustomInputSignup";

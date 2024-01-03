@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import Toast from "react-native-toast-message";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet,  ScrollView, } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import AuthHeader from "../../shared/components/AuthHeader";
 import CustomInputLog from "../../shared/components/ui/CustomInputLog";
@@ -111,7 +111,7 @@ const Login = () => {
       Toast.show({
         type: "error",
         position: "bottom",
-        text1: "Please fill all the fields",
+        text1: "invalid email",
         visibilityTime: 3000,
         autoHide: true,
       });

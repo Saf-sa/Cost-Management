@@ -1,8 +1,10 @@
 
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect,  } from 'react';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { StyleSheet, Text, View, TextInput,   ScrollView, } from 'react-native';
+import { useNavigation } from "@react-navigation/native";
 import CalendarPicker from 'react-native-calendar-picker';
+import DatePicker from 'react-native-date-picker'
 import  {Calendar} from 'expo-calendar';
 import AuthHeader from "../../../shared/components/AuthHeader";
 import CustomInputSingup from "../../../shared/components/ui/CustomInputSignup";
@@ -60,28 +62,31 @@ export default function Reminder() {
 
     const name = contractNameText;
 
+  const navigation = useNavigation();
 
   return (
     
     <View style={styles.container}>
     
-        <CalendarPicker onDateChange={setSelectedStartDate} />
+        <CalendarPicker onDateChange={setSelectedStartDate } />
       <StatusBar style="auto" />
+      
          <CustomInputSingup
         onChangeText={setSelectedStartDate}
-        value={contractNameText}
+        value={startDate}
         placeholder="           Enter the name of your Contract"
         style={styles.input}
       />
           <CustomInputSingup
-        onChangeText={setSelectedStartDate}
-        value={selectedStartDate}
+          onDateChange={setSelectedEndDate}
+       
+        value={endDate}
         placeholder="           Enter new contract start date"
         style={styles.input}
       />
        <CustomInputSingup
         onChangeText={setSelectedEndDate}
-        value={selectedEndDate}
+        value={endDate}
         placeholder="           Enter new contract expire date"
 
         style={styles.input}
@@ -95,14 +100,10 @@ export default function Reminder() {
         style={styles.input}
       />
   
-              <CustomButton
-          onPress={createCalendar
-          }
+        <CustomButton
           style={styles.button}
-          colors={["#f9f295", "#E0AA3E", "#F7EF8A", "#B88A44"]}
-          start={{ x: 0.1, y: 0.1 }}
-          end={{ x: 1, y: 3 }}
-          buttonText={"add new Event"}
+          buttonText={"Add New Reminder"}
+          onPress={() => navigation.navigate("AddReminder")}
         />
       
      

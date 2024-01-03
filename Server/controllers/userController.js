@@ -45,7 +45,10 @@ const userLogin = async (req, res) => {
   res.json({
     _id: user._id,
     email: user.email,
+    firstName: user.firstName,
+    lastName: user.lastName,
     token: token,
+
   });
   console.log(user);
 };
@@ -109,6 +112,8 @@ const registerUser = async (req, res, next) => {
 
     return res.status(201).json({
       _id: result._id,
+      firstName: result.firstName,
+      lastName: result.lastName,
       email: result.email,
       token: generateToken(result._id),
     });
