@@ -25,9 +25,8 @@ export default function AddReminder() {
                 onChange={(date) => setDate(date)}
                 format={"yyyy-mm-dd"}
             />
-            
-            <Text style={styles.title}> Contract Start Date</Text>
-            <View style={styles.date}>
+     <Text style={styles.title}> Contract Start Date</Text>
+      <View style={styles.date}>
                 
                 {
                     [
@@ -49,7 +48,7 @@ export default function AddReminder() {
                 }
                 
             </View>
-           <DatePicker
+          <DatePicker
                 value={expireDate}
                 width={"80%"}
                 fontSize={19}
@@ -78,9 +77,9 @@ export default function AddReminder() {
                         )
                     })
                 }
-            </View> 
+            </View>
 
-  <CustomInputSingup
+      <CustomInputSingup
         onChangeText={setContractName}
         value={contractName}
         placeholder="           Enter the Name of your Contract"
@@ -92,7 +91,7 @@ export default function AddReminder() {
              <CustomInputSingup
         onChangeText={setSelectedLabel}
         value={selectedLabel}
-        placeholder="           Enter email of your Contract"
+        placeholder="           Enter a description of your Contract"
 
         style={styles.input}
       />
@@ -108,12 +107,14 @@ export default function AddReminder() {
    <View style={styles.content}>
         <CustomButton
           style={styles.button}
-          buttonText={"  Submit   "}
+          buttonText={"  Submit a new reminder "
+          
+          }
           onPress={() => navigation.navigate("Reminder")}
         />
          
 </View>
-
+ 
             
         </View>
     );
@@ -125,9 +126,10 @@ const styles = StyleSheet.create({
         backgroundColor: "#fff",
         alignItems: "center",
         justifyContent: "space-around",
+        
     },
-   date: {
-    flex: 2,
+    date: {
+    flex: 10,
         marginTop: 20,
         flexDirection: "row",
         justifyContent: "space-around",
@@ -148,9 +150,19 @@ const styles = StyleSheet.create({
     content: {
         flex: 20,
         padding: 10,
-        marginTop: 10,
-       
+        marginTop: 20,
+        alignItems: "center",
+        justifyContent: "center",
+    
     },
+
+      input: {
+    height: 50,
+    margin: 12,
+    width: 300,
+    borderWidth: 1,
+    borderRadius: 10, 
+  },
     title: {
      
         fontSize: 15,
@@ -159,5 +171,6 @@ const styles = StyleSheet.create({
     },
     digit: {
         fontSize: 20,
-    } 
+    }
+  
 });
