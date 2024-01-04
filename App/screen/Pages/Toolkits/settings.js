@@ -6,7 +6,7 @@ import {
   Toast,
   useWindowDimensions,
   TouchableOpacity,
-   ScrollView,
+  ScrollView,
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
@@ -92,20 +92,100 @@ const Settings = () => {
    
          
         />
+          <LinearGradient
+          style={styles.parentContainer}
+          colors={["#f9f295", "#E0AA3E", "#F7EF8A", "#B88A44"]}
+          start={{ x: 0.1, y: 0.1 }}
+          end={{ x: 1, y: 3 }}
+        >
+          <View style={styles.balanceContainer}>
+            <AppText style={{ color: "black", fontSize: 20, marginBottom: 13 }}>
+              PREMIUM ACCOUNT </AppText>
+              <View style={styles.UserContainer}>
+
+                <AppText style={{ color: "black", fontSize: 18, marginBottom: 10,}}>first Name : {firstName} </AppText>
+
+                <AppText style={{ color: "black", fontSize: 18, marginBottom: 10  }}>Last Name : {lastName}  </AppText>
+
+                <AppText style={{ color: "black", fontSize: 18, marginBottom: 10  }}>Email : {email}  </AppText>
+
+                <AppText style={{ color: "black", fontSize: 18 }}>Password : **********  </AppText>
+            </View>
+    
+          </View>
+
+        </LinearGradient>
+          <View 
+            style={{
+              flex: "culumn",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: 30,
+              
+            }}
+          >
+      
+          <Text  style={styles.settings}  onPress={() => navigation.navigate("Reset")} >
+         change your Password ?
+        </Text>
+
+        <Text  style={styles.settings}  onPress={() => navigation.navigate("Dashboard")} >
+         Ususcribe Newsletter ?
+        </Text>
+
+        <Text  style={styles.settings}  onPress={() => navigation.navigate("Login")} >
+         Delete Your Account?
+        </Text>
+
+        <Text  style={styles.settings}  onPress={() => navigation.navigate("Login")} >
+         Contact Us?
+        </Text>
+
+            </View>
          </Screen2>
+         
   )
 }
 
 const styles = StyleSheet.create({
+  parentContainer: {
+    flexDirection: "column",
+    borderRadius: 10,
+    marginHorizontal: 20,
+    marginVertical: 5,
+   backgroundColor: '#fff',
+    shadowColor: "grey",
+    shadowOpacity: 0.05,
+    shadowRadius: 2,
+    shadowOffset: {
+      width: 0.8,
+      height: 2,
+    },
+    elevation: 8,
+  },
+  balanceContainer: {
+  
+    justifyContent: "center",
+    alignItems: "center",
+    paddingVertical: 30,
+    width: "100%",
+    
+  },
 
-    title:{
+  settings: {
+   padding: 30,
+    color: "#E0AA3E",
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+  title:{
     top: 90,
     textAlign: "center",
     color: "#E0AA3E",
     fontSize: 20,
     fontWeight: "bold",
   }
+  
+});
 
-  });
-
-export default Settings
+export default Settings;
