@@ -7,6 +7,7 @@ import CustomInputSingup from "../../shared/components/ui/CustomInputSignup";
 import CustomButton from "../../shared/components/ui/CustomButton";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import moment from "moment";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 /*  import { REACT_APP_BE_URL } from "../../.env"; */
 import axios from "axios";
 
@@ -90,6 +91,27 @@ const MyExpense = () => {
     }
 
   };
+
+  useEffect(()=>{
+    const getExpenses = async () => {
+      try {
+          const user = JSON.parse(await AsyncStorage.getItem("@storage_Key"));
+
+        const { data } = await axios.get(
+          `http://localhost:5555/api/users/expenses/`,
+          {
+            headers: {
+              Authorization: `Bearer ${user.token}`,
+            },
+          }
+        );
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getExpenses();
+  })
 
   return (
     <View style={styles.root}>

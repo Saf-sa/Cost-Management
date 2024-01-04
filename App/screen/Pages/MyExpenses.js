@@ -203,12 +203,18 @@ const MyExpense = () => {
 
     try {
         // Récupérer les données de l'utilisateur à partir de AsyncStorage
-      const user = JSON.parse(await AsyncStorage.getItem("user"));
+      const user = JSON.parse(await AsyncStorage.getItem("@storage_Key"));
+      // await AsyncStorage.setItem("@storage_Key", jsonValue);
 
-      console.log("user", user);
+      console.log("user", user.token);
       const response = await axios.post(
         `http://localhost:5555/api/users/expenses`,
-        formData
+        formData,
+        {
+          headers: {
+            authorization: `Bearer ${user.token}`,
+          },
+        }
       );
       console.log('data send to BE',response.data.message);
       Toast.show({
@@ -283,7 +289,7 @@ const MyExpense = () => {
           onChangeText={(value) => handleChange(value, "amount")}
           placeholder="amount should be a number 0000.00"
           secure={false}
-          errorMessage={formErrors.amount}
+         errorMessage={formErrors.amount}
         />
         {/* input area  End*/}
 
