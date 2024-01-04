@@ -409,7 +409,7 @@ import axios from "axios";
             />
             <Text style={{ fontSize: 15, paddingTop: 5 }}>Download</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.push("Accounts")}>
+          <TouchableOpacity onPress={() => navigation.push("Settings")}>
             <Icon
               name="user-cog"
               size={66}
@@ -429,11 +429,13 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginHorizontal: 20,
     marginVertical: 5,
+    backgroundColor: '#fff',
     shadowColor: "grey",
     shadowOpacity: 0.05,
+    shadowRadius: 2,
     shadowOffset: {
-      width: 15,
-      height: 15,
+      width: 0.8,
+      height: 2,
     },
     elevation: 8,
   },

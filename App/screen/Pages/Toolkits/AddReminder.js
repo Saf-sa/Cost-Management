@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {Text, View, StyleSheet, Button, ScrollView,} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import DatePicker from "@dietime/react-native-date-picker";
+import moment from "moment";
 import CustomInputSingup from "../../../shared/components/ui/CustomInputSignup";
 import CustomButton from "../../../shared/components/ui/CustomButton";
 

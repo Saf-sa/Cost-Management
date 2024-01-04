@@ -31,8 +31,8 @@ import Calculator from "./screen/Pages/Toolkits/Calculator";
 import Agenda from "./screen/Pages/Toolkits/Agenda";
 import Reminder from "./screen/Pages/Toolkits/Reminder";
 import Download from "./screen/Pages/Toolkits/Download";
-import Accounts from "./screen/Pages/Toolkits/Accounts";
 import AddReminder from "./screen/Pages/Toolkits/AddReminder"; 
+import Settings from "./screen/Pages/Toolkits/Settings";
 
 
 
@@ -74,7 +74,7 @@ export default function App() {
         <Stack.Screen name="Agenda" component={Agenda} />
         <Stack.Screen name="Reminder" component={Reminder} />
         <Stack.Screen name="Download" component={Download} />
-        <Stack.Screen name="Accounts" component={Accounts} />
+        <Stack.Screen name="Settings" component={ Settings} />
         <Stack.Screen name="AddReminder" component={AddReminder} />
       </Stack.Navigator>
     </NavigationContainer>

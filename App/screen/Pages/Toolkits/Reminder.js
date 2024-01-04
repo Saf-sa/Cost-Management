@@ -6,6 +6,7 @@ import { useNavigation } from "@react-navigation/native";
 import CalendarPicker from 'react-native-calendar-picker';
 import DatePicker from 'react-native-date-picker'
 import  {Calendar} from 'expo-calendar';
+import moment from "moment";
 import AuthHeader from "../../../shared/components/AuthHeader";
 import CustomInputSingup from "../../../shared/components/ui/CustomInputSignup";
 import CustomButton from "../../../shared/components/ui/CustomButton";

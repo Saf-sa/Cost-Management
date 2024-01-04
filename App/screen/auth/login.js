@@ -140,6 +140,8 @@ const Login = () => {
   token: response.data.token, // replace with actual user token key
   firstName: response.data.firstName, // replace with actual user firstName key
   lastName: response.data.lastName, // replace with actual user lastName key
+  email: response.data.email, // replace with actual user email key
+  password: response.data.password, // replace with actual user password key
 };
      console.log("user stored in asyncSorage", user);
         try {
@@ -176,7 +178,7 @@ const Login = () => {
       Toast.show({
         type: "error",
         position: "bottom",
-        text1: err.response ? err.response.data : "Error",
+        text1: err.response ? err.response.data.message : "Error",
         visibilityTime: 3000,
         autoHide: true,
       });
@@ -236,6 +238,8 @@ const Login = () => {
 export default Login;
 
 const styles = StyleSheet.create({
+ 
+
   root: {
     flex: 1,
   },
@@ -245,6 +249,11 @@ const styles = StyleSheet.create({
   },
 
   button: {
+    backgroundColor: '#fff',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
     marginTop: 10,
   },
   login: {
