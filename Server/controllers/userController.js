@@ -43,7 +43,7 @@ const userLogin = async (req, res) => {
   console.log(token);
   // Send response
   res.json({
-    _id: user._id,
+    _id: user._id, // verify if i use id in frontend side ?
     email: user.email,
     firstName: user.firstName,
     lastName: user.lastName,

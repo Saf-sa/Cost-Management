@@ -5,6 +5,11 @@ import mongoose from "mongoose";
 // use mongoose to create a schema to define the structure of the data
 const expensesSchema = new mongoose.Schema(
   {
+    expenseOwner:{
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+
+    },
     date: {
       type: String,
       default: Date.now,

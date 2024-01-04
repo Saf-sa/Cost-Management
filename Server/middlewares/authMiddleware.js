@@ -1,28 +1,22 @@
 import User from "../models/userModel.js";
 import matchPassword from "../utils/matchPassword.js";
+import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 const authMiddleware = async (req, res, next) => {
-  const { email, password } = req.body;
 
-  if (!email || !password) {
-    return res.status(400).send("Parameters missing in the body");
+  console.log(req.headers.authorization)
+  const token = req.headers.authorization?.split(" ")[1];
+  if (!token) return res.status(401).send("Access Denied");
+
+  try {
+    const payload = jwt.verify(token, process.env.SECRET_KEY);
+    req.userId = payload.id;
+    next();
   }
 
-  // Find user by email
-  const user = await User.findOne({ email });
-
-  if (!user) {
-    return res.status(400).send("Email does not exist");
+  catch (err) {
+    res.status(400).send("Invalid Token");
   }
-
-  // Check if password matches
-  const isMatch = await bcrypt.compare(password, user.password);
-  if (!isMatch) {
-    return res.status(401).json({ message: "Password not match" });
-  }
-
-  req.user = user;
-  next();
 };
 
 export default authMiddleware;

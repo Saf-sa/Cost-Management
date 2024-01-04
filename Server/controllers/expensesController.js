@@ -17,6 +17,7 @@ const registerExpense = async (req, res, next) => {
     } */
 
     const newExpense = new Expenses({
+      expenseOwner: req.userId,
       date,
       categories,
       label,
