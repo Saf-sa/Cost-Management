@@ -100,7 +100,7 @@ import axios from "axios";
     return (
       <Screen2>
       
-        <Text style={styles.title}>Welcome back {firstName} </Text> 
+        <Text style={styles.title}>Welcome back {firstName} !</Text> 
        
         <UserNav
           image={require("../../assets/iconPerson.png")}
@@ -444,14 +444,14 @@ const styles = StyleSheet.create({
     elevation: 8,
   },
   balanceContainer: {
-
+    
     justifyContent: "center",
     alignItems: "center",
     paddingVertical: 20,
     width: "100%",
   },
   parentIncomeContainer: {
-      
+       
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
@@ -467,6 +467,7 @@ const styles = StyleSheet.create({
   },
 
   dashboard: {
+    
     flexWrap: "wrap",
     flexDirection: "row",
     justifyContent: "space-between",
@@ -476,6 +477,7 @@ const styles = StyleSheet.create({
   },
 
   dashboardCat: {
+    
     flexWrap: "wrap",
 
     fontWeight: 'bold',
@@ -487,6 +489,7 @@ const styles = StyleSheet.create({
   },
 
   dashboardTitle: {
+    flex: 1,
     color: "black",
     fontSize: 15,
     fontWeight: "bold",
