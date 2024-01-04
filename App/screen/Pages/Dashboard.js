@@ -99,9 +99,12 @@ import axios from "axios";
     const [refreshing, setRefreshing] = useState(false);
     return (
       <Screen2>
+      
+        <Text style={styles.title}>Welcome back {firstName} </Text> 
+       
         <UserNav
           image={require("../../assets/iconPerson.png")}
-         title={`Welcome Back ${firstName}`}
+        /*  title={`Welcome Back ${firstName}`} */
           /* subtitle="Titanium" */
         />
         <LinearGradient
@@ -425,10 +428,11 @@ import axios from "axios";
 
 const styles = StyleSheet.create({
   parentContainer: {
+    paddingTop: 0,
     flexDirection: "column",
     borderRadius: 10,
-    marginHorizontal: 20,
-    marginVertical: 5,
+    marginHorizontal: 10,
+    marginVertical: 0,
     backgroundColor: '#fff',
     shadowColor: "grey",
     shadowOpacity: 0.05,
@@ -440,10 +444,10 @@ const styles = StyleSheet.create({
     elevation: 8,
   },
   balanceContainer: {
-  
+
     justifyContent: "center",
     alignItems: "center",
-    paddingVertical: 30,
+    paddingVertical: 20,
     width: "100%",
   },
   parentIncomeContainer: {
@@ -451,8 +455,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingHorizontal: 20,
-    paddingBottom: 20,
+    paddingTop: 3,
+    paddingHorizontal: 30,
+    paddingBottom:25,
   },
   containerRender: {
 
@@ -465,8 +470,8 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingHorizontal: 20,
-    marginTop: 5,
+    paddingHorizontal: 10,
+    marginTop: 1,
     alignItems: "center",
   },
 
@@ -476,7 +481,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingHorizontal: 20,
+    paddingHorizontal: 10,
     marginTop: 5,
     alignItems: "center",
   },
@@ -498,11 +503,19 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontSize: 15,
     paddingTop: 5,
-    marginBottom: 10,
+    marginBottom: 20,
   },
   icon: {
     justifyContent: "center",
   },
+    title:{
+    
+    top: 95,
+    textAlign: "center",
+    color: "#E0AA3E",
+    fontSize: 20,
+    fontWeight: "bold",
+  }
 });
 
 export default Dashboard;
