@@ -22,8 +22,6 @@ const isValidDate = (date) => {};
 
 const isValidCategories = (categories) => {};
 
-const isValidformOtherCategories = (otherCategories) => {};
-
 const isValidlabel = (label) => {};
 
 const isValidAmount = (amount) => {};
@@ -34,7 +32,6 @@ const formIsValid = (DataObj) => {
     Object.values(DataObj).every((value) => value.trim().length > 0) && // check all value is not empty
     isValidDate(DataObj.date) &&
     isValidCategories(DataObj.categories) &&
-    isValidformOtherCategories(DataObj.otherCategories) &&
     isValidlabel(DataObj.label) &&
     isValidAmount(DataObj.amount)
   );
@@ -51,7 +48,6 @@ const MyExpense = () => {
   const [formErrors, setFormErrors] = useState({
     date: null,
     categories: null,
-    otherCategories: null,
     label: null,
     amount: null,
   });
@@ -143,17 +139,18 @@ const MyExpense = () => {
   };
     const data = () => {
     return [
-    "House",
-    "Transport",
-    "Clothes",
-    "Studies",
-    "Invoice",
-    "Taxs",
-    "Hobbies",
-    "Money",
-    "MyEpargne",
-    "Holiday",
-    "Other", 
+        "House",
+        "Clothe",
+        "Food",
+        "Transport",
+        "Studie",
+        "Invoice",
+        "Tax",
+        "Hobbie",
+        "Money",
+        "MyEpargne",
+        "Holiday",
+        "Other",
     ] 
 
     }

@@ -20,8 +20,6 @@ const isValidDate = (date) => {};
 
 const isValidCategories = (categories) => {};
 
-const isValidformOtherCategories = (otherCategories) => {};
-
 const isValidlabel = (label) => {};
 
 const isValidAmount = (amount) => {};
@@ -32,7 +30,6 @@ const formIsValid = (DataObj) => {
     Object.values(DataObj).every((value) => value.trim().length > 0) && // check all value is not empty
     isValidDate(DataObj.date) &&
     isValidCategories(DataObj.categories) &&
-    isValidformOtherCategories(DataObj.otherCategories) &&
     isValidlabel(DataObj.label) &&
     isValidAmount(DataObj.amount)
   );
@@ -41,14 +38,12 @@ const formIsValid = (DataObj) => {
 const MyExpense = () => {
   const [date, setDate] = useState("");
   const [categories, setCategories] = useState("");
-  const [otherCategories, setOtherCategories] = useState("");
   const [label, setLabel] = useState("");
   const [amount, setAmount] = useState("");
   const navigation = useNavigation();
   const [formErrors, setFormErrors] = useState({
     date: null,
     categories: null,
-    otherCategories: null,
     label: null,
     amount: null,
   });
@@ -56,7 +51,6 @@ const MyExpense = () => {
   const [formData, setFormData] = useState({
     date: null,
     categories: null,
-    otherCategories: "",
     label: "",
     amount: "",
   });
@@ -74,12 +68,11 @@ const MyExpense = () => {
     setFormData({
       date: date,
       categories: categories,
-      otherCategories: categories,
       label: label,
       amount: amount,
     });
 
-    if (!formIsValid(date, categories, otherCategories, label, amount)) {
+    if (!formIsValid(date, categories, label, amount)) {
       Toast.show({
         type: "success",
         position: "bottom",
@@ -126,12 +119,6 @@ const MyExpense = () => {
         <CustomInputSingup
           label="Date"
           value={formData.categories}
-          onChangeText={(value) => handleChange(value, "Date")}
-          secure={false}
-        />
-        <CustomInputSingup
-          label="Date"
-          value={formData.otherCategories}
           onChangeText={(value) => handleChange(value, "Date")}
           secure={false}
         />
