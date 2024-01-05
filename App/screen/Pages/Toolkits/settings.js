@@ -26,7 +26,26 @@ const Settings = () => {
 
   const navigation = useNavigation();
 
-   //get Date Today default
+ 
+      useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const jsonValue = await AsyncStorage.getItem('@storage_Key');
+        if (jsonValue != null) {
+          const user = JSON.parse(jsonValue);
+          setFirstName(user.firstName); // Update this line to use setFirstName
+          setLastName(user.lastName); // Update this line to use setFirstName
+          setEmail(user.email); // Update this line to use setFirstName
+          setPassword(user.password); // Update this line to use setFirstName
+        }
+      } catch (e) {
+        console.error("Failed to fetch user data from storage");
+      }
+    };
+
+    fetchUserData();
+  }, []);
+
    
     const [formErrors, setFormErrors] = useState({
       firstName: null,
@@ -86,7 +105,7 @@ const Settings = () => {
 
   return (
     <Screen2>
-        <Text style={styles.title}>Update your Settings {/* {firstName} */} </Text> 
+        <Text style={styles.title}>Update your Settings  {firstName} </Text> 
         <UserNav 
           image={require("../../../assets/iconPerson.png")}
    
