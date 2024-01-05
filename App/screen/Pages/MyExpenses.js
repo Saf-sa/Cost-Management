@@ -44,7 +44,14 @@ const MyExpense = () => {
 
   const [label, setLabel] = useState("");
   const [amount, setAmount] = useState("");
-  const [selected, setSelected] = React.useState("");
+const [selected, setSelected] = React.useState([]);
+
+useEffect(() => {
+  setFormData((prevState) => ({
+    ...prevState,
+    categories: selected,
+  }));
+}, [selected]);
   const navigation = useNavigation();
   const [formErrors, setFormErrors] = useState({
     date: null,
@@ -56,7 +63,7 @@ const MyExpense = () => {
    
   const [formData, setFormData] = useState({
     date: "",
-    categories: "",
+    categories: [],
     label: "",
     amount: "",
   });
@@ -71,7 +78,7 @@ const MyExpense = () => {
     };
   }, []);
 
- const handleChange = (value, fieldName) => {
+const handleChange = (value, fieldName) => {
   let formattedValue = value;
 
   if (fieldName === "date") {
@@ -85,16 +92,17 @@ const MyExpense = () => {
       console.error("Invalid categories");
       return;
     }
+    setSelected(value); // Mettre à jour l'état 'selected'
     formattedValue = value.map((selected) => selected.value);
-    console.log("formattedValue",value);
+    console.log("formattedValue", formattedValue);
   }
-
 
   setFormData((prevState) => ({
     ...prevState,
     [fieldName]: formattedValue,
   }));
 };
+
 
 
 
@@ -114,29 +122,24 @@ const MyExpense = () => {
     }
   };
   const isValidForm = () => {
-     if (!formIsValid(formData.date)) {
-      updateError(
-        "date",
-        !isValidDate(formData.date) ? "Please enter a valid date" : null
-      );
-    }
-    if (!formIsValid(formData.categories)) {
+  ˇ
+/*     if (!formIsValid(formData.categories)) {
       updateError(
         "categories",
         !isValidCategories(formData.categories)
           ? "Please choose a valid categories"
           : null
       );
-    }
+    } */
 
-    if (!formIsValid(formData.amount)) {
+/*     if (!formIsValid(formData.amount)) {
       updateError(
         "amount",
         !isValidAmount(formData.amount, formData.amount)
           ? "please enter a valid amount"
           : null
       );
-    }
+    } */
   };
     const data = () => {
     return [
@@ -160,7 +163,7 @@ const MyExpense = () => {
     e.preventDefault();
 
     // update formData with form values
-     setFormData({
+    setFormData({
       date: date,
       categories: selected, // Utilisez la valeur sélectionnée
       label: label,
@@ -246,7 +249,7 @@ const MyExpense = () => {
          <ScrollView style={styles.scrollView}>
         <CustomInputSingup
           label="Date"
-          value={formData.date}
+          value={formData.date.someProperty}
           onChangeText={(value) => handleChange(value, "date")}
           placeholder="DD/MM/YYYY"
           secure={false}
@@ -259,7 +262,9 @@ const MyExpense = () => {
         borderColor: '#E0AA3E',
         borderWidth: 1,
         borderRadius: 6,
+        
       }}
+
       
       boxStyles={{borderRadius:6, borderColor:'#E0AA3E',height:40}} //override default styles
       defaultOption={{ value:'Select a categorie'}} 
