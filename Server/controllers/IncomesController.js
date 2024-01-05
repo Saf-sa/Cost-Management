@@ -9,17 +9,14 @@ import Incomes from "../models/incomeModel.js";
 const registerIncome = async (req, res, next) => {
   try {
     console.log(" first test", req.body);
-    const { date, categories, otherCategories, label, amount } = req.body;
+    const { date, categories, label, amount } = req.body;
 
-    //check if the userId, categories, amount and date are not empty
-    /*  if (!date || !categories || !otherCategories || !label || !amount) {
-      return res.status(400).json({ message: "Please fill all the fields" });
-    } */
+    console.log("body", req.body);
 
     const newIncome = new Incomes({
+      incomeOwner: req.userId,
       date,
       categories,
-      otherCategories,
       label,
       amount,
     });
