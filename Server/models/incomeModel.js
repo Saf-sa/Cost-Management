@@ -3,13 +3,18 @@ import mongoose from "mongoose";
 // use mongoose to create a schema to define the structure of the data
 const incomesSchema = new mongoose.Schema(
   {
+     incomeOwner:{
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+
+    },
     date: {
       type: String,
       default: Date,
       required: true,
     },
     categories: {
-      type: String,
+       type: [String],
       enum: [
         "Salary",
         "Taxes refund",

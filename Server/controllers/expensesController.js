@@ -11,10 +11,7 @@ const registerExpense = async (req, res, next) => {
     console.log(" first test", req.body);
     const { date, categories, label, amount } = req.body;
 
-    //check if the userId, categories, amount and date are not empty
-    /*  if (!date || !categories || !otherCategories || !label || !amount) {
-      return res.status(400).json({ message: "Please fill all the fields" });
-    } */
+    console.log("body", req.body);
 
     const newExpense = new Expenses({
       expenseOwner: req.userId,
