@@ -32,6 +32,7 @@ const formIsValid = (DataObj) => {
     Object.values(DataObj).every((value) => value.trim().length > 0) && // check all value is not empty
     isValidDate(DataObj.date) &&
     isValidCategories(DataObj.categories) &&
+
     isValidlabel(DataObj.label) &&
     isValidAmount(DataObj.amount)
   );
@@ -213,7 +214,9 @@ const MyExpense = () => {
           },
         }
       );
-      console.log('data send to BE',response.data.message);
+      console.log('data send to BE',response.data);
+      
+      
       Toast.show({
         type: "success",
         position: "bottom",
@@ -259,8 +262,9 @@ const MyExpense = () => {
       }}
       
       boxStyles={{borderRadius:6, borderColor:'#E0AA3E',height:40}} //override default styles
-      defaultOption={{ key:'1', value:'Select a categorie'}} 
+      defaultOption={{ value:'Select a categorie'}} 
           label="Categories"
+          onSelect={() => alert(selected)}
           value={selected}
           onChange={(value) => handleChange(value, "categories")}
           setSelected={(value) => setSelected(value)}
@@ -276,7 +280,7 @@ const MyExpense = () => {
           label="Label"
           value={formData.label}
           onChangeText={(value) => handleChange(value, "label")}
-          placeholder=" min 8 with 1 capital char, 1 number,1 special char "
+          placeholder=" Description of your expense"
           secure={false}
           errorMessage={formErrors.label}
         />
