@@ -29,7 +29,7 @@ router.post("/password", resetPassword);
 router.post("/update", updateUser);
 router.put("/:id", updateUser);
 router.get("/", listUser);
-router.post("/expenses",authMiddleware, registerExpense);
+/* router.post("/expenses",authMiddleware, registerExpense);
 router.get('/expenses',authMiddleware, async (req, res) => {
   
   try {
@@ -40,7 +40,7 @@ router.get('/expenses',authMiddleware, async (req, res) => {
   }
 });
 
-
+ */
 // Import App routes
 
 

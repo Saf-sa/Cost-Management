@@ -91,7 +91,7 @@ const MyExpense = () => {
           const user = JSON.parse(await AsyncStorage.getItem("@storage_Key"));
 
         const { data } = await axios.get(
-          `http://localhost:5555/api/users/expenses/`,
+          `http://localhost:5555/api/expenses/`,
           {
             headers: {
               Authorization: `Bearer ${user.token}`,
