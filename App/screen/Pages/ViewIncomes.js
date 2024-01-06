@@ -14,6 +14,7 @@ import CustomInputSingup from "../../shared/components/ui/CustomInputSignup";
 import CustomButton from "../../shared/components/ui/CustomButton";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import moment from "moment";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 /*  import { REACT_APP_BE_URL } from "../../.env"; */
 import axios from "axios";
 import MyIncome from "./MyIncomes";
@@ -27,8 +28,6 @@ const isValidDate = (date) => {};
 
 const isValidCategories = (categories) => {};
 
-const isValidformOtherCategories = (otherCategories) => {};
-
 const isValidlabel = (label) => {};
 
 const isValidAmount = (amount) => {};
@@ -39,7 +38,6 @@ const formIsValid = (DataObj) => {
     Object.values(DataObj).every((value) => value.trim().length > 0) && // check all value is not empty
     isValidDate(DataObj.date) &&
     isValidCategories(DataObj.categories) &&
-    isValidformOtherCategories(DataObj.otherCategories) &&
     isValidlabel(DataObj.label) &&
     isValidAmount(DataObj.amount)
   );
@@ -48,14 +46,12 @@ const formIsValid = (DataObj) => {
 const MyViewIncome = () => {
   const [date, setDate] = useState("");
   const [categories, setCategories] = useState("");
-  const [otherCategories, setOtherCategories] = useState("");
   const [label, setLabel] = useState("");
   const [amount, setAmount] = useState("");
   const navigation = useNavigation();
   const [formErrors, setFormErrors] = useState({
     date: null,
     categories: null,
-    otherCategories: null,
     label: null,
     amount: null,
   });
@@ -63,10 +59,15 @@ const MyViewIncome = () => {
   const [formData, setFormData] = useState({
     date: null,
     categories: null,
-    otherCategories: "",
     label: "",
     amount: "",
   });
+    const handleChange = (value, type) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [type]: value,
+    }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -75,25 +76,45 @@ const MyViewIncome = () => {
     setFormData({
       date: date,
       categories: categories,
-      otherCategories: categories,
       label: label,
       amount: amount,
     });
 
-    if (!formIsValid(date, categories, otherCategories, label, amount)) {
+    if (!formIsValid(date, categories, label, amount)) {
       Toast.show({
         type: "success",
         position: "bottom",
-        text1: "Please add a new expense",
+        text1: "Please add a new income",
         visibilityTime: 3000,
         autoHide: true,
       });
     }
   };
+  useEffect(()=>{
+    const getIncomes = async () => {
+      try {
+          const user = JSON.parse(await AsyncStorage.getItem("@storage_Key"));
+
+        const { data } = await axios.get(
+          `http://localhost:5555/api/incomes/`,
+          {
+            headers: {
+              Authorization: `Bearer ${user.token}`,
+            },
+          }
+        );
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getIncomes();
+  })
+
 
   return (
     <View style={styles.root}>
-      <AuthHeader subtext="All your Expense" />
+      <AuthHeader subtext="All your Incomes" />
       <View style={styles.content}>
         <CustomInputSingup
           label="Date"
@@ -102,34 +123,28 @@ const MyViewIncome = () => {
           secure={false}
         />
         <CustomInputSingup
-          label="Date"
+          label="categories"
           value={formData.categories}
-          onChangeText={(value) => handleChange(value, "Date")}
+          onChangeText={(value) => handleChange(value, "categories")}
           secure={false}
         />
         <CustomInputSingup
-          label="Date"
-          value={formData.otherCategories}
-          onChangeText={(value) => handleChange(value, "Date")}
-          secure={false}
-        />
-        <CustomInputSingup
-          label="Date"
+          label="label"
           value={formData.label}
-          onChangeText={(value) => handleChange(value, "Date")}
+          onChangeText={(value) => handleChange(value, "label")}
           secure={false}
         />
         <CustomInputSingup
-          label="Date"
+          label="amount"
           value={formData.amount}
-          onChangeText={(value) => handleChange(value, "Date")}
+          onChangeText={(value) => handleChange(value, "amount")}
           secure={false}
         />
         {/* input area  End*/}
         {/* Button Start */}
         <CustomButton
           style={styles.button}
-          buttonText={"Add Income"}
+          buttonText={"Add Expenses"}
           onPress={() => navigation.navigate("MyIncomes")}
         />
         {/* Button End */}
