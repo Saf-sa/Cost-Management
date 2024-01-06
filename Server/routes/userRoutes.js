@@ -15,7 +15,7 @@ import {
 } from "../controllers/userController.js";
 
 import { registerExpense } from "../controllers/ExpensesController.js";
-import { registerIncome } from "../controllers/incomesController.js";
+import { registerIncome } from "../controllers/IncomesController.js";
 
  
 // Initialize express router
@@ -39,10 +39,6 @@ router.get('/expenses',authMiddleware, async (req, res) => {
     return res.status(500).send("Error retrieving expenses");
   }
 });
-router.post("/incomes", registerIncome);
-
-
-
 
 
 // Import App routes
