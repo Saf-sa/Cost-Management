@@ -52,6 +52,7 @@ useEffect(() => {
     categories: selected,
   }));
 }, [selected]);
+
   const navigation = useNavigation();
   const [formErrors, setFormErrors] = useState({
     date: null,
@@ -193,7 +194,7 @@ const handleChange = (value, fieldName) => {
       updateError(
         "label",
         !isValidlabel(formData.label)
-          ? "please enter a a description in label"
+          ? "please enter a description "
           : null
       );
       updateError(
@@ -209,7 +210,7 @@ const handleChange = (value, fieldName) => {
 
       console.log("user", user.token);
       const response = await axios.post(
-        `http://localhost:5555/api/users/expenses`,
+        `http://localhost:5555/api/expenses`,
         formData,
         {
           headers: {

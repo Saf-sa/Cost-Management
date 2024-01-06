@@ -52,6 +52,7 @@ useEffect(() => {
     categories: selected,
   }));
 }, [selected]);
+
   const navigation = useNavigation();
   const [formErrors, setFormErrors] = useState({
     date: null,
@@ -155,6 +156,7 @@ const handleChange = (value, fieldName) => {
         "Gambling",
         "Stocks",
         "Other",
+
     ] 
 
     }
@@ -193,7 +195,7 @@ const handleChange = (value, fieldName) => {
       updateError(
         "label",
         !isValidlabel(formData.label)
-          ? "please enter a a description in label"
+          ? "please enter a description "
           : null
       );
       updateError(
@@ -209,7 +211,7 @@ const handleChange = (value, fieldName) => {
 
       console.log("user", user.token);
       const response = await axios.post(
-        `http://localhost:5555/api/users/expenses`,
+        `http://localhost:5555/api/incomes`,
         formData,
         {
           headers: {
@@ -223,15 +225,15 @@ const handleChange = (value, fieldName) => {
       Toast.show({
         type: "success",
         position: "bottom",
-        text1: "expense created successfully",
+        text1: "income created successfully",
         visibilityTime: 3000,
         autoHide: true,
       });
       setTimeout(() => {
-        navigation.navigate("ViewExpenses");
+        navigation.navigate("ViewIncomes");
       }, 3000);
     } catch (err) {
-      console.log("Test Myexpense", err.response.data);
+      console.log("Test Myincome", err.response.data);
       Toast.show({
         type: "error",
         position: "bottom",
@@ -244,7 +246,7 @@ const handleChange = (value, fieldName) => {
 
   return (
     <View style={styles.root}>
-      <AuthHeader subtext="Please add a new expense" />
+      <AuthHeader subtext="Please add a new income" />
       <View style={styles.content}>
          <ScrollView style={styles.scrollView}>
         <CustomInputSingup
@@ -285,7 +287,7 @@ const handleChange = (value, fieldName) => {
           label="Label"
           value={formData.label}
           onChangeText={(value) => handleChange(value, "label")}
-          placeholder=" Description of your expense"
+          placeholder=" Description of your income"
           secure={false}
           errorMessage={formErrors.label}
         />
@@ -307,7 +309,7 @@ const handleChange = (value, fieldName) => {
           <CustomButton
           onPress={handleSubmit}
           style={styles.button}
-          buttonText={"new Expense"}
+          buttonText={"new Income"}
         />
       <Toast />
     </View>

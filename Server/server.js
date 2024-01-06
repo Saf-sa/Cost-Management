@@ -37,8 +37,8 @@ app.use("/api/users", userRoutes);
 app.use("/api/users/:_id/expenses", userRoutes);
 
 // Routes for expenses
-app.use("/api/incomes", expenseRoutes);
-app.use("/api/incomes/:_id", expenseRoutes);
+app.use("/api/expenses", expenseRoutes);
+app.use("/api/expenses/:_id", expenseRoutes);
 
 // Routes for incomes
 app.use("/api/incomes", incomeRoutes);
@@ -49,4 +49,5 @@ app.use( (error, rea, res, next)=>{
 error.statusCoder = error.statusCode || 500
 error.message = error.message || 'Something went wrong'
 res.status(error.statusCode).send(error.message)
+console.log(error)
 });

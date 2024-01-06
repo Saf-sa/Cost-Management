@@ -144,7 +144,7 @@ const MyViewIncome = () => {
         {/* Button Start */}
         <CustomButton
           style={styles.button}
-          buttonText={"Add Expenses"}
+          buttonText={"Add Income"}
           onPress={() => navigation.navigate("MyIncomes")}
         />
         {/* Button End */}

@@ -15,7 +15,7 @@ const router = express.Router();
 router.post("/",authMiddleware, registerIncome);
 router.get("/", authMiddleware, async (req, res) => {
   try {
-    const incomes = await incomes.find({incomeOwner: req.userId});
+    const incomes = await Incomes.find({incomeOwner: req.userId});
     return res.send({ incomes });
   } catch (error) {
     return res.status(500).send("Error retrieving incomes");
