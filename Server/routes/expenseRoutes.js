@@ -3,9 +3,6 @@ import express from "express";
 import Expenses from "../models/expenseModel.js";
 
 
-
-
-
 // Import userController
 
 import { registerExpense } from "../controllers/ExpensesController.js";
@@ -32,7 +29,7 @@ router.get("/",authMiddleware, async (req, res) => {
 
 
 
-// Import App routes
+
 
 
 export default router;

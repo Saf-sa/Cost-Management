@@ -1,7 +1,6 @@
 import authMiddleware from "../middlewares/authMiddleware.js";
 import express from "express";
 import Incomes from "../models/incomeModel.js";
-const route = express.Router();
 
 // Import userController
 
@@ -13,20 +12,16 @@ const router = express.Router();
 
 // Routes
 
-router.post("/incomes",authMiddleware, registerIncome);
-router.get("/incomes", authMiddleware, async (req, res) => {
+router.post("/",authMiddleware, registerIncome);
+router.get("/", authMiddleware, async (req, res) => {
   try {
-    const incomes = await incomes.find();
+    const incomes = await incomes.find({incomeOwner: req.userId});
     return res.send({ incomes });
   } catch (error) {
     return res.status(500).send("Error retrieving incomes");
   }
 });
 
-
-
-
-// Import App routes
 
 
 export default router;

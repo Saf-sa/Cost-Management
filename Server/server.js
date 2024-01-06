@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import connectDB from "./config/db.js";
 import userRoutes from "./routes/userRoutes.js";
 import expenseRoutes from "./routes/expenseRoutes.js";
+import incomeRoutes from "./routes/incomeRoutes.js";
 import cors from "cors";
 
 // Initialize dotenv
@@ -36,8 +37,12 @@ app.use("/api/users", userRoutes);
 app.use("/api/users/:_id/expenses", userRoutes);
 
 // Routes for expenses
-app.use("/api/expenses", expenseRoutes);
-app.use("/api/expenses/:_id", expenseRoutes);
+app.use("/api/incomes", expenseRoutes);
+app.use("/api/incomes/:_id", expenseRoutes);
+
+// Routes for incomes
+app.use("/api/incomes", incomeRoutes);
+app.use("/api/incomes/:_id", incomeRoutes);
 
 // Error handler
 app.use( (error, rea, res, next)=>{
