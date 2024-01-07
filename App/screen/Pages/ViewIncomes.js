@@ -47,7 +47,7 @@ const ViewIncomes = () => {
     <ScrollView>
       {storedIncomes.map((income, index) => (
         <View key={index} style={styles.incomeContainer}> 
-        {/* Hide types toi show only the value  */}
+        {/* Hide types to show only the value  */}
         
           <Text> {/* Date: */} {income.date}</Text>
           <Text> {/* Categories: */} {income.categories.join(', ')}</Text>
@@ -76,6 +76,5 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
 });
-
 
 export default ViewIncomes;
