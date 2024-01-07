@@ -18,13 +18,26 @@ import axios from "axios";
 //import { API_URL, API_TOKEN } from "@env";
 /*  import { REACT_APP_BE_URL } from "../../.env";  */
 
-const isValidDate = (date) => {};
+const isValidDate = (date) => {
+  // Check if date matches the format DD/MM/YYYY
+  const regex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[012])\/(19|20)\d\d$/;
+  return regex.test(date);
+};
 
-const isValidCategories = (categories) => {};
+const isValidCategories = (categories) => {
+  // Check if categories is not empty
+  return categories !== '';
+};
 
-const isValidlabel = (label) => {};
+const isValidLabel = (label) => {
+  // Check if label is not empty
+  return label !== '';
+};
 
-const isValidAmount = (amount) => {};
+const isValidAmount = (amount) => {
+  // Check if amount is a number
+  return !isNaN(amount);
+};
 
 // check all value is valid
 const formIsValid = (DataObj) => {
@@ -33,7 +46,7 @@ const formIsValid = (DataObj) => {
     isValidDate(DataObj.date) &&
     isValidCategories(DataObj.categories) &&
 
-    isValidlabel(DataObj.label) &&
+    isValidLabel(DataObj.label) &&
     isValidAmount(DataObj.amount)
   );
 };
@@ -41,10 +54,15 @@ const formIsValid = (DataObj) => {
 const MyIncome = () => {
   const [date, setDate] = useState("");
   const [categories, setCategories] = useState("");
-
   const [label, setLabel] = useState("");
   const [amount, setAmount] = useState("");
 const [selected, setSelected] = React.useState([]);
+
+const isValidDate = (date) => {
+  // Check if date matches the format DD/MM/YYYY
+  const regex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[012])\/(19|20)\d\d$/;
+  return regex.test(date);
+};
 
 useEffect(() => {
   setFormData((prevState) => ({
@@ -123,24 +141,41 @@ const handleChange = (value, fieldName) => {
     }
   };
   const isValidForm = () => {
-  ˇ
-/*     if (!formIsValid(formData.categories)) {
+  if (!formIsValid(formData.date)) {
+      updateError(
+        "date",
+        !isValidDate(formData.date) ? "please enter a valid date" : null
+      );
+  };
+
+
+    if (!formIsValid(formData.categories)) {
       updateError(
         "categories",
         !isValidCategories(formData.categories)
           ? "Please choose a valid categories"
           : null
       );
-    } */
+    };
+    
+    if (!formIsValid(formData.label)) {
+      updateError(
+        "label",
+        !isValidLabel(formData.label)
+          ? "please enter a description "
+          : null
+      );
+    };
+    
 
-/*     if (!formIsValid(formData.amount)) {
+    if (!formIsValid(formData.amount)) {
       updateError(
         "amount",
         !isValidAmount(formData.amount, formData.amount)
           ? "please enter a valid amount"
           : null
       );
-    } */
+    }
   };
     const data = () => {
     return [
@@ -181,10 +216,11 @@ const handleChange = (value, fieldName) => {
         autoHide: true,
       });
 
-      updateError(
+/*       updateError(
         "date",
         !isValidDate(formData.date) ? "please enter a valid date" : null
-      );
+      ) */
+
       updateError(
         "categories",
         !isValidCategories(formData.categories)
@@ -194,7 +230,7 @@ const handleChange = (value, fieldName) => {
 
       updateError(
         "label",
-        !isValidlabel(formData.label)
+       !isValidLabel(formData.label)
           ? "please enter a description "
           : null
       );
@@ -301,16 +337,17 @@ const handleChange = (value, fieldName) => {
         />
         {/* input area  End*/}
 
-        {/* Button Start */}
-    
-        {/* Button End */}
+       
         </ScrollView>
       </View>
+
+      {/* Button Start */}
           <CustomButton
           onPress={handleSubmit}
           style={styles.button}
           buttonText={"new Income"}
         />
+         {/* Button End */}
       <Toast />
     </View>
   );
