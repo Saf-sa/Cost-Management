@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   DatePickerIOS,
   ScrollView,
+  FlatList
 } from "react-native";
 import React, { useState, useRef, useEffect } from "react";
 import Toast from "react-native-toast-message";
@@ -24,147 +25,49 @@ import MyIncome from "./MyIncomes";
 //import { API_URL, API_TOKEN } from "@env";
 /*  import { REACT_APP_BE_URL } from "../../.env";  */
 
-const isValidDate = (date) => {};
+const ViewIncomes = () => {
+  const [storedIncomes, setStoredIncomes] = useState([]);
 
-const isValidCategories = (categories) => {};
-
-const isValidlabel = (label) => {};
-
-const isValidAmount = (amount) => {};
-
-// check all value is valid
-const formIsValid = (DataObj) => {
-  return (
-    Object.values(DataObj).every((value) => value.trim().length > 0) && // check all value is not empty
-    isValidDate(DataObj.date) &&
-    isValidCategories(DataObj.categories) &&
-    isValidlabel(DataObj.label) &&
-    isValidAmount(DataObj.amount)
-  );
-};
-//
-const MyViewIncome = () => {
-  const [date, setDate] = useState("");
-  const [categories, setCategories] = useState("");
-  const [label, setLabel] = useState("");
-  const [amount, setAmount] = useState("");
-  const navigation = useNavigation();
-  const [formErrors, setFormErrors] = useState({
-    date: null,
-    categories: null,
-    label: null,
-    amount: null,
-  });
-
-  const [formData, setFormData] = useState({
-    date: null,
-    categories: null,
-    label: "",
-    amount: "",
-  });
-    const handleChange = (value, type) => {
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [type]: value,
-    }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    // update formData with form values
-    setFormData({
-      date: date,
-      categories: categories,
-      label: label,
-      amount: amount,
-    });
-
-    if (!formIsValid(date, categories, label, amount)) {
-      Toast.show({
-        type: "success",
-        position: "bottom",
-        text1: "Please add a new income",
-        visibilityTime: 3000,
-        autoHide: true,
-      });
-    }
-  };
-  useEffect(()=>{
+  useEffect(() => {
     const getIncomes = async () => {
       try {
-          const user = JSON.parse(await AsyncStorage.getItem("@storage_Key"));
-
-        const { data } = await axios.get(
-          `http://localhost:5555/api/incomes/`,
-          {
-            headers: {
-              Authorization: `Bearer ${user.token}`,
-            },
-          }
-        );
-        console.log(data);
+        const storedData = await AsyncStorage.getItem('incomes');
+        if (storedData !== null) {
+          const parsedData = JSON.parse(storedData);
+          setStoredIncomes(parsedData.incomes);
+        }
       } catch (error) {
         console.log(error);
       }
     };
     getIncomes();
-  })
+  }, []);
 
+  const renderIncomeItem = ({ item }) => (
+    <View style={styles.incomeContainer}>
+      <Text>Date: {item.date}</Text>
+      <Text>Categories: {item.categories.join(', ')}</Text>
+      <Text>Label: {item.label}</Text>
+      <Text>Amount: {item.amount}</Text>
+    </View>
+  );
 
   return (
-    <View style={styles.root}>
-      <AuthHeader subtext="All your Incomes" />
-      <View style={styles.content}>
-        <CustomInputSingup
-          label="Date"
-          value={formData.date}
-          onChangeText={(value) => handleChange(value, "date")}
-          secure={false}
-        />
-        <CustomInputSingup
-          label="categories"
-          value={formData.categories}
-          onChangeText={(value) => handleChange(value, "categories")}
-          secure={false}
-        />
-        <CustomInputSingup
-          label="label"
-          value={formData.label}
-          onChangeText={(value) => handleChange(value, "label")}
-          secure={false}
-        />
-        <CustomInputSingup
-          label="amount"
-          value={formData.amount}
-          onChangeText={(value) => handleChange(value, "amount")}
-          secure={false}
-        />
-        {/* input area  End*/}
-        {/* Button Start */}
-        <CustomButton
-          style={styles.button}
-          buttonText={"Add Income"}
-          onPress={() => navigation.navigate("MyIncomes")}
-        />
-        {/* Button End */}
-      </View>
-      <Toast />
-    </View>
+    <FlatList
+      data={storedIncomes}
+      renderItem={renderIncomeItem}
+      keyExtractor={(item, index) => index.toString()} // ou utiliser une clé unique de l'objet si disponible
+    />
   );
 };
 
-export default MyViewIncome;
-
 const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-  },
-  content: {
-    flex: 2,
-    padding: 20,
-  },
-  button: {
-    marginTop: 20,
+  incomeContainer: {
+    borderWidth: 1,
+    borderColor: '#CCCCCC',
+    padding: 10,
+    marginVertical: 5,
   },
 });
+
+export default ViewIncomes;
