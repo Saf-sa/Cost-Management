@@ -14,6 +14,10 @@ import AuthHeader from "../../shared/components/AuthHeader";
 import CustomInputSingup from "../../shared/components/ui/CustomInputSignup";
 import CustomButton from "../../shared/components/ui/CustomButton";
 import DateTimePicker from "@react-native-community/datetimepicker";
+import Icon from "../../shared/components/IncomExpenseComponent/Icon";
+import AppText from "../../shared/components/uiApp/AppText";
+import UserNav from "../nav/UserNav";
+import Screen2 from "../../shared/components/Screen";
 import moment from "moment";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 /*  import { REACT_APP_BE_URL } from "../../.env"; */
@@ -27,7 +31,7 @@ import MyIncome from "./MyIncomes";
 
 const ViewIncomes = () => {
   const [storedIncomes, setStoredIncomes] = useState([]);
-
+  const navigation = useNavigation();
   useEffect(() => {
     const getIncomes = async () => {
       try {
@@ -45,10 +49,25 @@ const ViewIncomes = () => {
 
   return (
      <ScrollView>
+ <Screen2>
+           {/* Button Start */}
+      
+        <UserNav 
 
+        
+          image={require("../../assets/iconPerson.png")}
+    /> 
+     <TouchableOpacity style={styles.button} 
+     onPress={() => navigation.navigate("MyExpenses")}>
+        <Text style={styles.textButton} >Add a new Income</Text>
+      </TouchableOpacity>
+       
       
     {storedIncomes.map((income, index) => (
+      
       <View key={index} style={styles.incomeContainer}>
+
+         
         <View style={styles.row}>
           <Text>Date: {new Date(income.date).toISOString().split('T')[0]}</Text>
           <Text>Categories: {income.categories.join(', ')}</Text>
@@ -58,23 +77,29 @@ const ViewIncomes = () => {
           <Text>Amount: {income.amount}</Text>
         </View>
       </View>
+       
     ))}
+    </Screen2>
   </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   incomeContainer: {
-    width: "95%",
-    marginHorizontal: 10,
+    marginTop: -30,
+    width: "96",
+
     borderWidth: 1,
     borderColor: "#E0AA3E",
     borderRadius: 10,
     padding: 12,
+    marginBottom: 40,
     marginVertical: 8,
     backgroundColor: "#F7F7F7",
+   
   },
   row: {
+    
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingRight: 8,
@@ -89,6 +114,31 @@ const styles = StyleSheet.create({
   textValue: {
     marginBottom: 8,
   },
+
+  button: {
+    position: "fixed",
+    borderColor: "#E0AA3E",
+    borderWidth: 1,
+    width: "40%",
+    height: 45,
+    alignSelf: "center",
+    borderRadius: 8,
+    padding: 12,
+    textAlign: "center",
+    top: -80,
+  },
+    textButton:{
+      color: "#E0AA3E",
+      fontWeight: "bold",
+      fontSize: 15,
+      textAlign: "center",
+      
+      
+    },
+    
+
+
+ 
 });
 
 export default ViewIncomes;
