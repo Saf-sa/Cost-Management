@@ -44,33 +44,47 @@ const ViewIncomes = () => {
   }, []);
 
   return (
-    <ScrollView>
-      {storedIncomes.map((income, index) => (
-        <View key={index} style={styles.incomeContainer}> 
-        {/* Hide types to show only the value  */}
-        
-          <Text> {/* Date: */} {income.date}</Text>
-          <Text> {/* Categories: */} {income.categories.join(', ')}</Text>
-          <Text> {/* Label:  */}{income.label}</Text>
-          <Text>{/*  Amount: */} {income.amount}</Text>
+     <ScrollView>
+
+      
+    {storedIncomes.map((income, index) => (
+      <View key={index} style={styles.incomeContainer}>
+        <View style={styles.row}>
+          <Text>Date: {new Date(income.date).toISOString().split('T')[0]}</Text>
+          <Text>Categories: {income.categories.join(', ')}</Text>
         </View>
-      ))}
-    </ScrollView>
+        <View style={styles.row}>
+          <Text>Label: {income.label}</Text>
+          <Text>Amount: {income.amount}</Text>
+        </View>
+      </View>
+    ))}
+  </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   incomeContainer: {
+    width: "95%",
+    marginHorizontal: 10,
     borderWidth: 1,
-    borderColor: '#CCCCCC',
-    borderRadius: 8,
+    borderColor: "#E0AA3E",
+    borderRadius: 10,
     padding: 12,
     marginVertical: 8,
-    backgroundColor: '#F7F7F7',
+    backgroundColor: "#F7F7F7",
+  },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingRight: 8,
+    paddingBottom: 8,
   },
   textLabel: {
     fontWeight: 'bold',
     marginBottom: 4,
+    paddingRight: 8,
+    paddingBottom: 8,
   },
   textValue: {
     marginBottom: 8,
