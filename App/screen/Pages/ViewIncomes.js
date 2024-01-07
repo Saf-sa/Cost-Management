@@ -31,10 +31,10 @@ const ViewIncomes = () => {
   useEffect(() => {
     const getIncomes = async () => {
       try {
-        const storedData = await AsyncStorage.getItem('incomes');
-        if (storedData !== null) {
-          const parsedData = JSON.parse(storedData);
-          setStoredIncomes(parsedData.incomes);
+        const incomes = await AsyncStorage.getItem('incomes');
+        if (incomes) {
+          const parsedIncomes = JSON.parse(incomes);
+          setStoredIncomes(parsedIncomes.incomes); // Vérifiez la structure des données ici
         }
       } catch (error) {
         console.log(error);
@@ -43,21 +43,19 @@ const ViewIncomes = () => {
     getIncomes();
   }, []);
 
-  const renderIncomeItem = ({ item }) => (
-    <View style={styles.incomeContainer}>
-      <Text>Date: {item.date}</Text>
-      <Text>Categories: {item.categories.join(', ')}</Text>
-      <Text>Label: {item.label}</Text>
-      <Text>Amount: {item.amount}</Text>
-    </View>
-  );
-
   return (
-    <FlatList
-      data={storedIncomes}
-      renderItem={renderIncomeItem}
-      keyExtractor={(item, index) => index.toString()} // ou utiliser une clé unique de l'objet si disponible
-    />
+    <ScrollView>
+      {storedIncomes.map((income, index) => (
+        <View key={index} style={styles.incomeContainer}> 
+        {/* Hide types toi show only the value  */}
+        
+          <Text> {/* Date: */} {income.date}</Text>
+          <Text> {/* Categories: */} {income.categories.join(', ')}</Text>
+          <Text> {/* Label:  */}{income.label}</Text>
+          <Text>{/*  Amount: */} {income.amount}</Text>
+        </View>
+      ))}
+    </ScrollView>
   );
 };
 
@@ -65,9 +63,19 @@ const styles = StyleSheet.create({
   incomeContainer: {
     borderWidth: 1,
     borderColor: '#CCCCCC',
-    padding: 10,
-    marginVertical: 5,
+    borderRadius: 8,
+    padding: 12,
+    marginVertical: 8,
+    backgroundColor: '#F7F7F7',
+  },
+  textLabel: {
+    fontWeight: 'bold',
+    marginBottom: 4,
+  },
+  textValue: {
+    marginBottom: 8,
   },
 });
+
 
 export default ViewIncomes;
