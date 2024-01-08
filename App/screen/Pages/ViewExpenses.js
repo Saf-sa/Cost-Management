@@ -3,26 +3,18 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  DatePickerIOS,
   ScrollView,
-  FlatList
+ 
 } from "react-native";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Toast from "react-native-toast-message";
 import { useNavigation } from "@react-navigation/native";
-import AuthHeader from "../../shared/components/AuthHeader";
-import CustomInputSingup from "../../shared/components/ui/CustomInputSignup";
-import CustomButton from "../../shared/components/ui/CustomButton";
-import DateTimePicker from "@react-native-community/datetimepicker";
-import Icon from "../../shared/components/IncomExpenseComponent/Icon";
-import AppText from "../../shared/components/uiApp/AppText";
 import UserNav from "../nav/UserNav";
 import Screen2 from "../../shared/components/Screen";
-import moment from "moment";
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
 /*  import { REACT_APP_BE_URL } from "../../.env"; */
-import axios from "axios";
-import MyExpense from "./MyExpenses";
+
 
 // comment this line because solution not found if using .env file
 // go to ligne 84
@@ -30,41 +22,29 @@ import MyExpense from "./MyExpenses";
 /*  import { REACT_APP_BE_URL } from "../../.env";  */
 
 const ViewExpenses = () => {
- const [storedExpenses, setStoredExpenses] = useState([]);
-  const navigation = useNavigation();
-  useEffect(() => {
+ const [storedExpenses, setStoredExpenses] = useState([]);// State to store data from AsyncStorage
+  const navigation = useNavigation();// Navigation
+  useEffect(() => {// UseEffect to get data from AsyncStorage
     const getExpenses = async () => {
       try {
-        const user = JSON.parse(await AsyncStorage.getItem("@storage_Key"));
-        const { data } = await axios.get(
-          `http://localhost:5555/api/expenses/`,
-          {
-            headers: {
-              Authorization: `Bearer ${user.token}`,
-            },
-          }
-        );
-        // Stocker les données récupérées dans AsyncStorage
-       await AsyncStorage.setItem('expenses', JSON.stringify(data));
-       console.log(data);
-        // Récupérer les données stockées dans AsyncStorage
-      const expenses = await AsyncStorage.getItem('expenses');
-        if (expenses) {
-          const parsedExpenses = JSON.parse(expenses);
-          setStoredExpenses(parsedExpenses.expenses); // Vérifiez la structure des données ici
 
+      const expenses = await AsyncStorage.getItem('expenses');// Get data from AsyncStorage
+        if (expenses) {
+          const parsedExpenses = JSON.parse(expenses);// Parse data from AsyncStorage
+          setStoredExpenses(parsedExpenses.expenses); // Send data to the state
+               /*  console.log('parsedExpenses FrontEnd side ',parsedExpenses);   */
         }
-      } catch (error) {
-        console.log(error);
+      } catch (error) {// Error handling
+        console.log(error);// Error handling
       }
     };
-    getExpenses();
+    getExpenses();// Call the function to get data from AsyncStorage
 
   }, []);
 
-let index = 1;
+let index = 1;// index for scrollview
 
-  return (
+  return (// Display data from AsyncStorage
      <ScrollView
      keyboardDismissMode="on-drag"
       onscroll={(evt) =>  (index++)}
@@ -79,14 +59,14 @@ let index = 1;
           image={require("../../assets/iconPerson.png")}
     /> 
     
-     <TouchableOpacity style={styles.button} 
+     <TouchableOpacity style={styles.button} // Button to add a new expense
      
       onPress={() => navigation.navigate("MyExpenses")}>
         <Text style={styles.textButton} >Add a new Expense</Text>
       </TouchableOpacity>
        
       
-      {storedExpenses.map((expense, index) => (
+      {storedExpenses.map((expense, index) => (// Map to display data from AsyncStorage
          <View key={index} style={styles.expenseContainer}>
 
          

@@ -3,26 +3,17 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  DatePickerIOS,
   ScrollView,
-  FlatList
+
 } from "react-native";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState,  useEffect } from "react";
 import Toast from "react-native-toast-message";
 import { useNavigation } from "@react-navigation/native";
-import AuthHeader from "../../shared/components/AuthHeader";
-import CustomInputSingup from "../../shared/components/ui/CustomInputSignup";
-import CustomButton from "../../shared/components/ui/CustomButton";
-import DateTimePicker from "@react-native-community/datetimepicker";
-import Icon from "../../shared/components/IncomExpenseComponent/Icon";
-import AppText from "../../shared/components/uiApp/AppText";
 import UserNav from "../nav/UserNav";
 import Screen2 from "../../shared/components/Screen";
-import moment from "moment";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 /*  import { REACT_APP_BE_URL } from "../../.env"; */
-import axios from "axios";
-import MyIncome from "./MyIncomes";
+
 
 // comment this line because solution not found if using .env file
 // go to ligne 84
@@ -30,30 +21,31 @@ import MyIncome from "./MyIncomes";
 /*  import { REACT_APP_BE_URL } from "../../.env";  */
 
 const ViewIncomes = () => {
-  const [storedIncomes, setStoredIncomes] = useState([]);
-  const navigation = useNavigation();
-  useEffect(() => {
+  const [storedIncomes, setStoredIncomes] = useState([]);// State to store data from AsyncStorage
+  const navigation = useNavigation();// Navigation
+  useEffect(() => {// UseEffect to get data from AsyncStorage
     const getIncomes = async () => {
       try {
-        const incomes = await AsyncStorage.getItem('incomes');
+        const incomes = await AsyncStorage.getItem('incomes');// Get data from AsyncStorage
         if (incomes) {
-          const parsedIncomes = JSON.parse(incomes);
-          setStoredIncomes(parsedIncomes.incomes); // Vérifiez la structure des données ici
+          const parsedIncomes = JSON.parse(incomes);// Parse data from AsyncStorage
+          setStoredIncomes(parsedIncomes.incomes); // Send data to the state
+              /*  console.log('parsedExpenses FrontEnd side ',parsedExpenses);   */
         }
-      } catch (error) {
-        console.log(error);
+      } catch (error) {// Error handling
+        console.log(error);// Error handling
       }
     };
-    getIncomes();
+    getIncomes();// Call the function to get data from AsyncStorage
   }, []);
 
-let index = 1;
+let index = 1;// index for scrollview
 
-  return (
+  return (// Display data from AsyncStorage
      <ScrollView
-     keyboardDismissMode="on-drag"
-      onscroll={(evt) =>  (index++)}
-      onScrollBeginDrag={(evt) => (index++)}
+     keyboardDismissMode="on-drag"// to dismiss the keyboard when the user drags the scroll view
+      onscroll={(evt) =>  (index++)}// to get the index of the scrollview
+      onScrollBeginDrag={(evt) => (index++)}// to get the index of the scrollview
       >
  <Screen2>
            {/* Button Start */}
@@ -64,15 +56,14 @@ let index = 1;
           image={require("../../assets/iconPerson.png")}
     /> 
     
-     <TouchableOpacity style={styles.button} 
+     <TouchableOpacity style={styles.button} // Button to add a new expense
      
      onPress={() => navigation.navigate("MyIncomes")}>
         <Text style={styles.textButton} >Add a new Income</Text>
       </TouchableOpacity>
        
       
-    {storedIncomes.map((income, index) => (
-     
+    {storedIncomes.map((income, index) => (// Display data from AsyncStorage in a FlatList
       <View key={index} style={styles.incomeContainer}>
 
          

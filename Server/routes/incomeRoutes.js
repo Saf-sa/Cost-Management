@@ -18,6 +18,7 @@ router.get("/", authMiddleware, async (req, res) => {
    
     const incomes = await Incomes.find({incomeOwner: req.userId});
     return res.send({ incomes,  });
+    /*     console.log('incomes send from Backend', incomes) */
   } catch (error) {
     return res.status(500).send("Error retrieving incomes and expenses data");
   }
