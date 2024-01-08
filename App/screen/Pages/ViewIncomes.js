@@ -23,27 +23,31 @@ import MyIncomes from "./MyIncomes";
 //import { API_URL, API_TOKEN } from "@env";
 /*  import { REACT_APP_BE_URL } from "../../.env";  */
 
-const ViewIncomes = (route) => {
+const ViewIncomes = ({route}) => {
   const [storedIncomes, setStoredIncomes] = useState([]);// State to store data from AsyncStorage
   const navigation = useNavigation();// Navigation
 
-/*   const {category} = route.params;// Get category from MyExpenses.js */
+/*    const {category} = route.params;// Get category from MyIcomes.js  */
 
   useEffect(() => {// UseEffect to get data from AsyncStorage
     const getIncomes = async () => {
       try {
            const user = JSON.parse(await AsyncStorage.getItem("@storage_Key"));// Get user data from AsyncStorage
+          /*  console.log('user token ',user.token); */
         const { data } = await axios.get(
+          
+           /*  console.log('data ', data), */
           `http://localhost:5555/api/incomes`,// Get data in DB collection from backend in DB
           {
             headers: {
               Authorization: `Bearer ${user.token}`,// Send token to backend
             },
+            
           }
         );
          // Stocker les données récupérées dans AsyncStorage
        await AsyncStorage.setItem('incomes', JSON.stringify(data));// Store data in AsyncStorage
-        console.log('data received from Backend ',data); 
+       
 
         //await AsyncStorage.clear('incomes')
 
