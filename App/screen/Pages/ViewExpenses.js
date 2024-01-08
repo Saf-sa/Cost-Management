@@ -51,6 +51,9 @@ let index = 1;
 
   return (
      <ScrollView
+      keyboardDismissMode="on-drag"
+      onscroll={(evt) =>  (index++)}
+      onScrollBeginDrag={(evt) => (index++)}
     
       >
 
