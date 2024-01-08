@@ -216,9 +216,7 @@ const Login = () => {
         <CustomButton
           onPress={handleSubmit}
           style={styles.button}
-          colors={["#f9f295", "#E0AA3E", "#F7EF8A", "#B88A44"]}
-          start={{ x: 0.1, y: 0.1 }}
-          end={{ x: 1, y: 3 }}
+  
           buttonText={"Login"}
         />
 

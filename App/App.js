@@ -43,9 +43,9 @@ export default function App() {
   
   
   return (
-    <NavigationContainer>
+    <NavigationContainer >
       <Stack.Navigator initialRouteName="Login">
-        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Login" component={Login}  />
         <Stack.Screen name="Signup" component={Signup} />
         <Stack.Screen name="Reset" component={Reset} />
 
@@ -86,4 +86,5 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
   },
+ 
 });

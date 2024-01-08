@@ -46,9 +46,15 @@ const ViewIncomes = () => {
     };
     getIncomes();
   }, []);
+  
+let index = 1;
 
   return (
-     <ScrollView>
+     <ScrollView
+     keyboardDismissMode="on-drag"
+      onscroll={(evt) =>  (index++)}
+      onScrollBeginDrag={(evt) => (index++)}
+      >
  <Screen2>
            {/* Button Start */}
       
@@ -57,7 +63,9 @@ const ViewIncomes = () => {
         
           image={require("../../assets/iconPerson.png")}
     /> 
+    
      <TouchableOpacity style={styles.button} 
+     
      onPress={() => navigation.navigate("MyExpenses")}>
         <Text style={styles.textButton} >Add a new Income</Text>
       </TouchableOpacity>
@@ -69,12 +77,12 @@ const ViewIncomes = () => {
 
          
         <View style={styles.row}>
-          <Text>Date: {new Date(income.date).toISOString().split('T')[0]}</Text>
-          <Text>Categories: {income.categories.join(', ')}</Text>
+          <Text>Date : {new Date(income.date).toISOString().split('T')[0]}</Text>
+          <Text>Categories : {income.categories.join(', ')}</Text>
         </View>
         <View style={styles.row}>
-          <Text>Label: {income.label}</Text>
-          <Text>Amount: {income.amount}</Text>
+          <Text>Label : {income.label}</Text>
+          <Text>Amount = + {income.amount}</Text>
         </View>
       </View>
        
@@ -87,7 +95,7 @@ const ViewIncomes = () => {
 const styles = StyleSheet.create({
   incomeContainer: {
     marginTop: -30,
-    width: "96",
+    width: "96%",
 
     borderWidth: 1,
     borderColor: "#E0AA3E",
@@ -116,6 +124,12 @@ const styles = StyleSheet.create({
   },
 
   button: {
+    backgroundColor: {
+      backgroundColor: "#fff",
+      shadowColor: "#000",
+
+    },
+
     position: "fixed",
     borderColor: "#E0AA3E",
     borderWidth: 1,
@@ -128,10 +142,12 @@ const styles = StyleSheet.create({
     top: -80,
   },
     textButton:{
+      
       color: "#E0AA3E",
       fontWeight: "bold",
       fontSize: 15,
       textAlign: "center",
+      
       
       
     },
