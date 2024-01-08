@@ -104,8 +104,7 @@ import axios from "axios";
        
         <UserNav
           image={require("../../assets/iconPerson.png")}
-        /*  title={`Welcome Back ${firstName}`} */
-          /* subtitle="Titanium" */
+  
         />
         <LinearGradient
           style={styles.parentContainer}
@@ -114,13 +113,13 @@ import axios from "axios";
           end={{ x: 1, y: 3 }}
         >
           <View style={styles.balanceContainer}>
-            <AppText style={{ color: "black", fontSize: 20, marginBottom: 5 }}>
+            <AppText style={{ color: "black", fontSize: 12, marginBottom: 5 }}>
               PREMIUM ACCOUNT ={" TITANIUM"}
             </AppText>
 
-            <AppText style={{ color: "black", fontSize: 15 }}>BALANCE</AppText>
+            <AppText style={{ color: "black", fontSize: 10 }}>BALANCE</AppText>
 
-            <AppText style={{ color: "red", fontSize: 12 }}>3000</AppText>
+            <AppText style={{ color: "red", fontSize: 1 }}>3000</AppText>
 
             <AppText
               style={{
@@ -131,7 +130,7 @@ import axios from "axios";
               3000
             </AppText>
 
-            <AppText style={{ marginTop: 10 }}></AppText>
+            <AppText style={{ marginTop:5 }}></AppText>
           </View>
           <View style={styles.parentIncomeContainer}>
             <View
@@ -222,7 +221,7 @@ import axios from "axios";
              
              
             />
-            <Text style={{ fontSize: 15, paddingTop: 5 }}>Forecast</Text>
+        <Text style={{ fontSize: 15, paddingTop: 5 }}>Forecast</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.push("Statistics")}>
             <Icon
@@ -230,10 +229,10 @@ import axios from "axios";
               size={66}
              
              
-            />
+            /> 
             <Text style={{ fontSize: 15, paddingTop: 5 }}>Statistics</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.push("History")}>
+     <TouchableOpacity onPress={() => navigation.push("History")}>
             <Icon
               name="history"
               size={66}
@@ -241,7 +240,7 @@ import axios from "axios";
              
             />
             <Text style={{ fontSize: 15, paddingTop: 5 }}> History</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> 
         </View>
         <View>
           <AppText style={styles.dashboardTitle}>Categories</AppText>
@@ -268,7 +267,7 @@ import axios from "axios";
             />
 
             <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10 }}>
-              {" "}
+            
               Foods
             </Text>
           </TouchableOpacity>
@@ -428,11 +427,16 @@ import axios from "axios";
 
 const styles = StyleSheet.create({
   parentContainer: {
+    width: "70%",
+    height: 150,
+    justifyContent: "center",
+    alignItems: "center",
     paddingTop: 0,
     flexDirection: "column",
     borderRadius: 10,
-    marginHorizontal: 10,
-    marginVertical: 0,
+    marginTop: -75,
+    marginHorizontal: 64,
+    marginVertical: -20,
     backgroundColor: '#fff',
     shadowColor: "grey",
     shadowOpacity: 0.05,
@@ -447,24 +451,20 @@ const styles = StyleSheet.create({
     
     justifyContent: "center",
     alignItems: "center",
-    paddingVertical: 20,
-    width: "100%",
+    paddingVertical: 15,
+    width: "80%",
+
   },
   parentIncomeContainer: {
-       
+    width: "90%",
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     paddingTop: 3,
-    paddingHorizontal: 30,
-    paddingBottom:25,
+    paddingBottom:20,
+ 
   },
-  containerRender: {
 
-    height: 100,
-    marginHorizontal: 10,
-    width: 50,
-  },
 
   dashboard: {
     
@@ -472,7 +472,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     paddingHorizontal: 10,
-    marginTop: 1,
+    marginTop: 15,
     alignItems: "center",
   },
 
@@ -513,7 +513,7 @@ const styles = StyleSheet.create({
   },
     title:{
     
-    top: 95,
+    top: 60,
     textAlign: "center",
     color: "#E0AA3E",
     fontSize: 20,
