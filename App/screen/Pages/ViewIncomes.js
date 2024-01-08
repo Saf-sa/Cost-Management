@@ -46,7 +46,7 @@ const ViewIncomes = () => {
     };
     getIncomes();
   }, []);
-  
+
 let index = 1;
 
   return (
@@ -66,13 +66,13 @@ let index = 1;
     
      <TouchableOpacity style={styles.button} 
      
-     onPress={() => navigation.navigate("MyExpenses")}>
+     onPress={() => navigation.navigate("MyIncomes")}>
         <Text style={styles.textButton} >Add a new Income</Text>
       </TouchableOpacity>
        
       
     {storedIncomes.map((income, index) => (
-      
+     
       <View key={index} style={styles.incomeContainer}>
 
          
