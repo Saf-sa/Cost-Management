@@ -12,6 +12,9 @@ import { useNavigation } from "@react-navigation/native";
 import UserNav from "../nav/UserNav";
 import Screen2 from "../../shared/components/Screen";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from "axios";
+import MyIncomes from "./MyIncomes";
+
 /*  import { REACT_APP_BE_URL } from "../../.env"; */
 
 
@@ -20,17 +23,35 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 //import { API_URL, API_TOKEN } from "@env";
 /*  import { REACT_APP_BE_URL } from "../../.env";  */
 
-const ViewIncomes = () => {
+const ViewIncomes = (route) => {
   const [storedIncomes, setStoredIncomes] = useState([]);// State to store data from AsyncStorage
   const navigation = useNavigation();// Navigation
+
+/*   const {category} = route.params;// Get category from MyExpenses.js */
+
   useEffect(() => {// UseEffect to get data from AsyncStorage
     const getIncomes = async () => {
       try {
+           const user = JSON.parse(await AsyncStorage.getItem("@storage_Key"));// Get user data from AsyncStorage
+        const { data } = await axios.get(
+          `http://localhost:5555/api/incomes`,// Get data in DB collection from backend in DB
+          {
+            headers: {
+              Authorization: `Bearer ${user.token}`,// Send token to backend
+            },
+          }
+        );
+         // Stocker les données récupérées dans AsyncStorage
+       await AsyncStorage.setItem('incomes', JSON.stringify(data));// Store data in AsyncStorage
+        console.log('data received from Backend ',data); 
+
+        //await AsyncStorage.clear('incomes')
+
         const incomes = await AsyncStorage.getItem('incomes');// Get data from AsyncStorage
         if (incomes) {
-          const parsedIncomes = JSON.parse(incomes);// Parse data from AsyncStorage
+       const parsedIncomes = JSON.parse(incomes);// Parse data from AsyncStorage
           setStoredIncomes(parsedIncomes.incomes); // Send data to the state
-              /*  console.log('parsedExpenses FrontEnd side ',parsedExpenses);   */
+               /*  console.log('parsedExpenses FrontEnd side ',parsedExpenses);   */
         }
       } catch (error) {// Error handling
         console.log(error);// Error handling

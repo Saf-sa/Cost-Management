@@ -3,48 +3,71 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
+  DatePickerIOS,
   ScrollView,
- 
+  FlatList
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import Toast from "react-native-toast-message";
 import { useNavigation } from "@react-navigation/native";
+import AuthHeader from "../../shared/components/AuthHeader";
+import CustomInputSingup from "../../shared/components/ui/CustomInputSignup";
+import CustomButton from "../../shared/components/ui/CustomButton";
+import DateTimePicker from "@react-native-community/datetimepicker";
+import Icon from "../../shared/components/IncomExpenseComponent/Icon";
+import AppText from "../../shared/components/uiApp/AppText";
 import UserNav from "../nav/UserNav";
 import Screen2 from "../../shared/components/Screen";
-
+import moment from "moment";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 /*  import { REACT_APP_BE_URL } from "../../.env"; */
-
+import axios from "axios";
+import MyExpense from "./MyExpenses";
 
 // comment this line because solution not found if using .env file
 // go to ligne 84
 //import { API_URL, API_TOKEN } from "@env";
 /*  import { REACT_APP_BE_URL } from "../../.env";  */
 
-const ViewExpenses = () => {
+const ViewExpenses = ({route}) => {
  const [storedExpenses, setStoredExpenses] = useState([]);// State to store data from AsyncStorage
   const navigation = useNavigation();// Navigation
-  useEffect(() => {// UseEffect to get data from AsyncStorage
+
+  const {category} = route.params;// Get category from MyExpenses.js
+
+  useEffect(() => {
     const getExpenses = async () => {
       try {
-
+        const user = JSON.parse(await AsyncStorage.getItem("@storage_Key"));// Get user data from AsyncStorage
+        const { data } = await axios.get(
+          `http://localhost:5555/api/expenses/${category}`,// Get data in DB collection from backend in DB
+          {
+            headers: {
+              Authorization: `Bearer ${user.token}`,// Send token to backend
+            },
+          }
+        );
+        // Stocker les données récupérées dans AsyncStorage
+       await AsyncStorage.setItem('expenses', JSON.stringify(data));// Store data in AsyncStorage
+   /*      console.log('data received from Backend ',data);  */
+        
       const expenses = await AsyncStorage.getItem('expenses');// Get data from AsyncStorage
         if (expenses) {
           const parsedExpenses = JSON.parse(expenses);// Parse data from AsyncStorage
           setStoredExpenses(parsedExpenses.expenses); // Send data to the state
                /*  console.log('parsedExpenses FrontEnd side ',parsedExpenses);   */
         }
-      } catch (error) {// Error handling
-        console.log(error);// Error handling
+      } catch (error) {
+        console.log(error);
       }
     };
-    getExpenses();// Call the function to get data from AsyncStorage
+    getExpenses();
 
   }, []);
 
-let index = 1;// index for scrollview
+let index = 1;
 
-  return (// Display data from AsyncStorage
+  return (
      <ScrollView
      keyboardDismissMode="on-drag"
       onscroll={(evt) =>  (index++)}
@@ -59,14 +82,14 @@ let index = 1;// index for scrollview
           image={require("../../assets/iconPerson.png")}
     /> 
     
-     <TouchableOpacity style={styles.button} // Button to add a new expense
+     <TouchableOpacity style={styles.button} 
      
       onPress={() => navigation.navigate("MyExpenses")}>
         <Text style={styles.textButton} >Add a new Expense</Text>
       </TouchableOpacity>
        
       
-      {storedExpenses.map((expense, index) => (// Map to display data from AsyncStorage
+      {storedExpenses.map((expense, index) => (
          <View key={index} style={styles.expenseContainer}>
 
          

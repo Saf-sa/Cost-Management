@@ -55,7 +55,7 @@ export default function App() {
         <Stack.Screen name="Dashboard" component={Dashboard} />
         <Stack.Screen name="ViewIncomes" component={ViewIncomes} />
         <Stack.Screen name="MyIncomes" component={MyIncomes} />
-        <Stack.Screen name="ViewExpenses" component={ViewExpenses} />
+        <Stack.Screen name="ViewExpenses" initialParams={{category:'all'}} component={ViewExpenses} />
         <Stack.Screen name="MyExpenses" component={MyExpenses} />
         <Stack.Screen name="Forecast" component={Forecast} />
         <Stack.Screen name="Statistics" component={Statistics} />

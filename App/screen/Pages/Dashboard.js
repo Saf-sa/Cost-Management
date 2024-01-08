@@ -21,13 +21,13 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 
 
-  function Dashboard() {
+  function Dashboard(route) {
     const [balance, setBalance] = useState("");
     const [totalIncome, setTotalIncome] = useState("");
     const [totalExpense, setTotalExpense] = useState("");
 
     const navigation = useNavigation();
-    
+
       useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -247,7 +247,7 @@ import axios from "axios";
           <AppText style={styles.dashboardTitle}>Categories</AppText>
         </View>
         <View style={styles.dashboardCat}>
-          <TouchableOpacity onPress={() => navigation.push("Clothes")}>
+          <TouchableOpacity onPress={() => navigation.navigate("ViewExpenses", {category:'clothe'})}>
             <Icon
               name="tshirt"
               size={66}
