@@ -564,7 +564,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     paddingTop: 3,
-    paddingBottom:20,
+    paddingBottom:10,
  
   },
 
@@ -591,31 +591,19 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 
- /*  dashboardTitle: {
-    flex: 1,
-    color: "black",
-    fontSize: 5,
+   dashboardTitle: {
+  
+    fontSize: 16,
     fontWeight: "bold",
-    justifyContent: "center",
-    textAlign: "center",
-    paddingHorizontal: 20,
-    marginTop: 10,
-    marginBottom: 10,
-  }, */
-  textCategory: {
-    textAlignVertical: "center",
-    alignSelf: "center",
-    height: 35,
-    fontSize: 12,
-    fontSize: 15,
-    paddingTop: 5,
-    marginBottom: 20,
-  },
+
+    marginTop: 0,
+    
+  }, 
+ 
   icon: {
     justifyContent: "center",
   },
     title:{
-    
     top: 60,
     textAlign: "center",
     color: "#E0AA3E",
