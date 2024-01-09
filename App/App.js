@@ -47,7 +47,7 @@ export default function App() {
         <Stack.Screen name="Reset" component={Reset} />
         <Stack.Screen name="ResetPassword" component={ResetPassword} />
         <Stack.Screen name="Dashboard" component={Dashboard} />
-        <Stack.Screen name="ViewIncomes" /* initialParams={{category:'all'}}  */ component={ViewIncomes} />
+        <Stack.Screen name="ViewIncomes"  initialParams={{category:'all'}} component={ViewIncomes} />
         <Stack.Screen name="MyIncomes" component={MyIncomes} />
         <Stack.Screen name="ViewExpenses" initialParams={{category:'all'}} component={ViewExpenses} />
         <Stack.Screen name="MyExpenses" component={MyExpenses} />

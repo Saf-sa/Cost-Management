@@ -188,7 +188,7 @@ const handleChange = (value, fieldName) => {
         "Tax",
         "Hobbie",
         "Money",
-        "MyEpargne",
+        "Epargne",
         "Holiday",
         "Other",
 

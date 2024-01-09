@@ -19,7 +19,7 @@ const expensesSchema = new mongoose.Schema(
       type: [String],
       enum: [
        "House",
-        "Clothe",
+        "food",
         "Food",
         "Transport",
         "Studie",
@@ -27,7 +27,7 @@ const expensesSchema = new mongoose.Schema(
         "Tax",
         "Hobbie",
         "Money",
-        "MyEpargne",
+        "Epargne",
         "Holiday",
         "Other",
       ],

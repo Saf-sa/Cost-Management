@@ -19,6 +19,7 @@ import Screen2 from "../../shared/components/Screen";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import axios from "axios";
+import Holidays from './Categories/Holidays';
 
 
   function Dashboard(route) {
@@ -260,7 +261,7 @@ import axios from "axios";
               Clothes
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.push("Foods")}>
+          <TouchableOpacity onPress={() => navigation.navigate("ViewExpenses", {category:'food'})}>
             <Icon
               name="utensils"
               size={66}
@@ -273,7 +274,7 @@ import axios from "axios";
               Foods
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.push("Transport")}>
+          <TouchableOpacity onPress={() => navigation.navigate("ViewExpenses",{category:'Transport'})}>
             <Icon
               name="subway"
               size={66}
@@ -285,7 +286,7 @@ import axios from "axios";
               Transport
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.push("Studies")}>
+          <TouchableOpacity onPress={() => navigation.navigate("ViewExpenses", {category:'Studie'})}>
             <Icon
               name="university"
               size={66}
@@ -299,21 +300,21 @@ import axios from "axios";
             </Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => navigation.push("MyInvoices")}>
+          <TouchableOpacity onPress={() => navigation.navigate("ViewExpenses", {category:'holiday'})}>
             <Icon
-              name="house-user"
+              name="plane-departure"
               size={66}
              
              
             />
 
             <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10 }}>
-              {" "}
-              Invoice
+           
+              Holidays
             </Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => navigation.push("Taxes")}>
+          <TouchableOpacity onPress={() => navigation.navigate("ViewExpenses", {category:'tax'})}>
             <Icon
               name="cash-register"
               size={66}
@@ -324,7 +325,7 @@ import axios from "axios";
             <Text style={{ fontSize: 15, paddingTop: 5 }}> Taxes</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => navigation.push("Hobbies")}>
+          <TouchableOpacity onPress={() => navigation.navigate("ViewExpenses", {category:'hobbie'})}>
             <Icon
               styles={styles.icon}
               name="laugh-wink"
@@ -334,7 +335,7 @@ import axios from "axios";
             <Text style={{ fontSize: 15, paddingTop: 5 }}>Hobbies</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => navigation.push("Money")}>
+          <TouchableOpacity onPress={() => navigation.navigate("ViewExpenses", {category:'money'})}>
             <Icon
               styles={styles.icon}
               name="hand-holding-usd"
@@ -346,7 +347,7 @@ import axios from "axios";
             <Text style={{ fontSize: 15, paddingTop: 5 }}> Money</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => navigation.push("Epargne")}>
+          <TouchableOpacity onPress={() => navigation.navigate("ViewExpenses", {category:'epargne'})}>
             <Icon
               styles={styles.icon}
               name="search-dollar"
@@ -358,16 +359,16 @@ import axios from "axios";
             <Text style={{ fontSize: 15, paddingTop: 5 }}>Epargne</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => navigation.push("Holidays")}>
+          <TouchableOpacity onPress={() => navigation.navigate("ViewExpenses",  {category:'other'})}>
             <Icon
               styles={styles.icon}
-              name="plane-departure"
+              name="newspaper"
               size={66}
              
              
             />
 
-            <Text style={{ fontSize: 15, paddingTop: 5 }}>Holidays</Text>
+            <Text style={{ fontSize: 15, paddingTop: 5 }}>Other</Text>
           </TouchableOpacity>
         </View>
 
@@ -375,7 +376,7 @@ import axios from "axios";
           <AppText style={styles.dashboardTitle}> Incomes Categories</AppText>
         </View>
         <View style={styles.dashboardCat}>
-          <TouchableOpacity onPress={() => navigation.navigate("ViewExpenses", {category:'clothe'})}>
+          <TouchableOpacity onPress={() => navigation.navigate("ViewIncomes", {category:'Salary'})}>
             <Icon
               name="tshirt"
               size={66}
@@ -384,10 +385,10 @@ import axios from "axios";
             />
 
             <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10 }}>
-              Clothes
+              Salary
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.push("Foods")}>
+          <TouchableOpacity onPress={() => navigation.push("Bonus")}>
             <Icon
               name="utensils"
               size={66}
@@ -397,10 +398,10 @@ import axios from "axios";
 
             <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10 }}>
             
-              Foods
+              Bonus
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.push("Transport")}>
+          <TouchableOpacity onPress={() => navigation.push("Loan")}>
             <Icon
               name="subway"
               size={66}
@@ -409,10 +410,10 @@ import axios from "axios";
             />
 
             <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10 }}>
-              Transport
+              Loan
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.push("Studies")}>
+          <TouchableOpacity onPress={() => navigation.push("Sales")}>
             <Icon
               name="university"
               size={66}
@@ -421,12 +422,12 @@ import axios from "axios";
             />
 
             <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10 }}>
-              {" "}
-              Studies
+           
+              Sales
             </Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => navigation.push("MyInvoices")}>
+          <TouchableOpacity onPress={() => navigation.push("Gift")}>
             <Icon
               name="house-user"
               size={66}
@@ -435,12 +436,12 @@ import axios from "axios";
             />
 
             <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10 }}>
-              {" "}
-              Invoice
+            
+              Gift
             </Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => navigation.push("Taxes")}>
+          <TouchableOpacity onPress={() => navigation.push("Rent")}>
             <Icon
               name="cash-register"
               size={66}
@@ -448,20 +449,20 @@ import axios from "axios";
              
             />
 
-            <Text style={{ fontSize: 15, paddingTop: 5 }}> Taxes</Text>
+            <Text style={{ fontSize: 15, paddingTop: 5 }}> Rent</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => navigation.push("Hobbies")}>
+          <TouchableOpacity onPress={() => navigation.push("Allowance")}>
             <Icon
               styles={styles.icon}
               name="laugh-wink"
               size={66}
             />
 
-            <Text style={{ fontSize: 15, paddingTop: 5 }}>Hobbies</Text>
+            <Text style={{ fontSize: 15, paddingTop: 5 }}>Allowance</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => navigation.push("Money")}>
+          <TouchableOpacity onPress={() => navigation.push("Refund")}>
             <Icon
               styles={styles.icon}
               name="hand-holding-usd"
@@ -470,10 +471,10 @@ import axios from "axios";
              
             />
 
-            <Text style={{ fontSize: 15, paddingTop: 5 }}> Money</Text>
+            <Text style={{ fontSize: 15, paddingTop: 5 }}> Refund</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => navigation.push("Epargne")}>
+          <TouchableOpacity onPress={() => navigation.push("Stocks")}>
             <Icon
               styles={styles.icon}
               name="search-dollar"
@@ -482,10 +483,10 @@ import axios from "axios";
              
             />
 
-            <Text style={{ fontSize: 15, paddingTop: 5 }}>Epargne</Text>
+            <Text style={{ fontSize: 15, paddingTop: 5 }}>Stocks</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => navigation.push("Holidays")}>
+          <TouchableOpacity onPress={() => navigation.push("Other")}>
             <Icon
               styles={styles.icon}
               name="plane-departure"
@@ -494,7 +495,7 @@ import axios from "axios";
              
             />
 
-            <Text style={{ fontSize: 15, paddingTop: 5 }}>Holidays</Text>
+            <Text style={{ fontSize: 15, paddingTop: 5 }}>Other</Text>
           </TouchableOpacity>
         </View>
 
