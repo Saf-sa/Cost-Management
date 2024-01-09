@@ -13,9 +13,9 @@ const styles = StyleSheet.create({
   screen: {
     
     padding: 20,
-    marginTop: -50,
-    marginLeft: 20,
-    marginRight: 20,
+    marginTop: -55,
+    marginLeft: 15,
+    marginRight: 15,
     flex: 1,
   },
 });

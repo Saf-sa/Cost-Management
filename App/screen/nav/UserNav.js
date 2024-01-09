@@ -10,11 +10,11 @@ import {
   Modal,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import colors from "../../shared/utils/colors";
+
 import Icon from "../../shared/components/IncomExpenseComponent/Icon";
 import AppText from "../../shared/components/uiApp/AppText";
 import { useNavigation } from "@react-navigation/native";
-
+import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
 function HomeNav({ title, subtitle, image }) {
   const [modalVisible, setModalVisible] = useState(false);
   const navigation = useNavigation();
@@ -36,7 +36,8 @@ function HomeNav({ title, subtitle, image }) {
           <Icon
             name="bars"
             size={40}
-            backgroundColor="#E0BC3E"
+        
+           /*  backgroundColor="#E0BC3E" */
             iconColor="black"
           />
         </TouchableOpacity>
@@ -73,10 +74,10 @@ function HomeNav({ title, subtitle, image }) {
               }}
             >
               <Icon
-                name={"bars"}
-                backgroundColor={colors.primarySecondPair}
-                iconColor={colors.Yellow}
-                size={45}
+                name={"window-close"}
+
+                iconColor={"red"}
+                size={70}
                 bRadius={2}
                 styles={{
                   marginVertical: 10,
@@ -114,37 +115,42 @@ function HomeNav({ title, subtitle, image }) {
 }
 const styles = StyleSheet.create({
   textsAbout: {
-    
-    paddingVertical: 15,
+ 
+    paddingVertical: 13.5,
     fontSize: 20,
-    color: colors.dark,
+    color: "black",
     textAlign: "center",
   },
   containerParent: {
+    
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
   },
   container: {
+    
     flexDirection: "row",
   },
   image: {
-    width: 50,
-    height: 50,
+    marginTop: 0,
+    width: 45,
+    height: 45,
     borderRadius: 45 / 2,
     marginRight: 10,
   },
   textsTitle: {
+    
     justifyContent: "center",
     paddingLeft: 10,
   },
   titleStyle: {
+    
     fontSize: 15,
-    color: colors.dark,
+    color: "black",
   },
   subtitleStyle: {
     fontSize: 20,
-    color: colors.dark,
+    color: "black ",
    
   },
 });

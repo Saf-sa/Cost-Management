@@ -427,15 +427,15 @@ import axios from "axios";
 
 const styles = StyleSheet.create({
   parentContainer: {
-    width: "70%",
+    width: "65%",
     height: 150,
     justifyContent: "center",
     alignItems: "center",
     paddingTop: 0,
     flexDirection: "column",
-    borderRadius: 10,
-    marginTop: -75,
-    marginHorizontal: 64,
+    borderRadius: 7,
+    marginTop: -70,
+    marginHorizontal: 72,
     marginVertical: -20,
     backgroundColor: '#fff',
     shadowColor: "grey",
