@@ -6,6 +6,7 @@ import AuthHeader from "../../shared/components/AuthHeader";
 import CustomInputSingup from "../../shared/components/ui/CustomInputSignup";
 import CustomButton from "../../shared/components/ui/CustomButton";
 import DateTimePicker from "@react-native-community/datetimepicker";
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 import moment from "moment";
 import { SelectList } from 'react-native-dropdown-select-list';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -56,7 +57,32 @@ const MyIncome = () => {
   const [categories, setCategories] = useState("");
   const [label, setLabel] = useState("");
   const [amount, setAmount] = useState("");
-const [selected, setSelected] = React.useState([]);
+  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+  const [selected, setSelected] = React.useState([]);
+  
+  const showDatePicker = () => {
+    setDatePickerVisibility(true);
+  };
+
+  const hideDatePicker = () => {
+    setDatePickerVisibility(false);
+  };
+
+  const handleConfirm = (date) => {
+    hideDatePicker();
+    setSelected(date.toISOString());
+    // Envoie de la date au backend
+    sendDateToBackend(date);
+  };
+
+  const sendDateToBackend = (date) => {
+    console.log('Date sélectionnée :', date.toISOString());
+    // Ajoutez ici votre logique pour envoyer la date au backend
+  };
+
+  const handleCellSelection = () => {
+    showDatePicker(); // Ouvrir le sélecteur de date lorsque la cellule est sélectionnée
+  };
 
 const isValidDate = (date) => {
   // Check if date matches the format DD/MM/YYYY
@@ -283,14 +309,22 @@ const handleChange = (value, fieldName) => {
       <AuthHeader subtext="Please add a new income" />
       <View style={styles.content}>
          <ScrollView style={styles.scrollView}>
-        <CustomInputSingup
-          label="Date"
-          value={formData.date.someProperty}
-          onChangeText={(value) => handleChange(value, "date")}
-          placeholder="DD/MM/YYYY"
-          secure={false}
-          errorMessage={formErrors.date}
-        />
+           <TextInput style={styles.categorie} >Date</TextInput>
+  <TextInput style={styles.inputContainer}
+        label="Date"
+        value={selected}
+        placeholder="DD/MM/YYYY"
+        secureTextEntry={false}
+        onFocus={handleCellSelection} // Ouvrir le sélecteur de date lorsque la cellule est sélectionnée
+        // onChangeText={(value) => handleChange(value, 'date')} // Si nécessaire
+        // errorMessage={formErrors.date} // Si nécessaire
+      />
+      <DateTimePickerModal
+        isVisible={isDatePickerVisible}
+        mode="date"
+        onConfirm={handleConfirm}
+        onCancel={hideDatePicker}
+      />
           <TextInput style={styles.categorie} >Categories</TextInput>
 
       <SelectList 
@@ -362,6 +396,21 @@ const styles = StyleSheet.create({
     padding: 10,
     marginTop: 10,
    
+  },
+   inputContainer: {
+    marginBottom: 20,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    borderColor: "#E0AA3E",
+    borderWidth: 1,
+    borderRadius: 8,
+    padding: 10,
+  },
+
+  input: {
+    color: "#000",
+    flex: 1,
   },
 
 categorie:{
