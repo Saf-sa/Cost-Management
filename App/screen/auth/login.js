@@ -14,7 +14,7 @@ import axios from "axios";
 //import { API_URL, API_TOKEN } from "@env";
 /*  import { REACT_APP_BE_URL } from "../../.env";  */
 
-
+ 
 const isValidEmail = (email) => {
   // Should contain @
   const re = /\S+@\S+\.\S+/;
@@ -136,12 +136,12 @@ const Login = () => {
 
         // Store user data in AsyncStorage
      const user = {
- id: response.data._id, // replace with actual user id key
-  token: response.data.token, // replace with actual user token key
-  firstName: response.data.firstName, // replace with actual user firstName key
-  lastName: response.data.lastName, // replace with actual user lastName key
-  email: response.data.email, // replace with actual user email key
-  password: response.data.password, // replace with actual user password key
+      id: response.data._id, // replace with actual user id key
+      token: response.data.token, // replace with actual user token key
+      firstName: response.data.firstName, // replace with actual user firstName key
+      lastName: response.data.lastName, // replace with actual user lastName key
+      email: response.data.email, // replace with actual user email key
+     /*  password: response.data.password, // replace with actual user password key */
 };
      console.log("user stored in asyncSorage", user);
         try {

@@ -47,7 +47,7 @@ import Settings from "./screen/Pages/Toolkits/Settings";
 
 const Stack = createStackNavigator();
 
-export default function App() {
+export default function App() { //useEffect
   
   
   return (

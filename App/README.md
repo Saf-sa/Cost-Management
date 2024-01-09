@@ -205,3 +205,7 @@ npm i @mui/x-date-pickers
 npm i @emotion/styled
 
 npm i @emotion/react
+
+36 - install  react-native-modal-datetime-picker
+
+npm i react-native-modal-datetime-picker
