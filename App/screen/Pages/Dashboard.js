@@ -195,8 +195,9 @@ import axios from "axios";
           </View>
         </LinearGradient>
         <View>
-          <AppText style={styles.dashboardTitle}>Dashboard</AppText>
+          <AppText style={styles.dashboardTitle}></AppText>
         </View>
+    
         <View style={styles.dashboard}>
           <TouchableOpacity onPress={() => navigation.push("ViewIncomes")}>
             <Icon
@@ -214,36 +215,37 @@ import axios from "axios";
             />
             <Text style={{ fontSize: 15, paddingTop: 5 }}>Expense</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.push("Forecast")}>
+         <TouchableOpacity onPress={() => navigation.push("Calculator")}>
             <Icon
-              name="file-invoice-dollar"
+              name="calculator"
+              size={68}
+              
+             
+             
+            />
+            <Text style={{ fontSize: 15, paddingTop: 5 }}>Calculator</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.push("Agenda")}>
+            <Icon
+              name="calendar-alt"
               size={66}
              
              
             />
-        <Text style={{ fontSize: 15, paddingTop: 5 }}>Forecast</Text>
+            <Text style={{ fontSize: 15, paddingTop: 5 }}> Agenda</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.push("Statistics")}>
+    <TouchableOpacity onPress={() => navigation.push("Reminder")}>
             <Icon
-              name="chart-line"
-              size={66}
-             
-             
-            /> 
-            <Text style={{ fontSize: 15, paddingTop: 5 }}>Statistics</Text>
-          </TouchableOpacity>
-     <TouchableOpacity onPress={() => navigation.push("History")}>
-            <Icon
-              name="history"
+              name="bell"
               size={66}
              
              
             />
-            <Text style={{ fontSize: 15, paddingTop: 5 }}> History</Text>
-          </TouchableOpacity> 
+            <Text style={{ fontSize: 15, paddingTop: 5 }}>Reminder</Text>
+          </TouchableOpacity>
         </View>
         <View>
-          <AppText style={styles.dashboardTitle}>Categories</AppText>
+          <AppText style={styles.dashboardTitle}>Expenses Categories</AppText>
         </View>
         <View style={styles.dashboardCat}>
           <TouchableOpacity onPress={() => navigation.navigate("ViewExpenses", {category:'clothe'})}>
@@ -369,39 +371,140 @@ import axios from "axios";
           </TouchableOpacity>
         </View>
 
-        <View>
-          <AppText style={styles.dashboardTitle}>Toolkit</AppText>
+ <View>
+          <AppText style={styles.dashboardTitle}> Incomes Categories</AppText>
+        </View>
+        <View style={styles.dashboardCat}>
+          <TouchableOpacity onPress={() => navigation.navigate("ViewExpenses", {category:'clothe'})}>
+            <Icon
+              name="tshirt"
+              size={66}
+             
+             
+            />
+
+            <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10 }}>
+              Clothes
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.push("Foods")}>
+            <Icon
+              name="utensils"
+              size={66}
+             
+             
+            />
+
+            <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10 }}>
+            
+              Foods
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.push("Transport")}>
+            <Icon
+              name="subway"
+              size={66}
+             
+             
+            />
+
+            <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10 }}>
+              Transport
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.push("Studies")}>
+            <Icon
+              name="university"
+              size={66}
+             
+             
+            />
+
+            <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10 }}>
+              {" "}
+              Studies
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => navigation.push("MyInvoices")}>
+            <Icon
+              name="house-user"
+              size={66}
+             
+             
+            />
+
+            <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10 }}>
+              {" "}
+              Invoice
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => navigation.push("Taxes")}>
+            <Icon
+              name="cash-register"
+              size={66}
+             
+             
+            />
+
+            <Text style={{ fontSize: 15, paddingTop: 5 }}> Taxes</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => navigation.push("Hobbies")}>
+            <Icon
+              styles={styles.icon}
+              name="laugh-wink"
+              size={66}
+            />
+
+            <Text style={{ fontSize: 15, paddingTop: 5 }}>Hobbies</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => navigation.push("Money")}>
+            <Icon
+              styles={styles.icon}
+              name="hand-holding-usd"
+              size={66}
+             
+             
+            />
+
+            <Text style={{ fontSize: 15, paddingTop: 5 }}> Money</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => navigation.push("Epargne")}>
+            <Icon
+              styles={styles.icon}
+              name="search-dollar"
+              size={66}
+             
+             
+            />
+
+            <Text style={{ fontSize: 15, paddingTop: 5 }}>Epargne</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => navigation.push("Holidays")}>
+            <Icon
+              styles={styles.icon}
+              name="plane-departure"
+              size={66}
+             
+             
+            />
+
+            <Text style={{ fontSize: 15, paddingTop: 5 }}>Holidays</Text>
+          </TouchableOpacity>
         </View>
 
+
+    
+
         <View style={styles.dashboard}>
-          <TouchableOpacity onPress={() => navigation.push("Calculator")}>
-            <Icon
-              name="calculator"
-              size={68}
-              
-             
-             
-            />
-            <Text style={{ fontSize: 15, paddingTop: 5 }}>Calculator</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.push("Agenda")}>
-            <Icon
-              name="calendar-alt"
-              size={66}
-             
-             
-            />
-            <Text style={{ fontSize: 15, paddingTop: 5 }}> Agenda</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.push("Reminder")}>
-            <Icon
-              name="bell"
-              size={66}
-             
-             
-            />
-            <Text style={{ fontSize: 15, paddingTop: 5 }}>Reminder</Text>
-          </TouchableOpacity>
+         
+        
+       
           <TouchableOpacity onPress={() => navigation.push("Download")}>
             <Icon
               name="download"
@@ -488,17 +591,17 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 
-  dashboardTitle: {
+ /*  dashboardTitle: {
     flex: 1,
     color: "black",
-    fontSize: 15,
+    fontSize: 5,
     fontWeight: "bold",
     justifyContent: "center",
     textAlign: "center",
     paddingHorizontal: 20,
     marginTop: 10,
     marginBottom: 10,
-  },
+  }, */
   textCategory: {
     textAlignVertical: "center",
     alignSelf: "center",

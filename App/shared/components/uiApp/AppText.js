@@ -8,9 +8,9 @@ function AppText({ style, children }) {
 
 const styles = StyleSheet.create({
   Appstyle: {
-    fontSize: 15,
-    color: "gray",
-
+    fontSize: 16,
+    color: "Black",
+    textAlign: "center",
     fontWeight: "normal",
     paddingVertical: 0,
   },
