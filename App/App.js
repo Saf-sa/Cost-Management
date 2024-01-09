@@ -23,6 +23,16 @@ import Taxes from "./screen/Pages/Categories/Taxes";
 import Hobbies from "./screen/Pages/Categories/Hobbies";
 import Money from "./screen/Pages/Categories/Money";
 import Epargne from "./screen/Pages/Categories/Epargne";
+import Bonus from "./screen/Pages/Categories/IncomeCategories/Bonus";
+import Allowance from "./screen/Pages/Categories/IncomeCategories/Allowance";
+import Other from "./screen/Pages/Categories/IncomeCategories/Other";
+import Stocks from "./screen/Pages/Categories/IncomeCategories/Stocks";
+import Salary from "./screen/Pages/Categories/IncomeCategories/Salary";
+import Sales from "./screen/Pages/Categories/IncomeCategories/Sales";
+import Loan from "./screen/Pages/Categories/IncomeCategories/Loan";
+import Gift from "./screen/Pages/Categories/IncomeCategories/Gift";
+import Rent from "./screen/Pages/Categories/IncomeCategories/Rent";
+import Refund from "./screen/Pages/Categories/IncomeCategories/Refund";
 import Holidays from "./screen/Pages/Categories/Holidays";
 import Calculator from "./screen/Pages/Toolkits/Calculator";
 import Agenda from "./screen/Pages/Toolkits/Agenda";
@@ -30,6 +40,7 @@ import Reminder from "./screen/Pages/Toolkits/Reminder";
 import Download from "./screen/Pages/Toolkits/Download";
 import AddReminder from "./screen/Pages/Toolkits/AddReminder"; 
 import Settings from "./screen/Pages/Toolkits/Settings";
+
 
 
 
@@ -64,6 +75,16 @@ export default function App() {
         <Stack.Screen name="Money" component={Money} />
         <Stack.Screen name="Epargne" component={Epargne} />
         <Stack.Screen name="Holidays" component={Holidays} />
+        <Stack.Screen name="Allowance" component={Allowance} />
+        <Stack.Screen name="Other" component={Other} />
+        <Stack.Screen name="Stocks" component={Stocks} />
+        <Stack.Screen name="Loan" component={Loan} />
+        <Stack.Screen name="Gift" component={Gift} />
+        <Stack.Screen name="Rent" component={Rent} />
+        <Stack.Screen name="Refund" component={Refund} />
+        <Stack.Screen name="Sales" component={Sales} />
+        <Stack.Screen name="Salary" component={Salary} />
+        <Stack.Screen name="Bonus" component={Bonus} />
         <Stack.Screen name="Calculator" component={Calculator} />
         <Stack.Screen name="Agenda" component={Agenda} />
         <Stack.Screen name="Reminder" component={Reminder} />
