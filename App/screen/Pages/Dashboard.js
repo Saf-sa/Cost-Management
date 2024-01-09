@@ -388,7 +388,7 @@ import Holidays from './Categories/Holidays';
               Salary
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.push("Bonus")}>
+          <TouchableOpacity onPress={() => navigation.navigate("ViewIncomes", {category:'Bonus'})}>
             <Icon
               name="utensils"
               size={66}
@@ -401,7 +401,7 @@ import Holidays from './Categories/Holidays';
               Bonus
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.push("Loan")}>
+          <TouchableOpacity onPress={() => navigation.navigate("ViewIncomes",  {category:'Loan'})}>
             <Icon
               name="subway"
               size={66}
@@ -413,7 +413,7 @@ import Holidays from './Categories/Holidays';
               Loan
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.push("Sales")}>
+          <TouchableOpacity onPress={() => navigation.navigate("ViewIncomes", {category:'Sales'})}>
             <Icon
               name="university"
               size={66}
@@ -427,7 +427,7 @@ import Holidays from './Categories/Holidays';
             </Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => navigation.push("Gift")}>
+          <TouchableOpacity onPress={() => navigation.navigate("ViewIncomes", {category:'Gift'})}>
             <Icon
               name="house-user"
               size={66}
@@ -441,7 +441,7 @@ import Holidays from './Categories/Holidays';
             </Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => navigation.push("Rent")}>
+          <TouchableOpacity onPress={() => navigation.navigate("ViewIncomes", {category:'Rent'})}>
             <Icon
               name="cash-register"
               size={66}
@@ -452,7 +452,7 @@ import Holidays from './Categories/Holidays';
             <Text style={{ fontSize: 15, paddingTop: 5 }}> Rent</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => navigation.push("Allowance")}>
+          <TouchableOpacity onPress={() => navigation.navigate("ViewIncomes", {category:'Allowance'})}>
             <Icon
               styles={styles.icon}
               name="laugh-wink"
@@ -462,7 +462,7 @@ import Holidays from './Categories/Holidays';
             <Text style={{ fontSize: 15, paddingTop: 5 }}>Allowance</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => navigation.push("Refund")}>
+          <TouchableOpacity onPress={() => navigation.navigate("ViewIncomes", {category:'Refund'})}>
             <Icon
               styles={styles.icon}
               name="hand-holding-usd"
@@ -474,7 +474,7 @@ import Holidays from './Categories/Holidays';
             <Text style={{ fontSize: 15, paddingTop: 5 }}> Refund</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => navigation.push("Stocks")}>
+          <TouchableOpacity onPress={() => navigation.navigate("ViewIncomes", {category:'Stocks'})}>
             <Icon
               styles={styles.icon}
               name="search-dollar"
@@ -486,10 +486,10 @@ import Holidays from './Categories/Holidays';
             <Text style={{ fontSize: 15, paddingTop: 5 }}>Stocks</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => navigation.push("Other")}>
+          <TouchableOpacity onPress={() => navigation.navigate("ViewIncomes", {category:'Other'})}>
             <Icon
               styles={styles.icon}
-              name="plane-departure"
+              name="newspaper"
               size={66}
              
              

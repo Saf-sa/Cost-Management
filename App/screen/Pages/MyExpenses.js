@@ -179,7 +179,7 @@ const handleChange = (value, fieldName) => {
   };
     const data = () => {
     return [
-        "House",
+       
         "Clothe",
         "Food",
         "Transport",

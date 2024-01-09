@@ -18,16 +18,16 @@ router.get("/:category", authMiddleware, async (req, res) => {
   try {
 
         if (req.params.category === "all") {
-      const incomes = await Expenses.find({expenseOwner: req.userId});
+      const incomes = await Incomes.find({incomeOwner: req.userId});
   
       return res.send({ incomes });
     }
     
         else{
       const category = req.params.category;
-      const incomes = await Incomes.find({incomesOwner: req.userId, categories: category[0].toUpperCase()+category.slice(1)});
+      const incomes = await Incomes.find({incomeOwner: req.userId, categories: category[0].toUpperCase()+category.slice(1)});
       return res.send({ incomes });
-console.log('expenses send from Backend',incomes)
+console.log('Incomes send from Backend',incomes)
     } 
 
 /*     const incomes = await Incomes.find({incomeOwner: req.userId});

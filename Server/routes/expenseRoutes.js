@@ -35,11 +35,4 @@ console.log('expenses send from Backend',expenses)
 });
 
 
-
-
-
-
-
-
-
 export default router;

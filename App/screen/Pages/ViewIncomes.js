@@ -4,17 +4,24 @@ import {
   StyleSheet,
   TouchableOpacity,
   ScrollView,
-
+  DatePickerIOS,
+  FlatList
 } from "react-native";
-import React, { useState,  useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Toast from "react-native-toast-message";
 import { useNavigation } from "@react-navigation/native";
+import AuthHeader from "../../shared/components/AuthHeader";
+import CustomInputSingup from "../../shared/components/ui/CustomInputSignup";
+import CustomButton from "../../shared/components/ui/CustomButton";
+import DateTimePicker from "@react-native-community/datetimepicker";
+import Icon from "../../shared/components/IncomExpenseComponent/Icon";
+import AppText from "../../shared/components/uiApp/AppText";
 import UserNav from "../nav/UserNav";
 import Screen2 from "../../shared/components/Screen";
+import moment from "moment";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import MyIncome from "./MyIncomes";
 import axios from "axios";
-import MyIncomes from "./MyIncomes";
-
 /*  import { REACT_APP_BE_URL } from "../../.env"; */
 
 
@@ -27,17 +34,17 @@ const ViewIncomes = ({route}) => {
   const [storedIncomes, setStoredIncomes] = useState([]);// State to store data from AsyncStorage
   const navigation = useNavigation();// Navigation
 
-/*    const {category} = route.params;// Get category from MyIcomes.js  */
-
+  const {category} = route.params;// Get category from MyIcomes.js  
+  
   useEffect(() => {// UseEffect to get data from AsyncStorage
     const getIncomes = async () => {
       try {
            const user = JSON.parse(await AsyncStorage.getItem("@storage_Key"));// Get user data from AsyncStorage
-          /*  console.log('user token ',user.token); */
+           console.log('user token ',user.token); 
         const { data } = await axios.get(
           
            /*  console.log('data ', data), */
-          `http://localhost:5555/api/incomes`,// Get data in DB collection from backend in DB
+          `http://localhost:5555/api/incomes/${category}`,// Get data in DB collection from backend in DB
           {
             headers: {
               Authorization: `Bearer ${user.token}`,// Send token to backend
@@ -47,7 +54,7 @@ const ViewIncomes = ({route}) => {
         );
          // Stocker les données récupérées dans AsyncStorage
        await AsyncStorage.setItem('incomes', JSON.stringify(data));// Store data in AsyncStorage
-       
+         /*      console.log('data received from Backend ',data);  */
 
         //await AsyncStorage.clear('incomes')
 
