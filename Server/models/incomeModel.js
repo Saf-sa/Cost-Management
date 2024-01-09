@@ -17,7 +17,6 @@ const incomesSchema = new mongoose.Schema(
        type: [String],
       enum: [
         "Salary",
-        "Taxes refund",
         "Bonus",
         "Loan",
         "Sales",
@@ -25,7 +24,6 @@ const incomesSchema = new mongoose.Schema(
         "Rent",
         "Allowance",
         "Refund",
-        "Gambling",
         "Stocks",
         "Other",
 

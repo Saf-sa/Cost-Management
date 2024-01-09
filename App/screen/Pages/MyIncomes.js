@@ -180,7 +180,6 @@ const handleChange = (value, fieldName) => {
     const data = () => {
     return [
         "Salary",
-        "Taxes refund",
         "Bonus",
         "Loan",
         "Sales",
@@ -188,7 +187,6 @@ const handleChange = (value, fieldName) => {
         "Rent",
         "Allowance",
         "Refund",
-        "Gambling",
         "Stocks",
         "Other",
 
