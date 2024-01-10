@@ -157,8 +157,8 @@ const Login = () => {
           });
 
           setTimeout(() => {
-            navigation.navigate("Dashboard"); // Navigation après 3 secondes
-          }, 3000); // Délai de 3000 millisecondes (3 secondes)
+            navigation.navigate("Dashboard"); // Navigation after 3 seconds
+          }, 3000); // Délay 3 seconds to navigate to Dashboard
         } catch (e) {
           console.error("Failed to save the data to the storage");
           Toast.show({

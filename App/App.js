@@ -1,4 +1,5 @@
 import { StatusBar } from "expo-status-bar";
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -40,24 +41,47 @@ import Reminder from "./screen/Pages/Toolkits/Reminder";
 import Download from "./screen/Pages/Toolkits/Download";
 import AddReminder from "./screen/Pages/Toolkits/AddReminder"; 
 import Settings from "./screen/Pages/Toolkits/Settings";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from 'axios';
 
 
 
 
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator(); // create stack navigator
 
-export default function App() { //useEffect
-  
+export default function App() {
+  const [isLogged, setIsLogged] = useState(false);
+
+  useEffect(() => {
+    const checkUser = async () => {
+      const user = await AsyncStorage.getItem("@storage_Key");
+      if (user) {
+        const response = await axios.post(
+          `http://localhost:5555/api/users/login`,
+          { token: user.token }
+        );
+        if (response.status === 200) {
+          console.log('User already isLoged',response.data);
+          setIsLogged(true);
+        }
+      }
+    };
+    checkUser();
+  }, []);
   
   return (
     <NavigationContainer >
       <Stack.Navigator initialRouteName="Login">
-        <Stack.Screen name="Login" component={Login}  />
+            {isLogged ? (
+          <Stack.Screen name="Login" component={Login} />
+        ) : (
+           <Stack.Screen name="Dashboard" component={Dashboard} />
+        )}
         <Stack.Screen name="Signup" component={Signup} />
         <Stack.Screen name="Reset" component={Reset} />
         <Stack.Screen name="ResetPassword" component={ResetPassword} />
-        <Stack.Screen name="Dashboard" component={Dashboard} />
+      
         <Stack.Screen name="ViewIncomes"  initialParams={{category:'all'}} component={ViewIncomes} />
         <Stack.Screen name="MyIncomes" component={MyIncomes} />
         <Stack.Screen name="ViewExpenses" initialParams={{category:'all'}} component={ViewExpenses} />

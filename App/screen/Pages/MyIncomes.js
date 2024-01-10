@@ -75,13 +75,12 @@ const MyIncome = () => {
     sendDateToBackend(date);
   };
 
-  const sendDateToBackend = (date) => {
-    console.log('Date sélectionnée :', date.toISOString());
-    // Ajoutez ici votre logique pour envoyer la date au backend
+  const sendDateToBackend = (date) => { //function to send date to backend
+
   };
 
-  const handleCellSelection = () => {
-    showDatePicker(); // Ouvrir le sélecteur de date lorsque la cellule est sélectionnée
+  const handleCellSelection = () => {//open date picker when cell is selected
+    showDatePicker(); // 
   };
 
 const isValidDate = (date) => {
@@ -123,12 +122,12 @@ useEffect(() => {
     };
   }, []);
 
-const handleChange = (value, fieldName) => {
+const handleChange = (value, fieldName) => {//function to handle change
   let formattedValue = value;
 
-  if (fieldName === "date") {
-    formattedValue = moment(value, "DD/MM/YYYY");
-    if (!formattedValue.isValid()) {
+  if (fieldName === "date") {//if field name is date then format the value
+    formattedValue = moment(value, "DD/MM/YYYY");//format the value using moment  library
+    if (!formattedValue.isValid()) {//if the value is not valid then show error
       console.error("Invalid date");
       return;
     }
@@ -137,7 +136,7 @@ const handleChange = (value, fieldName) => {
       console.error("Invalid categories");
       return;
     }
-    setSelected(value); // Mettre à jour l'état 'selected'
+    setSelected(value); // updatde selected value in state to be used in the form
     formattedValue = value.map((selected) => selected.value);
     console.log("formattedValue", formattedValue);
   }
