@@ -51,7 +51,7 @@ import axios from 'axios';
 const Stack = createStackNavigator(); // create stack navigator
 
 export default function App() {
-/*   const [isLogged, setIsLogged] = useState(false);
+ const [isLogged, setIsLogged] = useState(false);
 
   useEffect(() => {
     const checkUser = async () => {
@@ -68,20 +68,20 @@ export default function App() {
       }
     };
     checkUser();
-  }, []); */
+  }, []); 
   
   return (
     <NavigationContainer >
-      {/* <Stack.Navigator initialRouteName="Login">
+       <Stack.Navigator initialRouteName="Login">
             {isLogged ? (
           <Stack.Screen name="Login" component={Login} />
         ) : (
            <Stack.Screen name="Dashboard" component={Dashboard} />
-        )} */}
-        <Stack.Navigator initialRouteName="Login">
+        )} 
+      {/*   <Stack.Navigator initialRouteName="Login">
         <Stack.Screen name="Login" component={Login} />
            <Stack.Screen name="Dashboard" component={Dashboard} />
-        <Stack.Screen name="Signup" component={Signup} />
+        <Stack.Screen name="Signup" component={Signup} /> */}
         <Stack.Screen name="Reset" component={Reset} />
         <Stack.Screen name="ResetPassword" component={ResetPassword} />
         <Stack.Screen name="ViewIncomes"  initialParams={{category:'all'}} component={ViewIncomes} />
