@@ -209,3 +209,19 @@ npm i @emotion/react
 36 - install  react-native-modal-datetime-picker
 
 npm i react-native-modal-datetime-picker
+
+37- clear local storage in react native :
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+const clearStorage = async () => {
+  try {
+    await AsyncStorage.clear();
+    console.log('Storage successfully cleared!');
+  } catch (e) {
+    console.log('Failed to clear the async storage.');
+  }
+}
+
+// Call the function when you want to clear the storage
+clearStorage();

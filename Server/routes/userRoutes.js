@@ -12,6 +12,7 @@ import {
   listUser,
   updateUser,
   resetLogin,
+  isValidToken,
 } from "../controllers/userController.js";
 
 import { registerExpense } from "../controllers/ExpensesController.js";
@@ -29,6 +30,8 @@ router.post("/password", resetPassword);
 router.post("/update", updateUser);
 router.put("/:id", updateUser);
 router.get("/", listUser);
+router.get("/verify-token",authMiddleware,isValidToken);
+
 /* router.post("/expenses",authMiddleware, registerExpense);
 router.get('/expenses',authMiddleware, async (req, res) => {
   
