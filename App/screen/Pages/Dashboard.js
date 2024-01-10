@@ -120,7 +120,7 @@ import Holidays from './Categories/Holidays';
 
             <AppText style={{ color: "black", fontSize: 10 }}>BALANCE</AppText>
 
-            <AppText style={{ color: "red", fontSize: 1 }}>3000</AppText>
+            <AppText style={{ color: "red", fontSize: 1 }}>3000 $ </AppText>
 
             <AppText
               style={{
@@ -128,7 +128,7 @@ import Holidays from './Categories/Holidays';
                 fontSize: 12,
               }}
             >
-              3000
+              3000 $
             </AppText>
 
             <AppText style={{ marginTop:5 }}></AppText>
@@ -160,7 +160,7 @@ import Holidays from './Categories/Holidays';
                   Income
                 </AppText>
                 <AppText style={{ color: "green", fontSize: 12 }}>
-                  TOTAL=
+                  100000 $
                 </AppText>
               </View>
             </View>
@@ -189,7 +189,7 @@ import Holidays from './Categories/Holidays';
                   Expenses
                 </AppText>
                 <AppText style={{ color: "red", fontSize: 12 }}>
-                  TOTAL =
+                  97000 $
                 </AppText>
               </View>
             </View>

@@ -37,8 +37,8 @@ function HomeNav({ title, subtitle, image }) {
             name="bars"
             size={40}
         
-           /*  backgroundColor="#E0BC3E" */
-            iconColor="black"
+
+            
           />
         </TouchableOpacity>
       </View>
@@ -103,7 +103,7 @@ function HomeNav({ title, subtitle, image }) {
               <AppText style={styles.textsAbout}> About us</AppText>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => BackHandler.exitApp()}>
-              <AppText style={[styles.textsAbout, { color: "blue" }]}>
+              <AppText style={[styles.textsAbout ]}>
                 Contact
               </AppText>
             </TouchableOpacity>
@@ -118,7 +118,6 @@ const styles = StyleSheet.create({
  
     paddingVertical: 13.5,
     fontSize: 20,
-    color: "black",
     textAlign: "center",
   },
   containerParent: {
@@ -150,7 +149,7 @@ const styles = StyleSheet.create({
   },
   subtitleStyle: {
     fontSize: 20,
-    color: "black ",
+
    
   },
 });
