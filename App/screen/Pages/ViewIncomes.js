@@ -100,7 +100,7 @@ let index = 1;// index for scrollview
 
          
         <View style={styles.row}>
-          <Text>Date : {new Date(income.date).toISOString().split('T')[0]}</Text>
+          <Text>Date : {income.date && !isNaN(Date.parse(income.date)) ? new Date(income.date).toISOString().split('T')[0] : 'Invalid date'}</Text>
           <Text>Categories : {income.categories.join(', ')}</Text>
         </View>
         <View style={styles.row}>

@@ -37,7 +37,7 @@ const MyIncome = () => {
   const [label, setLabel] = useState("");
   const [amount, setAmount] = useState("");
   const navigation = useNavigation();
-  const [selected, setSelected] = useState([]);
+  const [selected, setSelected] = useState('');
   const [formErrors, setFormErrors] = useState({
     date: null,
     categories: null,
@@ -56,12 +56,12 @@ const MyIncome = () => {
     // send date to backend
   };
 
-  useEffect(() => {
+ /* useEffect(() => {
   setCategories((prevState) => ({
     ...prevState,
     categories: selected,
   }));
-}, [selected]);
+}, [selected]); */
 console.log(" 65 categories", categories);
 
 
@@ -84,10 +84,9 @@ console.log(" 65 categories", categories);
     setDatePickerVisibility(false);
   };
 
+
   const handleChange = (value, fieldName) => {
-    if (fieldName === "categories") {
-      setCategories(value);
-    } else if (fieldName === "label") {
+ if (fieldName === "label") {
       setLabel(value);
     } else if (fieldName === "amount") {
       setAmount(value);
@@ -100,7 +99,7 @@ console.log(" 65 categories", categories);
     const formData = {
       
       date: selectedDate,
-      categories: categories,
+      categories: selected,
       label: label,
       amount: amount,
      
@@ -141,26 +140,25 @@ console.log(" 65 categories", categories);
       );
     }
 
+    console.log("formData", formData);
   try {
         // Récupérer les données de l'utilisateur à partir de AsyncStorage
       const user = JSON.parse(await AsyncStorage.getItem("@storage_Key"));
       // await AsyncStorage.setItem("@storage_Key", jsonValue);
 
       console.log("149 get user Token from storage_Key ", user);
+       console.log("150 response.data", user.id);
       const response = await axios.post(
         `http://localhost:5555/api/incomes`,
         formData,
-        console.log("153 FormData data send to BE", formData),
         {
           headers: {
-            authorization: `Bearer ${user.token}`,
-            
+            authorization: `Bearer ${user.token}` 
           },
-        }
-
-        
+        } 
       );
-      console.log("163 response.data", user.token);
+
+     
       console.log('data send to BE',response.data);
       
       
@@ -225,7 +223,6 @@ console.log(" 65 categories", categories);
             defaultOption={{ value: 'Select a category' }}
             label="Categories"
              setSelected={(value) => setSelected(value)}
-            onSelect={setCategories}
             value={categories}
             data={[
               "Salary",
