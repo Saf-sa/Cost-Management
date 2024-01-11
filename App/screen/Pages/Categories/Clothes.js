@@ -4,7 +4,7 @@ import React from 'react'
 const Clothes = () => {
   return (
     <View>
-      <Text>Clothes</Text>
+      
     </View>
   )
 }

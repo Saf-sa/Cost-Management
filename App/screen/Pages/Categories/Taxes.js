@@ -4,7 +4,7 @@ import React from 'react'
 const Taxes = () => {
   return (
     <View>
-      <Text>Taxes</Text>
+    
     </View>
   )
 }
