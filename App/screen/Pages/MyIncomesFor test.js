@@ -142,7 +142,7 @@ const handleChange = (value, fieldName) => {//function to handle change
     }
     setSelected(value); // updatde selected value in state to be used in the form
     formattedValue = value.map((selected) => selected.value);
-    console.log("formattedValue", formattedValue);
+    console.log(" 145 formattedValue", formattedValue);
   }
 
   setFormData((prevState) => ({
@@ -227,6 +227,7 @@ const handleChange = (value, fieldName) => {//function to handle change
     const handleCategorySelection = (value) => {
   // Mettre à jour l'état categories avec la valeur sélectionnée
   setCategories(value);
+ console.log("f230categories :categories", value);
 };
 
   const handleSubmit = async (e) => {
@@ -239,6 +240,7 @@ const handleChange = (value, fieldName) => {//function to handle change
       label: label,
       amount: amount,
     });
+    console.log("f242 categories :categories seTormData", formData);
 
     if (!formIsValid(date, categories,  label, amount)) {
       Toast.show({
@@ -288,7 +290,7 @@ const handleChange = (value, fieldName) => {//function to handle change
           },
         }
       );
-      console.log('data send to BE',response.data);
+      console.log('291 formData send to BE',response.data);
       
       
       Toast.show({

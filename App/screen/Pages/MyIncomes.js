@@ -28,6 +28,8 @@ const isValidAmount = (amount) => {
   return !isNaN(amount);
 };
 
+
+
 const MyIncome = () => {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [selectedDate, setSelectedDate] = useState("");
@@ -51,7 +53,27 @@ const MyIncome = () => {
   };
 
   const sendDateToBackend = (date) => {
-    // Envoi de la date au backend
+    // send date to backend
+  };
+
+  useEffect(() => {
+  setCategories((prevState) => ({
+    ...prevState,
+    categories: selected,
+  }));
+}, [selected]);
+console.log(" 65 categories", categories);
+
+
+/*     const handleSelect = (categories) => {
+    const formattedCategories = [categories].map((item) => item.value);
+    setSeletedCategoriesformattedCategories();
+    SendCategerieToBackend(formattedCategories);
+    console.log("72 formattedCategories", handleSelect);
+  }; */
+
+  const SendCategerieToBackend = (categories) => {
+    //send  categories to backend
   };
 
   const showDatePicker = () => {
@@ -70,14 +92,18 @@ const MyIncome = () => {
     } else if (fieldName === "amount") {
       setAmount(value);
     }
+    console.log("95 setCategories", value);
   };
 
   const handleSubmit = async () => {
+    
     const formData = {
+      
       date: selectedDate,
       categories: categories,
       label: label,
       amount: amount,
+     
     };
 
     // Validation des champs
@@ -120,17 +146,21 @@ const MyIncome = () => {
       const user = JSON.parse(await AsyncStorage.getItem("@storage_Key"));
       // await AsyncStorage.setItem("@storage_Key", jsonValue);
 
-      console.log("user", user.token);
+      console.log("149 get user Token from storage_Key ", user);
       const response = await axios.post(
         `http://localhost:5555/api/incomes`,
         formData,
-        console.log("data send to BE", formData),
+        console.log("153 FormData data send to BE", formData),
         {
           headers: {
             authorization: `Bearer ${user.token}`,
+            
           },
         }
+
+        
       );
+      console.log("163 response.data", user.token);
       console.log('data send to BE',response.data);
       
       

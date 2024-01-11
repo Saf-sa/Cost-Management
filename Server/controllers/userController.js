@@ -284,7 +284,7 @@ const isValidToken = async (req, res, next) => {
   try {
     const user = await User.findById(req.userId).select("-password");
     if (!user) {
-      return res.status(401).send("Access Denied");
+      return res.status(401).send(" Access Denied");
     } else {
       res.status(200).json(user);
       next();

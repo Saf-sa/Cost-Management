@@ -6,6 +6,7 @@ const incomesSchema = new mongoose.Schema(
      incomeOwner:{
       type: mongoose.Schema.Types.ObjectId,
       required: true,
+ 
 
     },
     date: {
@@ -48,6 +49,7 @@ const incomesSchema = new mongoose.Schema(
   // add timestamps to the schema to know when document was created or modified
   { timestamps: true }
 );
+
 
 // use mongoose to create a model from the schema and export it
 

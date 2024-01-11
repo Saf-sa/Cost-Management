@@ -56,9 +56,9 @@ import axios from 'axios';
 }
 
 // Call the function when you want to clear the storage
-clearStorage();  */
+clearStorage();  
 
-
+ */
 
 
 
@@ -113,6 +113,7 @@ export default function App() {
         <Stack.Screen name="Signup" component={Signup} /> 
         <Stack.Screen name="Reset" component={Reset} />
         <Stack.Screen name="ResetPassword" component={ResetPassword} />
+
         <Stack.Screen name="ViewIncomes"  initialParams={{category:'all'}} component={ViewIncomes} />
         <Stack.Screen name="MyIncomes" component={MyIncomes} />
         <Stack.Screen name="ViewExpenses" initialParams={{category:'all'}} component={ViewExpenses} />
