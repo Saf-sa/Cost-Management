@@ -94,12 +94,12 @@ let index = 1;
 
          
         <View style={styles.row}>
-          <Text>Date : {expense.date && !isNaN(Date.parse(expense.date)) ? new Date(expense.date).toISOString().split('T')[0] : 'Invalid date'}</Text>
-          <Text>Categories : {expense.categories.join(', ')}</Text>
+          <Text style={styles.text}>Date : {expense.date && !isNaN(Date.parse(expense.date)) ? new Date(expense.date).toISOString().split('T')[0] : 'Invalid date'}</Text>
+          <Text style={styles.text}>Categories : {expense.categories.join(', ')}</Text>
         </View>
         <View style={styles.row}>
-          <Text>Label : {expense.label}</Text>
-          <Text>Amount = - {expense.amount}</Text>
+          <Text style={styles.text}>Label : {expense.label}</Text>
+          <Text style={styles.Amount}>Amount = - {expense.amount}</Text>
         </View>
       </View>
        
@@ -113,22 +113,22 @@ const styles = StyleSheet.create({
   expenseContainer: {
     marginTop: -30,
     width: "96%",
-
+    alignSelf: "center",
     borderWidth: 1,
     borderColor: "#E0AA3E",
-    borderRadius: 10,
+    borderRadius: 8,
     padding: 12,
-    marginBottom: 40,
+    marginBottom: 38,
     marginVertical: 8,
     backgroundColor: "#F7F7F7",
    
   },
+
   row: {
     
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingRight: 8,
-    paddingBottom: 8,
+    paddingBottom: 1,
   },
   textLabel: {
     fontWeight: 'bold',
