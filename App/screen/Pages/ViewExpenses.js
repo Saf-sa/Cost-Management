@@ -94,12 +94,12 @@ let index = 1;
 
          
         <View style={styles.row}>
-          <Text>Date : {new Date(expense.date).toISOString().split('T')[0]}</Text>
+          <Text>Date : {expense.date && !isNaN(Date.parse(expense.date)) ? new Date(expense.date).toISOString().split('T')[0] : 'Invalid date'}</Text>
           <Text>Categories : {expense.categories.join(', ')}</Text>
         </View>
         <View style={styles.row}>
           <Text>Label : {expense.label}</Text>
-          <Text>Amount = + {expense.amount}</Text>
+          <Text>Amount = - {expense.amount}</Text>
         </View>
       </View>
        
