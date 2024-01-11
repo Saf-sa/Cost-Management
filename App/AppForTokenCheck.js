@@ -8,7 +8,7 @@ import Login from "./screen/auth/login";
 import Signup from "./screen/auth/signup";
 import Reset from "./screen/auth/reset";
 import ResetPassword from "./screen/auth/resetPassword";
-import Dashboard from "./screen//Pages/Dashboard";
+import Dashboard from "./screen/Pages/Dashboard";
 import ViewIncomes from "./screen/Pages/ViewIncomes";
 import MyIncomes from "./screen/Pages/MyIncomes";
 import ViewExpenses from "./screen/Pages/ViewExpenses";

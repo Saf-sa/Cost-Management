@@ -459,14 +459,14 @@ import Holidays from './Categories/Holidays';
               size={66}
             />
 
-            <Text style={{ fontSize: 15, paddingTop: 5 }}>Allowance</Text>
+            <Text style={{ fontSize: 14, paddingTop: 5 }}>Allowance</Text>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={() => navigation.navigate("ViewIncomes", {category:'Refund'})}>
             <Icon
               styles={styles.icon}
               name="hand-holding-usd"
-              size={66}
+              size={65}
              
              
             />
