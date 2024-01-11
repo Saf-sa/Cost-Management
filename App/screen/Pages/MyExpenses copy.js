@@ -1,220 +1,167 @@
-import { View, Text, StyleSheet, DatePickerIOS , } from "react-native";
 import React, { useState, useRef, useEffect } from "react";
+import { View, Text, StyleSheet, TextInput, ScrollView } from "react-native";
 import Toast from "react-native-toast-message";
 import { useNavigation } from "@react-navigation/native";
 import AuthHeader from "../../shared/components/AuthHeader";
 import CustomInputSingup from "../../shared/components/ui/CustomInputSignup";
 import CustomButton from "../../shared/components/ui/CustomButton";
-import DateTimePicker from "@react-native-community/datetimepicker";
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 import moment from "moment";
 import { SelectList } from 'react-native-dropdown-select-list';
-
-/*  import { REACT_APP_BE_URL } from "../../.env"; */
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from "axios";
 
-// comment this line because solution not found if using .env file
-// go to ligne 84
-//import { API_URL, API_TOKEN } from "@env";
-/*  import { REACT_APP_BE_URL } from "../../.env";  */
-
-const isValidDate = (date) => {};
-
-const isValidCategories = (categories) => {};
-
-const isValidlabel = (label) => {};
-
-const isValidAmount = (amount) => {};
-
-// check all value is valid
-const formIsValid = (DataObj) => {
-  return (
-    Object.values(DataObj).every((value) => value.trim().length > 0) && // check all value is not empty
-    isValidDate(DataObj.date) &&
-    isValidCategories(DataObj.categories) &&
-    isValidformOtherCategories(DataObj.otherCategories) &&
-    isValidlabel(DataObj.label) &&
-    isValidAmount(DataObj.amount)
-  );
+const isValidDate = (date) => {
+  const regex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[012])\/(19|20)\d\d$/;
+  return regex.test(date);
 };
-//
-const MyExpense = () => {
-  const [date, setDate] = useState("");
-  const [categories, setCategories] = useState("");
+
+const isValidCategories = (categories) => {
+  return categories !== '';
+};
+
+const isValidLabel = (label) => {
+  return label !== '';
+};
+
+const isValidAmount = (amount) => {
+  return !isNaN(amount);
+};
+
+
+
+const MyExpense= () => {
+  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+  const [selectedDate, setSelectedDate] = useState("");
+  const [categories, setCategories] = useState([]);
   const [label, setLabel] = useState("");
   const [amount, setAmount] = useState("");
-  const [selected, setSelected] = React.useState("");
   const navigation = useNavigation();
+  const [selected, setSelected] = useState('');
   const [formErrors, setFormErrors] = useState({
     date: null,
     categories: null,
-    otherCategories: null,
     label: null,
     amount: null,
   });
 
-   
-  const [formData, setFormData] = useState({
-    date: "",
-    categories: "",
-  /*   otherCategories: "", */
-    label: "",
-    amount: "",
-  });
+  const handleConfirm = (date) => {
+    hideDatePicker();
+    const formattedDate = moment(date).format("DD/MM/YYYY");
+    setSelectedDate(formattedDate);
+    sendDateToBackend(formattedDate);
+  };
 
-  const timeoutIdRef = useRef(null);
+  const sendDateToBackend = (date) => {
+    // send date to backend
+  };
 
-  useEffect(() => {
-    return () => {
-      if (timeoutIdRef.current) {
-        clearTimeout(timeoutIdRef.current);
-      }
-    };
-  }, []);
+ /* useEffect(() => {
+  setCategories((prevState) => ({
+    ...prevState,
+    categories: selected,
+  }));
+}, [selected]); */
+console.log(" 65 categories", categories);
+
+
+/*     const handleSelect = (categories) => {
+    const formattedCategories = [categories].map((item) => item.value);
+    setSeletedCategoriesformattedCategories();
+    SendCategerieToBackend(formattedCategories);
+    console.log("72 formattedCategories", handleSelect);
+  }; */
+
+  const SendCategerieToBackend = (categories) => {
+    //send  categories to backend
+  };
+
+  const showDatePicker = () => {
+    setDatePickerVisibility(true);
+  };
+
+  const hideDatePicker = () => {
+    setDatePickerVisibility(false);
+  };
+
 
   const handleChange = (value, fieldName) => {
-    let formattedValue = value;
-
-    if (fieldName === "date") {
-      formattedValue = moment(value, "DD/MM/YYYY");
-      if (!formattedValue.isValid()) {
-        // Handle invalid date here
-        console.error("Invalid date");
-        return;
-      }
+ if (fieldName === "label") {
+      setLabel(value);
+    } else if (fieldName === "amount") {
+      setAmount(value);
     }
-
-    setFormData((prevState) => ({
-      ...prevState,
-      [fieldName]: formattedValue,
-    }));
+    console.log("95 setCategories", value);
   };
 
-  const updateError = (type, errorMessage) => {
-    setFormErrors((prevFormErrors) => ({
-      ...prevFormErrors,
-      [type]: errorMessage,
-    }));
+  const handleSubmit = async () => {
+    
+    const formData = {
+      
+      date: selectedDate,
+      categories: selected,
+      label: label,
+      amount: amount,
+     
+    };
 
-    if (errorMessage) {
-      timeoutIdRef.current = setTimeout(() => {
-        setFormErrors((prevFormErrors) => ({
-          ...prevFormErrors,
-          [type]: null,
-        }));
-      }, 3000); // 3000 milliseconds = 3 seconds
-    }
-  };
-  const isValidForm = () => {
-     if (!formIsValid(formData.date)) {
+    // Validation des champs
+    if (!isValidDate(formData.date)) {
       updateError(
         "date",
         !isValidDate(formData.date) ? "Please enter a valid date" : null
       );
     }
-    if (!formIsValid(formData.categories)) {
+
+    if (!isValidCategories(formData.categories)) {
       updateError(
         "categories",
         !isValidCategories(formData.categories)
-          ? "Please choose a valid categories"
-          : null
-         
-      );
-       console.log('test categories',categories);
-    }
-   /*  if (!formIsValid(formData)) {
-      updateError(
-        "otherCategories",
-        !isValidformOtherCategories(formData.otherCategories)
-          ? "please choose  Other categories"
-          : null
-    } */
-    if (!formIsValid(formData.amount)) {
-      updateError(
-        "amount",
-        !isValidAmount(formData.amount, formData.amount)
-          ? "please enter a valid amount"
+          ? "Please choose a valid category"
           : null
       );
     }
-  };
-    const data = () => {
-  const data = [
-    "House",
-    "Transport",
-    "Clothes",
-    "Studies",
-    "Invoice",
-    "Taxes",
-    "Hobbies",
-    "Money",
-    "MyEpargne",
-    "Holiday",
-    "Other",
-  ];
 
-
-    }
-    console.log('test data ', data);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    // update formData with form values
-    setFormData({
-      date: date,
-      categories: categories.key,
-      label: label,
-      amount: amount,
-    });
-    console.log("formData", formData);
-
-    if (!formIsValid(date, categories,  label, amount)) {
-      Toast.show({
-        type: "error",
-        position: "bottom",
-        text1: "Please review your form",
-        visibilityTime: 3000,
-        autoHide: true,
-      });
-
-      updateError(
-        "date",
-        !isValidDate(formData.date) ? "please enter a valid date" : null
-      );
-      updateError(
-        
-        "categories",
-     
-        !isValidCategories(formData.categories)
-          ? "please choose a valid categories"
-          : null
-      );
-         
-    /*   updateError(
-        "otherCategories",
-        !isValidformOtherCategories(formData.otherCategories)
-          ? "please choose other categories"
-          : null
-      ); */
+    if (!isValidLabel(formData.label)) {
       updateError(
         "label",
-        !isValidlabel(formData.label)
-          ? "please enter a a description in label"
+        !isValidLabel(formData.label)
+          ? "Please enter a description"
           : null
-      );
-      updateError(
-        "amount",
-        !isValidAmount(formData.amount) ? "please enter a valid amount" : null
       );
     }
 
-    try {
-      const response = await axios.post(
-             
-        `http://localhost:5555/api/users/expenses`,
-        formData
+    if (!isValidAmount(formData.amount)) {
+      updateError(
+        "amount",
+        !isValidAmount(formData.amount)
+          ? "Please enter a valid amount"
+          : null
       );
+    }
+
+    console.log("formData", formData);
+  try {
+        // Récupérer les données de l'utilisateur à partir de AsyncStorage
+      const user = JSON.parse(await AsyncStorage.getItem("@storage_Key"));
+      // await AsyncStorage.setItem("@storage_Key", jsonValue);
+
+      console.log("149 get user Token from storage_Key ", user);
+       console.log("150 response.data", user.id);
+      const response = await axios.post(
+        `http://localhost:5555/api/Expenses`,
+        formData,
+        {
+          headers: {
+            authorization: `Bearer ${user.token}` 
+          },
+        } 
+      );
+
      
+      console.log('data send to BE',response.data);
+      
+      
       Toast.show({
         type: "success",
         position: "bottom",
@@ -226,7 +173,6 @@ const MyExpense = () => {
         navigation.navigate("ViewExpenses");
       }, 3000);
     } catch (err) {
-       
       console.log("Test Myexpense", err.response.data);
       Toast.show({
         type: "error",
@@ -238,74 +184,89 @@ const MyExpense = () => {
     }
   };
 
+  const updateError = (type, errorMessage) => {
+    setFormErrors((prevFormErrors) => ({
+      ...prevFormErrors,
+      [type]: errorMessage,
+    }));
+  };
+
   return (
     <View style={styles.root}>
-      <AuthHeader subtext="Please Add a new expense" />
+      <AuthHeader subtext="Please add a new expense" />
       <View style={styles.content}>
-        <CustomInputSingup
-          label="Date"
-          value={formData.date}
-          onChangeText={(value) => handleChange(value, "date")}
-          placeholder="DD/MM/YYYY"
-          secure={false}
-          errorMessage={formErrors.date}
-        />
+        <ScrollView style={styles.scrollView}>
+          <Text style={styles.category}>Date</Text>
+          <TextInput
+            style={styles.inputContainer}
+            label="Date"
+            value={selectedDate}
+            placeholder="DD/MM/YYYY"
+            secureTextEntry={false}
+            onFocus={showDatePicker}
+          />
+          <DateTimePickerModal
+            isVisible={isDatePickerVisible}
+            mode="date"
+            onConfirm={handleConfirm}
+            onCancel={hideDatePicker}
+          />
 
-     {/*    <CustomInputSingup
-          label="Categories"
-          value={formData.categories}
-          onChangeText={(value) => handleChange(value, "categories")}
-          placeholder="Please choose a categories"
-          secure={false}
-          errorMessage={formErrors.categories}
+          <Text style={styles.category}>Categories</Text>
+          <SelectList
+            dropdownStyles={{
+              borderColor: '#E0AA3E',
+              borderWidth: 1,
+              borderRadius: 6,
+            }}
+            boxStyles={{ borderRadius: 6, borderColor: '#E0AA3E', height: 40 }}
+            defaultOption={{ value: 'Select a category' }}
+            label="Categories"
+             setSelected={(value) => setSelected(value)}
+            value={categories}
+            data={[
+              "Salary",
+              "Bonus",
+              "Loan",
+              "Sales",
+              "Gift",
+              "Rent",
+              "Allowance",
+              "Refund",
+              "Stocks",
+              "Other",
+            ]}
+            save="value"
+            categories={"value"}
+            search={false}
+            errorMessage={formErrors.categories}
+          />
 
-        /> */}
-       {/*    <SelectList 
-          
-        label="Categories"
-         value={formData.categories}
-        onChange={(value) => handleChange(value, "categories")}
-        setSelected={(value) => setSelected(value, "categories")} 
-        data={data} 
-        save="value"
-        categories={"value"}
-        errorMessage={formErrors.categories}
-    />
- */}
-        {/* <CustomInputSingup
-          label="OtherCategories"
-          value={formData.otherCategories}
-          onChangeText={(value) => handleChange(value, "otherCategories")}
-          placeholder="Please choose a categories"
-          secure={false}
-          errorMessage={formErrors.otherCategories}
-        /> */}
-        <CustomInputSingup
-          label="Label"
-          value={formData.label}
-          onChangeText={(value) => handleChange(value, "label")}
-          placeholder=" min 8 with 1 capital char, 1 number,1 special char "
-          secure={false}
-          errorMessage={formErrors.label}
-        />
-        <CustomInputSingup
-          label="Amount"
-          value={formData.amount}
-          onChangeText={(value) => handleChange(value, "amount")}
-          placeholder="please enter a valid amount"
-          secure={false}
-          errorMessage={formErrors.amount}
-        />
-        {/* input area  End*/}
-
-        {/* Button Start */}
-        <CustomButton
-          onPress={handleSubmit}
-          style={styles.button}
-          buttonText={"new Expense"}
-        />
-        {/* Button End */}
+          <CustomInputSingup
+            label="Label"
+            value={label}
+            onChangeText={(value) => handleChange(value, "label")}
+            placeholder="Description of your expense"
+            secure={false}
+            errorMessage={formErrors.label}
+          />
+          <CustomInputSingup
+            label="Amount"
+            value={amount}
+            onChangeText={(value) => handleChange(value, "amount")}
+            placeholder="Amount should be a number 0000.00"
+            secure={false}
+            errorMessage={formErrors.amount}
+          />
+        </ScrollView>
       </View>
+
+      <CustomButton
+        onPress={handleSubmit}
+        style={styles.button}
+        buttonText={"New Expense"}
+      />
+
       <Toast />
     </View>
   );
@@ -319,9 +280,30 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 2,
-    padding: 20,
+    padding: 10,
+    marginTop: 10,
   },
-  button: {
-    marginTop: 20,
+  inputContainer: {
+    marginBottom: 20,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    borderColor: "#E0AA3E",
+    borderWidth: 1,
+    borderRadius: 8,
+    padding: 10,
+  },
+  input: {
+    color: "#000",
+    flex: 1,
+  },
+  category: {
+    color: "#E0AA3E",
+    fontSize: 18,
+    fontWeight: "bold",
+    marginBottom: 10,
+  },
+  SelectList: {
+    marginBottom: 20,
   },
 });

@@ -1,77 +1,43 @@
-import { View, Text, StyleSheet, DatePickerIOS ,TextInput, ScrollView } from "react-native";
-import React, { useState, useRef, useEffect,  } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import { View, Text, StyleSheet, TextInput, ScrollView } from "react-native";
 import Toast from "react-native-toast-message";
 import { useNavigation } from "@react-navigation/native";
 import AuthHeader from "../../shared/components/AuthHeader";
 import CustomInputSingup from "../../shared/components/ui/CustomInputSignup";
 import CustomButton from "../../shared/components/ui/CustomButton";
-import DateTimePicker from "@react-native-community/datetimepicker";
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 import moment from "moment";
 import { SelectList } from 'react-native-dropdown-select-list';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
-/*  import { REACT_APP_BE_URL } from "../../.env"; */
 import axios from "axios";
 
-// comment this line because solution not found if using .env file
-// go to ligne 84
-//import { API_URL, API_TOKEN } from "@env";
-/*  import { REACT_APP_BE_URL } from "../../.env";  */
-
 const isValidDate = (date) => {
-  // Check if date matches the format DD/MM/YYYY
   const regex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[012])\/(19|20)\d\d$/;
   return regex.test(date);
 };
 
 const isValidCategories = (categories) => {
-  // Check if categories is not empty
   return categories !== '';
 };
 
 const isValidLabel = (label) => {
-  // Check if label is not empty
   return label !== '';
 };
 
 const isValidAmount = (amount) => {
-  // Check if amount is a number
   return !isNaN(amount);
 };
 
-// check all value is valid
-const formIsValid = (DataObj) => {
-  return (
-    Object.values(DataObj).every((value) => value.trim().length > 0) && // check all value is not empty
-    isValidDate(DataObj.date) &&
-    isValidCategories(DataObj.categories) &&
 
-    isValidLabel(DataObj.label) &&
-    isValidAmount(DataObj.amount)
-  );
-};
-//
+
 const MyExpense = () => {
-  const [date, setDate] = useState("");
-  const [categories, setCategories] = useState("");
+  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+  const [selectedDate, setSelectedDate] = useState("");
+  const [categories, setCategories] = useState([]);
   const [label, setLabel] = useState("");
   const [amount, setAmount] = useState("");
-const [selected, setSelected] = React.useState([]);
-
-const isValidDate = (date) => {
-  // Check if date matches the format DD/MM/YYYY
-  const regex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[012])\/(19|20)\d\d$/;
-  return regex.test(date);
-};
-
-useEffect(() => {
-  setFormData((prevState) => ({
-    ...prevState,
-    categories: selected,
-  }));
-}, [selected]);
-
   const navigation = useNavigation();
+  const [selected, setSelected] = useState('');
   const [formErrors, setFormErrors] = useState({
     date: null,
     categories: null,
@@ -79,189 +45,127 @@ useEffect(() => {
     amount: null,
   });
 
-   
-  const [formData, setFormData] = useState({
-    date: "",
-    categories: [],
-    label: "",
-    amount: "",
-  });
-
-  const timeoutIdRef = useRef(null);
-
-  useEffect(() => {
-    return () => {
-      if (timeoutIdRef.current) {
-        clearTimeout(timeoutIdRef.current);
-      }
-    };
-  }, []);
-
-const handleChange = (value, fieldName) => {
-  let formattedValue = value;
-
-  if (fieldName === "date") {
-    formattedValue = moment(value, "DD/MM/YYYY");
-    if (!formattedValue.isValid()) {
-      console.error("Invalid date");
-      return;
-    }
-  } else if (fieldName === "categories") {
-    if (!value || !Array.isArray(value) || !value.length) {
-      console.error("Invalid categories");
-      return;
-    }
-    setSelected(value); // Mettre à jour l'état 'selected'
-    formattedValue = value.map((selected) => selected.value);
-    console.log("formattedValue", formattedValue);
-  }
-
-  setFormData((prevState) => ({
-    ...prevState,
-    [fieldName]: formattedValue,
-  }));
-};
-
-
-
-
-  const updateError = (type, errorMessage) => {
-    setFormErrors((prevFormErrors) => ({
-      ...prevFormErrors,
-      [type]: errorMessage,
-    }));
-
-    if (errorMessage) {
-      timeoutIdRef.current = setTimeout(() => {
-        setFormErrors((prevFormErrors) => ({
-          ...prevFormErrors,
-          [type]: null,
-        }));
-      }, 3000); // 3000 milliseconds = 3 seconds
-    }
+  const handleConfirm = (date) => {
+    hideDatePicker();
+    const formattedDate = moment(date).format("DD/MM/YYYY");
+    setSelectedDate(formattedDate);
+    sendDateToBackend(formattedDate);
   };
-  const isValidForm = () => {
-  if (!formIsValid(formData.date)) {
+
+  const sendDateToBackend = (date) => {
+    // send date to backend
+  };
+
+ /* useEffect(() => {
+  setCategories((prevState) => ({
+    ...prevState,
+    categories: selected,
+  }));
+}, [selected]); */
+console.log(" 65 categories", categories);
+
+
+/*     const handleSelect = (categories) => {
+    const formattedCategories = [categories].map((item) => item.value);
+    setSeletedCategoriesformattedCategories();
+    SendCategerieToBackend(formattedCategories);
+    console.log("72 formattedCategories", handleSelect);
+  }; */
+
+  const SendCategerieToBackend = (categories) => {
+    //send  categories to backend
+  };
+
+  const showDatePicker = () => {
+    setDatePickerVisibility(true);
+  };
+
+  const hideDatePicker = () => {
+    setDatePickerVisibility(false);
+  };
+
+
+  const handleChange = (value, fieldName) => {
+ if (fieldName === "label") {
+      setLabel(value);
+    } else if (fieldName === "amount") {
+      setAmount(value);
+    }
+    console.log("95 setCategories", value);
+  };
+
+  const handleSubmit = async () => {
+    
+    const formData = {
+      
+      date: selectedDate,
+      categories: selected,
+      label: label,
+      amount: amount,
+     
+    };
+
+    // Validation des champs
+    if (!isValidDate(formData.date)) {
       updateError(
         "date",
-        !isValidDate(formData.date) ? "please enter a valid date" : null
+        !isValidDate(formData.date) ? "Please enter a valid date" : null
       );
-  };
+    }
 
-
-    if (!formIsValid(formData.categories)) {
+    if (!isValidCategories(formData.categories)) {
       updateError(
         "categories",
         !isValidCategories(formData.categories)
-          ? "Please choose a valid categories"
+          ? "Please choose a valid category"
           : null
       );
-    };
-    
-    if (!formIsValid(formData.label)) {
+    }
+
+    if (!isValidLabel(formData.label)) {
       updateError(
         "label",
         !isValidLabel(formData.label)
-          ? "please enter a description "
+          ? "Please enter a description"
           : null
       );
-    };
-    
+    }
 
-    if (!formIsValid(formData.amount)) {
+    if (!isValidAmount(formData.amount)) {
       updateError(
         "amount",
-        !isValidAmount(formData.amount, formData.amount)
-          ? "please enter a valid amount"
+        !isValidAmount(formData.amount)
+          ? "Please enter a valid amount"
           : null
       );
     }
-  };
-    const data = () => {
-    return [
-       
-        "Clothe",
-        "Food",
-        "Transport",
-        "Studie",
-        "Invoice",
-        "Tax",
-        "Hobbie",
-        "Money",
-        "Epargne",
-        "Holiday",
-        "Other",
 
-    ] 
-
-    }
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    // update formData with form values
-    setFormData({
-      date: date,
-      categories: selected, // Utilisez la valeur sélectionnée
-      label: label,
-      amount: amount,
-    });
-
-    if (!formIsValid(date, categories,  label, amount)) {
-      Toast.show({
-        type: "error",
-        position: "bottom",
-        text1: "Please review your form",
-        visibilityTime: 3000,
-        autoHide: true,
-      });
-
-/*       updateError(
-        "date",
-        !isValidDate(formData.date) ? "please enter a valid date" : null
-      ) */
-
-      updateError(
-        "categories",
-        !isValidCategories(formData.categories)
-          ? "please choose a valid categories"
-          : null
-      );
-
-      updateError(
-        "label",
-       !isValidLabel(formData.label)
-          ? "please enter a description "
-          : null
-      );
-      updateError(
-        "amount",
-        !isValidAmount(formData.amount) ? "please enter a valid amount" : null
-      );
-    }
-
-    try {
+    console.log("formData", formData);
+  try {
         // Récupérer les données de l'utilisateur à partir de AsyncStorage
       const user = JSON.parse(await AsyncStorage.getItem("@storage_Key"));
       // await AsyncStorage.setItem("@storage_Key", jsonValue);
 
-      console.log("user", user.token);
+      console.log("149 get user Token from storage_Key ", user);
+       console.log("150 response.data", user.id);
       const response = await axios.post(
         `http://localhost:5555/api/expenses`,
         formData,
         {
           headers: {
-            authorization: `Bearer ${user.token}`,
+            authorization: `Bearer ${user.token}` 
           },
-        }
+        } 
       );
+
+     
       console.log('data send to BE',response.data);
       
       
       Toast.show({
         type: "success",
         position: "bottom",
-        text1: "expense created successfully",
+        text1: "income created successfully",
         visibilityTime: 3000,
         autoHide: true,
       });
@@ -269,7 +173,7 @@ const handleChange = (value, fieldName) => {
         navigation.navigate("ViewExpenses");
       }, 3000);
     } catch (err) {
-      console.log("Test Myexpense", err.response.data);
+      console.log("Test MyExpens", err.response.data);
       Toast.show({
         type: "error",
         position: "bottom",
@@ -280,74 +184,90 @@ const handleChange = (value, fieldName) => {
     }
   };
 
+  const updateError = (type, errorMessage) => {
+    setFormErrors((prevFormErrors) => ({
+      ...prevFormErrors,
+      [type]: errorMessage,
+    }));
+  };
+
   return (
     <View style={styles.root}>
       <AuthHeader subtext="Please add a new expense" />
       <View style={styles.content}>
-         <ScrollView style={styles.scrollView}>
-        <CustomInputSingup
-          label="Date"
-          value={formData.date.someProperty}
-          onChangeText={(value) => handleChange(value, "date")}
-          placeholder="DD/MM/YYYY"
-          secure={false}
-          errorMessage={formErrors.date}
-        />
-          <TextInput style={styles.categorie} >Categories</TextInput>
+        <ScrollView style={styles.scrollView}>
+          <Text style={styles.category}>Date</Text>
+          <TextInput
+            style={styles.inputContainer}
+            label="Date"
+            value={selectedDate}
+            placeholder="DD/MM/YYYY"
+            secureTextEntry={false}
+            onFocus={showDatePicker}
+          />
+          <DateTimePickerModal
+            isVisible={isDatePickerVisible}
+            mode="date"
+            onConfirm={handleConfirm}
+            onCancel={hideDatePicker}
+          />
 
-      <SelectList 
-      dropdownStyles={{ 
-        borderColor: '#E0AA3E',
-        borderWidth: 1,
-        borderRadius: 6,
-        
-      }}
+          <Text style={styles.category}>Categories</Text>
+          <SelectList
+            dropdownStyles={{
+              borderColor: '#E0AA3E',
+              borderWidth: 1,
+              borderRadius: 6,
+            }}
+            boxStyles={{ borderRadius: 6, borderColor: '#E0AA3E', height: 40 }}
+            defaultOption={{ value: 'Select a category' }}
+            label="Categories"
+             setSelected={(value) => setSelected(value)}
+            value={categories}
+            data={[
+             "Clothe",
+             "Food",
+             "Transport",
+             "Studie",
+             "Invoice",
+             "Tax",
+             "Hobbie",
+             "Money",
+             "Epargne",
+             "Holiday",
+             "Other",
+            ]}
+            save="value"
+            categories={"value"}
+            search={false}
+            errorMessage={formErrors.categories}
+          />
 
-      
-      boxStyles={{borderRadius:6, borderColor:'#E0AA3E',height:40}} //override default styles
-      defaultOption={{ value:'Select a categorie'}} 
-          label="Categories"
-          onSelect={() => alert(selected)}
-          value={selected}
-          onChange={(value) => handleChange(value, "categories")}
-          setSelected={(value) => setSelected(value)}
-          data={data} 
-          save="value"
-          categories={"value"}
-          search={false}
-        
-          errorMessage={formErrors.categories}
-      />
-
-        <CustomInputSingup
-          label="Label"
-          value={formData.label}
-          onChangeText={(value) => handleChange(value, "label")}
-          placeholder=" Description of your expense"
-          secure={false}
-          errorMessage={formErrors.label}
-        />
-        <CustomInputSingup
-          label="Amount"
-          value={formData.amount}
-          onChangeText={(value) => handleChange(value, "amount")}
-          placeholder="amount should be a number 0000.00"
-          secure={false}
-         errorMessage={formErrors.amount}
-        />
-        {/* input area  End*/}
-
-       
+          <CustomInputSingup
+            label="Label"
+            value={label}
+            onChangeText={(value) => handleChange(value, "label")}
+            placeholder="Description of your income"
+            secure={false}
+            errorMessage={formErrors.label}
+          />
+          <CustomInputSingup
+            label="Amount"
+            value={amount}
+            onChangeText={(value) => handleChange(value, "amount")}
+            placeholder="Amount should be a number 0000.00"
+            secure={false}
+            errorMessage={formErrors.amount}
+          />
         </ScrollView>
       </View>
 
-      {/* Button Start */}
-          <CustomButton
-          onPress={handleSubmit}
-          style={styles.button}
-          buttonText={"new Expense"}
-        />
-         {/* Button End */}
+      <CustomButton
+        onPress={handleSubmit}
+        style={styles.button}
+        buttonText={"New Expense"}
+      />
+
       <Toast />
     </View>
   );
@@ -363,20 +283,28 @@ const styles = StyleSheet.create({
     flex: 2,
     padding: 10,
     marginTop: 10,
-   
   },
-
-categorie:{
+  inputContainer: {
+    marginBottom: 20,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    borderColor: "#E0AA3E",
+    borderWidth: 1,
+    borderRadius: 8,
+    padding: 10,
+  },
+  input: {
+    color: "#000",
+    flex: 1,
+  },
+  category: {
     color: "#E0AA3E",
     fontSize: 18,
     fontWeight: "bold",
     marginBottom: 10,
-
-},
-   
-SelectList:{
-marginBottom: 20,
-
-}
-     
+  },
+  SelectList: {
+    marginBottom: 20,
+  },
 });
