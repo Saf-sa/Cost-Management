@@ -47,7 +47,7 @@ const MyExpense = () => {
 
   const handleConfirm = (date) => {
     hideDatePicker();
-    const formattedDate = moment(date).format("DD/MM/YYYY");
+    const formattedDate = moment(date).format("YYYY-MM-DD");
     setSelectedDate(formattedDate);
     sendDateToBackend(formattedDate);
   };

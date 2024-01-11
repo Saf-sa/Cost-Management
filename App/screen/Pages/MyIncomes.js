@@ -47,30 +47,20 @@ const MyIncome = () => {
 
   const handleConfirm = (date) => {
     hideDatePicker();
-    const formattedDate = moment(date).format("DD/MM/YYYY");
+    const formattedDate = moment(date).format("YYYY-MM-DD");
     setSelectedDate(formattedDate);
     sendDateToBackend(formattedDate);
   };
+
 
   const sendDateToBackend = (date) => {
     // send date to backend
   };
 
- /* useEffect(() => {
-  setCategories((prevState) => ({
-    ...prevState,
-    categories: selected,
-  }));
-}, [selected]); */
-console.log(" 65 categories", categories);
 
+/* console.log(" 65 categories", categories);
+ */
 
-/*     const handleSelect = (categories) => {
-    const formattedCategories = [categories].map((item) => item.value);
-    setSeletedCategoriesformattedCategories();
-    SendCategerieToBackend(formattedCategories);
-    console.log("72 formattedCategories", handleSelect);
-  }; */
 
   const SendCategerieToBackend = (categories) => {
     //send  categories to backend
@@ -97,13 +87,14 @@ console.log(" 65 categories", categories);
   const handleSubmit = async () => {
     
     const formData = {
-      
+
       date: selectedDate,
       categories: selected,
       label: label,
       amount: amount,
      
     };
+ 
 
     // Validation des champs
     if (!isValidDate(formData.date)) {
