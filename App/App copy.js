@@ -2,6 +2,7 @@ import { StatusBar } from "expo-status-bar";
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Login from "./screen/auth/login";
 import Signup from "./screen/auth/signup";
@@ -45,8 +46,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from 'axios';
 
 
-/* 
- const clearStorage = async () => {
+
+/*  const clearStorage = async () => {
   try {
     await AsyncStorage.clear();
     console.log('Storage successfully cleared!');
@@ -58,21 +59,21 @@ import axios from 'axios';
 // Call the function when you want to clear the storage
 clearStorage();  
 
- */
 
+ */
 
 
 
 const Stack = createStackNavigator(); // create stack navigator
 
-export default function App() {
+function AuthLoading() {
   const [isLogged, setIsLogged] = useState(false);
+  const navigation = useNavigation();
 
   useEffect(() => {
     const checkUser = async () => {
       try {
         const user = JSON.parse(await AsyncStorage.getItem("@storage_Key"));
-        console.log('user from async storage', user);
 
         if (user) {
           const response = await axios.get(
@@ -84,7 +85,6 @@ export default function App() {
             }
           );
           if (response.status === 200) {
-            console.log('User already isLoged', response.data);
             setIsLogged(true);
           }
         }
@@ -94,26 +94,29 @@ export default function App() {
     };
     checkUser();
   }, []);
-  
+
+  useEffect(() => {
+    if (isLogged) {
+      navigation.replace('Dashboard');
+    } else {
+      navigation.replace('Login');
+    }
+  }, [isLogged, navigation]);
+
+  return null;
+}
+
+export default function App() {
   return (
-    <NavigationContainer >
-    
-
-        <Stack.Navigator initialRouteName= {Login}> 
-
-                {isLogged ? (
-          <Stack.Screen name="Dashboard" component={Dashboard} />
-        ) : (
-          <Stack.Screen name="Login" component={Login} />
-        )}
-
-        
-        {/* <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Dashboard" component={Dashboard} /> */}
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="AuthLoading">
+        <Stack.Screen name="AuthLoading" component={AuthLoading} options={{ headerShown: false }} />
+        <Stack.Screen name="Login" component={Login} />
+         <Stack.Screen name="Dashboard" component={Dashboard} />
         <Stack.Screen name="Signup" component={Signup} /> 
         <Stack.Screen name="Reset" component={Reset} />
         <Stack.Screen name="ResetPassword" component={ResetPassword} />
-
+       
         <Stack.Screen name="ViewIncomes"  initialParams={{category:'all'}} component={ViewIncomes} />
         <Stack.Screen name="MyIncomes" component={MyIncomes} />
         <Stack.Screen name="ViewExpenses" initialParams={{category:'all'}} component={ViewExpenses} />
