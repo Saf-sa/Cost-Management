@@ -17,19 +17,19 @@ import { AntDesign } from "@expo/vector-icons";
 // go to ligne 84
 //import { API_URL, API_TOKEN } from "@env";
 /*  import { REACT_APP_BE_URL } from "../../.env";  */
-<Image source={require('../../assets/sim-card.jpg')} />
+<Image source={require('../../assets/simCard.jpg')} />
 
-const simCard = this.props
-  ? require('../../assets/sim-card.jpg')
-  : require('../../assets/sim-card.jpg');
-<Image source={simCard} />;
+/* const simCard = this.props
+  ? require('../../assets/simCard.jpg')
+  : require('../../assets/simCard.jpg');
+
  
 const isValidEmail = (email) => {
   // Should contain @
   const re = /\S+@\S+\.\S+/;
   return re.test(email);
 };
-
+ */
 const isValidPassword = (password) => {
   // Should contain at least one number, one special character and minimum 8 characters
 
@@ -205,19 +205,23 @@ const Login = () => {
           <View style={styles.balanceContainer}>
             <AppText style= {{ flexDirection: 'row' }}>
                      <View>
-                <Text style={{ fontSize: 37, color:'black', lineHeight: 34 }}>€</Text>
+                <Text style={{ fontSize: 38, color:'blue', lineHeight: 35 }}>€</Text>
                 </View>
                  <View>
-                <Text style={{ fontSize: 44, color:'black', lineHeight:42}}>X</Text>
+                <Text style={{ fontSize: 44, color:'dodgerblue', lineHeight:42}}>X</Text>
                 </View>
                  <View>
-                <Text style={{ fontSize: 23, color:'black', lineHeight: 21 }}>penses Manager</Text>
+                <Text style={{ fontSize: 23, color:'midnightblue', lineHeight: 21 }}>penses Manager</Text>
+                
                 </View>
-{/*     <Image style={{  borderRadius:5, size: 5,     }}source={simCard} />; */}
+                <View>
+              
+                </View>
+
             </AppText>
             
 
-
+    
      {/*         <View
                 style={{
                   marginTop: -0,
@@ -249,7 +253,7 @@ const Login = () => {
       
               </View> */}
             
-            <AppText style={{ marginTop:0 }}></AppText>
+            <AppText></AppText>
           </View>
           <View style={styles.parentIncomeContainer}>
             <View
@@ -264,12 +268,14 @@ const Login = () => {
             >
              
               <View style={{ marginLeft:0, marginTop:40 }}>
-                <AppText style={{ color: "black", fontSize: 15, }}>
+                <AppText style={{ color: "darkslateblue", fontSize: 15, }}>
                   4907 2024 1707 2778 1962
                 </AppText>
+               
 
                 
               </View>
+              
             </View>
 
             <View
