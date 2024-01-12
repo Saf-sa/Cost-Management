@@ -19,17 +19,17 @@ import { AntDesign } from "@expo/vector-icons";
 /*  import { REACT_APP_BE_URL } from "../../.env";  */
 <Image source={require('../../assets/simCard.jpg')} />
 
-/* const simCard = this.props
+/*  const simCard = this.props
   ? require('../../assets/simCard.jpg')
   : require('../../assets/simCard.jpg');
-
+ */
  
 const isValidEmail = (email) => {
   // Should contain @
   const re = /\S+@\S+\.\S+/;
   return re.test(email);
 };
- */
+ 
 const isValidPassword = (password) => {
   // Should contain at least one number, one special character and minimum 8 characters
 
