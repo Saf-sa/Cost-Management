@@ -198,14 +198,24 @@ const Login = () => {
           end={{ x: 1, y: 3 }}
         >
           <View style={styles.balanceContainer}>
-            <AppText style={{ color: "black", fontSize: 28, marginBottom: 5 }}>
-               €X{"pense Manager"}
+            <AppText style= {{ flexDirection: 'row' }}>
+                     <View>
+                <Text style={{ fontSize: 40, color:'black', lineHeight: 0 }}>€</Text>
+                </View>
+                 <View>
+                <Text style={{ fontSize: 45, color:'black', lineHeight:50}}>X</Text>
+                </View>
+                 <View>
+                <Text style={{ fontSize: 25, color:'black', lineHeight: 22 }}>pense Manager</Text>
+                </View>
+
+              
             </AppText>
 
-            <AppText style={{ color: "black", fontSize: 15 }}>GOLD</AppText>
 
-             <View
+     {/*         <View
                 style={{
+                  marginTop: -0,
                   width: 40,
                   height: 35,
                   borderRadius: 5,
@@ -217,10 +227,10 @@ const Login = () => {
                   marginBottom: 7,
                 }}
               >
-{/*                 <AntDesign name="arrowup" color="#25F333" size={30 * 0.5} /> */}
-              </View>
+            
+              </View> */}
 
-                <View
+             {/*    <View
                 style={{
                   width: 40,
                   height: 35,
@@ -232,13 +242,14 @@ const Login = () => {
                 }}
               >
       
-              </View>
+              </View> */}
 
-            <AppText style={{ marginTop:-30 }}></AppText>
+            <AppText style={{ marginTop:-30 }}>Gold</AppText>
           </View>
           <View style={styles.parentIncomeContainer}>
             <View
               style={{
+                color: "black",
                 flexDirection: "row",
                 justifyContent: "center",
                 alignItems: "center",
@@ -247,7 +258,7 @@ const Login = () => {
               }}
             >
              
-              <View style={{ marginLeft:-60, marginTop:-30 }}>
+              <View style={{ marginLeft:0, marginTop:40 }}>
                 <AppText style={{ color: "black", fontSize: 15 }}>
                   4907 2024 1707 2778 1962
                 </AppText>
