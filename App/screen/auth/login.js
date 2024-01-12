@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import Toast from "react-native-toast-message";
-import { View, Text, StyleSheet,  ScrollView, } from "react-native";
+import { View, Text, StyleSheet,  ScrollView, Image} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import AuthHeader from "../../shared/components/AuthHeader";
 import CustomInputLog from "../../shared/components/ui/CustomInputLog";
@@ -17,7 +17,12 @@ import { AntDesign } from "@expo/vector-icons";
 // go to ligne 84
 //import { API_URL, API_TOKEN } from "@env";
 /*  import { REACT_APP_BE_URL } from "../../.env";  */
+<Image source={require('../../assets/sim-card.jpg')} />
 
+const simCard = this.props
+  ? require('../../assets/sim-card.jpg')
+  : require('../../assets/sim-card.jpg');
+<Image source={simCard} />;
  
 const isValidEmail = (email) => {
   // Should contain @
@@ -200,17 +205,17 @@ const Login = () => {
           <View style={styles.balanceContainer}>
             <AppText style= {{ flexDirection: 'row' }}>
                      <View>
-                <Text style={{ fontSize: 40, color:'black', lineHeight: 0 }}>€</Text>
+                <Text style={{ fontSize: 37, color:'black', lineHeight: 34 }}>€</Text>
                 </View>
                  <View>
-                <Text style={{ fontSize: 45, color:'black', lineHeight:50}}>X</Text>
+                <Text style={{ fontSize: 44, color:'black', lineHeight:42}}>X</Text>
                 </View>
                  <View>
-                <Text style={{ fontSize: 25, color:'black', lineHeight: 22 }}>pense Manager</Text>
+                <Text style={{ fontSize: 23, color:'black', lineHeight: 21 }}>penses Manager</Text>
                 </View>
-
-              
+{/*     <Image style={{  borderRadius:5, size: 5,     }}source={simCard} />; */}
             </AppText>
+            
 
 
      {/*         <View
@@ -243,8 +248,8 @@ const Login = () => {
               >
       
               </View> */}
-
-            <AppText style={{ marginTop:-30 }}>Gold</AppText>
+            
+            <AppText style={{ marginTop:0 }}></AppText>
           </View>
           <View style={styles.parentIncomeContainer}>
             <View
@@ -259,7 +264,7 @@ const Login = () => {
             >
              
               <View style={{ marginLeft:0, marginTop:40 }}>
-                <AppText style={{ color: "black", fontSize: 15 }}>
+                <AppText style={{ color: "black", fontSize: 15, }}>
                   4907 2024 1707 2778 1962
                 </AppText>
 
@@ -338,18 +343,18 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 2,
-    padding: 20,
+    padding: 30,
   },
   parentContainer: {
 
     width: "65%",
-    height: 160,
+    height: 170,
     justifyContent: "center",
     alignItems: "center",
     paddingTop: 0,
     flexDirection: "column",
     borderRadius: 7,
-    marginTop: 20,
+    marginTop: 40,
     marginBottom: 60,
     marginHorizontal: 72,
     marginVertical: -20,
@@ -369,7 +374,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     paddingTop: 3,
-    paddingBottom:10,
+    paddingBottom:0,
  
   },
 
@@ -388,11 +393,12 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.8,
     shadowRadius: 2,
     marginTop: 10,
+    
   },
   login: {
     flexDirection: "row",
-    marginTop: -100,
-    marginBottom: 40,
+    marginTop: -50,
+    marginBottom: 50,
     color: "#E0AA3E",
     fontSize: 15,
     fontWeight: "bold",
@@ -401,7 +407,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignSelf: "flex-end",
     marginTop: 10,
-    marginBottom: 40,
+    marginBottom: 30,
     color: "#E0AA3E",
     fontSize: 15,
     fontWeight: "bold",
