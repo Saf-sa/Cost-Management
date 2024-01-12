@@ -40,9 +40,12 @@ import Agenda from "./screen/Pages/Toolkits/Agenda";
 import Reminder from "./screen/Pages/Toolkits/Reminder";
 import Download from "./screen/Pages/Toolkits/Download";
 import AddReminder from "./screen/Pages/Toolkits/AddReminder"; 
-import Settings from "./screen/Pages/Toolkits/Settings";
+
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from 'axios';
+
+
+
 
 /* const clearStorage = async () => {
   try {
@@ -54,17 +57,15 @@ import axios from 'axios';
 }
 
 // Call the function when you want to clear the storage
-clearStorage();
- */
+clearStorage(); */
 
 
-const Stack = createStackNavigator(); // create stack navigator
+const Stack = createStackNavigator();
 
-export default function App() {
- const [isLogged, setIsLogged] = useState(false);
-
+function AuthLoading({ navigation }) {
   useEffect(() => {
     const checkUser = async () => {
+      try {
         const user = JSON.parse(await AsyncStorage.getItem("@storage_Key"));
         console.log('user from async storage', user);
 
@@ -79,26 +80,29 @@ export default function App() {
           );
           if (response.status === 200) {
             console.log('User already isLoged', response.data);
-            setIsLogged(true);
+            navigation.replace('Dashboard');  // Naviguer directement vers le tableau de bord
           }
-        
-      } 
+        } else {
+          navigation.replace('Login');  // Naviguer vers l'écran de connexion s'il n'y a pas d'utilisateur
+        }
+      } catch (error) {
+        console.log(error);
+      }
     };
     checkUser();
-  }, []); 
-  
+  }, [navigation]);
+
+  return null;
+}
+
+
+export default function App() {  
   return (
     <NavigationContainer >
-      <Stack.Navigator initialRouteName="Login">
-            {isLogged ? (
-               <Stack.Screen name="Dashboard" component={Dashboard} />
-       
-        ) : (
-             <Stack.Screen name="Login" component={Login} />
-        )} 
-       {/*  <Stack.Navigator initialRouteName="Login">
+     <Stack.Navigator initialRouteName="AuthLoading" screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="AuthLoading" component={AuthLoading} />
         <Stack.Screen name="Login" component={Login} />
-           <Stack.Screen name="Dashboard" component={Dashboard} /> */}
+        <Stack.Screen name="Dashboard" component={Dashboard} />
         <Stack.Screen name="Signup" component={Signup} />
         <Stack.Screen name="Reset" component={Reset} />
         <Stack.Screen name="ResetPassword" component={ResetPassword} />
@@ -133,7 +137,7 @@ export default function App() {
         <Stack.Screen name="Agenda" component={Agenda} />
         <Stack.Screen name="Reminder" component={Reminder} />
         <Stack.Screen name="Download" component={Download} />
-        <Stack.Screen name="Settings" component={ Settings} />
+      
         <Stack.Screen name="AddReminder" component={AddReminder} />
       </Stack.Navigator>
     </NavigationContainer>
