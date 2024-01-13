@@ -106,6 +106,7 @@ export default function App() {
     headerTitleAlign: 'center',
     headerStyle: {
       backgroundColor: '#f7f5f0', // Remplacez '#f4511e' par la couleur de votre choix
+      height: 75,
     },
     headerTintColor: '#E0AA3E', // Couleur du titre et des boutons de l'en-tête
     headerTitleStyle: {

@@ -499,11 +499,7 @@ import Holidays from './Categories/Holidays';
             <Text style={{ fontSize: 15, paddingTop: 5, textAlign:"center" }}>Other</Text>
           </TouchableOpacity>
         </View>
-
-
-    <View>
-          <AppText style={styles.dashboardTitle}>Toolkits</AppText>
-        </View>
+      <AppText style={styles.dashboardTitle}>Toolkits</AppText>
 
         <View style={styles.dashboard}>
          
@@ -514,7 +510,7 @@ import Holidays from './Categories/Holidays';
              
              
             />
-            <Text style={{ fontSize: 15, paddingTop: 5, textAlign:"center" }}> Agenda</Text>
+            <Text style={{ fontSize: 15, paddingTop: 0, textAlign:"center" }}> Agenda</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.push("Reminder")}>
             <Icon
@@ -523,7 +519,7 @@ import Holidays from './Categories/Holidays';
              
              
             />
-            <Text style={{ fontSize: 15, paddingTop: 5, textAlign:"center" }}>Reminder</Text>
+            <Text style={{ fontSize: 15, paddingTop: 0, textAlign:"center" }}>Reminder</Text>
           </TouchableOpacity>
           
         <TouchableOpacity onPress={() => navigation.push("Calculator")}>
@@ -534,7 +530,7 @@ import Holidays from './Categories/Holidays';
              
              
             />
-            <Text style={{ fontSize: 15, paddingTop: 5, textAlign:"center" }}>Calculator</Text>
+            <Text style={{ fontSize: 15, paddingTop: 0, textAlign:"center" }}>Calculator</Text>
           </TouchableOpacity>
        
           <TouchableOpacity onPress={() => navigation.push("Download")}>
@@ -544,7 +540,7 @@ import Holidays from './Categories/Holidays';
              
              
             />
-            <Text style={{ fontSize: 15, paddingTop: 5, textAlign:"center" }}>Download</Text>
+            <Text style={{ fontSize: 15, paddingTop: 0, textAlign:"center" }}>Download</Text>
           </TouchableOpacity>
 
          
@@ -555,7 +551,7 @@ import Holidays from './Categories/Holidays';
              
              
             />
-            <Text style={{ fontSize: 15, paddingTop: 5, textAlign:"center" }}>Settings</Text>
+            <Text style={{ fontSize: 15, paddingTop: 0, textAlign:"center" }}>Settings</Text>
           </TouchableOpacity>
            
         </View>
@@ -568,7 +564,7 @@ import Holidays from './Categories/Holidays';
 const styles = StyleSheet.create({
   parentContainer: {
     width: "65%",
-    height: 150,
+    height: 140,
     justifyContent: "center",
     alignItems: "center",
     paddingTop: 0,
@@ -600,7 +596,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     paddingTop: 3,
-    paddingBottom:10,
+    paddingBottom:9,
  
   },
 
@@ -609,8 +605,8 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingHorizontal: 10,
-    marginTop: 15,
+    paddingHorizontal: 6,
+    marginTop: 13,
     alignItems: "center",
   },
 
@@ -620,7 +616,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     paddingHorizontal: 6,
-    marginTop: 4,
+    marginTop: 5,
     alignItems: "center",
   },
 
