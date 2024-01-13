@@ -30,7 +30,7 @@ const isValidAmount = (amount) => {
 
 
 
-const MyExpense = () => {
+const MyExpense= () => {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [selectedDate, setSelectedDate] = useState("");
   const [categories, setCategories] = useState([]);
@@ -52,25 +52,15 @@ const MyExpense = () => {
     sendDateToBackend(formattedDate);
   };
 
+
   const sendDateToBackend = (date) => {
     // send date to backend
   };
 
- /* useEffect(() => {
-  setCategories((prevState) => ({
-    ...prevState,
-    categories: selected,
-  }));
-}, [selected]); */
-console.log(" 65 categories", categories);
 
+/* console.log(" 65 categories", categories);
+ */
 
-/*     const handleSelect = (categories) => {
-    const formattedCategories = [categories].map((item) => item.value);
-    setSeletedCategoriesformattedCategories();
-    SendCategerieToBackend(formattedCategories);
-    console.log("72 formattedCategories", handleSelect);
-  }; */
 
   const SendCategerieToBackend = (categories) => {
     //send  categories to backend
@@ -97,13 +87,14 @@ console.log(" 65 categories", categories);
   const handleSubmit = async () => {
     
     const formData = {
-      
+
       date: selectedDate,
       categories: selected,
       label: label,
       amount: amount,
      
     };
+ 
 
     // Validation des champs
     if (!isValidDate(formData.date)) {
@@ -165,7 +156,7 @@ console.log(" 65 categories", categories);
       Toast.show({
         type: "success",
         position: "bottom",
-        text1: "income created successfully",
+        text1: "expense created successfully",
         visibilityTime: 3000,
         autoHide: true,
       });
@@ -173,7 +164,7 @@ console.log(" 65 categories", categories);
         navigation.navigate("ViewExpenses");
       }, 3000);
     } catch (err) {
-      console.log("Test MyExpens", err.response.data);
+      console.log("Test Myexpense", err.response.data);
       Toast.show({
         type: "error",
         position: "bottom",
@@ -225,17 +216,17 @@ console.log(" 65 categories", categories);
              setSelected={(value) => setSelected(value)}
             value={categories}
             data={[
-             "Clothes",
-             "Foods",
-             "Transports",
-             "Studies",
-             "Invoices",
-             "Taxs",
-             "Hobbies",
-             "Moneys",
-             "Epargnes",
-             "Holidays",
-             "Others",
+               "Clothes",
+               "Foods",
+               "Transports",
+               "Studies",
+               "Holidays",
+               "Taxs",
+               "Hobbies",
+               "MyEpargnes",
+               "Moneys",
+               "epargnes",
+               "Others",
             ]}
             save="value"
             categories={"value"}
@@ -247,7 +238,7 @@ console.log(" 65 categories", categories);
             label="Label"
             value={label}
             onChangeText={(value) => handleChange(value, "label")}
-            placeholder="Description of your income"
+            placeholder="Description of your expense"
             secure={false}
             errorMessage={formErrors.label}
           />

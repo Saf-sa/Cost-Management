@@ -22,7 +22,7 @@ import moment from "moment";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 /*  import { REACT_APP_BE_URL } from "../../.env"; */
 import axios from "axios";
-import MyExpense from "./MyExpenses";
+
 
 // comment this line because solution not found if using .env file
 // go to ligne 84
