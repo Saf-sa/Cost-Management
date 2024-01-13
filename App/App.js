@@ -100,7 +100,21 @@ function AuthLoading({ navigation }) {
 export default function App() {  
   return (
     <NavigationContainer >
-     <Stack.Navigator initialRouteName="AuthLoading" screenOptions={{ headerShown: false }}>
+     <Stack.Navigator initialRouteName="AuthLoading"
+       screenOptions={{ 
+    headerShown: true,
+    headerTitleAlign: 'center',
+    headerStyle: {
+      backgroundColor: '#f7f5f0', // Remplacez '#f4511e' par la couleur de votre choix
+    },
+    headerTintColor: '#E0AA3E', // Couleur du titre et des boutons de l'en-tête
+    headerTitleStyle: {
+    fontWeight: 'normal', // Style du titre de l'en-tête
+    },
+  }}
+>
+     
+     
         <Stack.Screen name="AuthLoading" component={AuthLoading} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Dashboard" component={Dashboard} />
@@ -148,7 +162,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#faefd7",
   },
  
 });
