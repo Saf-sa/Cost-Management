@@ -15,9 +15,6 @@ import {
   isValidToken,
 } from "../controllers/userController.js";
 
-import { registerExpense } from "../controllers/ExpensesController.js";
-import { registerIncome } from "../controllers/IncomesController.js";
-
  
 // Initialize express router
 const router = express.Router();

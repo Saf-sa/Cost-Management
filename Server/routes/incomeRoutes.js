@@ -19,7 +19,7 @@ router.get("/:category", authMiddleware, async (req, res) => {
 
         if (req.params.category === "all") {
       const incomes = await Incomes.find({incomeOwner: req.userId});
-  
+           console.log('expenses send from Backend',incomes)  
       return res.send({ incomes });
     }
     

@@ -1,12 +1,12 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-const Hobbies = () => {
+const Clothe = () => {
   return (
     <View>
-    
+      <Text>Clothes</Text>
     </View>
   )
 }
 
-export default Hobbies
+export default Clothe

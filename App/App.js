@@ -15,13 +15,13 @@ import MyExpenses from "./screen/Pages/MyExpenses";
 import Forecast from "./screen/Pages/Forecast";
 import Statistics from "./screen/Pages/Statistics";
 import History from "./screen/Pages/History";
-import Clothes from "./screen/Pages/Categories/Clothes";
-import Foods from "./screen/Pages/Categories/Foods";
+import Clothe from "./screen/Pages/Categories/Clothe";
+import Food from "./screen/Pages/Categories/Food";
 import Transport from "./screen/Pages/Categories/Transport";
-import Studies from "./screen/Pages/Categories/Studies";
-import MyInvoices from "./screen/Pages/Categories/MyInvoices";
-import Taxes from "./screen/Pages/Categories/Taxes";
-import Hobbies from "./screen/Pages/Categories/Hobbies";
+import Studie from "./screen/Pages/Categories/Studie";
+import MyInvoice from "./screen/Pages/Categories/MyInvoice";
+import Tax from "./screen/Pages/Categories/Tax";
+import Hobbie from "./screen/Pages/Categories/Hobbie";
 import Money from "./screen/Pages/Categories/Money";
 import Epargne from "./screen/Pages/Categories/Epargne";
 import Bonus from "./screen/Pages/Categories/IncomeCategories/Bonus";
@@ -34,7 +34,7 @@ import Loan from "./screen/Pages/Categories/IncomeCategories/Loan";
 import Gift from "./screen/Pages/Categories/IncomeCategories/Gift";
 import Rent from "./screen/Pages/Categories/IncomeCategories/Rent";
 import Refund from "./screen/Pages/Categories/IncomeCategories/Refund";
-import Holidays from "./screen/Pages/Categories/Holidays";
+import Holiday from "./screen/Pages/Categories/Holiday";
 import Calculator from "./screen/Pages/Toolkits/Calculator";
 import Agenda from "./screen/Pages/Toolkits/Agenda";
 import Reminder from "./screen/Pages/Toolkits/Reminder";
@@ -46,9 +46,9 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from 'axios';
 
 
+/* 
 
-
-/* const clearStorage = async () => {
+const clearStorage = async () => {
   try {
     await AsyncStorage.clear();
     console.log('Storage successfully cleared!');
@@ -58,8 +58,8 @@ import axios from 'axios';
 }
 
 // Call the function when you want to clear the storage
-clearStorage(); */
-
+clearStorage();
+ */
 
 const Stack = createStackNavigator();
 
@@ -106,7 +106,7 @@ export default function App() {
     headerTitleAlign: 'center',
     headerStyle: {
       backgroundColor: '#f7f5f0', // Remplacez '#f4511e' par la couleur de votre choix
-      height: 75,
+      height: 80,
     },
     headerTintColor: '#E0AA3E', // Couleur du titre et des boutons de l'en-tête
     headerTitleStyle: {
@@ -123,22 +123,22 @@ export default function App() {
         <Stack.Screen name="Reset" component={Reset} />
         <Stack.Screen name="ResetPassword" component={ResetPassword} />
         <Stack.Screen name="ViewIncomes"  initialParams={{category:'all'}} component={ViewIncomes} />
+        <Stack.Screen name="ViewExpenses"  initialParams={{category:'all'}} component={ViewExpenses} />
         <Stack.Screen name="MyIncomes" component={MyIncomes} />
-        <Stack.Screen name="ViewExpenses" initialParams={{category:'all'}} component={ViewExpenses} />
         <Stack.Screen name="MyExpenses" component={MyExpenses} />
         <Stack.Screen name="Forecast" component={Forecast} />
         <Stack.Screen name="Statistics" component={Statistics} />
         <Stack.Screen name="History" component={History} />
-        <Stack.Screen name="Clothes" component={Clothes} />
-        <Stack.Screen name="Foods" component={Foods} />
+        <Stack.Screen name="Clothe" component={Clothe} />
+        <Stack.Screen name="Food" component={Food} />
         <Stack.Screen name="Transport" component={Transport} />
-        <Stack.Screen name="Studies" component={Studies} />
-        <Stack.Screen name="MyInvoices" component={MyInvoices} />
-        <Stack.Screen name="Taxes" component={Taxes} />
-        <Stack.Screen name="Hobbies" component={Hobbies} />
+        <Stack.Screen name="Studie" component={Studie} />
+        <Stack.Screen name="MyInvoice" component={MyInvoice} />
+        <Stack.Screen name="Tax" component={Tax} />
+        <Stack.Screen name="Hobbie" component={Hobbie} />
         <Stack.Screen name="Money" component={Money} />
         <Stack.Screen name="Epargne" component={Epargne} />
-        <Stack.Screen name="Holidays" component={Holidays} />
+        <Stack.Screen name="Holiday" component={Holiday} />
         <Stack.Screen name="Allowance" component={Allowance} />
         <Stack.Screen name="Other" component={Other} />
         <Stack.Screen name="Stocks" component={Stocks} />

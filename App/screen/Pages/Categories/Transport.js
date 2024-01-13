@@ -4,7 +4,7 @@ import React from 'react'
 const Transport = () => {
   return (
     <View>
-    
+      <Text>Transport</Text>
     </View>
   )
 }

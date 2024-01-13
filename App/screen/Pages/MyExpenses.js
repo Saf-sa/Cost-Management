@@ -11,6 +11,9 @@ import { SelectList } from 'react-native-dropdown-select-list';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from "axios";
 
+import ViewExpenses from "./ViewExpenses";
+
+
 const isValidDate = (date) => {
   const regex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[012])\/(19|20)\d\d$/;
   return regex.test(date);
@@ -216,17 +219,17 @@ const MyExpense= () => {
              setSelected={(value) => setSelected(value)}
             value={categories}
             data={[
-               "Clothes",
-               "Foods",
-               "Transports",
-               "Studies",
-               "Holidays",
-               "Taxs",
-               "Hobbies",
-               "MyEpargnes",
-               "Moneys",
-               "epargnes",
-               "Others",
+               "Clothe",
+               "Food",
+               "Transport",
+               "Studie",
+               "Holiday",
+               "Tax",
+               "Hobbie",
+               "MyEpargne",
+               "Money",
+              "epargne",
+               "Other",
             ]}
             save="value"
             categories={"value"}

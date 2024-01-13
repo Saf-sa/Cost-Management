@@ -20,7 +20,7 @@ import UserNav from "../nav/UserNav";
 import Screen2 from "../../shared/components/Screen";
 import moment from "moment";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import MyIncome from "./MyIncomes";
+
 import axios from "axios";
 /*  import { REACT_APP_BE_URL } from "../../.env"; */
 
@@ -35,7 +35,7 @@ const ViewIncomes = ({route}) => {
   const navigation = useNavigation();// Navigation
 
   const {category} = route.params;// Get category from MyIcomes.js  
-  
+  console.log('category from ViewIncomes ', category);
   useEffect(() => {// UseEffect to get data from AsyncStorage
     const getIncomes = async () => {
       try {
@@ -45,6 +45,7 @@ const ViewIncomes = ({route}) => {
           
            /*  console.log('data ', data), */
           `http://localhost:5555/api/incomes/${category}`,// Get data in DB collection from backend in DB
+                 /*    console.log('data category from backend  :', category), */
           {
             headers: {
               Authorization: `Bearer ${user.token}`,// Send token to backend
@@ -96,6 +97,7 @@ let index = 1;// index for scrollview
        
       
     {storedIncomes.map((income, index) => (// Display data from AsyncStorage in a FlatList
+      /* console.log('storedIncomes ', storedIncomes), */
       <View key={index} style={styles.incomeContainer}>
 
          
@@ -119,7 +121,6 @@ const styles = StyleSheet.create({
   incomeContainer: {
     marginTop: -30,
     width: "96%",
-
     borderWidth: 1,
     borderColor: "#E0AA3E",
     borderRadius: 10,
@@ -130,18 +131,19 @@ const styles = StyleSheet.create({
    
   },
   row: {
-    
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingRight: 8,
     paddingBottom: 8,
   },
+
   textLabel: {
     fontWeight: 'bold',
     marginBottom: 4,
     paddingRight: 8,
     paddingBottom: 8,
   },
+
   textValue: {
     marginBottom: 8,
   },
@@ -152,7 +154,6 @@ const styles = StyleSheet.create({
       shadowColor: "#000",
 
     },
-
     position: "fixed",
     borderColor: "#E0AA3E",
     borderWidth: 1,
@@ -165,19 +166,11 @@ const styles = StyleSheet.create({
     top: -80,
   },
     textButton:{
-      
       color: "#E0AA3E",
       fontWeight: "bold",
       fontSize: 15,
       textAlign: "center",
-      
-      
-      
     },
-    
-
-
- 
 });
 
 export default ViewIncomes;

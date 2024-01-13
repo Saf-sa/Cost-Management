@@ -19,7 +19,7 @@ import Screen2 from "../../shared/components/Screen";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import axios from "axios";
-import Holidays from './Categories/Holidays';
+import Holidays from './Categories/Holiday';
 
 
   function Dashboard(route) {
