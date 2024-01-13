@@ -225,17 +225,17 @@ console.log(" 65 categories", categories);
              setSelected={(value) => setSelected(value)}
             value={categories}
             data={[
-             "Clothe",
-             "Food",
-             "Transport",
-             "Studie",
-             "Invoice",
-             "Tax",
-             "Hobbie",
-             "Money",
-             "Epargne",
-             "Holiday",
-             "Other",
+             "Clothes",
+             "Foods",
+             "Transports",
+             "Studies",
+             "Invoices",
+             "Taxs",
+             "Hobbies",
+             "Moneys",
+             "Epargnes",
+             "Holidays",
+             "Others",
             ]}
             save="value"
             categories={"value"}
