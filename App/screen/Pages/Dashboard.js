@@ -205,7 +205,7 @@ import Holidays from './Categories/Holidays';
               name="dollar-sign"
               size={66}
             />
-            <Text style={{ fontSize: 15, paddingTop: 5 }}> Income</Text>
+            <Text style={{ fontSize: 15, paddingTop: 5, textAlign:"center"}}> Income</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.push("ViewExpenses")}>
             <Icon
@@ -214,36 +214,36 @@ import Holidays from './Categories/Holidays';
         
              
             />
-            <Text style={{ fontSize: 15, paddingTop: 5 }}>Expense</Text>
+            <Text style={{ fontSize: 15, paddingTop: 5, textAlign:"center" }}>Expense</Text>
           </TouchableOpacity>
           
-         <TouchableOpacity onPress={() => navigation.push("Calculator")}>
+         <TouchableOpacity onPress={() => navigation.push("Forecast")}>
             <Icon
-              name="calculator"
+              name="file-invoice-dollar"
               size={68}
               
              
              
             />
-            <Text style={{ fontSize: 15, paddingTop: 5 }}>Calculator</Text>
+            <Text style={{ fontSize: 15, paddingTop: 5, textAlign:"center" }}>Forecast</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.push("Agenda")}>
+          <TouchableOpacity onPress={() => navigation.push("Statistics")}>
             <Icon
-              name="calendar-alt"
+              name="chart-line"
               size={66}
              
              
             />
-            <Text style={{ fontSize: 15, paddingTop: 5 }}> Agenda</Text>
+            <Text style={{ fontSize: 15, paddingTop: 5, textAlign:"center" }}> Statistics</Text>
           </TouchableOpacity>
-    <TouchableOpacity onPress={() => navigation.push("Reminder")}>
+    <TouchableOpacity onPress={() => navigation.push("History")}>
             <Icon
-              name="bell"
+              name="history"
               size={66}
              
              
             />
-            <Text style={{ fontSize: 15, paddingTop: 5 }}>Reminder</Text>
+            <Text style={{ fontSize: 15, paddingTop: 5, textAlign:"center" }}>History</Text>
           </TouchableOpacity>
         </View>
         <View>
@@ -258,7 +258,7 @@ import Holidays from './Categories/Holidays';
              
             />
 
-            <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10 }}>
+            <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10, textAlign:"center" }}>
               Clothes
             </Text>
           </TouchableOpacity>
@@ -270,7 +270,7 @@ import Holidays from './Categories/Holidays';
              
             />
 
-            <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10 }}>
+            <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10, textAlign:"center" }}>
             
               Foods
             </Text>
@@ -283,7 +283,7 @@ import Holidays from './Categories/Holidays';
              
             />
 
-            <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10 }}>
+            <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10, textAlign:"center" }}>
               Transport
             </Text>
           </TouchableOpacity>
@@ -295,7 +295,7 @@ import Holidays from './Categories/Holidays';
              
             />
 
-            <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10 }}>
+            <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10, textAlign:"center" }}>
               {" "}
               Studies
             </Text>
@@ -309,7 +309,7 @@ import Holidays from './Categories/Holidays';
              
             />
 
-            <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10 }}>
+            <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10, textAlign:"center" }}>
            
               Holidays
             </Text>
@@ -323,7 +323,7 @@ import Holidays from './Categories/Holidays';
              
             />
 
-            <Text style={{ fontSize: 15, paddingTop: 5 }}> Taxes</Text>
+            <Text style={{ fontSize: 15, paddingTop: 5, textAlign:"center" }}> Taxes</Text>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={() => navigation.navigate("ViewExpenses", {category:'hobbie'})}>
@@ -333,7 +333,7 @@ import Holidays from './Categories/Holidays';
               size={66}
             />
 
-            <Text style={{ fontSize: 15, paddingTop: 5 }}>Hobbies</Text>
+            <Text style={{ fontSize: 15, paddingTop: 5, textAlign:"center" }}>Hobbies</Text>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={() => navigation.navigate("ViewExpenses", {category:'money'})}>
@@ -345,7 +345,7 @@ import Holidays from './Categories/Holidays';
              
             />
 
-            <Text style={{ fontSize: 15, paddingTop: 5 }}> Money</Text>
+            <Text style={{ fontSize: 15, paddingTop: 5, textAlign:"center" }}> Money</Text>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={() => navigation.navigate("ViewExpenses", {category:'epargne'})}>
@@ -357,7 +357,7 @@ import Holidays from './Categories/Holidays';
              
             />
 
-            <Text style={{ fontSize: 15, paddingTop: 5 }}>Epargne</Text>
+            <Text style={{ fontSize: 15, paddingTop: 5, textAlign:"center" }}>Epargne</Text>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={() => navigation.navigate("ViewExpenses",  {category:'other'})}>
@@ -369,7 +369,7 @@ import Holidays from './Categories/Holidays';
              
             />
 
-            <Text style={{ fontSize: 15, paddingTop: 5 }}>Other</Text>
+            <Text style={{ fontSize: 15, paddingTop: 5, textAlign:"center" }}>Other</Text>
           </TouchableOpacity>
         </View>
 
@@ -385,7 +385,7 @@ import Holidays from './Categories/Holidays';
              
             />
 
-            <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10 }}>
+            <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10, textAlign:"center" }}>
               Salary
             </Text>
           </TouchableOpacity>
@@ -397,7 +397,7 @@ import Holidays from './Categories/Holidays';
              
             />
 
-            <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10 }}>
+            <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10, textAlign:"center" }}>
             
               Bonus
             </Text>
@@ -410,7 +410,7 @@ import Holidays from './Categories/Holidays';
              
             />
 
-            <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10 }}>
+            <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10, textAlign:"center" }}>
               Loan
             </Text>
           </TouchableOpacity>
@@ -422,7 +422,7 @@ import Holidays from './Categories/Holidays';
              
             />
 
-            <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10 }}>
+            <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10, textAlign:"center" }}>
            
               Sales
             </Text>
@@ -436,7 +436,7 @@ import Holidays from './Categories/Holidays';
              
             />
 
-            <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10 }}>
+            <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10, textAlign:"center" }}>
             
               Gift
             </Text>
@@ -450,7 +450,7 @@ import Holidays from './Categories/Holidays';
              
             />
 
-            <Text style={{ fontSize: 15, paddingTop: 5 }}> Rent</Text>
+            <Text style={{ fontSize: 15, paddingTop: 5, textAlign:"center" }}> Rent</Text>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={() => navigation.navigate("ViewIncomes", {category:'Allowance'})}>
@@ -460,7 +460,7 @@ import Holidays from './Categories/Holidays';
               size={66}
             />
 
-            <Text style={{ fontSize: 14, paddingTop: 5 }}>Allowance</Text>
+            <Text style={{ fontSize: 14, paddingTop: 5, textAlign:"center" }}>Allowance</Text>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={() => navigation.navigate("ViewIncomes", {category:'Refund'})}>
@@ -472,7 +472,7 @@ import Holidays from './Categories/Holidays';
              
             />
 
-            <Text style={{ fontSize: 15, paddingTop: 5 }}> Refund</Text>
+            <Text style={{ fontSize: 15, paddingTop: 5, textAlign:"center" }}> Refund</Text>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={() => navigation.navigate("ViewIncomes", {category:'Stocks'})}>
@@ -484,7 +484,7 @@ import Holidays from './Categories/Holidays';
              
             />
 
-            <Text style={{ fontSize: 15, paddingTop: 5 }}>Stocks</Text>
+            <Text style={{ fontSize: 15, paddingTop: 5, textAlign:"center" }}>Stocks</Text>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={() => navigation.navigate("ViewIncomes", {category:'Other'})}>
@@ -496,7 +496,7 @@ import Holidays from './Categories/Holidays';
              
             />
 
-            <Text style={{ fontSize: 15, paddingTop: 5 }}>Other</Text>
+            <Text style={{ fontSize: 15, paddingTop: 5, textAlign:"center" }}>Other</Text>
           </TouchableOpacity>
         </View>
 
@@ -514,7 +514,7 @@ import Holidays from './Categories/Holidays';
              
              
             />
-            <Text style={{ fontSize: 15, paddingTop: 5 }}> Agenda</Text>
+            <Text style={{ fontSize: 15, paddingTop: 5, textAlign:"center" }}> Agenda</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.push("Reminder")}>
             <Icon
@@ -523,7 +523,7 @@ import Holidays from './Categories/Holidays';
              
              
             />
-            <Text style={{ fontSize: 15, paddingTop: 5 }}>Reminder</Text>
+            <Text style={{ fontSize: 15, paddingTop: 5, textAlign:"center" }}>Reminder</Text>
           </TouchableOpacity>
           
         <TouchableOpacity onPress={() => navigation.push("Calculator")}>
@@ -534,7 +534,7 @@ import Holidays from './Categories/Holidays';
              
              
             />
-            <Text style={{ fontSize: 15, paddingTop: 5 }}>Calculator</Text>
+            <Text style={{ fontSize: 15, paddingTop: 5, textAlign:"center" }}>Calculator</Text>
           </TouchableOpacity>
        
           <TouchableOpacity onPress={() => navigation.push("Download")}>
@@ -544,7 +544,7 @@ import Holidays from './Categories/Holidays';
              
              
             />
-            <Text style={{ fontSize: 15, paddingTop: 5 }}>Download</Text>
+            <Text style={{ fontSize: 15, paddingTop: 5, textAlign:"center" }}>Download</Text>
           </TouchableOpacity>
 
          
@@ -555,7 +555,7 @@ import Holidays from './Categories/Holidays';
              
              
             />
-            <Text style={{ fontSize: 15, paddingTop: 5 }}>Settings</Text>
+            <Text style={{ fontSize: 15, paddingTop: 5, textAlign:"center" }}>Settings</Text>
           </TouchableOpacity>
            
         </View>
@@ -610,7 +610,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     paddingHorizontal: 10,
-    marginTop: 20,
+    marginTop: 15,
     alignItems: "center",
   },
 
@@ -625,10 +625,8 @@ const styles = StyleSheet.create({
   },
 
    dashboardTitle: {
-  
-    fontSize: 16,
-    fontWeight: "bold",
-
+    fontSize: 15,
+    
     marginTop: 0,
     
   }, 
