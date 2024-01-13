@@ -216,6 +216,7 @@ import Holidays from './Categories/Holidays';
             />
             <Text style={{ fontSize: 15, paddingTop: 5 }}>Expense</Text>
           </TouchableOpacity>
+          
          <TouchableOpacity onPress={() => navigation.push("Calculator")}>
             <Icon
               name="calculator"
@@ -500,11 +501,41 @@ import Holidays from './Categories/Holidays';
         </View>
 
 
-    
+    <View>
+          <AppText style={styles.dashboardTitle}>Toolkits</AppText>
+        </View>
 
         <View style={styles.dashboard}>
          
-        
+         <TouchableOpacity onPress={() => navigation.push("Agenda")}>
+            <Icon
+              name="calendar-alt"
+              size={66}
+             
+             
+            />
+            <Text style={{ fontSize: 15, paddingTop: 5 }}> Agenda</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.push("Reminder")}>
+            <Icon
+              name="bell"
+              size={66}
+             
+             
+            />
+            <Text style={{ fontSize: 15, paddingTop: 5 }}>Reminder</Text>
+          </TouchableOpacity>
+          
+        <TouchableOpacity onPress={() => navigation.push("Calculator")}>
+            <Icon
+              name="calculator"
+              size={68}
+              
+             
+             
+            />
+            <Text style={{ fontSize: 15, paddingTop: 5 }}>Calculator</Text>
+          </TouchableOpacity>
        
           <TouchableOpacity onPress={() => navigation.push("Download")}>
             <Icon
@@ -515,6 +546,8 @@ import Holidays from './Categories/Holidays';
             />
             <Text style={{ fontSize: 15, paddingTop: 5 }}>Download</Text>
           </TouchableOpacity>
+
+         
           <TouchableOpacity onPress={() => navigation.push("Settings")}>
             <Icon
               name="user-cog"
@@ -524,7 +557,10 @@ import Holidays from './Categories/Holidays';
             />
             <Text style={{ fontSize: 15, paddingTop: 5 }}>Settings</Text>
           </TouchableOpacity>
+           
         </View>
+
+        
       </Screen2>
     );
   }
@@ -539,8 +575,8 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     borderRadius: 7,
     marginTop: -70,
-    marginHorizontal: 72,
-    marginVertical: -20,
+    marginHorizontal: 70,
+    marginVertical: -15,
     backgroundColor: '#fff',
     shadowColor: "grey",
     shadowOpacity: 0.05,
@@ -552,10 +588,9 @@ const styles = StyleSheet.create({
     elevation: 8,
   },
   balanceContainer: {
-    
     justifyContent: "center",
     alignItems: "center",
-    paddingVertical: 15,
+    paddingVertical: 17,
     width: "80%",
 
   },
@@ -571,24 +606,21 @@ const styles = StyleSheet.create({
 
 
   dashboard: {
-    
     flexWrap: "wrap",
     flexDirection: "row",
     justifyContent: "space-between",
     paddingHorizontal: 10,
-    marginTop: 15,
+    marginTop: 20,
     alignItems: "center",
   },
 
   dashboardCat: {
-    
     flexWrap: "wrap",
-
     fontWeight: 'bold',
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingHorizontal: 10,
-    marginTop: 5,
+    paddingHorizontal: 6,
+    marginTop: 4,
     alignItems: "center",
   },
 
