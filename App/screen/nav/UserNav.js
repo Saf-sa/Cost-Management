@@ -86,26 +86,21 @@ function HomeNav({ title, subtitle, image }) {
                 }}
               />
             </TouchableOpacity>
-
-            <TouchableOpacity onPress={() => null}>
-              <TouchableOpacity onPress={() => navigation.navigate("AboutUs")}>
-                <AppText style={styles.textsAbout}>Policies</AppText>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => navigation.navigate("AboutUs")}>
-                <AppText style={styles.textsAbout}>Terms of use </AppText>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => navigation.navigate("AboutUs")}>
-                <AppText style={styles.textsAbout}>Code of conduct </AppText>
-              </TouchableOpacity>
-              <AppText style={styles.textsAbout}>Privacy</AppText>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate("AboutUs")}>
+                 <TouchableOpacity onPress={() => navigation.navigate("AboutUs")}>
               <AppText style={styles.textsAbout}> About us</AppText>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => BackHandler.exitApp()}>
-              <AppText style={[styles.textsAbout ]}>
-                Contact
-              </AppText>
+
+            <TouchableOpacity onPress={() => null}>
+              <TouchableOpacity onPress={() => navigation.navigate("Impressum")}>
+                <AppText style={styles.textsAbout}>Impressum</AppText>
+              </TouchableOpacity>
+            </TouchableOpacity>
+       
+               <TouchableOpacity onPress={() => null}>
+              <TouchableOpacity onPress={() => navigation.navigate("Contact")}>
+                <AppText style={styles.textsAbout}>Contact Us</AppText>
+              </TouchableOpacity>
+        
             </TouchableOpacity>
           </View>
         </View>

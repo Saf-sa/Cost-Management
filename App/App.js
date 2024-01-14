@@ -41,6 +41,7 @@ import Reminder from "./screen/Pages/Toolkits/Reminder";
 import Download from "./screen/Pages/Toolkits/Download";
 import AddReminder from "./screen/Pages/Toolkits/AddReminder"; 
 import Settings from "./screen/Pages/Toolkits/settings/";
+import Impressum from "./screen/Pages/NavPages/Impressum";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from 'axios';
@@ -155,6 +156,7 @@ export default function App() {
         <Stack.Screen name="Download" component={Download} />
         <Stack.Screen name="Settings" component={Settings} />
         <Stack.Screen name="AddReminder" component={AddReminder} />
+        <Stack.Screen name="Impressum" component={Impressum} />
       </Stack.Navigator>
     </NavigationContainer>
   );
