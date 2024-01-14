@@ -97,7 +97,7 @@ function HomeNav({ title, subtitle, image }) {
             </TouchableOpacity>
        
                <TouchableOpacity onPress={() => null}>
-              <TouchableOpacity onPress={() => navigation.navigate("Contact")}>
+              <TouchableOpacity onPress={() => navigation.navigate("ContactForm")}>
                 <AppText style={styles.textsAbout}>Contact Us</AppText>
               </TouchableOpacity>
         

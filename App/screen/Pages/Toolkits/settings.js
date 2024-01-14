@@ -120,13 +120,13 @@ const Settings = () => {
           <View style={styles.balanceContainer}>
             <AppText style= {{ flexDirection: 'row' }}>
                      <View>
-                <Text style={{ fontSize: 38, color:'blue', lineHeight: 36 }}>€</Text>
+                <Text style={{ fontSize: 36, color:'blue', lineHeight: 35 }}>€</Text>
                 </View>
                  <View>
-                <Text style={{ fontSize: 44, color:'dodgerblue', lineHeight:45}}>X</Text>
+                <Text style={{ fontSize: 45, color:'dodgerblue', lineHeight:45}}>X</Text>
                 </View>
                  <View>
-                <Text style={{ fontSize: 23, color:'midnightblue', lineHeight: 21 }}>penses Manager</Text>
+                <Text style={{ fontSize: 22, color:'midnightblue', lineHeight: 21 }}>penses Manager</Text>
                 
                 </View>
                 <View>
@@ -193,7 +193,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     borderRadius: 10,
     marginHorizontal: 50,
-    marginVertical: -10,
+    marginVertical: -20,
    backgroundColor: '#fff',
     shadowColor: "grey",
     shadowOpacity: 0.05,

@@ -225,3 +225,8 @@ const clearStorage = async () => {
 
 // Call the function when you want to clear the storage
 clearStorage();
+
+
+38 -install react-native-mail
+
+npm i react-native-mail
