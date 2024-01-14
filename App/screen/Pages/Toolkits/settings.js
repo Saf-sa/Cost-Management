@@ -118,17 +118,38 @@ const Settings = () => {
           end={{ x: 1, y: 3 }}
         >
           <View style={styles.balanceContainer}>
-            <AppText style={{ color: "black", fontSize: 20, marginBottom: 13 }}>
-              PREMIUM ACCOUNT </AppText>
+            <AppText style= {{ flexDirection: 'row' }}>
+                     <View>
+                <Text style={{ fontSize: 38, color:'blue', lineHeight: 36 }}>€</Text>
+                </View>
+                 <View>
+                <Text style={{ fontSize: 44, color:'dodgerblue', lineHeight:45}}>X</Text>
+                </View>
+                 <View>
+                <Text style={{ fontSize: 23, color:'midnightblue', lineHeight: 21 }}>penses Manager</Text>
+                
+                </View>
+                <View>
+              
+                </View>
+
+            </AppText>
+            
+            
+            <AppText></AppText>
+          </View>
+          
+          <View style={styles.balanceContainer}>
+           
               <View style={styles.UserContainer}>
 
-                <AppText style={{ color: "black", fontSize: 18, marginBottom: 10,}}>first Name : {firstName} </AppText>
+                <AppText style={{ color: "black", fontSize: 16, marginBottom: 10}}>first Name : {firstName} </AppText>
 
-                <AppText style={{ color: "black", fontSize: 18, marginBottom: 10  }}>Last Name : {lastName}  </AppText>
+                <AppText style={{ color: "black", fontSize: 16, marginBottom: 10  }}>  Last Name : {lastName}  </AppText>
 
-                <AppText style={{ color: "black", fontSize: 18, marginBottom: 10  }}>Email : {email}  </AppText>
+                <AppText style={{ color: "black", fontSize: 16, marginBottom: 10, marginLeft:40 }}> @: {email}  </AppText>
 
-                <AppText style={{ color: "black", fontSize: 18 }}>Password : **********  </AppText>
+                <AppText style={{ color: "black", fontSize: 16, marginBottom: 10 }}>      Password : **********  </AppText>
             </View>
     
           </View>
@@ -167,11 +188,12 @@ const Settings = () => {
 }
 
 const styles = StyleSheet.create({
+
   parentContainer: {
     flexDirection: "column",
     borderRadius: 10,
-    marginHorizontal: 20,
-    marginVertical: 5,
+    marginHorizontal: 50,
+    marginVertical: -10,
    backgroundColor: '#fff',
     shadowColor: "grey",
     shadowOpacity: 0.05,
@@ -186,7 +208,7 @@ const styles = StyleSheet.create({
   
     justifyContent: "center",
     alignItems: "center",
-    paddingVertical: 30,
+    paddingVertical: 5,
     width: "100%",
     
   },

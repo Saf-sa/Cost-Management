@@ -220,38 +220,6 @@ const Login = () => {
 
             </AppText>
             
-
-    
-     {/*         <View
-                style={{
-                  marginTop: -0,
-                  width: 40,
-                  height: 35,
-                  borderRadius: 5,
-
-                  backgroundColor: "blue",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  marginLeft: 220,
-                  marginBottom: 7,
-                }}
-              >
-            
-              </View> */}
-
-             {/*    <View
-                style={{
-                  width: 40,
-                  height: 35,
-                  borderRadius: 5,
-                  backgroundColor: "white",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  marginLeft: 220,
-                }}
-              >
-      
-              </View> */}
             
             <AppText></AppText>
           </View>
@@ -292,6 +260,10 @@ const Login = () => {
               </View>
             </View>
           </View>
+
+
+
+          
         </LinearGradient>
         <View></View>
       <View style={styles.content}>
