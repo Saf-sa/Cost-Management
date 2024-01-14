@@ -54,7 +54,7 @@ const ContactForm = () => {
   return (
 
      <Screen2>
-        <Text style={styles.title}>Update your Settings</Text> 
+        <Text style={styles.title}>Send us a Email</Text> 
         <UserNav 
           image={require("../../../assets/iconPerson.png")}
    
@@ -67,7 +67,7 @@ const ContactForm = () => {
           end={{ x: 1, y: 3 }}
         >
           <View style={styles.balanceContainer}>
-            <AppText style= {{ flexDirection: 'row' }}>
+            <AppText style= {{ flexDirection: 'row', paddingTop:10 }}>
                      <View>
                 <Text style={{ fontSize: 36, color:'blue', lineHeight: 35 }}>€</Text>
                 </View>
@@ -84,9 +84,9 @@ const ContactForm = () => {
                 </View>
 
             </AppText>
-            
-            
-            <AppText></AppText>
+             
+            <Text style={{ color: "black", fontSize: 15, paddingBottom:40, paddingTop:40 }}> We wil answer you as soon as possible </Text>
+          
             
           </View>
         </LinearGradient>
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     borderRadius: 10,
     marginHorizontal: 50,
-    marginVertical: -20,
+    marginVertical: -10,
    backgroundColor: '#fff',
     shadowColor: "grey",
     shadowOpacity: 0.05,
@@ -145,16 +145,25 @@ const styles = StyleSheet.create({
   },
 
   container: {
-    marginTop:150,
+    marginTop:100,
     padding: 20,
+    
   },
   input: {
     height: 40,
-    borderColor: 'gray',
+    borderColor: "#E0AA3E",
+    borderRadius: 5,
     borderWidth: 1,
-    marginBottom: 20,
+    marginBottom: 30,
     padding: 10,
   },
+   title:{
+    top: 70,
+    textAlign: "center",
+    color: "#E0AA3E",
+    fontSize: 20,
+    fontWeight: "bold",
+  }
 });
 
 export default ContactForm;
