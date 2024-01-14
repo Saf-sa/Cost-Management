@@ -96,13 +96,13 @@ import axios from "axios";
     const [refreshing, setRefreshing] = useState(false);
     return (
       <Screen2>
-        <UserNav
+        <UserNav style={styles.userNav}
           image={require("../../../assets/iconPerson.png")}
-         title={`Welcome Back ${firstName}`}
+        
        
         />
     
-    
+     <Text style={styles.title}> Les's save your files {firstName} !</Text> 
        
         <View>
           <AppText style={styles.dashboardTitle}>Global View</AppText>
@@ -257,7 +257,7 @@ import axios from "axios";
           <TouchableOpacity onPress={() => navigation.push("Epargne")}>
             <Icon
               styles={styles.icon}
-              name="search-dollar"
+              name="piggy-bank"
               size={66}
              
              
@@ -286,7 +286,7 @@ import axios from "axios";
         <View style={styles.dashboardCat}>
           <TouchableOpacity onPress={() => navigation.push("Salary")}>
             <Icon
-              name="tshirt"
+              name="dollar-sign"
               size={66}
              
              
@@ -297,7 +297,7 @@ import axios from "axios";
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.push("Foods")}>
             <Icon
-              name="utensils"
+              name="percentage"
               size={66}
              
              
@@ -307,20 +307,10 @@ import axios from "axios";
 
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.push("Transport")}>
-            <Icon
-              name="subway"
-              size={66}
-             
-             
-            />
-
-            <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10 }}>   Bonus
-            </Text>
-          </TouchableOpacity>
+ 
           <TouchableOpacity onPress={() => navigation.push("Studies")}>
             <Icon
-              name="university"
+              name="search-dollar"
               size={66}
              
              
@@ -332,7 +322,7 @@ import axios from "axios";
 
           <TouchableOpacity onPress={() => navigation.push("MyInvoices")}>
             <Icon
-              name="house-user"
+              name="funnel-dollar"
               size={66}
              
              
@@ -345,7 +335,7 @@ import axios from "axios";
 
           <TouchableOpacity onPress={() => navigation.push("Taxes")}>
             <Icon
-              name="cash-register"
+              name="gifts"
               size={66}
              
              
@@ -379,7 +369,7 @@ import axios from "axios";
           <TouchableOpacity onPress={() => navigation.push("Epargne")}>
             <Icon
               styles={styles.icon}
-              name="search-dollar"
+              name="cash-register"
               size={66}
              
              
@@ -388,22 +378,12 @@ import axios from "axios";
             <Text style={{ fontSize: 15, paddingTop: 5 }}>  Refund</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => navigation.push("Holidays")}>
-            <Icon
-              styles={styles.icon}
-              name="plane-departure"
-              size={66}
-             
-             
-            />
-
-            <Text style={{ fontSize: 15, paddingTop: 5 }}>Gambling</Text>
-          </TouchableOpacity>
+   
           
     <TouchableOpacity onPress={() => navigation.push("Epargne")}>
             <Icon
               styles={styles.icon}
-              name="search-dollar"
+              name="money-bill-wave"
               size={66}
              
              
@@ -415,7 +395,7 @@ import axios from "axios";
           <TouchableOpacity onPress={() => navigation.push("Holidays")}>
             <Icon
               styles={styles.icon}
-              name="plane-departure"
+              name="calendar-alt"
               size={66}
              
              
@@ -434,40 +414,7 @@ import axios from "axios";
   }
 
 const styles = StyleSheet.create({
-  parentContainer: {
-    flexDirection: "column",
-    borderRadius: 10,
-    marginHorizontal: 20,
-    marginVertical: 5,
-    shadowColor: "grey",
-    shadowOpacity: 0.05,
-    shadowOffset: {
-      width: 15,
-      height: 15,
-    },
-    elevation: 8,
-  },
-  balanceContainer: {
-  
-    justifyContent: "center",
-    alignItems: "center",
-    paddingVertical: 30,
-    width: "100%",
-  },
-  parentIncomeContainer: {
-      
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    paddingHorizontal: 20,
-    paddingBottom: 20,
-  },
-  containerRender: {
-
-    height: 100,
-    marginHorizontal: 10,
-    width: 50,
-  },
+ 
 
   dashboard: {
     flexWrap: "wrap",
@@ -480,7 +427,6 @@ const styles = StyleSheet.create({
 
   dashboardCat: {
     flexWrap: "wrap",
-
     fontWeight: 'bold',
     flexDirection: "row",
     justifyContent: "space-between",
@@ -492,25 +438,25 @@ const styles = StyleSheet.create({
   dashboardTitle: {
     color: "black",
     fontSize: 15,
+      color: "#E0AA3E",
     fontWeight: "bold",
     justifyContent: "center",
     textAlign: "center",
     paddingHorizontal: 20,
-    marginTop: 10,
-    marginBottom: 10,
-  },
-  textCategory: {
-    textAlignVertical: "center",
-    alignSelf: "center",
-    height: 35,
-    fontSize: 12,
-    fontSize: 15,
-    paddingTop: 5,
+    marginTop: 0,
     marginBottom: 10,
   },
   icon: {
     justifyContent: "center",
   },
+   
+    title:{
+    top: -70,
+    textAlign: "center",
+    color: "#E0AA3E",
+    fontSize: 20,
+    fontWeight: "bold",
+  }
 });
 
 export default Download;

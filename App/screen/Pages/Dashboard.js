@@ -379,7 +379,7 @@ import Holidays from './Categories/Holiday';
         <View style={styles.dashboardCat}>
           <TouchableOpacity onPress={() => navigation.navigate("ViewIncomes", {category:'Salary'})}>
             <Icon
-              name="tshirt"
+              name="dollar-sign"
               size={66}
              
              
@@ -391,7 +391,7 @@ import Holidays from './Categories/Holiday';
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate("ViewIncomes", {category:'Bonus'})}>
             <Icon
-              name="utensils"
+              name="dollar-sign"
               size={66}
              
              
@@ -404,7 +404,7 @@ import Holidays from './Categories/Holiday';
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate("ViewIncomes",  {category:'Loan'})}>
             <Icon
-              name="subway"
+              name="search-dollar"
               size={66}
              
              

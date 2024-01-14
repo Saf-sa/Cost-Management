@@ -169,15 +169,15 @@ const Settings = () => {
          change your Password ?
         </Text>
 
-        <Text  style={styles.settings}  onPress={() => navigation.navigate("Dashboard")} >
+        <Text  style={styles.settings}  onPress={() => navigation.navigate("ContactForm")} >
          Ususcribe Newsletter ?
         </Text>
 
-        <Text  style={styles.settings}  onPress={() => navigation.navigate("Login")} >
+        <Text  style={styles.settings}  onPress={() => navigation.navigate("ContactForm")} >
          Delete Your Account?
         </Text>
 
-        <Text  style={styles.settings}  onPress={() => navigation.navigate("Login")} >
+        <Text  style={styles.settings}  onPress={() => navigation.navigate("ContactForm")} >
          Contact Us?
         </Text>
 

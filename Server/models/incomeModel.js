@@ -50,7 +50,6 @@ const incomesSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-
 // use mongoose to create a model from the schema and export it
 
 const Incomes = mongoose.model("Incomes", incomesSchema);
