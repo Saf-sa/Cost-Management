@@ -43,6 +43,7 @@ import AddReminder from "./screen/Pages/Toolkits/AddReminder";
 import Settings from "./screen/Pages/Toolkits/settings/";
 import Impressum from "./screen/Pages/NavPages/Impressum";
 import ContactForm from "./screen/Pages/NavPages/ContactForm";
+import AboutUs from "./screen/Pages/NavPages/AboutUs";
 import Mailer from 'react-native-mail';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from 'axios';
@@ -159,6 +160,7 @@ export default function App() {
         <Stack.Screen name="AddReminder" component={AddReminder} />
         <Stack.Screen name="Impressum" component={Impressum} />
         <Stack.Screen name="ContactForm" component={ContactForm} />
+        <Stack.Screen name="AboutUs" component={AboutUs} />
       </Stack.Navigator>
     </NavigationContainer>
   );
