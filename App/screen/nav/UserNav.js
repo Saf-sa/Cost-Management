@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import {
   View,
+  Text,
   StyleSheet,
   Image,
   BackHandler,
@@ -27,8 +28,8 @@ function HomeNav({ title, subtitle, image }) {
         <View style={styles.container}>
           <Image style={styles.image} source={image} />
           <View style={styles.textsTitle}>
-            <AppText style={styles.titleStyle}>{title}</AppText>
-            <AppText style={styles.subtitleStyle}>{subtitle}</AppText>
+          
+            
           </View>
         </View>
         <TouchableOpacity onPress={() => setModalVisible(true)}>
@@ -36,8 +37,7 @@ function HomeNav({ title, subtitle, image }) {
           <Icon
             name="bars"
             size={40}
-        
-
+            bRadius={10}
             
           />
         </TouchableOpacity>
@@ -54,15 +54,21 @@ function HomeNav({ title, subtitle, image }) {
           style={{
             flex: 1,
             justifyContent: "center",
+            marginBottom: 10,
             alignItems: "center",
             flexDirection: "column",
             backgroundColor: "rgba(0, 0, 0, 0.3)",
+
+
+
           }}
         >
           <View
             style={{
+             
+              marginTop: 20,
               width: 200,
-              height: 400,
+              height: 320,
               borderRadius: 10,
               backgroundColor: "rgba(255, 255, 255, 1)",
               justifyContent: "center",
@@ -74,31 +80,39 @@ function HomeNav({ title, subtitle, image }) {
               }}
             >
               <Icon
-                name={"window-close"}
-
+                
+                name={"bars"}
                 iconColor={"red"}
-                size={70}
-                bRadius={2}
+                size={45}
+                bRadius={7}
                 styles={{
-                  marginVertical: 10,
-                  alignSelf: "center",
-                  borderColor: "transparent",
+               
+                alignSelf: "center",
+                height: 45,
+                justifyContent: "center",
+                borderColor: "grey",
+            
+               
+              
+                
+                
+
                 }}
               />
             </TouchableOpacity>
                  <TouchableOpacity onPress={() => navigation.navigate("AboutUs")}>
-              <AppText style={styles.textsAbout}> About us</AppText>
+              <Text style={styles.navText}> About us</Text>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => null}>
               <TouchableOpacity onPress={() => navigation.navigate("Impressum")}>
-                <AppText style={styles.textsAbout}>Impressum</AppText>
+                <Text style={styles.navText}>Impressum</Text>
               </TouchableOpacity>
             </TouchableOpacity>
        
                <TouchableOpacity onPress={() => null}>
               <TouchableOpacity onPress={() => navigation.navigate("ContactForm")}>
-                <AppText style={styles.textsAbout}>Contact Us</AppText>
+                <Text style={styles.navText}>Contact Us</Text>
               </TouchableOpacity>
         
             </TouchableOpacity>
@@ -110,10 +124,11 @@ function HomeNav({ title, subtitle, image }) {
 }
 const styles = StyleSheet.create({
   textsAbout: {
- 
+
     paddingVertical: 13.5,
     fontSize: 20,
     textAlign: "center",
+    
   },
   containerParent: {
     
@@ -122,7 +137,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   container: {
-    
+
     flexDirection: "row",
   },
   image: {
@@ -137,16 +152,17 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     paddingLeft: 10,
   },
-  titleStyle: {
-    
-    fontSize: 15,
-    color: "black",
-  },
-  subtitleStyle: {
-    fontSize: 20,
+  navText:{
+     fontSize: 16,
+     color: "#E0AA3E",
+    textAlign: "center",
+    fontWeight: "normal",
 
-   
-  },
+    paddingVertical: 31,
+    fontSize: 20,
+    textAlign: "center",
+  }
+
 });
 
 export default HomeNav;

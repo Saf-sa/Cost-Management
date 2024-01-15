@@ -8,6 +8,8 @@ function AppText({ style, children }) {
 
 const styles = StyleSheet.create({
   Appstyle: {
+   
+
     fontSize: 16,
      color: "#E0AA3E",
     textAlign: "center",

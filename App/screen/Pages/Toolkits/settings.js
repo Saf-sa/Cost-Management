@@ -143,13 +143,12 @@ const Settings = () => {
            
               <View style={styles.UserContainer}>
 
-                <AppText style={{ color: "black", fontSize: 16, marginBottom: 10}}>first Name : {firstName} </AppText>
+                <AppText style={{ color: "black", fontSize: 12, marginBottom: 10}}>first Name : {firstName} </AppText>
 
-                <AppText style={{ color: "black", fontSize: 16, marginBottom: 10  }}>  Last Name : {lastName}  </AppText>
+                <AppText style={{ color: "black", fontSize: 12, marginBottom: 10  }}>  Last Name : {lastName}  </AppText>
 
-                <AppText style={{ color: "black", fontSize: 16, marginBottom: 10, marginLeft:40 }}> @: {email}  </AppText>
+                <AppText style={{ color: "black", fontSize: 12, marginBottom: 10, marginLeft:17 }}>{email}  </AppText>
 
-                <AppText style={{ color: "black", fontSize: 16, marginBottom: 10 }}>      Password : **********  </AppText>
             </View>
     
           </View>
@@ -208,7 +207,7 @@ const styles = StyleSheet.create({
   
     justifyContent: "center",
     alignItems: "center",
-    paddingVertical: 5,
+    paddingVertical: 7,
     width: "100%",
     
   },

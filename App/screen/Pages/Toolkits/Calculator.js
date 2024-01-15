@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, SafeAreaView , onPress } from 'react-native'
 import { useState } from 'react';
 import { StatusBar } from 'react-native'; 
-import AuthHeader from "../../../shared/components/AuthHeader";
+import AuthHeader from "..//../../shared/components/AuthHeader";
 
 const Calculator = () => {
   const [input, setInput] = useState("");
