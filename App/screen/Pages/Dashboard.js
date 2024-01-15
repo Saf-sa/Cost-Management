@@ -391,7 +391,7 @@ import Holidays from './Categories/Holiday';
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate("ViewIncomes", {category:'Bonus'})}>
             <Icon
-              name="dollar-sign"
+              name="trophy"
               size={66}
              
              
@@ -430,7 +430,7 @@ import Holidays from './Categories/Holiday';
 
           <TouchableOpacity onPress={() => navigation.navigate("ViewIncomes", {category:'Gift'})}>
             <Icon
-              name="house-user"
+              name="gift"
               size={66}
              
              
@@ -444,7 +444,7 @@ import Holidays from './Categories/Holiday';
 
           <TouchableOpacity onPress={() => navigation.navigate("ViewIncomes", {category:'Rent'})}>
             <Icon
-              name="cash-register"
+              name="home"
               size={66}
              
              

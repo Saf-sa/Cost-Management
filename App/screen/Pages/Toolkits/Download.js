@@ -280,11 +280,11 @@ import axios from "axios";
 
           
         </View>
- <View>
-          <AppText style={styles.dashboardTitle}>Incomes</AppText>
+  <View>
+          <AppText style={styles.dashboardTitle}> Incomes Categories</AppText>
         </View>
         <View style={styles.dashboardCat}>
-          <TouchableOpacity onPress={() => navigation.push("Salary")}>
+          <TouchableOpacity onPress={() => navigation.navigate("ViewIncomes", {category:'Salary'})}>
             <Icon
               name="dollar-sign"
               size={66}
@@ -292,23 +292,24 @@ import axios from "axios";
              
             />
 
-            <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10 }}>   Salary
+            <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10, textAlign:"center" }}>
+              Salary
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.push("Foods")}>
+          <TouchableOpacity onPress={() => navigation.navigate("ViewIncomes", {category:'Bonus'})}>
             <Icon
-              name="percentage"
+              name="trophy"
               size={66}
              
              
             />
 
-            <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10 }}>  Taxes
-
+            <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10, textAlign:"center" }}>
+            
+              Bonus
             </Text>
           </TouchableOpacity>
- 
-          <TouchableOpacity onPress={() => navigation.push("Studies")}>
+          <TouchableOpacity onPress={() => navigation.navigate("ViewIncomes",  {category:'Loan'})}>
             <Icon
               name="search-dollar"
               size={66}
@@ -316,96 +317,94 @@ import axios from "axios";
              
             />
 
-            <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10 }}>    Loan
+            <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10, textAlign:"center" }}>
+              Loan
             </Text>
           </TouchableOpacity>
-
-          <TouchableOpacity onPress={() => navigation.push("MyInvoices")}>
+          <TouchableOpacity onPress={() => navigation.navigate("ViewIncomes", {category:'Sales'})}>
             <Icon
-              name="funnel-dollar"
+              name="university"
               size={66}
              
              
             />
 
-            <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10 }}>   Sales
-             
+            <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10, textAlign:"center" }}>
+           
+              Sales
             </Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => navigation.push("Taxes")}>
+          <TouchableOpacity onPress={() => navigation.navigate("ViewIncomes", {category:'Gift'})}>
             <Icon
-              name="gifts"
+              name="gift"
               size={66}
              
              
             />
 
-            <Text style={{ fontSize: 15, paddingTop: 5 }}>    Gift</Text>
+            <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10, textAlign:"center" }}>
+            
+              Gift
+            </Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => navigation.push("Hobbies")}>
+          <TouchableOpacity onPress={() => navigation.navigate("ViewIncomes", {category:'Rent'})}>
+            <Icon
+              name="home"
+              size={66}
+             
+             
+            />
+
+            <Text style={{ fontSize: 15, paddingTop: 5, textAlign:"center" }}> Rent</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => navigation.navigate("ViewIncomes", {category:'Allowance'})}>
             <Icon
               styles={styles.icon}
               name="laugh-wink"
               size={66}
             />
 
-            <Text style={{ fontSize: 15, paddingTop: 5 }}>    Rent</Text>
+            <Text style={{ fontSize: 14, paddingTop: 5, textAlign:"center" }}>Allowance</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => navigation.push("Money")}>
+          <TouchableOpacity onPress={() => navigation.navigate("ViewIncomes", {category:'Refund'})}>
             <Icon
               styles={styles.icon}
               name="hand-holding-usd"
-              size={66}
+              size={65}
              
              
             />
 
-            <Text style={{ fontSize: 15, paddingTop: 5 }}>Alowance</Text>
+            <Text style={{ fontSize: 15, paddingTop: 5, textAlign:"center" }}> Refund</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => navigation.push("Epargne")}>
+          <TouchableOpacity onPress={() => navigation.navigate("ViewIncomes", {category:'Stocks'})}>
             <Icon
               styles={styles.icon}
-              name="cash-register"
+              name="search-dollar"
               size={66}
              
              
             />
 
-            <Text style={{ fontSize: 15, paddingTop: 5 }}>  Refund</Text>
+            <Text style={{ fontSize: 15, paddingTop: 5, textAlign:"center" }}>Stocks</Text>
           </TouchableOpacity>
 
-   
-          
-    <TouchableOpacity onPress={() => navigation.push("Epargne")}>
+          <TouchableOpacity onPress={() => navigation.navigate("ViewIncomes", {category:'Other'})}>
             <Icon
               styles={styles.icon}
-              name="money-bill-wave"
+              name="newspaper"
               size={66}
              
              
             />
 
-            <Text style={{ fontSize: 15, paddingTop: 5 }}>  Stocks</Text>
+            <Text style={{ fontSize: 15, paddingTop: 5, textAlign:"center" }}>Other</Text>
           </TouchableOpacity>
-
-          <TouchableOpacity onPress={() => navigation.push("Holidays")}>
-            <Icon
-              styles={styles.icon}
-              name="calendar-alt"
-              size={66}
-             
-             
-            />
-
-            <Text style={{ fontSize: 15, paddingTop: 5 }}>   Other</Text>
-          </TouchableOpacity>
-          
-
-          
         </View>
 
       
