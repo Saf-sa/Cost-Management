@@ -45,6 +45,7 @@ import Impressum from "./screen/Pages/NavPages/Impressum";
 import ContactForm from "./screen/Pages/NavPages/ContactForm";
 import AboutUs from "./screen/Pages/NavPages/AboutUs";
 import Mailer from 'react-native-mail';
+import ViewExpenseStat from "./screen/Pages/ViewExpenseStat";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from 'axios';
 
@@ -161,6 +162,7 @@ export default function App() {
         <Stack.Screen name="Impressum" component={Impressum} />
         <Stack.Screen name="ContactForm" component={ContactForm} />
         <Stack.Screen name="AboutUs" component={AboutUs} />
+        <Stack.Screen name="ViewExpenseStat" component={ViewExpenseStat} />
       </Stack.Navigator>
     </NavigationContainer>
   );

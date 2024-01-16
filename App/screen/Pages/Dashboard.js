@@ -227,7 +227,7 @@ import Holidays from './Categories/Holiday';
             />
             <Text style={{ fontSize: 15, paddingTop: 5, textAlign:"center" }}>Forecast</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.push("Statistics")}>
+          <TouchableOpacity onPress={() => navigation.push("ViewExpenseStat")}>
             <Icon
               name="chart-line"
               size={66}
