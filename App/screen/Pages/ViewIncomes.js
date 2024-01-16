@@ -72,6 +72,8 @@ const ViewIncomes = ({route}) => {
     getIncomes();// Call the function to get data from AsyncStorage
   }, []);
 
+   const totalIncomes = storedIncomes.reduce((total, income) => total + Number(income.amount), 0);
+
 let index = 1;// index for scrollview
 
   return (// Display data from AsyncStorage
@@ -95,6 +97,7 @@ let index = 1;// index for scrollview
         <Text style={styles.textButton} >Add a new Income</Text>
       </TouchableOpacity>
        
+        <Text style={styles.textAmount}>Total Incomes = {totalIncomes} € </Text>
       
     {storedIncomes.map((income, index) => (// Display data from AsyncStorage in a FlatList
       /* console.log('storedIncomes ', storedIncomes), */
@@ -170,6 +173,13 @@ const styles = StyleSheet.create({
       fontWeight: "bold",
       fontSize: 15,
       textAlign: "center",
+    },
+        textAmount:{
+      color: "#E0AA3E",
+      fontWeight: "bold",
+      fontSize: 20,
+      textAlign: "center",
+      top: -60,
     },
 });
 
