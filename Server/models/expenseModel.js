@@ -25,7 +25,7 @@ const expensesSchema = new mongoose.Schema(
         "Holiday",
         "Tax",
         "Hobbie",
-        "MyEpargne",
+        "Epargne",
         "Money",
        "epargne",
         "Other",

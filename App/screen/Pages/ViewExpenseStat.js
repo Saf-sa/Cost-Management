@@ -19,7 +19,8 @@ import AppText from "../../shared/components/uiApp/AppText";
 import UserNav from "../nav/UserNav";
 import Screen2 from "../../shared/components/Screen";
 import moment from "moment";
-import ChartExpense from "../../shared/StatsView/ExpensesStats";
+import ShowLineChart from "../../shared/StatsView/LineChart";
+import ShowPieChart from "../../shared/StatsView/PieChart";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import axios from "axios";
@@ -42,7 +43,7 @@ const ViewExpenseStat = ({route}) => {
           
            /*  console.log('data ', data), */
           `http://localhost:5555/api/expenses/${category}`,// Get data in DB collection from backend in DB
-                 /*    console.log('data category from backend  :', category), */
+               console.log('data category from backend  :', category),
           {
             headers: {
               Authorization: `Bearer ${user.token}`,// Send token to backend
@@ -52,7 +53,7 @@ const ViewExpenseStat = ({route}) => {
         );
          // Stocker les données récupérées dans AsyncStorage
        await AsyncStorage.setItem('expenses', JSON.stringify(data));// Store data in AsyncStorage
-         /*      console.log('data received from Backend ',data);  */
+           console.log('data received from Backend ',data); 
 
         //await AsyncStorage.clear('expenses')
 
@@ -86,8 +87,12 @@ let index = 1;// index for scrollview
           image={require("../../assets/iconPerson.png")}
     /> 
     <View style={styles.expenseContainer}>
+      <View>
+        <ShowLineChart />
+      </View>
 
-        <ChartExpense />
+        
+         
         </View>
      
     </Screen2>

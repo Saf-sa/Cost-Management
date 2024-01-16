@@ -73,6 +73,8 @@ const ViewExpenses = ({route}) => {
     getExpenses();// Call the function to get data from AsyncStorage
   }, []);
 
+  const totalExpenses = storedExpenses.reduce((total, expense) => total + Number(expense.amount), 0);
+
 let index = 1;// index for scrollview
 
   return (// Display data from AsyncStorage
@@ -96,6 +98,7 @@ let index = 1;// index for scrollview
         <Text style={styles.textButton} >Add a new Income</Text>
       </TouchableOpacity>
        
+       <Text style={styles.textAmount}>Total Expenses = {totalExpenses} </Text>
       
     {storedExpenses.map((expense, index) => (// Display data from AsyncStorage in a FlatList
       /* console.log('storedExpenses ', storedExpenses), */
@@ -171,6 +174,13 @@ const styles = StyleSheet.create({
       fontWeight: "bold",
       fontSize: 15,
       textAlign: "center",
+    },
+    textAmount:{
+      color: "#E0AA3E",
+      fontWeight: "bold",
+      fontSize: 20,
+      textAlign: "center",
+      top: -80,
     },
 });
 

@@ -11,7 +11,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 
-const ChartExpense = ({route}) => {
+const ShowLineChart = ({route}) => {
     const [data, setData] = useState([]); 
   const [selectedInterval, setSelectedInterval] = useState('weekly');
   const [storedExpenses, setStoredExpenses] = useState([]);// State to store data from AsyncStorage
@@ -120,7 +120,7 @@ const ChartExpense = ({route}) => {
       onScrollBeginDrag={(evt) => (index++)}// to get the index of the scrollview
       >
    <View>
-  <Text>Bezier Line Chart</Text>
+  <Text>Expenses </Text>
   <LineChart
     data={{
       labels: ["January", "February", "March", "April", "May", "June"],
@@ -184,4 +184,4 @@ const styles = StyleSheet.create({
   
 });
 
-export default ChartExpense;
+export default ShowLineChart;

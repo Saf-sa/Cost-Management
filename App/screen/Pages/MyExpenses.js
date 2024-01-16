@@ -226,7 +226,7 @@ const MyExpense= () => {
                "Holiday",
                "Tax",
                "Hobbie",
-               "MyEpargne",
+               "Epargne",
                "Money",
               "epargne",
                "Other",
