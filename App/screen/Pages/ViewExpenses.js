@@ -36,6 +36,7 @@ const ViewExpenses = ({route}) => {
 
   const {category} = route.params;// Get category from MyIcomes.js  
   console.log('category from ViewExpenses ', category);
+  
   useEffect(() => {// UseEffect to get data from AsyncStorage
     const getExpenses = async () => {
       try {

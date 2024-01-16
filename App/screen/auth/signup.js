@@ -227,7 +227,9 @@ const Signup = () => {
 
   return (
     <View style={styles.root}>
-      <AuthHeader subtext="Please Signup" />
+     {/*  <AuthHeader subtext="Please Signup" /> */}
+
+     
       <View style={styles.content}>
         <CustomInputSingup
           label="First Name"
@@ -290,6 +292,73 @@ export default Signup;
 const styles = StyleSheet.create({
   root: {
     flex: 1,
+  },
+  parentContainer: {
+
+    width: "65%",
+    height: 170,
+    justifyContent: "center",
+    alignItems: "center",
+    paddingTop: 0,
+    flexDirection: "column",
+    borderRadius: 7,
+    marginTop: 40,
+    marginBottom: 60,
+    marginHorizontal: 72,
+    marginVertical: -20,
+    backgroundColor: '#fff',
+    shadowColor: "grey",
+    shadowOpacity: 0.05,
+    shadowRadius: 2,
+    shadowOffset: {
+      width: 0.8,
+      height: 2,
+    },
+    elevation: 8,
+  },
+    parentIncomeContainer: {
+    width: "90%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingTop: 3,
+    paddingBottom:0,
+ 
+  },
+
+  balanceContainer: {
+    
+    justifyContent: "center",
+    alignItems: "center",
+    paddingVertical: 15,
+    width: "80%",
+
+  },
+  button: {
+    backgroundColor: '#fff',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+    marginTop: 10,
+    
+  },
+  login: {
+    flexDirection: "row",
+    marginTop: -50,
+    marginBottom: 50,
+    color: "#E0AA3E",
+    fontSize: 15,
+    fontWeight: "bold",
+  },
+  forgetPass: {
+    flexDirection: "row",
+    alignSelf: "flex-end",
+    marginTop: 10,
+    marginBottom: 30,
+    color: "#E0AA3E",
+    fontSize: 15,
+    fontWeight: "bold",
   },
   content: {
     flex: 2,

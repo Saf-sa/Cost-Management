@@ -162,7 +162,7 @@ export default function App() {
         <Stack.Screen name="Impressum" component={Impressum} />
         <Stack.Screen name="ContactForm" component={ContactForm} />
         <Stack.Screen name="AboutUs" component={AboutUs} />
-        <Stack.Screen name="ViewExpenseStat" component={ViewExpenseStat} />
+        <Stack.Screen name="ViewExpenseStat" initialParams={{category:'all'}} component={ViewExpenseStat} />
       </Stack.Navigator>
     </NavigationContainer>
   );
