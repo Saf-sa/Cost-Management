@@ -30,8 +30,13 @@ import axios from "axios";
 //import { API_URL, API_TOKEN } from "@env";
 /*  import { REACT_APP_BE_URL } from "../../.env";  */
 
+export function calculateTotalIncomes(incomes) {
+  return incomes.reduce((total, income) => total + Number(income.amount), 0);
+}
+
 const ViewIncomes = ({route}) => {
   const [storedIncomes, setStoredIncomes] = useState([]);// State to store data from AsyncStorage
+    const totalIncomes = calculateTotalIncomes(storedIncomes);
   const navigation = useNavigation();// Navigation
 
   const {category} = route.params;// Get category from MyIcomes.js  
@@ -72,7 +77,6 @@ const ViewIncomes = ({route}) => {
     getIncomes();// Call the function to get data from AsyncStorage
   }, []);
 
-   const totalIncomes = storedIncomes.reduce((total, income) => total + Number(income.amount), 0);
 
 let index = 1;// index for scrollview
 

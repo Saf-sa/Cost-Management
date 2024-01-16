@@ -21,6 +21,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import Holidays from './Categories/Holiday';
 
+import { totalIncomes } from './ViewIncomes';
+import { totalExpenses } from './ViewExpenses';
 
   function Dashboard(route) {
     const [balance, setBalance] = useState("");
