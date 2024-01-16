@@ -230,3 +230,11 @@ clearStorage();
 38 -install react-native-mail
 
 npm i react-native-mail
+
+39 -install react-native-chart-kit
+
+npm i react-native-chart-kit
+
+40 - install react-native-picker-select
+
+npm i react-native-picker-select
