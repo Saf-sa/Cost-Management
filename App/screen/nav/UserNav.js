@@ -66,15 +66,19 @@ function HomeNav({ title, subtitle, image }) {
           <View
             style={{
              
-              marginTop: -290,
+              marginTop: -10,
               width: 200,
-              height: 390,
+              height: 410,
               borderRadius: 10,
               backgroundColor: "rgba(255, 255, 255, 1)",
               justifyContent: "center",
             }}
           >
             <TouchableOpacity
+              style={{
+                alignSelf: "center",
+              }}
+
               onPressOut={() => {
                 setModalVisible(false);
               }}
@@ -130,13 +134,7 @@ function HomeNav({ title, subtitle, image }) {
   );
 }
 const styles = StyleSheet.create({
-  textsAbout: {
 
-    paddingVertical: 13.5,
-    fontSize: 20,
-    textAlign: "center",
-    
-  },
   containerParent: {
     
     flexDirection: "row",
