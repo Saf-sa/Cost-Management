@@ -121,94 +121,21 @@ const ShowLineChart = ({route}) => {
       >
    <View>
   <Text> Pie Chart</Text>
-<PieChart
-  data={data}
-  width={screenWidth}
-  height={220}
-  chartConfig={chartConfig}
-  accessor={"population"}
-  backgroundColor={"transparent"}
-  paddingLeft={"15"}
-  center={[10, 50]}
-  absolute
-/>
+  <PieChart
     data={{
-      labels: ["Clothe", "Food", "Transport", "Holiday", "Tax", "Hobbie", "MyEpargne", "Money","epargne", "Other",],
+      labels: ["January", "February", "March", "April", "May", "June"],
       datasets: [
         {
-    name: "Clothe",
-    population: 21500000,
-    color: "rgba(131, 167, 234, 1)",
-    legendFontColor: "#7F7F7F",
-    legendFontSize: 15
-  },
-  {
-    name: "Food",
-    population: 2800000,
-    color: "#F00",
-    legendFontColor: "#7F7F7F",
-    legendFontSize: 15
-  },
-  {
-    name: "Transport",
-    population: 527612,
-    color: "red",
-    legendFontColor: "#7F7F7F",
-    legendFontSize: 15
-  },
-  {
-    name: "Holiday",
-    population: 8538000,
-    color: "#ffffff",
-    legendFontColor: "#7F7F7F",
-    legendFontSize: 15
-  },
-  {
-    name: "Tax",
-    population: 11920000,
-    color: "rgb(0, 0, 255)",
-    legendFontColor: "#7F7F7F",
-    legendFontSize: 15
-  },
-    {
-    name: "Hobbie",
-    population: 8538000,
-    color: "#ffffff",
-    legendFontColor: "#7F7F7F",
-    legendFontSize: 15
-  },
-    {
-    name: "MyEpargne",
-    population: 527612,
-    color: "red",
-    legendFontColor: "#7F7F7F",
-    legendFontSize: 15
-  },
-    {
-    name: "Money",
-    population: 2800000,
-    color: "#F00",
-    legendFontColor: "#7F7F7F",
-    legendFontSize: 15
-  },
-    {
-    name: "epargne",
-    population: 2800000,
-    color: "#F00",
-    legendFontColor: "#7F7F7F",
-    legendFontSize: 15
-  },
-  {
-    name: "Clothe",
-    population: 21500000,
-    color: "rgba(131, 167, 234, 1)",
-    legendFontColor: "#7F7F7F",
-    legendFontSize: 15
-  },
-
+          data: [
+            Math.random() * 100,
+            Math.random() * 100,
+            Math.random() * 100,
+            Math.random() * 100,
+            Math.random() * 100,
+            Math.random() * 100
           ]
         }
-}
+      ]
     }}
     width={Dimensions.get("window").width} // from react-native
     height={220}
@@ -231,7 +158,7 @@ const ShowLineChart = ({route}) => {
         stroke: "#ffa726"
       }
     }}
-    PieChart
+    bezier
     style={{
       marginVertical: 8,
       borderRadius: 16

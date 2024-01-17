@@ -16,9 +16,9 @@ const ShowLineChart = ({route}) => {
   const [selectedInterval, setSelectedInterval] = useState('weekly');
   const [storedExpenses, setStoredExpenses] = useState([]);// State to store data from AsyncStorage
   const navigation = useNavigation();// Navigation
+/* 
+  const {category} = route */
 
- /*  const {category} = route//  */
-/*   console.log('category from ViewExpenses'; */
   useEffect(() => {// UseEffect to get data from AsyncStorage
     const getExpenses = async () => {
       try {
@@ -26,9 +26,9 @@ const ShowLineChart = ({route}) => {
            console.log('user token ',user.token); 
         const { data } = await axios.get(
           
-           /*  console.log('data ', data), */
-          `http://localhost:5555/api/expenses/`,// Get data in DB collection from backend in DB
-                 /*    console.log('data category from backend  :', category), */
+            console.log('data ', data),
+          `http://localhost:5555/api/expenses/${category}`,// Get data in DB collection from backend in DB
+  console.log('data category from backend  :', category), 
           {
             headers: {
               Authorization: `Bearer ${user.token}`,// Send token to backend
@@ -56,6 +56,8 @@ const ShowLineChart = ({route}) => {
     getExpenses();// Call the function to get data from AsyncStorage
 
   }, []);
+
+  
 
   const filterDataByInterval = () => {
     // Implémentez la logique de filtrage en fonction de selectedInterval
@@ -169,6 +171,7 @@ const ShowLineChart = ({route}) => {
   );
 };
 
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -183,5 +186,6 @@ const styles = StyleSheet.create({
 
   
 });
+
 
 export default ShowLineChart;

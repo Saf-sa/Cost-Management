@@ -66,9 +66,9 @@ function HomeNav({ title, subtitle, image }) {
           <View
             style={{
              
-              marginTop: 20,
+              marginTop: -290,
               width: 200,
-              height: 320,
+              height: 390,
               borderRadius: 10,
               backgroundColor: "rgba(255, 255, 255, 1)",
               justifyContent: "center",
@@ -116,6 +116,13 @@ function HomeNav({ title, subtitle, image }) {
               </TouchableOpacity>
         
             </TouchableOpacity>
+
+               <TouchableOpacity onPress={() => null}>
+              <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+                <Text style={styles.navText}>Logout</Text>
+              </TouchableOpacity>
+        
+            </TouchableOpacity>
           </View>
         </View>
       </Modal>
@@ -157,8 +164,7 @@ const styles = StyleSheet.create({
      color: "#E0AA3E",
     textAlign: "center",
     fontWeight: "normal",
-
-    paddingVertical: 31,
+    paddingVertical: 32,
     fontSize: 20,
     textAlign: "center",
   }
