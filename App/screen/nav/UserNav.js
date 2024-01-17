@@ -16,23 +16,12 @@ import Icon from "../../shared/components/IncomExpenseComponent/Icon";
 import AppText from "../../shared/components/uiApp/AppText";
 import { useNavigation } from "@react-navigation/native";
 import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 function HomeNav({ title, subtitle, image }) {
   const [modalVisible, setModalVisible] = useState(false);
   const navigation = useNavigation();
-
-const clearStorage = async () => {
-  try {
-    await AsyncStorage.clear();
-    console.log('Storage successfully cleared!');
-  } catch (e) {
-    console.log('Failed to clear the async storage.');
-  }
-}
-
-// Call the function when you want to clear the storage
-clearStorage();
-
+  // const ContactLinking = () => {
+  //   Linking.openURL("https://www.google.com");
+  // };
   return (
     <SafeAreaView>
       <View style={styles.containerParent}>
@@ -132,10 +121,11 @@ clearStorage();
         
             </TouchableOpacity>
 
-              <TouchableOpacity onPress={clearStorage}>
-            <TouchableOpacity onPress={() => navigation.navigate("Login")}>
-                 <Text style={styles.navText}>Logout</Text>
+               <TouchableOpacity onPress={() => null}>
+              <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+                <Text style={styles.navText}>Logout</Text>
               </TouchableOpacity>
+        
             </TouchableOpacity>
           </View>
         </View>
