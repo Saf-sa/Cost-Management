@@ -30,6 +30,7 @@ import axios from "axios";
 //import { API_URL, API_TOKEN } from "@env";
 /*  import { REACT_APP_BE_URL } from "../../.env";  */
 
+
 const ViewExpenses = ({route}) => {
   const [storedExpenses, setStoredExpenses] = useState([]);// State to store data from AsyncStorage
   const navigation = useNavigation();// Navigation
@@ -73,7 +74,7 @@ const ViewExpenses = ({route}) => {
     getExpenses();// Call the function to get data from AsyncStorage
   }, []);
 
-  const totalExpenses = storedExpenses.reduce((total, expense) => total + Number(expense.amount), 0);
+  const calculateTotalExpenses = storedExpenses.reduce((total, expense) => total + Number(expense.amount), 0);
 
 let index = 1;// index for scrollview
 
@@ -98,7 +99,7 @@ let index = 1;// index for scrollview
         <Text style={styles.textButton} >Add a new Income</Text>
       </TouchableOpacity>
        
-       <Text style={styles.textAmount}>Total Expenses = {totalExpenses} € </Text>
+       <Text style={styles.textAmount}>Total Expenses = {calculateTotalExpenses} € </Text>
       
     {storedExpenses.map((expense, index) => (// Display data from AsyncStorage in a FlatList
       /* console.log('storedExpenses ', storedExpenses), */
