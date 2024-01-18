@@ -149,7 +149,9 @@ const Login = () => {
       token: response.data.token, // replace with actual user token key
       firstName: response.data.firstName, // replace with actual user firstName key
       lastName: response.data.lastName, // replace with actual user lastName key
-      email: response.data.email, // replace with actual user email key
+      email: response.data.email, 
+      expiresIn: response.data.expiresIn, // replace with actual user email key
+      // replace with actual user email key
      /*  password: response.data.password, // replace with actual user password key */
 };
      console.log("user stored in asyncSorage", user);

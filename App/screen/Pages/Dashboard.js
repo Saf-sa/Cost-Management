@@ -21,7 +21,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import Holidays from './Categories/Holiday';
 
-import { totalIncomes } from './ViewIncomes';
+import { totalExpenseIncome } from './History';
 import { totalExpenses } from './ViewExpenses';
 
   function Dashboard(route) {
@@ -100,6 +100,7 @@ import { totalExpenses } from './ViewExpenses';
     //getDimension
     const { height, width } = useWindowDimensions();
     const [refreshing, setRefreshing] = useState(false);
+    const incomeTotal = totalExpenseIncome;
     return (
       <Screen2>
       
@@ -162,7 +163,7 @@ import { totalExpenses } from './ViewExpenses';
                   Income
                 </AppText>
                 <AppText style={{ color: "green", fontSize: 12 }}>
-                  100000 $
+                 {incomeTotal} €
                 </AppText>
               </View>
             </View>

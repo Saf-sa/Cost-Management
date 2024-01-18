@@ -50,6 +50,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from 'axios';
 
 
+
 /* 
 
 const clearStorage = async () => {
@@ -62,10 +63,11 @@ const clearStorage = async () => {
 }
 
 // Call the function when you want to clear the storage
-clearStorage();
- */
+clearStorage();  */
+
 
 const Stack = createStackNavigator();
+import moment from "moment";
 
 function AuthLoading({ navigation }) {
   useEffect(() => {
@@ -75,25 +77,38 @@ function AuthLoading({ navigation }) {
         console.log('user from async storage', user);
 
         if (user) {
-          const response = await axios.get(
-            `http://localhost:5555/api/users/verify-token`,
-            {
-              headers: {
-                Authorization: `Bearer ${user.token}`,
-              },
+          const { token, expiresIn } = user;
+          const expirationTime = moment().add(parseInt(expiresIn), '3600');
+
+          if (expirationTime.isBefore(moment())) {
+            // Token expiré, retirer le token du localStorage
+            await AsyncStorage.removeItem("@storage_Key");
+            console.log('Token expired. Removed from AsyncStorage.');
+            navigation.replace('Login');
+          } else {
+            // Token valide, vérifier s'il est toujours valide côté serveur
+            const response = await axios.get(
+              `http://localhost:5555/api/users/verify-token`,
+              {
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                },
+              }
+            );
+            
+            if (response.status === 200) {
+              console.log('User already isLoged', response.data);
+              navigation.replace('Dashboard');
             }
-          );
-          if (response.status === 200) {
-            console.log('User already isLoged', response.data);
-            navigation.replace('Dashboard');  // Naviguer directement vers le tableau de bord
           }
         } else {
-          navigation.replace('Login');  // Naviguer vers l'écran de connexion s'il n'y a pas d'utilisateur
+          navigation.replace('Login');
         }
       } catch (error) {
         console.log(error);
       }
     };
+
     checkUser();
   }, [navigation]);
 

@@ -143,7 +143,7 @@ const ViewAll = ({route}) => {
 
          
         <View style={styles.row}>
-          <Text>Date : {storeAll.date && !isNaN(Date.parse(expense.date)) ? new Date(storeAll.date).toISOString().split('T')[0] : 'Invalid date' }</Text>
+          <Text>Date : {storeAll.date && !isNaN(Date.parse(expense.date)) ? new Date(expense.date).toISOString().split('T')[0] : 'Invalid date' }</Text>
           <Text>Categories : {expense.categories.join(', ') }</Text>
         </View>
         <View style={styles.row}>
