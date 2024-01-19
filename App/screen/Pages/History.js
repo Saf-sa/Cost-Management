@@ -135,24 +135,18 @@ const ViewAll = ({route}) => {
        <Text style={styles.textAmount}>Balance = {totalExpenseIncome} € </Text>
 
 
-    {storeAll.map((expense, income, index) => (// Display data from AsyncStorage in a FlatList
-      /* console.log('storedExpenses ', storedExpenses), */
-      <View key={index} style={styles.expenseContainer}>
-        
-
-
-         
-        <View style={styles.row}>
-          <Text>Date : {storeAll.date && !isNaN(Date.parse(expense.date)) ? new Date(expense.date).toISOString().split('T')[0] : 'Invalid date' }</Text>
-          <Text>Categories : {expense.categories.join(', ') }</Text>
-        </View>
-        <View style={styles.row}>
-          <Text>Label : {expense.label}</Text>
-          <Text>Amount ={expense.amount}</Text>
-        </View>
-      </View>
-       
-    ))}
+    {storeAll.map((item, index) => (
+  <View key={index} style={styles.expenseContainer}>
+    <View style={styles.row}>
+      <Text>Date : {item.date && !isNaN(Date.parse(item.date)) ? new Date(item.date).toISOString().split('T')[0] : 'Invalid date' }</Text>
+      <Text>Categories : {item.categories.join(', ') }</Text>
+    </View>
+    <View style={styles.row}>
+      <Text>Label : {item.label}</Text>
+      <Text>Amount ={item.amount}</Text>
+    </View>
+  </View>
+))}
     </Screen2>
   </ScrollView>
   );

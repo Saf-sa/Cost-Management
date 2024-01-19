@@ -51,8 +51,8 @@ import axios from 'axios';
 
 
 
-/* 
 
+/* 
 const clearStorage = async () => {
   try {
     await AsyncStorage.clear();
@@ -78,7 +78,7 @@ function AuthLoading({ navigation }) {
 
         if (user) {
           const { token, expiresIn } = user;
-          const expirationTime = moment().add(parseInt(expiresIn), '3600');
+          const expirationTime = moment().add(parseInt(expiresIn), 'hours');
 
           if (expirationTime.isBefore(moment())) {
             // Token expiré, retirer le token du localStorage
