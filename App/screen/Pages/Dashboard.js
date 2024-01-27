@@ -155,7 +155,7 @@ import calculateTotalExpenses from './ViewExpenses';
                 fontSize: 12,
               }}
             >
-              3000 $
+             { calculateTotalIncomes - calculateTotalExpenses} €
             </AppText>
 
             <AppText style={{ marginTop:5 }}></AppText>
