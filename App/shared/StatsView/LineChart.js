@@ -1,24 +1,42 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ScrollView,  StatusBar, Dimensions,  } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  ScrollView,
+  DatePickerIOS,
+  FlatList
+} from "react-native";
+import React, { useState, useEffect } from "react";
+import Toast from "react-native-toast-message";
 import { useNavigation } from "@react-navigation/native";
-import { LineChart, BarChart, PieChart, ProgressChart, ContributionGraph } from 'react-native-chart-kit';
-
-import RNPickerSelect from 'react-native-picker-select';
+import AuthHeader from "../../shared/components/AuthHeader";
+import CustomInputSingup from "../../shared/components/ui/CustomInputSignup";
+import CustomButton from "../../shared/components/ui/CustomButton";
+import DateTimePicker from "@react-native-community/datetimepicker";
+import Icon from "../../shared/components/IncomExpenseComponent/Icon";
+import AppText from "../../shared/components/uiApp/AppText";
+import Usernav from "../../screen/nav/UserNav";
+import Screen2 from "../../shared/components/Screen";
 import moment from "moment";
+import ShowPieChart from "../../shared/StatsView/PieChart";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import getExpenses from './../StatsView/LineChart';
+
 
 import axios from "axios";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { importMailer } from 'react-native-mail';
+import ViewAll from '../../screen/Pages/History';
 
 
 
 const ShowLineChart = ({route}) => {
-    const [data, setData] = useState([]); 
-  const [selectedInterval, setSelectedInterval] = useState('weekly');
   const [storedExpenses, setStoredExpenses] = useState([]);// State to store data from AsyncStorage
   const navigation = useNavigation();// Navigation
-/* 
-  const {category} = route */
 
+  const {category} = route.params;// Get category from MyIcomes.js  
+  console.log('category from ViewExpenses ', category);
+  
   useEffect(() => {// UseEffect to get data from AsyncStorage
     const getExpenses = async () => {
       try {
@@ -26,9 +44,9 @@ const ShowLineChart = ({route}) => {
            console.log('user token ',user.token); 
         const { data } = await axios.get(
           
-            console.log('data ', data),
+           /*  console.log('data ', data), */
           `http://localhost:5555/api/expenses/${category}`,// Get data in DB collection from backend in DB
-  console.log('data category from backend  :', category), 
+               console.log('data category from backend :', category),
           {
             headers: {
               Authorization: `Bearer ${user.token}`,// Send token to backend
@@ -38,7 +56,7 @@ const ShowLineChart = ({route}) => {
         );
          // Stocker les données récupérées dans AsyncStorage
        await AsyncStorage.setItem('expenses', JSON.stringify(data));// Store data in AsyncStorage
-         /*      console.log('data received from Backend ',data);  */
+           console.log('data received from Backend ',data); 
 
         //await AsyncStorage.clear('expenses')
 
@@ -46,146 +64,99 @@ const ShowLineChart = ({route}) => {
         if (expenses) {
        const parsedExpenses = JSON.parse(expenses);// Parse data from AsyncStorage
           setStoredExpenses(parsedExpenses.expenses); // Send data to the state
-               /*  console.log('parsedExpenses FrontEnd side ',parsedExpenses);   */
+                 console.log('parsedExpenses FrontEnd side ',parsedExpenses);  
         }
       } catch (error) {// Error handling
         console.log(error);// Error handling
       }
     };
-
     getExpenses();// Call the function to get data from AsyncStorage
-
   }, []);
 
-  
-
-  const filterDataByInterval = () => {
-    // Implémentez la logique de filtrage en fonction de selectedInterval
-    if (selectedInterval === 'weekly') {
-      // Filtrer les données pour la semaine courante (du lundi au dimanche)
-      const startOfWeek = moment().startOf('week');
-      const endOfWeek = moment().endOf('week');
-
-      return storedExpenses.filter(expense =>
-        moment(expense.date).isBetween(startOfWeek, endOfWeek, null, '[]')
-      );
-    } else if (selectedInterval === 'monthly') {
-      // Filtrer les données pour le mois en cours (du 1er au dernier jour du mois)
-      const startOfMonth = moment().startOf('month');
-      const endOfMonth = moment().endOf('month');
-
-      return storedExpenses.filter(expense =>
-        moment(expense.date).isBetween(startOfMonth, endOfMonth, null, '[]')
-      );
-    } else if (selectedInterval === 'quarterly') {
-      // Filtrer les données pour le trimestre en cours (3 mois à partir de janvier)
-      const startOfQuarter = moment().startOf('quarter');
-      const endOfQuarter = moment().endOf('quarter');
-
-      return storedExpenses.filter(expense =>
-        moment(expense.date).isBetween(startOfQuarter, endOfQuarter, null, '[]')
-      );
-    } else if (selectedInterval === 'annual') {
-      // Filtrer les données pour l'année en cours (du 1er janvier au 31 décembre)
-      const startOfYear = moment().startOf('year');
-      const endOfYear = moment().endOf('year');
-
-      return storedExpenses.filter(expense =>
-        moment(expense.date).isBetween(startOfYear, endOfYear, null, '[]')
-      );
-    } else {
-      return storedExpenses;
-    }
-  };
-
-  const filteredData = filterDataByInterval();
-
-  const chartConfig = {
-  backgroundGradientFrom: "#1E2923",
-  backgroundGradientFromOpacity: 0,
-  backgroundGradientTo: "#08130D",
-  backgroundGradientToOpacity: 0.5,
-  color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
-  strokeWidth: 2, // optional, default 3
-  barPercentage: 0.5,
-  useShadowColorFromDataset: false // optional
-};
-   
-
+let index = 1;// index for scrollview
 
   return (
-
-    
-        <ScrollView
+   <ScrollView
      keyboardDismissMode="on-drag"// to dismiss the keyboard when the user drags the scroll view
       onscroll={(evt) =>  (index++)}// to get the index of the scrollview
       onScrollBeginDrag={(evt) => (index++)}// to get the index of the scrollview
       >
-   <View>
-  <Text>Expenses </Text>
-  <LineChart
-    data={{
-      labels: ["January", "February", "March", "April", "May", "June"],
-      datasets: [
-        {
-          data: [
-            Math.random() * 100,
-            Math.random() * 100,
-            Math.random() * 100,
-            Math.random() * 100,
-            Math.random() * 100,
-            Math.random() * 100
-          ]
-        }
-      ]
-    }}
-    width={Dimensions.get("window").width} // from react-native
-    height={220}
-    yAxisLabel="$"
-    yAxisSuffix="k"
-    yAxisInterval={1} // optional, defaults to 1
-    chartConfig={{
-      backgroundColor: "#e26a00",
-      backgroundGradientFrom: "#fb8c00",
-      backgroundGradientTo: "#ffa726",
-      decimalPlaces: 2, // optional, defaults to 2dp
-      color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-      labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-      style: {
-        borderRadius: 16
-      },
-      propsForDots: {
-        r: "6",
-        strokeWidth: "2",
-        stroke: "#ffa726"
-      }
-    }}
-    bezier
-    style={{
-      marginVertical: 8,
-      borderRadius: 16
-    }}
-  />
-</View>
-     </ScrollView>
+ <Screen2>
+           {/* Button Start */}
+      
+        <UserNav 
+
+        
+          image={require("../../assets/iconPerson.png")}
+    /> 
+    <View style={styles.expenseContainer}>
+      <View>
+        <ShowLineChart />
+      </View>
+
+        
+         
+        </View>
+     
+    </Screen2>
+  </ScrollView>
   );
 };
 
-
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+  expenseContainer: {
+    marginTop: -30,
+    width: "96%",
+    borderWidth: 1,
+    borderColor: "#E0AA3E",
+    borderRadius: 10,
+    padding: 12,
+    marginBottom: 40,
+    marginVertical: 8,
+    backgroundColor: "#F7F7F7",
+   
   },
-  title: {
-    fontSize: 20,
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingRight: 8,
+    paddingBottom: 8,
+  },
+
+  textLabel: {
     fontWeight: 'bold',
-    marginBottom: 20,
+    marginBottom: 4,
+    paddingRight: 8,
+    paddingBottom: 8,
   },
 
-  
-});
+  textValue: {
+    marginBottom: 8,
+  },
 
+  button: {
+    backgroundColor: {
+      backgroundColor: "#fff",
+      shadowColor: "#000",
+
+    },
+    position: "fixed",
+    borderColor: "#E0AA3E",
+    borderWidth: 1,
+    width: "40%",
+    height: 45,
+    alignSelf: "center",
+    borderRadius: 8,
+    padding: 12,
+    textAlign: "center",
+    top: -80,
+  },
+    textButton:{
+      color: "#E0AA3E",
+      fontWeight: "bold",
+      fontSize: 15,
+      textAlign: "center",
+    },
+});
 
 export default ShowLineChart;

@@ -25,7 +25,7 @@ import axios from "axios";
 
 
 
-const ViewAll = ({route}) => {
+export default  ViewAll = ({route}) => {
   const [storedExpenses, setStoredExpenses] = useState([]);// State to store data from AsyncStorage
     const [storedIncomes, setStoredIncomes] = useState([]);// State to store data from AsyncStorage
 
@@ -215,4 +215,3 @@ const styles = StyleSheet.create({
     },
 });
 
-export default ViewAll;

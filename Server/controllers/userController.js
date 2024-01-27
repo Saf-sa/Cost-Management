@@ -48,6 +48,7 @@ const userLogin = async (req, res) => {
     firstName: user.firstName,
     lastName: user.lastName,
     token: token,
+    
 
   });
   console.log(user);

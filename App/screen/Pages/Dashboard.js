@@ -21,10 +21,15 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import Holidays from './Categories/Holiday';
 
-import { totalExpenseIncome } from './History';
+import { totalExpenseIncome } from './ViewIncomes';
+import {getIncomes} from './ViewIncomes';
+import { ViewIncomes } from './ViewIncomes';
 import { totalExpenses } from './ViewExpenses';
-
+import calculateTotalIncomes from './ViewIncomes';
+import calculateTotalExpenses from './ViewExpenses';
   function Dashboard(route) {
+      const [storedIncomes, setStoredIncomes] = useState([]);// State to store data from AsyncStorage
+      const [storedExpenses, setStoredExpenses] = useState([]);// State to store data from AsyncStorage
     const [balance, setBalance] = useState("");
     const [totalIncome, setTotalIncome] = useState("");
     const [totalExpense, setTotalExpense] = useState("");
@@ -56,13 +61,27 @@ import { totalExpenses } from './ViewExpenses';
           const user = JSON.parse(jsonValue);
           setFirstName(user.firstName); // Update this line to use setFirstName
         }
+          const incomes = await AsyncStorage.getItem('incomes');// Get data from AsyncStorage
+        if (incomes) {
+       const parsedIncomes = JSON.parse(incomes);// Parse data from AsyncStorage
+          setStoredIncomes(parsedIncomes.incomes); // Send data to the state
+               /*  console.log('parsedExpenses FrontEnd side ',parsedExpenses);   */
+        }
+         const expenses = await AsyncStorage.getItem('expenses');// Get data from AsyncStorage
+        if (expenses) {
+       const parsedExpenses = JSON.parse(expenses);// Parse data from AsyncStorage
+          setStoredExpenses(parsedExpenses.expenses); // Send data to the state
+               /*  console.log('parsedExpenses FrontEnd side ',parsedExpenses);   */
+        }
       } catch (e) {
         console.error("Failed to fetch user data from storage");
       }
     };
 
     fetchUserData();
+   
   }, []);
+
 
 
     //get Date Today default
@@ -100,7 +119,12 @@ import { totalExpenses } from './ViewExpenses';
     //getDimension
     const { height, width } = useWindowDimensions();
     const [refreshing, setRefreshing] = useState(false);
-    const incomeTotal = totalExpenseIncome;
+    const incomeTotal = calculateTotalIncomes;
+    const expenseTotal = calculateTotalExpenses;
+    const calculateTotalIncomes = storedIncomes.reduce((total, income) => total + Number(income.amount), 0);
+    const calculateTotalExpenses = storedExpenses.reduce((total, expense) => total + Number(expense.amount), 0);
+
+    console.log('calculateTotalIncomes', calculateTotalIncomes)
     return (
       <Screen2>
       
@@ -163,7 +187,8 @@ import { totalExpenses } from './ViewExpenses';
                   Income
                 </AppText>
                 <AppText style={{ color: "green", fontSize: 12 }}>
-                 {incomeTotal} €
+                 {calculateTotalIncomes} €
+  
                 </AppText>
               </View>
             </View>
@@ -192,7 +217,7 @@ import { totalExpenses } from './ViewExpenses';
                   Expenses
                 </AppText>
                 <AppText style={{ color: "red", fontSize: 12 }}>
-                  97000 $
+                 {calculateTotalExpenses} €
                 </AppText>
               </View>
             </View>

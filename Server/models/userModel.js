@@ -28,6 +28,7 @@ const userSchema = new mongoose.Schema(
       default: null,
       expires: 36000,
     },
+  
     resetCodeExpiry: {
       type: Date,
       default: Date.now,

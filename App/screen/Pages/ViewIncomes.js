@@ -73,6 +73,7 @@ const ViewIncomes = ({route}) => {
   }, []);
 const calculateTotalIncomes = storedIncomes.reduce((total, income) => total + Number(income.amount), 0);
 
+
 let index = 1;// index for scrollview
 
   return (// Display data from AsyncStorage
