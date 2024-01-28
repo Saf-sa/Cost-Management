@@ -164,7 +164,7 @@ const MyExpense= () => {
         autoHide: true,
       });
       setTimeout(() => {
-        navigation.navigate("ViewExpenses");
+        navigation.navigate("Dashboard");
       }, 3000);
     } catch (err) {
       console.log("Test Myexpense", err.response.data);

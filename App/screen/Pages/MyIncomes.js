@@ -1,80 +1,181 @@
 import React, { useState, useRef, useEffect } from "react";
+import { View, Text, StyleSheet, TextInput, ScrollView } from "react-native";
 import Toast from "react-native-toast-message";
-import { View, Text, StyleSheet,  ScrollView, Image} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import AuthHeader from "../../shared/components/AuthHeader";
-import CustomInputLog from "../../shared/components/ui/CustomInputLog";
+import CustomInputSingup from "../../shared/components/ui/CustomInputSignup";
 import CustomButton from "../../shared/components/ui/CustomButton";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import Icon from "../../shared/components/IncomExpenseComponent/Icon";
-import AppText from "../../shared/components/uiApp/AppText";
+import DateTimePickerModal from "react-native-modal-datetime-picker";
+import moment from "moment";
+import { SelectList } from 'react-native-dropdown-select-list';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from "axios";
-import Screen2 from "../../shared/components/Screen";
-import { LinearGradient } from "expo-linear-gradient";
-import { AntDesign } from "@expo/vector-icons";
 
-// comment this line because solution not found if using .env file
-// go to ligne 84
-//import { API_URL, API_TOKEN } from "@env";
-/*  import { REACT_APP_BE_URL } from "../../.env";  */
-<Image source={require('../../assets/simCard.jpg')} />
+import ViewIncomes from "./ViewIncomes";
 
-/*  const simCard = this.props
-  ? require('../../assets/simCard.jpg')
-  : require('../../assets/simCard.jpg');
- */
- 
-const isValidEmail = (email) => {
-  // Should contain @
-  const re = /\S+@\S+\.\S+/;
-  return re.test(email);
-};
- 
-const isValidPassword = (password) => {
-  // Should contain at least one number, one special character and minimum 8 characters
 
-  const re = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/;
-  return re.test(password);
-};
-// check all value is not empty
-const formIsValid = (DataObj) => {
-  return (
-    Object.values(DataObj).every((value) => value.trim().length > 0) && // check all value is not empty
-    isValidEmail(DataObj.email) &&
-    isValidPassword(DataObj.password)
-  );
+const isValidDate = (date) => {
+  const regex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[012])\/(19|20)\d\d$/;
+  return regex.test(date);
 };
 
-const Login = () => {
+const isValidCategories = (categories) => {
+  return categories !== '';
+};
+
+const isValidLabel = (label) => {
+  return label !== '';
+};
+
+const isValidAmount = (amount) => {
+  return !isNaN(amount);
+};
+
+
+
+const MyIncome= () => {
+  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+  const [selectedDate, setSelectedDate] = useState("");
+  const [categories, setCategories] = useState([]);
+  const [label, setLabel] = useState("");
+  const [amount, setAmount] = useState("");
   const navigation = useNavigation();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [selected, setSelected] = useState('');
   const [formErrors, setFormErrors] = useState({
-    email: null,
-    password: null,
+    date: null,
+    categories: null,
+    label: null,
+    amount: null,
   });
 
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
+  const handleConfirm = (date) => {
+    hideDatePicker();
+    const formattedDate = moment(date).format("YYYY-MM-DD");
+    setSelectedDate(formattedDate);
+    sendDateToBackend(formattedDate);
+  };
 
-  const [showPassword, setShowPassword] = useState(false);
-  const timeoutIdRef = useRef(null);
 
-  useEffect(() => {
-    return () => {
-      if (timeoutIdRef.current) {
-        clearTimeout(timeoutIdRef.current);
-      }
+  const sendDateToBackend = (date) => {
+    // send date to backend
+  };
+
+
+/* console.log(" 65 categories", categories);
+ */
+
+
+  const SendCategerieToBackend = (categories) => {
+    //send  categories to backend
+  };
+
+  const showDatePicker = () => {
+    setDatePickerVisibility(true);
+  };
+
+  const hideDatePicker = () => {
+    setDatePickerVisibility(false);
+  };
+
+
+  const handleChange = (value, fieldName) => {
+ if (fieldName === "label") {
+      setLabel(value);
+    } else if (fieldName === "amount") {
+      setAmount(value);
+    }
+    console.log("95 setCategories", value);
+  };
+
+  const handleSubmit = async () => {
+    
+    const formData = {
+
+      date: selectedDate,
+      categories: selected,
+      label: label,
+      amount: amount,
+     
     };
-  }, []);
+ 
 
-  const handleChange = (value, type) => {
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [type]: value,
-    }));
+    // Validation des champs
+    if (!isValidDate(formData.date)) {
+      updateError(
+        "date",
+        !isValidDate(formData.date) ? "Please enter a valid date" : null
+      );
+    }
+
+    if (!isValidCategories(formData.categories)) {
+      updateError(
+        "categories",
+        !isValidCategories(formData.categories)
+          ? "Please choose a valid category"
+          : null
+      );
+    }
+
+    if (!isValidLabel(formData.label)) {
+      updateError(
+        "label",
+        !isValidLabel(formData.label)
+          ? "Please enter a description"
+          : null
+      );
+    }
+
+    if (!isValidAmount(formData.amount)) {
+      updateError(
+        "amount",
+        !isValidAmount(formData.amount)
+          ? "Please enter a valid amount"
+          : null
+      );
+    }
+
+    console.log("formData", formData);
+  try {
+        // Récupérer les données de l'utilisateur à partir de AsyncStorage
+      const user = JSON.parse(await AsyncStorage.getItem("@storage_Key"));
+      // await AsyncStorage.setItem("@storage_Key", jsonValue);
+
+      console.log("149 get user Token from storage_Key ", user);
+       console.log("150 response.data", user.id);
+      const response = await axios.post(
+        `http://localhost:5555/api/incomes`,
+        formData,
+        {
+          headers: {
+            authorization: `Bearer ${user.token}` 
+          },
+        } 
+      );
+
+     
+      console.log('data send to BE',response.data);
+      
+      
+      Toast.show({
+        type: "success",
+        position: "bottom",
+        text1: "income created successfully",
+        visibilityTime: 3000,
+        autoHide: true,
+      });
+      setTimeout(() => {
+        navigation.navigate("Dashboard");
+      }, 3000);
+    } catch (err) {
+      console.log("Test MyIncome", err.response.data);
+      Toast.show({
+        type: "error",
+        position: "bottom",
+        text1: err.response.data.message,
+        visibilityTime: 3000,
+        autoHide: true,
+      });
+    }
   };
 
   const updateError = (type, errorMessage) => {
@@ -82,312 +183,122 @@ const Login = () => {
       ...prevFormErrors,
       [type]: errorMessage,
     }));
-
-    if (errorMessage) {
-      timeoutIdRef.current = setTimeout(() => {
-        setFormErrors((prevFormErrors) => ({
-          ...prevFormErrors,
-          [type]: null,
-        }));
-      }, 3000); // 3000 milliseconds = 3 seconds
-    }
-  };
-  const isValidForm = () => {
-    if (!formIsValid(formData)) {
-      updateError(
-        "email",
-        !isValidEmail(formData.email) ? "Invalid email" : null
-      );
-    }
-    if (!formIsValid(formData)) {
-      updateError(
-        "password",
-        !isValidPassword(formData.password) ? "Invalid password" : null
-      );
-    }
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    // update formData with form values
-    setFormData({
-      email: email,
-      password: password,
-    });
-
-    if (!formIsValid(formData)) {
-      Toast.show({
-        type: "error",
-        position: "bottom",
-        text1: "invalid email",
-        visibilityTime: 3000,
-        autoHide: true,
-      });
-      return updateError(
-        "email",
-        !isValidEmail(formData.email) ? "Invalid email " : null,
-        updateError(
-          "password",
-          !isValidPassword(formData.password) ? "Invalid password " : null
-        )
-      );
-    }
-
-    try {
-      const response = await axios.post(
-        `http://localhost:5555/api/users/login`,
-        formData
-      );
-
-      if (response) {
-        console.log(response.data);
-
-        // Store user data in AsyncStorage
-     const user = {
-      id: response.data._id, // replace with actual user id key
-      token: response.data.token, // replace with actual user token key
-      firstName: response.data.firstName, // replace with actual user firstName key
-      lastName: response.data.lastName, // replace with actual user lastName key
-      email: response.data.email, // replace with actual user email key
-     /*  password: response.data.password, // replace with actual user password key */
-};
-     console.log("user stored in asyncSorage", user);
-        try {
-          const jsonValue = JSON.stringify(user);
-          await AsyncStorage.setItem("@storage_Key", jsonValue);
-          console.log("Data successfully saved" + " User Token", user.token)  ;
-          Toast.show({
-            type: "success",
-            position: "bottom",
-            text1: "Successfully logged",
-            visibilityTime: 3000,
-            autoHide: true,
-          });
-
-          setTimeout(() => {
-            navigation.navigate("Dashboard"); // Navigation after 3 seconds
-          }, 3000); // Délay 3 seconds to navigate to Dashboard
-        } catch (e) {
-          console.error("Failed to save the data to the storage");
-          Toast.show({
-            type: "error",
-            position: "bottom",
-            text1: "Failed to save user data. Please try again.",
-            visibilityTime: 3000,
-            autoHide: true,
-          });
-        }
-      } else {
-        console.error("No response from server");
-      }
-    } catch (err) {
-      console.log("testy passowrd", err.response ? err.response.data : err);
-    
-      Toast.show({
-        type: "error",
-        position: "bottom",
-        text1: err.response ? err.response.data.message : "Error",
-        visibilityTime: 3000,
-        autoHide: true,
-      });
-    }
-  };
   return (
     <View style={styles.root}>
-      {/* <AuthHeader subtext="Please Login" /> */}
-  <LinearGradient
-          style={styles.parentContainer}
-          colors={["#f9f295", "#E0AA3E", "#F7EF8A", "#B88A44"]}
-          start={{ x: 0.1, y: 0.1 }}
-          end={{ x: 1, y: 3 }}
-        >
-          <View style={styles.balanceContainer}>
-            <AppText style= {{ flexDirection: 'row' }}>
-                     <View>
-                <Text style={{ fontSize: 38, color:'blue', lineHeight: 35 }}>€</Text>
-                </View>
-                 <View>
-                <Text style={{ fontSize: 44, color:'dodgerblue', lineHeight:42}}>X</Text>
-                </View>
-                 <View>
-                <Text style={{ fontSize: 23, color:'midnightblue', lineHeight: 21 }}>penses Manager</Text>
-                
-                </View>
-                <View>
-              
-                </View>
-
-            </AppText>
-            
-            
-            <AppText></AppText>
-          </View>
-          <View style={styles.parentIncomeContainer}>
-            <View
-              style={{
-                color: "black",
-                flexDirection: "row",
-                justifyContent: "center",
-                alignItems: "center",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-             
-              <View style={{ marginLeft:0, marginTop:40 }}>
-                <AppText style={{ color: "darkslateblue", fontSize: 15, }}>
-                  4907 2024 1707 2778 1962
-                </AppText>
-               
-
-                
-              </View>
-              
-            </View>
-
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-            
-              <View style={{ marginLeft: 0 }}>
-             
-                
-              </View>
-            </View>
-          </View>
-
-
-
-          
-        </LinearGradient>
-        <View></View>
+      <AuthHeader subtext="Please add a new income" />
       <View style={styles.content}>
-        <CustomInputLog
-          label="Email"
-          value={formData.email}
-          onChangeText={(value) => handleChange(value, "email")}
-          placeholder="Your Email"
-          secure={false}
-          errorMessage={formErrors.email}
-        />
-        <CustomInputLog
-          label="Password"
-          value={formData.password}
-          onChangeText={(value) => handleChange(value, "password")}
-          placeholder="Your Password"
-          secure={!showPassword}
-          errorMessage={formErrors.password}
-          onIconPress={() => setShowPassword(!showPassword)}
-        />
-        <Text
-          style={styles.forgetPass}
-          onPress={() => navigation.navigate("Reset")}
-        >
-          Forget Your Password?
-        </Text>
+        <ScrollView style={styles.scrollView}>
+          <Text style={styles.category}>Date</Text>
+          <TextInput
+            style={styles.inputContainer}
+            label="Date"
+            value={selectedDate}
+            placeholder="DD/MM/YYYY"
+            secureTextEntry={false}
+            onFocus={showDatePicker}
+          />
+          <DateTimePickerModal
+            isVisible={isDatePickerVisible}
+            mode="date"
+            onConfirm={handleConfirm}
+            onCancel={hideDatePicker}
+          />
 
-        <CustomButton
-          onPress={handleSubmit}
-          style={styles.button}
-  
-          buttonText={"Login"}
-        />
+          <Text style={styles.category}>Categories</Text>
+          <SelectList
+            dropdownStyles={{
+              borderColor: '#E0AA3E',
+              borderWidth: 1,
+              borderRadius: 6,
+            }}
+            boxStyles={{ borderRadius: 6, borderColor: '#E0AA3E', height: 40 }}
+            defaultOption={{ value: 'Select a category' }}
+            label="Categories"
+             setSelected={(value) => setSelected(value)}
+            value={categories}
+            data={[
+               "Clothe",
+               "Food",
+               "Transport",
+               "Studie",
+               "Holiday",
+               "Tax",
+               "Hobbie",
+               "Epargne",
+               "Money",
+              "epargne",
+               "Other",
+            ]}
+            save="value"
+            categories={"value"}
+            search={false}
+            errorMessage={formErrors.categories}
+          />
 
-        <Text style={styles.login}>New to Expense Manager?</Text>
-
-        <CustomButton
-          style={styles.button}
-          buttonText={"Sign up Now"}
-          onPress={() => navigation.navigate("Signup")}
-        />
+          <CustomInputSingup
+            label="Label"
+            value={label}
+            onChangeText={(value) => handleChange(value, "label")}
+            placeholder="Description of your income"
+            secure={false}
+            errorMessage={formErrors.label}
+          />
+          <CustomInputSingup
+            label="Amount"
+            value={amount}
+            onChangeText={(value) => handleChange(value, "amount")}
+            placeholder="Amount should be a number 0000.00"
+            secure={false}
+            errorMessage={formErrors.amount}
+          />
+        </ScrollView>
       </View>
+
+      <CustomButton
+        onPress={handleSubmit}
+        style={styles.button}
+        buttonText={"New Income"}
+      />
+
       <Toast />
     </View>
   );
 };
 
-export default Login;
+export default MyIncome;
 
 const styles = StyleSheet.create({
- 
-
   root: {
     flex: 1,
   },
   content: {
     flex: 2,
-    padding: 30,
+    padding: 10,
+    marginTop: 10,
   },
-  parentContainer: {
-
-    width: "65%",
-    height: 170,
-    justifyContent: "center",
-    alignItems: "center",
-    paddingTop: 0,
-    flexDirection: "column",
-    borderRadius: 7,
-    marginTop: 40,
-    marginBottom: 60,
-    marginHorizontal: 72,
-    marginVertical: -20,
-    backgroundColor: '#fff',
-    shadowColor: "grey",
-    shadowOpacity: 0.05,
-    shadowRadius: 2,
-    shadowOffset: {
-      width: 0.8,
-      height: 2,
-    },
-    elevation: 8,
-  },
-    parentIncomeContainer: {
-    width: "90%",
+  inputContainer: {
+    marginBottom: 20,
     flexDirection: "row",
+    alignItems: "center",
     justifyContent: "space-between",
-    alignItems: "center",
-    paddingTop: 3,
-    paddingBottom:0,
- 
+    borderColor: "#E0AA3E",
+    borderWidth: 1,
+    borderRadius: 8,
+    padding: 10,
   },
-
-  balanceContainer: {
-    
-    justifyContent: "center",
-    alignItems: "center",
-    paddingVertical: 15,
-    width: "80%",
-
+  input: {
+    color: "#000",
+    flex: 1,
   },
-  button: {
-    backgroundColor: '#fff',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.8,
-    shadowRadius: 2,
-    marginTop: 10,
-    
-  },
-  login: {
-    flexDirection: "row",
-    marginTop: -50,
-    marginBottom: 50,
+  category: {
     color: "#E0AA3E",
-    fontSize: 15,
+    fontSize: 18,
     fontWeight: "bold",
+    marginBottom: 10,
   },
-  forgetPass: {
-    flexDirection: "row",
-    alignSelf: "flex-end",
-    marginTop: 10,
-    marginBottom: 30,
-    color: "#E0AA3E",
-    fontSize: 15,
-    fontWeight: "bold",
+  SelectList: {
+    marginBottom: 20,
   },
 });
