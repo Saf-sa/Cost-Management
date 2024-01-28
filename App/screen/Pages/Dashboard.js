@@ -141,22 +141,21 @@ import calculateTotalExpenses from './ViewExpenses';
           end={{ x: 1, y: 3 }}
         >
           <View style={styles.balanceContainer}>
-            <AppText style={{ color: "black", fontSize: 12, marginBottom: 5 }}>
-              PREMIUM ACCOUNT ={" TITANIUM"}
+            <AppText style={{ color: "black", fontSize: 14, marginBottom: 5 }}>
+              PREMIUM ACCOUNT 
             </AppText>
 
-            <AppText style={{ color: "black", fontSize: 10 }}>BALANCE</AppText>
+            <AppText style={{ color: "black", fontSize: 12 }}>BALANCE</AppText>
 
-            <AppText style={{ color: "red", fontSize: 1 }}>3000 $ </AppText>
 
-            <AppText
-              style={{
-                color: "green",
-                fontSize: 12,
-              }}
-            >
-             { calculateTotalIncomes - calculateTotalExpenses} €
-            </AppText>
+         <AppText
+  style={{
+    color: calculateTotalIncomes - calculateTotalExpenses >= 0 ? "green" : "red",
+    fontSize: 14,
+  }}
+>
+ { calculateTotalIncomes - calculateTotalExpenses} €
+</AppText>
 
             <AppText style={{ marginTop:5 }}></AppText>
           </View>
@@ -183,10 +182,10 @@ import calculateTotalExpenses from './ViewExpenses';
                 <AntDesign name="arrowup" color="#25F333" size={30 * 0.5} />
               </View>
               <View style={{ marginLeft: 10 }}>
-                <AppText style={{ color: "black", fontSize: 12 }}>
-                  Income
+                <AppText style={{ color: "black", fontSize: 14 }}>
+                  Incomes
                 </AppText>
-                <AppText style={{ color: "green", fontSize: 12 }}>
+                <AppText style={{ color: "green", fontSize: 14 }}>
                  {calculateTotalIncomes} €
   
                 </AppText>
@@ -213,11 +212,11 @@ import calculateTotalExpenses from './ViewExpenses';
                 <AntDesign name="arrowdown" color="#FB5D5D" size={30 * 0.5} />
               </View>
               <View style={{ marginLeft: 10 }}>
-                <AppText style={{ color: "black", fontSize: 12 }}>
+                <AppText style={{ color: "black", fontSize: 14 }}>
                   Expenses
                 </AppText>
-                <AppText style={{ color: "red", fontSize: 12 }}>
-                 {calculateTotalExpenses} €
+                <AppText style={{ color: "red", fontSize: 14 }}>
+               - {calculateTotalExpenses} €
                 </AppText>
               </View>
             </View>
