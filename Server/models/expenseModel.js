@@ -27,7 +27,6 @@ const expensesSchema = new mongoose.Schema(
         "Hobbie",
         "Epargne",
         "Money",
-       "epargne",
         "Other",
       ],
       required: true,
