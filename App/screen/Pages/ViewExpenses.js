@@ -112,7 +112,7 @@ let index = 1;// index for scrollview
         </View>
         <View style={styles.row}>
           <Text>Label : {expense.label}</Text>
-          <Text>Amount = + {expense.amount}</Text>
+          <Text style={{ color: "red"}}>Amount = - {expense.amount}</Text>
         </View>
       </View>
        

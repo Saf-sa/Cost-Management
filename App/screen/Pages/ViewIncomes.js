@@ -22,6 +22,7 @@ import moment from "moment";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import axios from "axios";
+import { Colors } from "react-native/Libraries/NewAppScreen";
 /*  import { REACT_APP_BE_URL } from "../../.env"; */
 
 
@@ -110,7 +111,7 @@ let index = 1;// index for scrollview
         </View>
         <View style={styles.row}>
           <Text>Label : {income.label}</Text>
-          <Text>Amount = + {income.amount}</Text>
+          <Text style={{ color: "green"}}>Amount = + {income.amount}</Text>
         </View>
       </View>
        

@@ -219,17 +219,16 @@ const MyIncome= () => {
              setSelected={(value) => setSelected(value)}
             value={categories}
             data={[
-               "Clothe",
-               "Food",
-               "Transport",
-               "Studie",
-               "Holiday",
-               "Tax",
-               "Hobbie",
-               "Epargne",
-               "Money",
-              "epargne",
-               "Other",
+                 "Salary",
+                 "Bonus",
+                 "Loan",
+                 "Sales",
+                 "Gift",
+                 "Rent",
+                 "Allowance",
+                 "Refund",
+                 "Stocks",
+                 "Other",
             ]}
             save="value"
             categories={"value"}
