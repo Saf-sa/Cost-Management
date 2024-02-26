@@ -1,4 +1,4 @@
-                                                  Expense Tracker   React Native App IOS
+                           Expense Tracker   React Native IOS App 
 
 
 
