@@ -1,4 +1,4 @@
-import {
+ import {
   View,
   Text,
   StyleSheet,
@@ -38,13 +38,13 @@ const ShowLineChart = ({route}) => {
   console.log('category from ViewExpenses ', category);
   
   useEffect(() => {// UseEffect to get data from AsyncStorage
-    const getExpenses = async () => {
+    const fetchExpenses = async () => {
       try {
            const user = JSON.parse(await AsyncStorage.getItem("@storage_Key"));// Get user data from AsyncStorage
            console.log('user token ',user.token); 
         const { data } = await axios.get(
           
-           /*  console.log('data ', data), */
+             console.log('data ', data), 
           `http://localhost:5555/api/expenses/${category}`,// Get data in DB collection from backend in DB
                console.log('data category from backend :', category),
           {
@@ -70,7 +70,7 @@ const ShowLineChart = ({route}) => {
         console.log(error);// Error handling
       }
     };
-    getExpenses();// Call the function to get data from AsyncStorage
+    fetchExpenses();// Call the function to get data from AsyncStorage
   }, []);
 
 let index = 1;// index for scrollview
@@ -91,7 +91,7 @@ let index = 1;// index for scrollview
     /> 
     <View style={styles.expenseContainer}>
       <View>
-        <ShowLineChart />
+      
       </View>
 
         

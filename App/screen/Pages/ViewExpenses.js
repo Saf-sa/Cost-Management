@@ -29,6 +29,7 @@ import axios from "axios";
 // go to ligne 84
 //import { API_URL, API_TOKEN } from "@env";
 /*  import { REACT_APP_BE_URL } from "../../.env";  */
+import ExpensesStat from '../../shared/StatsView/ExpensesStatCat';
 
 
 const ViewExpenses = ({route}) => {
@@ -96,7 +97,7 @@ let index = 1;// index for scrollview
      <TouchableOpacity style={styles.button} // Button to add a new expense
      
      onPress={() => navigation.navigate("MyExpenses")}>
-        <Text style={styles.textButton} >Add a new Income</Text>
+        <Text style={styles.textButton}>Add new Expense</Text>
       </TouchableOpacity>
        
        <Text style={styles.textAmount}>Total Expenses = {calculateTotalExpenses} € </Text>

@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View } from "react-native";
+import React, { useEffect } from 'react';
+import { StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Login from "./screen/auth/login";
@@ -44,7 +44,6 @@ import Settings from "./screen/Pages/Toolkits/settings/";
 import Impressum from "./screen/Pages/NavPages/Impressum";
 import ContactForm from "./screen/Pages/NavPages/ContactForm";
 import AboutUs from "./screen/Pages/NavPages/AboutUs";
-import Mailer from 'react-native-mail';
 import ViewExpenseStat from "./screen/Pages/ViewExpenseStat";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from 'axios';

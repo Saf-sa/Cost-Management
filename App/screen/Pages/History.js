@@ -143,7 +143,7 @@ export default  ViewAll = ({route}) => {
     </View>
     <View style={styles.row}>
       <Text>Label : {item.label}</Text>
-      <Text>Amount ={item.amount}</Text>
+      <Text> Amount = {item.amount}</Text>
     </View>
   </View>
 ))}
