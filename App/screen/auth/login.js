@@ -367,6 +367,7 @@ const styles = StyleSheet.create({
 
   },
   button: {
+   
     backgroundColor: '#fff',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
