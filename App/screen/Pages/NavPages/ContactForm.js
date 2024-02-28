@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, TextInput, Button, Alert, StyleSheet, Text } from 'react-native';
 import Mailer from 'react-native-mail';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import CustomButton from "../../../shared/components/ui/CustomButton";
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
 import Icon from "../../../shared/components/IncomExpenseComponent/Icon"
@@ -84,8 +84,10 @@ const ContactForm = () => {
                 </View>
 
             </AppText>
+            <AppText style={{ color: "darkslateblue", fontSize: 15, paddingBottom:40, paddingTop:40 }}>
+                  4907 2024 1707 2778 1962
+                </AppText>
              
-            <Text style={{ color: "black", fontSize: 15, paddingBottom:40, paddingTop:40 }}> We wil answer you as soon as possible </Text>
           
             
           </View>
@@ -124,7 +126,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     borderRadius: 10,
     marginHorizontal: 50,
-    marginVertical: -10,
+    marginVertical: -0,
    backgroundColor: '#fff',
     shadowColor: "grey",
     shadowOpacity: 0.05,
@@ -139,13 +141,13 @@ const styles = StyleSheet.create({
   
     justifyContent: "center",
     alignItems: "center",
-    paddingVertical: 5,
+    paddingVertical: 7,
     width: "100%",
     
   },
 
   container: {
-    marginTop:100,
+    marginTop:60,
     padding: 20,
     
   },
@@ -158,7 +160,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
    title:{
-    top: 70,
+    top: 80,
     textAlign: "center",
     color: "#E0AA3E",
     fontSize: 20,
