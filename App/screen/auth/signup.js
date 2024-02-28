@@ -436,7 +436,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   button: {
-    marginTop: 20,
+    marginTop: 10,
   },
   register: {
     marginTop: 30,

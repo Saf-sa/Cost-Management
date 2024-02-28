@@ -378,7 +378,7 @@ const styles = StyleSheet.create({
   },
   login: {
     flexDirection: "row",
-    marginTop: -50,
+  
     marginBottom: 50,
     color: "#E0AA3E",
     fontSize: 15,

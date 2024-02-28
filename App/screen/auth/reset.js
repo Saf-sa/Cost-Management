@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, TouchableOpacity } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import Toast from "react-native-toast-message";
 import { useNavigation , ScrollView,} from "@react-navigation/native";
@@ -210,18 +210,20 @@ const ResetLogin = () => {
           errorMessage={formErrors.email}
           
         />
-        <Text style={styles.textEmail}>
-          We'll send you an email to reset your password
-        </Text>
-        
-       
-      </View>
-       {/* Button Start */}
-        <CustomButton style={styles.button}
+      <AppText></AppText>
+          {/* Button Start */}
+        <CustomButton style={styles.Button}
           onPress={handleSubmit}
           buttonText={"Reset"}
         />
         {/* Button End */}
+        <Text style={styles.textEmail}>
+          We'll send you an email to reset your password
+        </Text>
+       
+       
+      </View>
+      
 
       
     <Toast/>
@@ -235,7 +237,7 @@ export default ResetLogin;
 
 const styles = StyleSheet.create({
   root: {
-    flex: 1,
+    flex: 2,
   },
   parentContainer: {
 
@@ -247,7 +249,6 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     borderRadius: 7,
     marginTop: 40,
-    marginBottom: 60,
     marginHorizontal: 72,
     marginVertical: -20,
     backgroundColor: '#fff',
@@ -258,7 +259,7 @@ const styles = StyleSheet.create({
       width: 0.8,
       height: 2,
     },
-    elevation: 8,
+    
   },
     parentIncomeContainer: {
     width: "90%",
@@ -280,23 +281,22 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
-    paddingHorizontal: 20,
-    marginTop: 80,
+    paddingHorizontal: 30,
+    marginTop:90,
+    paddingTop: 20,
+    marginBottom: 300,
     
   },
   textEmail: {
-    fontSize: 12,
+    
     color: "#000",
     textAlign: "center",
     marginTop: 40,
     color: "#E0AA3E",
-    fontSize: 15,
+    fontSize: 16,
     fontWeight: "bold",
   },
-  button: {
-    marginTop: 20,
-   
-  },
+
 
  
 });
