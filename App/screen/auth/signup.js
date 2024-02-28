@@ -373,10 +373,9 @@ const styles = StyleSheet.create({
     paddingTop: 0,
     flexDirection: "column",
     borderRadius: 7,
-    marginTop: 40,
-    marginBottom: 60,
-    marginHorizontal: 72,
-    marginVertical: -20,
+    marginTop: 30,
+    marginBottom: 30,
+    marginHorizontal: 76,
     backgroundColor: '#fff',
     shadowColor: "grey",
     shadowOpacity: 0.05,
@@ -388,7 +387,7 @@ const styles = StyleSheet.create({
     elevation: 8,
   },
     parentIncomeContainer: {
-    width: "90%",
+    width: "80%",
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
@@ -401,7 +400,7 @@ const styles = StyleSheet.create({
     
     justifyContent: "center",
     alignItems: "center",
-    paddingVertical: 15,
+    paddingVertical: 10,
     width: "80%",
 
   },
@@ -411,39 +410,15 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.8,
     shadowRadius: 2,
-    marginTop: 10,
+  
     
   },
-  login: {
-    flexDirection: "row",
-    marginTop: -50,
-    marginBottom: 50,
-    color: "#E0AA3E",
-    fontSize: 15,
-    fontWeight: "bold",
-  },
-  forgetPass: {
-    flexDirection: "row",
-    alignSelf: "flex-end",
-    marginTop: 10,
-    marginBottom: 30,
-    color: "#E0AA3E",
-    fontSize: 15,
-    fontWeight: "bold",
-  },
-  content: {
-    flex: 2,
-    padding: 20,
-  },
-  button: {
-    marginTop: 10,
-  },
-  register: {
-    marginTop: 30,
-    marginBottom: 10,
-    color: "#0283a8",
 
-    fontSize: 15,
-    fontWeight: "bold",
+  content: {
+    flex: 1,
+    padding: 30,
+    marginBottom: 20,
   },
+
+
 });
