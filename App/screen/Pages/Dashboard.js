@@ -648,8 +648,8 @@ const styles = StyleSheet.create({
   },
 
    dashboardTitle: {
-    fontSize: 15,
-    
+    fontSize: 17,
+    color: "brown",
     marginTop: 0,
     
   }, 
