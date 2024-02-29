@@ -146,7 +146,7 @@ export default function App() {
         <Stack.Screen name="MyIncomes" component={MyIncomes} />
         <Stack.Screen name="MyExpenses" component={MyExpenses} />
         <Stack.Screen name="Forecast" component={Forecast} />
-        <Stack.Screen name="Statistics" component={Statistics} />
+        <Stack.Screen name="Statistics" initialParams={{category:'all'}} component= {Statistics} />
         <Stack.Screen name="History" initialParams={{category:'all'}} component={History} />
         <Stack.Screen name="Clothe" component={Clothe} />
         <Stack.Screen name="Food" component={Food} />
