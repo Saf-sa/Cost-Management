@@ -100,7 +100,7 @@ let index = 1;// index for scrollview
         <Text style={styles.textButton}>Add new Expense</Text>
       </TouchableOpacity>
        
-       <Text style={styles.textAmount}>Total Expenses = {calculateTotalExpenses} € </Text>
+       <Text style={styles.textAmount}>Total Expenses = - {calculateTotalExpenses} € </Text>
       
     {storedExpenses.map((expense, index) => (// Display data from AsyncStorage in a FlatList
       /* console.log('storedExpenses ', storedExpenses), */
@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
       textAlign: "center",
     },
     textAmount:{
-      color: "#E0AA3E",
+      color: "red",
       fontWeight: "bold",
       fontSize: 20,
       textAlign: "center",
