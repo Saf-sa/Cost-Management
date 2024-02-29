@@ -135,7 +135,7 @@ export default  ViewAll = ({route}) => {
        <Text style={styles.textAmount}>Balance = +{totalExpenseIncome} € </Text>
 
 
-    {storeAll.map((item, index) => (
+{storeAll.map((item, index) => (
   <View key={index} style={styles.expenseContainer}>
     <View style={styles.row}>
       <Text>Date : {item.date && !isNaN(Date.parse(item.date)) ? new Date(item.date).toISOString().split('T')[0] : 'Invalid date' }</Text>
@@ -143,7 +143,7 @@ export default  ViewAll = ({route}) => {
     </View>
     <View style={styles.row}>
       <Text>Label : {item.label}</Text>
-      <Text> Amount = {item.amount}</Text>
+      <Text style={{color: storedExpenses.includes(item) ? 'red' : 'green'}}> Amount = {item.amount}</Text>
     </View>
   </View>
 ))}
