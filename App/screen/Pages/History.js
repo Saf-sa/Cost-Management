@@ -107,7 +107,7 @@ export default  ViewAll = ({route}) => {
   
   const calculateTotalIncomes = storedIncomes.reduce((total, income) => total + Number(income.amount), 0);
   
-  const calculateTotalExpenses = storedExpenses.reduce((total, expense) => total + Number(expense.amount), 0);
+  const calculateTotalExpenses = storedExpenses.reduce((total, expense) => total + Number( expense.amount), 0);
 
   const totalExpenseIncome = calculateTotalIncomes - calculateTotalExpenses;
 
@@ -132,7 +132,7 @@ export default  ViewAll = ({route}) => {
     
    
        
-       <Text style={styles.textAmount}>Balance = {totalExpenseIncome} € </Text>
+       <Text style={styles.textAmount}>Balance = +{totalExpenseIncome} € </Text>
 
 
     {storeAll.map((item, index) => (
