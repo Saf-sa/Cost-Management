@@ -42,6 +42,8 @@ export default ViewAll = ({route}) => {
     fetchData();
   }, []);
 
+  console.log(chartData);
+
   // ...
 
   return (
