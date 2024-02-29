@@ -1,41 +1,30 @@
 import {
-  View,
   Text,
+  View,
   StyleSheet,
+  Toast,
+  useWindowDimensions,
   TouchableOpacity,
-  ScrollView,
-  DatePickerIOS,
-  FlatList
+   ScrollView,
 } from "react-native";
-import React, { useState, useEffect } from "react";
-import Toast from "react-native-toast-message";
+import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-import AuthHeader from "../../shared/components/AuthHeader";
-import CustomInputSingup from "../../shared/components/ui/CustomInputSignup";
-import CustomButton from "../../shared/components/ui/CustomButton";
-import DateTimePicker from "@react-native-community/datetimepicker";
-import Icon from "../../shared/components/IncomExpenseComponent/Icon";
-import AppText from "../../shared/components/uiApp/AppText";
-import UserNav from "../nav/UserNav";
-import Screen2 from "../../shared/components/Screen";
-import moment from "moment";
+
+
 import ShowLineChart from "../../shared/StatsView/LineChart";
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
-
-import axios from "axios";
-import { importMailer } from 'react-native-mail';
-import ViewExpenses from './ViewExpenses';
+import MyExpense from "./MyExpenses";
 
 
 
 
-const ViewExpenseStat = () => {
+
+  const ViewExpenseStat= () => {
+    <MyExpense/>
   return (
     <View>
       <ShowLineChart/>
     </View>
   )
-}
+};
 
-export default ViewExpenseStat
+export default ViewExpenseStat;
