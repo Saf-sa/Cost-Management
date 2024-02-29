@@ -50,7 +50,7 @@ export default ViewAll = ({route}) => {
   <ScrollView>
     <Screen2>
       {/* ... */}
-      <LineChart
+      <LineChart 
         data={{
           labels: chartData.map(data => data.date),
           datasets: [
@@ -61,6 +61,8 @@ export default ViewAll = ({route}) => {
         }}
         width={Dimensions.get("window").width} // from react-native
         height={220}
+
+        yAxisSuffix="k"
         chartConfig={{
           backgroundColor: "#e26a00",
           backgroundGradientFrom: "#fb8c00",
@@ -68,13 +70,18 @@ export default ViewAll = ({route}) => {
           decimalPlaces: 2, // optional, defaults to 2dp
           color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
           style: {
+
             borderRadius: 16
+
           }
         }}
         bezier
         style={{
-          marginVertical: 8,
-          borderRadius: 16
+
+          marginVertical: 100,
+          marginHorizontal: -15,
+          borderRadius: 16,
+          
         }}
         // ... other props for LineChart
       />
