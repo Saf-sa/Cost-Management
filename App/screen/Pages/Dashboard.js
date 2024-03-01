@@ -254,7 +254,7 @@ import calculateTotalExpenses from './ViewExpenses';
             />
             <Text style={{ fontSize: 15, paddingTop: 5, textAlign:"center" }}>Forecast</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.push("ViewExpenseStat")}>
+          <TouchableOpacity onPress={() => navigation.push("ViewGlobalStat")}>
             <Icon
               name="chart-line"
               size={66}

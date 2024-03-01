@@ -19,7 +19,7 @@ import IncomeLineChart from "../../shared/StatsView/LineChartIncome";
 
 
 
-  const ViewExpenseStat= () => {
+  const ViewGlobalStat= () => {
 
   return (
     <View>
@@ -56,4 +56,4 @@ TitleExpense: {
 
 });
 
-export default ViewExpenseStat;
+export default ViewGlobalStat;
