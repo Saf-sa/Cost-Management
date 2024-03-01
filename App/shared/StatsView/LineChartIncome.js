@@ -29,10 +29,17 @@ export default ViewAll = ({route}) => {
     const fetchData = async () => {
       const incomes = await AsyncStorage.getItem('incomes');
       if (incomes) {
-        const parsedExpenses = JSON.parse(incomes);
+        const parsedIncomes = JSON.parse(incomes);
+           if (chartData && chartData.length > 0) {
+                console.log(" Labels:", chartData.map(data => data.date)); // Vérifiez les valeurs de "labels"
+                console.log(" Datasets:", chartData.map(data => data.amount)); // Vérifiez les valeurs de "datasets"
+          } else {
+              console.log("Aucune donnée disponible."); // Log pour indiquer l'absence de données
+                }
 
-        const chartData = parsedExpenses.incomes.map(income => ({
-          date: income.date,
+
+        const chartData = parsedIncomes.incomes.map(income => ({
+          date: moment (income.date).format("DD/MM"),
           amount: Number(income.amount) || 0, // Ensure amount is a number, default to 0 if it's not
         }));
         setChartData(chartData);
@@ -43,6 +50,8 @@ export default ViewAll = ({route}) => {
   }, []);
 
   console.log(chartData);
+ console.log("Incomes Labels:", chartData.map(data => data.date)); // Vérifiez les valeurs de "labels"
+  console.log("Incomes Datasets:", chartData.map(data => data.amount)); // Vérifiez les valeurs de "datasets"
 
   // ...
 

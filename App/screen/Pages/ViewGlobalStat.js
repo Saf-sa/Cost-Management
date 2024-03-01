@@ -66,7 +66,7 @@ import IncomeLineChart from "../../shared/StatsView/LineChartIncome";
               name="chart-pie"
               size={60}
             />
-            <Text style={{ fontSize: 14, paddingTop: 5, textAlign:"center"}}> Category</Text>
+            <Text style={{ fontSize: 13, paddingTop: 5, textAlign:"center"}}> Category</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.push("ViewExpenses")}>
             <Icon
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingHorizontal: 20,
+    paddingHorizontal: 10,
     marginTop: -50,
     alignItems: "center",
   },
@@ -114,14 +114,14 @@ TitleExpense: {
     fontSize: 20,
     fontWeight: "bold",
     textAlign: "center",
-    marginTop: 20,},
+    marginTop: 10,},
 
   TitleIncome: {
     color: "#3ABD0D",
     fontSize: 20,
     fontWeight: "bold",
     textAlign: "center",
-    marginTop: 20,},
+    marginTop: 10,},
     
 
 

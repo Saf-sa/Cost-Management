@@ -30,9 +30,15 @@ export default ViewAll = ({route}) => {
       const expenses = await AsyncStorage.getItem('expenses');
       if (expenses) {
         const parsedExpenses = JSON.parse(expenses);
+        if (chartData && chartData.length > 0) {
+  console.log("Labels:", chartData.map(data => data.date)); // Vérifiez les valeurs de "labels"
+  console.log("Datasets:", chartData.map(data => data.amount)); // Vérifiez les valeurs de "datasets"
+} else {
+  console.log("Aucune donnée disponible."); // Log pour indiquer l'absence de données
+}
 
         const chartData = parsedExpenses.expenses.map(expense => ({
-          date: expense.date,
+          date: moment (expense.date).format("DD/MM"),
           amount: Number(expense.amount) || 0, // Ensure amount is a number, default to 0 if it's not
         }));
         setChartData(chartData);
@@ -44,10 +50,15 @@ export default ViewAll = ({route}) => {
 
   console.log(chartData);
 
+ console.log("Expenses Labels:", chartData.map(data => data.date)); // Vérifiez les valeurs de "labels"
+console.log("Expenses Datasets:", chartData.map(data => data.amount)); // Vérifiez les valeurs de "datasets"
+
+
   // ...
 
   return (
   <ScrollView>
+    
     <Screen2>
       {/* ... */}
       <LineChart 
