@@ -60,15 +60,15 @@ export default ViewAll = ({route}) => {
           ],
         }}
         width={Dimensions.get("window").width} // from react-native
-        height={220}
+        height={280}
 
         yAxisSuffix="k"
         chartConfig={{
-          backgroundColor: "#e26a00",
-          backgroundGradientFrom: "#fb8c00",
-          backgroundGradientTo: "#ffa726",
+          backgroundColor: "#3ABD0D",
+          backgroundGradientFrom: "#268705",
+          backgroundGradientTo: "#34C403",
           decimalPlaces: 2, // optional, defaults to 2dp
-          color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+          color: (opacity = 1) => `rgba(155, 250, 255, ${opacity})`,
           style: {
 
             borderRadius: 16
@@ -77,10 +77,11 @@ export default ViewAll = ({route}) => {
         }}
         bezier
         style={{
-
-          marginVertical: 100,
+          marginVertical: 80,
           marginHorizontal: -15,
-          borderRadius: 16,
+          borderRadius: 14,
+          
+          
           
         }}
         // ... other props for LineChart

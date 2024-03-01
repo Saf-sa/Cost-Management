@@ -60,7 +60,7 @@ export default ViewAll = ({route}) => {
           ],
         }}
         width={Dimensions.get("window").width} // from react-native
-        height={220}
+        height={280}
 
         yAxisSuffix="k"
         chartConfig={{
@@ -78,7 +78,7 @@ export default ViewAll = ({route}) => {
         bezier
         style={{
 
-          marginVertical: 100,
+          marginVertical: 70,
           marginHorizontal: -15,
           borderRadius: 16,
           
