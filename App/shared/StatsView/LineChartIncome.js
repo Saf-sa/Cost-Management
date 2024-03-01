@@ -1,4 +1,4 @@
-import { PieChart } from 'react-native-charPieChartt-kit';
+import { LineChart } from 'react-native-chart-kit';
 import { Dimensions } from 'react-native';
 import React, { useState, useEffect } from "react";
 import {
@@ -13,7 +13,7 @@ import {
 import { AntDesign } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
-import Screen2 from "../../shared/components/Screen";
+import Screen2 from "../components/Screen";
 import moment from "moment";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -50,7 +50,7 @@ export default ViewAll = ({route}) => {
   <ScrollView>
     <Screen2>
       {/* ... */}
-      <PieChart 
+      <LineChart 
         data={{
           labels: chartData.map(data => data.date),
           datasets: [
@@ -83,7 +83,7 @@ export default ViewAll = ({route}) => {
           borderRadius: 16,
           
         }}
-        // ... other props for PieChart
+        // ... other props for LineChart
       />
       {/* ... */}
     </Screen2>

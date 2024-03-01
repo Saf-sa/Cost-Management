@@ -10,10 +10,7 @@ import {
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 
-
-import ShowLineChart from "../../shared/StatsView/LineChartExpense";
-import IncomeLineChart from "../../shared/StatsView/LineChartIncome";
-
+import ShowLineChart from "../../shared/StatsView/LineChartIncome";
 
 
 
@@ -24,8 +21,6 @@ import IncomeLineChart from "../../shared/StatsView/LineChartIncome";
   return (
     <View>
       <ShowLineChart/>
-      
-      <IncomeLineChart/>
 
     
     </View>

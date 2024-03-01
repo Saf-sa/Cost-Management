@@ -13,7 +13,7 @@ import {
 import { AntDesign } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
-import Screen2 from "../../shared/components/Screen";
+import Screen2 from "../components/Screen";
 import moment from "moment";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
