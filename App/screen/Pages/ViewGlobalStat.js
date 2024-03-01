@@ -60,6 +60,37 @@ import IncomeLineChart from "../../shared/StatsView/LineChartIncome";
       
       <Text style={styles.TitleIncome}>Incomes</Text>
       <IncomeLineChart/>
+      <View style={styles.dashboard}>
+          <TouchableOpacity onPress={() => navigation.push("ViewIncomes")}>
+            <Icon
+              name="dollar-sign"
+              size={56}
+            />
+            <Text style={{ fontSize: 15, paddingTop: 5, textAlign:"center"}}> Income</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.push("ViewExpenses")}>
+            <Icon
+              name="shopping-cart"
+              size={56}
+        
+             
+            />
+            <Text style={{ fontSize: 15, paddingTop: 5, textAlign:"center" }}>Expense</Text>
+          </TouchableOpacity>
+          
+         <TouchableOpacity onPress={() => navigation.push("Forecast")}>
+            <Icon
+              name="file-invoice-dollar"
+              size={56}
+              
+             
+             
+            />
+            <Text style={{ fontSize: 15, paddingTop: 5, textAlign:"center" }}>Forecast</Text>
+          </TouchableOpacity>
+     
+ 
+        </View>
 
     
     </View>
