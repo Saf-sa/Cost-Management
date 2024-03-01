@@ -78,7 +78,7 @@ export default ViewAll = ({route}) => {
         bezier
         style={{
 
-          marginVertical: 70,
+          marginVertical: 60,
           marginHorizontal: -15,
           borderRadius: 16,
           
