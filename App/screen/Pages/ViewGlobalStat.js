@@ -29,30 +29,30 @@ import IncomeLineChart from "../../shared/StatsView/LineChartIncome";
         <View style={styles.dashboard}>
           <TouchableOpacity onPress={() => navigation.push("ViewIncomes")}>
             <Icon
-              name="dollar-sign"
-              size={56}
+              name="chart-pie"
+              size={60}
             />
-            <Text style={{ fontSize: 15, paddingTop: 5, textAlign:"center"}}> Income</Text>
+            <Text style={{ fontSize: 14, paddingTop: 5, textAlign:"center"}}>Category</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.push("ViewExpenses")}>
             <Icon
-              name="shopping-cart"
-              size={56}
+              name="chart-line"
+              size={60}
         
              
             />
-            <Text style={{ fontSize: 15, paddingTop: 5, textAlign:"center" }}>Expense</Text>
+            <Text style={{ fontSize: 14, paddingTop: 5, textAlign:"center" }}>Week</Text>
           </TouchableOpacity>
           
          <TouchableOpacity onPress={() => navigation.push("Forecast")}>
             <Icon
-              name="file-invoice-dollar"
-              size={56}
+              name="chart-bar"
+              size={60}
               
              
              
             />
-            <Text style={{ fontSize: 15, paddingTop: 5, textAlign:"center" }}>Forecast</Text>
+            <Text style={{ fontSize: 14, paddingTop: 5, textAlign:"center" }}>Month</Text>
           </TouchableOpacity>
      
  
@@ -60,33 +60,33 @@ import IncomeLineChart from "../../shared/StatsView/LineChartIncome";
       
       <Text style={styles.TitleIncome}>Incomes</Text>
       <IncomeLineChart/>
-      <View style={styles.dashboard}>
+     <View style={styles.dashboard}>
           <TouchableOpacity onPress={() => navigation.push("ViewIncomes")}>
             <Icon
-              name="dollar-sign"
-              size={56}
+              name="chart-pie"
+              size={60}
             />
-            <Text style={{ fontSize: 15, paddingTop: 5, textAlign:"center"}}> Income</Text>
+            <Text style={{ fontSize: 14, paddingTop: 5, textAlign:"center"}}> Category</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.push("ViewExpenses")}>
             <Icon
-              name="shopping-cart"
-              size={56}
+              name="chart-line"
+              size={60}
         
              
             />
-            <Text style={{ fontSize: 15, paddingTop: 5, textAlign:"center" }}>Expense</Text>
+            <Text style={{ fontSize: 14, paddingTop: 5, textAlign:"center" }}>Week</Text>
           </TouchableOpacity>
           
          <TouchableOpacity onPress={() => navigation.push("Forecast")}>
             <Icon
-              name="file-invoice-dollar"
-              size={56}
+              name="chart-bar"
+              size={60}
               
              
              
             />
-            <Text style={{ fontSize: 15, paddingTop: 5, textAlign:"center" }}>Forecast</Text>
+            <Text style={{ fontSize: 14, paddingTop: 5, textAlign:"center" }}>Month</Text>
           </TouchableOpacity>
      
  
