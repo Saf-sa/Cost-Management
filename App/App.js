@@ -45,6 +45,7 @@ import Impressum from "./screen/Pages/NavPages/Impressum";
 import ContactForm from "./screen/Pages/NavPages/ContactForm";
 import AboutUs from "./screen/Pages/NavPages/AboutUs";
 import ViewGlobalStat from "./screen/Pages/ViewGlobalStat";
+import ViewCategorieStat from "./screen/Pages/ViewCategorieStat";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import axios from 'axios';
@@ -179,6 +180,7 @@ export default function App() {
         <Stack.Screen name="AboutUs" component={AboutUs} />
 
         <Stack.Screen name="ViewGlobalStat" initialParams={{category:'all'}} component={ViewGlobalStat} />
+        <Stack.Screen name="ViewCategorieStat" initialParams={{category:'all'}} component={ViewCategorieStat} />  
       </Stack.Navigator>
     </NavigationContainer>
   );

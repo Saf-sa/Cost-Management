@@ -12,18 +12,17 @@ import { useNavigation } from "@react-navigation/native";
 import Icon from "../../shared/components/IncomExpenseComponent/Icon";
 
 
-
-
+import ShowPieChart from "../../shared/StatsView/PieChartExpense";
 
 
    
-  const ViewCatStat= () => {
+  const ViewGlobalStat= () => {
  const navigation = useNavigation();
   return (
     <View>
       <Text style={styles.TitleExpense}>Expenses</Text>
-      <ShowLineChart/>
-        <View style={styles.dashboard}>
+      <ShowPieChart/>
+       {/*  <View style={styles.dashboard}>
           <TouchableOpacity onPress={() => navigation.push("ViewIncomes")}>
             <Icon
               name="chart-pie"
@@ -88,7 +87,7 @@ import Icon from "../../shared/components/IncomExpenseComponent/Icon";
      
  
         </View>
-
+ */}
     
     </View>
 
@@ -131,4 +130,4 @@ TitleExpense: {
 
 });
 
-export default ViewCatStat;
+export default ViewGlobalStat;

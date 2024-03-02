@@ -27,7 +27,7 @@ import IncomeLineChart from "../../shared/StatsView/LineChartIncome";
       <Text style={styles.TitleExpense}>Expenses</Text>
       <ShowLineChart/>
         <View style={styles.dashboard}>
-          <TouchableOpacity onPress={() => navigation.push("ViewIncomes")}>
+          <TouchableOpacity onPress={() => navigation.push("ViewCategorieStat")}>
             <Icon
               name="chart-pie"
               size={60}
