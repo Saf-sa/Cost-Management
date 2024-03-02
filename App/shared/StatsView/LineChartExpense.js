@@ -20,13 +20,14 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 // ...
 
-export default ViewAll = ({route}) => {
+export default ViewAll = ({}) => {
   // ...
 
   const [chartData, setChartData] = useState([]);
+    const [loading, setLoading] = useState(true); // State for loading indicator
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchData = async (reoute) => {
       const expenses = await AsyncStorage.getItem('expenses');
       if (expenses) {
         const parsedExpenses = JSON.parse(expenses);
@@ -42,6 +43,8 @@ export default ViewAll = ({route}) => {
           amount: Number(expense.amount) || 0, // Ensure amount is a number, default to 0 if it's not
         }));
         setChartData(chartData);
+        setLoading(false); // Data fetching is complete
+
       }
     };
 
@@ -70,15 +73,15 @@ console.log("Expenses Datasets:", chartData.map(data => data.amount)); // Vérif
             },
           ],
         }}
-        width={Dimensions.get("window").width} // from react-native
-        height={280}
+        width={Dimensions.get("window").width*0.9} // from react-native
+        height={200}
 
-        yAxisSuffix="k"
+        yAxisSuffix="€"
         chartConfig={{
           backgroundColor: "#e26a00",
           backgroundGradientFrom: "#fb8c00",
           backgroundGradientTo: "#ffa726",
-          decimalPlaces: 2, // optional, defaults to 2dp
+          decimalPlaces: 0, // optional, defaults to 2dp
           color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
           style: {
 
@@ -90,7 +93,7 @@ console.log("Expenses Datasets:", chartData.map(data => data.amount)); // Vérif
         style={{
 
           marginVertical: 60,
-          marginHorizontal: -15,
+          marginHorizontal: 25,
           borderRadius: 16,
           
         }}
@@ -100,3 +103,5 @@ console.log("Expenses Datasets:", chartData.map(data => data.amount)); // Vérif
     </Screen2>
   </ScrollView>
   )};
+
+  
