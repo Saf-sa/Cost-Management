@@ -19,12 +19,14 @@ import ShowPieChart from "../../shared/StatsView/PieChartExpense";
   const ViewGlobalStat= () => {
  const navigation = useNavigation();
   return (
-    <View>
+    <View style={styles.container} >
+    <View >
       <Text style={styles.TitleExpense}>Expenses</Text>
       <ShowPieChart/>
-       
+   
     
     </View>
+</View>
 
    
 
@@ -32,6 +34,10 @@ import ShowPieChart from "../../shared/StatsView/PieChartExpense";
 };
 
 const styles = StyleSheet.create({
+    container: {
+   flex: 1,
+    backgroundColor: "#F8F4D7",
+  },
     dashboard: {
     flexWrap: "wrap",
     flexDirection: "row",
@@ -46,8 +52,8 @@ TitleExpense: {
     fontSize: 20,
     fontWeight: "bold",
     textAlign: "center",
-    marginTop: 30,
-    marginBottom: 20,
+    marginTop: 40,
+    marginBottom: 40,
   
   },
 
