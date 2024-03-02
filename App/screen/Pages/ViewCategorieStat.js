@@ -22,72 +22,7 @@ import ShowPieChart from "../../shared/StatsView/PieChartExpense";
     <View>
       <Text style={styles.TitleExpense}>Expenses</Text>
       <ShowPieChart/>
-       {/*  <View style={styles.dashboard}>
-          <TouchableOpacity onPress={() => navigation.push("ViewIncomes")}>
-            <Icon
-              name="chart-pie"
-              size={60}
-            />
-            <Text style={{ fontSize: 14, paddingTop: 5, textAlign:"center"}}>Category</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.push("ViewExpenses")}>
-            <Icon
-              name="chart-line"
-              size={60}
-        
-             
-            />
-            <Text style={{ fontSize: 14, paddingTop: 5, textAlign:"center" }}>Week</Text>
-          </TouchableOpacity>
-          
-         <TouchableOpacity onPress={() => navigation.push("Forecast")}>
-            <Icon
-              name="chart-bar"
-              size={60}
-              
-             
-             
-            />
-            <Text style={{ fontSize: 14, paddingTop: 5, textAlign:"center" }}>Month</Text>
-          </TouchableOpacity>
-     
- 
-        </View>
-      
-      <Text style={styles.TitleIncome}>Incomes</Text>
-      <IncomeLineChart/>
-     <View style={styles.dashboard}>
-          <TouchableOpacity onPress={() => navigation.push("ViewIncomes")}>
-            <Icon
-              name="chart-pie"
-              size={60}
-            />
-            <Text style={{ fontSize: 13, paddingTop: 5, textAlign:"center"}}> Category</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.push("ViewExpenses")}>
-            <Icon
-              name="chart-line"
-              size={60}
-        
-             
-            />
-            <Text style={{ fontSize: 14, paddingTop: 5, textAlign:"center" }}>Week</Text>
-          </TouchableOpacity>
-          
-         <TouchableOpacity onPress={() => navigation.push("Forecast")}>
-            <Icon
-              name="chart-bar"
-              size={60}
-              
-             
-             
-            />
-            <Text style={{ fontSize: 14, paddingTop: 5, textAlign:"center" }}>Month</Text>
-          </TouchableOpacity>
-     
- 
-        </View>
- */}
+       
     
     </View>
 

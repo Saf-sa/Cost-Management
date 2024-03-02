@@ -51,15 +51,22 @@ const ViewAll = ({}) => {
         <PieChart
           data={chartData}
           width={Dimensions.get("window").width}
-          height={200}
+          height={300}
           chartConfig={{
             color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
+            
+            backgroundColor: "#e26a00",
+            backgroundGradientFrom: "#E0AA3E",
+            backgroundGradientTo: "#ffa726",
+            backgroundGradientToOpacity: 0.5, // Opacité du dégradé de fond
+
           }}
           accessor={"amount"}
           backgroundColor={"transparent"}
           paddingLeft={"15"}
-          center={[0, 20]}
+          center={[5, 20]}
           absolute
+          style={{ borderRadius: 16 }} // Ajouter un rayon de bordure
         />
       </Screen2>
     </View>
@@ -75,7 +82,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: "bold",
-    marginBottom: 0,
+    
   },
 });
 
