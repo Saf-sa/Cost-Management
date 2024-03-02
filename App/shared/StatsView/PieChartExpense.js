@@ -51,7 +51,7 @@ const ViewAll = ({}) => {
         <PieChart
           data={chartData}
           width={Dimensions.get("window").width}
-          height={300}
+          height={280}
           chartConfig={{
             color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
             
@@ -64,7 +64,7 @@ const ViewAll = ({}) => {
           accessor={"amount"}
           backgroundColor={"transparent"}
           paddingLeft={"15"}
-          center={[5, 20]}
+          center={[5, 25]}
           absolute
           style={{ borderRadius: 16 }} // Ajouter un rayon de bordure
         />

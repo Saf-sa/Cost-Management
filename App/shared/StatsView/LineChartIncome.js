@@ -69,7 +69,7 @@ export default ViewAll = ({route}) => {
           ],
         }}
         width={Dimensions.get("window").width*0.9} // from react-native
-        height={200}
+        height={210}
 
         yAxisSuffix="€"
         chartConfig={{

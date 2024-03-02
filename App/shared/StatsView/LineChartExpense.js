@@ -32,8 +32,6 @@ export default ViewAll = ({}) => {
         if (chartData && chartData.length > 0) {
   console.log("Labels:", chartData.map(data => data.date)); // Vérifiez les valeurs de "labels"
   console.log("Datasets:", chartData.map(data => data.amount)); // Vérifiez les valeurs de "datasets"
-} else {
-  console.log("Aucune donnée disponible."); // Log pour indiquer l'absence de données
 }
 
         const chartData = parsedExpenses.expenses.map(expense => ({
@@ -41,7 +39,7 @@ export default ViewAll = ({}) => {
           amount: Number(expense.amount) || 0, // Ensure amount is a number, default to 0 if it's not
         }));
         setChartData(chartData);
-        setLoading(false); // Data fetching is complete
+
 
       }
     };
@@ -71,8 +69,8 @@ console.log("Expenses Datasets:", chartData.map(data => data.amount)); // Vérif
             },
           ],
         }}
-        width={Dimensions.get("window").width} // from react-native
-        height={200}
+        width={Dimensions.get("window").width*0.9} // from react-native
+        height={210}
 
         yAxisSuffix="€"
         chartConfig={{
@@ -91,8 +89,8 @@ console.log("Expenses Datasets:", chartData.map(data => data.amount)); // Vérif
         style={{
 
           marginVertical: 60,
-          marginHorizontal: 8,
-          borderRadius: 14,
+          marginHorizontal:10,
+          borderRadius: 16,
           
         }}
         // ... other props for LineChart
