@@ -125,10 +125,10 @@ export default function App() {
     headerShown: true,
     headerTitleAlign: 'center',
     headerStyle: {
-      backgroundColor: '#f7f5f0', // Remplacez '#f4511e' par la couleur de votre choix
+      backgroundColor: '#F9F1DD', // Remplacez '#f4511e' par la couleur de votre choix
       height: 80,
     },
-    headerTintColor: '#E0AA3E', // Couleur du titre et des boutons de l'en-tête
+    headerTintColor: 'brown', // Couleur du titre et des boutons de l'en-tête
     headerTitleStyle: {
     fontWeight: 'normal', // Style du titre de l'en-tête
     },

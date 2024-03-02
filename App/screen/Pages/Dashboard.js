@@ -600,7 +600,7 @@ const styles = StyleSheet.create({
     marginTop: -70,
     marginHorizontal: 70,
     marginVertical: -15,
-    backgroundColor: '#fff',
+    backgroundColor: '#F8F4D7',
     shadowColor: "grey",
     shadowOpacity: 0.05,
     shadowRadius: 2,
