@@ -105,8 +105,9 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingHorizontal: 10,
-    marginTop: -50,
+    paddingHorizontal: 19,
+    marginLeft: 9,
+    marginTop: -30,
     alignItems: "center",
   },
 TitleExpense: {
@@ -114,14 +115,19 @@ TitleExpense: {
     fontSize: 20,
     fontWeight: "bold",
     textAlign: "center",
-    marginTop: 10,},
+    marginTop: 30,
+    marginBottom: 20,
+  
+  },
 
   TitleIncome: {
     color: "#3ABD0D",
     fontSize: 20,
     fontWeight: "bold",
     textAlign: "center",
-    marginTop: 10,},
+    marginTop: 30,
+    marginBottom: 20,
+  },
     
 
 
