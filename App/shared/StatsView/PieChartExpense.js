@@ -1,32 +1,43 @@
 import React, { useState, useEffect } from "react";
 import { PieChart } from "react-native-chart-kit";
-import { Dimensions } from "react-native";
+import { Dimensions, View, Text, StyleSheet } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import moment from "moment";
+import Screen2 from "../components/Screen";
 
-export default ViewAll = ({route}) => {
+const ViewAll = ({}) => {
   const [chartData, setChartData] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const expenses = await AsyncStorage.getItem('expenses');
+    const fetchData = async (route) => {
+      const expenses = await AsyncStorage.getItem("expenses");
       if (expenses) {
         const parsedExpenses = JSON.parse(expenses);
+        console.log("Parsed Expenses:", parsedExpenses); // Log pour vérifier les données parsées 
 
-        // Group expenses by category and sum amounts
-        const expensesByCategory = parsedExpenses.expenses.reduce((acc, expense) => {
-          acc[expense.category] = (acc[expense.category] || 0) + Number(expense.amount);
+        
+        if (chartData && chartData.length > 0) {
+          console.log("Expenses Labels:", chartData.map((data) => data.categories)); // Vérifiez les valeurs de "labels"
+          console.log("Expenses Datasets:", chartData.map((data) => data.amount)); // Vérifiez les valeurs de "datasets"
+        } else {
+          console.log("Aucune donnée disponible."); // Log pour indiquer l'absence de données
+        }
+
+        const expensesByCategories = parsedExpenses.expenses.reduce((acc, expense) => {
+          acc[expense.categories] = (acc[expense.categories] || 0) + Number(expense.amount);
           return acc;
         }, {});
+   const chartData = Object.keys(expensesByCategories).map((categories, index) => ({
+          name: categories,
+          amount: expensesByCategories[categories],
+       legendFontColor: "#7F7F7F",
+          legendFontSize: 15,
+          color: `#${Math.floor(Math.random() * 16777215).toString(16)}`, // Générer une couleur aléatoire
+    }));
 
-        // Convert to chart data format
-        const chartData = Object.keys(expensesByCategory).map((category, index) => ({
-          name: category,
-          amount: expensesByCategory[category],
-          color: `#${Math.floor(Math.random()*16777215).toString(16)}`, // Generate random color
-          legendFontColor: "#7F7F7F",
-          legendFontSize: 15
-        }));
+  console.log("Chart Data:", chartData); 
         setChartData(chartData);
+      
       }
     };
 
@@ -34,18 +45,38 @@ export default ViewAll = ({route}) => {
   }, []);
 
   return (
-    <PieChart
-      data={chartData}
-      width={Dimensions.get("window").width}
-      height={220}
-      chartConfig={{
-        color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
-      }}
-      accessor={"amount"}
-      backgroundColor={"transparent"}
-      paddingLeft={"15"}
-      center={[10, 50]}
-      absolute
-    />
+    <View style={styles.container}>
+      <Screen2>
+        
+        <PieChart
+          data={chartData}
+          width={Dimensions.get("window").width}
+          height={200}
+          chartConfig={{
+            color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
+          }}
+          accessor={"amount"}
+          backgroundColor={"transparent"}
+          paddingLeft={"15"}
+          center={[0, 20]}
+          absolute
+        />
+      </Screen2>
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: "bold",
+    marginBottom: 0,
+  },
+});
+
+export default ViewAll;

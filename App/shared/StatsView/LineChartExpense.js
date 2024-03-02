@@ -17,17 +17,15 @@ import Screen2 from "../components/Screen";
 import moment from "moment";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import axios from "axios";
+/* import axios from "axios"; */
 // ...
 
 export default ViewAll = ({}) => {
-  // ...
-
   const [chartData, setChartData] = useState([]);
-    const [loading, setLoading] = useState(true); // State for loading indicator
+
 
   useEffect(() => {
-    const fetchData = async (reoute) => {
+    const fetchData = async (route) => {
       const expenses = await AsyncStorage.getItem('expenses');
       if (expenses) {
         const parsedExpenses = JSON.parse(expenses);
