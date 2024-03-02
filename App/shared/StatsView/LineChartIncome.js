@@ -17,9 +17,6 @@ import Screen2 from "../components/Screen";
 import moment from "moment";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import axios from "axios";
-// ...
-
 export default ViewAll = ({route}) => {
   // ...
 

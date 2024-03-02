@@ -17,35 +17,40 @@ import Screen2 from "../components/Screen";
 import moment from "moment";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-/* import axios from "axios"; */
-// ...
 
 export default ViewAll = ({}) => {
   const [chartData, setChartData] = useState([]);
 
 
   useEffect(() => {
-    const fetchData = async (route) => {
-      const expenses = await AsyncStorage.getItem('expenses');
-      if (expenses) {
-        const parsedExpenses = JSON.parse(expenses);
-        if (chartData && chartData.length > 0) {
-  console.log("Labels:", chartData.map(data => data.date)); // Vérifiez les valeurs de "labels"
-  console.log("Datasets:", chartData.map(data => data.amount)); // Vérifiez les valeurs de "datasets"
-}
+  const fetchData = async () => {
+    const expenses = await AsyncStorage.getItem('expenses');
+    console.log('Raw expenses:', expenses); // Log raw expenses data
+    if (expenses) {
+      const parsedExpenses = JSON.parse(expenses);
+             if (chartData && chartData.length > 0) {
+                console.log(" Labels:", chartData.map(data => data.date)); // Vérifiez les valeurs de "labels"
+                console.log(" Datasets:", chartData.map(data => data.amount)); // Vérifiez les valeurs de "datasets"
+          } else {
+              console.log("Aucune donnée disponible."); // Log pour indiquer l'absence de données
+                }
+      const ChartData = parsedExpenses.expenses.map(expense => {
+        console.log('Expense:', expense); // Log each expense
+        const formattedDate = moment(expense.date).format("DD/MM");
+        const amount = Number(expense.amount) || 0;
+        console.log('Formatted date:', formattedDate, 'Amount:', amount); // Log formatted date and amount
+        return {
+          date: formattedDate,
+          amount: amount,
+        };
+      });
 
-        const chartData = parsedExpenses.expenses.map(expense => ({
-          date: moment (expense.date).format("DD/MM"),
-          amount: Number(expense.amount) || 0, // Ensure amount is a number, default to 0 if it's not
-        }));
-        setChartData(chartData);
+      setChartData(ChartData); // Update chartData state
+    }
+  };
 
-
-      }
-    };
-
-    fetchData();
-  }, []);
+  fetchData();
+}, []);
 
   console.log(chartData);
 
@@ -59,7 +64,6 @@ console.log("Expenses Datasets:", chartData.map(data => data.amount)); // Vérif
   <ScrollView>
     
     <Screen2>
-      {/* ... */}
       <LineChart 
         data={{
           labels: chartData.map(data => data.date),

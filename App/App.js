@@ -80,7 +80,13 @@ function AuthLoading({ navigation }) {
         if (user) {
           const { token, expiresIn } = user;
           const expirationTime = moment().add(parseInt(expiresIn), 'hours');
-
+if (!expiresIn) {
+    // Si expiresIn est undefined, considérer le jeton comme expiré
+    await AsyncStorage.removeItem("@storage_Key");
+    console.log('Token expired. Removed from AsyncStorage.');
+    navigation.replace('Login');
+    return;
+  }
           if (expirationTime.isBefore(moment())) {
             // Token expiré, retirer le token du localStorage
             await AsyncStorage.removeItem("@storage_Key");
