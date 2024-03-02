@@ -14,17 +14,12 @@ import Icon from "../../shared/components/IncomExpenseComponent/Icon";
 
 import ShowLineChart from "../../shared/StatsView/LineChartExpense";
 import IncomeLineChart from "../../shared/StatsView/LineChartIncome";
-
-
-
-
-
    
   const ViewGlobalStat= () => {
  const navigation = useNavigation();
   return (
-    <View>
-      <Text style={styles.TitleExpense}>Expenses</Text>
+    <View style={styles.container} >
+      <Text style={styles.titleExpense}>Expenses</Text>
       <ShowLineChart/>
         <View style={styles.dashboard}>
           <TouchableOpacity onPress={() => navigation.push("ViewCategorieStat")}>
@@ -48,9 +43,7 @@ import IncomeLineChart from "../../shared/StatsView/LineChartIncome";
             <Icon
               name="chart-bar"
               size={60}
-              
-             
-             
+          
             />
             <Text style={{ fontSize: 14, paddingTop: 5, textAlign:"center" }}>Month</Text>
           </TouchableOpacity>
@@ -58,7 +51,7 @@ import IncomeLineChart from "../../shared/StatsView/LineChartIncome";
  
         </View>
       
-      <Text style={styles.TitleIncome}>Incomes</Text>
+      <Text style={styles.titleIncome}>Incomes</Text>
       <IncomeLineChart/>
      <View style={styles.dashboard}>
           <TouchableOpacity onPress={() => navigation.push("ViewIncomes")}>
@@ -101,6 +94,10 @@ import IncomeLineChart from "../../shared/StatsView/LineChartIncome";
 };
 
 const styles = StyleSheet.create({
+  container: {
+   
+    backgroundColor: "#F8F4D7",
+  },
     dashboard: {
     flexWrap: "wrap",
     flexDirection: "row",
@@ -110,7 +107,7 @@ const styles = StyleSheet.create({
     marginTop: -30,
     alignItems: "center",
   },
-TitleExpense: {
+titleExpense: {
     color: "#E0AA3E",
     fontSize: 20,
     fontWeight: "bold",
@@ -120,7 +117,7 @@ TitleExpense: {
   
   },
 
-  TitleIncome: {
+  titleIncome: {
     color: "#3ABD0D",
     fontSize: 20,
     fontWeight: "bold",
