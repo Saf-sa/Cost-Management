@@ -73,7 +73,7 @@ console.log("Expenses Datasets:", chartData.map(data => data.amount)); // Vérif
             },
           ],
         }}
-        width={Dimensions.get("window").width*0.9} // from react-native
+        width={Dimensions.get("window").width} // from react-native
         height={200}
 
         yAxisSuffix="€"
@@ -93,8 +93,8 @@ console.log("Expenses Datasets:", chartData.map(data => data.amount)); // Vérif
         style={{
 
           marginVertical: 60,
-          marginHorizontal: 25,
-          borderRadius: 16,
+          marginHorizontal: 8,
+          borderRadius: 14,
           
         }}
         // ... other props for LineChart

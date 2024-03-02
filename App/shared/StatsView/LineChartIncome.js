@@ -68,15 +68,15 @@ export default ViewAll = ({route}) => {
             },
           ],
         }}
-        width={Dimensions.get("window").width} // from react-native
-        height={280}
+        width={Dimensions.get("window").width*0.9} // from react-native
+        height={200}
 
-        yAxisSuffix="k"
+        yAxisSuffix="€"
         chartConfig={{
           backgroundColor: "#3ABD0D",
           backgroundGradientFrom: "#268705",
           backgroundGradientTo: "#34C403",
-          decimalPlaces: 2, // optional, defaults to 2dp
+          decimalPlaces: 0, // optional, defaults to 2dp
           color: (opacity = 1) => `rgba(155, 250, 255, ${opacity})`,
           style: {
 
@@ -87,7 +87,7 @@ export default ViewAll = ({route}) => {
         bezier
         style={{
           marginVertical: 60,
-          marginHorizontal: -15,
+          marginHorizontal: 8,
           borderRadius: 14,
           
           
