@@ -104,8 +104,9 @@ const Settings = () => {
 
 
   return (
+    <View style={styles.page} >
     <Screen2>
-        <Text style={styles.title}>Update your Settings  {firstName} </Text> 
+        <Text style={styles.title}> Get to know us better</Text> 
         <UserNav 
           image={require("../../../assets/iconPerson.png")}
    
@@ -161,7 +162,7 @@ const Settings = () => {
         <View >
             <Text style={styles.text} >
             This App was developed for the 
-            "Final Project" of the training course "Web Developper fullstack"  between January 2023 and January 2024. 
+            "Final Project" of the training course "Web Developper fullstack"  between January 2023 and March 2024. 
 
             </Text>
 
@@ -199,18 +200,23 @@ A special thanks to my tutor Mr Ather Ahmad who supported me with patience and g
 
             
          </Screen2>
-         
+         </View>
   )
 }
 
 const styles = StyleSheet.create({
+
+  page: {
+  flex: 1,
+    backgroundColor: "#F8F4D7",
+   
+  },
 
   parentContainer: {
     flexDirection: "column",
     borderRadius: 10,
     marginHorizontal: 50,
     marginVertical: -10,
-   backgroundColor: '#fff',
     shadowColor: "grey",
     shadowOpacity: 0.05,
     shadowRadius: 2,
