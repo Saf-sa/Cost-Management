@@ -70,7 +70,7 @@ function HomeNav({ title, subtitle, image }) {
               width: 200,
               height: 410,
               borderRadius: 10,
-              backgroundColor: "rgba(255, 255, 255, 1)",
+              backgroundColor: "#faefd7",
               justifyContent: "center",
             }}
           >
@@ -136,13 +136,12 @@ function HomeNav({ title, subtitle, image }) {
 const styles = StyleSheet.create({
 
   containerParent: {
-    
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
   },
   container: {
-
+    
     flexDirection: "row",
   },
   image: {
