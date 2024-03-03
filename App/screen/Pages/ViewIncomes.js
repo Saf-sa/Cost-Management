@@ -83,7 +83,8 @@ let index = 1;// index for scrollview
       onscroll={(evt) =>  (index++)}// to get the index of the scrollview
       onScrollBeginDrag={(evt) => (index++)}// to get the index of the scrollview
       >
- <Screen2>
+         <View style={styles.page}>
+<Screen2 >
            {/* Button Start */}
       
         <UserNav 
@@ -117,13 +118,20 @@ let index = 1;// index for scrollview
        
     ))}
     </Screen2>
+     </View>
   </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
+    page: {
+    flex: 1,
+backgroundColor: "#F8F4D7",
+
+
+  },
   incomeContainer: {
-    marginTop: -30,
+    marginTop: -20,
     width: "96%",
     borderWidth: 1,
     borderColor: "#E0AA3E",
@@ -131,13 +139,13 @@ const styles = StyleSheet.create({
     padding: 12,
     marginBottom: 40,
     marginVertical: 8,
-    backgroundColor: "#F7F7F7",
+   
    
   },
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingRight: 8,
+    paddingRight: 2,
     paddingBottom: 8,
   },
 
