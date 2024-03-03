@@ -125,7 +125,7 @@ export default function Reminder() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: "#F8F4D7",
     alignItems: 'center',
     justifyContent: 'center',
     padding: 20,

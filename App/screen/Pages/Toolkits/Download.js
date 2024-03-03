@@ -95,6 +95,7 @@ import axios from "axios";
     const { height, width } = useWindowDimensions();
     const [refreshing, setRefreshing] = useState(false);
     return (
+       <View style={styles.page}>
       <Screen2>
         <UserNav style={styles.userNav}
           image={require("../../../assets/iconPerson.png")}
@@ -409,11 +410,16 @@ import axios from "axios";
 
       
       </Screen2>
+       </View>
     );
   }
 
 const styles = StyleSheet.create({
- 
+       page: {
+    flex: 1,
+    height: "100vh",
+backgroundColor: "#F8F4D7",
+  },
 
   dashboard: {
     flexWrap: "wrap",
@@ -422,6 +428,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     marginTop: 5,
     alignItems: "center",
+    
   },
 
   dashboardCat: {

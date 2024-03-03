@@ -104,6 +104,7 @@ const Settings = () => {
 
 
   return (
+     <View style={styles.page}>
     <Screen2>
         <Text style={styles.title}>Update your Settings  {firstName} </Text> 
         <UserNav 
@@ -182,12 +183,17 @@ const Settings = () => {
 
             </View>
          </Screen2>
+         </View>
          
   )
 }
 
 const styles = StyleSheet.create({
-
+      page: {
+    flex: 1,
+    height: "100vh",
+backgroundColor: "#F8F4D7",
+  },
   parentContainer: {
     flexDirection: "column",
     borderRadius: 10,
