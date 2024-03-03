@@ -121,6 +121,7 @@ export default  ViewAll = ({route}) => {
       onscroll={(evt) =>  (index++)}// to get the index of the scrollview
       onScrollBeginDrag={(evt) => (index++)}// to get the index of the scrollview
       >
+          <View style={styles.page}>
  <Screen2>
            {/* Button Start */}
       
@@ -148,11 +149,17 @@ export default  ViewAll = ({route}) => {
   </View>
 ))}
     </Screen2>
+    </View>
   </ScrollView>
   );
   };
 
 const styles = StyleSheet.create({
+   page: {
+    flex: 1,
+    height: "100vh",
+backgroundColor: "#F8F4D7",
+  },
   expenseContainer: {
     marginTop: -30,
     width: "96%",
