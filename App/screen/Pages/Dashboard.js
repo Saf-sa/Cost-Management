@@ -126,7 +126,7 @@ import calculateTotalExpenses from './ViewExpenses';
 
     console.log('calculateTotalIncomes', calculateTotalIncomes)
     return (
-      <Screen2>
+      <Screen2 style={styles.parent}>
       
         <Text style={styles.title}>Welcome back {firstName} !</Text> 
        
@@ -589,6 +589,10 @@ import calculateTotalExpenses from './ViewExpenses';
   }
 
 const styles = StyleSheet.create({
+  parent: {
+backgroundColor: "#F8F4D7",
+
+  },
   parentContainer: {
     width: "65%",
     height: 140,
@@ -600,7 +604,7 @@ const styles = StyleSheet.create({
     marginTop: -70,
     marginHorizontal: 70,
     marginVertical: -15,
-    backgroundColor: '#F8F4D7',
+   backgroundColor: "#F8F4D7",
     shadowColor: "grey",
     shadowOpacity: 0.05,
     shadowRadius: 2,
