@@ -75,20 +75,20 @@ export default function Reminder() {
          <CustomInputSingup
         onChangeText={setSelectedStartDate}
         value={startDate}
-        placeholder="           Enter the name of your Contract"
+        placeholder="Enter the name of your Contract"
         style={styles.input}
       />
           <CustomInputSingup
           onDateChange={setSelectedEndDate}
        
         value={endDate}
-        placeholder="           Enter new contract start date"
+        placeholder=" Enter new contract start date"
         style={styles.input}
       />
        <CustomInputSingup
         onChangeText={setSelectedEndDate}
         value={endDate}
-        placeholder="           Enter new contract expire date"
+        placeholder="Enter new contract expire date"
 
         style={styles.input}
       />
@@ -96,14 +96,14 @@ export default function Reminder() {
           <CustomInputSingup
         onChangeText={setSelectedEmail}
         value={selectedEmail}
-        placeholder="           Enter email of your Contract"
+        placeholder=" Enter email of your Contract"
 
         style={styles.input}
       />
   
         <CustomButton
           style={styles.button}
-          buttonText={"Add New Reminder"}
+          buttonText={"New Reminder"}
           onPress={() => navigation.navigate("AddReminder")}
         />
       
@@ -128,8 +128,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#F8F4D7",
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 20,
-    paddingBottom: 20,
+    padding: 30,
+
+    paddingBottom: 50,
   },
 
   input: {
