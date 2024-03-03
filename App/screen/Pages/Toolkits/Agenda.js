@@ -70,19 +70,19 @@ export default function Agenda() {
          <CustomInputSingup
         onChangeText={setcontractNameText}
         value={contractNameText}
-        placeholder="           Enter the name of your Contract"
+        placeholder="  name of your appointmernt"
         style={styles.input}
       />
           <CustomInputSingup
         onChangeText={setSelectedStartDate}
         value={selectedStartDate}
-        placeholder="           Enter new contract start date"
+        placeholder=" date of your appointmernt"
         style={styles.input}
       />
        <CustomInputSingup
         onChangeText={setSelectedEndDate}
         value={selectedEndDate}
-        placeholder="           Enter new contract expire date"
+        placeholder="  place of your appointmernt"
 
         style={styles.input}
       />
@@ -90,7 +90,7 @@ export default function Agenda() {
           <CustomInputSingup
         onChangeText={setSelectedEmail}
         value={selectedEmail}
-        placeholder="           Enter email of your Contract"
+        placeholder=" enter appointment duration"
 
         style={styles.input}
       />
@@ -98,7 +98,7 @@ export default function Agenda() {
               <CustomButton
           onPress={createCalendar
           }
-          style={styles.button}
+         
           colors={["#f9f295", "#E0AA3E", "#F7EF8A", "#B88A44"]}
           start={{ x: 0.1, y: 0.1 }}
           end={{ x: 1, y: 3 }}
@@ -127,8 +127,10 @@ const styles = StyleSheet.create({
      backgroundColor: "#F8F4D7",
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 20,
-    paddingBottom: 20,
+    padding: 30,
+    marginTop: 10,
+    paddingBottom: 50,
+    
   },
 
   input: {
@@ -136,10 +138,11 @@ const styles = StyleSheet.create({
     margin: 12,
     width: 300,
     borderWidth: 1,
-    borderRadius: 10, 
+    borderRadius: 10,
   },
   dateText: {
     margin: 16,
    
   },
+
 });
