@@ -238,6 +238,7 @@ export default ResetLogin;
 const styles = StyleSheet.create({
   root: {
     flex: 2,
+    backgroundColor:"#F8F4D7",
   },
   parentContainer: {
 
