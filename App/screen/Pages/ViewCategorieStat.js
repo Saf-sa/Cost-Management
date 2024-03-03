@@ -12,7 +12,8 @@ import { useNavigation } from "@react-navigation/native";
 import Icon from "../../shared/components/IncomExpenseComponent/Icon";
 
 
-import ShowPieChart from "../../shared/StatsView/PieChartExpense";
+import ShowPieChartExpense from "../../shared/StatsView/PieChartExpense";
+import ShowPieChartIncome from "../../shared/StatsView/PieChartIncome";
 
 
    
@@ -22,9 +23,21 @@ import ShowPieChart from "../../shared/StatsView/PieChartExpense";
     <View style={styles.container} >
     <View >
       <Text style={styles.TitleExpense}>Expenses</Text>
-      <ShowPieChart/>
+      <ShowPieChartExpense/>
+
+      <View >
+      <Text style={styles.TitleIncome}>Icomes</Text>
+      <ShowPieChartIncome/>
    
     
+    </View>
+    
+    </View>
+   
+     
+   
+   
+     <View >
     </View>
 </View>
 
@@ -45,6 +58,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 19,
     marginLeft: 9,
     marginTop: -30,
+
     alignItems: "center",
   },
 TitleExpense: {
@@ -53,7 +67,7 @@ TitleExpense: {
     fontWeight: "bold",
     textAlign: "center",
     marginTop: 40,
-    marginBottom: 40,
+    marginBottom: 50,
   
   },
 
@@ -62,7 +76,7 @@ TitleExpense: {
     fontSize: 20,
     fontWeight: "bold",
     textAlign: "center",
-    marginTop: 30,
+    marginTop: 300,
     marginBottom: 20,
   },
     
