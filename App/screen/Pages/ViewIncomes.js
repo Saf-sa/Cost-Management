@@ -83,7 +83,7 @@ let index = 1;// index for scrollview
       onscroll={(evt) =>  (index++)}// to get the index of the scrollview
       onScrollBeginDrag={(evt) => (index++)}// to get the index of the scrollview
       >
-         <View style={styles.page}>
+       <View style={styles.page}>  
 <Screen2 >
            {/* Button Start */}
       
@@ -127,8 +127,6 @@ const styles = StyleSheet.create({
     page: {
     flex: 1,
 backgroundColor: "#F8F4D7",
-
-
   },
   incomeContainer: {
     marginTop: -20,
