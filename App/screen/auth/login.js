@@ -1,28 +1,17 @@
 import React, { useState, useRef, useEffect } from "react";
 import Toast from "react-native-toast-message";
-import { View, Text, StyleSheet,  ScrollView, Image} from "react-native";
+import { View, Text, StyleSheet, Image} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import AuthHeader from "../../shared/components/AuthHeader";
 import CustomInputLog from "../../shared/components/ui/CustomInputLog";
 import CustomButton from "../../shared/components/ui/CustomButton";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import Icon from "../../shared/components/IncomExpenseComponent/Icon";
 import AppText from "../../shared/components/uiApp/AppText";
 import axios from "axios";
-import Screen2 from "../../shared/components/Screen";
 import { LinearGradient } from "expo-linear-gradient";
-import { AntDesign } from "@expo/vector-icons";
 
-// comment this line because solution not found if using .env file
-// go to ligne 84
-//import { API_URL, API_TOKEN } from "@env";
-/*  import { REACT_APP_BE_URL } from "../../.env";  */
 <Image source={require('../../assets/simCard.jpg')} />
 
-/*  const simCard = this.props
-  ? require('../../assets/simCard.jpg')
-  : require('../../assets/simCard.jpg');
- */
  
 const isValidEmail = (email) => {
   // Should contain @
@@ -197,7 +186,6 @@ const Login = () => {
   };
   return (
     <View style={styles.root}>
-      {/* <AuthHeader subtext="Please Login" /> */}
   <LinearGradient
           style={styles.parentContainer}
           colors={["#f9f295", "#E0AA3E", "#F7EF8A", "#B88A44"]}
@@ -215,9 +203,6 @@ const Login = () => {
                  <View>
                 <Text style={{ fontSize: 23, color:'midnightblue', lineHeight: 21 }}>penses Manager</Text>
                 
-                </View>
-                <View>
-              
                 </View>
 
             </AppText>
@@ -241,33 +226,15 @@ const Login = () => {
                 <AppText style={{ color: "darkslateblue", fontSize: 15, }}>
                   4907 2024 1707 2778 1962
                 </AppText>
-               
-
                 
               </View>
               
             </View>
 
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-            
-              <View style={{ marginLeft: 0 }}>
-             
-                
-              </View>
-            </View>
           </View>
-
-
-
           
         </LinearGradient>
-        <View></View>
+
       <View style={styles.content}>
         <CustomInputLog
           label="Email"
@@ -316,8 +283,6 @@ const Login = () => {
 export default Login;
 
 const styles = StyleSheet.create({
- 
-
   root: {
     flex: 1,
     backgroundColor:"#F8F4D7",
@@ -327,27 +292,16 @@ const styles = StyleSheet.create({
     padding: 30,
   },
   parentContainer: {
-
     width: "65%",
     height: 170,
     justifyContent: "center",
     alignItems: "center",
-    paddingTop: 0,
     flexDirection: "column",
     borderRadius: 7,
     marginTop: 40,
-    marginBottom: 60,
-    marginHorizontal: 72,
-    marginVertical: -20,
-    backgroundColor: '#fff',
-    shadowColor: "grey",
-    shadowOpacity: 0.05,
-    shadowRadius: 2,
-    shadowOffset: {
-      width: 0.8,
-      height: 2,
-    },
-    elevation: 8,
+    marginBottom: 40,
+    marginHorizontal: 75,
+    
   },
     parentIncomeContainer: {
     width: "90%",
@@ -360,31 +314,16 @@ const styles = StyleSheet.create({
   },
 
   balanceContainer: {
-    
-    justifyContent: "center",
-    alignItems: "center",
     paddingVertical: 15,
-    width: "80%",
+  },
 
-  },
-  button: {
-   
-    backgroundColor: '#fff',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.8,
-    shadowRadius: 2,
-    marginTop: 10,
-    
-  },
   login: {
-    flexDirection: "row",
-  
     marginBottom: 50,
     color: "#E0AA3E",
     fontSize: 15,
     fontWeight: "bold",
   },
+  
   forgetPass: {
     flexDirection: "row",
     alignSelf: "flex-end",
