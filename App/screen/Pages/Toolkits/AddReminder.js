@@ -1,8 +1,7 @@
 import React, {useState} from "react";
-import {Text, View, StyleSheet, Button, ScrollView,} from "react-native";
+import {Text, View, StyleSheet} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import DatePicker from "@dietime/react-native-date-picker";
-import moment from "moment";
 import CustomInputSingup from "../../../shared/components/ui/CustomInputSignup";
 import CustomButton from "../../../shared/components/ui/CustomButton";
 
@@ -124,9 +123,8 @@ export default function AddReminder() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#fff",
         alignItems: "center",
-        justifyContent: "space-around",
+        /* justifyContent: "space-around", */
         
     },
     date: {
