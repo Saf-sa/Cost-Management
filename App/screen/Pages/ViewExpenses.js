@@ -130,13 +130,11 @@ backgroundColor: "#F8F4D7",
     borderRadius: 10,
     padding: 12,
     marginBottom: 40,
- 
-   
   },
+
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingRight: 8,
     paddingBottom: 8,
   },
 
@@ -157,12 +155,7 @@ backgroundColor: "#F8F4D7",
     textAlign: "center",
     top: -70,
   },
-  textLabel: {
-    fontWeight: 'bold',
-    marginBottom: 4,
-    paddingRight: 8,
-    paddingBottom: 8,
-  },
+
     textButton:{
       color: "#E0AA3E",
       fontWeight: "bold",

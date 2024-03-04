@@ -2,23 +2,12 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableOpacity,
   ScrollView,
-  DatePickerIOS,
-  FlatList
 } from "react-native";
 import React, { useState, useEffect } from "react";
-import Toast from "react-native-toast-message";
 import { useNavigation } from "@react-navigation/native";
-import AuthHeader from "../../shared/components/AuthHeader";
-import CustomInputSingup from "../../shared/components/ui/CustomInputSignup";
-import CustomButton from "../../shared/components/ui/CustomButton";
-import DateTimePicker from "@react-native-community/datetimepicker";
-import Icon from "../../shared/components/IncomExpenseComponent/Icon";
-import AppText from "../../shared/components/uiApp/AppText";
 import UserNav from "../nav/UserNav";
 import Screen2 from "../../shared/components/Screen";
-import moment from "moment";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import axios from "axios";
@@ -29,7 +18,6 @@ export default  ViewAll = ({route}) => {
   const [storedExpenses, setStoredExpenses] = useState([]);// State to store data from AsyncStorage
     const [storedIncomes, setStoredIncomes] = useState([]);// State to store data from AsyncStorage
 
-  const navigation = useNavigation();// Navigation
 
   const {category} = route.params;// Get category from MyIcomes.js  
   console.log('category from ViewExpenses ', category);
@@ -167,14 +155,11 @@ backgroundColor: "#F8F4D7",
     borderRadius: 10,
     padding: 12,
     marginBottom: 40,
-    marginVertical: 8,
-    backgroundColor: "#F7F7F7",
    
   },
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingRight: 8,
     paddingBottom: 8,
   },
 
@@ -184,28 +169,7 @@ backgroundColor: "#F8F4D7",
     paddingRight: 8,
     paddingBottom: 8,
   },
-
-  textValue: {
-    marginBottom: 8,
-  },
-
-  button: {
-    backgroundColor: {
-      backgroundColor: "#fff",
-      shadowColor: "#000",
-
-    },
-    position: "fixed",
-    borderColor: "#E0AA3E",
-    borderWidth: 1,
-    width: "40%",
-    height: 45,
-    alignSelf: "center",
-    borderRadius: 8,
-    padding: 12,
-    textAlign: "center",
-    top: -80,
-  },
+  
     textButton:{
       color: "#E0AA3E",
       fontWeight: "bold",
