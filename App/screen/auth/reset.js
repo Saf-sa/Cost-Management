@@ -1,8 +1,7 @@
-import React, { useState, useRef, useEffect, TouchableOpacity } from "react";
+import React, { useState, useRef, useEffect} from "react";
 import { View, Text, StyleSheet } from "react-native";
 import Toast from "react-native-toast-message";
-import { useNavigation , ScrollView,} from "@react-navigation/native";
-import AuthHeader from "../../shared/components/AuthHeader";
+import { useNavigation } from "@react-navigation/native";
 import CustomInputLog from "../../shared/components/ui/CustomInputLog";
 import CustomButton from "../../shared/components/ui/CustomButton";
 import { LinearGradient } from "expo-linear-gradient";
@@ -34,7 +33,6 @@ const ResetLogin = () => {
     email: "",
   });
 
-  const [showPassword, setShowPassword] = useState(false);
   const timeoutIdRef = useRef(null);
 
   useEffect(() => {
@@ -149,54 +147,19 @@ const ResetLogin = () => {
                 <Text style={{ fontSize: 23, color:'midnightblue', lineHeight: 21 }}>penses Manager</Text>
                 
                 </View>
-                <View>
-              
-                </View>
 
             </AppText>
             
-            
-            <AppText></AppText>
           </View>
           <View style={styles.parentIncomeContainer}>
-            <View
-              style={{
-                color: "black",
-                flexDirection: "row",
-                justifyContent: "center",
-                alignItems: "center",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
              
               <View style={{ marginLeft:0, marginTop:40 }}>
                 <AppText style={{ color: "darkslateblue", fontSize: 15, }}>
                   4907 2024 1707 2778 1962
                 </AppText>
-               
-
-                
               </View>
               
-            </View>
-
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-            
-              <View style={{ marginLeft: 0 }}>
-             
-                
-              </View>
-            </View>
           </View>
-
-
 
           
         </LinearGradient>
@@ -218,13 +181,10 @@ const ResetLogin = () => {
         />
         {/* Button End */}
         <Text style={styles.textEmail}>
-          We'll send you an email to reset your password
+        You'll recieve a code per email to reset your password
         </Text>
        
-       
       </View>
-      
-
       
     <Toast/>
      
@@ -237,29 +197,18 @@ export default ResetLogin;
 
 const styles = StyleSheet.create({
   root: {
-    flex: 2,
+    flex: 1,
     backgroundColor:"#F8F4D7",
   },
   parentContainer: {
-
     width: "65%",
     height: 170,
     justifyContent: "center",
     alignItems: "center",
     paddingTop: 0,
-    flexDirection: "column",
     borderRadius: 7,
     marginTop: 40,
-    marginHorizontal: 72,
-    marginVertical: -20,
-    backgroundColor: '#fff',
-    shadowColor: "grey",
-    shadowOpacity: 0.05,
-    shadowRadius: 2,
-    shadowOffset: {
-      width: 0.8,
-      height: 2,
-    },
+    marginHorizontal: 75,
     
   },
     parentIncomeContainer: {
@@ -267,13 +216,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingTop: 3,
-    paddingBottom:0,
- 
+    paddingTop: 5,
   },
 
   balanceContainer: {
-    
     justifyContent: "center",
     alignItems: "center",
     paddingVertical: 15,
@@ -283,21 +229,17 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     paddingHorizontal: 30,
-    marginTop:90,
-    paddingTop: 20,
-    marginBottom: 300,
+    marginTop:80,
+    paddingTop: 50,
+    marginBottom: 260,
     
   },
   textEmail: {
-    
-    color: "#000",
     textAlign: "center",
     marginTop: 40,
     color: "#E0AA3E",
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: "bold",
   },
-
-
  
 });
