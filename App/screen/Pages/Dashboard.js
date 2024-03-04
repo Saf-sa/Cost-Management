@@ -4,35 +4,23 @@ import {
   View,
   StyleSheet,
   Toast,
-  useWindowDimensions,
   TouchableOpacity,
-   ScrollView,
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
-import moment from "moment";
 import Icon from "../../shared/components/IncomExpenseComponent/Icon";
 import AppText from "../../shared/components/uiApp/AppText";
 import UserNav from "../nav/UserNav";
 import Screen2 from "../../shared/components/Screen";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import axios from "axios";
-import Holidays from './Categories/Holiday';
 
-import { totalExpenseIncome } from './ViewIncomes';
-import {getIncomes} from './ViewIncomes';
-import { ViewIncomes } from './ViewIncomes';
-import { totalExpenses } from './ViewExpenses';
-import calculateTotalIncomes from './ViewIncomes';
-import calculateTotalExpenses from './ViewExpenses';
-  function Dashboard(route) {
+
+  function Dashboard() {
       const [storedIncomes, setStoredIncomes] = useState([]);// State to store data from AsyncStorage
       const [storedExpenses, setStoredExpenses] = useState([]);// State to store data from AsyncStorage
-    const [balance, setBalance] = useState("");
-    const [totalIncome, setTotalIncome] = useState("");
-    const [totalExpense, setTotalExpense] = useState("");
+
 
     const navigation = useNavigation();
 
@@ -84,20 +72,6 @@ import calculateTotalExpenses from './ViewExpenses';
 
 
 
-    //get Date Today default
-    const dateToday = moment(new Date()).format("YYYYMMDD");
-    const yesterday = moment().subtract(1, "days");
-    const dateYesterday = moment(yesterday).format("YYYYMMDD");
-    const [formErrors, setFormErrors] = useState({
-      firstName: null,
-      lastName: null,
-    });
-
-    const [formData, setFormData] = useState({
-      firstName: "",
-      lastName: "",
-    });
-
     //get Category when Clicked
     const [firstName, setFirstName] = useState("");
     const setSelectCategoryByName = (firstName) => {
@@ -116,11 +90,8 @@ import calculateTotalExpenses from './ViewExpenses';
       }
     };
 
-    //getDimension
-    const { height, width } = useWindowDimensions();
-    const [refreshing, setRefreshing] = useState(false);
-    const incomeTotal = calculateTotalIncomes;
-    const expenseTotal = calculateTotalExpenses;
+
+   
     const calculateTotalIncomes = storedIncomes.reduce((total, income) => total + Number(income.amount), 0);
     const calculateTotalExpenses = storedExpenses.reduce((total, expense) => total + Number(expense.amount), 0);
 
@@ -149,13 +120,13 @@ import calculateTotalExpenses from './ViewExpenses';
             <AppText style={{ color: "black", fontSize: 12 }}>BALANCE</AppText>
 
 
-         <AppText
+<AppText
   style={{
-    color: calculateTotalIncomes - calculateTotalExpenses >= 0 ? "green" : "red",
+    color: calculateTotalIncomes - calculateTotalExpenses >= 0 ?  "green" : "red",
     fontSize: 14,
   }}
 >
- { calculateTotalIncomes - calculateTotalExpenses} €
+  { calculateTotalIncomes - calculateTotalExpenses >= 0 ? `+${calculateTotalIncomes - calculateTotalExpenses}` : `${calculateTotalIncomes - calculateTotalExpenses}` } € 
 </AppText>
 
             <AppText style={{ marginTop:5 }}></AppText>
@@ -187,7 +158,7 @@ import calculateTotalExpenses from './ViewExpenses';
                   Incomes
                 </AppText>
                 <AppText style={{ color: "green", fontSize: 14 }}>
-                 {calculateTotalIncomes} €
+                + {calculateTotalIncomes} €
   
                 </AppText>
               </View>
@@ -600,22 +571,15 @@ const styles = StyleSheet.create({
     height: 140,
     justifyContent: "center",
     alignItems: "center",
-    paddingTop: 0,
-    flexDirection: "column",
     borderRadius: 7,
     marginTop: -70,
     marginHorizontal: 70,
     marginVertical: -15,
-  
-    shadowColor: "grey",
-    shadowOpacity: 0.05,
-    shadowRadius: 2,
     shadowOffset: {
       width: 0.8,
-      height: 2,
-    },
-    elevation: 8,
+      height: 2,},
   },
+  
   balanceContainer: {
     justifyContent: "center",
     alignItems: "center",
@@ -628,7 +592,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingTop: 3,
     paddingBottom:9,
  
   },
@@ -640,7 +603,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     paddingHorizontal: 6,
     marginTop: 13,
-    alignItems: "center",
+   
   },
 
   dashboardCat: {
@@ -656,7 +619,6 @@ const styles = StyleSheet.create({
    dashboardTitle: {
     fontSize: 17,
     color: "brown",
-    marginTop: 0,
     
   }, 
  

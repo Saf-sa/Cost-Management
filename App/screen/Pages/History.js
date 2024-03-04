@@ -133,7 +133,7 @@ export default  ViewAll = ({route}) => {
     
    
        
-       <Text style={styles.textAmount}>Balance = +{totalExpenseIncome} € </Text>
+       <Text style={styles.textAmount}>Balance = {totalExpenseIncome} € </Text>
 
 
 {storeAll.map((item, index) => (
