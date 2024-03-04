@@ -112,13 +112,13 @@ const styles = StyleSheet.create({
 backgroundColor: "#F8F4D7",
   },
   incomeContainer: {
-    marginTop: -40,
+    marginTop: -30,
     width: "96%",
     borderWidth: 1,
     borderColor: "#E0AA3E",
     borderRadius: 10,
     padding: 12,
-    marginBottom: 60,
+    marginBottom: 40,
     
   },
   row: {
