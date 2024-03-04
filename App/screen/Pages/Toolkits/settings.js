@@ -4,21 +4,13 @@ import {
   View,
   StyleSheet,
   Toast,
-  useWindowDimensions,
-  TouchableOpacity,
-  ScrollView,
 } from "react-native";
-import { AntDesign } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
-import moment from "moment";
-import Icon from "../../../shared/components/IncomExpenseComponent/Icon"
 import AppText from "../../../shared/components/uiApp/AppText";
 import UserNav from "../../nav/UserNav";
 import Screen2 from "../../../shared/components/Screen";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
-import axios from "axios";
 
 
 
@@ -26,7 +18,6 @@ const Settings = () => {
 
   const navigation = useNavigation();
 
- 
       useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -36,7 +27,6 @@ const Settings = () => {
           setFirstName(user.firstName); // Update this line to use setFirstName
           setLastName(user.lastName); // Update this line to use setFirstName
           setEmail(user.email); // Update this line to use setFirstName
-          setPassword(user.password); // Update this line to use setFirstName
         }
       } catch (e) {
         console.error("Failed to fetch user data from storage");
@@ -46,26 +36,11 @@ const Settings = () => {
     fetchUserData();
   }, []);
 
-   
-    const [formErrors, setFormErrors] = useState({
-      firstName: null,
-      lastName: null,
-      email: null,
-      password: null,
-    });
-
-    const [formData, setFormData] = useState({
-      firstName: "",
-      lastName: "",
-      email: "",
-      password: "",
-    });
 
     //get Category when Clicked
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
     const setSelectCategoryByFirstName = (firstName ) => {
       if (firstName === "All" ) {
         dispatch({ type: "all", payload: flatListItems });
@@ -81,27 +56,6 @@ const Settings = () => {
         console.log(payload);
       }
     };
-     const setSelectCategoryByLastName = (lastName ) => {
-      if (lastName === "All" ) {
-        dispatch({ type: "all", payload: flatListItems });
-      } else {
-        let categoryName = flatListItems.filter((a) => a.category == lastName);
-        //console.log(state.expenseList);
-        if (categoryName == "") {
-          dispatch({ type: "error" });
-          Toast.show("No Record for " + lastName, Toast.SHORT);
-        } else {
-          dispatch({ type: lastName, payload: lastName});
-        }
-        console.log(payload);
-      }
-    };
-
-    
-    //getDimension
-    const { height, width } = useWindowDimensions();
-    const [refreshing, setRefreshing] = useState(false);
-
 
   return (
      <View style={styles.page}>
@@ -109,9 +63,8 @@ const Settings = () => {
         <Text style={styles.title}>Update your Settings  {firstName} </Text> 
         <UserNav 
           image={require("../../../assets/iconPerson.png")}
-   
-         
         />
+        
           <LinearGradient
           style={styles.parentContainer}
           colors={["#f9f295", "#E0AA3E", "#F7EF8A", "#B88A44"]}
@@ -129,9 +82,6 @@ const Settings = () => {
                  <View>
                 <Text style={{ fontSize: 22, color:'midnightblue', lineHeight: 21 }}>penses Manager</Text>
                 
-                </View>
-                <View>
-              
                 </View>
 
             </AppText>
@@ -189,37 +139,37 @@ const Settings = () => {
 }
 
 const styles = StyleSheet.create({
-      page: {
+  page: {
     flex: 1,
     height: "100vh",
-backgroundColor: "#F8F4D7",
+    backgroundColor: "#F8F4D7",
   },
+
   parentContainer: {
     flexDirection: "column",
     borderRadius: 10,
     marginHorizontal: 50,
     marginVertical: -20,
-   backgroundColor: '#fff',
+    backgroundColor: '#fff',
     shadowColor: "grey",
     shadowOpacity: 0.05,
     shadowRadius: 2,
     shadowOffset: {
-      width: 0.8,
-      height: 2,
+    width: 0.8,
+    height: 2,
     },
     elevation: 8,
   },
-  balanceContainer: {
   
+  balanceContainer: {
     justifyContent: "center",
     alignItems: "center",
-    paddingVertical: 7,
+    paddingVertical:13,
     width: "100%",
-    
   },
 
   settings: {
-   padding: 30,
+    padding: 30,
     color: "#E0AA3E",
     fontSize: 18,
     fontWeight: "bold",
