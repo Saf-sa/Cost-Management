@@ -1,14 +1,12 @@
 import { View, Text, StyleSheet } from "react-native";
 import React, { useState, useRef, useEffect } from "react";
-import { useNavigation,   ScrollView, } from "@react-navigation/native";
+import { useNavigation, } from "@react-navigation/native";
 import Toast from "react-native-toast-message";
-import AuthHeader from "../../shared/components/AuthHeader";
 import CustomInputSingup from "../../shared/components/ui/CustomInputSignup";
 import CustomButton from "../../shared/components/ui/CustomButton";
 import { LinearGradient } from "expo-linear-gradient";
 import AppText from "../../shared/components/uiApp/AppText";
 import axios from "axios";
-import Login from "./login";
 
 const isValidEmail = (email) => {
   // Should contain @
@@ -211,15 +209,10 @@ const isValidForm = () => {
                 <Text style={{ fontSize: 23, color:'midnightblue', lineHeight: 21 }}>penses Manager</Text>
                 
                 </View>
-                <View>
-              
-                </View>
 
             </AppText>
-            
-            
-            <AppText></AppText>
           </View>
+
           <View style={styles.parentIncomeContainer}>
             <View
               style={{
@@ -235,12 +228,8 @@ const isValidForm = () => {
               <View style={{ marginLeft:0, marginTop:40 }}>
                 <AppText style={{ color: "darkslateblue", fontSize: 15, }}>
                   4907 2024 1707 2778 1962
-                </AppText>
-               
-
-                
+                </AppText> 
               </View>
-              
             </View>
 
             <View
@@ -250,17 +239,9 @@ const isValidForm = () => {
                 alignItems: "center",
               }}
             >
-            
-              <View style={{ marginLeft: 0 }}>
-             
-                
-              </View>
             </View>
           </View>
 
-
-
-          
         </LinearGradient>
       <View style={styles.content}>
         <CustomInputSingup
@@ -303,7 +284,6 @@ const isValidForm = () => {
           style={styles.button}
           buttonText={"Reset Password"}
         />
-        {/* Button End */}
       </View>
       <Toast />
     </View>
@@ -318,7 +298,6 @@ const styles = StyleSheet.create({
   },
 
   parentContainer: {
-
     width: "65%",
     height: 170,
     justifyContent: "center",
@@ -327,31 +306,18 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     borderRadius: 7,
     marginTop: 40,
-    marginBottom: 60,
-    marginHorizontal: 72,
-    marginVertical: -20,
-    backgroundColor: '#fff',
-    shadowColor: "grey",
-    shadowOpacity: 0.05,
-    shadowRadius: 2,
-    shadowOffset: {
-      width: 0.8,
-      height: 2,
-    },
-    elevation: 8,
+    marginHorizontal: 75,
+
   },
     parentIncomeContainer: {
     width: "90%",
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingTop: 3,
-    paddingBottom:0,
- 
+    paddingTop: 5,
   },
 
   balanceContainer: {
-    
     justifyContent: "center",
     alignItems: "center",
     paddingVertical: 15,
@@ -359,15 +325,9 @@ const styles = StyleSheet.create({
 
   },
   content: {
-    flex: 2,
-    padding: 20,
-  },
-  button: {
-    width: "100%",
-    height: "30%",
-    borderRadius: 8,
-    alignItems: "center",
-    justifyContent: "center",
-
+    flex: 1,
+    paddingHorizontal: 30,
+    marginTop:80,
+    marginBottom: 90,
   },
 });
