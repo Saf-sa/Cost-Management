@@ -7,8 +7,6 @@ import {
   useWindowDimensions,
   TouchableOpacity,
 } from "react-native";
-import { AntDesign } from "@expo/vector-icons";
-import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
 import moment from "moment";
 import Icon from "../../../shared/components/IncomExpenseComponent/Icon"
@@ -16,9 +14,6 @@ import AppText from "../../../shared/components/uiApp/AppText";
 import UserNav from "../../../screen/nav/UserNav";
 import Screen2 from "../../../shared/components/Screen";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
-import axios from "axios";
-
 
   function Download() {
   
@@ -91,23 +86,16 @@ import axios from "axios";
       }
     };
 
-    //getDimension
-    const { height, width } = useWindowDimensions();
-    const [refreshing, setRefreshing] = useState(false);
     return (
        <View style={styles.page}>
-      <Screen2>
+      <Screen2 style={styles.header}>
         <UserNav style={styles.userNav}
           image={require("../../../assets/iconPerson.png")}
-        
-       
         />
     
      <Text style={styles.title}> Les's save your files {firstName} !</Text> 
        
-        <View>
-          <AppText style={styles.dashboardTitle}>Global View</AppText>
-        </View>
+      
         <View style={styles.dashboard}>
           <TouchableOpacity onPress={() => navigation.push("ViewIncomes")}>
             <Icon
@@ -120,8 +108,6 @@ import axios from "axios";
             <Icon
               name="shopping-cart"
               size={66}
-        
-             
             />
             <Text style={{ fontSize: 15, paddingTop: 5 }}>Expense</Text>
           </TouchableOpacity>
@@ -129,8 +115,6 @@ import axios from "axios";
             <Icon
               name="file-invoice-dollar"
               size={66}
-             
-             
             />
             <Text style={{ fontSize: 15, paddingTop: 5 }}>Forecast</Text>
           </TouchableOpacity>
@@ -138,17 +122,13 @@ import axios from "axios";
             <Icon
               name="chart-line"
               size={66}
-             
-             
-            />
+              />
             <Text style={{ fontSize: 15, paddingTop: 5 }}>Statistics</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.push("History")}>
             <Icon
               name="history"
               size={66}
-             
-             
             />
             <Text style={{ fontSize: 15, paddingTop: 5 }}> History</Text>
           </TouchableOpacity>
@@ -161,8 +141,6 @@ import axios from "axios";
             <Icon
               name="tshirt"
               size={66}
-             
-             
             />
 
             <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10 }}>
@@ -173,8 +151,6 @@ import axios from "axios";
             <Icon
               name="utensils"
               size={66}
-             
-             
             />
 
             <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10 }}>
@@ -186,8 +162,6 @@ import axios from "axios";
             <Icon
               name="subway"
               size={66}
-             
-             
             />
 
             <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10 }}>
@@ -198,8 +172,6 @@ import axios from "axios";
             <Icon
               name="university"
               size={66}
-             
-             
             />
 
             <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10 }}>
@@ -212,8 +184,6 @@ import axios from "axios";
             <Icon
               name="house-user"
               size={66}
-             
-             
             />
 
             <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10 }}>
@@ -226,8 +196,6 @@ import axios from "axios";
             <Icon
               name="cash-register"
               size={66}
-             
-             
             />
 
             <Text style={{ fontSize: 15, paddingTop: 5 }}> Taxes</Text>
@@ -248,8 +216,6 @@ import axios from "axios";
               styles={styles.icon}
               name="hand-holding-usd"
               size={66}
-             
-             
             />
 
             <Text style={{ fontSize: 15, paddingTop: 5 }}> Money</Text>
@@ -260,8 +226,6 @@ import axios from "axios";
               styles={styles.icon}
               name="piggy-bank"
               size={66}
-             
-             
             />
 
             <Text style={{ fontSize: 15, paddingTop: 5 }}>Epargne</Text>
@@ -272,8 +236,6 @@ import axios from "axios";
               styles={styles.icon}
               name="plane-departure"
               size={66}
-             
-             
             />
 
             <Text style={{ fontSize: 15, paddingTop: 5 }}>Holidays</Text>
@@ -289,8 +251,6 @@ import axios from "axios";
             <Icon
               name="dollar-sign"
               size={66}
-             
-             
             />
 
             <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10, textAlign:"center" }}>
@@ -301,8 +261,6 @@ import axios from "axios";
             <Icon
               name="trophy"
               size={66}
-             
-             
             />
 
             <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10, textAlign:"center" }}>
@@ -314,8 +272,6 @@ import axios from "axios";
             <Icon
               name="search-dollar"
               size={66}
-             
-             
             />
 
             <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10, textAlign:"center" }}>
@@ -326,8 +282,6 @@ import axios from "axios";
             <Icon
               name="university"
               size={66}
-             
-             
             />
 
             <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10, textAlign:"center" }}>
@@ -340,8 +294,6 @@ import axios from "axios";
             <Icon
               name="gift"
               size={66}
-             
-             
             />
 
             <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10, textAlign:"center" }}>
@@ -354,8 +306,6 @@ import axios from "axios";
             <Icon
               name="home"
               size={66}
-             
-             
             />
 
             <Text style={{ fontSize: 15, paddingTop: 5, textAlign:"center" }}> Rent</Text>
@@ -377,7 +327,6 @@ import axios from "axios";
               name="hand-holding-usd"
               size={65}
              
-             
             />
 
             <Text style={{ fontSize: 15, paddingTop: 5, textAlign:"center" }}> Refund</Text>
@@ -388,8 +337,6 @@ import axios from "axios";
               styles={styles.icon}
               name="search-dollar"
               size={66}
-             
-             
             />
 
             <Text style={{ fontSize: 15, paddingTop: 5, textAlign:"center" }}>Stocks</Text>
@@ -400,8 +347,6 @@ import axios from "axios";
               styles={styles.icon}
               name="newspaper"
               size={66}
-             
-             
             />
 
             <Text style={{ fontSize: 15, paddingTop: 5, textAlign:"center" }}>Other</Text>
@@ -415,20 +360,24 @@ import axios from "axios";
   }
 
 const styles = StyleSheet.create({
-       page: {
+  page: {
     flex: 1,
     height: "100vh",
-backgroundColor: "#F8F4D7",
+    backgroundColor: "#F8F4D7",
+  },
+
+  header: { 
+    marginTop: -70,
+    justifyContent: "center",
   },
 
   dashboard: {
     flexWrap: "wrap",
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingHorizontal: 20,
-    marginTop: 5,
+    paddingHorizontal: 10,
+    marginTop: 10,
     alignItems: "center",
-    
   },
 
   dashboardCat: {
@@ -436,27 +385,26 @@ backgroundColor: "#F8F4D7",
     fontWeight: 'bold',
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingHorizontal: 20,
-    marginTop: 5,
+    paddingHorizontal: 10,
+    marginTop: 20,
     alignItems: "center",
   },
 
   dashboardTitle: {
     color: "black",
-    fontSize: 15,
+    fontSize: 20,
       color: "#E0AA3E",
     fontWeight: "bold",
     justifyContent: "center",
     textAlign: "center",
-    paddingHorizontal: 20,
-    marginTop: 0,
-    marginBottom: 10,
+    marginTop: 10,
+    marginBottom: 0,
   },
   icon: {
     justifyContent: "center",
   },
    
-    title:{
+   title:{
     top: -70,
     textAlign: "center",
     color: "#E0AA3E",
