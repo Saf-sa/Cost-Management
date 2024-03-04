@@ -91,21 +91,23 @@ export default function Reminder() {
         style={styles.input}
       />
 
-          <CustomInputSingup
+          <CustomInputSingup style={styles.LastInput}
         onChangeText={setSelectedEmail}
         value={selectedEmail}
         placeholder=" Enter email of your Contract"
 
-        style={styles.input}
+
       />
   
-        <CustomButton
+       <CustomButton
           style={styles.button}
           buttonText={"New Reminder"}
           onPress={() => navigation.navigate("AddReminder")}
         />
 
     </View>
+    
+    
   
   );
 }
@@ -130,6 +132,6 @@ const styles = StyleSheet.create({
   },
   dateText: {
     margin: 16,
-   
   },
+
 });

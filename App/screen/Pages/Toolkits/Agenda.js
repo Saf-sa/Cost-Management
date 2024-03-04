@@ -1,10 +1,9 @@
 
 import { StatusBar } from 'expo-status-bar';
-import React, { useState, useEffect,  } from 'react';
-import { StyleSheet, Text, View, TextInput ,   ScrollView, } from 'react-native';
+import React, { useState,  } from 'react';
+import { StyleSheet, View } from 'react-native';
 import CalendarPicker from 'react-native-calendar-picker';
 import  {Calendar} from 'expo-calendar';
-import AuthHeader from "../../../shared/components/AuthHeader";
 import CustomInputSingup from "../../../shared/components/ui/CustomInputSignup";
 import CustomButton from "../../../shared/components/ui/CustomButton";
 
@@ -104,16 +103,7 @@ export default function Agenda() {
           end={{ x: 1, y: 3 }}
           buttonText={"add Event"}
         />
-      
-     
-      
-{/*         <Text style={styles.dateText}>contract Start: {startDate}</Text>
-        <Text style={styles.endText}>contract End: {selectedEndDate}</Text>
-        <Text style={styles.emailText}>contract Email: {selectedEmail}</Text> */}
-    
-       
 
-     
     </View>
   
   );
@@ -128,9 +118,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 30,
- 
-    paddingBottom: 50,
-    
   },
 
   input: {
@@ -142,7 +129,6 @@ const styles = StyleSheet.create({
   },
   dateText: {
     margin: 16,
-   
   },
 
 });
