@@ -299,7 +299,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     borderRadius: 7,
     marginTop: 40,
-    marginBottom: 40,
+    marginBottom: 45,
     marginHorizontal: 75,
     
   },
@@ -323,7 +323,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: "bold",
   },
-  
+
   forgetPass: {
     flexDirection: "row",
     alignSelf: "flex-end",
