@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, SafeAreaView , onPress } from 'react-native'
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, SafeAreaView} from 'react-native'
 import { useState } from 'react';
 import { StatusBar } from 'react-native'; 
 import AuthHeader from "..//../../shared/components/AuthHeader";
@@ -106,7 +106,6 @@ else {
 export default Calculator;
 
 const styles = StyleSheet.create({
-
   header :{
     flex: 1,
     justifyContent: 'center',
@@ -116,47 +115,41 @@ const styles = StyleSheet.create({
   container : {
     flex: 1,
      backgroundColor: "#F8F4D7",
-    
   },
 
-  resultContainer : {
+resultContainer : {
     flex: 1,
-  
     justifyContent: 'center',
     alignItems: 'flex-end',
    
   },
-    inputContainer : {
+inputContainer : {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 20,
     
-  
-    
   },
-  buttonContainer : {
+
+buttonContainer : {
     flex: 3,
     flexDirection: 'row',
     flexWrap: 'wrap',
   },
-  resultText : {
+resultText : {
     color: 'green',
     fontSize: 50,
     justifyContent: 'center',
     marginRight: 30,
     
-   
   },
 
-  InputText:{
-  fontSize: 30,
-  marginBottom: 20,
+InputText:{
+    fontSize: 30,
+    marginBottom: 20,
  
-  
-  
-
 },
+
 button: {
   width: '22%',
   height: '18%',
@@ -167,9 +160,8 @@ button: {
   borderWidth:0.2,
   borderColor: 'lightGrey',
   borderRadius: 10,
-  
-  
 },
+
 ButtonText: {
   fontSize: 30,
   fontWeight: 'bold',
