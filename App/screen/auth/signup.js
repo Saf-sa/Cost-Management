@@ -1,20 +1,15 @@
 import { View, Text, StyleSheet } from "react-native";
 import React, { useState, useRef, useEffect } from "react";
 import Toast from "react-native-toast-message";
-import { useNavigation, ScrollView, } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import AuthHeader from "../../shared/components/AuthHeader";
 import CustomInputSingup from "../../shared/components/ui/CustomInputSignup";
 import CustomButton from "../../shared/components/ui/CustomButton";
 import { LinearGradient } from "expo-linear-gradient";
 import AppText from "../../shared/components/uiApp/AppText";
 
-/*  import { REACT_APP_BE_URL } from "../../.env"; */
-import axios from "axios";
 
-// comment this line because solution not found if using .env file
-// go to ligne 84
-//import { API_URL, API_TOKEN } from "@env";
-/*  import { REACT_APP_BE_URL } from "../../.env";  */
+import axios from "axios";
 
 const isValidEmail = (email) => {
   const re = /\S+@\S+\.\S+/; // Should contain @
@@ -249,9 +244,6 @@ const Signup = () => {
                 <Text style={{ fontSize: 23, color:'midnightblue', lineHeight: 21 }}>penses Manager</Text>
                 
                 </View>
-                <View>
-              
-                </View>
 
             </AppText>
             
@@ -259,45 +251,13 @@ const Signup = () => {
             <AppText></AppText>
           </View>
           <View style={styles.parentIncomeContainer}>
-            <View
-              style={{
-                color: "black",
-                flexDirection: "row",
-                justifyContent: "center",
-                alignItems: "center",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
              
               <View style={{ marginLeft:0, marginTop:40 }}>
                 <AppText style={{ color: "darkslateblue", fontSize: 15, }}>
                   4907 2024 1707 2778 1962
                 </AppText>
-               
-
-                
               </View>
-              
-            </View>
-
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-            
-              <View style={{ marginLeft: 0 }}>
-             
-                
-              </View>
-            </View>
           </View>
-
-
-
           
         </LinearGradient>
      
@@ -366,7 +326,6 @@ const styles = StyleSheet.create({
     backgroundColor:"#F8F4D7",
   },
   parentContainer: {
-
     width: "65%",
     height: 170,
     justifyContent: "center",
@@ -377,48 +336,18 @@ const styles = StyleSheet.create({
     marginTop: 30,
     marginBottom: 30,
     marginHorizontal: 76,
-    backgroundColor: '#fff',
-    shadowColor: "grey",
-    shadowOpacity: 0.05,
-    shadowRadius: 2,
-    shadowOffset: {
-      width: 0.8,
-      height: 2,
-    },
-    elevation: 8,
-  },
-    parentIncomeContainer: {
-    width: "80%",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    paddingTop: 3,
-    paddingBottom:0,
- 
+
   },
 
   balanceContainer: {
-    
     justifyContent: "center",
     alignItems: "center",
-    paddingVertical: 10,
-    width: "80%",
-
   },
-  button: {
-    backgroundColor: '#fff',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.8,
-    shadowRadius: 2,
   
-    
-  },
-
   content: {
     flex: 1,
-    padding: 30,
-    marginBottom: 20,
+    padding: 20,
+    marginBottom: 30,
   },
 
 
