@@ -86,7 +86,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
         } else {
           dispatch({ type: firstName, payload: firstName });
         }
-        console.log(payload);
+        /* console.log(payload); */
       }
     };
 
@@ -95,7 +95,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
     const calculateTotalIncomes = storedIncomes.reduce((total, income) => total + Number(income.amount), 0);
     const calculateTotalExpenses = storedExpenses.reduce((total, expense) => total + Number(expense.amount), 0);
 
-    console.log('calculateTotalIncomes', calculateTotalIncomes)
+/*     console.log('calculateTotalIncomes', calculateTotalIncomes) */
     return (
       <View style={styles.page}>
       <Screen2 >

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, } from "react";
 import { View, Text, StyleSheet, TextInput, ScrollView } from "react-native";
 import Toast from "react-native-toast-message";
 import { useNavigation } from "@react-navigation/native";
@@ -84,7 +84,7 @@ const MyExpense= () => {
     } else if (fieldName === "amount") {
       setAmount(value);
     }
-    console.log("95 setCategories", value);
+   /*  console.log("95 setCategories", value); */
   };
 
   const handleSubmit = async () => {
@@ -134,14 +134,14 @@ const MyExpense= () => {
       );
     }
 
-    console.log("formData", formData);
+   /*  console.log("formData", formData); */
   try {
         // Récupérer les données de l'utilisateur à partir de AsyncStorage
       const user = JSON.parse(await AsyncStorage.getItem("@storage_Key"));
       // await AsyncStorage.setItem("@storage_Key", jsonValue);
 
-      console.log("149 get user Token from storage_Key ", user);
-       console.log("150 response.data", user.id);
+/*       console.log("149 get user Token from storage_Key ", user); */
+      /*  console.log("150 response.data", user.id); */
       const response = await axios.post(
         `http://localhost:5555/api/expenses`,
         formData,
@@ -153,7 +153,7 @@ const MyExpense= () => {
       );
 
      
-      console.log('data send to BE',response.data);
+     /*  console.log('data send to BE',response.data); */
       
       
       Toast.show({
@@ -167,7 +167,7 @@ const MyExpense= () => {
         navigation.navigate("Dashboard");
       }, 3000);
     } catch (err) {
-      console.log("Test Myexpense", err.response.data);
+   /*    console.log("Test Myexpense", err.response.data); */
       Toast.show({
         type: "error",
         position: "bottom",

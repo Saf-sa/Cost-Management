@@ -20,13 +20,13 @@ export default  ViewAll = ({route}) => {
 
 
   const {category} = route.params;// Get category from MyIcomes.js  
-  console.log('category from ViewExpenses ', category);
+/*   console.log('category from ViewExpenses ', category); */
   
   useEffect(() => {// UseEffect to get data from AsyncStorage
     const getExpenses = async () => {
       try {
            const user = JSON.parse(await AsyncStorage.getItem("@storage_Key"));// Get user data from AsyncStorage
-           console.log('user token ',user.token); 
+          /*  console.log('user token ',user.token);  */
         const { data } = await axios.get(
           
            /*  console.log('data ', data), */
@@ -52,14 +52,14 @@ export default  ViewAll = ({route}) => {
                /*  console.log('parsedExpenses FrontEnd side ',parsedExpenses);   */
         }
       } catch (error) {// Error handling
-        console.log(error);// Error handling
+     /*    console.log(error);// Error handling */
       }
     };
 
     const getIncomes = async () => {
       try {
            const user = JSON.parse(await AsyncStorage.getItem("@storage_Key"));// Get user data from AsyncStorage
-           console.log('user token ',user.token); 
+          /*  console.log('user token ',user.token);  */
         const { data } = await axios.get(
           
            /*  console.log('data ', data), */
@@ -85,7 +85,7 @@ export default  ViewAll = ({route}) => {
                /*  console.log('parsedExpenses FrontEnd side ',parsedExpenses);   */
         }
       } catch (error) {// Error handling
-        console.log(error);// Error handling
+        /* console.log(error);// Error handling */
       }
     };
      getIncomes();
