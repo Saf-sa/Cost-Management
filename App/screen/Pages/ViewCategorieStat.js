@@ -2,12 +2,8 @@ import {
   Text,
   View,
   StyleSheet,
-  Toast,
-  useWindowDimensions,
-  TouchableOpacity,
-   ScrollView,
 } from "react-native";
-import React, { useState } from "react";
+
 import { useNavigation } from "@react-navigation/native";
 import Icon from "../../shared/components/IncomExpenseComponent/Icon";
 
