@@ -78,7 +78,7 @@ const Settings = () => {
         } else {
           dispatch({ type: firstName, payload: firstName});
         }
-        console.log(payload);
+       /*  console.log(payload); */
       }
     };
      const setSelectCategoryByLastName = (lastName ) => {
@@ -93,7 +93,7 @@ const Settings = () => {
         } else {
           dispatch({ type: lastName, payload: lastName});
         }
-        console.log(payload);
+        /* console.log(payload); */
       }
     };
 

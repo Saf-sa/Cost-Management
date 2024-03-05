@@ -2,10 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, TextInput, Button, Alert, StyleSheet, Text } from 'react-native';
 import Mailer from 'react-native-mail';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import CustomButton from "../../../shared/components/ui/CustomButton";
 import { LinearGradient } from "expo-linear-gradient";
-import { useNavigation } from "@react-navigation/native";
-import Icon from "../../../shared/components/IncomExpenseComponent/Icon"
 import AppText from "../../../shared/components/uiApp/AppText";
 import UserNav from "../../nav/UserNav";
 import Screen2 from "../../../shared/components/Screen";
