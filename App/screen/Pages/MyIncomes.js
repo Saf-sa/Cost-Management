@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState} from "react";
 import { View, Text, StyleSheet, TextInput, ScrollView } from "react-native";
 import Toast from "react-native-toast-message";
 import { useNavigation } from "@react-navigation/native";
@@ -10,9 +10,6 @@ import moment from "moment";
 import { SelectList } from 'react-native-dropdown-select-list';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from "axios";
-
-import ViewIncomes from "./ViewIncomes";
-
 
 const isValidDate = (date) => {
   const regex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[012])\/(19|20)\d\d$/;
@@ -84,7 +81,7 @@ const MyIncome= () => {
     } else if (fieldName === "amount") {
       setAmount(value);
     }
-    console.log("95 setCategories", value);
+    /* console.log("95 setCategories", value); */
   };
 
   const handleSubmit = async () => {
@@ -134,14 +131,14 @@ const MyIncome= () => {
       );
     }
 
-    console.log("formData", formData);
+   /*  console.log("formData", formData); */
   try {
         // Récupérer les données de l'utilisateur à partir de AsyncStorage
       const user = JSON.parse(await AsyncStorage.getItem("@storage_Key"));
       // await AsyncStorage.setItem("@storage_Key", jsonValue);
 
-      console.log("149 get user Token from storage_Key ", user);
-       console.log("150 response.data", user.id);
+    /*   console.log("149 get user Token from storage_Key ", user); */
+      /*  console.log("150 response.data", user.id); */
       const response = await axios.post(
         `http://localhost:5555/api/incomes`,
         formData,
@@ -153,7 +150,7 @@ const MyIncome= () => {
       );
 
      
-      console.log('data send to BE',response.data);
+     /*  console.log('data send to BE',response.data); */
       
       
       Toast.show({
@@ -167,7 +164,7 @@ const MyIncome= () => {
         navigation.navigate("Dashboard");
       }, 3000);
     } catch (err) {
-      console.log("Test MyIncome", err.response.data);
+     /*  console.log("Test MyIncome", err.response.data); */
       Toast.show({
         type: "error",
         position: "bottom",
