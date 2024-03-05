@@ -53,7 +53,7 @@ const Settings = () => {
         } else {
           dispatch({ type: firstName, payload: firstName});
         }
-        console.log(payload);
+        /* console.log(payload); */
       }
     };
 
@@ -94,11 +94,11 @@ const Settings = () => {
            
               <View style={styles.UserContainer}>
 
-                <AppText style={{ color: "black", fontSize: 12, marginBottom: 10}}>first Name : {firstName} </AppText>
+                <AppText style={{ color: "black", fontSize: 15, marginBottom: 10, marginLeft:-48}}>First Name : {firstName} </AppText>
 
-                <AppText style={{ color: "black", fontSize: 12, marginBottom: 10  }}>  Last Name : {lastName}  </AppText>
+                <AppText style={{ color: "black", fontSize: 15, marginBottom: 10, marginLeft:-50  }}>  Last Name : {lastName}  </AppText>
 
-                <AppText style={{ color: "black", fontSize: 12, marginBottom: 10, marginLeft:17 }}>{email}  </AppText>
+                <AppText style={{ color: "black", fontSize: 15, marginBottom: 10, marginLeft:17 }}>Email: {email}  </AppText>
 
             </View>
     
@@ -141,7 +141,6 @@ const Settings = () => {
 const styles = StyleSheet.create({
   page: {
     flex: 1,
-    height: "100vh",
     backgroundColor: "#F8F4D7",
   },
 
@@ -149,16 +148,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     borderRadius: 10,
     marginHorizontal: 50,
-    marginVertical: -20,
-    backgroundColor: '#fff',
-    shadowColor: "grey",
-    shadowOpacity: 0.05,
-    shadowRadius: 2,
-    shadowOffset: {
-    width: 0.8,
-    height: 2,
-    },
-    elevation: 8,
+    marginVertical: 30,
   },
   
   balanceContainer: {

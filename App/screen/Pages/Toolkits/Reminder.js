@@ -4,8 +4,6 @@ import React, { useState,  } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useNavigation } from "@react-navigation/native";
 import CalendarPicker from 'react-native-calendar-picker';
-import DatePicker from 'react-native-date-picker'
-import  {Calendar} from 'expo-calendar';
 import CustomInputSingup from "../../../shared/components/ui/CustomInputSignup";
 import CustomButton from "../../../shared/components/ui/CustomButton";
 
@@ -37,7 +35,7 @@ async function createCalendar() {
     ownerAccount: 'personal',
     accessLevel: Calendar.CalendarAccessLevel.OWNER,
   });
-  console.log(`Your new calendar ID is: ${newCalendarID}`);
+/*   console.log(`Your new calendar ID is: ${newCalendarID}`); */
   return newCalendarID;
 }
 

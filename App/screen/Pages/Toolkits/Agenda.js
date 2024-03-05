@@ -35,7 +35,7 @@ async function createCalendar() {
     ownerAccount: 'personal',
     accessLevel: Calendar.CalendarAccessLevel.OWNER,
   });
-  console.log(`Your new calendar ID is: ${newCalendarID}`);
+/*   console.log(`Your new calendar ID is: ${newCalendarID}`); */
   return newCalendarID;
 }
 
