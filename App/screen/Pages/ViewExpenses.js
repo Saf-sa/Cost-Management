@@ -119,7 +119,6 @@ let index = 1;// index for scrollview
 const styles = StyleSheet.create({
       page: {
     flex: 1,
-    height: "100vh",
 backgroundColor: "#F8F4D7",
   },
   expenseContainer: {

@@ -74,7 +74,7 @@ function AuthLoading({ navigation }) {
     const checkUser = async () => {
       try {
         const user = JSON.parse(await AsyncStorage.getItem("@storage_Key"));
-        console.log('user from async storage', user);
+        /* console.log('user from async storage', user); */
 
         if (user) {
           const { token, expiresIn } = user;
@@ -82,14 +82,14 @@ function AuthLoading({ navigation }) {
 if (!expiresIn) {
     // Si expiresIn est undefined, considérer le jeton comme expiré
     await AsyncStorage.removeItem("@storage_Key");
-    console.log('Token expired. Removed from AsyncStorage.');
+   /*  console.log('Token expired. Removed from AsyncStorage.'); */
     navigation.replace('Login');
     return;
   }
           if (expirationTime.isBefore(moment())) {
             // Token expiré, retirer le token du localStorage
             await AsyncStorage.removeItem("@storage_Key");
-            console.log('Token expired. Removed from AsyncStorage.');
+            /* console.log('Token expired. Removed from AsyncStorage.'); */
             navigation.replace('Login');
           } else {
             // Token valide, vérifier s'il est toujours valide côté serveur
@@ -103,7 +103,7 @@ if (!expiresIn) {
             );
             
             if (response.status === 200) {
-              console.log('User already isLoged', response.data);
+              /* console.log('User already isLoged', response.data); */
               navigation.replace('Dashboard');
             }
           }
