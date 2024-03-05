@@ -361,7 +361,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 const styles = StyleSheet.create({
   page: {
     flex: 1,
-    height: "100vh",
     backgroundColor: "#F8F4D7",
   },
 
