@@ -19,12 +19,12 @@ const ViewIncomes = ({route}) => {
   const navigation = useNavigation();// Navigation
 
   const {category} = route.params;// Get category from MyIcomes.js  
-  console.log('category from ViewIncomes ', category);
+ /*  console.log('category from ViewIncomes ', category); */
   useEffect(() => {// UseEffect to get data from AsyncStorage
     const getIncomes = async () => {
       try {
            const user = JSON.parse(await AsyncStorage.getItem("@storage_Key"));// Get user data from AsyncStorage
-           console.log('user token ',user.token); 
+           /* console.log('user token ',user.token);  */
         const { data } = await axios.get(
           
            /*  console.log('data ', data), */
