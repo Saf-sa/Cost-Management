@@ -101,7 +101,7 @@ const ResetLogin = () => {
         `http://localhost:5555/api/users/reset`,
         formData
       );
-      console.log(response.data);
+/*       console.log(response.data); */
          Toast.show({
            type: "success",
            position: "bottom",
@@ -115,7 +115,7 @@ const ResetLogin = () => {
     
     
     } catch (err) {
-      console.log('Test signup',err.response.data);
+/*       console.log('Test signup',err.response.data); */
       Toast.show({
         type: "error",
         position: "bottom",

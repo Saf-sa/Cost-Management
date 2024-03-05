@@ -200,7 +200,7 @@ const Signup = () => {
         `http://localhost:5555/api/users/register`,
         formData
       );
-      console.log(response.data.message);
+     /*  console.log(response.data.message); */
       Toast.show({
         type: "success",
         position: "bottom",
@@ -212,7 +212,7 @@ const Signup = () => {
         navigation.navigate("Login");
       }, 3000);
     } catch (err) {
-      console.log("Test signup", err.response.data.message);
+      /* console.log("Test signup", err.response.data.message); */
       Toast.show({
         type: "error",
         position: "bottom",

@@ -130,7 +130,7 @@ const Login = () => {
       );
 
       if (response) {
-        console.log(response.data);
+       /*  console.log(response.data); */
 
         // Store user data in AsyncStorage
      const user = {
@@ -143,11 +143,11 @@ const Login = () => {
       // replace with actual user email key
      /*  password: response.data.password, // replace with actual user password key */
 };
-     console.log("user stored in asyncSorage", user);
+     /* console.log("user stored in asyncSorage", user); */
         try {
           const jsonValue = JSON.stringify(user);
           await AsyncStorage.setItem("@storage_Key", jsonValue);
-          console.log("Data successfully saved" + " User Token", user.token)  ;
+/*           console.log("Data successfully saved" + " User Token", user.token)  ; */
           Toast.show({
             type: "success",
             position: "bottom",
@@ -160,7 +160,7 @@ const Login = () => {
             navigation.navigate("Dashboard"); // Navigation after 3 seconds
           }, 3000); // Délay 3 seconds to navigate to Dashboard
         } catch (e) {
-          console.error("Failed to save the data to the storage");
+          /* console.error("Failed to save the data to the storage"); */
           Toast.show({
             type: "error",
             position: "bottom",
@@ -170,10 +170,10 @@ const Login = () => {
           });
         }
       } else {
-        console.error("No response from server");
+       /*  console.error("No response from server"); */
       }
     } catch (err) {
-      console.log("testy passowrd", err.response ? err.response.data : err);
+/*       console.log("testy passowrd", err.response ? err.response.data : err); */
     
       Toast.show({
         type: "error",

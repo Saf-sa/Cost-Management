@@ -163,7 +163,7 @@ const isValidForm = () => {
         "http://localhost:5555/api/user/password",
         formData
          );
-         console.log(response.data);
+         /* console.log(response.data); */
          Toast.show({
            type: "success",
            position: "bottom",
@@ -176,7 +176,7 @@ const isValidForm = () => {
       }, 3000); 
   
     } catch (err) {
-      console.log(err.response.data.message);
+    /*   console.log(err.response.data.message); */
       /* for debug console.warn("Password reset failed"); */
       Toast.show({
         type: "error",
