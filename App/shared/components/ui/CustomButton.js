@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, StyleSheet  } from 'react-native'
+import { Text, TouchableOpacity, StyleSheet  } from 'react-native'
 import React from 'react'
 import { LinearGradient } from "expo-linear-gradient";
 
@@ -27,18 +27,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: "50%",
-    
-
   },
+  
   button: {
     justifyContent: "center", 
     width: "85%",
     height: "55%",
     borderRadius: 8,
     alignItems: "center",
-
-
-
   },
 
   text: {

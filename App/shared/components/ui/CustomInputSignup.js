@@ -1,6 +1,9 @@
 import {
   View,
-  Text, TextInput, StyleSheet, TouchableOpacity,} from "react-native";
+  Text, 
+  TextInput, 
+  StyleSheet, 
+  TouchableOpacity,} from "react-native";
 import React from "react";
 import Icon from "react-native-vector-icons/FontAwesome";
 
@@ -8,7 +11,6 @@ const CustomInputSingup = (props) => {
   const {
     label,
     placeholder,
-    error,
     secure,
     onChangeText,
     value,
@@ -62,6 +64,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#E0AA3E",
   },
+  
   errorMsg: {
     color: "#ff8080",
   }

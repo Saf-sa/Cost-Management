@@ -1,9 +1,7 @@
-import { View, Text, TouchableOpacity, StyleSheet  } from 'react-native'
+import { TouchableOpacity, StyleSheet  } from 'react-native'
 import React from 'react'
 import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from "@expo/vector-icons";
-
-import { icon } from '@fortawesome/fontawesome-svg-core';
 
 const CustomIcon = ({ onPress, iconName }) => {
   return (

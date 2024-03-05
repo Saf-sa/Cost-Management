@@ -1,18 +1,7 @@
 import { LineChart } from 'react-native-chart-kit';
 import { Dimensions } from 'react-native';
 import React, { useState, useEffect } from "react";
-import {
-  Text,
-  View,
-  StyleSheet,
-  Toast,
-  useWindowDimensions,
-  TouchableOpacity,
-  ScrollView,
-} from "react-native";
-import { AntDesign } from "@expo/vector-icons";
-import { LinearGradient } from "expo-linear-gradient";
-import { useNavigation } from "@react-navigation/native";
+import {ScrollView,} from "react-native";
 import Screen2 from "../components/Screen";
 import moment from "moment";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -25,20 +14,20 @@ export default ViewAll = ({}) => {
   useEffect(() => {
   const fetchData = async () => {
     const expenses = await AsyncStorage.getItem('expenses');
-    console.log('Raw expenses:', expenses); // Log raw expenses data
+    /* console.log('Raw expenses:', expenses); // Log raw expenses data */
     if (expenses) {
       const parsedExpenses = JSON.parse(expenses);
              if (chartData && chartData.length > 0) {
-                console.log(" Labels:", chartData.map(data => data.date)); // Vérifiez les valeurs de "labels"
-                console.log(" Datasets:", chartData.map(data => data.amount)); // Vérifiez les valeurs de "datasets"
+               /*  console.log(" Labels:", chartData.map(data => data.date)); // Vérifiez les valeurs de "labels" */
+                /* console.log(" Datasets:", chartData.map(data => data.amount)); // Vérifiez les valeurs de "datasets" */
           } else {
-              console.log("Aucune donnée disponible."); // Log pour indiquer l'absence de données
+              /* console.log("Aucune donnée disponible."); // Log pour indiquer l'absence de données */
                 }
       const ChartData = parsedExpenses.expenses.map(expense => {
-        console.log('Expense:', expense); // Log each expense
+        /* console.log('Expense:', expense); // Log each expense */
         const formattedDate = moment(expense.date).format("DD/MM");
         const amount = Number(expense.amount) || 0;
-        console.log('Formatted date:', formattedDate, 'Amount:', amount); // Log formatted date and amount
+       /*  console.log('Formatted date:', formattedDate, 'Amount:', amount); // Log formatted date and amount */
         return {
           date: formattedDate,
           amount: amount,
@@ -52,10 +41,10 @@ export default ViewAll = ({}) => {
   fetchData();
 }, []);
 
-  console.log(chartData);
+  /* console.log(chartData); */
 
- console.log("Expenses Labels:", chartData.map(data => data.date)); // Vérifiez les valeurs de "labels"
-console.log("Expenses Datasets:", chartData.map(data => data.amount)); // Vérifiez les valeurs de "datasets"
+ /* console.log("Expenses Labels:", chartData.map(data => data.date)); // Vérifiez les valeurs de "labels" */
+/* console.log("Expenses Datasets:", chartData.map(data => data.amount)); // Vérifiez les valeurs de "datasets" */
 
 
   // ...

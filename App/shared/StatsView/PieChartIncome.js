@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { PieChart } from "react-native-chart-kit";
 import { Dimensions, View,StyleSheet } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import moment from "moment";
 import Screen2 from "../components/Screen";
 
 const ShowPieChartIncomes = ({}) => {
