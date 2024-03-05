@@ -27,13 +27,26 @@ const ShowPieChartIncomes = ({}) => {
           acc[income.categories] = (acc[income.categories] || 0) + Number(income.amount);
           return acc;
         }, {});
+
+        const colorsByCategory = {
+           Salary: "#FF5733", // Orange
+           Bonus: "#FFC300",   // Jaune
+           Loan: "#FF5733",  // Orange
+           Sales: "#FFC300",  // Jaune
+           Gift: "#FF5733",  // Orange
+           Rent: "#FFC300",  // Jaune
+           Allowance: "#FF5733",  // Orange
+           Refund: "#FFC300",  // Jaune
+           Stocks: "#FF5733",  // Orange
+           Other: "#FFC300"  // Jaune
+    };
  
    const chartData = Object.keys(incomesByCategories).map((categories, index) => ({
           name: categories,
           amount: incomesByCategories[categories],
        legendFontColor: "#7F7F7F",
           legendFontSize: 15,
-          color: `#${Math.floor(Math.random() * 16777215).toString(16)}`, // Générer une couleur aléatoire
+          color: colorsByCategory[categories] ||  "#7F7F7F" 
     }));
 
 /*  console.log('income ',"Chart Data:", chartData);  */
