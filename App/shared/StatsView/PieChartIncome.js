@@ -27,6 +27,7 @@ const ShowPieChartIncomes = ({}) => {
           acc[income.categories] = (acc[income.categories] || 0) + Number(income.amount);
           return acc;
         }, {});
+ 
    const chartData = Object.keys(incomesByCategories).map((categories, index) => ({
           name: categories,
           amount: incomesByCategories[categories],

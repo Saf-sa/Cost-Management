@@ -27,12 +27,25 @@ const ViewAllExpenseCat = ({}) => {
           acc[expense.categories] = (acc[expense.categories] || 0) + Number(expense.amount);
           return acc;
         }, {});
+           const colorsByCategory = {
+           Clothe: "#FF5733", // Orange
+           Food: "#FFC300",   // Jaune
+           Transport: "#FF5733",  // Orange
+           Studie: "#FFC300",  // Jaune
+           Holiday: "#FF5733",  // Orange
+           Tax: "#FFC300",  // Jaune
+           Hobbie: "#FF5733",  // Orange
+           Epargne: "#FFC300",  // Jaune
+           Money: "#FF5733",  // Orange
+           Other: "#FFC300"  // Jaune
+    };
+    
    const chartData = Object.keys(expensesByCategories).map((categories, index) => ({
           name: categories,
           amount: expensesByCategories[categories],
        legendFontColor: "#7F7F7F",
           legendFontSize: 15,
-          color: `#${Math.floor(Math.random() * 16777215).toString(16)}`, // Générer une couleur aléatoire
+          color: colorsByCategory[categories] ||  "#7F7F7F" 
     }));
 /* 
   console.log('Expense Chartdata',"Chart Data:", chartData);  */
