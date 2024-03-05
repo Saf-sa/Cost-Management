@@ -49,13 +49,13 @@ const ContactForm = () => {
   };
 
   return (
-
-     <Screen2>
+ 
+   <View style={styles.page}>
+     <Screen2 >
         <Text style={styles.title}>Send us a Email</Text> 
         <UserNav 
           image={require("../../../assets/iconPerson.png")}
    
-         
         />
           <LinearGradient
           style={styles.parentContainer}
@@ -64,7 +64,7 @@ const ContactForm = () => {
           end={{ x: 1, y: 3 }}
         >
           <View style={styles.balanceContainer}>
-            <AppText style= {{ flexDirection: 'row', paddingTop:10 }}>
+            <AppText style= {{ flexDirection: 'row', paddingTop:20 }}>
                      <View>
                 <Text style={{ fontSize: 36, color:'blue', lineHeight: 35 }}>€</Text>
                 </View>
@@ -73,19 +73,13 @@ const ContactForm = () => {
                 </View>
                  <View>
                 <Text style={{ fontSize: 22, color:'midnightblue', lineHeight: 21 }}>penses Manager</Text>
-                
-                </View>
-                
-                <View>
               
                 </View>
 
             </AppText>
-            <AppText style={{ color: "darkslateblue", fontSize: 15, paddingBottom:40, paddingTop:40 }}>
+            <AppText style={{ color: "darkslateblue", fontSize: 15, paddingBottom:10, paddingTop:40 }}>
                   4907 2024 1707 2778 1962
                 </AppText>
-             
-          
             
           </View>
         </LinearGradient>
@@ -114,38 +108,32 @@ const ContactForm = () => {
       <Button title="Submit" onPress={handleSendEmail} />
     </View>
       </Screen2>
+      </View>
   );
 };
 
 const styles = StyleSheet.create({
+   page: {
+    flex: 1,
+    backgroundColor: "#F8F4D7",
+  },
 
   parentContainer: {
     flexDirection: "column",
     borderRadius: 10,
     marginHorizontal: 50,
-    marginVertical: -0,
-   backgroundColor: '#fff',
-    shadowColor: "grey",
-    shadowOpacity: 0.05,
-    shadowRadius: 2,
-    shadowOffset: {
-      width: 0.8,
-      height: 2,
-    },
-    elevation: 8,
+    marginVertical: 0,
   },
+
   balanceContainer: {
-  
     justifyContent: "center",
     alignItems: "center",
-    paddingVertical: 7,
-    width: "100%",
-    
+    paddingVertical: 20,
   },
 
   container: {
     marginTop:60,
-    padding: 20,
+    padding: 10,
     
   },
   input: {
