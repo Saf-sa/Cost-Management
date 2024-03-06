@@ -28,16 +28,16 @@ const ShowPieChartIncomes = ({}) => {
         }, {});
 
         const colorsByCategory = {
-           Salary: "#FF5733", // Orange
-           Bonus: "#FFC300",   // Jaune
-           Loan: "#FF5733",  // Orange
-           Sales: "#FFC300",  // Jaune
-           Gift: "#FF5733",  // Orange
-           Rent: "#FFC300",  // Jaune
-           Allowance: "#FF5733",  // Orange
-           Refund: "#FFC300",  // Jaune
-           Stocks: "#FF5733",  // Orange
-           Other: "#FFC300"  // Jaune
+           Salary: "#62F607", // Orange
+           Bonus: "#75F39B",   // Jaune
+           Loan: "#60FBCE",  // Orange
+           Sales: "#08EEE0",  // Jaune
+           Gift: "#047871",  // Orange
+           Rent: "#317A03",  // Jaune
+           Allowance: "#044C78",  // Orange
+           Refund: "#06A1FF",  // Jaune
+           Stocks: "#1106FF",  // Orange
+           Other: "#9F9BF0"  // Jaune
     };
  
    const chartData = Object.keys(incomesByCategories).map((categories, index) => ({

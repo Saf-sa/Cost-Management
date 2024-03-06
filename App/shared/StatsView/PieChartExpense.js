@@ -34,10 +34,10 @@ const ViewAllExpenseCat = ({}) => {
            Studie: "#F59605",  // Jaune
            Holiday: "#9B984F",  // Orange
            Tax: "#F5EE05",  // Jaune
-           Hobbie: "#FF5733",  // Orange
+           Hobbie: "#F3A9A9",  // Orange
            Epargne: "#FFC300",  // Jaune
-           Money: "#9B954F",  // Orange
-           Other: "#FFC300"  // Jaune
+           Money: "#6F0505",  // Orange
+           Other: "#6F4205"  // Jaune
     };
     
    const chartData = Object.keys(expensesByCategories).map((categories, index) => ({
