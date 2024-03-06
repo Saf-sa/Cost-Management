@@ -86,8 +86,6 @@ const Settings = () => {
 
             </AppText>
             
-            
-            <AppText></AppText>
           </View>
           
           <View style={styles.balanceContainer}>

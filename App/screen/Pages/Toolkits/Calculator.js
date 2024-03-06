@@ -1,7 +1,9 @@
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, SafeAreaView} from 'react-native'
 import { useState } from 'react';
 import { StatusBar } from 'react-native'; 
-import AuthHeader from "..//../../shared/components/AuthHeader";
+import { LinearGradient } from "expo-linear-gradient";
+import AppText from "../../../shared/components/uiApp/AppText";
+
 
 const Calculator = () => {
   const [input, setInput] = useState("");
@@ -60,7 +62,30 @@ else {
    
    
     <SafeAreaView style={styles.container}>
-      <AuthHeader subtext="Calculator" />
+      <LinearGradient
+          style={styles.parentContainer}
+          colors={["#f9f295", "#E0AA3E", "#F7EF8A", "#B88A44"]}
+          start={{ x: 0.1, y: 0.1 }}
+          end={{ x: 1, y: 3 }}
+        >
+          <View style={styles.balanceContainer}>
+            <AppText style= {{ flexDirection: 'row' }}>
+                     <View>
+                <Text style={{ fontSize: 36, color:'blue', lineHeight: 35 }}>€</Text>
+                </View>
+                 <View>
+                <Text style={{ fontSize: 45, color:'dodgerblue', lineHeight:45}}>X</Text>
+                </View>
+                 <View>
+                <Text style={{ fontSize: 22, color:'midnightblue', lineHeight: 21 }}>penses Manager</Text>
+                
+                </View>
+                
+            </AppText>
+            
+          </View>
+
+        </LinearGradient>
       <StatusBar style="auto" />
        
 
@@ -106,10 +131,20 @@ else {
 export default Calculator;
 
 const styles = StyleSheet.create({
-  header :{
-    flex: 1,
-    justifyContent: 'center',
+    balanceContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+    height: 250,
+   marginTop : -60,
 
+  },
+
+    parentContainer: {
+    flexDirection: "column",
+    borderRadius: 10,
+    marginHorizontal: 50,
+    marginVertical: 40,
+    marginBottom: -50,
   },
 
   container : {
@@ -119,40 +154,40 @@ const styles = StyleSheet.create({
 
 resultContainer : {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'flex-end',
+   
+    alignItems: 'center',
    
   },
 inputContainer : {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 20,
+    marginBottom: 170,
+    marginTop: -100,
     
   },
 
 buttonContainer : {
-    flex: 3,
+    flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
   },
 resultText : {
     color: 'green',
-    fontSize: 50,
-    justifyContent: 'center',
-    marginRight: 30,
+    fontSize: 40,
+
     
   },
 
 InputText:{
     fontSize: 30,
-    marginBottom: 20,
+    marginBottom: 10,
  
 },
 
 button: {
   width: '22%',
-  height: '18%',
+  height: '28%',
   alignItems: 'center',
   justifyContent: 'center',
   margin: 6,
