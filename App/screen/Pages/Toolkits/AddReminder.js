@@ -16,16 +16,11 @@ export default function AddReminder() {
 
 
     return (
+        
          <View style={styles.container}>
-                   <DatePicker
-                value={date}
-                width={"80%"}
-                fontSize={19}
-                height={150}
-                onChange={(date) => setDate(date)}
-                format={"yyyy-mm-dd"}
-            />
-     <Text style={styles.title}> Contract Start Date</Text>
+            <Text style={styles.titleStart}> Contract Start Date</Text>
+
+
       <View style={styles.date}>
                 
                 {
@@ -42,22 +37,25 @@ export default function AddReminder() {
                                 <Text style={styles.digit}>{el.value}</Text>
 
                                  </View>
+                                 
    
                         )
                     })
                 }
                 
             </View>
-          <DatePicker
-                value={expireDate}
+            
+                   <DatePicker
+                value={date}
                 width={"80%"}
                 fontSize={19}
-                height={150}
-                onChange={(expireDate) => setExpireDate(expireDate)}
+                height={160}
+                onChange={(date) => setDate(date)}
                 format={"yyyy-mm-dd"}
             />
-                 <Text style={styles.title}> Contract expire Date</Text>
-               <View style={styles.expireDate}>
+     <Text style={styles.titleExpire}> Contract expire Date</Text>
+
+      <View style={styles.expireDate}>
                 
                 {
                     [
@@ -78,11 +76,23 @@ export default function AddReminder() {
                     })
                 }
             </View>
-
+         
+         
+          <DatePicker
+                value={expireDate}
+                width={"80%"}
+                fontSize={19}
+                height={150}
+                onChange={(expireDate) => setExpireDate(expireDate)}
+                format={"yyyy-mm-dd"}
+            />
+                 
+              
+<View style={styles.contract}>
       <CustomInputSingup
         onChangeText={setContractName}
         value={contractName}
-        placeholder="           Enter the Name of your Contract"
+        placeholder="Enter the Name of your Contract"
 
         style={styles.input}
       />
@@ -91,23 +101,23 @@ export default function AddReminder() {
              <CustomInputSingup
         onChangeText={setSelectedLabel}
         value={selectedLabel}
-        placeholder="           Enter a description of your Contract"
+        placeholder="Enter a description of your Contract"
 
         style={styles.input}
       />
              <CustomInputSingup
         onChangeText={setSelectedEmail}
         value={selectedEmail}
-        placeholder="           Enter email of your Contract"
+        placeholder="Enter email of your Contract"
 
         style={styles.input}
       />
-
+</View>
        
    <View style={styles.content}>
         <CustomButton
           style={styles.button}
-          buttonText={"  Submit a new reminder "
+          buttonText={"Add a Reminder "
           
           }
           onPress={() => navigation.navigate("Reminder")}
@@ -123,53 +133,65 @@ export default function AddReminder() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        top: 0,
         alignItems: "center",
-        /* justifyContent: "space-around", */
+       backgroundColor: "#F8F4D7",
         
     },
     date: {
-    flex: 10,
-        marginTop: 20,
+        flex: 10,
+        marginTop: 0,
         flexDirection: "row",
         justifyContent: "space-around",
-        width: "60%",
+        width: "80%",
+        marginBottom: -10,
     },
+  
     expireDate: {
         flex: 8,
-        marginTop: 20,
+         marginTop: 0,
         flexDirection: "row",
         justifyContent: "space-around",
         width: "60%",
     },
+
     datePart: {
-      
         width: 100,
         alignItems: "center",
     },
     content: {
         flex: 20,
-        padding: 10,
-        marginTop: 20,
+        marginTop: 70,
         alignItems: "center",
         justifyContent: "center",
-    
     },
 
-      input: {
-    height: 50,
-    margin: 12,
-    width: 300,
-    borderWidth: 1,
-    borderRadius: 10, 
-  },
-    title: {
-     
-        fontSize: 15,
+
+titleStart: {
+     marginTop: 10,
+        fontSize: 25,
         fontWeight: "100",
-        marginBottom: 5,
+        marginBottom: 10,
+    },
+    titleExpire: {
+        marginTop: 10,
+        fontSize: 25,
+        fontWeight: "100",
+        marginBottom: 20,
+        
     },
     digit: {
-        fontSize: 20,
-    }
+        fontSize: 24,
+    },
+    contract: {
+        flex: 1,
+        width: "90%",
+        alignItems: "center",
+        justifyContent: "center",
+        marginTop: 20,
+        marginBottom: 30,
+       
+    },
+
   
 });

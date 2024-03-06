@@ -114,8 +114,6 @@ else {
             <Text style={[styles.ButtonText, { color: getButtonTextColor(item) }]}>{item}</Text>
           
           </TouchableOpacity>
-
-
         
         ) 
         )}
@@ -123,7 +121,6 @@ else {
         </View>
          </View>
            
-    
     </SafeAreaView>
   );
 };
