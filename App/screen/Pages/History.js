@@ -5,7 +5,7 @@ import {
   ScrollView,
 } from "react-native";
 import React, { useState, useEffect } from "react";
-import { useNavigation } from "@react-navigation/native";
+import AppText from "../../shared/components/uiApp/AppText";
 import UserNav from "../nav/UserNav";
 import Screen2 from "../../shared/components/Screen";
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -121,7 +121,15 @@ export default  ViewAll = ({route}) => {
     
    
        
-       <Text style={styles.textAmount}>Balance = {totalExpenseIncome} € </Text>
+      <AppText
+  style={{
+    color: calculateTotalIncomes - calculateTotalExpenses >= 0 ?  "green" : "red",
+    fontSize: 25, top: -60,
+    
+  }}
+>
+ Balance = { calculateTotalIncomes - calculateTotalExpenses >= 0 ? `+${calculateTotalIncomes - calculateTotalExpenses}` : `${calculateTotalIncomes - calculateTotalExpenses}` } € 
+</AppText>
 
 
 {storeAll.map((item, index) => (
