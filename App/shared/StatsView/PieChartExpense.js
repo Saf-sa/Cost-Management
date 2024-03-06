@@ -29,14 +29,14 @@ const ViewAllExpenseCat = ({}) => {
         }, {});
            const colorsByCategory = {
            Clothe: "#FF5733", // Orange
-           Food: "#FFC300",   // Jaune
-           Transport: "#FF5733",  // Orange
-           Studie: "#FFC300",  // Jaune
-           Holiday: "#FF5733",  // Orange
-           Tax: "#FFC300",  // Jaune
+           Food: "#FA8144",   // Jaune
+           Transport: "#954405",  // Orange
+           Studie: "#F59605",  // Jaune
+           Holiday: "#9B984F",  // Orange
+           Tax: "#F5EE05",  // Jaune
            Hobbie: "#FF5733",  // Orange
            Epargne: "#FFC300",  // Jaune
-           Money: "#FF5733",  // Orange
+           Money: "#9B954F",  // Orange
            Other: "#FFC300"  // Jaune
     };
     
