@@ -80,9 +80,13 @@ else {
                 <Text style={{ fontSize: 22, color:'midnightblue', lineHeight: 21 }}>penses Manager</Text>
                 
                 </View>
-                
+
+               
             </AppText>
-            
+              <View>
+                <Text style={{ fontSize: 18, color:'brown', lineHeight: 50, }}>Calculator</Text>
+                
+                </View>
           </View>
 
         </LinearGradient>
