@@ -138,6 +138,7 @@ const styles = StyleSheet.create({
        backgroundColor: "#F8F4D7",
         
     },
+
     date: {
         flex: 10,
         marginTop: 0,
