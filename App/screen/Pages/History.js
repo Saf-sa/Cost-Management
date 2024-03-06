@@ -110,7 +110,7 @@ export default  ViewAll = ({route}) => {
       onScrollBeginDrag={(evt) => (index++)}// to get the index of the scrollview
       >
           <View style={styles.page}>
- <Screen2>
+ <Screen2 style={styles.nav}>
            {/* Button Start */}
       
         <UserNav 
@@ -124,7 +124,7 @@ export default  ViewAll = ({route}) => {
       <AppText
   style={{
     color: calculateTotalIncomes - calculateTotalExpenses >= 0 ?  "green" : "red",
-    fontSize: 25, top: -60,
+    fontSize: 25, top: -70,
     
   }}
 >
@@ -153,8 +153,15 @@ export default  ViewAll = ({route}) => {
 const styles = StyleSheet.create({
    page: {
     flex: 1,
-backgroundColor: "#F8F4D7",
+    backgroundColor: "#F8F4D7",
   },
+
+  nav: {
+    flex: 1,
+    backgroundColor: "#F8F4D7",
+   top: 10,
+  },
+
   expenseContainer: {
     marginTop: -30,
     width: "96%",
@@ -184,12 +191,6 @@ backgroundColor: "#F8F4D7",
       fontSize: 15,
       textAlign: "center",
     },
-    textAmount:{
-      color: "#E0AA3E",
-      fontWeight: "bold",
-      fontSize: 20,
-      textAlign: "center",
-      top: -60,
-    },
+
 });
 
