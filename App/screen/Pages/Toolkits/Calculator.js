@@ -94,8 +94,7 @@ else {
        
 
     <View style={styles.resultContainer}>
-      
-      <Text style={styles.resultText  }>{result}</Text>
+      <Text style={styles.resultText }>{result}</Text>
     </View>
       <View style={styles.inputContainer}>
         <TextInput style={styles.ButtonText} 
