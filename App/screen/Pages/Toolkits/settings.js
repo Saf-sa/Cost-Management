@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     borderRadius: 10,
     marginHorizontal: 50,
-    marginVertical: 30,
+    marginVertical: 10,
   },
   
   balanceContainer: {
