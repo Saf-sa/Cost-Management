@@ -8,7 +8,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default ViewAll = ({route}) => {
   // ...
-   const [isLoading, setIsLoading] = useState(true);
+   const [isLoading, setIsLoading] = useState(false);
   const [chartData, setChartData] = useState([true]);
 
   useEffect(() => {
@@ -33,8 +33,9 @@ export default ViewAll = ({route}) => {
         };
       });
         setChartData(chartData);
+        setIsLoading(false);
       }
-      setIsLoading(false);
+      
     };
 
     fetchData();

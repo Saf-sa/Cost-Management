@@ -9,13 +9,13 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 export default ViewAll = ({}) => {
-   const [isLoading, setIsLoading] = useState(true);
+   const [isLoading, setIsLoading] = useState(false);
   const [chartData, setChartData] = useState([true]);
  
 
   useEffect(() => {
   const fetchData = async () => {
-    setIsLoading(true);
+    setIsLoading(false);
     const expenses = await AsyncStorage.getItem('expenses');
     /* console.log('Raw expenses:', expenses); // Log raw expenses data */
     if (expenses) {
@@ -39,9 +39,10 @@ export default ViewAll = ({}) => {
       });
 
       setChartData(ChartData); // Update chartData state
+       setIsLoading(false);
     /*   console.log('ChartData:', ChartData); // Log chartData state */
     }
-     setIsLoading(true);
+    
   };
 
   fetchData();

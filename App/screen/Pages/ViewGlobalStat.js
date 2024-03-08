@@ -7,16 +7,31 @@ import {
   TouchableOpacity,
    ScrollView,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import Icon from "../../shared/components/IncomExpenseComponent/Icon";
 
 
 import ShowLineChart from "../../shared/StatsView/LineChartExpense";
 import IncomeLineChart from "../../shared/StatsView/LineChartIncome";
-   
+
   const ViewGlobalStat= () => {
  const navigation = useNavigation();
+   const [isLoading, setIsLoading] = useState(true);
+   useEffect(() => {
+    const loadData = async () => {
+      // Simulez le chargement des données avec un délai
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      setIsLoading(false); // Définissez l'état de chargement sur false après le chargement des données
+    };
+
+    loadData();
+  }, []);
+/* 
+  if (isLoading) {
+    return <Text>Loading...</Text>; // Vous pouvez rendre un composant de chargement ou tout autre chose pendant le chargement des données
+  } */
+
   return (
     <View style={styles.container} >
       <Text style={styles.titleExpense}>Expenses</Text>
