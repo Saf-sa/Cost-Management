@@ -3,16 +3,18 @@ import { Dimensions } from 'react-native';
 import React, { useState, useEffect } from "react";
 import {ScrollView,} from "react-native";
 import Screen2 from "../components/Screen";
-import moment from "moment";
+import moment, { months } from "moment";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 export default ViewAll = ({}) => {
-  const [chartData, setChartData] = useState([]);
-
+   const [isLoading, setIsLoading] = useState(true);
+  const [chartData, setChartData] = useState([false]);
+ 
 
   useEffect(() => {
   const fetchData = async () => {
+    setIsLoading(true);
     const expenses = await AsyncStorage.getItem('expenses');
     /* console.log('Raw expenses:', expenses); // Log raw expenses data */
     if (expenses) {
@@ -20,9 +22,10 @@ export default ViewAll = ({}) => {
              if (chartData && chartData.length > 0) {
                /*  console.log(" Labels:", chartData.map(data => data.date)); // Vérifiez les valeurs de "labels" */
                 /* console.log(" Datasets:", chartData.map(data => data.amount)); // Vérifiez les valeurs de "datasets" */
-          } else {
-              /* console.log("Aucune donnée disponible."); // Log pour indiquer l'absence de données */
-                }
+          } /* else {
+             console.log("Aucune donnée disponible."); // Log pour indiquer l'absence de données
+          
+                } */
       const ChartData = parsedExpenses.expenses.map(expense => {
         /* console.log('Expense:', expense); // Log each expense */
         const formattedDate = moment(expense.date).format("DD/MM");
@@ -35,7 +38,9 @@ export default ViewAll = ({}) => {
       });
 
       setChartData(ChartData); // Update chartData state
+    /*   console.log('ChartData:', ChartData); // Log chartData state */
     }
+     setIsLoading(false);
   };
 
   fetchData();
@@ -54,33 +59,39 @@ export default ViewAll = ({}) => {
     
     <Screen2>
       <LineChart 
+      
         data={{
+          
           labels: chartData.map(data => data.date),
           datasets: [
+            
             {
               data: chartData.map(data => data.amount),
             },
           ],
         }}
+        
         width={Dimensions.get("window").width*0.9} // from react-native
         height={210}
+      
 
         yAxisSuffix="€"
         chartConfig={{
+          
           backgroundColor: "#e26a00",
           backgroundGradientFrom: "#fb8c00",
           backgroundGradientTo: "#ffa726",
           decimalPlaces: 0, // optional, defaults to 2dp
           color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
           style: {
-
+            
             borderRadius: 16
 
           }
         }}
         bezier
         style={{
-
+        
           marginVertical: 60,
           marginHorizontal:10,
           borderRadius: 16,

@@ -8,8 +8,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default ViewAll = ({route}) => {
   // ...
-
-  const [chartData, setChartData] = useState([]);
+   const [isLoading, setIsLoading] = useState(true);
+  const [chartData, setChartData] = useState([true]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,12 +24,17 @@ export default ViewAll = ({route}) => {
                 }
  */
 
-        const chartData = parsedIncomes.incomes.map(income => ({
-          date: moment (income.date).format("DD/MM"),
-          amount: Number(income.amount) || 0, // Ensure amount is a number, default to 0 if it's not
-        }));
+        const chartData = parsedIncomes.incomes.map(income => {
+        const formattedDate = moment(income.date).format("DD/MM");
+        const amount = Number(income.amount) || 0; // Ensure amount is a number, default to 0 if it's not
+         return {
+          date: formattedDate,
+          amount: amount,
+        };
+      });
         setChartData(chartData);
       }
+      setIsLoading(false);
     };
 
     fetchData();

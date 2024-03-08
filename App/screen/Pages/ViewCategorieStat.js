@@ -5,7 +5,6 @@ import {
 } from "react-native";
 
 import { useNavigation } from "@react-navigation/native";
-import Icon from "../../shared/components/IncomExpenseComponent/Icon";
 
 
 import ShowPieChartExpense from "../../shared/StatsView/PieChartExpense";
