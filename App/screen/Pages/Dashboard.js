@@ -117,7 +117,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
               PREMIUM ACCOUNT 
             </AppText>
 
-            <AppText style={{ color: "black", fontSize: 12 }}>Keya</AppText>
+            <AppText style={{ color: "black", fontSize: 12 }}>Balance</AppText>
 
 
 <AppText

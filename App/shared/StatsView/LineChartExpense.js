@@ -7,9 +7,10 @@ import moment, { months } from "moment";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
+
 export default ViewAll = ({}) => {
    const [isLoading, setIsLoading] = useState(true);
-  const [chartData, setChartData] = useState([false]);
+  const [chartData, setChartData] = useState([true]);
  
 
   useEffect(() => {
@@ -40,7 +41,7 @@ export default ViewAll = ({}) => {
       setChartData(ChartData); // Update chartData state
     /*   console.log('ChartData:', ChartData); // Log chartData state */
     }
-     setIsLoading(false);
+     setIsLoading(true);
   };
 
   fetchData();
