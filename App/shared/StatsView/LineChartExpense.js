@@ -8,14 +8,11 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 
-export default ViewAll = ({}) => {
+export default ViewExpenses = ({}) => {
 
- console.log( 'lViewAll',ViewAll);
-
-  console.log( 'loading Expenses for const',chartData);
+  
    const [isLoading, setIsLoading] = useState(false);
   const [chartData, setChartData] = useState([true]);
-  
  console.log( 'loading Expenses after const',chartData);
 
   useEffect(() => {

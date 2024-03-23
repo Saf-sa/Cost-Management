@@ -7,12 +7,12 @@ import moment from "moment";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
-export default ViewAll = ({}) => {
- console.log( 'loading Incomes for const',chartData);
+export default ViewIncomes = ({}) => {
+
  
    const [isLoading, setIsLoading] = useState(false);
   const [chartData, setChartData] = useState([true]);
-
+ 
    console.log( 'loading Incomes after const',chartData);
   useEffect(() => {
     const fetchData = async () => {
