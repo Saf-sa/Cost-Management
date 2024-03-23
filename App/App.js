@@ -103,7 +103,7 @@ if (!expiresIn) {
             );
             
             if (response.status === 200) {
-              /* console.log('User already isLoged', response.data); */
+               console.log('User already isLoged', response.data); 
               navigation.replace('Dashboard');
             }
           }

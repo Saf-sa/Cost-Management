@@ -50,65 +50,51 @@ export default function Agenda() {
     ? selectedStartDate.format('YYYY-MM-DD').toString()
     : '';
 
-     const endDate = selectedEndtDate
+  const endDate = selectedEndtDate
     ? selectedStartDate.format('YYYY-MM-DD').toString()
     : '';
 
-    const email = selectedEmail;
-
-
-    const name = contractNameText;
-
+  const email = selectedEmail;
+  const name = contractNameText;
 
   return (
-    
     <View style={styles.container}>
-    
-        <CalendarPicker onDateChange={setSelectedStartDate} />
+      <CalendarPicker onDateChange={setSelectedStartDate} />
       <StatusBar style="auto" />
-         <CustomInputSingup
+          <CustomInputSingup
+        value={startDate} // use startDate here
+        placeholder=" date of your appointmernt"
+        style={styles.input}
+      />
+      <CustomInputSingup
         onChangeText={setcontractNameText}
         value={contractNameText}
         placeholder="  name of your appointmernt"
         style={styles.input}
       />
-          <CustomInputSingup
-        onChangeText={setSelectedStartDate}
-        value={selectedStartDate}
-        placeholder=" date of your appointmernt"
-        style={styles.input}
-      />
-       <CustomInputSingup
+  
+      <CustomInputSingup
         onChangeText={setSelectedEndDate}
         value={selectedEndDate}
         placeholder="  place of your appointmernt"
-
         style={styles.input}
       />
-
-          <CustomInputSingup
+      <CustomInputSingup
         onChangeText={setSelectedEmail}
         value={selectedEmail}
         placeholder=" enter appointment duration"
-
         style={styles.input}
       />
-  
-              <CustomButton
-          onPress={createCalendar
-          }
-         
-          colors={["#f9f295", "#E0AA3E", "#F7EF8A", "#B88A44"]}
-          start={{ x: 0.1, y: 0.1 }}
-          end={{ x: 1, y: 3 }}
-          buttonText={"add Event"}
-        />
-
+      <CustomButton
+        onPress={createCalendar}
+        colors={["#f9f295", "#E0AA3E", "#F7EF8A", "#B88A44"]}
+        start={{ x: 0.1, y: 0.1 }}
+        end={{ x: 1, y: 3 }}
+        buttonText={"add Event"}
+      />
     </View>
-  
   );
 }
-
 
 const styles = StyleSheet.create({
 
