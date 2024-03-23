@@ -6,13 +6,17 @@ import Screen2 from "../components/Screen";
 import moment from "moment";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export default ViewAll = ({route}) => {
-  // ...
+
+export default ViewAll = ({}) => {
+ console.log( 'loading Incomes for const',chartData);
+ 
    const [isLoading, setIsLoading] = useState(false);
   const [chartData, setChartData] = useState([true]);
 
+   console.log( 'loading Incomes after const',chartData);
   useEffect(() => {
     const fetchData = async () => {
+      setIsLoading(false);
       const incomes = await AsyncStorage.getItem('incomes');
       if (incomes) {
         const parsedIncomes = JSON.parse(incomes);
@@ -26,12 +30,13 @@ export default ViewAll = ({route}) => {
 
         const chartData = parsedIncomes.incomes.map(income => {
         const formattedDate = moment(income.date).format("DD/MM");
-        const amount = Number(income.amount) || 0; // Ensure amount is a number, default to 0 if it's not
+         const amount = income.amount !== undefined && !isNaN(income.amount) ? Number(income.amount) : 0; // Ensure amount is a number, default to 0 if it's not
          return {
-          date: formattedDate,
           amount: amount,
+          date: formattedDate,
+          
         };
-      });
+      })
         setChartData(chartData);
         setIsLoading(false);
       }

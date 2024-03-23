@@ -48,6 +48,7 @@ const userLogin = async (req, res) => {
     firstName: user.firstName,
     lastName: user.lastName,
     token: token,
+    expiresIn: user.expiresIn,
     
 
   });
@@ -117,6 +118,7 @@ const registerUser = async (req, res, next) => {
       lastName: result.lastName,
       email: result.email,
       token: generateToken(result._id),
+    
     });
 
   } catch (error) {

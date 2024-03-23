@@ -3,15 +3,20 @@ import { Dimensions } from 'react-native';
 import React, { useState, useEffect } from "react";
 import {ScrollView,} from "react-native";
 import Screen2 from "../components/Screen";
-import moment, { months } from "moment";
+import moment from "moment";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 
 export default ViewAll = ({}) => {
+
+ console.log( 'lViewAll',ViewAll);
+
+  console.log( 'loading Expenses for const',chartData);
    const [isLoading, setIsLoading] = useState(false);
   const [chartData, setChartData] = useState([true]);
- 
+  
+ console.log( 'loading Expenses after const',chartData);
 
   useEffect(() => {
   const fetchData = async () => {
@@ -30,13 +35,14 @@ export default ViewAll = ({}) => {
       const ChartData = parsedExpenses.expenses.map(expense => {
         /* console.log('Expense:', expense); // Log each expense */
         const formattedDate = moment(expense.date).format("DD/MM");
-        const amount = Number(expense.amount) || 0;
+        const amount = expense.amount !== undefined && !isNaN(expense.amount) ? Number(expense.amount) : 0;
        /*  console.log('Formatted date:', formattedDate, 'Amount:', amount); // Log formatted date and amount */
         return {
+           amount: amount,
           date: formattedDate,
-          amount: amount,
+         
         };
-      });
+      })
 
       setChartData(ChartData); // Update chartData state
        setIsLoading(false);

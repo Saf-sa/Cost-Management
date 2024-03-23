@@ -34,6 +34,12 @@ const userSchema = new mongoose.Schema(
       default: Date.now,
    
     },
+
+    expiresIn: {
+      type: Date,
+      default: Date.now,
+      expires: 36000,
+    },
    
   },
   // add timestamps to the schema to know when document was created or modified
