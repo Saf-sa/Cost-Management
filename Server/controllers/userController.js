@@ -159,7 +159,7 @@ const resetLogin = async (req, res) => {
 
   const resetCode = Math.random().toString(36).substring(2, 8).toUpperCase();
   user.resetCode = resetCode;
-  user.resetCodeExpiry = Date.now() + 3680000;
+  user.resetCodeExpiry = Date.now() + 360;
 
 /*   console.log("Saving user"); // Log to save user
   console.log(resetCode); // Log to reset code */

@@ -26,7 +26,7 @@ const userSchema = new mongoose.Schema(
     resetCode: {
       type: String,
       default: null,
-      expires: 36000,
+      expires: 360,
     },
   
     resetCodeExpiry: {
@@ -36,9 +36,9 @@ const userSchema = new mongoose.Schema(
     },
 
     expiresIn: {
-      type: Date,
-      default: Date.now,
-      expires: 36000,
+      type: String,
+      default: null,
+      expires: 360,
     },
    
   },
