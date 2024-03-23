@@ -20,27 +20,27 @@ import Expenses from "../models/expenseModel.js";
 // define functions to handle requests for the user routes that we defined in Server/routes/userRoutes.js
 
 const userLogin = async (req, res) => {
-  console.log(" login called");
+ /*  console.log(" login called"); */
   const { email, password } = req.body;
 
-  console.log("Checking if user exists");
+ /*  console.log("Checking if user exists"); */
   const user = await User.findOne({ email });
 
   if (!user) {
     return res.status(401).json({ message: "Email not registered" });
-    console.log(!user);
+    /* console.log(!user); */
   }
 
   // Check if password matches
   const isMatch = await bcrypt.compare(password, user.password);
-  console.log(user.password);
+  /* console.log(user.password); */
   if (!isMatch) {
     return res.status(401).json({ message: "Password not match " });
   }
 
   // Generate token
   const token = generateToken(user._id);
-  console.log(token);
+  /* console.log(token); */
   // Send response
   res.json({
     _id: user._id, // verify if i use id in frontend side ?
@@ -52,7 +52,7 @@ const userLogin = async (req, res) => {
     
 
   });
-  console.log(user);
+  /* console.log(user); */
 };
 //End of userLogin
 
@@ -60,7 +60,7 @@ const userLogin = async (req, res) => {
 // define functions to handle requests for the user routes that we defined in Server/routes/userRoutes.js
 const registerUser = async (req, res, next) => {
   try {
-    console.log(" first test", req.body); // get the name, email and password from the request body
+   /*  console.log(" first test", req.body); */ // get the name, email and password from the request body
     const { firstName, lastName, email, password, confirmPassword } = req.body;
 
     // check if the name, email and password are not empty
@@ -71,7 +71,7 @@ const registerUser = async (req, res, next) => {
     // check if the email exist
     const userExists = await User.findOne({ email });
 
-    console.log("user exists", userExists);
+  /*   console.log("user exists", userExists); */
     // check if the email is already in use
     if (userExists) {
       return res.status(400).json({ message: "Email already in use" });
@@ -82,7 +82,7 @@ const registerUser = async (req, res, next) => {
         .status(400)
         .json({ message: "Password not match with Password" });
     }
-    console.log("third check");
+   /*  console.log("third check"); */
     // validate the email
     if (!validator.isEmail(email)) {
       return res.status(401).json({ message: "Email is not valid " });
@@ -110,7 +110,7 @@ const registerUser = async (req, res, next) => {
 
     // save the user to the database
     const result = await user.save();
-    console.log(result);
+    /* console.log(result); */
 
     return res.status(201).json({
       _id: result._id,
@@ -122,7 +122,7 @@ const registerUser = async (req, res, next) => {
     });
 
   } catch (error) {
-    console.log(error);
+    /* console.log(error); */
     res.status(500).send({ error: error.message });
   }
 };
@@ -140,17 +140,17 @@ let transporter = nodemailer.createTransport({
 });
 
 const resetLogin = async (req, res) => {
-  console.log("Reset login called");
+ /*  console.log("Reset login called"); */
   const { email } = req.body;
 
   /*    // check if the name, email and password are not empty */
 
-  console.log("Checking if user exists");
+/*   console.log("Checking if user exists"); */
   const user = await User.findOne({ email });
 
   if (!user) {
     return res.status(401).json({ message: "Email not registered  " });
-    console.log("User not found");
+    /* console.log("User not found"); */
   }
   /*    const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
@@ -161,8 +161,8 @@ const resetLogin = async (req, res) => {
   user.resetCode = resetCode;
   user.resetCodeExpiry = Date.now() + 3680000;
 
-  console.log("Saving user"); // Log to save user
-  console.log(resetCode); // Log to reset code
+/*   console.log("Saving user"); // Log to save user
+  console.log(resetCode); // Log to reset code */
 
   await user.save();
 
@@ -179,13 +179,13 @@ const resetLogin = async (req, res) => {
     `,
   };
 
-  console.log("Sending email");
+  /* console.log("Sending email"); */
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
       console.error("Email error:", error);
       res.status(500).json({ message: "Failed to send reset email" });
     } else {
-      console.log("Email sent:", info.response);
+     /*  console.log("Email sent:", info.response); */
       res.status(200).json({ message: "Reset code sent to your email" });
     }
   });
@@ -194,12 +194,12 @@ const resetLogin = async (req, res) => {
 
 //Start of resetPassword
 const resetPassword = async (req, res) => {
-  console.log("Checking if user exists");
+ /*  console.log("Checking if user exists"); */
 
   const { code, password, confirmPassword } = req.body;
 
   const user = await User.findOne({ resetCode: code });
-  console.log("find user in DB ", user);
+  /* console.log("find user in DB ", user); */
 
   if (!user) {
     return res.status(400).json({ message: "Invalid code" });
@@ -223,7 +223,7 @@ const resetPassword = async (req, res) => {
   user.resetCodeExpiry = undefined;
 
   await user.save();
-  console.log("new password changed", user);
+/*   console.log("new password changed", user); */
   res.status(200).json({ message: "Password reset successful" });
 };
 
