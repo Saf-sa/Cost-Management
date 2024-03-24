@@ -1,10 +1,8 @@
 import dotenv from "dotenv";
+import Agenda from '../models/agendaModel.js';
 
 // Initialize dotenv
 dotenv.config();
-
-// Import expense model
-import Agenda from '../models/agendaModel.js';
 
 const addAgenda = async (req, res, next) => {
   try {
@@ -25,8 +23,12 @@ const addAgenda = async (req, res, next) => {
     return res.json({ message: "new ggenda created successfully" });
   } catch (error) {
     console.log(error);
-    res.status(500).send({ error: error.message });
+     if (error instanceof ValidationError) {
+      // handle validation errors
+      return res.status(400).send({ error: error.message });
+    }
+      return res.status(500).send({ error: 'An unexpected error occurred' });
   }
 };
 
-export { registerAgenda };
+export { addAgenda };
