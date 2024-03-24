@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 // use mongoose to create a schema to define the structure of the data
 const AgendaSchema = new mongoose.Schema(
   {
-     incomeOwner:{
+     agendaOwner:{
       type: mongoose.Schema.Types.ObjectId,
       required: true,
 
@@ -40,7 +40,6 @@ const AgendaSchema = new mongoose.Schema(
         "1 month",
       ],
       required: true,
-      default: "other",
   
     },
   },
