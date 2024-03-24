@@ -1,7 +1,7 @@
 
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput, ScrollView } from "react-native";
+import { View, Text, StyleSheet, TextInput, TouchableOpacity,} from "react-native";
 import CalendarPicker from 'react-native-calendar-picker';
 import CustomInputSingup from "../../../shared/components/ui/CustomInputSignup";
 import CustomButton from "../../../shared/components/ui/CustomButton";
@@ -30,7 +30,7 @@ const isValidDuration = (duration) => {
 };
 
 async function getDefaultCalendarSource() {
-  const calendars = await calendars.getCalendarsAsync(
+  const calendars = await Calendar.getCalendarsAsync(
     calendars.EntityTypes.EVENT
   );
   const defaultCalendars = calendars.filter(
@@ -203,13 +203,11 @@ export default function Agenda() {
         placeholder=" enter appointment duration"
         style={styles.input}
       />
-      <CustomButton
-        onPress={createCalendar}
-        colors={["#f9f295", "#E0AA3E", "#F7EF8A", "#B88A44"]}
-        start={{ x: 0.1, y: 0.1 }}
-        end={{ x: 1, y: 3 }}
-        buttonText={"add Event"}
-      />
+      <TouchableOpacity style={styles.button} // Button to add a new expense
+     
+     onPress={() => navigation.navigate("AddAgenda")}>
+        <Text style={styles.textButton}>Add new Rdv</Text>
+      </TouchableOpacity>
     </View>
   );
 }
