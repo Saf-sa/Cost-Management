@@ -1,46 +1,31 @@
 import mongoose from "mongoose";
-import resetPasswordMiddleware from "../middlewares/resetPasswordMiddleware.js";
 
 // use mongoose to create a schema to define the structure of the data
-const userSchema = new mongoose.Schema(
+const AgendaSchema = new mongoose.Schema(
   {
-    firstName: {
-      type: String,
-      required: [true, "The first name is required"],
+     incomeOwner:{
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+
     },
-    lastName: {
+    date: {
       type: String,
-      required: [true, "The last name is required"],
-    },
-    email: {
-      type: String,
-      required: [true, "Email address is required"],
-      unique: true,
-    },
-    password: {
-      type: String,
-      required: [true, "Password is required"],
-      minLength: 8,
-      
-    },
-    resetCode: {
-      type: String,
-      default: null,
-      expires: 360,
-    },
-  
-    resetCodeExpiry: {
-      type: Date,
-      default: Date.now,
-   
+      default: Date,
+      required: true,
     },
 
-    expiresIn: {
+    name: {
       type: String,
-      default: null,
-      expires: 360,
+      required: true,
     },
-   
+    place: {
+      type: String,
+      required: true,
+    },
+    duration: {
+      type: String,
+      required: true,
+    },
   },
   // add timestamps to the schema to know when document was created or modified
   { timestamps: true }
@@ -48,8 +33,6 @@ const userSchema = new mongoose.Schema(
 
 // use mongoose to create a model from the schema and export it
 
-const User = mongoose.model("User", userSchema);
+const Agenda = mongoose.model("Agenda", AgendaSchema);
 
-export default User;
-
-// Expeses.find({expenseOwner: req.userId})
+export default Agenda;
