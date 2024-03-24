@@ -25,8 +25,23 @@ const AgendaSchema = new mongoose.Schema(
       required: true,
     },
     duration: {
-      type: String,
+   type: [String],
+      enum: [
+        "15mn",
+        "30mn",
+        "45mn",
+        "1h",
+        "2h",
+        "3h",
+        "4h",
+        "Day",
+        "7 days",
+        "2 weeks",
+        "1 month",
+      ],
       required: true,
+      default: "other",
+  
     },
   },
   // add timestamps to the schema to know when document was created or modified
