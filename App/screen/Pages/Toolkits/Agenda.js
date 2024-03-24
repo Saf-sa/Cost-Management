@@ -1,15 +1,19 @@
 
 import { StatusBar } from 'expo-status-bar';
 import React, { useState,  } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View, Text, StyleSheet, TextInput, ScrollView } from "react-native";
 import CalendarPicker from 'react-native-calendar-picker';
 import CustomInputSingup from "../../../shared/components/ui/CustomInputSignup";
 import CustomButton from "../../../shared/components/ui/CustomButton";
+import { SelectList } from 'react-native-dropdown-select-list';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from "axios";
+
 
 
 async function getDefaultCalendarSource() {
-  const calendars = await Calendar.getCalendarsAsync(
-    Calendar.EntityTypes.EVENT
+  const calendars = await calendars.getCalendarsAsync(
+    calendars.EntityTypes.EVENT
   );
   const defaultCalendars = calendars.filter(
     (each) => each.source.name === 'Default'
@@ -38,23 +42,24 @@ async function createCalendar() {
   return newCalendarID;
 }
 
+
+
+
 export default function Agenda() {
+
+  
   const [selectedStartDate, setSelectedStartDate] = useState(null);
-  const [selectedEndDate, setSelectedEndDate] = useState(null);
-  const [selectedEmail, setSelectedEmail] = useState("");
-  const [selectedEndtDate, setselectedEndDate] = useState("");
-  const [contractNameText, setcontractNameText] = useState('');
+  const [selectedName, setSelectedName] = useState(null);
+  const [selectedPlace, setSelectedPlace] = useState("");
+  const [selectedDuration, setSelectedDuration] = useState('');
 
   const startDate = selectedStartDate
     ? selectedStartDate.format('YYYY-MM-DD').toString()
     : '';
 
-  const endDate = selectedEndtDate
-    ? selectedStartDate.format('YYYY-MM-DD').toString()
-    : '';
 
-  const email = selectedEmail;
-  const name = contractNameText;
+
+
 
   return (
     <View style={styles.container}>
@@ -66,21 +71,21 @@ export default function Agenda() {
         style={styles.input}
       />
       <CustomInputSingup
-        onChangeText={setcontractNameText}
-        value={contractNameText}
+        onChangeText={setSelectedName}
+        value={selectedName}
         placeholder="  name of your appointmernt"
         style={styles.input}
       />
   
       <CustomInputSingup
-        onChangeText={setSelectedEndDate}
-        value={selectedEndDate}
+        onChangeText={setSelectedPlace}
+        value={selectedPlace}
         placeholder="  place of your appointmernt"
         style={styles.input}
       />
       <CustomInputSingup
-        onChangeText={setSelectedEmail}
-        value={selectedEmail}
+        onChangeText={setSelectedDuration}
+        value={selectedDuration}
         placeholder=" enter appointment duration"
         style={styles.input}
       />
