@@ -44,9 +44,13 @@ app.use("/api/expenses/:_id", expenseRoutes);
 app.use("/api/incomes", incomeRoutes);
 app.use("/api/incomes/:_id", incomeRoutes);
 
+//Routes for agenda
+app.use("/api/agenda", agendaRoutes);
+app.use("/api/agenda/:_id", agendaRoutes);
+
 // Error handler
 app.use( (error, rea, res, next)=>{
-error.statusCoder = error.statusCode || 500
+error.statusCode = error.statusCode || 500
 error.message = error.message || 'Something went wrong'
 res.status(error.statusCode).send(error.message)
 console.log(error)

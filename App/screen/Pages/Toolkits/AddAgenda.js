@@ -12,8 +12,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from "axios";
 
 
-
-
 const isValidDate = (date) => {
   const regex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[012])\/(19|20)\d\d$/;
   return regex.test(date);
@@ -35,7 +33,7 @@ const isValidDuration = (duration) => {
 const AddAgenda= () => {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [selectedDate, setSelectedDate] = useState("");
-  const [name, setName] = useState([]);
+  const [name, setName] = useState("");
   const [place, setPlace] = useState("");
   const [duration, setDuration] = useState("");
   const navigation = useNavigation();
@@ -60,8 +58,8 @@ const AddAgenda= () => {
   };
 
 
-/* console.log(" 65 categories", categories);
- */
+/*  console.log(" 61 categories", date); */
+
 
 
   const SendNameToBackend = (name) => {
@@ -86,7 +84,7 @@ const AddAgenda= () => {
      else if (fieldName === "place") {
       setPlace(value);
     }
-   /*  console.log("95 setCategories", value); */
+     console.log("87 setCategories", value);
   };
 
   const handleSubmit = async () => {
@@ -136,14 +134,14 @@ const AddAgenda= () => {
       );
     }
 
-   /*  console.log("formData", formData); */
+    console.log("formData", formData); 
   try {
         // Récupérer les données de l'utilisateur à partir de AsyncStorage
       const user = JSON.parse(await AsyncStorage.getItem("@storage_Key"));
       // await AsyncStorage.setItem("@storage_Key", jsonValue);
 
-/*       console.log("149 get user Token from storage_Key ", user); */
-      /*  console.log("150 response.data", user.id); */
+     console.log("143 get user Token from storage_Key ", user); 
+        console.log("144 response.data", user.id); 
       const response = await axios.post(
         `http://localhost:5555/api/agenda`,
         formData,
@@ -155,7 +153,7 @@ const AddAgenda= () => {
       );
 
      
-     /*  console.log('data send to BE',response.data); */
+      console.log('data send to BE',response.data); 
       
       
       Toast.show({
@@ -169,7 +167,7 @@ const AddAgenda= () => {
         navigation.navigate("Agenda");
       }, 3000);
     } catch (err) {
-   /*    console.log("Test Myexpense", err.response.data); */
+     console.log("Test AddAgenda", err.response.data); 
       Toast.show({
         type: "error",
         position: "bottom",

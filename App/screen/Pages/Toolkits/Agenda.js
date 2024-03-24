@@ -232,5 +232,19 @@ const styles = StyleSheet.create({
   dateText: {
     margin: 16,
   },
+  
+     button: {
+    position: "fixed",
+    borderColor: "#E0AA3E",
+    borderWidth: 1,
+    width: "40%",
+    height: 45,
+    alignSelf: "center",
+    borderRadius: 8,
+    padding: 12,
+    textAlign: "center",
+    top: 20,
+    
+  },
 
 });
