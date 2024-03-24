@@ -2,9 +2,9 @@ import React, { useState, } from "react";
 import { View, Text, StyleSheet, TextInput, ScrollView } from "react-native";
 import Toast from "react-native-toast-message";
 import { useNavigation } from "@react-navigation/native";
-import AuthHeader from "../../shared/components/AuthHeader";
-import CustomInputSingup from "../../shared/components/ui/CustomInputSignup";
-import CustomButton from "../../shared/components/ui/CustomButton";
+import AuthHeader from "../../../shared/components/AuthHeader";
+import CustomInputSingup from "../../../shared/components/ui/CustomInputSignup";
+import CustomButton from "../../../shared/components/ui/CustomButton";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import moment from "moment";
 import { SelectList } from 'react-native-dropdown-select-list';
@@ -32,7 +32,7 @@ const isValidDuration = (duration) => {
 };
 
 
-const MyAgenda= () => {
+const AddAgenda= () => {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [selectedDate, setSelectedDate] = useState("");
   const [name, setName] = useState([]);
@@ -269,7 +269,7 @@ const MyAgenda= () => {
   );
 };
 
-export default MyExpense;
+export default AddAgenda;
 
 const styles = StyleSheet.create({
   root: {
