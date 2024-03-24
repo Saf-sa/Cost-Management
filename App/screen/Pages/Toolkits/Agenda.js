@@ -3,7 +3,6 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState,  } from 'react';
 import { StyleSheet, View } from 'react-native';
 import CalendarPicker from 'react-native-calendar-picker';
-import  {Calendar} from 'expo-calendar';
 import CustomInputSingup from "../../../shared/components/ui/CustomInputSignup";
 import CustomButton from "../../../shared/components/ui/CustomButton";
 

@@ -12,7 +12,7 @@ import MyIncome from '../../screen/Pages/MyIncomes';
 export default ViewIncomes = ({}) => {
 
  
-   const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [chartData, setChartData] = useState([true]);
  
    console.log( 'loading Incomes after const',chartData);
@@ -57,7 +57,7 @@ export default ViewIncomes = ({}) => {
   return (
   <ScrollView>
     <Screen2>
-      {/* ... */}
+
       <LineChart 
         data={{
           labels: chartData.map(data => data.date),

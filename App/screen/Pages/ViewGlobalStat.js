@@ -10,10 +10,11 @@ import {
 import React, { useState, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import Icon from "../../shared/components/IncomExpenseComponent/Icon";
-
-
 import ShowLineChart from "../../shared/StatsView/LineChartExpense";
 import IncomeLineChart from "../../shared/StatsView/LineChartIncome";
+import ViewExpenses from "./ViewExpenses";
+import ViewIncomes from './ViewIncomes';
+
 
   const ViewGlobalStat= () => {
  const navigation = useNavigation();
@@ -24,7 +25,7 @@ import IncomeLineChart from "../../shared/StatsView/LineChartIncome";
       await new Promise(resolve => setTimeout(resolve, 2000));
       setIsLoading(false); // Définissez l'état de chargement sur false après le chargement des données
     };
-
+ 
     loadData();
   }, []);
 /* 
