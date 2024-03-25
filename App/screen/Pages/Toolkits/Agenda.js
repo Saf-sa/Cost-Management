@@ -1,7 +1,7 @@
 
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity,} from "react-native";
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity,} from "react-native";
 import CalendarPicker from 'react-native-calendar-picker';
 import CustomInputSingup from "../../../shared/components/ui/CustomInputSignup";
 import CustomButton from "../../../shared/components/ui/CustomButton";
@@ -11,23 +11,6 @@ import axios from "axios";
 import Calendar from 'expo-calendar';
 import Toast from 'react-native-toast-message';
 import { useNavigation } from '@react-navigation/native';
-
-const isValidDate = (date) => {
-  const regex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[012])\/(19|20)\d\d$/;
-  return regex.test(date);
-};
-
-const isValidName = (name) => {
-  return name !== '';
-};
-
-const isValidPlace = (place) => {
-  return place !== '';
-};
-
-const isValidDuration = (duration) => {
-  return !isNaN(duration);
-};
 
 async function getDefaultCalendarSource() {
   const calendars = await Calendar.getCalendarsAsync(
@@ -71,7 +54,7 @@ export default function Agenda() {
   const startDate = selectedStartDate
     ? selectedStartDate.format('YYYY-MM-DD').toString() : '';
   const [storedAgenda, setStoredAgenda] = useState([]);// State to store data from AsyncStorage
-
+const [firstDurationValue, setFirstDurationValue] = useState(null);
 
   
   useEffect(() => {// UseEffect to get data from AsyncStorage
@@ -102,7 +85,13 @@ export default function Agenda() {
        const parsedAgendas = JSON.parse(agendas);// Parse data from AsyncStorage
           setStoredAgenda(parsedAgendas.agendas); // Send data to the state
             console.log('parsedAgendas FrontEnd side ',parsedAgendas);  
-        }
+
+          parsedAgendas.agendas.forEach(agenda => {
+       const [firstDurationValue] = agenda.duration;
+       setFirstDurationValue(firstDurationValue);
+    console.log(firstDurationValue); // This will log the first value of duration for each agenda
+  });
+}
       } catch (error) {// Error handling
         console.log(error);// Error handling
       }
@@ -117,45 +106,13 @@ export default function Agenda() {
       date: selectedStartDate,
       name: selectedName,
       place: selectedPlace,
-      duration: selectedDuration,
+      duration: firstDurationValue,
      
     };
  
 
     // Validation des champs
-    if (!isValidDate(formData.date)) {
-      updateError(
-        "date",
-        !isValidDate(formData.date) ? "Please enter a valid date" : null
-      );
-    }
-
-    if (!isValidName(formData.name)) {
-      updateError(
-        "name",
-        !isValidName(formData.name)
-          ? "Please choose a valid name"
-          : null
-      );
-    }
-
-    if (!isValidPlace(formData.place)) {
-      updateError(
-        "place",
-        !isValidLabel(formData.place)
-          ? "Please enter a place"
-          : null
-      );
-    }
-
-    if (!isValidDuration(formData.duration)) {
-      updateError(
-        "duration",
-        !isValidDuration(formData.duration)
-          ? "Please enter a valid duration"
-          : null
-      );
-    }
+   
 
    /*  console.log("formData", formData); */
   try {
@@ -176,7 +133,7 @@ export default function Agenda() {
       );
 
      
-    console.log('data send get BE',response.data);
+    console.log('data get BE',response.data);
       
       
       Toast.show({
@@ -208,42 +165,53 @@ export default function Agenda() {
     }));
   };
 
+const getAppointmentsForDate = async (date) => {
+  try {
+    const user = JSON.parse(await AsyncStorage.getItem("@storage_Key"));
+    const { data } = await axios.get(
+      `http://localhost:5555/api/agenda/${date}`,
+      {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      }
+    );
+    setAppointments(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 
   return (
+    
+     <ScrollView style={styles.page}
+     keyboardDismissMode="on-drag"// to dismiss the keyboard when the user drags the scroll view
+      onscroll={(evt) =>  (index++)}// to get the index of the scrollview
+      onScrollBeginDrag={(evt) => (index++)}// to get the index of the scrollview
+      >
+   
     <View style={styles.container}>
       <CalendarPicker onDateChange={setSelectedStartDate} />
       <StatusBar style="auto" />
-          <CustomInputSingup
-        value={startDate} // use startDate here
-        placeholder=" date of your appointmernt"
-        style={styles.input}
-      />
-      <CustomInputSingup
-        onChangeText={setSelectedName}
-        value={selectedName}
-        placeholder="  name of your appointmernt"
-        style={styles.input}
-      />
-  
-      <CustomInputSingup
-        onChangeText={setSelectedPlace}
-        value={selectedPlace}
-        placeholder="  place of your appointmernt"
-        style={styles.input}
-      />
-      <CustomInputSingup
-        onChangeText={setSelectedDuration}
-        value={selectedDuration}
-        placeholder=" enter appointment duration"
-        style={styles.input}
-      />
-      <TouchableOpacity style={styles.button} // Button to add a new agenda
-     
-     onPress={() => navigation.navigate("AddAgenda")}>
-        <Text style={styles.textButton}>Add new Rdv</Text>
-      </TouchableOpacity>
+{storedAgenda.map((agenda, index) => (
+  <View key={index} style={styles.row}>
+    <View style={styles.rowItem}>
+      <Text>Date : {agenda.date && !isNaN(Date.parse(agenda.date)) ? new Date(agenda.date).toISOString().split('T')[0] : 'Invalid date'}</Text>
+      <Text>Name : {agenda.name}</Text>
     </View>
+    <View style={styles.rowItem}>
+            <Text>Duration : {Array.isArray(agenda.duration) ? agenda.duration.join(', ') : agenda.duration}</Text>
+      
+      <Text>Place : {agenda.place}</Text>
+    </View>
+  </View>
+))}
+ </View> 
+        
+     
+
+    </ScrollView>
   );
 }
 
@@ -256,7 +224,20 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 30,
   },
-
+  row: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingBottom: 10,
+        width: "96%",
+    borderWidth: 1,
+    borderColor: "#E0AA3E",
+    borderRadius: 10,
+    padding: 12,
+    marginBottom: 40,
+  },
+  
+  
   input: {
     height: 50,
     margin: 12,
