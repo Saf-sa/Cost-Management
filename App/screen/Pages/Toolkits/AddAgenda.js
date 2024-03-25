@@ -164,7 +164,7 @@ const AddAgenda= () => {
         autoHide: true,
       });
       setTimeout(() => {
-        navigation.navigate("Agenda");
+        navigation.navigate("Dashboard");
       }, 3000);
     } catch (err) {
      console.log("Test AddAgenda", err.response); 

@@ -181,7 +181,7 @@ const getAppointmentsForDate = async (date) => {
     console.log(error);
   }
 };
-
+let index = 1;// index for scrollview
 
   return (
     
