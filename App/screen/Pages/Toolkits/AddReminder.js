@@ -1,13 +1,13 @@
 import React, {useState} from "react";
 import {Text, View, StyleSheet} from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import DatePicker from "@dietime/react-native-date-picker";
+import DateTimePicker from "@react-native-community/datetimepicker";
 import CustomInputSingup from "../../../shared/components/ui/CustomInputSignup";
 import CustomButton from "../../../shared/components/ui/CustomButton";
 
 export default function AddReminder() {
-    const [date, setDate] = useState();
-    const [expireDate, setExpireDate] = useState(false);
+    const [date, setDate] = useState(new Date());;
+    const [expireDate, setExpireDate] = useState(new Date());
     const [selectedEmail, setSelectedEmail] = useState("");
     const [contractName, setContractName] = useState('');
     const [selectedLabel, setSelectedLabel] = useState('');
@@ -16,13 +16,9 @@ export default function AddReminder() {
 
 
     return (
-        
          <View style={styles.container}>
             <Text style={styles.titleStart}> Contract Start Date</Text>
-
-
-      <View style={styles.date}>
-                
+      <View style={styles.date}>       
                 {
                     [
                         {title: "Day", value: date ? date.getDate() : "?"},
@@ -36,23 +32,24 @@ export default function AddReminder() {
                                 <Text style={styles.title}>{el.title}</Text>
                                 <Text style={styles.digit}>{el.value}</Text>
 
-                                 </View>
-                                 
-   
+                                 </View>   
                         )
                     })
                 }
                 
             </View>
             
-                   <DatePicker
+                     {Platform.OS === 'ios' && (
+            <DateTimePicker
                 value={date}
-                width={"80%"}
-                fontSize={19}
-                height={160}
-                onChange={(date) => setDate(date)}
-                format={"yyyy-mm-dd"}
+                mode={"date"}
+                display="default"
+                onChange={(event, selectedDate) => {
+                    const currentDate = selectedDate || date;
+                    setDate(currentDate);
+                }}
             />
+        )}
      <Text style={styles.titleExpire}> Contract expire Date</Text>
 
       <View style={styles.expireDate}>
@@ -76,16 +73,17 @@ export default function AddReminder() {
                     })
                 }
             </View>
-         
-         
-          <DatePicker
-                value={expireDate}
-                width={"80%"}
-                fontSize={19}
-                height={150}
-                onChange={(expireDate) => setExpireDate(expireDate)}
-                format={"yyyy-mm-dd"}
+       {Platform.OS === 'ios' && (
+            <DateTimePicker
+                value={date}
+                mode={"date"}
+                display="default"
+                onChange={(event, selectedDate) => {
+                    const currentDate = selectedDate || date;
+                    setDate(currentDate);
+                }}
             />
+        )}
                  
               
 <View style={styles.contract}>
@@ -189,7 +187,7 @@ titleStart: {
         width: "90%",
         alignItems: "center",
         justifyContent: "center",
-        marginTop: 20,
+        marginTop: 60,
         marginBottom: 30,
        
     },
