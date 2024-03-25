@@ -5,6 +5,7 @@ import connectDB from "./config/db.js";
 import userRoutes from "./routes/userRoutes.js";
 import expenseRoutes from "./routes/expenseRoutes.js";
 import incomeRoutes from "./routes/incomeRoutes.js";
+import agendaRoutes from "./routes/agendaRoutes.js";
 import cors from "cors";
 
 // Initialize dotenv
@@ -34,7 +35,7 @@ app.listen(port, () => {
 
 // Routes
 app.use("/api/users", userRoutes);
-app.use("/api/users/:_id/expenses", userRoutes);
+
 
 // Routes for expenses
 app.use("/api/expenses", expenseRoutes);

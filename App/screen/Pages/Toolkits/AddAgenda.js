@@ -35,7 +35,7 @@ const AddAgenda= () => {
   const [selectedDate, setSelectedDate] = useState("");
   const [name, setName] = useState("");
   const [place, setPlace] = useState("");
-  const [duration, setDuration] = useState("");
+  const [selectedDuration, setSelectedDuration] = useState("");
   const navigation = useNavigation();
   const [selected, setSelected] = useState('');
   const [formErrors, setFormErrors] = useState({
@@ -77,7 +77,7 @@ const AddAgenda= () => {
 
   const handleChange = (value, fieldName) => {
  if (fieldName === "duration") {
-      setDuration(value);
+      setSelectedDuration(value);
     } else if (fieldName === "name") {
       setName(value);
     }
@@ -94,7 +94,7 @@ const AddAgenda= () => {
       date: selectedDate,
       name: name,
       place: place,
-      duration: duration,
+      duration: selectedDuration,
      
     };
  
@@ -167,7 +167,7 @@ const AddAgenda= () => {
         navigation.navigate("Agenda");
       }, 3000);
     } catch (err) {
-     console.log("Test AddAgenda", err.response.data); 
+     console.log("Test AddAgenda", err.response); 
       Toast.show({
         type: "error",
         position: "bottom",
@@ -216,8 +216,7 @@ const AddAgenda= () => {
             boxStyles={{ borderRadius: 6, borderColor: '#E0AA3E', height: 40 }}
             defaultOption={{ value: 'Select a duration' }}
             label="duration"
-             setSelected={(value) => setSelected(value)}
-            value={duration}
+             setSelected={(value) => handleChange(value, "duration")}
             data={[
                "15mn",
                "30mn",
