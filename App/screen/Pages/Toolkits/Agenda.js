@@ -190,7 +190,11 @@ const getAppointmentsForDate = async (date) => {
       onscroll={(evt) =>  (index++)}// to get the index of the scrollview
       onScrollBeginDrag={(evt) => (index++)}// to get the index of the scrollview
       >
-   
+    <TouchableOpacity style={styles.button} // Button to add a new expense
+     
+     onPress={() => navigation.navigate("AddAgenda")}>
+        <Text style={styles.textButton}>Add new Rdv</Text>
+      </TouchableOpacity>
     <View style={styles.container}>
       <CalendarPicker onDateChange={setSelectedStartDate} />
       <StatusBar style="auto" />
@@ -216,20 +220,24 @@ const getAppointmentsForDate = async (date) => {
 }
 
 const styles = StyleSheet.create({
-
+page: {
+    flex: 1,
+     backgroundColor: "#F8F4D7",
+  },
   container: {
     flex: 1,
      backgroundColor: "#F8F4D7",
     alignItems: 'center',
     justifyContent: 'center',
     padding: 30,
+    marginTop: 20,
   },
   row: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingBottom: 10,
-        width: "96%",
+        width: "110%",
     borderWidth: 1,
     borderColor: "#E0AA3E",
     borderRadius: 10,
@@ -253,7 +261,7 @@ const styles = StyleSheet.create({
     position: "fixed",
     borderColor: "#E0AA3E",
     borderWidth: 1,
-    width: "40%",
+    width: "29%",
     height: 45,
     alignSelf: "center",
     borderRadius: 8,
@@ -262,5 +270,12 @@ const styles = StyleSheet.create({
     top: 20,
     
   },
+      textButton:{
+      color: "#E0AA3E",
+      fontWeight: "bold",
+      fontSize: 15,
+      textAlign: "center",
+      
+    },
 
 });
