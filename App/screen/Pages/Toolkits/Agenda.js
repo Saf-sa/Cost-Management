@@ -1,6 +1,6 @@
 
 import { StatusBar } from 'expo-status-bar';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity,} from "react-native";
 import CalendarPicker from 'react-native-calendar-picker';
 import CustomInputSingup from "../../../shared/components/ui/CustomInputSignup";
@@ -61,8 +61,6 @@ async function createCalendar() {
 }
 
 
-
-
 export default function Agenda() {
   const navigation = useNavigation();
   const [formErrors, setFormErrors] = useState({});
@@ -71,9 +69,46 @@ export default function Agenda() {
   const [selectedPlace, setSelectedPlace] = useState("");
   const [selectedDuration, setSelectedDuration] = useState('');
   const startDate = selectedStartDate
-    ? selectedStartDate.format('YYYY-MM-DD').toString()
-    : '';
+    ? selectedStartDate.format('YYYY-MM-DD').toString() : '';
+  const [storedAgenda, setStoredAgenda] = useState([]);// State to store data from AsyncStorage
 
+
+  
+  useEffect(() => {// UseEffect to get data from AsyncStorage
+    const getAgendas = async () => {
+      try {
+           const user = JSON.parse(await AsyncStorage.getItem("@storage_Key"));// Get user data from AsyncStorage
+         console.log('user token ',user.token);  
+        const { data } = await axios.get(
+          
+         /*  console.log('data ', data) */
+          `http://localhost:5555/api/agenda/`,// Get data in DB collection from backend in DB
+                 /*    console.log('data category from backend  :', category), */
+          {
+            headers: {
+              Authorization: `Bearer ${user.token}`,// Send token to backend
+            },
+            
+          }
+        );
+         // Stocker les données récupérées dans AsyncStorage
+       await AsyncStorage.setItem('agendas', JSON.stringify(data));// Store data in AsyncStorage
+           console.log('data received from Backend ',data); 
+
+        //await AsyncStorage.clear('agendas')
+
+        const agendas = await AsyncStorage.getItem('agendas');// Get data from AsyncStorage
+        if (agendas) {
+       const parsedAgendas = JSON.parse(agendas);// Parse data from AsyncStorage
+          setStoredAgenda(parsedAgendas.agendas); // Send data to the state
+            console.log('parsedAgendas FrontEnd side ',parsedAgendas);  
+        }
+      } catch (error) {// Error handling
+        console.log(error);// Error handling
+      }
+    };
+    getAgendas();// Call the function to get data from AsyncStorage
+  }, []);
 
   const handleSubmit = async () => {
     
@@ -130,7 +165,7 @@ export default function Agenda() {
 
 /*       console.log("149 get user Token from storage_Key ", user); */
       /*  console.log("150 response.data", user.id); */
-      const response = await axios.post(
+      const response = await axios.get(
         `http://localhost:5555/api/agenda`,
         formData,
         {
@@ -141,7 +176,7 @@ export default function Agenda() {
       );
 
      
-     /*  console.log('data send to BE',response.data); */
+    console.log('data send get BE',response.data);
       
       
       Toast.show({
@@ -203,7 +238,7 @@ export default function Agenda() {
         placeholder=" enter appointment duration"
         style={styles.input}
       />
-      <TouchableOpacity style={styles.button} // Button to add a new expense
+      <TouchableOpacity style={styles.button} // Button to add a new agenda
      
      onPress={() => navigation.navigate("AddAgenda")}>
         <Text style={styles.textButton}>Add new Rdv</Text>
