@@ -31,7 +31,7 @@ export default ViewExpenses = ({}) => {
                 } */
       const ChartData = parsedExpenses.expenses.map(expense => {
         /* console.log('Expense:', expense); // Log each expense */
-        const formattedDate = moment(expense.date).format("DD/MM");
+        const formattedDate = moment(expense.date).format("DD-M");
         const amount = expense.amount !== undefined && !isNaN(expense.amount) ? Number(expense.amount) : 0;
        /*  console.log('Formatted date:', formattedDate, 'Amount:', amount); // Log formatted date and amount */
         return {
@@ -88,11 +88,18 @@ export default ViewExpenses = ({}) => {
           backgroundGradientTo: "#ffa726",
           decimalPlaces: 0, // optional, defaults to 2dp
           color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+          labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+
           style: {
             
             borderRadius: 16
+          },
+                  propsForDots: {
+        r: "3",
+        strokeWidth: "2",
+        stroke: "red"
+      }
 
-          }
         }}
         bezier
         style={{

@@ -31,7 +31,7 @@ export default ViewIncomes = ({}) => {
  */
 
         const chartData = parsedIncomes.incomes.map(income => {
-        const formattedDate = moment(income.date).format("DD/MM");
+        const formattedDate = moment(income.date).format("D-MM");
          const amount = income.amount !== undefined && !isNaN(income.amount) ? Number(income.amount) : 0; // Ensure amount is a number, default to 0 if it's not
          return {
           amount: amount,
@@ -77,11 +77,16 @@ export default ViewIncomes = ({}) => {
           backgroundGradientTo: "#34C403",
           decimalPlaces: 0, // optional, defaults to 2dp
           color: (opacity = 1) => `rgba(155, 250, 255, ${opacity})`,
+          labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+
           style: {
-
             borderRadius: 16
-
-          }
+          },
+            propsForDots: {
+        r: "3",
+        strokeWidth: "2",
+        stroke: "blue"
+      }
         }}
         bezier
         style={{

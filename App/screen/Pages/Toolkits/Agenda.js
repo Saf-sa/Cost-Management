@@ -201,8 +201,9 @@ let index = 1;// index for scrollview
 {storedAgenda.map((agenda, index) => (
   <View key={index} style={styles.row}>
     <View style={styles.rowItem}>
-      <Text>Date : {agenda.date && !isNaN(Date.parse(agenda.date)) ? new Date(agenda.date).toISOString().split('T')[0] : 'Invalid date'}</Text>
       <Text>Name : {agenda.name}</Text>
+      <Text>Date : {agenda.date && !isNaN(Date.parse(agenda.date)) ? new Date(agenda.date).toISOString().split('T')[0] : 'Invalid date'}</Text>
+      
     </View>
     <View style={styles.rowItem}>
             <Text>Duration : {Array.isArray(agenda.duration) ? agenda.duration.join(', ') : agenda.duration}</Text>
@@ -242,7 +243,7 @@ page: {
     borderColor: "#E0AA3E",
     borderRadius: 10,
     padding: 12,
-    marginBottom: 40,
+    marginBottom: 10,
   },
   
   
