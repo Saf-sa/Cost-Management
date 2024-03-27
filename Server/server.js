@@ -49,6 +49,10 @@ app.use("/api/incomes/:_id", incomeRoutes);
 app.use("/api/agenda", agendaRoutes);
 app.use("/api/agenda/:_id", agendaRoutes);
 
+//Routes for reminder
+app.use("/api/reminderRoutes", reminderRoutes);
+app.use("/api/reminderRoutes/:_id", reminderRoutes);
+
 // Error handler
 app.use( (error, rea, res, next)=>{
 error.statusCode = error.statusCode || 500
