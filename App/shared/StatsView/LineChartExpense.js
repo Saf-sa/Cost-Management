@@ -31,7 +31,7 @@ export default ViewExpenses = ({}) => {
                 } */
       const ChartData = parsedExpenses.expenses.map(expense => {
         /* console.log('Expense:', expense); // Log each expense */
-        const formattedDate = moment(expense.date).format("DD-M");
+        const formattedDate = moment(expense.date).format("DD/MM");
         const amount = expense.amount !== undefined && !isNaN(expense.amount) ? Number(expense.amount) : 0;
        /*  console.log('Formatted date:', formattedDate, 'Amount:', amount); // Log formatted date and amount */
         return {

@@ -45,8 +45,8 @@ export default function AddReminder() {
                 mode={"date"}
                 display="default"
                 onChange={(event, selectedDate) => {
-                    const currentDate = selectedDate || date;
-                    setDate(currentDate);
+                    const startDate = selectedDate || date;
+                    setDate(startDate);
                 }}
             />
         )}
@@ -79,8 +79,8 @@ export default function AddReminder() {
                 mode={"date"}
                 display="default"
                 onChange={(event, selectedDate) => {
-                    const currentDate = selectedDate || date;
-                    setDate(currentDate);
+                    const expireDate = selectedDate || date;
+                    setDate(expireDate);
                 }}
             />
         )}
@@ -139,11 +139,11 @@ const styles = StyleSheet.create({
 
     date: {
         flex: 10,
-        marginTop: 0,
+        marginTop: 30,
         flexDirection: "row",
         justifyContent: "space-around",
         width: "80%",
-        marginBottom: -10,
+        marginBottom: -20,
     },
   
     expireDate: {
@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
     },
     content: {
         flex: 20,
-        marginTop: 70,
+        marginTop: 0,
         alignItems: "center",
         justifyContent: "center",
     },
@@ -173,10 +173,10 @@ titleStart: {
         marginBottom: 10,
     },
     titleExpire: {
-        marginTop: 10,
+        marginTop:80,
         fontSize: 25,
         fontWeight: "100",
-        marginBottom: 20,
+        marginBottom: 30,
         
     },
     digit: {
@@ -188,7 +188,7 @@ titleStart: {
         alignItems: "center",
         justifyContent: "center",
         marginTop: 60,
-        marginBottom: 30,
+        marginBottom: 100,
        
     },
 

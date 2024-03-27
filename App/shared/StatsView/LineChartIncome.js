@@ -31,7 +31,7 @@ export default ViewIncomes = ({}) => {
  */
 
         const chartData = parsedIncomes.incomes.map(income => {
-        const formattedDate = moment(income.date).format("D-MM");
+        const formattedDate = moment(income.date).format("DD/MM");
          const amount = income.amount !== undefined && !isNaN(income.amount) ? Number(income.amount) : 0; // Ensure amount is a number, default to 0 if it's not
          return {
           amount: amount,
