@@ -1,11 +1,9 @@
-
-
 import mongoose from "mongoose";
 
 // use mongoose to create a schema to define the structure of the data
 const ReminderSchema = new mongoose.Schema(
   {
-     agendaOwner:{
+     reminderOwner:{
       type: mongoose.Schema.Types.ObjectId,
       required: true,
 
@@ -41,6 +39,6 @@ const ReminderSchema = new mongoose.Schema(
 
 // use mongoose to create a model from the schema and export it
 
-const Reminder = mongoose.model("Agenda", ReminderSchema);
+const Reminder = mongoose.model("Reminder", ReminderSchema);
 
 export default Reminder;
