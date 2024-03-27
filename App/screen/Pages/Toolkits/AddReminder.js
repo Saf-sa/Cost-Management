@@ -47,6 +47,7 @@ export default function AddReminder() {
                 onChange={(event, selectedDate) => {
                     const startDate = selectedDate || date;
                     setDate(startDate);
+                    console.log(startDate);
                 }}
             />
         )}
@@ -185,7 +186,7 @@ titleStart: {
         width: "90%",
         alignItems: "center",
         justifyContent: "center",
-        marginTop: 0,
+        marginTop: 100,
         marginBottom: 100,
        
     },
@@ -213,7 +214,7 @@ titleStart: {
         width: "90%",
         height: 50,
         backgroundColor: "#F8F4D7",
-        borderRadius: 10,
+        borderRadius: 0,
         alignItems: "center",
         justifyContent: "center",
         marginTop: 10,
