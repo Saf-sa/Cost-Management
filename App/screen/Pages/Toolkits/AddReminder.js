@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Text, View, StyleSheet} from "react-native";
+import {Text, View, StyleSheet, TouchableOpacity} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import CustomInputSingup from "../../../shared/components/ui/CustomInputSignup";
@@ -113,13 +113,11 @@ export default function AddReminder() {
 </View>
        
    <View style={styles.content}>
-        <CustomButton
-          style={styles.button}
-          buttonText={"Add a Reminder "
-          
-          }
-          onPress={() => navigation.navigate("Reminder")}
-        />
+  <TouchableOpacity style={styles.button} // Button to add a new expense
+     
+     onPress={() => navigation.navigate("AddAgenda")}>
+        <Text style={styles.textButton}>Add Reminder</Text>
+      </TouchableOpacity>
          
 </View>
  
@@ -187,10 +185,42 @@ titleStart: {
         width: "90%",
         alignItems: "center",
         justifyContent: "center",
-        marginTop: 60,
+        marginTop: 0,
         marginBottom: 100,
        
     },
-
+   button: {
+    position: "fixed",
+    borderColor: "#E0AA3E",
+    borderWidth: 1,
+    width: "35%",
+    height: 45,
+    alignSelf: "center",
+    borderRadius: 8,
+    padding: 12,
+    textAlign: "center",
+    top: -50,
+    
+  },
+      textButton:{
+      color: "#E0AA3E",
+      fontWeight: "bold",
+      fontSize: 15,
+      textAlign: "center",
+      
+    },
+    input: {
+        width: "90%",
+        height: 50,
+        backgroundColor: "#F8F4D7",
+        borderRadius: 10,
+        alignItems: "center",
+        justifyContent: "center",
+        marginTop: 10,
+    },
+    title: {
+        fontSize: 12,
+        fontWeight: "bold",
+    },
   
 });
