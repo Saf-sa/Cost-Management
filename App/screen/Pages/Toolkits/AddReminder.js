@@ -30,6 +30,9 @@ const isValidLabel = (label) => {
 const isValidEmail = (email) => {
   return !isNaN(email);
 };
+const isValidRenewal = (renewal) => {
+  return !isNaN(renewal);
+};
 
 
 export default function AddReminder() {
@@ -39,6 +42,7 @@ export default function AddReminder() {
     const [selectedEmail, setSelectedEmail] = useState("");
     const [contractName, setContractName] = useState('');
     const [selectedLabel, setSelectedLabel] = useState('');
+    const [selectedRenewal, setSelectedRenewal] = useState('');
      const [formErrors, setFormErrors] = useState({
     date: null,
     name: null,
@@ -65,7 +69,10 @@ export default function AddReminder() {
     case "email":
       setSelectedEmail(value);
       break;
-    default:
+    case "renewal":
+      setSelectedRenewal(value);
+      break;
+      default: 
       break;
   }
   console.log(fieldName, value);
@@ -79,6 +86,7 @@ const handleSubmit = async () => {
     contractName: contractName,
     label: selectedLabel,
     email: selectedEmail,
+    renewal: selectedRenewal,
   };
 console.log("formData", formData);
  
@@ -121,6 +129,15 @@ console.log("formData", formData);
         !isValidEmail(formData.email)
           ? "Please enter a valid email"
           : null
+      );
+    }
+
+    if (!isValidRenewal(formData.renewal)) {
+      updateError(
+        "renewal",
+        !isValidRenewal(formData.renewal)
+        ? "Please enter a valid email"
+        : null
       );
     }
 
@@ -252,6 +269,14 @@ console.log("formData", formData);
         placeholder="Enter email of your Contract"
         secure={false}
         errorMessage={formErrors.selectedEmail}
+        style={styles.input}
+      />
+           <CustomInputSingup
+        onChangeText={(value) => handleChange(value, 'renewal')}
+        value={selectedRenewal}
+        placeholder="Enter renewal of your Contract"
+        secure={false}
+        errorMessage={formErrors.selectedRenewal}
         style={styles.input}
       />
     </View>
