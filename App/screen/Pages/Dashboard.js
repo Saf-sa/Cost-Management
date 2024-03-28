@@ -511,7 +511,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
             />
             <Text style={{ fontSize: 15, paddingTop: 0, textAlign:"center" }}> Agenda</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.push("AddReminder")}>
+          <TouchableOpacity onPress={() => navigation.push("Reminder")}>
             <Icon
               name="bell"
               size={66}

@@ -23,11 +23,11 @@ const ReminderSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-     selectedLabel: {
+     label: {
       type: String,
       required: true,
     },
-        selectedEmail: {
+      email: {
       type: String,
       required: true,
     },

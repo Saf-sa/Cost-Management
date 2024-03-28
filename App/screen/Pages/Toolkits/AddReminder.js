@@ -4,6 +4,10 @@ import { useNavigation } from "@react-navigation/native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import CustomInputSingup from "../../../shared/components/ui/CustomInputSignup";
 import CustomButton from "../../../shared/components/ui/CustomButton";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import moment from "moment";
+import axios from "axios";
+
 
 export default function AddReminder() {
     const [date, setDate] = useState(new Date());;
@@ -13,6 +17,118 @@ export default function AddReminder() {
     const [contractName, setContractName] = useState('');
     const [selectedLabel, setSelectedLabel] = useState('');
     const navigation = useNavigation();
+
+
+  const handleChange = (value, fieldName) => {
+ if (fieldName === "duration") {
+      setSelectedDuration(value);
+    } else if (fieldName === "name") {
+      setName(value);
+    }
+     else if (fieldName === "place") {
+      setPlace(value);
+    }
+     console.log("87 setCategories", value);
+  };
+
+  const handleSubmit = async () => {
+    
+    const formData = {
+
+      date: selectedDate,
+      name: name,
+      place: place,
+      duration: selectedDuration,
+     
+    };
+ 
+
+    // Validation des champs
+    if (!isValidDate(formData.date)) {
+      updateError(
+        "date",
+        !isValidDate(formData.date) ? "Please enter a valid date" : null
+      );
+    }
+
+    if (!isValidName(formData.name)) {
+      updateError(
+        "name",
+        !isValidName(formData.name)
+          ? "Please choose a valid name"
+          : null
+      );
+    }
+
+    if (!isValidPlace(formData.place)) {
+      updateError(
+        "label",
+        !isValidPlace(formData.place)
+          ? "Please enter a place"
+          : null
+      );
+    }
+
+    if (!isValidDuration(formData.duration)) {
+      updateError(
+        "amount",
+        !isValidDuration(formData.duration)
+          ? "Please enter a valid duration"
+          : null
+      );
+    }
+
+    console.log("formData", formData); 
+  try {
+        // Récupérer les données de l'utilisateur à partir de AsyncStorage
+      const user = JSON.parse(await AsyncStorage.getItem("@storage_Key"));
+      // await AsyncStorage.setItem("@storage_Key", jsonValue);
+
+     console.log("143 get user Token from storage_Key ", user); 
+        console.log("144 response.data", user.id); 
+      const response = await axios.post(
+        `http://localhost:5555/api/agenda`,
+        formData,
+        {
+          headers: {
+            authorization: `Bearer ${user.token}` 
+          },
+        } 
+      );
+
+     
+      console.log('data send to BE',response.data); 
+      
+      
+      Toast.show({
+        type: "success",
+        position: "bottom",
+        text1: "expense created successfully",
+        visibilityTime: 3000,
+        autoHide: true,
+      });
+      setTimeout(() => {
+        navigation.navigate("Dashboard");
+      }, 3000);
+    } catch (err) {
+     console.log("Test AddAgenda", err.response); 
+      Toast.show({
+        type: "error",
+        position: "bottom",
+        text1: err.response.data.message,
+        visibilityTime: 3000,
+        autoHide: true,
+      });
+    }
+  };
+
+  const updateError = (type, errorMessage) => {
+    setFormErrors((prevFormErrors) => ({
+      ...prevFormErrors,
+      [type]: errorMessage,
+    }));
+  };
+
 
 
 
@@ -117,7 +233,7 @@ export default function AddReminder() {
    <View style={styles.content}>
   <TouchableOpacity style={styles.button} // Button to add a new expense
      
-     onPress={() => navigation.navigate("AddAgenda")}>
+     onPress={() => navigation.navigate("Reminder")}>
         <Text style={styles.textButton}>Add Reminder</Text>
       </TouchableOpacity>
          
