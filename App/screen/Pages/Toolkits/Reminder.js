@@ -52,6 +52,7 @@ export default function Reminder() {
   const [selectedContractName, setSelecteContractName] = useState(null);
   const [selectedLabel, setSelectedLabel] = useState("");
   const [selectedEmail, setSelectedEmail] = useState('');
+  const [selectedRenewal, setselectedRenewal] = useState([]);
   const startDate = selectedStartDate  ? selectedStartDate.format('YYYY-MM-DD').toString() : '';
   const expireDate = selecteExpireDate ? selecteExpireDate.format('YYYY-MM-DD').toString() : '';
   const [storedReminder, setStoredReminder] = useState([]);// State to store data from AsyncStorage
@@ -111,6 +112,7 @@ const [firstDurationValue, setFirstDurationValue] = useState(null);
       contractName: selectedName,
       label: selectedLabel,
       email : selectedEmail,
+      renewal: selectedRenewal,
     };
  
 
@@ -207,6 +209,7 @@ let index = 1;// index for scrollview
       
       <Text>Start Date : {reminder.startDate && !isNaN(Date.parse(reminder.startDate)) ? new Date(reminder.startDate).toISOString().split('T')[0] : 'Invalid date'}</Text>
       <Text>Email : {reminder.email}</Text>
+      <Text>Renewal : {reminder.renewal}</Text>
     </View>
     <View style={styles.rowItem}>
       <Text>Expired Date : {reminder.expireDate && !isNaN(Date.parse(reminder.expireDate)) ? new Date(reminder.expireDate).toISOString().split('T')[0] : 'Invalid date'}</Text>
