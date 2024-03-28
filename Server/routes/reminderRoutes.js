@@ -11,22 +11,22 @@ const router = express.Router();
 
 // Routes
 
-// Route to create a new agenda
+// Route to create a new reminder
 router.post("/", authMiddleware, addReminder);
 
-// Route to get all agendas for a user
+// Route to get all reminders for a user
 router.get("/", authMiddleware, async (req, res) => {
   try {
-    const reminders = await Reminder.find({agendaOwner: req.userId});
+    const reminders = await Reminder.find({reminderOwner: req.userId});
         console.log('reminders send from Backend',reminders)
     return res.send({ reminders });
 
   } catch (error) {
-    return res.status(500).send("Error retrieving agendas");
+    return res.status(500).send("Error retrieving reminders");
   }
 });
 
-// Route to get a specific agenda by id
+// Route to get a specific reminder by id
 router.get("/:id", authMiddleware, async (req, res) => {
   try {
     const reminder = await Reminder.findById(req.params.id);
@@ -35,7 +35,7 @@ router.get("/:id", authMiddleware, async (req, res) => {
     }
     return res.send({ reminder });
   } catch (error) {
-    return res.status(500).send("Error retrieving agenda");
+    return res.status(500).send("Error retrieving reminder");
   }
 });
 
