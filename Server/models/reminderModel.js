@@ -31,6 +31,18 @@ const ReminderSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+      renewal: {
+   type: [String],
+      enum: [
+        "1 year",
+        "2 years",
+        "3 years",
+        "4 years",
+        "5 years",
+      ],
+      required: true,
+  
+    },
   
   },
   // add timestamps to the schema to know when document was created or modified
