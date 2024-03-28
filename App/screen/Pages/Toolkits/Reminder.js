@@ -204,13 +204,13 @@ let index = 1;// index for scrollview
 {storedReminder.map((reminder, index) => (
   <View key={index} style={styles.row}>
     <View style={styles.rowItem}>
-      <Text>startDate : {reminder.startDate}</Text>
-      <Text>Date : {reminder.startDate && !isNaN(Date.parse(reminder.startDate)) ? new Date(reminder.startDate).toISOString().split('T')[0] : 'Invalid date'}</Text>
+      
+      <Text>Start Date : {reminder.startDate && !isNaN(Date.parse(reminder.startDate)) ? new Date(reminder.startDate).toISOString().split('T')[0] : 'Invalid date'}</Text>
       <Text>Email : {reminder.email}</Text>
     </View>
     <View style={styles.rowItem}>
-      <Text>Date : {reminder.expireDate && !isNaN(Date.parse(reminder.expireDate)) ? new Date(reminder.expireDate).toISOString().split('T')[0] : 'Invalid date'}</Text>
-      <Text>ContractName : {reminder.contractName}</Text>
+      <Text>Expired Date : {reminder.expireDate && !isNaN(Date.parse(reminder.expireDate)) ? new Date(reminder.expireDate).toISOString().split('T')[0] : 'Invalid date'}</Text>
+      <Text>Contract Name : {reminder.contractName}</Text>
       <Text>Label : {reminder.label}</Text>
     </View>
   </View>
