@@ -8,6 +8,28 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import moment from "moment";
 import axios from "axios";
 
+const isValidStartDate = (date) => {
+  const regex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[012])\/(19|20)\d\d$/;
+  return regex.test(date);
+};
+
+const isValidExpireDate = (date) => {
+  const regex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[012])\/(19|20)\d\d$/;
+  return regex.test(date);
+};
+
+const isValidContractName= (contractName) => {
+  return contractName !== '';
+};
+
+const isValidLabel = (label) => {
+  return label !== '';
+};
+
+const isValidEmail = (email) => {
+  return !isNaN(email);
+};
+
 
 export default function AddReminder() {
     const [date, setDate] = useState(new Date());;
@@ -16,6 +38,12 @@ export default function AddReminder() {
     const [selectedEmail, setSelectedEmail] = useState("");
     const [contractName, setContractName] = useState('');
     const [selectedLabel, setSelectedLabel] = useState('');
+     const [formErrors, setFormErrors] = useState({
+    date: null,
+    name: null,
+    place: null,
+    duration: null,
+  });
     const navigation = useNavigation();
 
 
@@ -57,20 +85,20 @@ console.log("formData", formData);
     // Validation des champs
     if (!isValidStartDate(formData.startDate)) {
       updateError(
-        "date",
+        "startDate",
         !isValidStartDate(formData.startDate) ? "Please enter a valid date" : null
       );
     }
      if (!isValidExpireDate(formData.expireDate)) {
       updateError(
-        "date",
+        "expireDate",
         !isValidExpireDate(formData.expireDate) ? "Please enter a valid date" : null
       );
     }
 
     if (!isValidContractName(formData.contractName)) {
       updateError(
-        "name",
+        "contractName",
         !isValidContractName(formData.contractName)
           ? "Please choose a valid Contract name"
           : null
@@ -88,7 +116,7 @@ console.log("formData", formData);
 
     if (!isValidEmail(formData.email)) {
       updateError(
-        "amount",
+        "email",
         !isValidEmail(formData.email)
           ? "Please enter a valid email"
           : null
