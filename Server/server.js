@@ -6,6 +6,7 @@ import userRoutes from "./routes/userRoutes.js";
 import expenseRoutes from "./routes/expenseRoutes.js";
 import incomeRoutes from "./routes/incomeRoutes.js";
 import agendaRoutes from "./routes/agendaRoutes.js";
+import reminderRoutes from "./routes/reminderRoutes.js";
 import cors from "cors";
 
 // Initialize dotenv

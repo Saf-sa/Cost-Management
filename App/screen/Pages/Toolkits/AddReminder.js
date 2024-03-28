@@ -7,6 +7,7 @@ import CustomButton from "../../../shared/components/ui/CustomButton";
 
 export default function AddReminder() {
     const [date, setDate] = useState(new Date());;
+    const [startDate, setStartDate] = useState(new Date());
     const [expireDate, setExpireDate] = useState(new Date());
     const [selectedEmail, setSelectedEmail] = useState("");
     const [contractName, setContractName] = useState('');
@@ -40,14 +41,13 @@ export default function AddReminder() {
             </View>
             
                      {Platform.OS === 'ios' && (
-            <DateTimePicker
-                value={date}
-                mode={"date"}
-                display="default"
-                onChange={(event, selectedDate) => {
-                    const startDate = selectedDate || date;
-                    setDate(startDate);
-                    console.log(startDate);
+              <DateTimePicker
+            value={startDate}
+            mode={"date"}
+            display="default"
+            onChange={(event, selectedDate) => {
+                const newDate = selectedDate || startDate;
+                setStartDate(newDate);
                 }}
             />
         )}
@@ -75,13 +75,14 @@ export default function AddReminder() {
                 }
             </View>
        {Platform.OS === 'ios' && (
-            <DateTimePicker
-                value={date}
-                mode={"date"}
-                display="default"
-                onChange={(event, selectedDate) => {
-                    const expireDate = selectedDate || date;
-                    setDate(expireDate);
+                  <DateTimePicker
+            value={expireDate}
+            mode={"date"}
+            display="default"
+            onChange={(event, selectedDate) => {
+                const newDate = selectedDate || expireDate;
+                setExpireDate(newDate);
+        
                 }}
             />
         )}
