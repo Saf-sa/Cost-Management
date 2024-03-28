@@ -20,60 +20,77 @@ export default function AddReminder() {
 
 
   const handleChange = (value, fieldName) => {
- if (fieldName === "duration") {
-      setSelectedDuration(value);
-    } else if (fieldName === "name") {
-      setName(value);
-    }
-     else if (fieldName === "place") {
-      setPlace(value);
-    }
-     console.log("87 setCategories", value);
+  switch (fieldName) {
+    case "startDate":
+      setStartDate(value);
+      break;
+    case "expireDate":
+      setExpireDate(value);
+      break;
+    case "contractName":
+      setContractName(value);
+      break;
+    case "label":
+      setSelectedLabel(value);
+      break;
+    case "email":
+      setSelectedEmail(value);
+      break;
+    default:
+      break;
+  }
+  console.log(fieldName, value);
+};
+
+
+const handleSubmit = async () => {
+  const formData = {
+    startDate: startDate,
+    expireDate: expireDate,
+    contractName: contractName,
+    label: selectedLabel,
+    email: selectedEmail,
   };
-
-  const handleSubmit = async () => {
-    
-    const formData = {
-
-      date: selectedDate,
-      name: name,
-      place: place,
-      duration: selectedDuration,
-     
-    };
+console.log("formData", formData);
  
 
     // Validation des champs
-    if (!isValidDate(formData.date)) {
+    if (!isValidStartDate(formData.startDate)) {
       updateError(
         "date",
-        !isValidDate(formData.date) ? "Please enter a valid date" : null
+        !isValidStartDate(formData.startDate) ? "Please enter a valid date" : null
+      );
+    }
+     if (!isValidExpireDate(formData.expireDate)) {
+      updateError(
+        "date",
+        !isValidExpireDate(formData.expireDate) ? "Please enter a valid date" : null
       );
     }
 
-    if (!isValidName(formData.name)) {
+    if (!isValidContractName(formData.contractName)) {
       updateError(
         "name",
-        !isValidName(formData.name)
-          ? "Please choose a valid name"
+        !isValidContractName(formData.contractName)
+          ? "Please choose a valid Contract name"
           : null
       );
     }
 
-    if (!isValidPlace(formData.place)) {
+    if (!isValidLabel(formData.label)) {
       updateError(
         "label",
-        !isValidPlace(formData.place)
-          ? "Please enter a place"
+        !isValidLabel(formData.label)
+          ? "Please enter a label"
           : null
       );
     }
 
-    if (!isValidDuration(formData.duration)) {
+    if (!isValidEmail(formData.email)) {
       updateError(
         "amount",
-        !isValidDuration(formData.duration)
-          ? "Please enter a valid duration"
+        !isValidEmail(formData.email)
+          ? "Please enter a valid email"
           : null
       );
     }
@@ -108,10 +125,10 @@ export default function AddReminder() {
         autoHide: true,
       });
       setTimeout(() => {
-        navigation.navigate("Dashboard");
+        navigation.navigate("Reminder");
       }, 3000);
     } catch (err) {
-     console.log("Test AddAgenda", err.response); 
+     console.log("Test AddReminder", err.response); 
       Toast.show({
         type: "error",
         position: "bottom",
@@ -133,115 +150,86 @@ export default function AddReminder() {
 
 
     return (
-         <View style={styles.container}>
-            <Text style={styles.titleStart}> Contract Start Date</Text>
-      <View style={styles.date}>       
-                {
-                    [
-                        {title: "Day", value: date ? date.getDate() : "?"},
-                        {title: "Month", value: date ? date.getMonth() + 1 : "?"},
-                        {title: "Year", value: date ? date.getFullYear() : "?"},
-                    ]
-                    .map((el, index) => {
-                        return (
-                            <View style={styles.datePart} key={index}>
-
-                                <Text style={styles.title}>{el.title}</Text>
-                                <Text style={styles.digit}>{el.value}</Text>
-
-                                 </View>   
-                        )
-                    })
-                }
-                
-            </View>
-            
-                     {Platform.OS === 'ios' && (
-              <DateTimePicker
-            value={startDate}
-            mode={"date"}
-            display="default"
-            onChange={(event, selectedDate) => {
-                const newDate = selectedDate || startDate;
-                setStartDate(newDate);
-                }}
-            />
-        )}
-     <Text style={styles.titleExpire}> Contract expire Date</Text>
-
-      <View style={styles.expireDate}>
-                
-                {
-                    [
-                        {title: "Day", value: expireDate ? expireDate.getDate() : "?"},
-                        {title: "Month", value: expireDate ? expireDate.getMonth() + 1 : "?"},
-                        {title: "Year", value: expireDate ? expireDate.getFullYear() : "?"},
-                    ]
-                    .map((el, index) => {
-                        return (
-                            <View style={styles.datePart} key={index}>
-
-                                <Text style={styles.title}>{el.title}</Text>
-                                <Text style={styles.digit}>{el.value}</Text>
-
-                                 </View>
-   
-                        )
-                    })
-                }
-            </View>
-       {Platform.OS === 'ios' && (
-                  <DateTimePicker
-            value={expireDate}
-            mode={"date"}
-            display="default"
-            onChange={(event, selectedDate) => {
-                const newDate = selectedDate || expireDate;
-                setExpireDate(newDate);
-        
-                }}
-            />
-        )}
-                 
-              
-<View style={styles.contract}>
+  <View style={styles.container}>
+    <Text style={styles.titleStart}>Contract Start Date</Text>
+    <View style={styles.date}>
+      {[
+        { title: "Day", value: startDate ? startDate.getDate() : "?" },
+        { title: "Month", value: startDate ? startDate.getMonth() + 1 : "?" },
+        { title: "Year", value: startDate ? startDate.getFullYear() : "?" },
+      ].map((el, index) => (
+        <View style={styles.datePart} key={index}>
+          <Text style={styles.title}>{el.title}</Text>
+          <Text style={styles.digit}>{el.value}</Text>
+        </View>
+      ))}
+    </View>
+    {Platform.OS === 'ios' && (
+      <DateTimePicker
+        value={startDate}
+        mode={"date"}
+        display="default"
+        onChange={(event, selectedDate) => {
+          const newDate = selectedDate || startDate;
+          setStartDate(newDate);
+        }}
+      />
+    )}
+    <Text style={styles.titleExpire}>Contract expire Date</Text>
+    <View style={styles.expireDate}>
+      {[
+        { title: "Day", value: expireDate ? expireDate.getDate() : "?" },
+        { title: "Month", value: expireDate ? expireDate.getMonth() + 1 : "?" },
+        { title: "Year", value: expireDate ? expireDate.getFullYear() : "?" },
+      ].map((el, index) => (
+        <View style={styles.datePart} key={index}>
+          <Text style={styles.title}>{el.title}</Text>
+          <Text style={styles.digit}>{el.value}</Text>
+        </View>
+      ))}
+    </View>
+    {Platform.OS === 'ios' && (
+      <DateTimePicker
+        value={expireDate}
+        mode={"date"}
+        display="default"
+        onChange={(event, selectedDate) => {
+          const newDate = selectedDate || expireDate;
+          setExpireDate(newDate);
+        }}
+      />
+    )}
+    <View style={styles.contract}>
       <CustomInputSingup
-        onChangeText={setContractName}
+        onChangeText={(value) => handleChange(value, 'contractName')}
         value={contractName}
         placeholder="Enter the Name of your Contract"
-
         style={styles.input}
       />
-  
-
-             <CustomInputSingup
-        onChangeText={setSelectedLabel}
+      <CustomInputSingup
+        onChangeText={(value) => handleChange(value, 'label')}
         value={selectedLabel}
         placeholder="Enter a description of your Contract"
-
         style={styles.input}
       />
-             <CustomInputSingup
-        onChangeText={setSelectedEmail}
+      <CustomInputSingup
+        onChangeText={(value) => handleChange(value, 'email')}
         value={selectedEmail}
         placeholder="Enter email of your Contract"
-
         style={styles.input}
       />
-</View>
-       
-   <View style={styles.content}>
-  <TouchableOpacity style={styles.button} // Button to add a new expense
-     
-     onPress={() => navigation.navigate("Reminder")}>
-        <Text style={styles.textButton}>Add Reminder</Text>
-      </TouchableOpacity>
-         
-</View>
- 
-            
-        </View>
-    );
+    </View>
+    <View style={styles.content}>
+      <CustomButton
+        onPress={handleSubmit}
+        style={styles.button}
+        buttonText={"New reminder"}
+      />
+    </View>
+  </View>
+);
+
+    
 }
 
 const styles = StyleSheet.create({
