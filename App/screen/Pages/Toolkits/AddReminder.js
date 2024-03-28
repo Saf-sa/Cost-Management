@@ -95,7 +95,7 @@ console.log("formData", formData);
       );
     }
 
-    console.log("formData", formData); 
+    console.log("formData 98", formData); 
   try {
         // Récupérer les données de l'utilisateur à partir de AsyncStorage
       const user = JSON.parse(await AsyncStorage.getItem("@storage_Key"));
@@ -104,7 +104,7 @@ console.log("formData", formData);
      console.log("143 get user Token from storage_Key ", user); 
         console.log("144 response.data", user.id); 
       const response = await axios.post(
-        `http://localhost:5555/api/agenda`,
+        `http://localhost:5555/api/reminder`,
         formData,
         {
           headers: {
@@ -120,7 +120,7 @@ console.log("formData", formData);
       Toast.show({
         type: "success",
         position: "bottom",
-        text1: "expense created successfully",
+        text1: "reminder created successfully",
         visibilityTime: 3000,
         autoHide: true,
       });

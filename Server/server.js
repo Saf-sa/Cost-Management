@@ -51,8 +51,8 @@ app.use("/api/agenda", agendaRoutes);
 app.use("/api/agenda/:_id", agendaRoutes);
 
 //Routes for reminder
-app.use("/api/reminderRoutes", reminderRoutes);
-app.use("/api/reminderRoutes/:_id", reminderRoutes);
+app.use("/api/reminder", reminderRoutes);
+app.use("/api/reminder/:_id", reminderRoutes);
 
 // Error handler
 app.use( (error, rea, res, next)=>{
