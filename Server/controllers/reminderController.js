@@ -19,6 +19,7 @@ const addReminder = async (req, res, next) => {
       contractName,
       label,
       email,
+      renewal,
     });
     const result = await newReminder.save();
     console.log(result);
