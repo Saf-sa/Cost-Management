@@ -55,6 +55,7 @@ export default function Reminder() {
   const startDate = selectedStartDate  ? selectedStartDate.format('YYYY-MM-DD').toString() : '';
   const expireDate = selecteExpireDate ? selecteExpireDate.format('YYYY-MM-DD').toString() : '';
   const [storedReminder, setStoredReminder] = useState([]);// State to store data from AsyncStorage
+const [firstDurationValue, setFirstDurationValue] = useState(null);
 
 
   
@@ -67,7 +68,7 @@ export default function Reminder() {
           
          /*  console.log('data ', data) */
           `http://localhost:5555/api/reminder/`,// Get data in DB collection from backend in DB
-                 /*    console.log('data category from backend  :', category), */
+                 
           {
             headers: {
               Authorization: `Bearer ${user.token}`,// Send token to backend
@@ -76,12 +77,13 @@ export default function Reminder() {
           }
         );
          // Stocker les données récupérées dans AsyncStorage
-       await AsyncStorage.setItem('reminder', JSON.stringify(data));// Store data in AsyncStorage
+       await AsyncStorage.setItem('reminders', JSON.stringify(data));// Store data in AsyncStorage
            console.log('data received from Backend ',data); 
 
         //await AsyncStorage.clear('reminders')
 
         const reminders = await AsyncStorage.getItem('reminders');// Get data from AsyncStorage
+        console.log("Données récupérées d'AsyncStorage :", reminders);
         if (reminders) {
        const parsedReminders = JSON.parse(reminders);// Parse data from AsyncStorage
           setStoredReminder(parsedReminders.reminders); // Send data to the state

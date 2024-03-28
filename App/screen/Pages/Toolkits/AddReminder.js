@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {Text, View, StyleSheet, TouchableOpacity} from "react-native";
+import Toast from "react-native-toast-message";
 import { useNavigation } from "@react-navigation/native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import CustomInputSingup from "../../../shared/components/ui/CustomInputSignup";
@@ -153,15 +154,15 @@ console.log("formData", formData);
         autoHide: true,
       });
       setTimeout(() => {
-        navigation.navigate("Reminder");
+        navigation.navigate("Dashboard");
       }, 3000);
     } catch (err) {
-     console.log("Test AddReminder", err.response); 
+    
       Toast.show({
         type: "error",
         position: "bottom",
         text1: err.response.data.message,
-        visibilityTime: 3000,
+        visibilityTime: 1000,
         autoHide: true,
       });
     }
@@ -231,19 +232,26 @@ console.log("formData", formData);
       <CustomInputSingup
         onChangeText={(value) => handleChange(value, 'contractName')}
         value={contractName}
+        secure={false}
+        errorMessage={formErrors.contractName}
         placeholder="Enter the Name of your Contract"
+        
         style={styles.input}
       />
       <CustomInputSingup
         onChangeText={(value) => handleChange(value, 'label')}
         value={selectedLabel}
         placeholder="Enter a description of your Contract"
+        secure={false}
+        errorMessage={formErrors.selectedLabel}
         style={styles.input}
       />
       <CustomInputSingup
         onChangeText={(value) => handleChange(value, 'email')}
         value={selectedEmail}
         placeholder="Enter email of your Contract"
+        secure={false}
+        errorMessage={formErrors.selectedEmail}
         style={styles.input}
       />
     </View>

@@ -18,7 +18,9 @@ router.post("/", authMiddleware, addReminder);
 router.get("/", authMiddleware, async (req, res) => {
   try {
     const reminders = await Reminder.find({agendaOwner: req.userId});
+        console.log('reminders send from Backend',reminders)
     return res.send({ reminders });
+
   } catch (error) {
     return res.status(500).send("Error retrieving agendas");
   }
@@ -29,7 +31,7 @@ router.get("/:id", authMiddleware, async (req, res) => {
   try {
     const reminder = await Reminder.findById(req.params.id);
     if (!reminder) {
-      return res.status(404).send("Agenda not found");
+      return res.status(404).send("Reminder not found");
     }
     return res.send({ reminder });
   } catch (error) {
