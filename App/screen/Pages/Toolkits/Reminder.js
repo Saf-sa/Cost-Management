@@ -86,16 +86,18 @@ const [firstDurationValue, setFirstDurationValue] = useState(null);
         const reminders = await AsyncStorage.getItem('reminders');// Get data from AsyncStorage
         console.log("Données récupérées d'AsyncStorage :", reminders);
         if (reminders) {
-       const parsedReminders = JSON.parse(reminders);// Parse data from AsyncStorage
+          const parsedReminders = JSON.parse(reminders);// Parse data from AsyncStorage
           setStoredReminder(parsedReminders.reminders); // Send data to the state
-            console.log('parsedReminders FrontEnd side ',parsedReminders);  
+          console.log('parsedReminders FrontEnd side ',parsedReminders);  
 
           parsedReminders.reminders.forEach(reminder => {
-       const [firstDurationValue] = reminder.duration;
-       firstDurationValue(firstDurationValue);
-    console.log(firstDurationValue); // This will log the first value of duration for each reminder
-  });
-}
+            if (Array.isArray(reminder.duration)) {
+              const [firstDurationValue] = reminder.duration;
+              setFirstDurationValue(firstDurationValue);
+              console.log(firstDurationValue); // This will log the first value of duration for each reminder
+            }
+          });
+        }
       } catch (error) {// Error handling
         console.log(error);// Error handling
       }
@@ -125,9 +127,7 @@ const [firstDurationValue, setFirstDurationValue] = useState(null);
       const user = JSON.parse(await AsyncStorage.getItem("@storage_Key"));
       // await AsyncStorage.setItem("@storage_Key", jsonValue);
 
-/*       console.log("149 get user Token from storage_Key ", user); */
-      /*  console.log("150 response.data", user.id); */
-      const response = await axios.get(
+      const response = await axios.post(
         `http://localhost:5555/api/reminder`,
         formData,
         {
@@ -136,9 +136,6 @@ const [firstDurationValue, setFirstDurationValue] = useState(null);
           },
         } 
       );
-
-     
-    console.log('data get BE',response.data);
       
       
       Toast.show({
