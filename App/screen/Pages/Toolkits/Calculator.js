@@ -22,6 +22,9 @@ const onButtonPress =(value) => {
     setInput("");
     setResult(""); 
   }
+    else if (value === "<") {
+    setInput(input.slice(0, -1));
+  }
 else {
   setInput(input + value);
 }
