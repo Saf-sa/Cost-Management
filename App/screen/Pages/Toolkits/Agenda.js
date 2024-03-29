@@ -193,16 +193,12 @@ let index = 1;// index for scrollview
 
       <View style={styles.viewAgendaButton}>
         <CustomButton
-          onPress={() => navigation.navigate("AddAgenda")}
+          onPress={() => navigation.navigate("AddReminder")}
           style={styles.button}
           buttonText={"Add new Rdv"}
       />
         </View>
- {/*    <TouchableOpacity style={styles.button} // Button to add a new expense
-     
-     onPress={() => navigation.navigate("AddAgenda")}>
-        <Text style={styles.textButton}>Add new Rdv</Text>
-      </TouchableOpacity> */}
+
     <View style={styles.container}>
       <CalendarPicker onDateChange={setSelectedStartDate} />
       <StatusBar style="auto" />
@@ -269,7 +265,6 @@ page: {
     margin: 16,
   },
   
-
     textButton:{
       color: "#E0AA3E",
       fontWeight: "bold",

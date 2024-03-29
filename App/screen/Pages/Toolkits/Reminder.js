@@ -3,6 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity,} from "react-native";
 import CalendarPicker from 'react-native-calendar-picker';
+import CustomButton from "../../../shared/components/ui/CustomButton";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from "axios";
 import Calendar from 'expo-calendar';
@@ -190,11 +191,20 @@ let index = 1;// index for scrollview
       onscroll={(evt) =>  (index++)}// to get the index of the scrollview
       onScrollBeginDrag={(evt) => (index++)}// to get the index of the scrollview
       >
-    <TouchableOpacity style={styles.button} // Button to add a new expense
+
+      <View style={styles.viewReminderButton}>
+        <CustomButton
+          onPress={() => navigation.navigate("AddReminder")}
+          style={styles.button}
+          buttonText={"New Reminder"}
+      />
+        </View>
+        
+{/*     <TouchableOpacity style={styles.button} // Button to add a new expense
      
      onPress={() => navigation.navigate("AddReminder")}>
         <Text style={styles.textButton}>Add Reminder</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     <View style={styles.container}>
       <CalendarPicker onDateChange={setSelectedStartDate} />
       <StatusBar style="auto" />
@@ -233,7 +243,7 @@ page: {
     alignItems: 'center',
     justifyContent: 'center',
     padding: 30,
-    marginTop: 20,
+    marginTop: 70,
   },
   row: {
     flex: 1,
@@ -244,7 +254,7 @@ page: {
     borderWidth: 1,
     borderColor: "#E0AA3E",
     borderRadius: 10,
-    padding: 12,
+    padding: 10,
     marginBottom: 10,
   },
   
@@ -260,25 +270,19 @@ page: {
     margin: 16,
   },
   
-     button: {
-    position: "fixed",
-    borderColor: "#E0AA3E",
-    borderWidth: 1,
-    width: "30%",
-    height: 45,
-    alignSelf: "center",
-    borderRadius: 8,
-    padding: 12,
-    textAlign: "center",
-    top: 20,
-    
-  },
-      textButton:{
+  textButton:{
       color: "#E0AA3E",
       fontWeight: "bold",
       fontSize: 15,
       textAlign: "center",
       
     },
+
+  viewReminderButton: {
+      position: "absolute",
+      alignSelf: "center",
+      alignItems  : "center",
+      marginTop: 20,
+  },
 
 });
