@@ -77,7 +77,7 @@ const ContactForm = () => {
                 </View>
 
             </AppText>
-            <AppText style={{ color: "darkslateblue", fontSize: 15, paddingBottom:10, paddingTop:40 }}>
+            <AppText style={{ color: "darkslateblue", fontSize: 15, paddingBottom:0, paddingTop:60, marginLeft:-90, }}>
                   4907 2024 1707 2778 1962
                 </AppText>
             

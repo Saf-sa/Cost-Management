@@ -137,7 +137,7 @@ Agenturdienstleistungen
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: "#F8F4D7",
   },
   header: {
     backgroundColor: '#ececec',
