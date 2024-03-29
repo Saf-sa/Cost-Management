@@ -208,7 +208,7 @@ const Login = () => {
             </AppText>
             
             
-            <AppText></AppText>
+           
           </View>
           <View style={styles.parentIncomeContainer}>
             <View
@@ -259,7 +259,7 @@ const Login = () => {
         >
           Forget Your Password?
         </Text>
-
+<View style={styles.ExpenseButton}>
         <CustomButton
           onPress={handleSubmit}
           style={styles.button}
@@ -274,6 +274,7 @@ const Login = () => {
           buttonText={"Sign up Now"}
           onPress={() => navigation.navigate("Signup")}
         />
+      </View>
       </View>
       <Toast />
     </View>
@@ -318,6 +319,7 @@ const styles = StyleSheet.create({
   },
 
   login: {
+    marginTop: 50,
     marginBottom: 50,
     color: "#E0AA3E",
     fontSize: 15,
@@ -326,12 +328,18 @@ const styles = StyleSheet.create({
 
   forgetPass: {
     flexDirection: "row",
-    alignSelf: "flex-end",
+    alignSelf: "flex-start",
     marginTop: 10,
     marginBottom: 30,
     color: "#E0AA3E",
     fontSize: 15,
     fontWeight: "bold",
+  },
+      ExpenseButton: {
+    position: "absolute",
+    alignSelf: "center",
+    alignItems  : "center",
+    marginTop: 300,
   },
   
 });
