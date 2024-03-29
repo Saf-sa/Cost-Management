@@ -278,12 +278,13 @@ const isValidForm = () => {
           errorMessage={formErrors.confirmPassword}
           onIconPress={() => setShowPassword(!showPassword)}
         />
-
+ <View style={styles.resetButton}>
         <CustomButton
           onPress={handleSubmit}
           style={styles.button}
-          buttonText={"Reset Password"}
+          buttonText={" Password Reset"}
         />
+        </View>
       </View>
       <Toast />
     </View>
@@ -329,5 +330,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
     marginTop:80,
     marginBottom: 90,
+  },
+  resetButton: {
+    position: "absolute",
+    alignSelf: "center",
+    alignItems  : "center",
+    marginTop: 400,
   },
 });
