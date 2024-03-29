@@ -251,13 +251,13 @@ const MyIncome= () => {
           />
         </ScrollView>
       </View>
-
+      <View style={styles.IncomesButton}>
       <CustomButton
         onPress={handleSubmit}
         style={styles.button}
         buttonText={"New Income"}
       />
-
+      </View>
       <Toast />
     </View>
   );
@@ -297,4 +297,10 @@ const styles = StyleSheet.create({
   SelectList: {
     marginBottom: 20,
   },
+  IncomesButton: {
+    position: "absolute",
+    alignSelf: "center",
+    marginTop: 600,
+  },
+ 
 });
