@@ -32,9 +32,17 @@ const ReminderSchema = new mongoose.Schema(
       required: true,
     },
       renewal: {
-      type: String,
+      type: [String],
+      enum: [
+        "1 year",
+        "2 years",
+        "3 years",
+        "4 years",
+        "5 years",
+
+      ],
       required: true,
-  
+
     },
   
   },

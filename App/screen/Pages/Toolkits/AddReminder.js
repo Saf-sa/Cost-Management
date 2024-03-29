@@ -1,13 +1,17 @@
 import React, {useState} from "react";
 import {Text, View, StyleSheet, TouchableOpacity} from "react-native";
 import Toast from "react-native-toast-message";
+import { DatePickerOptions } from "@react-native-community/datetimepicker";
 import { useNavigation } from "@react-navigation/native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import CustomInputSingup from "../../../shared/components/ui/CustomInputSignup";
+import { SelectList } from 'react-native-dropdown-select-list';
 import CustomButton from "../../../shared/components/ui/CustomButton";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import moment from "moment";
 import axios from "axios";
+
+
 
 const isValidStartDate = (date) => {
   const regex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[012])\/(19|20)\d\d$/;
@@ -273,14 +277,38 @@ console.log("formData", formData);
         errorMessage={formErrors.selectedEmail}
         style={styles.input}
       />
-           <CustomInputSingup
+{/*            <CustomInputSingup
         onChangeText={(value) => handleChange(value, 'renewal')}
         value={selectedRenewal}
         placeholder="Enter renewal of your Contract"
         secure={false}
         errorMessage={formErrors.selectedRenewal}
         style={styles.input}
-      />
+      /> */}
+
+ <SelectList
+            dropdownStyles={{
+              borderColor: '#E0AA3E',
+              borderWidth: 1,
+              borderRadius: 6,
+            }}
+            boxStyles={{backgroundColor:'white' ,borderRadius: 6, borderColor: '#E0AA3E', height: 40, width: 390, marginTop: 30,}}
+            defaultOption={{ value: 'Select a Renewal' }}
+            label="renewal"
+             setSelected={(value) => handleChange(value, "renewal")}
+            data={[
+               "1 year",
+               "2 years",
+               "3 years",
+               "4 years",
+               "5 years",
+            
+            ]}
+            save="value"
+            categories={"value"}
+            search={false}
+            errorMessage={formErrors.renewal}
+          />
     </View>
     <View style={styles.content}>
       <CustomButton
