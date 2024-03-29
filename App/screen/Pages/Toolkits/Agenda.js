@@ -1,11 +1,9 @@
 
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity,} from "react-native";
+import { View, Text, StyleSheet, ScrollView,} from "react-native";
 import CalendarPicker from 'react-native-calendar-picker';
-import CustomInputSingup from "../../../shared/components/ui/CustomInputSignup";
 import CustomButton from "../../../shared/components/ui/CustomButton";
-import { SelectList } from 'react-native-dropdown-select-list';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from "axios";
 import Calendar from 'expo-calendar';
@@ -193,7 +191,7 @@ let index = 1;// index for scrollview
 
       <View style={styles.viewAgendaButton}>
         <CustomButton
-          onPress={() => navigation.navigate("AddReminder")}
+          onPress={() => navigation.navigate("AddAgenda")}
           style={styles.button}
           buttonText={"Add new Rdv"}
       />

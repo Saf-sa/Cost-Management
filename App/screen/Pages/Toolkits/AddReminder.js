@@ -277,14 +277,6 @@ console.log("formData", formData);
         errorMessage={formErrors.selectedEmail}
         style={styles.input}
       />
-{/*            <CustomInputSingup
-        onChangeText={(value) => handleChange(value, 'renewal')}
-        value={selectedRenewal}
-        placeholder="Enter renewal of your Contract"
-        secure={false}
-        errorMessage={formErrors.selectedRenewal}
-        style={styles.input}
-      /> */}
 
  <SelectList
             dropdownStyles={{
@@ -292,7 +284,7 @@ console.log("formData", formData);
               borderWidth: 1,
               borderRadius: 6,
             }}
-            boxStyles={{backgroundColor:'white' ,borderRadius: 6, borderColor: '#E0AA3E', height: 40, width: 390, marginTop: 30,}}
+            boxStyles={{backgroundColor:'white' ,borderRadius: 8, borderColor: '#E0AA3E', height: 40, width: 390, marginTop: 30,}}
             defaultOption={{ value: 'Select a Renewal' }}
             label="renewal"
              setSelected={(value) => handleChange(value, "renewal")}
@@ -378,11 +370,11 @@ titleStart: {
         fontSize: 24,
     },
     contract: {
-        flex: 1,
-        width: "90%",
+        flex: 3,
+        width: 390,
         alignItems: "center",
         justifyContent: "center",
-        marginTop: 100,
+        marginTop: 130,
         marginBottom: 100,
        
     },

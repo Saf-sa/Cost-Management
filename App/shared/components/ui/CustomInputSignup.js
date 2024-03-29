@@ -56,6 +56,7 @@ const styles = StyleSheet.create({
 
   input: {
     color: "#000",
+    height: 38,
     marginBottom: 10,
     marginTop: 5,
     padding: 10,

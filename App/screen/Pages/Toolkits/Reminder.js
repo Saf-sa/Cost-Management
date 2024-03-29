@@ -1,7 +1,7 @@
 
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity,} from "react-native";
+import { View, Text, StyleSheet, ScrollView} from "react-native";
 import CalendarPicker from 'react-native-calendar-picker';
 import CustomButton from "../../../shared/components/ui/CustomButton";
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -200,11 +200,6 @@ let index = 1;// index for scrollview
       />
         </View>
         
-{/*     <TouchableOpacity style={styles.button} // Button to add a new expense
-     
-     onPress={() => navigation.navigate("AddReminder")}>
-        <Text style={styles.textButton}>Add Reminder</Text>
-      </TouchableOpacity> */}
     <View style={styles.container}>
       <CalendarPicker onDateChange={setSelectedStartDate} />
       <StatusBar style="auto" />
