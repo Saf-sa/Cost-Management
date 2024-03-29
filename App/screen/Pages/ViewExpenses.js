@@ -6,6 +6,7 @@ import {
   ScrollView,
 } from "react-native";
 import React, { useState, useEffect } from "react";
+import CustomButton from "../../shared/components/ui/CustomButton";
 import { useNavigation } from "@react-navigation/native";
 import UserNav from "../nav/UserNav";
 import Screen2 from "../../shared/components/Screen";
@@ -85,12 +86,18 @@ let index = 1;// index for scrollview
         
           image={require("../../assets/iconPerson.png")}
     /> 
-    
-     <TouchableOpacity style={styles.button} // Button to add a new expense
+         <View style={styles.viewExpenseButton}>
+        <CustomButton
+          onPress={() => navigation.navigate("MyExpenses")}
+          style={styles.button}
+          buttonText={"Add Expense"}
+      />
+        </View>
+   {/*   <TouchableOpacity style={styles.button} // Button to add a new expense
      
      onPress={() => navigation.navigate("MyExpenses")}>
         <Text style={styles.textButton}>Add new Expense</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
        
        <Text style={styles.textAmount}>Total Expenses = - {calculateTotalExpenses} € </Text>
       
@@ -122,37 +129,18 @@ const styles = StyleSheet.create({
 backgroundColor: "#F8F4D7",
   },
   expenseContainer: {
-    marginTop: -30,
+    marginTop: 20,
     width: "96%",
     borderWidth: 1,
     borderColor: "#E0AA3E",
     borderRadius: 10,
     padding: 12,
-    marginBottom: 40,
   },
 
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingBottom: 8,
-  },
-
-  button: {
-    backgroundColor: {
-      backgroundColor: "#fff",
-      shadowColor: "#000",
-
-    },
-    position: "fixed",
-    borderColor: "#E0AA3E",
-    borderWidth: 1,
-    width: "40%",
-    height: 45,
-    alignSelf: "center",
-    borderRadius: 8,
-    padding: 12,
-    textAlign: "center",
-    top: -70,
   },
 
     textButton:{
@@ -168,6 +156,12 @@ backgroundColor: "#F8F4D7",
       textAlign: "center",
       top: -60,
     },
+     viewExpenseButton: {
+      position: "absolute",
+      alignSelf: "center",
+      alignItems  : "center",
+      marginTop: 110,
+  },
 });
 
 export default ViewExpenses;

@@ -83,12 +83,6 @@ let index = 1;// index for scrollview
           buttonText={"Add Income"}
       />
         </View>
-    
-  {/*    <TouchableOpacity style={styles.button} // Button to add a new expense
-     
-     onPress={() => navigation.navigate("MyIncomes")}>
-        <Text style={styles.textButton} >Add a new Income</Text>
-      </TouchableOpacity> */}
        
         <Text style={styles.textAmount}>Total Incomes = + {calculateTotalIncomes} € </Text>
       
@@ -126,7 +120,7 @@ backgroundColor: "#F8F4D7",
     borderColor: "#E0AA3E",
     borderRadius: 10,
     padding: 12,
-    marginBottom: 10,
+
     
   },
   row: {
