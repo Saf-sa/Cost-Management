@@ -259,7 +259,7 @@ const Login = () => {
         >
           Forget Your Password?
         </Text>
-<View style={styles.ExpenseButton}>
+<View style={styles.loginButton}>
         <CustomButton
           onPress={handleSubmit}
           style={styles.button}
@@ -335,7 +335,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: "bold",
   },
-      ExpenseButton: {
+  loginButton: {
     position: "absolute",
     alignSelf: "center",
     alignItems  : "center",

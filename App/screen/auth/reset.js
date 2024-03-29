@@ -173,13 +173,14 @@ const ResetLogin = () => {
           errorMessage={formErrors.email}
           
         />
-      <AppText></AppText>
-          {/* Button Start */}
+    
+        <View style={styles.resetButton}>
         <CustomButton style={styles.Button}
           onPress={handleSubmit}
           buttonText={"Reset"}
         />
         {/* Button End */}
+      </View>
         <Text style={styles.textEmail}>
         You'll recieve a code per email to reset your password
         </Text>
@@ -240,6 +241,13 @@ const styles = StyleSheet.create({
     color: "#E0AA3E",
     fontSize: 14,
     fontWeight: "bold",
+  },
+
+    resetButton: {
+    position: "absolute",
+    alignSelf: "center",
+    alignItems  : "center",
+    marginTop: 300,
   },
  
 });
