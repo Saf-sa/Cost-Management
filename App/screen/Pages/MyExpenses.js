@@ -2,6 +2,8 @@ import React, { useState, } from "react";
 import { View, Text, StyleSheet, TextInput, ScrollView } from "react-native";
 import Toast from "react-native-toast-message";
 import { useNavigation } from "@react-navigation/native";
+import { LinearGradient } from "expo-linear-gradient";
+import AppText from "../../shared/components/uiApp/AppText";
 import AuthHeader from "../../shared/components/AuthHeader";
 import CustomInputSingup from "../../shared/components/ui/CustomInputSignup";
 import CustomButton from "../../shared/components/ui/CustomButton";
@@ -187,7 +189,35 @@ const MyExpense= () => {
 
   return (
     <View style={styles.root}>
-      <AuthHeader subtext="Please add a new expense" />
+        <LinearGradient
+          style={styles.parentContainer}
+          colors={["#f9f295", "#E0AA3E", "#F7EF8A", "#B88A44"]}
+          start={{ x: 0.1, y: 0.1 }}
+          end={{ x: 1, y: 3 }}
+        >
+          <View style={styles.balanceContainer}>
+            <AppText style= {{ flexDirection: 'row' }}>
+                     <View>
+                <Text style={{ fontSize: 36, color:'blue', lineHeight: 35 }}>€</Text>
+                </View>
+                 <View>
+                <Text style={{ fontSize: 45, color:'dodgerblue', lineHeight:45}}>X</Text>
+                </View>
+                 <View>
+                <Text style={{ fontSize: 22, color:'midnightblue', lineHeight: 21 }}>penses Manager</Text>
+                
+                </View>
+
+               
+            </AppText>
+              <View>
+                <Text style={{ fontSize: 18, color:'brown', lineHeight: 50, }}>Add a New Expense</Text>
+                
+                </View>
+          </View>
+
+        </LinearGradient>
+      {/* <AuthHeader subtext="Please add a new expense" /> */}
       <View style={styles.content}>
         <ScrollView style={styles.scrollView}>
           <Text style={styles.category}>Date</Text>
@@ -273,6 +303,22 @@ const styles = StyleSheet.create({
   root: {
     flex: 1,
   },
+    balanceContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+    height: 250,
+   marginTop : -60,
+
+  },
+
+    parentContainer: {
+    flexDirection: "column",
+    borderRadius: 10,
+    marginHorizontal: 50,
+    marginVertical: 40,
+    marginBottom: 10,
+  },
+
   content: {
     flex: 2,
     padding: 10,
@@ -304,6 +350,6 @@ const styles = StyleSheet.create({
     ExpenseButton: {
     position: "absolute",
     alignSelf: "center",
-    marginTop: 600,
+    marginTop: 670,
   },
 });

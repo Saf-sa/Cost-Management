@@ -93,12 +93,7 @@ let index = 1;// index for scrollview
           buttonText={"Add Expense"}
       />
         </View>
-   {/*   <TouchableOpacity style={styles.button} // Button to add a new expense
-     
-     onPress={() => navigation.navigate("MyExpenses")}>
-        <Text style={styles.textButton}>Add new Expense</Text>
-      </TouchableOpacity> */}
-       
+
        <Text style={styles.textAmount}>Total Expenses = - {calculateTotalExpenses} € </Text>
       
     {storedExpenses.map((expense, index) => (// Display data from AsyncStorage in a FlatList
