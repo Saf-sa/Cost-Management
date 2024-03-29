@@ -248,7 +248,7 @@ const MyExpense= () => {
               borderWidth: 1,
               borderRadius: 6,
             }}
-            boxStyles={{ borderRadius: 6, borderColor: '#E0AA3E', height: 40 }}
+            boxStyles={{ borderRadius: 6, borderColor: '#E0AA3E', height: 40, backgroundColor:'white' }}
             defaultOption={{ value: 'Select a category' }}
             label="Categories"
              setSelected={(value) => setSelected(value)}
@@ -307,6 +307,7 @@ export default MyExpense;
 const styles = StyleSheet.create({
   root: {
     flex: 1,
+    backgroundColor: "#F8F4D7",
   },
     balanceContainer: {
     justifyContent: "center",
@@ -330,6 +331,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   inputContainer: {
+    backgroundColor:'white',
     marginBottom: 20,
     flexDirection: "row",
     alignItems: "center",
@@ -340,11 +342,12 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   input: {
-    color: "#000",
+    color: "blue",
     flex: 1,
   },
   category: {
-    color: "#E0AA3E",
+    
+    color: "#E0AA0E",
     fontSize: 18,
     fontWeight: "bold",
     marginBottom: 10,

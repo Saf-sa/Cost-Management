@@ -213,7 +213,7 @@ const AddAgenda= () => {
               borderWidth: 1,
               borderRadius: 6,
             }}
-            boxStyles={{ borderRadius: 6, borderColor: '#E0AA3E', height: 40 }}
+            boxStyles={{ borderRadius: 6, borderColor: '#E0AA3E', height: 40, backgroundColor:'white' }}
             defaultOption={{ value: 'Select a duration' }}
             label="duration"
              setSelected={(value) => handleChange(value, "duration")}
@@ -278,6 +278,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   inputContainer: {
+    backgroundColor:'white',
     marginBottom: 20,
     flexDirection: "row",
     alignItems: "center",
