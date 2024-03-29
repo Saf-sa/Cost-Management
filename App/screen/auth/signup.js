@@ -303,15 +303,13 @@ const Signup = () => {
           secure={!showPassword}
           errorMessage={formErrors.confirmPassword}
         />
-        {/* input area  End*/}
-
-        {/* Button Start */}
+ <View style={styles.signupButton}>
         <CustomButton
           onPress={handleSubmit}
           style={styles.button}
           buttonText={"Register"}
         />
-        {/* Button End */}
+      </View>
       </View>
       <Toast />
     </View>
@@ -349,6 +347,11 @@ const styles = StyleSheet.create({
     padding: 20,
     marginBottom: 30,
   },
-
+  signupButton: {
+    position: "absolute",
+    alignSelf: "center",
+    alignItems  : "center",
+    marginTop: 500,
+  },
 
 });
