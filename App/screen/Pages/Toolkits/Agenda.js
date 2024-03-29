@@ -193,7 +193,7 @@ let index = 1;// index for scrollview
         <CustomButton
           onPress={() => navigation.navigate("AddAgenda")}
           style={styles.button}
-          buttonText={"Add new Rdv"}
+          buttonText={"Add new Agenda"}
       />
         </View>
 

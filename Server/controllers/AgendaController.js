@@ -20,11 +20,11 @@ const addAgenda = async (req, res, next) => {
     });
     const result = await newAgenda.save();
     console.log(result);
-    return res.json({ message: "new ggenda created successfully" });
+    return res.json({ message: "new Agenda created successfully" });
   } catch (error) {
     console.log(error);
-     if (error instanceof ValidationError) {
-      // handle validation errors
+    if (error.message.includes('Agenda validation failed')) 
+    {
       return res.status(400).send({ error: error.message });
     }
       return res.status(500).send({ error: 'An unexpected error occurred' });

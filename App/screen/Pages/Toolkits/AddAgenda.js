@@ -187,7 +187,7 @@ const AddAgenda= () => {
 
   return (
     <View style={styles.root}>
-      <AuthHeader subtext="Please add a new Rdv" />
+      {/* <AuthHeader subtext="Please add a new Rdv" /> */}
       <View style={styles.content}>
         <ScrollView style={styles.scrollView}>
           <Text style={styles.category}>Date</Text>
@@ -254,13 +254,13 @@ const AddAgenda= () => {
           />
         </ScrollView>
       </View>
-<View style={styles.AgendaButton}>
+ {<View style={styles.AgendaButton}>
       <CustomButton
         onPress={handleSubmit}
         style={styles.button}
         buttonText={"New Agenda"}
       />
-</View>
+</View>} 
       <Toast />
     </View>
   );
