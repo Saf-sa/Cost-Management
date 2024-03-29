@@ -3,9 +3,6 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity,} from "react-native";
 import CalendarPicker from 'react-native-calendar-picker';
-import CustomInputSingup from "../../../shared/components/ui/CustomInputSignup";
-import CustomButton from "../../../shared/components/ui/CustomButton";
-import { SelectList } from 'react-native-dropdown-select-list';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from "axios";
 import Calendar from 'expo-calendar';
@@ -204,7 +201,7 @@ let index = 1;// index for scrollview
 {storedReminder.map((reminder, index) => (
   <View key={index} style={styles.row}>
     <View style={styles.rowItem}>
-      <Text>Contract Name : {reminder.contractName}</Text>
+      <Text>Contract : {reminder.contractName}</Text>
       <Text>Start Date : {reminder.startDate && !isNaN(Date.parse(reminder.startDate)) ? new Date(reminder.startDate).toISOString().split('T')[0] : 'Invalid date'}</Text>
       <Text>Email : {reminder.email}</Text>
     
@@ -243,7 +240,7 @@ page: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingBottom: 10,
-        width: "110%",
+    width: "110%",
     borderWidth: 1,
     borderColor: "#E0AA3E",
     borderRadius: 10,

@@ -206,9 +206,8 @@ let index = 1;// index for scrollview
       
     </View>
     <View style={styles.rowItem}>
-            <Text>Duration : {Array.isArray(agenda.duration) ? agenda.duration.join(', ') : agenda.duration}</Text>
-      
-      <Text>Place : {agenda.place}</Text>
+      <Text>                Duration : {Array.isArray(agenda.duration) ? agenda.duration.join(', ') : agenda.duration}</Text>
+      <Text>                Place : {agenda.place}</Text>
     </View>
   </View>
 ))}
@@ -233,16 +232,20 @@ page: {
     padding: 30,
     marginTop: 20,
   },
+    rowItem: {
+    flex: 1,
+    justifyContent: 'space-between',
+   
+  },
   row: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-between',
     paddingBottom: 10,
-        width: "110%",
+    width: "110%",
     borderWidth: 1,
     borderColor: "#E0AA3E",
     borderRadius: 10,
-    padding: 12,
+    padding: 10,
     marginBottom: 10,
   },
   
