@@ -193,7 +193,7 @@ const MyIncome= () => {
           end={{ x: 1, y: 3 }}
         >
           <View style={styles.balanceContainer}>
-            <AppText style= {{ flexDirection: 'row' }}>
+            <AppText style= {{ flexDirection: 'row',marginTop:60 }}>
                      <View>
                 <Text style={{ fontSize: 36, color:'blue', lineHeight: 35 }}>€</Text>
                 </View>
@@ -205,12 +205,17 @@ const MyIncome= () => {
                 
                 </View>
 
-               
             </AppText>
               <View>
-                <Text style={{ fontSize: 18, color:'brown', lineHeight: 50, }}>Add a New Income</Text>
+                <Text style={{ fontSize: 18, color:'brown', lineHeight: 50}}>Add a New Income</Text>
                 
                 </View>
+                    <View style={{ marginLeft:-90, marginTop:0 }}>
+                <AppText style={{ color: "darkslateblue", fontSize: 15,marginTop:30 }}>
+                  4907 2024 1707 2778 1962
+                </AppText>
+                
+              </View>
           </View>
 
         </LinearGradient>
