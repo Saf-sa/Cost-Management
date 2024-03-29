@@ -5,6 +5,7 @@ import { useNavigation } from "@react-navigation/native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import CustomInputSingup from "../../../shared/components/ui/CustomInputSignup";
 import CustomButton from "../../../shared/components/ui/CustomButton";
+import { SelectList } from 'react-native-dropdown-select-list';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import moment from "moment";
 import axios from "axios";
@@ -44,10 +45,12 @@ export default function AddReminder() {
     const [selectedLabel, setSelectedLabel] = useState('');
     const [selectedRenewal, setSelectedRenewal] = useState('');
      const [formErrors, setFormErrors] = useState({
-    date: null,
-    name: null,
-    place: null,
-    duration: null,
+    startDate: null,
+    expireDate: null,
+    contractName: null,
+    selectedEmail: null,
+    selectedLabel: null,
+    selectedRenewal: null,
   });
     const navigation = useNavigation();
 
@@ -174,7 +177,7 @@ console.log("formData", formData);
         navigation.navigate("Dashboard");
       }, 3000);
     } catch (err) {
-    
+    console.log("Test AddReminder", err.response); 
       Toast.show({
         type: "error",
         position: "bottom",
@@ -271,21 +274,46 @@ console.log("formData", formData);
         errorMessage={formErrors.selectedEmail}
         style={styles.input}
       />
-           <CustomInputSingup
+   {/*         <CustomInputSingup
         onChangeText={(value) => handleChange(value, 'renewal')}
         value={selectedRenewal}
         placeholder="Enter renewal of your Contract"
         secure={false}
         errorMessage={formErrors.selectedRenewal}
         style={styles.input}
-      />
+      /> */}
+       <SelectList
+            dropdownStyles={{
+              borderColor: '#E0AA3E',
+              borderWidth: 1,
+              borderRadius: 6,
+            }}
+            boxStyles={{backgroundColor:'white', borderRadius: 6, borderColor: '#E0AA3E', height: 42, width: 390, marginTop: 30,}}
+            defaultOption={{ value: 'Select a renewal' }}
+            label="renewal"
+             setSelected={(value) => handleChange(value, "renewal")}
+            data={[
+              "1 year",
+              "2 years",
+              "3 years",
+              "4 years",
+              "5 years",
+            ]}
+            save="value"
+            renewal={"value"}
+            search={false}
+            errorMessage={formErrors.renewal}
+          />
     </View>
     <View style={styles.content}>
-      <CustomButton
+
+        <TouchableOpacity style={styles.button} // Button to add a new expense
+     
         onPress={handleSubmit}
-        style={styles.button}
-        buttonText={"New reminder"}
-      />
+            >
+        <Text style={styles.textButton}>New Reminder</Text>
+            </TouchableOpacity>
+    
     </View>
   </View>
 );
@@ -324,7 +352,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     content: {
-        flex: 20,
+        flex: 10,
         marginTop: 0,
         alignItems: "center",
         justifyContent: "center",
@@ -357,12 +385,13 @@ titleStart: {
        
     },
    button: {
+    marginTop: 60,
     position: "fixed",
     borderColor: "#E0AA3E",
     borderWidth: 1,
     width: "35%",
-    height: 45,
-    alignSelf: "center",
+    height:45,
+    alignSelf: "left",
     borderRadius: 8,
     padding: 12,
     textAlign: "center",

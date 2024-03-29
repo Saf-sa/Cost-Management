@@ -198,7 +198,7 @@ let index = 1;// index for scrollview
     <TouchableOpacity style={styles.button} // Button to add a new expense
      
      onPress={() => navigation.navigate("AddReminder")}>
-        <Text style={styles.textButton}>Add REminder</Text>
+        <Text style={styles.textButton}>Add Reminder</Text>
       </TouchableOpacity>
     <View style={styles.container}>
       <CalendarPicker onDateChange={setSelectedStartDate} />
