@@ -8,7 +8,7 @@ dotenv.config();
 const addReminder = async (req, res, next) => {
   try {
     console.log(" first test", req.body);
-    const { startDate, expireDate, contractName, label, email } = req.body;
+    const { startDate, expireDate, contractName, label, email, renewal } = req.body;
 
     console.log("body", req.body);
 
