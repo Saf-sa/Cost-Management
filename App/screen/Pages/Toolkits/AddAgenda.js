@@ -254,13 +254,13 @@ const AddAgenda= () => {
           />
         </ScrollView>
       </View>
-
+<View style={styles.AgendaButton}>
       <CustomButton
         onPress={handleSubmit}
         style={styles.button}
         buttonText={"New Agenda"}
       />
-
+</View>
       <Toast />
     </View>
   );
@@ -300,4 +300,10 @@ const styles = StyleSheet.create({
   SelectList: {
     marginBottom: 20,
   },
+  AgendaButton: {
+    position: "absolute",
+    alignSelf: "center",
+    marginTop: 600,
+  },
+  
 });

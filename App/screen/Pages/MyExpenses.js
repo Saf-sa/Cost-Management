@@ -255,7 +255,7 @@ const MyExpense= () => {
           />
         </ScrollView>
       </View>
-<View style={styles.IncomesButton}>
+<View style={styles.ExpenseButton}>
       <CustomButton
         onPress={handleSubmit}
         style={styles.button}
@@ -301,7 +301,7 @@ const styles = StyleSheet.create({
   SelectList: {
     marginBottom: 20,
   },
-    IncomesButton: {
+    ExpenseButton: {
     position: "absolute",
     alignSelf: "center",
     marginTop: 600,
