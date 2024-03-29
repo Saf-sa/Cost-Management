@@ -190,11 +190,19 @@ let index = 1;// index for scrollview
       onscroll={(evt) =>  (index++)}// to get the index of the scrollview
       onScrollBeginDrag={(evt) => (index++)}// to get the index of the scrollview
       >
-    <TouchableOpacity style={styles.button} // Button to add a new expense
+
+      <View style={styles.viewAgendaButton}>
+        <CustomButton
+          onPress={() => navigation.navigate("AddAgenda")}
+          style={styles.button}
+          buttonText={"Add new Rdv"}
+      />
+        </View>
+ {/*    <TouchableOpacity style={styles.button} // Button to add a new expense
      
      onPress={() => navigation.navigate("AddAgenda")}>
         <Text style={styles.textButton}>Add new Rdv</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     <View style={styles.container}>
       <CalendarPicker onDateChange={setSelectedStartDate} />
       <StatusBar style="auto" />
@@ -230,7 +238,7 @@ page: {
     alignItems: 'center',
     justifyContent: 'center',
     padding: 30,
-    marginTop: 20,
+    marginTop: 70,
   },
     rowItem: {
     flex: 1,
@@ -261,25 +269,20 @@ page: {
     margin: 16,
   },
   
-     button: {
-    position: "fixed",
-    borderColor: "#E0AA3E",
-    borderWidth: 1,
-    width: "29%",
-    height: 45,
-    alignSelf: "center",
-    borderRadius: 8,
-    padding: 12,
-    textAlign: "center",
-    top: 20,
-    
-  },
-      textButton:{
+
+    textButton:{
       color: "#E0AA3E",
       fontWeight: "bold",
       fontSize: 15,
       textAlign: "center",
       
     },
+
+    viewAgendaButton: {
+      position: "absolute",
+      alignSelf: "center",
+      alignItems  : "center",
+      marginTop: 20,
+  },
 
 });
