@@ -4,7 +4,6 @@ import Toast from "react-native-toast-message";
 import { useNavigation } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
 import AppText from "../../shared/components/uiApp/AppText";
-import AuthHeader from "../../shared/components/AuthHeader";
 import CustomInputSingup from "../../shared/components/ui/CustomInputSignup";
 import CustomButton from "../../shared/components/ui/CustomButton";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
@@ -217,7 +216,7 @@ const MyExpense= () => {
           </View>
 
         </LinearGradient>
-      {/* <AuthHeader subtext="Please add a new expense" /> */}
+     
       <View style={styles.content}>
         <ScrollView style={styles.scrollView}>
           <Text style={styles.category}>Date</Text>
