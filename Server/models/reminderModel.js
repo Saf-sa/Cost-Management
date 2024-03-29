@@ -31,9 +31,10 @@ const ReminderSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    renewal: {
+      renewal: {
       type: String,
       required: true,
+  
     },
   
   },

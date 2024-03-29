@@ -109,10 +109,10 @@ const [firstDurationValue, setFirstDurationValue] = useState(null);
 
       startDate: selectedStartDate,
       expireDate: selecteExpireDate,
-      contractName: selectedName,
+      contractName: selectedContractName,
       label: selectedLabel,
       email : selectedEmail,
-      renewal: selectedRenewal,
+      renewal: selectedRenewal, 
     };
  
 
@@ -198,7 +198,7 @@ let index = 1;// index for scrollview
     <TouchableOpacity style={styles.button} // Button to add a new expense
      
      onPress={() => navigation.navigate("AddReminder")}>
-        <Text style={styles.textButton}>Add Reminder</Text>
+        <Text style={styles.textButton}>Add REminder</Text>
       </TouchableOpacity>
     <View style={styles.container}>
       <CalendarPicker onDateChange={setSelectedStartDate} />
@@ -209,7 +209,7 @@ let index = 1;// index for scrollview
       
       <Text>Start Date : {reminder.startDate && !isNaN(Date.parse(reminder.startDate)) ? new Date(reminder.startDate).toISOString().split('T')[0] : 'Invalid date'}</Text>
       <Text>Email : {reminder.email}</Text>
-      <Text>Renewal : {reminder.renewal}</Text>
+    <Text>Renewal : {reminder.renewal}</Text>
     </View>
     <View style={styles.rowItem}>
       <Text>Expired Date : {reminder.expireDate && !isNaN(Date.parse(reminder.expireDate)) ? new Date(reminder.expireDate).toISOString().split('T')[0] : 'Invalid date'}</Text>
