@@ -320,7 +320,7 @@ const styles = StyleSheet.create({
     marginTop: -30,
     marginBottom: 40,
     borderRadius: 6,
-    width: 45,
+    width: 40,
     height:30,
   },
 

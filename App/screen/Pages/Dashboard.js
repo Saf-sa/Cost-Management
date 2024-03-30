@@ -595,8 +595,8 @@ const styles = StyleSheet.create({
     marginTop: -10,
     marginBottom:-20,
     borderRadius: 6,
-    marginLeft: -180,
-    width: 45,
+    marginLeft: -190,
+    width: 40,
     height:30,
 
   }, 

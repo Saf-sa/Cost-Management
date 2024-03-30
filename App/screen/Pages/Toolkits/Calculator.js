@@ -1,9 +1,8 @@
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, SafeAreaView} from 'react-native'
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, SafeAreaView, Image} from 'react-native'
 import { useState } from 'react';
 import { StatusBar } from 'react-native'; 
 import { LinearGradient } from "expo-linear-gradient";
 import AppText from "../../../shared/components/uiApp/AppText";
-
 
 const Calculator = () => {
   const [input, setInput] = useState("");
@@ -86,18 +85,27 @@ else {
 
                
             </AppText>
+                        
+
               <View>
-                <Text style={{ fontSize: 18, color:'brown', lineHeight: 50, }}>Calculator</Text>
-                
+                <Text style={{ fontSize: 18, color:'brown', lineHeight: 50,  }}>Calculator</Text>
+                 <Image style={styles.simCard} source={require('../../../assets/sim-card.png')} />
                 </View>
+                      <View style={{ position:'absolute',  }}>
+                <AppText style={{ color: "darkslateblue", fontSize: 15, marginTop:190, marginRight:100,  }}>
+                  4907 2024 1707 2778 1962
+                </AppText>
+              </View>
+                <Text style={styles.resultText }>{result}</Text>
           </View>
+         
 
         </LinearGradient>
       <StatusBar style="auto" />
        
 
     <View style={styles.resultContainer}>
-      <Text style={styles.resultText }>{result}</Text>
+      
     </View>
       <View style={styles.inputContainer}>
         <TextInput style={styles.ButtonText} 
@@ -137,8 +145,8 @@ const styles = StyleSheet.create({
     balanceContainer: {
     justifyContent: "center",
     alignItems: "center",
-    height: 250,
-   marginTop : -60,
+    height: 240,
+   marginTop : -50,
 
   },
 
@@ -146,8 +154,19 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     borderRadius: 10,
     marginHorizontal: 50,
-    marginVertical: 40,
-    marginBottom: -50,
+    marginVertical: 30,
+    marginBottom: -40,
+  },
+
+    simCard:{
+    position: "absolute",
+    marginTop: 10,
+    marginBottom: 0,
+    borderRadius: 6,
+    marginLeft: -110,
+    width: 40,
+    height:30,
+
   },
 
   container : {
@@ -157,7 +176,6 @@ const styles = StyleSheet.create({
 
 resultContainer : {
     flex: 1,
-   
     alignItems: 'center',
    
   },
@@ -179,7 +197,6 @@ resultText : {
     color: 'green',
     fontSize: 40,
 
-    
   },
 
 InputText:{

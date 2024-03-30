@@ -336,7 +336,7 @@ const styles = StyleSheet.create({
 
   balanceContainer: {
     paddingVertical: 15,
-    
+
   },
 
   simCard:{
@@ -345,7 +345,7 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     borderRadius: 6,
     marginLeft: -10,
-    width: 45,
+    width: 40,
     height:30,
 
   },
