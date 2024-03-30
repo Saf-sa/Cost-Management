@@ -10,7 +10,7 @@ import AppText from "../../shared/components/uiApp/AppText";
 import axios from "axios";
 import { LinearGradient } from "expo-linear-gradient";
 
-<Image source={require('../../assets/simCard.jpg')} />
+
 
  
 const isValidEmail = (email) => {
@@ -221,8 +221,8 @@ const Login = () => {
                 alignItems: "center",
               }}
             >
-             
-              <View style={{ marginLeft:0, marginTop:40 }}>
+             <Image style={styles.simCard} source={require('../../assets/sim-card.png')} />
+              <View style={{ marginLeft:-20, marginTop:40 }}>
                 <AppText style={{ color: "darkslateblue", fontSize: 15, }}>
                   4907 2024 1707 2778 1962
                 </AppText>
@@ -299,7 +299,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "column",
     borderRadius: 7,
-    marginTop: 40,
+    marginTop: 30,
     marginBottom: 45,
     marginHorizontal: 75,
     
@@ -309,13 +309,22 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingTop: 3,
+    paddingTop: 7,
     paddingBottom:0,
  
   },
 
   balanceContainer: {
     paddingVertical: 15,
+  },
+  simCard:{
+    position: "relative",
+    marginTop: -20,
+    marginBottom: 40,
+    borderRadius: 6,
+    width: 45,
+    height:30,
+
   },
 
   login: {
