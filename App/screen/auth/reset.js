@@ -177,7 +177,7 @@ const ResetLogin = () => {
         <View style={styles.resetButton}>
         <CustomButton style={styles.Button}
           onPress={handleSubmit}
-          buttonText={"Reset"}
+          buttonText={"Submit"}
         />
         {/* Button End */}
       </View>

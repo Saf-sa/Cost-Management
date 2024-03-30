@@ -10,6 +10,8 @@ import Calendar from 'expo-calendar';
 import Toast from 'react-native-toast-message';
 import { useNavigation } from '@react-navigation/native';
 
+
+
 async function getDefaultCalendarSource() {
   const calendars = await Calendar.getCalendarsAsync(
     calendars.EntityTypes.EVENT
@@ -46,13 +48,14 @@ export default function Agenda() {
   const navigation = useNavigation();
   const [formErrors, setFormErrors] = useState({});
   const [selectedStartDate, setSelectedStartDate] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(null);
   const [selectedName, setSelectedName] = useState(null);
   const [selectedPlace, setSelectedPlace] = useState("");
   const [selectedDuration, setSelectedDuration] = useState('');
   const startDate = selectedStartDate
     ? selectedStartDate.format('YYYY-MM-DD').toString() : '';
   const [storedAgenda, setStoredAgenda] = useState([]);// State to store data from AsyncStorage
-const [firstDurationValue, setFirstDurationValue] = useState(null);
+  const [firstDurationValue, setFirstDurationValue] = useState(null);
 
   
   useEffect(() => {// UseEffect to get data from AsyncStorage
@@ -90,6 +93,7 @@ const [firstDurationValue, setFirstDurationValue] = useState(null);
     console.log(firstDurationValue); // This will log the first value of duration for each agenda
   });
 }
+
       } catch (error) {// Error handling
         console.log(error);// Error handling
       }
@@ -180,44 +184,63 @@ const getAppointmentsForDate = async (date) => {
   }
 };
 let index = 1;// index for scrollview
+const handleDateChange = (date) => {
+  setSelectedStartDate(date);
+  setSelectedDate(date.format('YYYY-MM-DD'));
+};
+const getCustomDateStyles = () => {
+  return storedAgenda.map(agenda => {
+    return {
+      date: new Date(agenda.date),
+      style: {backgroundColor: 'red'}, // Mettre la date en rouge
+      textStyle: {color: 'white'}, // Texte en blanc pour le contraste
+    };
+  });
+};
+
 
   return (
     
-     <ScrollView style={styles.page}
-     keyboardDismissMode="on-drag"// to dismiss the keyboard when the user drags the scroll view
-      onscroll={(evt) =>  (index++)}// to get the index of the scrollview
-      onScrollBeginDrag={(evt) => (index++)}// to get the index of the scrollview
-      >
-
-      <View style={styles.viewAgendaButton}>
-        <CustomButton
-          onPress={() => navigation.navigate("AddAgenda")}
-          style={styles.button}
-          buttonText={"Add new Agenda"}
-      />
-        </View>
-
-    <View style={styles.container}>
-      <CalendarPicker onDateChange={setSelectedStartDate} />
-      <StatusBar style="auto" />
-{storedAgenda.map((agenda, index) => (
-  <View key={index} style={styles.row}>
-    <View style={styles.rowItem}>
-      <Text>Name : {agenda.name}</Text>
-      <Text>Date : {agenda.date && !isNaN(Date.parse(agenda.date)) ? new Date(agenda.date).toISOString().split('T')[0] : 'Invalid date'}</Text>
-      
-    </View>
-    <View style={styles.rowItem}>
-      <Text>                Duration : {Array.isArray(agenda.duration) ? agenda.duration.join(', ') : agenda.duration}</Text>
-      <Text>                Place : {agenda.place}</Text>
-    </View>
+  <ScrollView style={styles.page}
+  keyboardDismissMode="on-drag"
+  onscroll={(evt) =>  (index++)}
+  onScrollBeginDrag={(evt) => (index++)}
+>
+  <View style={styles.viewAgendaButton}>
+    <CustomButton
+      onPress={() => navigation.navigate("AddAgenda")}
+      style={styles.button}
+      buttonText={"Add new Agenda"}
+    />
   </View>
-))}
- </View> 
-        
-     
 
-    </ScrollView>
+  <View style={styles.container}>
+    <CalendarPicker 
+      onDateChange={handleDateChange}
+      customDatesStyles={getCustomDateStyles()} 
+    />
+    <StatusBar style="auto" />
+    {storedAgenda.map((agenda, index) => (
+      <View 
+        key={index} 
+        style={[
+          styles.row, 
+{borderColor: selectedDate && new Date(agenda.date).toISOString().split('T')[0] === selectedDate ? 'green' : '#E0AA3E'}        ]}
+      >
+        <View>
+          <Text>Name : {agenda.name}</Text>
+          <Text style={{color: new Date(agenda.date).toISOString().split('T')[0] === selectedDate ? 'green' : 'black'}}>
+            Date : {agenda.date && !isNaN(Date.parse(agenda.date)) ? new Date(agenda.date).toISOString().split('T')[0] : 'Invalid date'}
+          </Text>
+        </View>
+        <View style={styles.rowItem}>
+          <Text>Duration : {Array.isArray(agenda.duration) ? agenda.duration.join(', ') : agenda.duration}</Text>
+          <Text>Place : {agenda.place}</Text>
+        </View>
+      </View>
+    ))}
+  </View>
+</ScrollView>
   );
 }
 
@@ -235,8 +258,10 @@ page: {
     marginTop: 70,
   },
     rowItem: {
-    flex: 1,
-    justifyContent: 'space-between',
+    flex: 2,
+    flexDirection: 'column',
+    marginLeft: 0,
+  
    
   },
   row: {
