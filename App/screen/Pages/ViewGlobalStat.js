@@ -12,8 +12,9 @@ import { useNavigation } from "@react-navigation/native";
 import Icon from "../../shared/components/IncomExpenseComponent/Icon";
 import ShowLineChart from "../../shared/StatsView/LineChartExpense";
 import IncomeLineChart from "../../shared/StatsView/LineChartIncome";
-import ViewExpenses from "./ViewExpenses";
-import ViewIncomes from './ViewIncomes';
+import getExpenses from "./ViewExpenses";
+import getIncomes from './ViewIncomes';
+
 
 
   const ViewGlobalStat= () => {
