@@ -4,6 +4,8 @@ import {
   View,
   StyleSheet,
   Toast,
+  Image,
+
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
@@ -85,11 +87,11 @@ const Settings = () => {
                 </View>
 
             </AppText>
-            
+           
           </View>
           
           <View style={styles.balanceContainer}>
-           
+            <Image style={styles.simCard} source={require('../../../assets/sim-card.png')} />
               <View style={styles.UserContainer}>
 
                 <AppText style={{ color: "black", fontSize: 15, marginBottom: 10, marginLeft:-48}}>First Name : {firstName} </AppText>
@@ -146,7 +148,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     borderRadius: 10,
     marginHorizontal: 50,
-    marginVertical: 10,
+    marginVertical: 0,
   },
   
   balanceContainer: {
@@ -154,6 +156,17 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingVertical:13,
     width: "100%",
+  },
+
+  simCard:{
+    position: "relative",
+    marginTop: -30,
+    marginBottom: 0,
+    borderRadius: 6,
+    marginLeft: -220,
+    width: 40,
+    height:30,
+
   },
 
   settings: {
