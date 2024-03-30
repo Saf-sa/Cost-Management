@@ -336,6 +336,7 @@ const styles = StyleSheet.create({
 
   balanceContainer: {
     paddingVertical: 15,
+    
   },
 
   simCard:{

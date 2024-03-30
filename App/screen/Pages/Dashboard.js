@@ -5,6 +5,7 @@ import {
   StyleSheet,
   Toast,
   TouchableOpacity,
+  Image,
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
@@ -118,7 +119,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
             </AppText>
 
             <AppText style={{ color: "black", fontSize: 12 }}>Balance</AppText>
-
+ 
 
 <AppText
   style={{
@@ -128,6 +129,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 >
   { calculateTotalIncomes - calculateTotalExpenses >= 0 ? `+${calculateTotalIncomes - calculateTotalExpenses}` : `${calculateTotalIncomes - calculateTotalExpenses}` } € 
 </AppText>
+   <Image style={styles.simCard} source={require('../../assets/sim-card.png')} />
 
             <AppText style={{ marginTop:5 }}></AppText>
           </View>
@@ -587,6 +589,17 @@ const styles = StyleSheet.create({
     width: "80%",
 
   },
+
+  simCard:{
+    position: "relative",
+    marginTop: -10,
+    marginBottom:-20,
+    borderRadius: 6,
+    marginLeft: -180,
+    width: 45,
+    height:30,
+
+  }, 
   parentIncomeContainer: {
     width: "90%",
     flexDirection: "row",
