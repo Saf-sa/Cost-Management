@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, TextInput, Button, Alert, StyleSheet, Text } from 'react-native';
+import { View, TextInput, Button, Alert, StyleSheet, Text, Image } from 'react-native';
 import Mailer from 'react-native-mail';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { LinearGradient } from "expo-linear-gradient";
@@ -64,6 +64,7 @@ const ContactForm = () => {
           end={{ x: 1, y: 3 }}
         >
           <View style={styles.balanceContainer}>
+            
             <AppText style= {{ flexDirection: 'row', paddingTop:20 }}>
                      <View>
                 <Text style={{ fontSize: 36, color:'blue', lineHeight: 35 }}>€</Text>
@@ -77,10 +78,12 @@ const ContactForm = () => {
                 </View>
 
             </AppText>
-            <AppText style={{ color: "darkslateblue", fontSize: 15, paddingBottom:0, paddingTop:60, marginLeft:-90, }}>
+           <Image style={styles.simCard} source={require('../../../assets/sim-card.png')} />
+
+            <AppText style={{ color: "darkslateblue", fontSize: 15, paddingTop:40, marginLeft:-90, }}>
                   4907 2024 1707 2778 1962
                 </AppText>
-            
+
           </View>
         </LinearGradient>
        
@@ -129,6 +132,16 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     paddingVertical: 20,
+  },
+    simCard:{
+    position: "relative",
+    marginTop: -20,
+    marginBottom: 0,
+    borderRadius: 6,
+    marginRight: 220,
+    width: 40,
+    height:30,
+
   },
 
   container: {
