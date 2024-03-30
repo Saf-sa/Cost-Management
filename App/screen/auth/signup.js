@@ -1,8 +1,7 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Image  } from "react-native";
 import React, { useState, useRef, useEffect } from "react";
 import Toast from "react-native-toast-message";
 import { useNavigation } from "@react-navigation/native";
-import AuthHeader from "../../shared/components/AuthHeader";
 import CustomInputSingup from "../../shared/components/ui/CustomInputSignup";
 import CustomButton from "../../shared/components/ui/CustomButton";
 import { LinearGradient } from "expo-linear-gradient";
@@ -247,13 +246,13 @@ const Signup = () => {
 
             </AppText>
             
-            
-            <AppText></AppText>
+          
           </View>
           <View style={styles.parentIncomeContainer}>
-             
-              <View style={{ marginLeft:0, marginTop:40 }}>
-                <AppText style={{ color: "darkslateblue", fontSize: 15, }}>
+             <Image style={styles.simCard} source={require('../../assets/sim-card.png')} />
+
+              <View style={{ marginLeft:-30, marginTop:5 }}>
+                <AppText style={{ color: "darkslateblue", fontSize: 15, marginBottom:0 }}>
                   4907 2024 1707 2778 1962
                 </AppText>
               </View>
@@ -328,22 +327,31 @@ const styles = StyleSheet.create({
     height: 170,
     justifyContent: "center",
     alignItems: "center",
-    paddingTop: 0,
-    flexDirection: "column",
     borderRadius: 7,
-    marginTop: 30,
+    marginTop: 20,
     marginBottom: 30,
     marginHorizontal: 76,
 
   },
 
   balanceContainer: {
-    justifyContent: "center",
-    alignItems: "center",
+    paddingVertical: 15,
+  },
+
+  simCard:{
+    position: "relative",
+    marginTop: -10,
+    marginBottom: 30,
+    borderRadius: 6,
+    marginLeft: -45,
+    width: 45,
+    height:30,
+
   },
   
   content: {
-    flex: 1,
+    flex: 2,
+    paddingHorizontal: 30,
     padding: 20,
     marginBottom: 30,
   },

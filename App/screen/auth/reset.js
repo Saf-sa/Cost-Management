@@ -152,7 +152,7 @@ const ResetLogin = () => {
             
           </View>
           <View style={styles.parentIncomeContainer}>
-                          <Image style={styles.simCard} source={require('../../assets/sim-card.png')} />
+             <Image style={styles.simCard} source={require('../../assets/sim-card.png')} />
 
               <View style={{ marginLeft:-30, marginTop:55 }}>
                 <AppText style={{ color: "darkslateblue", fontSize: 15, }}>
