@@ -271,6 +271,7 @@ export default AddAgenda;
 const styles = StyleSheet.create({
   root: {
     flex: 1,
+    backgroundColor: "#F8F4D7",
   },
   content: {
     flex: 2,

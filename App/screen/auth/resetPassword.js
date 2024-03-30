@@ -323,7 +323,7 @@ const styles = StyleSheet.create({
   },
     simCard:{
     position: "relative",
-    marginTop: -10,
+    marginTop: -25,
     marginBottom: 30,
     borderRadius: 6,
     marginLeft: -15,

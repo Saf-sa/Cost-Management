@@ -317,7 +317,7 @@ const styles = StyleSheet.create({
   },
   simCard:{
     position: "relative",
-    marginTop: -30,
+    marginTop: -50,
     marginBottom: 40,
     borderRadius: 6,
     width: 40,
