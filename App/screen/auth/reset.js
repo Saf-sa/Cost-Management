@@ -87,7 +87,7 @@ const ResetLogin = () => {
             type: "error",
             position: "bottom",
             text1: "Please review your credentials",
-            visibilityTime: 3000,
+            visibilityTime: 2000,
             autoHide: true,
           }); 
       return updateError(
@@ -151,10 +151,9 @@ const ResetLogin = () => {
             </AppText>
             
           </View>
+                       <Image style={styles.simCard} source={require('../../assets/sim-card.png')} />
           <View style={styles.parentIncomeContainer}>
-             <Image style={styles.simCard} source={require('../../assets/sim-card.png')} />
-
-              <View style={{ marginLeft:-30, marginTop:55 }}>
+              <View style={{ marginLeft:15,  marginTop:40 }}>
                 <AppText style={{ color: "darkslateblue", fontSize: 15, }}>
                   4907 2024 1707 2778 1962
                 </AppText>
@@ -225,9 +224,11 @@ const styles = StyleSheet.create({
   },
     simCard:{
     position: "relative",
-    marginTop: -30,
-    marginBottom: 40,
+    marginTop: -5,
+    marginBottom: -15,
+    marginLeft: -200,
     borderRadius: 6,
+    
     width: 45,
     height:30,
 

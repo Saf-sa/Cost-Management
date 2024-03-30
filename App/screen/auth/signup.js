@@ -160,7 +160,7 @@ const Signup = () => {
         type: "error",
         position: "bottom",
         text1: "Please review your credentials",
-        visibilityTime: 3000,
+        visibilityTime: 2000,
         autoHide: true,
       });
 
@@ -251,7 +251,7 @@ const Signup = () => {
           <View style={styles.parentIncomeContainer}>
              <Image style={styles.simCard} source={require('../../assets/sim-card.png')} />
 
-              <View style={{ marginLeft:-30, marginTop:5 }}>
+              <View style={{ marginRight:35, marginTop:15 }}>
                 <AppText style={{ color: "darkslateblue", fontSize: 15, marginBottom:0 }}>
                   4907 2024 1707 2778 1962
                 </AppText>
@@ -343,7 +343,7 @@ const styles = StyleSheet.create({
     marginTop: -10,
     marginBottom: 30,
     borderRadius: 6,
-    marginLeft: -45,
+    marginLeft: -10,
     width: 45,
     height:30,
 

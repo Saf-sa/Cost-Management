@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Image } from "react-native";
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigation, } from "@react-navigation/native";
 import Toast from "react-native-toast-message";
@@ -225,7 +225,9 @@ const isValidForm = () => {
               }}
             >
              
-              <View style={{ marginLeft:0, marginTop:40 }}>
+              <View style={{ marginLeft:15, marginTop:0 }}>
+                 <Image style={styles.simCard} source={require('../../assets/sim-card.png')} />
+
                 <AppText style={{ color: "darkslateblue", fontSize: 15, }}>
                   4907 2024 1707 2778 1962
                 </AppText> 
@@ -303,38 +305,42 @@ const styles = StyleSheet.create({
     height: 170,
     justifyContent: "center",
     alignItems: "center",
-    paddingTop: 0,
-    flexDirection: "column",
     borderRadius: 7,
-    marginTop: 40,
-    marginHorizontal: 75,
+    marginTop: 30,
+    marginHorizontal: 76,
 
   },
     parentIncomeContainer: {
     width: "90%",
     flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    paddingTop: 5,
+    paddingVertical: 5,
+   
   },
 
   balanceContainer: {
-    justifyContent: "center",
-    alignItems: "center",
     paddingVertical: 15,
-    width: "80%",
+
+  },
+    simCard:{
+    position: "relative",
+    marginTop: -10,
+    marginBottom: 30,
+    borderRadius: 6,
+    marginLeft: -15,
+    width: 45,
+    height:30,
 
   },
   content: {
-    flex: 1,
+    flex: 2,
     paddingHorizontal: 30,
-    marginTop:80,
+    marginTop:60,
     marginBottom: 90,
   },
   resetButton: {
     position: "absolute",
     alignSelf: "center",
     alignItems  : "center",
-    marginTop: 400,
+    marginTop: 420,
   },
 });
