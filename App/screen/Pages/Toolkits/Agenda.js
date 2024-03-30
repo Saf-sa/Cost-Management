@@ -233,7 +233,7 @@ const getCustomDateStyles = () => {
             Date : {agenda.date && !isNaN(Date.parse(agenda.date)) ? new Date(agenda.date).toISOString().split('T')[0] : 'Invalid date'}
           </Text>
         </View>
-        <View style={styles.rowItem}>
+        <View /* style={styles.rowItem} */>
           <Text>Duration : {Array.isArray(agenda.duration) ? agenda.duration.join(', ') : agenda.duration}</Text>
           <Text>Place : {agenda.place}</Text>
         </View>
@@ -258,15 +258,17 @@ page: {
     marginTop: 70,
   },
     rowItem: {
-    flex: 2,
+    flex: 1,
+    
+    position: 'absolute',
     flexDirection: 'column',
-    marginLeft: 0,
-  
+    marginLeft: 250,
    
   },
   row: {
     flex: 1,
-    flexDirection: 'row',
+    justifyContent: 'space-between',
+    flexDirection: 'column',
     paddingBottom: 10,
     width: "110%",
     borderWidth: 1,
