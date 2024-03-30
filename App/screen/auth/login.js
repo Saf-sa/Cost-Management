@@ -222,7 +222,7 @@ const Login = () => {
               }}
             >
              <Image style={styles.simCard} source={require('../../assets/sim-card.png')} />
-              <View style={{ marginLeft:-20, marginTop:40 }}>
+              <View style={{ marginLeft:-30, marginTop:55 }}>
                 <AppText style={{ color: "darkslateblue", fontSize: 15, }}>
                   4907 2024 1707 2778 1962
                 </AppText>
@@ -297,9 +297,8 @@ const styles = StyleSheet.create({
     height: 170,
     justifyContent: "center",
     alignItems: "center",
-    flexDirection: "column",
     borderRadius: 7,
-    marginTop: 30,
+    marginTop: 20,
     marginBottom: 45,
     marginHorizontal: 75,
     
@@ -310,7 +309,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     paddingTop: 7,
-    paddingBottom:0,
  
   },
 
@@ -319,12 +317,11 @@ const styles = StyleSheet.create({
   },
   simCard:{
     position: "relative",
-    marginTop: -20,
+    marginTop: -30,
     marginBottom: 40,
     borderRadius: 6,
     width: 45,
     height:30,
-
   },
 
   login: {
