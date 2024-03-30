@@ -6,7 +6,8 @@ import AppText from "../../../shared/components/uiApp/AppText";
 
 const Calculator = () => {
   const [input, setInput] = useState("");
-  const [result, setResult] = useState("");
+  const [result, setResult] = useState("0");
+
 
 const onButtonPress =(value) => { 
   if (value === "=") {
@@ -19,7 +20,7 @@ const onButtonPress =(value) => {
   }
   else if (value === "C") {
     setInput("");
-    setResult(""); 
+    setResult("0"); 
   }
     else if (value === "<") {
     setInput(input.slice(0, -1));
@@ -58,6 +59,7 @@ else {
         return "#E0CE3E";
     }
   };
+  
 
   return (
 
@@ -96,7 +98,7 @@ else {
                   4907 2024 1707 2778 1962
                 </AppText>
               </View>
-                <Text style={styles.resultText }>{result}</Text>
+                <Text style={styles.resultText }>= {result}</Text>
           </View>
          
 
@@ -113,6 +115,7 @@ else {
         value={input} 
         onChangeText={setInput}
         keyboardType='numeric'
+        
         />
 
 
@@ -145,8 +148,8 @@ const styles = StyleSheet.create({
     balanceContainer: {
     justifyContent: "center",
     alignItems: "center",
-    height: 240,
-   marginTop : -50,
+    height: 230,
+   marginTop : -30,
 
   },
 
