@@ -178,7 +178,7 @@ export default function App() {
         <Stack.Screen name="Calculator" component={Calculator} />
         <Stack.Screen name="Agenda" component={Agenda} />
         <Stack.Screen name="Reminder" component={Reminder} />
-        <Stack.Screen name="Download" component={Download} />
+        <Stack.Screen name="Download" initialParams={{category:'all'}} component={Download} />
         <Stack.Screen name="Settings" component={Settings} />
         <Stack.Screen name="AddReminder" component={AddReminder} />
         <Stack.Screen name="Impressum" component={Impressum} />

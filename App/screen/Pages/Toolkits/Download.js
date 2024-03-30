@@ -16,10 +16,11 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
   function Download() {
   
+  const [storedIncomes, setStoredIncomes] = useState([]);// State to store data from AsyncStorage
+  const [storedExpenses, setStoredExpenses] = useState([]);// State to store data from AsyncStorage
+  const navigation = useNavigation();
 
-    const navigation = useNavigation();
-    
-      useEffect(() => {
+  useEffect(() => {
     const fetchUserData = async () => {
       try {
         const jsonValue = await AsyncStorage.getItem('@storage_Key');
@@ -44,14 +45,26 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
           const user = JSON.parse(jsonValue);
           setFirstName(user.firstName); // Update this line to use setFirstName
         }
+          const incomes = await AsyncStorage.getItem('incomes');// Get data from AsyncStorage
+        if (incomes) {
+       const parsedIncomes = JSON.parse(incomes);// Parse data from AsyncStorage
+          setStoredIncomes(parsedIncomes.incomes); // Send data to the state
+               /*  console.log('parsedIncomes FrontEnd side ',parsedIncomes);   */
+        }
+         const expenses = await AsyncStorage.getItem('expenses');// Get data from AsyncStorage
+        if (expenses) {
+       const parsedExpenses = JSON.parse(expenses);// Parse data from AsyncStorage
+          setStoredExpenses(parsedExpenses.expenses); // Send data to the state
+               /*  console.log('parsedExpenses FrontEnd side ',parsedExpenses);   */
+        }
       } catch (e) {
         console.error("Failed to fetch user data from storage");
       }
     };
 
     fetchUserData();
+   
   }, []);
-
 
     //get Date Today default
     const dateToday = moment(new Date()).format("YYYYMMDD");
@@ -136,7 +149,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
           <AppText style={styles.dashboardTitle}>Expenses</AppText>
         </View>
         <View style={styles.dashboardCat}>
-          <TouchableOpacity onPress={() => navigation.push("Clothes")}>
+          <TouchableOpacity onPress={() => navigation.push("ViewExpenses", {category:'Clothe'})}>
             <Icon
               name="tshirt"
               size={66}
@@ -146,7 +159,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
               Clothes
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.push("Foods")}>
+          <TouchableOpacity onPress={() => navigation.push("ViewExpenses", {category:'Food'})}>
             <Icon
               name="utensils"
               size={66}
@@ -157,7 +170,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
               Foods
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.push("Transport")}>
+          <TouchableOpacity onPress={() => navigation.push("ViewExpenses", {category:'Transport'})}>
             <Icon
               name="subway"
               size={66}
@@ -167,7 +180,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
               Transport
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.push("Studies")}>
+          <TouchableOpacity onPress={() => navigation.push("ViewExpenses", {category:'Studie'})}>
             <Icon
               name="university"
               size={66}
@@ -179,7 +192,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
             </Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => navigation.push("MyInvoices")}>
+          <TouchableOpacity onPress={() => navigation.push("ViewExpenses", {category:'MyInvoice'})}>
             <Icon
               name="house-user"
               size={66}
@@ -191,7 +204,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
             </Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => navigation.push("Taxes")}>
+          <TouchableOpacity onPress={() => navigation.push("ViewExpenses", {category:'Tax'})}>
             <Icon
               name="cash-register"
               size={66}
@@ -200,7 +213,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
             <Text style={{ fontSize: 15, paddingTop: 5 }}> Taxes</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => navigation.push("Hobbies")}>
+          <TouchableOpacity onPress={() => navigation.push("ViewExpenses", {category:'Hobbie'})}>
             <Icon
               styles={styles.icon}
               name="laugh-wink"
@@ -210,7 +223,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
             <Text style={{ fontSize: 15, paddingTop: 5 }}>Hobbies</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => navigation.push("Money")}>
+          <TouchableOpacity onPress={() => navigation.push("ViewExpenses", {category:'Money'})}>
             <Icon
               styles={styles.icon}
               name="hand-holding-usd"
@@ -220,7 +233,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
             <Text style={{ fontSize: 15, paddingTop: 5 }}> Money</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => navigation.push("Epargne")}>
+          <TouchableOpacity onPress={() => navigation.push("ViewExpenses", {category:'Epargne'})}>
             <Icon
               styles={styles.icon}
               name="piggy-bank"
@@ -230,7 +243,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
             <Text style={{ fontSize: 15, paddingTop: 5 }}>Epargne</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => navigation.push("Holidays")}>
+          <TouchableOpacity onPress={() => navigation.push("ViewExpenses", {category:'Holiday'})}>
             <Icon
               styles={styles.icon}
               name="plane-departure"
