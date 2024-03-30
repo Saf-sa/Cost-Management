@@ -6,6 +6,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import AppText from "../../../shared/components/uiApp/AppText";
 import UserNav from "../../nav/UserNav";
 import Screen2 from "../../../shared/components/Screen";
+import CustomButton from "../../../shared/components/ui/CustomButton";
 
 
 import axios from "axios";
@@ -108,8 +109,15 @@ const ContactForm = () => {
         value={body}
         onChangeText={(text) => setBody(text)}
       />
-      <Button title="Submit" onPress={handleSendEmail} />
+     
     </View>
+    {<View style={styles.contactButton}>
+      <CustomButton
+        onPress={handleSendEmail} 
+        style={styles.button}
+        buttonText={"New Agenda"}
+      />
+</View>} 
       </Screen2>
       </View>
   );
@@ -163,7 +171,13 @@ const styles = StyleSheet.create({
     color: "#E0AA3E",
     fontSize: 20,
     fontWeight: "bold",
-  }
+  },
+  contactButton:{
+    position: "absolute",
+    alignSelf: "center",
+    marginTop: 730,
+  },
+  
 });
 
 export default ContactForm;
