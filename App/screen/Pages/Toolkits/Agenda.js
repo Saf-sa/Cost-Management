@@ -203,7 +203,7 @@ const getCustomDateStyles = () => {
     
   <ScrollView style={styles.page}
   keyboardDismissMode="on-drag"
-  onscroll={(evt) =>  (index++)}
+  onScroll={(evt) =>  (index++)}
   onScrollBeginDrag={(evt) => (index++)}
 >
   <View style={styles.viewAgendaButton}>
@@ -228,6 +228,7 @@ const getCustomDateStyles = () => {
 {borderColor: selectedDate && new Date(agenda.date).toISOString().split('T')[0] === selectedDate ? 'green' : '#E0AA3E'}        ]}
       >
         <View>
+          
           <Text>Name : {agenda.name}</Text>
           <Text style={{color: new Date(agenda.date).toISOString().split('T')[0] === selectedDate ? 'green' : 'black'}}>
             Date : {agenda.date && !isNaN(Date.parse(agenda.date)) ? new Date(agenda.date).toISOString().split('T')[0] : 'Invalid date'}
@@ -238,10 +239,14 @@ const getCustomDateStyles = () => {
           <Text>Place : {agenda.place}</Text>
         </View>
       </View>
+      
     ))}
+    
   </View>
 </ScrollView>
+
   );
+  
 }
 
 const styles = StyleSheet.create({
