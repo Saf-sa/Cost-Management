@@ -190,13 +190,27 @@ const handleDateChange = (date) => {
   setSelectedDate(date.format('YYYY-MM-DD'));
 };
 const getCustomDateStyles = () => {
-  return storedReminder.map(reminder => {
-    return {
-      date: new Date(reminder.date),
+  let customDates = [];
+
+  // Ajouter les dates de début à customDates
+  storedReminder.forEach(reminder => {
+    customDates.push({
+      date: new Date(reminder.startDate),
       style: {backgroundColor: 'red'}, // Mettre la date en rouge
       textStyle: {color: 'white'}, // Texte en blanc pour le contraste
-    };
+    });
   });
+
+  // Ajouter les dates d'expiration à customDates
+  storedReminder.forEach(reminder => {
+    customDates.push({
+      date: new Date(reminder.expireDate),
+      style: {backgroundColor: 'red'}, // Mettre la date en rouge
+      textStyle: {color: 'white'}, // Texte en blanc pour le contraste
+    });
+  });
+
+  return customDates;
 };
   return (
     
@@ -224,12 +238,12 @@ const getCustomDateStyles = () => {
       key={index} 
       style={[
         styles.row, 
-        {borderColor: selectedDate && new Date(reminder.startDate).toISOString().split('T')[0] === selectedDate ? 'green' : '#E0AA3E'}
+        {borderColor: selectedDate && new Date(reminder.startDate).toISOString().split('T')[0] === selectedDate ? 'red' : '#E0AA3E'}
       ]}
     >
       <View>
         <Text>Contract : {reminder.contractName}</Text>
-        <Text style={{color: new Date(reminder.startDate).toISOString().split('T')[0] === selectedDate ? 'green' : 'black'}}>
+        <Text style={{color: new Date(reminder.startDate).toISOString().split('T')[0] === selectedDate ? 'red' : 'black'}}>
           Start Date : {reminder.startDate && !isNaN(Date.parse(reminder.startDate)) ? new Date(reminder.startDate).toISOString().split('T')[0] : 'Invalid date'}
         </Text>
         <Text>Email : {reminder.email}</Text>
