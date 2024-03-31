@@ -183,7 +183,19 @@ const getAppointmentsForDate = async (date) => {
   }
 };
 let index = 1;// index for scrollview
-
+const handleDateChange = (date) => {
+  setSelectedStartDate(date);
+  setSelectedDate(date.format('YYYY-MM-DD'));
+};
+const getCustomDateStyles = () => {
+  return storedAgenda.map(agenda => {
+    return {
+      date: new Date(agenda.date),
+      style: {backgroundColor: 'red'}, // Mettre la date en rouge
+      textStyle: {color: 'white'}, // Texte en blanc pour le contraste
+    };
+  });
+};
   return (
     
      <ScrollView style={styles.page}
