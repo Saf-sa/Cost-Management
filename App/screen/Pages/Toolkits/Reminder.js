@@ -46,6 +46,7 @@ async function createCalendar() {
 export default function Reminder() {
   const navigation = useNavigation();
   const [formErrors, setFormErrors] = useState({});
+   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedStartDate, setSelectedStartDate] = useState(null);
   const [selecteExpireDate, setSelecteExpireDate] = useState(null);
   const [selectedContractName, setSelecteContractName] = useState(null);
@@ -182,15 +183,16 @@ const getAppointmentsForDate = async (date) => {
     console.log(error);
   }
 };
+
 let index = 1;// index for scrollview
 const handleDateChange = (date) => {
   setSelectedStartDate(date);
   setSelectedDate(date.format('YYYY-MM-DD'));
 };
 const getCustomDateStyles = () => {
-  return storedAgenda.map(agenda => {
+  return storedReminder.map(reminder => {
     return {
-      date: new Date(agenda.date),
+      date: new Date(reminder.date),
       style: {backgroundColor: 'red'}, // Mettre la date en rouge
       textStyle: {color: 'white'}, // Texte en blanc pour le contraste
     };
@@ -213,25 +215,33 @@ const getCustomDateStyles = () => {
         </View>
         
     <View style={styles.container}>
-      <CalendarPicker onDateChange={setSelectedStartDate} />
-      <StatusBar style="auto" />
-{storedReminder.map((reminder, index) => (
-  <View key={index} style={styles.row}>
-    <View style={styles.rowItem}>
-      <Text>Contract : {reminder.contractName}</Text>
-      <Text>Start Date : {reminder.startDate && !isNaN(Date.parse(reminder.startDate)) ? new Date(reminder.startDate).toISOString().split('T')[0] : 'Invalid date'}</Text>
-      <Text>Email : {reminder.email}</Text>
-    
+  <CalendarPicker onDateChange={handleDateChange} 
+  customDatesStyles={getCustomDateStyles()} 
+  />
+  <StatusBar style="auto" />
+  {storedReminder.map((reminder, index) => (
+    <View 
+      key={index} 
+      style={[
+        styles.row, 
+        {borderColor: selectedDate && new Date(reminder.startDate).toISOString().split('T')[0] === selectedDate ? 'green' : '#E0AA3E'}
+      ]}
+    >
+      <View>
+        <Text>Contract : {reminder.contractName}</Text>
+        <Text style={{color: new Date(reminder.startDate).toISOString().split('T')[0] === selectedDate ? 'green' : 'black'}}>
+          Start Date : {reminder.startDate && !isNaN(Date.parse(reminder.startDate)) ? new Date(reminder.startDate).toISOString().split('T')[0] : 'Invalid date'}
+        </Text>
+        <Text>Email : {reminder.email}</Text>
+      </View>
+      <View /* style={styles.rowItem} */>
+        <Text>Label : {reminder.label}</Text>
+        <Text>Expired Date : {reminder.expireDate && !isNaN(Date.parse(reminder.expireDate)) ? new Date(reminder.expireDate).toISOString().split('T')[0] : 'Invalid date'}</Text>
+        <Text>Renewal every : {reminder.renewal}</Text>
+      </View>
     </View>
-    <View style={styles.rowItem}>
-      <Text>Label : {reminder.label}</Text>
-      <Text>Expired Date : {reminder.expireDate && !isNaN(Date.parse(reminder.expireDate)) ? new Date(reminder.expireDate).toISOString().split('T')[0] : 'Invalid date'}</Text>
-      <Text>Renewal every : {reminder.renewal}</Text>
-      
-    </View>
-  </View>
-))}
- </View> 
+  ))}
+</View> 
         
      
 

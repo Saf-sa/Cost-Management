@@ -206,6 +206,7 @@ const getCustomDateStyles = () => {
   onScroll={(evt) =>  (index++)}
   onScrollBeginDrag={(evt) => (index++)}
 >
+  
   <View style={styles.viewAgendaButton}>
     <CustomButton
       onPress={() => navigation.navigate("AddAgenda")}
