@@ -238,7 +238,7 @@ const getCustomDateStyles = () => {
       key={index} 
       style={[
         styles.row, 
-        {borderColor: selectedDate && new Date(reminder.startDate).toISOString().split('T')[0] === selectedDate ? 'red' : '#E0AA3E'}
+        {borderColor: selectedDate && new Date(reminder.startDate).toISOString().split('T')[0] === selectedDate ? 'green' : '#E0AA3E'}
       ]}
     >
       <View>
