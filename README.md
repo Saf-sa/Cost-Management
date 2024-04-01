@@ -7,7 +7,7 @@
   <H3> Expense Tracker </H3>
 
 ![](App/assets/PhotoApp/1_1.jpg)
-![alt text](App/assets/PhotoApp/02.png ) 
+![alt text](App/assets/PhotoApp/2_1.jpg ) 
 ![alt text](App/assets/PhotoApp/03.png)
 ![alt text](App/assets/PhotoApp/04.png)
 ![alt text](App/assets/PhotoApp/05.png)
