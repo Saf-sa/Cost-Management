@@ -6,7 +6,7 @@ import Incomes from "../models/incomeModel.js";
 // Import userController
 
 import { registerIncome } from "../controllers/IncomesController.js";
-import { registerExpense} from "../controllers/ExpensesController.js";
+/* import { registerExpense} from "../controllers/ExpensesController.js"; */
 import Expenses from "../models/expenseModel.js";
 // Initialize express router
 const router = express.Router();

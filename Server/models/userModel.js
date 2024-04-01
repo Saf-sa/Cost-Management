@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 import resetPasswordMiddleware from "../middlewares/resetPasswordMiddleware.js";
-
 // use mongoose to create a schema to define the structure of the data
 const userSchema = new mongoose.Schema(
   {

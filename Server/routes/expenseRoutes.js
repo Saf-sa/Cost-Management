@@ -3,9 +3,10 @@ import express from "express";
 import Expenses from "../models/expenseModel.js";
 
 
-// Import userController
 
-import { registerExpense } from "../controllers/ExpensesController.js";
+// Import userController
+import { registerExpense } from "../controllers/expensesController.js";
+
 
  
 // Initialize express router

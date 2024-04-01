@@ -3,7 +3,6 @@ import { addAgenda } from "../controllers/agendaController.js";
 import authMiddleware from '../middlewares/authMiddleware.js';
 import Agenda from '../models/agendaModel.js';
 
-import { get } from 'mongoose';
 
 // Initialize express router
 const router = express.Router();
