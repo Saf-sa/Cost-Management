@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, TextInput, Button, Alert, StyleSheet, Text, Image } from 'react-native';
+import { View, TextInput, Alert, StyleSheet, Text, Image } from 'react-native';
 import Mailer from 'react-native-mail';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { LinearGradient } from "expo-linear-gradient";

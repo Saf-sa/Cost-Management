@@ -1,6 +1,5 @@
-import React, { useCallback, useEffect, useState } from "react";
-
-import { View, StyleSheet, Text } from "react-native";
+import React from "react";
+import { StyleSheet, Text } from "react-native";
 
 function AppText({ style, children }) {
   return <Text style={[styles.Appstyle, style]}>{children}</Text>;

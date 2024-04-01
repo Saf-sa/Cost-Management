@@ -8,7 +8,7 @@ const ShowPieChartIncomes = ({}) => {
   const [chartData, setChartData] = useState([]);
 
   useEffect(() => {
-    const fetchData = async (route) => {
+    const fetchData = async () => {
       const incomes = await AsyncStorage.getItem("incomes");
       if (incomes) {
         const parsedIncomes = JSON.parse(incomes);

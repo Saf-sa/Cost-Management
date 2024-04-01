@@ -3,10 +3,7 @@ import {
   View,
   StyleSheet,
 } from "react-native";
-
 import { useNavigation } from "@react-navigation/native";
-
-
 import ShowPieChartExpense from "../../shared/StatsView/PieChartExpense";
 import ShowPieChartIncome from "../../shared/StatsView/PieChartIncome";
 

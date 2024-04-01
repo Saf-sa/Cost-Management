@@ -1,14 +1,13 @@
 import React, {useState} from "react";
-import {Text, View, StyleSheet, TouchableOpacity} from "react-native";
+import {Text, View, StyleSheet} from "react-native";
 import Toast from "react-native-toast-message";
-import { DatePickerOptions } from "@react-native-community/datetimepicker";
 import { useNavigation } from "@react-navigation/native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import CustomInputSingup from "../../../shared/components/ui/CustomInputSignup";
 import { SelectList } from 'react-native-dropdown-select-list';
 import CustomButton from "../../../shared/components/ui/CustomButton";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import moment from "moment";
+
 import axios from "axios";
 
 

@@ -2,7 +2,6 @@ import React, { useState} from "react";
 import { View, Text, StyleSheet, TextInput, ScrollView } from "react-native";
 import Toast from "react-native-toast-message";
 import { useNavigation } from "@react-navigation/native";
-import AuthHeader from "../../shared/components/AuthHeader";
 import { LinearGradient } from "expo-linear-gradient";
 import AppText from "../../shared/components/uiApp/AppText";
 import CustomInputSingup from "../../shared/components/ui/CustomInputSignup";

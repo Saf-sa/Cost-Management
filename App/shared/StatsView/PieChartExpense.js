@@ -9,7 +9,7 @@ const ViewAllExpenseCat = ({}) => {
   const [chartData, setChartData] = useState([]);
 
   useEffect(() => {
-    const fetchData = async (route) => {
+    const fetchData = async () => {
       const expenses = await AsyncStorage.getItem("expenses");
       if (expenses) {
         const parsedExpenses = JSON.parse(expenses);

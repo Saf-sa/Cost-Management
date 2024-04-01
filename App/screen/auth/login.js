@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from "react";
 import Toast from "react-native-toast-message";
 import { View, Text, StyleSheet, Image} from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import AuthHeader from "../../shared/components/AuthHeader";
 import CustomInputLog from "../../shared/components/ui/CustomInputLog";
 import CustomButton from "../../shared/components/ui/CustomButton";
 import AsyncStorage from "@react-native-async-storage/async-storage";

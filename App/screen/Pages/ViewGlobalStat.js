@@ -3,17 +3,15 @@ import {
   View,
   StyleSheet,
   Toast,
-  useWindowDimensions,
   TouchableOpacity,
-   ScrollView,
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import Icon from "../../shared/components/IncomExpenseComponent/Icon";
 import ShowLineChart from "../../shared/StatsView/LineChartExpense";
 import IncomeLineChart from "../../shared/StatsView/LineChartIncome";
-import getExpenses from "./ViewExpenses";
-import getIncomes from './ViewIncomes';
+/* import getExpenses from "./ViewExpenses";
+import getIncomes from './ViewIncomes'; */
 
 
 

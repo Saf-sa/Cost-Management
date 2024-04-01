@@ -1,8 +1,8 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";;
-import { icon } from '@fortawesome/fontawesome-svg-core';
+
 
 
 function Icon({

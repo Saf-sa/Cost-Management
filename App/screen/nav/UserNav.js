@@ -4,19 +4,13 @@ import {
   Text,
   StyleSheet,
   Image,
-  BackHandler,
   TouchableOpacity,
-  ScrollView,
-  TouchableWithoutFeedback,
   Modal,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-
 import Icon from "../../shared/components/IncomExpenseComponent/Icon";
-import AppText from "../../shared/components/uiApp/AppText";
 import { useNavigation } from "@react-navigation/native";
-import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
-function HomeNav({ title, subtitle, image }) {
+function HomeNav({image }) {
   const [modalVisible, setModalVisible] = useState(false);
   const navigation = useNavigation();
   // const ContactLinking = () => {
