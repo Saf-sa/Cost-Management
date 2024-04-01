@@ -2,13 +2,13 @@
                           
 <center>
  ***<H1> EXPENSE MANAGER </H1>***
- <H2>  React Native IOS App </H2>
+ <H2>  React Native IOS App Express & MongoDB </H2>
 <H4>  (STILL IN DEVELOPMENT) </H4>
   <H3> Expense Tracker </H3>
 
 ![](App/assets/PhotoApp/1_1.jpg)
 ![alt text](App/assets/PhotoApp/2_1.jpg ) 
-![alt text](App/assets/PhotoApp/03.png)
+![alt text](App/assets/PhotoApp/3_1.jpg )
 ![alt text](App/assets/PhotoApp/04.png)
 ![alt text](App/assets/PhotoApp/05.png)
 ![alt text](App/assets/PhotoApp/06.png)
