@@ -10,7 +10,7 @@
 ![alt text](App/assets/PhotoApp/2_1.jpg ) 
 ![alt text](App/assets/PhotoApp/3_1.jpg )
 ![alt text](App/assets/PhotoApp/4_1.jpg)
-![alt text](App/assets/PhotoApp/05.png)
+![alt text](App/assets/PhotoApp/5_1.jpg)
 ![alt text](App/assets/PhotoApp/06.png)
 ![alt text](App/assets/PhotoApp/07.png)
 ![alt text](App/assets/PhotoApp/08.png)
