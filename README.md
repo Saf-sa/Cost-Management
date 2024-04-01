@@ -2,11 +2,10 @@
 
 # **EXPENSE MANAGER**
 
-## **React Native IOS App Express & MongoDB**
+## **React Native IOS App with Express & MongoDB**
 
-### **_(STILL IN DEVELOPMENT)_**
+#### **_(STILL IN DEVELOPMENT)_**####
 
-#### **Expense Tracker**
 
 ![alt text](App/assets/PhotoApp/1_1.jpg)
 ![alt text](App/assets/PhotoApp/2_1.jp) 
