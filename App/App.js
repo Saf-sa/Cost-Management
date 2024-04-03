@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
+import { createStackNavigator, TransitionPresets, CardStyleInterpolators  } from "@react-navigation/stack";
 import Login from "./screen/auth/login";
 import Signup from "./screen/auth/signup";
 import Reset from "./screen/auth/reset";
@@ -129,10 +129,13 @@ export default function App() {
      <Stack.Navigator initialRouteName="AuthLoading"
        screenOptions={{ 
     headerShown: true,
-    headerTitleAlign: 'center',
+    headerTitleAlign: 'vertical',
+    cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,
     headerStyle: {
       backgroundColor: '#F9F1DD', // Remplacez '#f4511e' par la couleur de votre choix
       height: 80,
+       
+          
     },
     headerTintColor: 'brown', // Couleur du titre et des boutons de l'en-tête
     headerTitleStyle: {

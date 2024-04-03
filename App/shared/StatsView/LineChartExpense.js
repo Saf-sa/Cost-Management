@@ -82,7 +82,6 @@ export default ViewExpenses = ({}) => {
 
         yAxisSuffix="€"
         chartConfig={{
-          
           backgroundColor: "#e26a00",
           backgroundGradientFrom: "#fb8c00",
           backgroundGradientTo: "#ffa726",
@@ -94,10 +93,10 @@ export default ViewExpenses = ({}) => {
             
             borderRadius: 16
           },
-                  propsForDots: {
-        r: "3",
-        strokeWidth: "2",
-        stroke: "red"
+          propsForDots: {
+              r: "3",
+              strokeWidth: "2",
+              stroke: "#8aa19b"
       }
 
         }}
@@ -105,7 +104,7 @@ export default ViewExpenses = ({}) => {
         style={{
         
           marginVertical: 60,
-          marginHorizontal:10,
+          /* marginHorizontal:10, */
           borderRadius: 16,
           
         }}
