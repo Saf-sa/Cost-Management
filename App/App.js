@@ -129,7 +129,7 @@ export default function App() {
      <Stack.Navigator initialRouteName="AuthLoading"
        screenOptions={{ 
     headerShown: true,
-    headerTitleAlign: 'vertical',
+    headerTitleAlign: 'center',
     cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,
     headerStyle: {
       backgroundColor: '#F9F1DD', // Remplacez '#f4511e' par la couleur de votre choix
