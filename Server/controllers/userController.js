@@ -20,7 +20,7 @@ import Expenses from "../models/expenseModel.js";
 // define functions to handle requests for the user routes that we defined in Server/routes/userRoutes.js
 
 const userLogin = async (req, res) => {
- /*  console.log(" login called"); */
+ console.log(" login called");
   const { email, password } = req.body;
 
  /*  console.log("Checking if user exists"); */
@@ -28,19 +28,19 @@ const userLogin = async (req, res) => {
 
   if (!user) {
     return res.status(401).json({ message: "Email not registered" });
-    /* console.log(!user); */
+     console.log(!user);
   }
 
   // Check if password matches
   const isMatch = await bcrypt.compare(password, user.password);
-  /* console.log(user.password); */
+   console.log(user.password); 
   if (!isMatch) {
     return res.status(401).json({ message: "Password not match " });
   }
 
   // Generate token
   const token = generateToken(user._id);
-  /* console.log(token); */
+   console.log(token); 
   // Send response
   res.json({
     _id: user._id, // verify if i use id in frontend side ?
@@ -52,7 +52,7 @@ const userLogin = async (req, res) => {
     
 
   });
-  /* console.log(user); */
+  console.log(user); 
 };
 //End of userLogin
 
