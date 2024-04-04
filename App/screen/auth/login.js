@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import Toast from "react-native-toast-message";
-import { View, Text, StyleSheet, Image} from "react-native";
+import { View, Text, StyleSheet, Image, Platform} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import CustomInputLog from "../../shared/components/ui/CustomInputLog";
 import CustomButton from "../../shared/components/ui/CustomButton";
@@ -8,7 +8,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import AppText from "../../shared/components/uiApp/AppText";
 import axios from "axios";
 import { LinearGradient } from "expo-linear-gradient";
-import { Platform } from 'react-native';
+
 
 if (Platform.OS === 'ios') {
   console.log('Your device is running iOS');
@@ -128,7 +128,7 @@ const Login = () => {
 
     try {
       const response = await axios.post(
-        `http://localhost:5555/api/users/login`,
+        `${API_URL}/api/users/login`,
         formData
       );
 
@@ -296,6 +296,8 @@ const styles = StyleSheet.create({
     padding: 30,
   },
   parentContainer: {
+     ...Platform.select({
+      ios: {
     width: "65%",
     height: 170,
     justifyContent: "center",
@@ -305,6 +307,18 @@ const styles = StyleSheet.create({
     marginBottom: 45,
     marginHorizontal: 75,
     
+  },
+   android: {
+    width: "75%",
+    height: 160,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 10,
+    marginTop: 0,
+    marginBottom: 0,
+    marginHorizontal: 45,
+      },
+    }),
   },
     parentIncomeContainer: {
     width: "90%",
@@ -316,7 +330,7 @@ const styles = StyleSheet.create({
   },
 
   balanceContainer: {
-    paddingVertical: 15,
+    paddingVertical:15,
   },
   simCard:{
     position: "relative",
@@ -328,11 +342,23 @@ const styles = StyleSheet.create({
   },
 
   login: {
+    ...Platform.select({
+      ios: {
     marginTop: 50,
     marginBottom: 50,
     color: "#E0AA3E",
     fontSize: 15,
     fontWeight: "bold",
+  },
+   android: {
+     marginTop: 10,
+    marginBottom: 20,
+    color: "#E0AA3E",
+    fontSize: 15,
+    fontWeight: "bold",
+
+          },
+    }),
   },
 
   forgetPass: {
