@@ -8,7 +8,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import AppText from "../../shared/components/uiApp/AppText";
 import axios from "axios";
 import { LinearGradient } from "expo-linear-gradient";
-import { API_URL } from './config';
+import { API_URL } from '../../config';
 
 
  
