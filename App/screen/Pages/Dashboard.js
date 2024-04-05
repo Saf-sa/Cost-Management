@@ -200,18 +200,18 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
           <AppText style={styles.dashboardTitle}></AppText>
         </View>
     
-        <View style={styles.dashboard}>
+        <View style={styles.dashboardCat}>
           <TouchableOpacity onPress={() => navigation.push("ViewIncomes")}>
             <Icon
               name="dollar-sign"
-              size={66}
+               size={Platform.select({ ios: 66, android: 54 })}
             />
             <Text style={{ fontSize: 15, paddingTop: 5, textAlign:"center"}}> Income</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.push("ViewExpenses")}>
             <Icon
               name="shopping-cart"
-              size={66}
+               size={Platform.select({ ios: 66, android: 54 })}
         
              
             />
@@ -221,7 +221,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
          <TouchableOpacity onPress={() => navigation.push("Forecast")}>
             <Icon
               name="file-invoice-dollar"
-              size={68}
+               size={Platform.select({ ios: 66, android: 54 })}
               
              
              
@@ -231,7 +231,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
           <TouchableOpacity onPress={() => navigation.push("ViewGlobalStat")}>
             <Icon
               name="chart-line"
-              size={66}
+               size={Platform.select({ ios: 66, android: 54 })}
              
              
             />
@@ -240,7 +240,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
     <TouchableOpacity onPress={() => navigation.push("History")}>
             <Icon
               name="history"
-              size={66}
+               size={Platform.select({ ios: 66, android: 54 })}
              
              
             />
@@ -254,7 +254,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
           <TouchableOpacity onPress={() => navigation.navigate("ViewExpenses", {category:'clothe'})}>
             <Icon
               name="tshirt"
-              size={66}
+               size={Platform.select({ ios: 66, android: 54 })}
              
              
             />
@@ -266,7 +266,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
           <TouchableOpacity onPress={() => navigation.navigate("ViewExpenses", {category:'food'})}>
             <Icon
               name="utensils"
-              size={66}
+               size={Platform.select({ ios: 66, android: 54 })}
              
              
             />
@@ -279,7 +279,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
           <TouchableOpacity onPress={() => navigation.navigate("ViewExpenses",{category:'Transport'})}>
             <Icon
               name="subway"
-              size={66}
+               size={Platform.select({ ios: 66, android: 54 })}
              
              
             />
@@ -291,7 +291,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
           <TouchableOpacity onPress={() => navigation.navigate("ViewExpenses", {category:'Studie'})}>
             <Icon
               name="university"
-              size={66}
+               size={Platform.select({ ios: 66, android: 54 })}
              
              
             />
@@ -305,7 +305,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
           <TouchableOpacity onPress={() => navigation.navigate("ViewExpenses", {category:'holiday'})}>
             <Icon
               name="plane-departure"
-              size={66}
+               size={Platform.select({ ios: 66, android: 54 })}
              
              
             />
@@ -319,7 +319,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
           <TouchableOpacity onPress={() => navigation.navigate("ViewExpenses", {category:'tax'})}>
             <Icon
               name="cash-register"
-              size={66}
+               size={Platform.select({ ios: 66, android: 54 })}
              
              
             />
@@ -331,7 +331,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
             <Icon
               styles={styles.icon}
               name="laugh-wink"
-              size={66}
+               size={Platform.select({ ios: 66, android: 54 })}
             />
 
             <Text style={{ fontSize: 15, paddingTop: 5, textAlign:"center" }}>Hobbies</Text>
@@ -341,7 +341,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
             <Icon
               styles={styles.icon}
               name="hand-holding-usd"
-              size={66}
+               size={Platform.select({ ios: 66, android: 54 })}
              
              
             />
@@ -353,7 +353,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
             <Icon
               styles={styles.icon}
               name="search-dollar"
-              size={66}
+               size={Platform.select({ ios: 66, android: 54 })}
              
              
             />
@@ -365,7 +365,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
             <Icon
               styles={styles.icon}
               name="newspaper"
-              size={66}
+               size={Platform.select({ ios: 66, android: 54 })}
              
              
             />
@@ -381,7 +381,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
           <TouchableOpacity onPress={() => navigation.navigate("ViewIncomes", {category:'Salary'})}>
             <Icon
               name="dollar-sign"
-              size={66}
+               size={Platform.select({ ios: 66, android: 54 })}
              
              
             />
@@ -393,7 +393,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
           <TouchableOpacity onPress={() => navigation.navigate("ViewIncomes", {category:'Bonus'})}>
             <Icon
               name="trophy"
-              size={66}
+               size={Platform.select({ ios: 66, android: 54 })}
              
              
             />
@@ -406,7 +406,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
           <TouchableOpacity onPress={() => navigation.navigate("ViewIncomes",  {category:'Loan'})}>
             <Icon
               name="search-dollar"
-              size={66}
+               size={Platform.select({ ios: 66, android: 54 })}
              
              
             />
@@ -418,7 +418,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
           <TouchableOpacity onPress={() => navigation.navigate("ViewIncomes", {category:'Sales'})}>
             <Icon
               name="university"
-              size={66}
+               size={Platform.select({ ios: 66, android: 54 })}
              
              
             />
@@ -432,7 +432,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
           <TouchableOpacity onPress={() => navigation.navigate("ViewIncomes", {category:'Gift'})}>
             <Icon
               name="gift"
-              size={66}
+               size={Platform.select({ ios: 66, android: 54 })}
              
              
             />
@@ -446,7 +446,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
           <TouchableOpacity onPress={() => navigation.navigate("ViewIncomes", {category:'Rent'})}>
             <Icon
               name="home"
-              size={66}
+               size={Platform.select({ ios: 66, android: 54 })}
              
              
             />
@@ -458,7 +458,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
             <Icon
               styles={styles.icon}
               name="laugh-wink"
-              size={66}
+               size={Platform.select({ ios: 66, android: 54 })}
             />
 
             <Text style={{ fontSize: 14, paddingTop: 5, textAlign:"center" }}>Allowance</Text>
@@ -468,7 +468,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
             <Icon
               styles={styles.icon}
               name="hand-holding-usd"
-              size={65}
+               size={Platform.select({ ios: 66, android: 54 })}
              
              
             />
@@ -480,7 +480,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
             <Icon
               styles={styles.icon}
               name="search-dollar"
-              size={66}
+               size={Platform.select({ ios: 66, android: 54 })}
              
              
             />
@@ -492,7 +492,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
             <Icon
               styles={styles.icon}
               name="newspaper"
-              size={66}
+               size={Platform.select({ ios: 66, android: 54 })}
              
              
             />
@@ -502,12 +502,12 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
         </View>
       <AppText style={styles.dashboardTitle}>Toolkits</AppText>
 
-        <View style={styles.dashboard}>
+        <View style={styles.dashboardCat}>
          
          <TouchableOpacity onPress={() => navigation.push("Agenda")}>
             <Icon
               name="calendar-alt"
-              size={66}
+               size={Platform.select({ ios: 66, android: 54 })}
              
              
             />
@@ -516,7 +516,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
           <TouchableOpacity onPress={() => navigation.push("Reminder")}>
             <Icon
               name="bell"
-              size={66}
+               size={Platform.select({ ios: 66, android: 54 })}
              
              
             />
@@ -526,9 +526,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
         <TouchableOpacity onPress={() => navigation.push("Calculator")}>
             <Icon
               name="calculator"
-              size={68}
-              
-             
+               size={Platform.select({ ios: 66, android: 54 })}
              
             />
             <Text style={{ fontSize: 15, paddingTop: 0, textAlign:"center" }}>Calculator</Text>
@@ -537,7 +535,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
           <TouchableOpacity onPress={() => navigation.push("Download")}>
             <Icon
               name="download"
-              size={68}
+               size={Platform.select({ ios: 66, android: 54 })}
              
              
             />
@@ -548,7 +546,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
           <TouchableOpacity onPress={() => navigation.push("Settings")}>
             <Icon
               name="user-cog"
-              size={66}
+               size={Platform.select({ ios: 66, android: 54 })}
              
              
             />
@@ -565,6 +563,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const styles = StyleSheet.create({
   page: {
+    width: "100%",
     flex: 1,
     backgroundColor: "#F8F4D7",
   },
@@ -586,13 +585,13 @@ const styles = StyleSheet.create({
   },
      android: {
     width: "80%",
-    height: 120,
+    height: 130,
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 7,
-    marginTop: -5,
+    top: -30,
     marginHorizontal: 30,
-    marginVertical: -30,
+    marginVertical: -27,
     shadowOffset: {
       width: 0.8,
       height: 2,},
@@ -618,16 +617,32 @@ const styles = StyleSheet.create({
      },
     }),
   },
-  simCard:{
+  
+   simCard:{
+    ...Platform.select({
+      ios: {
     position: "relative",
     marginTop: -25,
     marginBottom:-20,
     borderRadius: 6,
-    marginLeft: -190,
+    marginLeft: -180,
     width: 40,
     height:30,
 
   }, 
+    android: {
+    position: "relative",
+    marginTop: -25,
+    marginBottom:-10,
+    borderRadius: 6,
+    marginLeft: -180,
+    width: 35,
+    height:25,
+    },
+    }),
+  },
+  
+
 
     parentIncomeContainer: {
    ...Platform.select({
@@ -636,11 +651,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingBottom:9,
+    paddingBottom:10,
  
   },
     android: {
-        width: "80%",
+    width: "85%",
+    height: 30,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
@@ -650,20 +666,10 @@ const styles = StyleSheet.create({
     }),
   },
   
-
-
-
-
-  dashboard: {
-    flexWrap: "wrap",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingHorizontal: 6,
-    marginTop: 13,
-   
-  },
-
+/*  */
   dashboardCat: {
+        ...Platform.select({
+      ios: {
     flexWrap: "wrap",
     fontWeight: 'bold',
     flexDirection: "row",
@@ -672,16 +678,44 @@ const styles = StyleSheet.create({
     marginTop: 5,
     alignItems: "center",
   },
+  
+    android: {
+    marginHorizontal: -10,
+    marginVertical: 10,
+    marginLeft : -10,
+    flexWrap: "wrap",
+    flexDirection: "row",
+    marginTop: -10,
+    alignItems: "center",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  }),
+  },
 
-   dashboardTitle: {
+
+ /*   dashboardTitle: {
     fontSize: 17,
     color: "brown",
-    
-  }, 
- 
-  icon: {
-    justifyContent: "center",
+  },  */
+  
+  dashboardTitle: {
+     ...Platform.select({
+      ios: {
+    fontSize: 17,
+    color: "brown",
+    }, 
+    android: {  
+      top: -15,
+    fontSize: 15,
+    color: "brown",
+    },
+    }),
+  
   },
+ 
+
+  
     title:{
     top: 60,
     textAlign: "center",

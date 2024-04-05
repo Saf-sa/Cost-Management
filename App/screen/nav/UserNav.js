@@ -6,6 +6,7 @@ import {
   Image,
   TouchableOpacity,
   Modal,
+  Platform,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Icon from "../../shared/components/IncomExpenseComponent/Icon";
@@ -129,22 +130,61 @@ function HomeNav({image }) {
 }
 const styles = StyleSheet.create({
 
-  containerParent: {
+/*   containerParent: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  }, */
+  
+
+    containerParent: {
+      ...Platform.select({
+      ios: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
   },
+    android: {
+    with: "100%",
+    height: 40,
+    top: 0,
+    paddingHorizontal: -20,
+    paddingVertical: -30,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  }),
+  },
+  
+
   container: {
     
     flexDirection: "row",
   },
-  image: {
+ 
+
+   image: {
+    ...Platform.select({
+      ios: {
     marginTop: 0,
     width: 45,
     height: 45,
     borderRadius: 45 / 2,
     marginRight: 10,
   },
+
+    android: {
+    marginTop: -30,
+    width: 45,
+    height: 45,
+    borderRadius: 45 / 2,
+    marginRight: 20,
+  },
+  }),
+  },
+  
+  
   textsTitle: {
     
     justifyContent: "center",

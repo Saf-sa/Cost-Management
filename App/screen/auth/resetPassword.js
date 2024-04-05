@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, Platform } from "react-native";
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigation, } from "@react-navigation/native";
 import Toast from "react-native-toast-message";
