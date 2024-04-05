@@ -576,7 +576,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 7,
-    marginTop: -70,
+    marginTop: -80,
     marginHorizontal: 70,
     marginVertical: -15,
     shadowOffset: {
@@ -589,7 +589,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 7,
-    top: -10,
+    top: -15,
     marginHorizontal: 50,
     marginVertical: -27,
     shadowOffset: {
