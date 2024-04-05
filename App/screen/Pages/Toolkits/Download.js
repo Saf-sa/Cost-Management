@@ -1,10 +1,11 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect,} from "react";
 import {
   Text,
   View,
   StyleSheet,
   Toast,
   TouchableOpacity,
+   Platform
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import moment from "moment";
@@ -105,177 +106,208 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
           image={require("../../../assets/iconPerson.png")}
         />
     
-     <Text style={styles.title}> Les's save your files {firstName} !</Text> 
+     <Text style={styles.title}> Let's save your files {firstName} !</Text> 
        
       
-        <View style={styles.dashboard}>
+        <View style={styles.dashboardCat}>
           <TouchableOpacity onPress={() => navigation.push("ViewIncomes")}>
             <Icon
               name="dollar-sign"
-              size={66}
+               size={Platform.select({ ios: 66, android: 58 })}
             />
-            <Text style={{ fontSize: 15, paddingTop: 5 }}> Income</Text>
+            <Text style={styles.textCat}> Income</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.push("ViewExpenses")}>
             <Icon
               name="shopping-cart"
-              size={66}
+               size={Platform.select({ ios: 66, android: 58 })}
+        
+             
             />
-            <Text style={{ fontSize: 15, paddingTop: 5 }}>Expense</Text>
+            <Text style={styles.textCat}>Expense</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.push("Forecast")}>
+          
+         <TouchableOpacity onPress={() => navigation.push("Forecast")}>
             <Icon
               name="file-invoice-dollar"
-              size={66}
+               size={Platform.select({ ios: 66, android: 58 })}
+              
+             
+             
             />
-            <Text style={{ fontSize: 15, paddingTop: 5 }}>Forecast</Text>
+           <Text style={styles.textCat}>Forecast</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.push("Statistics")}>
+          <TouchableOpacity onPress={() => navigation.push("ViewGlobalStat")}>
             <Icon
               name="chart-line"
-              size={66}
-              />
-            <Text style={{ fontSize: 15, paddingTop: 5 }}>Statistics</Text>
+               size={Platform.select({ ios: 66, android: 58 })}
+             
+             
+            />
+            <Text style={styles.textCat}> Statistics</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.push("History")}>
+    <TouchableOpacity onPress={() => navigation.push("History")}>
             <Icon
               name="history"
-              size={66}
+               size={Platform.select({ ios: 66, android: 58 })}
+             
+             
             />
-            <Text style={{ fontSize: 15, paddingTop: 5 }}> History</Text>
+            <Text style={styles.textCat}>History</Text>
           </TouchableOpacity>
         </View>
         <View>
-          <AppText style={styles.dashboardTitle}>Expenses</AppText>
+          <AppText style={styles.dashboardTitle}>Expenses Categories</AppText>
         </View>
         <View style={styles.dashboardCat}>
-          <TouchableOpacity onPress={() => navigation.push("ViewExpenses", {category:'Clothe'})}>
+          <TouchableOpacity onPress={() => navigation.navigate("ViewExpenses", {category:'clothe'})}>
             <Icon
               name="tshirt"
-              size={66}
+               size={Platform.select({ ios: 66, android: 58 })}
+             
+             
             />
 
-            <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10 }}>
+            <Text style={styles.textCat}>
               Clothes
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.push("ViewExpenses", {category:'Food'})}>
+          <TouchableOpacity onPress={() => navigation.navigate("ViewExpenses", {category:'food'})}>
             <Icon
               name="utensils"
-              size={66}
+               size={Platform.select({ ios: 66, android: 58 })}
+             
+             
             />
 
-            <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10 }}>
-              {" "}
+            <Text style={styles.textCat}>
+            
               Foods
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.push("ViewExpenses", {category:'Transport'})}>
+          <TouchableOpacity onPress={() => navigation.navigate("ViewExpenses",{category:'Transport'})}>
             <Icon
               name="subway"
-              size={66}
+               size={Platform.select({ ios: 66, android: 58 })}
+             
+             
             />
 
-            <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10 }}>
+           <Text style={styles.textCat}>
               Transport
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.push("ViewExpenses", {category:'Studie'})}>
+          <TouchableOpacity onPress={() => navigation.navigate("ViewExpenses", {category:'Studie'})}>
             <Icon
               name="university"
-              size={66}
+               size={Platform.select({ ios: 66, android: 58 })}
+             
+             
             />
 
-            <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10 }}>
+            <Text style={styles.textCat}>
               {" "}
               Studies
             </Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => navigation.push("ViewExpenses", {category:'MyInvoice'})}>
+          <TouchableOpacity onPress={() => navigation.navigate("ViewExpenses", {category:'holiday'})}>
             <Icon
-              name="house-user"
-              size={66}
+              name="plane-departure"
+               size={Platform.select({ ios: 66, android: 58 })}
+             
+             
             />
 
-            <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10 }}>
-              {" "}
-              Invoice
+           <Text style={styles.textCat}>
+           
+              Holidays
             </Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => navigation.push("ViewExpenses", {category:'Tax'})}>
+          <TouchableOpacity onPress={() => navigation.navigate("ViewExpenses", {category:'tax'})}>
             <Icon
               name="cash-register"
-              size={66}
+               size={Platform.select({ ios: 66, android: 58 })}
+             
+             
             />
 
-            <Text style={{ fontSize: 15, paddingTop: 5 }}> Taxes</Text>
+            <Text style={styles.textCat}> Taxes</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => navigation.push("ViewExpenses", {category:'Hobbie'})}>
+          <TouchableOpacity onPress={() => navigation.navigate("ViewExpenses", {category:'hobbie'})}>
             <Icon
               styles={styles.icon}
               name="laugh-wink"
-              size={66}
+               size={Platform.select({ ios: 66, android: 58 })}
             />
 
-            <Text style={{ fontSize: 15, paddingTop: 5 }}>Hobbies</Text>
+           <Text style={styles.textCat}>Hobbies</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => navigation.push("ViewExpenses", {category:'Money'})}>
+          <TouchableOpacity onPress={() => navigation.navigate("ViewExpenses", {category:'money'})}>
             <Icon
               styles={styles.icon}
               name="hand-holding-usd"
-              size={66}
+               size={Platform.select({ ios: 66, android: 58 })}
+             
+             
             />
 
-            <Text style={{ fontSize: 15, paddingTop: 5 }}> Money</Text>
+            <Text style={styles.textCat}> Money</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => navigation.push("ViewExpenses", {category:'Epargne'})}>
+          <TouchableOpacity onPress={() => navigation.navigate("ViewExpenses", {category:'epargne'})}>
             <Icon
               styles={styles.icon}
-              name="piggy-bank"
-              size={66}
+              name="search-dollar"
+               size={Platform.select({ ios: 66, android: 58 })}
+             
+             
             />
 
-            <Text style={{ fontSize: 15, paddingTop: 5 }}>Epargne</Text>
+            <Text style={styles.textCat}>Epargne</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => navigation.push("ViewExpenses", {category:'Holiday'})}>
+          <TouchableOpacity onPress={() => navigation.navigate("ViewExpenses",  {category:'other'})}>
             <Icon
               styles={styles.icon}
-              name="plane-departure"
-              size={66}
+              name="newspaper"
+               size={Platform.select({ ios: 66, android: 58 })}
+             
+             
             />
 
-            <Text style={{ fontSize: 15, paddingTop: 5 }}>Holidays</Text>
+            <Text style={{ fontSize: 15, paddingTop: 5, textAlign:"center" }}>Other</Text>
           </TouchableOpacity>
-
-          
         </View>
-  <View>
+
+ <View>
           <AppText style={styles.dashboardTitle}> Incomes Categories</AppText>
         </View>
         <View style={styles.dashboardCat}>
           <TouchableOpacity onPress={() => navigation.navigate("ViewIncomes", {category:'Salary'})}>
             <Icon
               name="dollar-sign"
-              size={66}
+               size={Platform.select({ ios: 66, android: 58 })}
+             
+             
             />
 
-            <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10, textAlign:"center" }}>
+            <Text style={styles.textCat}>
               Salary
             </Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate("ViewIncomes", {category:'Bonus'})}>
             <Icon
               name="trophy"
-              size={66}
+               size={Platform.select({ ios: 66, android: 58 })}
+             
+             
             />
 
-            <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10, textAlign:"center" }}>
+           <Text style={styles.textCat}>
             
               Bonus
             </Text>
@@ -283,20 +315,24 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
           <TouchableOpacity onPress={() => navigation.navigate("ViewIncomes",  {category:'Loan'})}>
             <Icon
               name="search-dollar"
-              size={66}
+               size={Platform.select({ ios: 66, android: 58 })}
+             
+             
             />
 
-            <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10, textAlign:"center" }}>
+           <Text style={styles.textCat}>
               Loan
             </Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate("ViewIncomes", {category:'Sales'})}>
             <Icon
               name="university"
-              size={66}
+               size={Platform.select({ ios: 66, android: 58 })}
+             
+             
             />
 
-            <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10, textAlign:"center" }}>
+            <Text style={styles.textCat}>
            
               Sales
             </Text>
@@ -305,10 +341,12 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
           <TouchableOpacity onPress={() => navigation.navigate("ViewIncomes", {category:'Gift'})}>
             <Icon
               name="gift"
-              size={66}
+               size={Platform.select({ ios: 66, android: 58 })}
+             
+             
             />
 
-            <Text style={{ fontSize: 15, paddingTop: 5, marginBottom: 10, textAlign:"center" }}>
+            <Text style={styles.textCat}>
             
               Gift
             </Text>
@@ -317,52 +355,113 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
           <TouchableOpacity onPress={() => navigation.navigate("ViewIncomes", {category:'Rent'})}>
             <Icon
               name="home"
-              size={66}
+               size={Platform.select({ ios: 66, android: 58 })}
+             
+             
             />
 
-            <Text style={{ fontSize: 15, paddingTop: 5, textAlign:"center" }}> Rent</Text>
+            <Text style={styles.textCat}>Rent</Text>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={() => navigation.navigate("ViewIncomes", {category:'Allowance'})}>
             <Icon
               styles={styles.icon}
               name="laugh-wink"
-              size={66}
+               size={Platform.select({ ios: 66, android: 58 })}
             />
 
-            <Text style={{ fontSize: 14, paddingTop: 5, textAlign:"center" }}>Allowance</Text>
+            <Text style={styles.textCat}>Allowance</Text>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={() => navigation.navigate("ViewIncomes", {category:'Refund'})}>
             <Icon
               styles={styles.icon}
               name="hand-holding-usd"
-              size={65}
+               size={Platform.select({ ios: 66, android: 58 })}
+             
              
             />
 
-            <Text style={{ fontSize: 15, paddingTop: 5, textAlign:"center" }}> Refund</Text>
+            <Text style={styles.textCat}>Refund</Text>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={() => navigation.navigate("ViewIncomes", {category:'Stocks'})}>
             <Icon
               styles={styles.icon}
               name="search-dollar"
-              size={66}
+               size={Platform.select({ ios: 66, android: 58 })}
+             
+             
             />
 
-            <Text style={{ fontSize: 15, paddingTop: 5, textAlign:"center" }}>Stocks</Text>
+            <Text style={styles.textCat}>Stocks</Text>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={() => navigation.navigate("ViewIncomes", {category:'Other'})}>
             <Icon
               styles={styles.icon}
               name="newspaper"
-              size={66}
+               size={Platform.select({ ios: 66, android: 58 })}
+             
+             
             />
 
-            <Text style={{ fontSize: 15, paddingTop: 5, textAlign:"center" }}>Other</Text>
+            <Text style={styles.textCat}>Other</Text>
           </TouchableOpacity>
+        </View>
+      <AppText style={styles.dashboardTitle}>Toolkits</AppText>
+
+        <View style={styles.dashboardCat}>
+         
+         <TouchableOpacity onPress={() => navigation.push("Agenda")}>
+            <Icon
+              name="calendar-alt"
+               size={Platform.select({ ios: 66, android: 58 })}
+             
+             
+            />
+            <Text style={styles.textCat}>Agenda</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.push("Reminder")}>
+            <Icon
+              name="bell"
+               size={Platform.select({ ios: 66, android: 58 })}
+             
+             
+            />
+            <Text style={styles.textCat}>Reminder</Text>
+          </TouchableOpacity>
+          
+        <TouchableOpacity onPress={() => navigation.push("Calculator")}>
+            <Icon
+              name="calculator"
+               size={Platform.select({ ios: 66, android: 58 })}
+             
+            />
+            <Text style={styles.textCat}>Calculator</Text>
+          </TouchableOpacity>
+       
+          <TouchableOpacity onPress={() => navigation.push("Download")}>
+            <Icon
+              name="download"
+               size={Platform.select({ ios: 66, android: 58 })}
+             
+             
+            />
+            <Text style={styles.textCat}>Download</Text>
+          </TouchableOpacity>
+
+         
+          <TouchableOpacity onPress={() => navigation.push("Settings")}>
+            <Icon
+              name="user-cog"
+               size={Platform.select({ ios: 66, android: 58 })}
+             
+             
+            />
+            <Text style={styles.textCat}>Settings</Text>
+          </TouchableOpacity>
+           
         </View>
 
       
@@ -386,7 +485,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
  android: {
-   marginTop: 140,
+   marginTop: -60,
     justifyContent: "center",
 
         },
@@ -394,46 +493,91 @@ const styles = StyleSheet.create({
   },
 
 
-  dashboard: {
-    flexWrap: "wrap",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingHorizontal: 10,
-    marginTop: 10,
-    alignItems: "center",
-  },
 
-  dashboardCat: {
+dashboardCat: {
+        ...Platform.select({
+      ios: {
     flexWrap: "wrap",
     fontWeight: 'bold',
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingHorizontal: 10,
-    marginTop: 20,
+    paddingHorizontal: 6,
+    marginTop: 5,
     alignItems: "center",
   },
-
-  dashboardTitle: {
-    color: "black",
-    fontSize: 20,
-      color: "#E0AA3E",
-    fontWeight: "bold",
-    justifyContent: "center",
-    textAlign: "center",
-    marginTop: 10,
-    marginBottom: 0,
+  
+    android: {
+    marginHorizontal: -10,
+    marginVertical:-10,
+    marginLeft : -10,
+    flexWrap: "wrap",
+    flexDirection: "row",
+    marginTop:20,
+    alignItems: "center",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
+  }),
+  },
+
+ 
+  dashboardTitle: {
+     ...Platform.select({
+      ios: {
+    fontSize: 17,
+    color: "brown",
+    }, 
+    android: {  
+      top:10,
+    fontSize: 15,
+    color: "brown",
+    },
+    }),
+  
+  },
+  
+  textCat:{
+      ...Platform.select({
+      ios: {
+    fontSize: 15,
+    paddingTop: 5,
+    textAlign:"center"
+  
+  },
+    android: {
+    fontSize: 13, 
+    textAlign:"center"
+    },
+    }),
+  },
+
+
   icon: {
     justifyContent: "center",
   },
-   
-   title:{
+
+     title:{
+   ...Platform.select({
+      ios: {
     top: -70,
     textAlign: "center",
     color: "#E0AA3E",
     fontSize: 20,
     fontWeight: "bold",
+  },
+  android: {
+    top: -40,
+    textAlign: "center",
+    color: "#E0AA3E",
+    fontSize: 20,
+    fontWeight: "bold",
   }
+  }),
+  } 
+
+  
+  
+
 });
 
 export default Download;

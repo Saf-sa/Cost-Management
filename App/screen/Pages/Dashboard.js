@@ -707,6 +707,7 @@ const styles = StyleSheet.create({
     }),
   
   },
+  
   textCat:{
       ...Platform.select({
       ios: {
