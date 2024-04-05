@@ -10,16 +10,7 @@ function Screen({ children, style }) {
 }
 
 const styles = StyleSheet.create({
-/*   screen: {
-    
-    padding: 20,
-    marginTop: -55,
-    marginLeft: 15,
-    marginRight: 15,
-    flex: 1,
-  }, */
 
-  
     screen: {
      ...Platform.select({
       ios: {

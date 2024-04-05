@@ -666,7 +666,7 @@ const styles = StyleSheet.create({
     }),
   },
   
-/*  */
+
   dashboardCat: {
         ...Platform.select({
       ios: {

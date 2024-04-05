@@ -373,14 +373,26 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const styles = StyleSheet.create({
   page: {
+    width: "100%",
     flex: 1,
     backgroundColor: "#F8F4D7",
   },
 
-  header: { 
+
+    header: { 
+      ...Platform.select({
+      ios: {
     marginTop: -70,
     justifyContent: "center",
   },
+ android: {
+   marginTop: 140,
+    justifyContent: "center",
+
+        },
+    }),
+  },
+
 
   dashboard: {
     flexWrap: "wrap",
