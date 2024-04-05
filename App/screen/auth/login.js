@@ -309,7 +309,7 @@ const styles = StyleSheet.create({
     
   },
    android: {
-    width: "75%",
+    width: "5%",
     height: 160,
     justifyContent: "center",
     alignItems: "center",
