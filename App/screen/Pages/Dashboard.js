@@ -568,7 +568,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#F8F4D7",
   },
-  parentContainer: {
+  
+    parentContainer: {
+      ...Platform.select({
+      ios: {
     width: "65%",
     height: 140,
     justifyContent: "center",
@@ -581,15 +584,40 @@ const styles = StyleSheet.create({
       width: 0.8,
       height: 2,},
   },
+     android: {
+    width: "80%",
+    height: 120,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 7,
+    marginTop: -5,
+    marginHorizontal: 30,
+    marginVertical: -30,
+    shadowOffset: {
+      width: 0.8,
+      height: 2,},
+      },
+    }),
+  },
   
-  balanceContainer: {
+   balanceContainer: {
+...Platform.select({
+      ios: {
     justifyContent: "center",
     alignItems: "center",
     paddingVertical: 17,
     width: "80%",
+      },
 
+  android: {
+    justifyContent: "center",
+    alignItems: "center",
+    paddingVertical: 0,
+    width: "80%",
+  
+     },
+    }),
   },
-
   simCard:{
     position: "relative",
     marginTop: -25,
@@ -600,7 +628,10 @@ const styles = StyleSheet.create({
     height:30,
 
   }, 
-  parentIncomeContainer: {
+
+    parentIncomeContainer: {
+   ...Platform.select({
+      ios: {
     width: "90%",
     flexDirection: "row",
     justifyContent: "space-between",
@@ -608,6 +639,19 @@ const styles = StyleSheet.create({
     paddingBottom:9,
  
   },
+    android: {
+        width: "80%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingBottom:0,
+
+           },
+    }),
+  },
+  
+
+
 
 
   dashboard: {

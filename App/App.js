@@ -109,7 +109,7 @@ if (!expiresIn) {
             }
           }
         } else {
-          navigation.replace('Login');
+          navigation.replace('Dashboard');
         }
       } catch (error) {
         console.log(error);
