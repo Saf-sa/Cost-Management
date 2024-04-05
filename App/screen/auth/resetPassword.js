@@ -301,15 +301,31 @@ const styles = StyleSheet.create({
   },
 
   parentContainer: {
+...Platform.select({
+      ios: {
     width: "65%",
     height: 170,
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 7,
-    marginTop: 30,
-    marginHorizontal: 76,
-
+    marginTop: 20,
+    marginBottom: 45,
+    marginHorizontal: 75,
+    
   },
+   android: {
+    width: "75%",
+    height: 160,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 10,
+    marginTop: 0,
+    marginBottom: 0,
+    marginHorizontal: 45,
+      },
+    }),
+  },
+
     parentIncomeContainer: {
     width: "90%",
     flexDirection: "row",
