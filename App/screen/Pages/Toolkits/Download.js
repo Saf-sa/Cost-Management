@@ -485,7 +485,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
  android: {
-   marginTop: -60,
+   marginTop: -40,
     justifyContent: "center",
 
         },

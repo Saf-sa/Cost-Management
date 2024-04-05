@@ -589,7 +589,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 7,
-    top: -40,
+    top: -10,
     marginHorizontal: 50,
     marginVertical: -27,
     shadowOffset: {
@@ -660,7 +660,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingBottom:0,
+    paddingBottom:-5,
 
            },
     }),
@@ -681,11 +681,11 @@ const styles = StyleSheet.create({
   
     android: {
     marginHorizontal: -10,
-    marginVertical: 10,
+    marginVertical: 5,
     marginLeft : -10,
     flexWrap: "wrap",
     flexDirection: "row",
-    marginTop: -10,
+    marginTop:0,
     alignItems: "center",
     justifyContent: "space-between",
     alignItems: "center",
@@ -700,7 +700,7 @@ const styles = StyleSheet.create({
     color: "brown",
     }, 
     android: {  
-      top: -15,
+      top: -5,
     fontSize: 15,
     color: "brown",
     },
@@ -718,7 +718,7 @@ const styles = StyleSheet.create({
   },
     android: {
     fontSize: 13, 
-    paddingTop: 5,
+    paddingTop: 8,
     textAlign:"center"
     },
     }),
