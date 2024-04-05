@@ -144,6 +144,7 @@ export default function App() {
     headerTintColor: 'brown', // Couleur du titre et des boutons de l'en-tête
     headerTitleStyle: {
     fontWeight: 'normal', // Style du titre de l'en-tête
+    fontSize: 15,
     },
   }}
 >
