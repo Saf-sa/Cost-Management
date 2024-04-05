@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { StyleSheet } from "react-native";
+import { StyleSheet, Platform } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator, TransitionPresets, CardStyleInterpolators  } from "@react-navigation/stack";
 import Login from "./screen/auth/login";
@@ -131,12 +131,16 @@ export default function App() {
     headerShown: true,
     headerTitleAlign: 'center',
     cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,
-    headerStyle: {
-      backgroundColor: '#F9F1DD', // Remplacez '#f4511e' par la couleur de votre choix
+      headerStyle: Platform.select({
+    ios: {
+      backgroundColor: '#F9F1DD', // Couleur pour iOS
       height: 80,
-       
-          
     },
+    android: {
+      backgroundColor: '#F9F1DD', // Couleur pour Android
+      height: 40, // Hauteur différente pour Android
+    },
+  }),
     headerTintColor: 'brown', // Couleur du titre et des boutons de l'en-tête
     headerTitleStyle: {
     fontWeight: 'normal', // Style du titre de l'en-tête
