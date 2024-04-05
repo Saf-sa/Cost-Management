@@ -584,13 +584,13 @@ const styles = StyleSheet.create({
       height: 2,},
   },
      android: {
-    width: "80%",
+    width: "70%",
     height: 130,
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 7,
-    top: -30,
-    marginHorizontal: 30,
+    top: -40,
+    marginHorizontal: 50,
     marginVertical: -27,
     shadowOffset: {
       width: 0.8,
@@ -692,12 +692,6 @@ const styles = StyleSheet.create({
   },
   }),
   },
-
-
- /*   dashboardTitle: {
-    fontSize: 17,
-    color: "brown",
-  },  */
   
   dashboardTitle: {
      ...Platform.select({

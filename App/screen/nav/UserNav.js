@@ -31,7 +31,7 @@ function HomeNav({image }) {
           
           <Icon
             name="bars"
-            size={40}
+            size={Platform.select({ ios: 40, android: 36 })}
             bRadius={10}
             
           />
@@ -129,14 +129,6 @@ function HomeNav({image }) {
   );
 }
 const styles = StyleSheet.create({
-
-/*   containerParent: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  }, */
-  
-
     containerParent: {
       ...Platform.select({
       ios: {
@@ -156,14 +148,19 @@ const styles = StyleSheet.create({
   },
   }),
   },
-  
-
   container: {
-    
+    ...Platform.select({
+      ios: {
     flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
- 
-
+    android: {
+    top: 20,
+    
+  },
+  }),
+  },
    image: {
     ...Platform.select({
       ios: {
@@ -176,8 +173,8 @@ const styles = StyleSheet.create({
 
     android: {
     marginTop: -30,
-    width: 45,
-    height: 45,
+    width: 40,
+    height: 40,
     borderRadius: 45 / 2,
     marginRight: 20,
   },
@@ -188,7 +185,7 @@ const styles = StyleSheet.create({
   textsTitle: {
     
     justifyContent: "center",
-    paddingLeft: 10,
+    paddingLeft: 30,
   },
   navText:{
      fontSize: 16,
