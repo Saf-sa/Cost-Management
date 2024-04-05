@@ -47,7 +47,6 @@ import ViewGlobalStat from "./screen/Pages/ViewGlobalStat";
 import ViewCategorieStat from "./screen/Pages/ViewCategorieStat";
 import AddAgenda from "./screen/Pages/Toolkits/AddAgenda";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
 import axios from 'axios';
 
 
@@ -66,6 +65,12 @@ const clearStorage = async () => {
 // Call the function when you want to clear the storage
 clearStorage();  */
 
+if (Platform.OS === 'ios') {
+  console.log('Your device is running iOS');
+} else if (Platform.OS === 'android') {
+  console.log('Your device is running Android');
+}
+ 
 
 const Stack = createStackNavigator();
 import moment from "moment";
@@ -109,7 +114,7 @@ if (!expiresIn) {
             }
           }
         } else {
-          navigation.replace('Dashboard');
+          navigation.replace('Login');
         }
       } catch (error) {
         console.log(error);
@@ -138,7 +143,7 @@ export default function App() {
     },
     android: {
       backgroundColor: '#F9F1DD', // Couleur pour Android
-      height: 40, // Hauteur différente pour Android
+      height: 45, // Hauteur différente pour Android
     },
   }),
     headerTintColor: 'brown', // Couleur du titre et des boutons de l'en-tête
