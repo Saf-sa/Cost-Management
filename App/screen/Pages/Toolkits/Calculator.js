@@ -94,7 +94,7 @@ else {
                  <Image style={styles.simCard} source={require('../../../assets/sim-card.png')} />
                 </View>
                       <View style={{ position:'absolute',  }}>
-                <AppText style={{ color: "darkslateblue", fontSize: 15, marginTop:190, marginRight:100,  }}>
+                <AppText  style={styles.CardNumber}>  
                   4907 2024 1707 2778 1962
                 </AppText>
               </View>
@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
       ...Platform.select({
       ios: {
     width: "75%",
-    height: 190,
+    height: 200,
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 7,
@@ -162,11 +162,12 @@ const styles = StyleSheet.create({
   },
      android: {
     width: "80%",
-    height: 170,
+    height: 180,
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 7,
-    top: 20,
+    top: 10,
+    marginBottom: 100,
     marginHorizontal: 35,
     marginVertical: 0,
     shadowOffset: {
@@ -209,10 +210,10 @@ const styles = StyleSheet.create({
   }, 
     android: {
     position: "relative",
-    marginTop: -25,
+    marginTop: -30,
     marginBottom:-10,
     borderRadius: 6,
-    marginLeft: -100,
+    marginLeft: -90,
     width: 35,
     height:25,
     },
@@ -237,12 +238,26 @@ inputContainer : {
     
   },
 
-/* buttonContainer : {
-    flex: 1,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-  }, */
- 
+  CardNumber: {
+     ...Platform.select({
+      ios: {
+    fontSize: 15,
+    marginTop: 140,
+    marginRight: -10,
+    left: -50,
+    color: "darkslateblue",
+  },
+   android: {
+    fontSize: 15,
+     marginTop: 140,
+    marginRight: -10,
+    left: -50,
+    color: "darkslateblue",
+   },
+  }),
+  },  
+
+
   buttonContainer : {
      ...Platform.select({
       ios: {
