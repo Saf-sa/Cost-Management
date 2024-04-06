@@ -226,6 +226,7 @@ const styles = StyleSheet.create({
 
 resultContainer : {
     flex: 1,
+    marginBottom: 50,
     alignItems: 'center',
    
   },
@@ -274,12 +275,11 @@ inputContainer : {
   }),
   },  
 
-
-  
-
 resultText : {
     color: 'green',
     fontSize: 40,
+    textAlign: 'center',
+    marginBottom: 20,
 
   },
 
