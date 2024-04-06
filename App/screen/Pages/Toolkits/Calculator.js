@@ -237,11 +237,31 @@ inputContainer : {
     
   },
 
-buttonContainer : {
+/* buttonContainer : {
+    flex: 1,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  }, */
+ 
+  buttonContainer : {
+     ...Platform.select({
+      ios: {
     flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
   },
+  android: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  }),
+  },  
+
+
+  
+
 resultText : {
     color: 'green',
     fontSize: 40,
@@ -254,7 +274,10 @@ InputText:{
  
 },
 
+
 button: {
+     ...Platform.select({
+      ios: {
   width: '22%',
   height: '28%',
   alignItems: 'center',
@@ -265,9 +288,21 @@ button: {
   borderColor: 'lightGrey',
   borderRadius: 10,
 },
+android: {
+  width: '21%',
+  height: '20%',
+  alignItems: 'center',
+  justifyContent: 'center',
+  margin: 7,
+  marginTop: 9,
+  fontSize: 24,
+  borderWidth:0.2,
+  borderColor: 'lightGrey',
+  borderRadius: 10,
+ },
+  }),
+  },
 
-/* 
- */
 
 ButtonText: {
   fontSize: 30,
