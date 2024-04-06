@@ -145,33 +145,79 @@ else {
 export default Calculator;
 
 const styles = StyleSheet.create({
-    balanceContainer: {
+   parentContainer: {
+      ...Platform.select({
+      ios: {
+    width: "75%",
+    height: 190,
     justifyContent: "center",
     alignItems: "center",
-    height: 230,
-   marginTop : -30,
-
+    borderRadius: 7,
+    marginTop: 30,
+    marginHorizontal: 55,
+    marginVertical: 0,
+    shadowOffset: {
+      width: 0.8,
+      height: 2,},
   },
-
-    parentContainer: {
-    flexDirection: "column",
-    borderRadius: 10,
-    marginHorizontal: 50,
-    marginVertical: 30,
-    marginBottom: -40,
+     android: {
+    width: "80%",
+    height: 170,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 7,
+    top: 20,
+    marginHorizontal: 35,
+    marginVertical: 0,
+    shadowOffset: {
+      width: 0.8,
+      height: 2,},
+      },
+    }),
   },
+  
+   balanceContainer: {
+...Platform.select({
+      ios: {
+    justifyContent: "center",
+    alignItems: "center",
+    paddingVertical: 17,
+    width: "80%",
+      },
 
-    simCard:{
-    position: "absolute",
-    marginTop: 10,
-    marginBottom: 0,
+  android: {
+    justifyContent: "center",
+    alignItems: "center",
+    paddingVertical: 0,
+    width: "80%",
+  
+     },
+    }),
+  },
+  
+ simCard:{
+    ...Platform.select({
+      ios: {
+    position: "relative",
+    marginTop: -25,
+    marginBottom:-20,
     borderRadius: 6,
-    marginLeft: -110,
+    marginLeft: -100,
     width: 40,
     height:30,
 
+  }, 
+    android: {
+    position: "relative",
+    marginTop: -25,
+    marginBottom:-10,
+    borderRadius: 6,
+    marginLeft: -100,
+    width: 35,
+    height:25,
+    },
+    }),
   },
-
   container : {
     flex: 1,
      backgroundColor: "#F8F4D7",
@@ -219,6 +265,9 @@ button: {
   borderColor: 'lightGrey',
   borderRadius: 10,
 },
+
+/* 
+ */
 
 ButtonText: {
   fontSize: 30,
