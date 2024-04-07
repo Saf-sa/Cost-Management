@@ -202,13 +202,12 @@ console.log("formData", formData);
 
   return (
     <View style={styles.root}>
-      {/* <AuthHeader subtext="Please add a new Rdv" /> */}
       <View style={styles.content}>
         <ScrollView style={styles.scrollView}>
-          <Text style={styles.category}>Date</Text>
+          <Text style={styles.category}>Start Date</Text>
           <TextInput
             style={styles.inputContainer}
-            label="Date"
+            label="Start Date"
             value={selectedSartDate}
             placeholder="DD/MM/YYYY"
             secureTextEntry={false}
@@ -216,15 +215,15 @@ console.log("formData", formData);
           />
           <DateTimePickerModal
             isVisible={isDatePickerVisible}
-            mode="sartDate"
+            mode="date"
             onConfirm={handleConfirm}
             onCancel={hideDatePicker}
           />
 
-  <Text style={styles.category}>Date</Text>
+  <Text style={styles.category}>Expire Date</Text>
           <TextInput
             style={styles.inputContainer}
-            label="expireDate"
+            label="expire Date"
             value={selectedExpireDate}
             placeholder="DD/MM/YYYY"
             secureTextEntry={false}
@@ -257,24 +256,32 @@ console.log("formData", formData);
             save="value"
             categories={"value"}
             search={false}
-            errorMessage={formErrors.categories}
+            errorMessage={formErrors.renewal}
           />
 
           <CustomInputSingup
-            label="contractName"
+            label="contract Name"
             value={contractName}
-            onChangeText={(value) => handleChange(value, "name")}
+            onChangeText={(value) => handleChange(value, "contractName")}
             placeholder="Name of your contract"
             secure={false}
-            errorMessage={formErrors.name}
+            errorMessage={formErrors.contractName}
           />
           <CustomInputSingup
-            label="contractName"
-            value={label}
-            onChangeText={(value) => handleChange(value, "place")}
+            label="Label"
+            value={selectedLabel}
+            onChangeText={(value) => handleChange(value, "label")}
             placeholder="Description of your Contract"
             secure={false}
             errorMessage={formErrors.label}
+          />
+                    <CustomInputSingup
+            label="email"
+            value={selectedEmail}
+            onChangeText={(value) => handleChange(value, "email")}
+            placeholder="Email of your Contract"
+            secure={false}
+            errorMessage={formErrors.email}
           />
         </ScrollView>
       </View>
