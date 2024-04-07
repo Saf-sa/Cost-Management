@@ -11,11 +11,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from "axios";
 
 
-const isValidStartDate = (date) => {
-  const regex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[012])\/(19|20)\d\d$/;
-  return regex.test(date);
-};
-const isValidExpireDate = (date) => {
+const isValidDate = (date) => {
   const regex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[012])\/(19|20)\d\d$/;
   return regex.test(date);
 };
@@ -35,14 +31,13 @@ const isValidRenewal = (renewal) => {
 
 const AddReminder= () => {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
-  const [selectedDate, setSelectedDate] = useState("");
   const [selectedStartDate, setSelectedStartDate] = useState(new Date());
   const [selectedExpireDate, setSelectedExpireDate] = useState(new Date());
   const [selectedEmail, setSelectedEmail] = useState("");
+  const [contractName, setContractName] = useState("");
   const [selectedLabel, setSelectedLabel] = useState("");
   const [selectedRenewal, setSelectedRenewal] = useState("");
   const navigation = useNavigation();
-  const [selected, setSelected] = useState('');
   const [formErrors, setFormErrors] = useState({
     selectedStartDate: null,
     selectedExpireDate: null,
@@ -58,24 +53,6 @@ const AddReminder= () => {
     const formattedExpireDate = moment(selectedExpireDate).format("YYYY-MM-DD");
     setSelectedDate(formattedStartDate);
     sendDateToBackend(formattedExpireDate);
-  };
-
-
-  const sendStartDateToBackend = (selectedStartDate, ) => {
-    // send startDate to backend
-  };
-  /*  console.log(" 74 startDate", startDate); */
-
-    const sendExpireDateToBackend = (selectedExpireDate, ) => {
-    // send date to backend
-  };
-
-/*  console.log(" 74 expireDate", expireDate); */
-
-
-
-  const SendContractNameToBackend = (contractName) => {
-    //send  categories to backend
   };
 
   const showDatePicker = () => {
