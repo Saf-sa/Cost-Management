@@ -30,9 +30,10 @@ const isValidRenewal = (renewal) => {
 
 
 const AddReminder= () => {
-  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [selectedStartDate, setSelectedStartDate] = useState(new Date());
   const [selectedExpireDate, setSelectedExpireDate] = useState(new Date());
+  const [isStartDatePickerVisible, setStartDatePickerVisibility] = useState(false);
+  const [isExpireDatePickerVisible, setExpireDatePickerVisibility] = useState(false); 
   const [selectedEmail, setSelectedEmail] = useState("");
   const [contractName, setContractName] = useState("");
   const [selectedLabel, setSelectedLabel] = useState("");
@@ -46,26 +47,33 @@ const AddReminder= () => {
     selectedLabel: null,
     selectedRenewal: null,
   });
+  
+const showStartDatePicker = () => {
+  setStartDatePickerVisibility(true);
+};
 
+const hideStartDatePicker = () => {
+  setStartDatePickerVisibility(false);
+};
+
+const showExpireDatePicker = () => {
+  setExpireDatePickerVisibility(true);
+};
+
+const hideExpireDatePicker = () => {
+  setExpireDatePickerVisibility(false);
+};
 const handleConfirmStartDate = (date) => {
-  hideDatePicker();
+  hideStartDatePicker();
   const formattedStartDate = moment(date).format("YYYY-MM-DD");
   setSelectedStartDate(formattedStartDate);
 };
 
 const handleConfirmExpireDate = (date) => {
-  hideDatePicker();
+  hideExpireDatePicker();
   const formattedExpireDate = moment(date).format("YYYY-MM-DD");
   setSelectedExpireDate(formattedExpireDate);
 };
-
-  const showDatePicker = () => {
-    setDatePickerVisibility(true);
-  };
-
-  const hideDatePicker = () => {
-    setDatePickerVisibility(false);
-  };
 
 const handleChange = (value, fieldName) => {
   switch (fieldName) {
@@ -215,13 +223,13 @@ console.log("formData", formData);
   value={selectedStartDate}
   placeholder="DD/MM/YYYY"
   secureTextEntry={false}
-  onFocus={showDatePicker}
+  onFocus={showStartDatePicker}
 />
 <DateTimePickerModal
-  isVisible={isDatePickerVisible}
+  isVisible={isStartDatePickerVisible}
   mode="date"
   onConfirm={handleConfirmStartDate}
-  onCancel={hideDatePicker}
+  onCancel={hideStartDatePicker}
 />
 
 <Text style={styles.category}>Expire Date</Text>
@@ -231,13 +239,13 @@ console.log("formData", formData);
   value={selectedExpireDate}
   placeholder="DD/MM/YYYY"
   secureTextEntry={false}
-  onFocus={showDatePicker}
+  onFocus={showExpireDatePicker}
 />
 <DateTimePickerModal
-  isVisible={isDatePickerVisible}
+  isVisible={isExpireDatePickerVisible}
   mode="date"
   onConfirm={handleConfirmExpireDate}
-  onCancel={hideDatePicker}
+  onCancel={hideExpireDatePicker}
 />
           <Text style={styles.category}>Renewal</Text>
           <SelectList
@@ -247,7 +255,7 @@ console.log("formData", formData);
               borderRadius: 6,
             }}
             boxStyles={{ borderRadius: 8, borderColor: '#E0AA3E', height: 40, backgroundColor:'white' }}
-            defaultOption={{ value: 'Select a renaval' }}
+            defaultOption={{ value: 'Select a renawal' }}
             label="duration"
              setSelected={(value) => handleChange(value, "renaval")}
             data={[
