@@ -2,15 +2,13 @@ import React, {useState} from "react";
 import {Text, View, StyleSheet} from "react-native";
 import Toast from "react-native-toast-message";
 import { useNavigation } from "@react-navigation/native";
-import DateTimePicker from "@react-native-community/datetimepicker";
+import DateTimePickerModal from "@react-native-community/datetimepicker";
 import CustomInputSingup from "../../../shared/components/ui/CustomInputSignup";
 import { SelectList } from 'react-native-dropdown-select-list';
 import CustomButton from "../../../shared/components/ui/CustomButton";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import axios from "axios";
-
-
 
 const isValidStartDate = (date) => {
   const regex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[012])\/(19|20)\d\d$/;
@@ -201,6 +199,7 @@ console.log("formData", formData);
 
 
     return (
+      
   <View style={styles.container}>
     <Text style={styles.titleStart}>Contract Start Date</Text>
     <View style={styles.date}>
@@ -215,8 +214,10 @@ console.log("formData", formData);
         </View>
       ))}
     </View>
+
+
     {Platform.OS === 'ios' && (
-      <DateTimePicker
+      <DateTimePickerModal
         value={startDate}
         mode={"date"}
         display="default"
@@ -240,7 +241,7 @@ console.log("formData", formData);
       ))}
     </View>
     {Platform.OS === 'ios' && (
-      <DateTimePicker
+      <DateTimePickerModal
         value={expireDate}
         mode={"date"}
         display="default"
@@ -323,15 +324,29 @@ const styles = StyleSheet.create({
         
     },
 
-    date: {
+  
+   date: {
+      ...Platform.select({
+      ios: {
         flex: 10,
-        marginTop: 30,
+        marginTop: -30,
+        flexDirection: "row",
+        justifyContent: "space-around",
+        width: "50%",
+        marginBottom: 0,
+    },
+    android: {
+        flex: 10,
+        marginTop: -60,
         flexDirection: "row",
         justifyContent: "space-around",
         width: "80%",
-        marginBottom: -20,
+        marginBottom: 30,
     },
-  
+    }),
+    },  
+
+
     expireDate: {
         flex: 8,
          marginTop: 0,
@@ -341,12 +356,14 @@ const styles = StyleSheet.create({
     },
 
     datePart: {
+      top: 40,
         width: 100,
+        height: 100,
         alignItems: "center",
     },
     content: {
-        flex: 20,
-        marginTop: 0,
+        flex: 10,
+        marginTop: 9+0,
         alignItems: "center",
         justifyContent: "center",
     },
@@ -368,15 +385,31 @@ titleStart: {
     digit: {
         fontSize: 24,
     },
+
+  
+    
     contract: {
+       ...Platform.select({
+      ios: {
         flex: 3,
         width: 390,
         alignItems: "center",
         justifyContent: "center",
         marginTop: 130,
         marginBottom: 100,
-       
+    }, 
+      android: {
+        flex: 3,
+        width: 340,
+        alignItems: "center",
+        justifyContent: "center",
+        marginTop: 120,
+        marginBottom: 100,
     },
+    }),
+    },
+
+
    button: {
     position: "fixed",
     borderColor: "#E0AA3E",
