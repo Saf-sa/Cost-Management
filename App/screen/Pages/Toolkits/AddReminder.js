@@ -101,16 +101,16 @@ console.log("formData", formData);
  
 
     // Validation des champs
-    if (!isValidStartDate(formData.startDate)) {
+    if (!isValidDate(formData.startDate)) {
       updateError(
         "startDate",
-        !isValidStartDate(formData.startDate) ? "Please enter a valid date" : null
+        !isValidDate(formData.startDate) ? "Please enter a valid date" : null
       );
     }
-     if (!isValidExpireDate(formData.expireDate)) {
+     if (!isValidDate(formData.expireDate)) {
       updateError(
         "expireDate",
-        !isValidExpireDate(formData.expireDate) ? "Please enter a valid date" : null
+        !isValidDate(formData.expireDate) ? "Please enter a valid date" : null
       );
     }
 
@@ -174,7 +174,7 @@ console.log("formData", formData);
       Toast.show({
         type: "success",
         position: "bottom",
-        text1: "expense created successfully",
+        text1: "Reminder created successfully",
         visibilityTime: 3000,
         autoHide: true,
       });
