@@ -36,37 +36,37 @@ const isValidRenewal = (renewal) => {
 const AddReminder= () => {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [selectedDate, setSelectedDate] = useState("");
-  const [startDate, setStartDate] = useState(new Date());
-  const [expireDate, setExpireDate] = useState(new Date());
+  const [selectedStartDate, setSelectedStartDate] = useState(new Date());
+  const [selectedExpireDate, setSelectedExpireDate] = useState(new Date());
   const [selectedEmail, setSelectedEmail] = useState("");
   const [selectedLabel, setSelectedLabel] = useState("");
   const [selectedRenewal, setSelectedRenewal] = useState("");
   const navigation = useNavigation();
   const [selected, setSelected] = useState('');
   const [formErrors, setFormErrors] = useState({
-    startDate: null,
-    expireDate: null,
+    selectedStartDate: null,
+    selectedExpireDate: null,
     contractName: null,
     selectedEmail: null,
     selectedLabel: null,
     selectedRenewal: null,
   });
 
-  const handleConfirm = (date) => {
+  const handleConfirm = (startDate) => {
     hideDatePicker();
-    const formattedStatDate = moment(startDate).format("YYYY-MM-DD");
-     const formattedExpireDate = moment(expireDate).format("YYYY-MM-DD");
-    setSelectedDate(formattedStatDate);
+    const formattedStartDate = moment(selectedStartDate).format("YYYY-MM-DD");
+    const formattedExpireDate = moment(selectedExpireDate).format("YYYY-MM-DD");
+    setSelectedDate(formattedStartDate);
     sendDateToBackend(formattedExpireDate);
   };
 
 
-  const sendStartDateToBackend = (startDate, ) => {
+  const sendStartDateToBackend = (selectedStartDate, ) => {
     // send startDate to backend
   };
   /*  console.log(" 74 startDate", startDate); */
 
-    const sendExpireDateToBackend = (expireDate, ) => {
+    const sendExpireDateToBackend = (selectedExpireDate, ) => {
     // send date to backend
   };
 
@@ -113,8 +113,8 @@ const handleChange = (value, fieldName) => {
 };
   const handleSubmit = async () => {
   const formData = {
-    startDate: startDate,
-    expireDate: expireDate,
+    startDate: selectedStartDate,
+    expireDate: selectedExpireDate,
     contractName: contractName,
     label: selectedLabel,
     email: selectedEmail,
