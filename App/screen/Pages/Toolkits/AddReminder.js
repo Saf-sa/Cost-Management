@@ -1,20 +1,20 @@
-import React, {useState} from "react";
-import {Text, View, StyleSheet} from "react-native";
+import React, { useState, } from "react";
+import { View, Text, StyleSheet, TextInput, ScrollView } from "react-native";
 import Toast from "react-native-toast-message";
 import { useNavigation } from "@react-navigation/native";
-import DateTimePickerModal from "@react-native-community/datetimepicker";
 import CustomInputSingup from "../../../shared/components/ui/CustomInputSignup";
-import { SelectList } from 'react-native-dropdown-select-list';
 import CustomButton from "../../../shared/components/ui/CustomButton";
+import DateTimePickerModal from "react-native-modal-datetime-picker";
+import moment from "moment";
+import { SelectList } from 'react-native-dropdown-select-list';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
 import axios from "axios";
+
 
 const isValidStartDate = (date) => {
   const regex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[012])\/(19|20)\d\d$/;
   return regex.test(date);
 };
-
 const isValidExpireDate = (date) => {
   const regex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[012])\/(19|20)\d\d$/;
   return regex.test(date);
@@ -23,28 +23,27 @@ const isValidExpireDate = (date) => {
 const isValidContractName= (contractName) => {
   return contractName !== '';
 };
-
 const isValidLabel = (label) => {
   return label !== '';
 };
 
-const isValidEmail = (email) => {
-  return !isNaN(email);
-};
 const isValidRenewal = (renewal) => {
   return !isNaN(renewal);
 };
 
 
-export default function AddReminder() {
-    const [date, setDate] = useState(new Date());;
-    const [startDate, setStartDate] = useState(new Date());
-    const [expireDate, setExpireDate] = useState(new Date());
-    const [selectedEmail, setSelectedEmail] = useState("");
-    const [contractName, setContractName] = useState('');
-    const [selectedLabel, setSelectedLabel] = useState('');
-    const [selectedRenewal, setSelectedRenewal] = useState('');
-     const [formErrors, setFormErrors] = useState({
+
+const AddReminder= () => {
+  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+  const [selectedDate, setSelectedDate] = useState("");
+  const [startDate, setStartDate] = useState(new Date());
+  const [expireDate, setExpireDate] = useState(new Date());
+  const [selectedEmail, setSelectedEmail] = useState("");
+  const [selectedLabel, setSelectedLabel] = useState("");
+  const [selectedRenewal, setSelectedRenewal] = useState("");
+  const navigation = useNavigation();
+  const [selected, setSelected] = useState('');
+  const [formErrors, setFormErrors] = useState({
     startDate: null,
     expireDate: null,
     contractName: null,
@@ -52,10 +51,42 @@ export default function AddReminder() {
     selectedLabel: null,
     selectedRenewal: null,
   });
-    const navigation = useNavigation();
+
+  const handleConfirm = (date) => {
+    hideDatePicker();
+    const formattedStatDate = moment(startDate).format("YYYY-MM-DD");
+     const formattedExpireDate = moment(expireDate).format("YYYY-MM-DD");
+    setSelectedDate(formattedStatDate);
+    sendDateToBackend(formattedExpireDate);
+  };
 
 
-  const handleChange = (value, fieldName) => {
+  const sendStartDateToBackend = (startDate, ) => {
+    // send startDate to backend
+  };
+  /*  console.log(" 74 startDate", startDate); */
+
+    const sendExpireDateToBackend = (expireDate, ) => {
+    // send date to backend
+  };
+
+/*  console.log(" 74 expireDate", expireDate); */
+
+
+
+  const SendContractNameToBackend = (contractName) => {
+    //send  categories to backend
+  };
+
+  const showDatePicker = () => {
+    setDatePickerVisibility(true);
+  };
+
+  const hideDatePicker = () => {
+    setDatePickerVisibility(false);
+  };
+
+const handleChange = (value, fieldName) => {
   switch (fieldName) {
     case "startDate":
       setStartDate(value);
@@ -80,9 +111,7 @@ export default function AddReminder() {
   }
   console.log(fieldName, value);
 };
-
-
-const handleSubmit = async () => {
+  const handleSubmit = async () => {
   const formData = {
     startDate: startDate,
     expireDate: expireDate,
@@ -143,8 +172,7 @@ console.log("formData", formData);
         : null
       );
     }
-
-    console.log("formData 98", formData); 
+    console.log("formData", formData); 
   try {
         // Récupérer les données de l'utilisateur à partir de AsyncStorage
       const user = JSON.parse(await AsyncStorage.getItem("@storage_Key"));
@@ -169,7 +197,7 @@ console.log("formData", formData);
       Toast.show({
         type: "success",
         position: "bottom",
-        text1: "reminder created successfully",
+        text1: "expense created successfully",
         visibilityTime: 3000,
         autoHide: true,
       });
@@ -177,12 +205,12 @@ console.log("formData", formData);
         navigation.navigate("Dashboard");
       }, 3000);
     } catch (err) {
-    console.log("Test AddReminder", err.response); 
+     console.log("Test AddReminder", err.response); 
       Toast.show({
         type: "error",
         position: "bottom",
         text1: err.response.data.message,
-        visibilityTime: 1000,
+        visibilityTime: 3000,
         autoHide: true,
       });
     }
@@ -195,253 +223,136 @@ console.log("formData", formData);
     }));
   };
 
+  return (
+    <View style={styles.root}>
+      {/* <AuthHeader subtext="Please add a new Rdv" /> */}
+      <View style={styles.content}>
+        <ScrollView style={styles.scrollView}>
+          <Text style={styles.category}>Date</Text>
+          <TextInput
+            style={styles.inputContainer}
+            label="Date"
+            value={selectedSartDate}
+            placeholder="DD/MM/YYYY"
+            secureTextEntry={false}
+            onFocus={showDatePicker}
+          />
+          <DateTimePickerModal
+            isVisible={isDatePickerVisible}
+            mode="sartDate"
+            onConfirm={handleConfirm}
+            onCancel={hideDatePicker}
+          />
 
-
-
-    return (
-      
-  <View style={styles.container}>
-    <Text style={styles.titleStart}>Contract Start Date</Text>
-    <View style={styles.date}>
-      {[
-        { title: "Day", value: startDate ? startDate.getDate() : "?" },
-        { title: "Month", value: startDate ? startDate.getMonth() + 1 : "?" },
-        { title: "Year", value: startDate ? startDate.getFullYear() : "?" },
-      ].map((el, index) => (
-        <View style={styles.datePart} key={index}>
-          <Text style={styles.title}>{el.title}</Text>
-          <Text style={styles.digit}>{el.value}</Text>
-        </View>
-      ))}
-    </View>
-
-
-    {Platform.OS === 'ios' && (
-      <DateTimePickerModal
-        value={startDate}
-        mode={"date"}
-        display="default"
-        onChange={(event, selectedDate) => {
-          const newDate = selectedDate || startDate;
-          setStartDate(newDate);
-        }}
-      />
-    )}
-    <Text style={styles.titleExpire}>Contract expire Date</Text>
-    <View style={styles.expireDate}>
-      {[
-        { title: "Day", value: expireDate ? expireDate.getDate() : "?" },
-        { title: "Month", value: expireDate ? expireDate.getMonth() + 1 : "?" },
-        { title: "Year", value: expireDate ? expireDate.getFullYear() : "?" },
-      ].map((el, index) => (
-        <View style={styles.datePart} key={index}>
-          <Text style={styles.title}>{el.title}</Text>
-          <Text style={styles.digit}>{el.value}</Text>
-        </View>
-      ))}
-    </View>
-    {Platform.OS === 'ios' && (
-      <DateTimePickerModal
-        value={expireDate}
-        mode={"date"}
-        display="default"
-        onChange={(event, selectedDate) => {
-          const newDate = selectedDate || expireDate;
-          setExpireDate(newDate);
-        }}
-      />
-    )}
-    <View style={styles.contract}>
-      <CustomInputSingup
-        onChangeText={(value) => handleChange(value, 'contractName')}
-        value={contractName}
-        secure={false}
-        errorMessage={formErrors.contractName}
-        placeholder="Enter the Name of your Contract"
-        
-        style={styles.input}
-      />
-      <CustomInputSingup
-        onChangeText={(value) => handleChange(value, 'label')}
-        value={selectedLabel}
-        placeholder="Enter a description of your Contract"
-        secure={false}
-        errorMessage={formErrors.selectedLabel}
-        style={styles.input}
-      />
-      <CustomInputSingup
-        onChangeText={(value) => handleChange(value, 'email')}
-        value={selectedEmail}
-        placeholder="Enter email of your Contract"
-        secure={false}
-        errorMessage={formErrors.selectedEmail}
-        style={styles.input}
-      />
-
- <SelectList
+  <Text style={styles.category}>Date</Text>
+          <TextInput
+            style={styles.inputContainer}
+            label="expireDate"
+            value={selectedExpireDate}
+            placeholder="DD/MM/YYYY"
+            secureTextEntry={false}
+            onFocus={showDatePicker}
+          />
+          <DateTimePickerModal
+            isVisible={isDatePickerVisible}
+            mode="date"
+            onConfirm={handleConfirm}
+            onCancel={hideDatePicker}
+          />
+          <Text style={styles.category}>Renewal</Text>
+          <SelectList
             dropdownStyles={{
               borderColor: '#E0AA3E',
               borderWidth: 1,
               borderRadius: 6,
             }}
-            boxStyles={{backgroundColor:'white' ,borderRadius: 8, borderColor: '#E0AA3E', height: 40, width: 390, marginTop: 30,}}
-            defaultOption={{ value: 'Select a Renewal' }}
-            label="renewal"
-             setSelected={(value) => handleChange(value, "renewal")}
+            boxStyles={{ borderRadius: 8, borderColor: '#E0AA3E', height: 40, backgroundColor:'white' }}
+            defaultOption={{ value: 'Select a renaval' }}
+            label="duration"
+             setSelected={(value) => handleChange(value, "renaval")}
             data={[
                "1 year",
                "2 years",
                "3 years",
                "4 years",
                "5 years",
-            
             ]}
             save="value"
             categories={"value"}
             search={false}
-            errorMessage={formErrors.renewal}
+            errorMessage={formErrors.categories}
           />
-    </View>
-    <View style={styles.content}>
+
+          <CustomInputSingup
+            label="contractName"
+            value={contractName}
+            onChangeText={(value) => handleChange(value, "name")}
+            placeholder="Name of your contract"
+            secure={false}
+            errorMessage={formErrors.name}
+          />
+          <CustomInputSingup
+            label="contractName"
+            value={label}
+            onChangeText={(value) => handleChange(value, "place")}
+            placeholder="Description of your Contract"
+            secure={false}
+            errorMessage={formErrors.label}
+          />
+        </ScrollView>
+      </View>
+ {<View style={styles.AgendaButton}>
       <CustomButton
         onPress={handleSubmit}
         style={styles.button}
         buttonText={"New reminder"}
       />
+</View>} 
+      <Toast />
     </View>
-  </View>
-);
+  );
+};
 
-    
-}
+export default AddReminder;
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        top: 0,
-        alignItems: "center",
-       backgroundColor: "#F8F4D7",
-        
-    },
-
-  
-   date: {
-      ...Platform.select({
-      ios: {
-        flex: 10,
-        marginTop: -30,
-        flexDirection: "row",
-        justifyContent: "space-around",
-        width: "50%",
-        marginBottom: 0,
-    },
-    android: {
-        flex: 10,
-        marginTop: -60,
-        flexDirection: "row",
-        justifyContent: "space-around",
-        width: "80%",
-        marginBottom: 30,
-    },
-    }),
-    },  
-
-
-    expireDate: {
-        flex: 8,
-         marginTop: 0,
-        flexDirection: "row",
-        justifyContent: "space-around",
-        width: "60%",
-    },
-
-    datePart: {
-      top: 40,
-        width: 100,
-        height: 100,
-        alignItems: "center",
-    },
-    content: {
-        flex: 10,
-        marginTop: 9+0,
-        alignItems: "center",
-        justifyContent: "center",
-    },
-
-
-titleStart: {
-     marginTop: 10,
-        fontSize: 25,
-        fontWeight: "100",
-        marginBottom: 10,
-    },
-    titleExpire: {
-        marginTop:80,
-        fontSize: 25,
-        fontWeight: "100",
-        marginBottom: 30,
-        
-    },
-    digit: {
-        fontSize: 24,
-    },
-
-  
-    
-    contract: {
-       ...Platform.select({
-      ios: {
-        flex: 3,
-        width: 390,
-        alignItems: "center",
-        justifyContent: "center",
-        marginTop: 130,
-        marginBottom: 100,
-    }, 
-      android: {
-        flex: 3,
-        width: 340,
-        alignItems: "center",
-        justifyContent: "center",
-        marginTop: 120,
-        marginBottom: 100,
-    },
-    }),
-    },
-
-
-   button: {
-    position: "fixed",
+  root: {
+    flex: 1,
+    backgroundColor: "#F8F4D7",
+  },
+  content: {
+    flex: 2,
+    padding: 10,
+    marginTop: 10,
+  },
+  inputContainer: {
+    backgroundColor:'white',
+    marginBottom: 20,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
     borderColor: "#E0AA3E",
     borderWidth: 1,
-    width: "35%",
-    height: 45,
-    alignSelf: "center",
     borderRadius: 8,
-    padding: 12,
-    textAlign: "center",
-    top: -50,
-    
+    padding: 10,
   },
-      textButton:{
-      color: "#E0AA3E",
-      fontWeight: "bold",
-      fontSize: 15,
-      textAlign: "center",
-      
-    },
-    input: {
-        width: "90%",
-        height: 50,
-        backgroundColor: "#F8F4D7",
-        borderRadius: 0,
-        alignItems: "center",
-        justifyContent: "center",
-        marginTop: 10,
-    },
-    title: {
-        fontSize: 12,
-        fontWeight: "bold",
-    },
+  input: {
+    color: "#000",
+    flex: 1,
+  },
+  category: {
+    color: "#E0AA3E",
+    fontSize: 18,
+    fontWeight: "bold",
+    marginBottom: 10,
+  },
+  SelectList: {
+    marginBottom: 20,
+  },
+  AgendaButton: {
+    position: "absolute",
+    alignSelf: "center",
+    marginTop: 600,
+  },
   
 });
