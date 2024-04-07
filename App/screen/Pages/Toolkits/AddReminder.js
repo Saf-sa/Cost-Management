@@ -51,8 +51,8 @@ const AddReminder= () => {
     hideDatePicker();
     const formattedStartDate = moment(selectedStartDate).format("YYYY-MM-DD");
     const formattedExpireDate = moment(selectedExpireDate).format("YYYY-MM-DD");
-    setSelectedDate(formattedStartDate);
-    sendDateToBackend(formattedExpireDate);
+    setSelectedStartDate(formattedStartDate);
+    setSelectedExpireDate(formattedExpireDate);
   };
 
   const showDatePicker = () => {
@@ -208,7 +208,7 @@ console.log("formData", formData);
           <TextInput
             style={styles.inputContainer}
             label="Start Date"
-            value={selectedSartDate}
+            value={selectedStartDate}
             placeholder="DD/MM/YYYY"
             secureTextEntry={false}
             onFocus={showDatePicker}
@@ -223,7 +223,7 @@ console.log("formData", formData);
   <Text style={styles.category}>Expire Date</Text>
           <TextInput
             style={styles.inputContainer}
-            label="expire Date"
+            label="date"
             value={selectedExpireDate}
             placeholder="DD/MM/YYYY"
             secureTextEntry={false}
