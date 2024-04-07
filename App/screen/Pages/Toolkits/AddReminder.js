@@ -47,13 +47,17 @@ const AddReminder= () => {
     selectedRenewal: null,
   });
 
-  const handleConfirm = (startDate) => {
-    hideDatePicker();
-    const formattedStartDate = moment(selectedStartDate).format("YYYY-MM-DD");
-    const formattedExpireDate = moment(selectedExpireDate).format("YYYY-MM-DD");
-    setSelectedStartDate(formattedStartDate);
-    setSelectedExpireDate(formattedExpireDate);
-  };
+const handleConfirmStartDate = (date) => {
+  hideDatePicker();
+  const formattedStartDate = moment(date).format("YYYY-MM-DD");
+  setSelectedStartDate(formattedStartDate);
+};
+
+const handleConfirmExpireDate = (date) => {
+  hideDatePicker();
+  const formattedExpireDate = moment(date).format("YYYY-MM-DD");
+  setSelectedExpireDate(formattedExpireDate);
+};
 
   const showDatePicker = () => {
     setDatePickerVisibility(true);
@@ -205,36 +209,36 @@ console.log("formData", formData);
       <View style={styles.content}>
         <ScrollView style={styles.scrollView}>
           <Text style={styles.category}>Start Date</Text>
-          <TextInput
-            style={styles.inputContainer}
-            label="Start Date"
-            value={selectedStartDate}
-            placeholder="DD/MM/YYYY"
-            secureTextEntry={false}
-            onFocus={showDatePicker}
-          />
-          <DateTimePickerModal
-            isVisible={isDatePickerVisible}
-            mode="date"
-            onConfirm={handleConfirm}
-            onCancel={hideDatePicker}
-          />
+         <TextInput
+  style={styles.inputContainer}
+  label="Start Date"
+  value={selectedStartDate}
+  placeholder="DD/MM/YYYY"
+  secureTextEntry={false}
+  onFocus={showDatePicker}
+/>
+<DateTimePickerModal
+  isVisible={isDatePickerVisible}
+  mode="date"
+  onConfirm={handleConfirmStartDate}
+  onCancel={hideDatePicker}
+/>
 
-  <Text style={styles.category}>Expire Date</Text>
-          <TextInput
-            style={styles.inputContainer}
-            label="date"
-            value={selectedExpireDate}
-            placeholder="DD/MM/YYYY"
-            secureTextEntry={false}
-            onFocus={showDatePicker}
-          />
-          <DateTimePickerModal
-            isVisible={isDatePickerVisible}
-            mode="date"
-            onConfirm={handleConfirm}
-            onCancel={hideDatePicker}
-          />
+<Text style={styles.category}>Expire Date</Text>
+<TextInput
+  style={styles.inputContainer}
+  label="date"
+  value={selectedExpireDate}
+  placeholder="DD/MM/YYYY"
+  secureTextEntry={false}
+  onFocus={showDatePicker}
+/>
+<DateTimePickerModal
+  isVisible={isDatePickerVisible}
+  mode="date"
+  onConfirm={handleConfirmExpireDate}
+  onCancel={hideDatePicker}
+/>
           <Text style={styles.category}>Renewal</Text>
           <SelectList
             dropdownStyles={{
