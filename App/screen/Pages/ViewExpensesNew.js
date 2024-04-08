@@ -10,7 +10,7 @@ import CustomButton from "../../shared/components/ui/CustomButton";
 import UserNav from "../nav/UserNav";
 import Screen2 from "../../shared/components/Screen";
 
-import { getExpenses } from '../../shared/components/IncomExpenseComponent/GetExpense copy';
+import { getExpenses } from '../../shared/components/IncomExpenseComponent/GetExpense';
 
 const ViewExpensesNew = ({route}) => {
   const [storedExpenses, setStoredExpenses] = useState([]);
