@@ -1,5 +1,15 @@
-import { useState, useEffect } from 'react';
-import { useNavigation } from '@react-navigation/native';
+import {
+  View,
+  Text,
+  StyleSheet, 
+  ScrollView,
+} from "react-native";
+import React, { useState, useEffect } from "react";
+import { useNavigation } from "@react-navigation/native";
+import CustomButton from "../../shared/components/ui/CustomButton";
+import UserNav from "../nav/UserNav";
+import Screen2 from "../../shared/components/Screen";
+
 import { getIncomes } from './GetIncomes';
 
 const ViewIncomesNew = ({route}) => {
@@ -9,28 +19,19 @@ const ViewIncomesNew = ({route}) => {
 
   useEffect(() => {
     getIncomes(category, setStoredIncomes);
-  }, []);
+  }, [category]);
 
   const calculateTotalIncomes = storedIncomes.reduce((total, income) => total + Number(income.amount), 0);
 
-
-};
-
-let index = 1;// index for scrollview
-
-  return (// Display data from AsyncStorage
+  return (
      <ScrollView style={styles.page}
-     keyboardDismissMode="on-drag"// to dismiss the keyboard when the user drags the scroll view
-      onscroll={(evt) =>  (index++)}// to get the index of the scrollview
-      onScrollBeginDrag={(evt) => (index++)}// to get the index of the scrollview
+     keyboardDismissMode="on-drag"
+      onScroll={(evt) =>  {/* handle scroll event */}}
+      onScrollBeginDrag={(evt) => {/* handle scroll begin drag event */}}
       >
        <View >  
 <Screen2 >
-           {/* Button Start */}
-      
         <UserNav 
-
-        
           image={require("../../assets/iconPerson.png")}
     /> 
      <View style={styles.viewIncomesButton}>
@@ -43,11 +44,8 @@ let index = 1;// index for scrollview
        
         <Text style={styles.textAmount}>Total Incomes = + {calculateTotalIncomes} € </Text>
       
-    {storedIncomes.map((income, index) => (// Display data from AsyncStorage in a FlatList
-      /* console.log('storedIncomes ', storedIncomes), */
+    {storedIncomes.map((income, index) => (
       <View key={index} style={styles.incomeContainer}>
-
-         
         <View style={styles.row}>
           <Text>Date : {income.date && !isNaN(Date.parse(income.date)) ? new Date(income.date).toISOString().split('T')[0] : 'Invalid date'}</Text>
           <Text>Categories : {income.categories.join(', ')}</Text>
@@ -57,14 +55,12 @@ let index = 1;// index for scrollview
           <Text style={{ color: "green"}}>Amount = + {income.amount}</Text>
         </View>
       </View>
-       
     ))}
     </Screen2>
      </View>
   </ScrollView>
   );
 };
-
 const styles = StyleSheet.create({
     page: {
     flex: 1,
