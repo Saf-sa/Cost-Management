@@ -8,13 +8,13 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import AppText from "../../shared/components/uiApp/AppText";
 import axios from "axios";
 import { LinearGradient } from "expo-linear-gradient";
-
+/* 
 
 if (Platform.OS === 'ios') {
   console.log('Your device is running iOS');
 } else if (Platform.OS === 'android') {
   console.log('Your device is running Android');
-}
+} */
  
 const isValidEmail = (email) => {
   // Should contain @

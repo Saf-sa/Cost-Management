@@ -65,11 +65,11 @@ const clearStorage = async () => {
 // Call the function when you want to clear the storage
 clearStorage();  */
 
-if (Platform.OS === 'ios') {
+/* if (Platform.OS === 'ios') {
   console.log('Your device is running iOS');
 } else if (Platform.OS === 'android') {
   console.log('Your device is running Android');
-}
+} */
  
 
 const Stack = createStackNavigator();
@@ -114,7 +114,7 @@ if (!expiresIn) {
             }
           }
         } else {
-          navigation.replace('Dashboard');
+          navigation.replace('Login');
         }
       } catch (error) {
         console.log(error);
