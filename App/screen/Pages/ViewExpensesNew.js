@@ -10,18 +10,18 @@ import CustomButton from "../../shared/components/ui/CustomButton";
 import UserNav from "../nav/UserNav";
 import Screen2 from "../../shared/components/Screen";
 
-import { getIncomes } from './GetIncomes';
+import { getExpenses } from './GetExpenses';
 
-const ViewIncomesNew = ({route}) => {
-  const [storedIncomes, setStoredIncomes] = useState([]);
+const ViewExpensesNew = ({route}) => {
+  const [storedExpenses, setStoredExpenses] = useState([]);
   const navigation = useNavigation();
   const {category} = route.params;
 
   useEffect(() => {
-    getIncomes(category, setStoredIncomes);
+    getExpenses(category, setStoredExpenses);
   }, [category]);
 
-  const calculateTotalIncomes = storedIncomes.reduce((total, income) => total + Number(income.amount), 0);
+  const calculateTotalExpenses = storedExpenses.reduce((total, expense) => total + Number(expense.amount), 0);
 
   return (
      <ScrollView style={styles.page}
@@ -34,25 +34,25 @@ const ViewIncomesNew = ({route}) => {
         <UserNav 
           image={require("../../assets/iconPerson.png")}
     /> 
-     <View style={styles.viewIncomesButton}>
+     <View style={styles.viewExpensesButton}>
         <CustomButton
-          onPress={() => navigation.navigate("MyIncomes")}
+          onPress={() => navigation.navigate("MyExpenses")}
           style={styles.button}
-          buttonText={"Add Income"}
+          buttonText={"Add Expense"}
       />
         </View>
        
-        <Text style={styles.textAmount}>Total Incomes = + {calculateTotalIncomes} € </Text>
+        <Text style={styles.textAmount}>Total Expenses = + {calculateTotalExpenses} € </Text>
       
-    {storedIncomes.map((income, index) => (
-      <View key={index} style={styles.incomeContainer}>
+    {storedExpenses.map((expense, index) => (
+      <View key={index} style={styles.expenseContainer}>
         <View style={styles.row}>
-          <Text>Date : {income.date && !isNaN(Date.parse(income.date)) ? new Date(income.date).toISOString().split('T')[0] : 'Invalid date'}</Text>
-          <Text>Categories : {income.categories.join(', ')}</Text>
+          <Text>Date : {expense.date && !isNaN(Date.parse(expense.date)) ? new Date(expense.date).toISOString().split('T')[0] : 'Invalid date'}</Text>
+          <Text>Categories : {expense.categories.join(', ')}</Text>
         </View>
         <View style={styles.row}>
-          <Text>Label : {income.label}</Text>
-          <Text style={{ color: "green"}}>Amount = + {income.amount}</Text>
+          <Text>Label : {expense.label}</Text>
+          <Text style={{ color: "green"}}>Amount = + {expense.amount}</Text>
         </View>
       </View>
     ))}
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     flex: 1,
 backgroundColor: "#F8F4D7",
   },
-  incomeContainer: {
+  expenseContainer: {
     marginTop: 20,
     width: "96%",
     borderWidth: 1,
@@ -95,7 +95,7 @@ backgroundColor: "#F8F4D7",
       textAlign: "center",
       top: -70,
     },
-      viewIncomesButton: {
+      viewExpensesButton: {
     position: "absolute",
     alignSelf: "center",
     alignItems  : "center",
@@ -103,4 +103,4 @@ backgroundColor: "#F8F4D7",
   },
 });
 
-export default ViewIncomesNew;
+export default ViewExpensesNew;
