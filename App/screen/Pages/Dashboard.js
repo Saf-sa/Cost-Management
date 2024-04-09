@@ -571,13 +571,13 @@ const styles = StyleSheet.create({
     parentContainer: {
       ...Platform.select({
       ios: {
-    width: "65%",
+    width: "60%",
     height: 140,
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 7,
     marginTop: -80,
-    marginHorizontal: 70,
+    marginHorizontal: 80,
     marginVertical: -15,
     shadowOffset: {
       width: 0.8,
@@ -605,7 +605,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     paddingVertical: 7,
-    width: "80%",
+    width: "70%",
       },
 
   android: {
