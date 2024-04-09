@@ -585,13 +585,13 @@ const styles = StyleSheet.create({
   },
      android: {
     width: "70%",
-    height: 130,
+    height: 120,
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 7,
-    top: -15,
-    marginHorizontal: 50,
-    marginVertical: -27,
+    top: -35,
+    marginHorizontal: 45,
+    marginVertical: -17,
     shadowOffset: {
       width: 0.8,
       height: 2,},
@@ -604,14 +604,14 @@ const styles = StyleSheet.create({
       ios: {
     justifyContent: "center",
     alignItems: "center",
-    paddingVertical: 17,
+    paddingVertical: 7,
     width: "80%",
       },
 
   android: {
     justifyContent: "center",
     alignItems: "center",
-    paddingVertical: 0,
+    paddingVertical: -10,
     width: "80%",
   
      },
@@ -632,12 +632,12 @@ const styles = StyleSheet.create({
   }, 
     android: {
     position: "relative",
-    marginTop: -25,
-    marginBottom:-10,
+    marginTop: -35,
+    marginBottom:-20,
     borderRadius: 6,
-    marginLeft: -180,
-    width: 35,
-    height:25,
+    marginLeft: -140,
+    width: 29,
+    height:22,
     },
     }),
   },
@@ -656,11 +656,11 @@ const styles = StyleSheet.create({
   },
     android: {
     width: "85%",
-    height: 30,
+    height: 50,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingBottom:-5,
+    paddingBottom:0,
 
            },
     }),
@@ -685,7 +685,7 @@ const styles = StyleSheet.create({
     marginLeft : -10,
     flexWrap: "wrap",
     flexDirection: "row",
-    marginTop:0,
+    marginTop:-10,
     alignItems: "center",
     justifyContent: "space-between",
     alignItems: "center",
@@ -700,8 +700,8 @@ const styles = StyleSheet.create({
     color: "brown",
     }, 
     android: {  
-      top: -5,
-    fontSize: 15,
+      top: -15,
+    fontSize: 13,
     color: "brown",
     },
     }),
@@ -712,26 +712,43 @@ const styles = StyleSheet.create({
       ...Platform.select({
       ios: {
     fontSize: 15,
-    paddingTop: 5,
+    paddingTop: 2,
     textAlign:"center"
   
   },
     android: {
-    fontSize: 13, 
-    paddingTop: 8,
+    marginBottom: 8,
+    fontSize: 12, 
+    paddingTop: 5,
     textAlign:"center"
+  
     },
     }),
   },
 
-  
-    title:{
-    top: 60,
+   
+ 
+      title:{
+ ...Platform.select({
+      ios: {
+    top: 50,
     textAlign: "center",
     color: "#E0AA3E",
     fontSize: 20,
     fontWeight: "bold",
+  },
+
+      android: {
+    top: 20,
+    textAlign: "center",
+    color: "#E0AA3E",
+    fontSize: 15,
+    fontWeight: "bold",
   }
+
+  }),
+  },  
 });
+
 
 export default Dashboard;
