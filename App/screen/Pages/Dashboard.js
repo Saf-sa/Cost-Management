@@ -155,11 +155,11 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
               >
                 <AntDesign name="arrowup" color="#25F333" size={30 * 0.5} />
               </View>
-              <View style={{ marginLeft: 10 }}>
-                <AppText style={{ color: "black", fontSize: 14 }}>
+              <View style={{ marginLeft: 5 }}>
+                <AppText style={{ color: "black", fontSize: 12 }}>
                   Incomes
                 </AppText>
-                <AppText style={{ color: "green", fontSize: 14 }}>
+                <AppText style={{ color: "green", fontSize: 12 }}>
                 + {calculateTotalIncomes} €
   
                 </AppText>
@@ -185,11 +185,11 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
               >
                 <AntDesign name="arrowdown" color="#FB5D5D" size={30 * 0.5} />
               </View>
-              <View style={{ marginLeft: 10 }}>
-                <AppText style={{ color: "black", fontSize: 14 }}>
+              <View style={{ marginLeft: 5 }}>
+                <AppText style={{ color: "black", fontSize: 12 }}>
                   Expenses
                 </AppText>
-                <AppText style={{ color: "red", fontSize: 14 }}>
+                <AppText style={{ color: "red", fontSize: 12 }}>
                - {calculateTotalExpenses} €
                 </AppText>
               </View>
@@ -591,7 +591,7 @@ const styles = StyleSheet.create({
     borderRadius: 7,
     top: -30,
     marginHorizontal: 45,
-    marginVertical: -17,
+    marginVertical: -15,
     shadowOffset: {
       width: 0.8,
       height: 2,},
@@ -611,7 +611,8 @@ const styles = StyleSheet.create({
   android: {
     justifyContent: "center",
     alignItems: "center",
-    paddingVertical: -10,
+    paddingVertical: 5,
+    paddingHorizontal: 5,
     width: "80%",
   
      },
@@ -685,7 +686,7 @@ const styles = StyleSheet.create({
     marginLeft : -10,
     flexWrap: "wrap",
     flexDirection: "row",
-    marginTop:-25,
+    marginTop:-27,
     alignItems: "center",
     justifyContent: "space-between",
     alignItems: "center",
@@ -700,8 +701,9 @@ const styles = StyleSheet.create({
     color: "brown",
     }, 
     android: {  
-      top: -20,
-    fontSize: 13,
+      top: -22,
+      paddingBottom: 5,
+    fontSize: 11,
     color: "brown",
     },
     }),
