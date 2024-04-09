@@ -589,7 +589,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 7,
-    top: -35,
+    top: -30,
     marginHorizontal: 45,
     marginVertical: -17,
     shadowOffset: {
@@ -660,7 +660,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingBottom:0,
+    paddingBottom:-10,
 
            },
     }),
@@ -685,7 +685,7 @@ const styles = StyleSheet.create({
     marginLeft : -10,
     flexWrap: "wrap",
     flexDirection: "row",
-    marginTop:-10,
+    marginTop:-25,
     alignItems: "center",
     justifyContent: "space-between",
     alignItems: "center",
@@ -700,7 +700,7 @@ const styles = StyleSheet.create({
     color: "brown",
     }, 
     android: {  
-      top: -15,
+      top: -20,
     fontSize: 13,
     color: "brown",
     },
@@ -711,15 +711,16 @@ const styles = StyleSheet.create({
   textCat:{
       ...Platform.select({
       ios: {
-    fontSize: 15,
+    fontSize: 14,
     paddingTop: 2,
     textAlign:"center"
   
   },
     android: {
-    marginBottom: 8,
-    fontSize: 12, 
-    paddingTop: 5,
+    marginBottom: 10,
+    fontSize: 11, 
+    paddingTop: 1,
+    paddingBottom: 1,
     textAlign:"center"
   
     },
