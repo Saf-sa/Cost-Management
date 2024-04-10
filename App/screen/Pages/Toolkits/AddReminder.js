@@ -65,15 +65,16 @@ const hideExpireDatePicker = () => {
 };
 const handleConfirmStartDate = (date) => {
   hideStartDatePicker();
-  const formattedStartDate = moment(date).format("YYYY-MM-DD");
+  const formattedStartDate = moment(date).format("DD/MM/YYYY"); // Formatage en DD/MM/YYYY
   setSelectedStartDate(formattedStartDate);
 };
 
 const handleConfirmExpireDate = (date) => {
   hideExpireDatePicker();
-  const formattedExpireDate = moment(date).format("YYYY-MM-DD");
+  const formattedExpireDate = moment(date).format("DD/MM/YYYY"); // Formatage en DD/MM/YYYY
   setSelectedExpireDate(formattedExpireDate);
 };
+
 
 const handleChange = (value, fieldName) => {
   switch (fieldName) {
