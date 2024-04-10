@@ -1,40 +1,26 @@
 import { LineChart } from 'react-native-chart-kit';
-import { Dimensions } from 'react-native';
-import React, { useState, useEffect } from "react";
+import { Dimensions, ActivityIndicator } from 'react-native';
+import React, { useState, useEffect,  } from "react";
 import {ScrollView,} from "react-native";
 import Screen2 from "../components/Screen";
 import moment from "moment";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-
-
 export default ViewExpenses = ({}) => {
 
-
-   const [isLoading, setIsLoading] = useState(false);
-  const [chartData, setChartData] = useState([true]);
- console.log( 'loading Expenses after const',chartData);
+   const [isLoading, setIsLoading] = useState(true);
+  const [chartData, setChartData] = useState([]);
+/*  console.log( 'loading Expenses after const',chartData); */
 
   useEffect(() => {
   const fetchData = async () => {
-    console.log('Raw expenses:', expenses);
-    setIsLoading(false);
     const expenses = await AsyncStorage.getItem('expenses');
     /* console.log('Raw expenses:', expenses); // Log raw expenses data */
     if (expenses) {
       const parsedExpenses = JSON.parse(expenses);
       console.log('Parsed expenses:', parsedExpenses);
 
-             if (chartData && chartData.length > 0) {
-                 console.log(" Labels:", chartData.map(data => data.date)); // Vérifiez les valeurs de "labels" 
-                console.log(" Datasets:", chartData.map(data => data.amount)); // Vérifiez les valeurs de "datasets" 
-                console.log('ChartData:', ChartData);
-          } /* else {
-             console.log("Aucune donnée disponible."); // Log pour indiquer l'absence de données
-          
-                } */
       const ChartData = parsedExpenses.expenses.map(expense => {
-         console.log('Expense:', expense); // Log each expense 
         const formattedDate = moment(expense.date).format("DD/MM");
         const amount = expense.amount !== undefined && !isNaN(expense.amount) ? Number(expense.amount) : 0;
          console.log('Formatted date:', formattedDate, 'Amount:', amount); // Log formatted date and amount 
@@ -44,6 +30,7 @@ export default ViewExpenses = ({}) => {
          
         };
       })
+      console.log('ChartData:', ChartData);
 
       setChartData(ChartData); // Update chartData state
        setIsLoading(false);
@@ -67,8 +54,11 @@ export default ViewExpenses = ({}) => {
   <ScrollView>
     
     <Screen2>
+
+          {isLoading ? (
+          <ActivityIndicator /> // Afficher un indicateur de chargement en cas de chargement
+        ) : (
       <LineChart 
-      
         data={{
           
           labels: chartData.map(data => data.date),
@@ -112,11 +102,11 @@ export default ViewExpenses = ({}) => {
           borderRadius: 16,
           
         }}
-        // ... other props for LineChart
+  
       />
-      {/* ... */}
+        )}
     </Screen2>
   </ScrollView>
-  )};
+  );
 
-  
+  };
