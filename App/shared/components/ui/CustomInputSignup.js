@@ -29,11 +29,12 @@ const CustomInputSingup = (props) => {
         onChangeText={onChangeText}
         value={value}
       />
-      {label === "Password" && (
-        <TouchableOpacity onPress={onIconPress}>
-          <Icon name={secure ? "eye-slash" : "eye"} size={20} color="gray" />
-        </TouchableOpacity>
-      )}
+         {label === "Password" && (
+          <TouchableOpacity style={styles.iconContainer} onPress={onIconPress}>
+            <Icon name={secure ? "eye-slash" : "eye"} size={20} color="gray" />
+          </TouchableOpacity>
+        )}
+ 
       {errorMessage && <Text style={styles.errorMsg}>{errorMessage}</Text>}
     </View>
   );
@@ -53,10 +54,13 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 10,
   },
-
+  inputContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
   input: {
+    
     color: "#000",
-    height: 38,
     marginBottom: 10,
     marginTop: 5,
     padding: 10,
@@ -65,10 +69,15 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#E0AA3E",
   },
-  
+  iconContainer: {
+    position: "absolute",
+    top: 45,
+    right: 10,
+  },
+
   errorMsg: {
     color: "#ff8080",
-  }
+  },
 });
 
 
