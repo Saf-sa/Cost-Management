@@ -192,9 +192,9 @@ const Login = () => {
     <View style={styles.root}>
       <View style={styles.nav}>
       <HomeNav 
-          image={require("../../assets/iconPerson.png")}
-  
+       
         />
+         
       </View>
   <LinearGradient
           style={styles.parentContainer}
@@ -325,7 +325,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 7,
-    marginTop: -80,
+    marginTop: -120,
     marginBottom: 45,
     marginHorizontal: 75,
     
