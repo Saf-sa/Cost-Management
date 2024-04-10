@@ -35,18 +35,17 @@ const CustomInputLog = (props) => {
         onChangeText={onChangeText}
         value={value}
       />
-      {label === "Password" && (
-        <TouchableOpacity onPress={onIconPress}>
-          <Icon name={secure ? "eye-slash" : "eye"} size={20} color="gray" />
-        </TouchableOpacity>
-      )}
+     {label === "Password" && (
+          <TouchableOpacity style={styles.iconContainer} onPress={onIconPress}>
+            <Icon name={secure ? "eye-slash" : "eye"} size={20} color="gray" />
+          </TouchableOpacity>
+        )}
+ 
       {errorMessage && <Text style={styles.errorMsg}>{errorMessage}</Text>}
     </View>
-
-
-
   );
 };
+
 
 export default CustomInputLog;
 
@@ -64,6 +63,7 @@ const styles = StyleSheet.create({
   },
 
   input: {
+    
     color: "#000",
     marginBottom: 10,
     marginTop: 5,
@@ -72,6 +72,11 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     borderWidth: 1,
     borderColor: "#E0AA3E",
+  },
+  iconContainer: {
+    position: "absolute",
+    top: 45,
+    right: 10,
   },
   errorMsg: {
     color: "#ff8080",
