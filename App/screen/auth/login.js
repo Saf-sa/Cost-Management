@@ -6,11 +6,9 @@ import CustomInputLog from "../../shared/components/ui/CustomInputLog";
 import CustomButton from "../../shared/components/ui/CustomButton";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import AppText from "../../shared/components/uiApp/AppText";
-import Screen2 from "../../shared/components/Screen";
 import HomeNav from "../../screen/nav/UserNav";
 import axios from "axios";
 import { LinearGradient } from "expo-linear-gradient";
-
 /* 
 
 if (Platform.OS === 'ios') {
@@ -192,11 +190,12 @@ const Login = () => {
   };
   return (
     <View style={styles.root}>
-       <Screen2 >
-         <HomeNav
+      <View style={styles.nav}>
+      <HomeNav 
           image={require("../../assets/iconPerson.png")}
   
         />
+      </View>
   <LinearGradient
           style={styles.parentContainer}
           colors={["#f9f295", "#E0AA3E", "#F7EF8A", "#B88A44"]}
@@ -288,7 +287,6 @@ const Login = () => {
       </View>
       </View>
       <Toast />
-      </Screen2>
     </View>
   );
 };
@@ -304,6 +302,21 @@ const styles = StyleSheet.create({
     flex: 2,
     padding: 30,
   },
+  nav: {
+    ...Platform.select({
+      ios: {
+    top: -50,
+    marginLeft: 20, 
+    marginRight: 20,
+   
+  },
+    android: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  }),
+  },
   parentContainer: {
      ...Platform.select({
       ios: {
@@ -312,7 +325,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 7,
-    marginTop: -5,
+    marginTop: -80,
     marginBottom: 45,
     marginHorizontal: 75,
     
@@ -385,5 +398,5 @@ const styles = StyleSheet.create({
     alignItems  : "center",
     marginTop: 300,
   },
-  
+
 });
