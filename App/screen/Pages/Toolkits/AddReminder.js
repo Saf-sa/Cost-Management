@@ -10,6 +10,11 @@ import { SelectList } from 'react-native-dropdown-select-list';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from "axios";
 
+const isValidEmail = (email) => {
+  // Should contain @
+  const re = /\S+@\S+\.\S+/;
+  return re.test(email);
+};
 
 const isValidDate = (date) => {
   const regex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[012])\/(19|20)\d\d$/;
@@ -67,12 +72,14 @@ const handleConfirmStartDate = (date) => {
   hideStartDatePicker();
   const formattedStartDate = moment(date).format("DD/MM/YYYY"); // Formatage en DD/MM/YYYY
   setSelectedStartDate(formattedStartDate);
+  console.log("formattedStartDate", formattedStartDate);
 };
 
 const handleConfirmExpireDate = (date) => {
   hideExpireDatePicker();
   const formattedExpireDate = moment(date).format("DD/MM/YYYY"); // Formatage en DD/MM/YYYY
   setSelectedExpireDate(formattedExpireDate);
+  console.log("formattedExpireDate", formattedExpireDate);
 };
 
 
@@ -256,9 +263,9 @@ console.log("formData", formData);
               borderRadius: 6,
             }}
             boxStyles={{ borderRadius: 8, borderColor: '#E0AA3E', height: 40, backgroundColor:'white' }}
-            defaultOption={{ value: 'Select a renawal' }}
+            defaultOption={{ value: 'Select a renewal' }}
             label="duration"
-             setSelected={(value) => handleChange(value, "renaval")}
+             setSelected={(value) => handleChange(value, "renewal")}
             data={[
                "1 year",
                "2 years",
