@@ -4,6 +4,7 @@ import Toast from "react-native-toast-message";
 import { useNavigation } from "@react-navigation/native";
 import CustomInputLog from "../../shared/components/ui/CustomInputLog";
 import CustomButton from "../../shared/components/ui/CustomButton";
+import HomeNav from "../../screen/nav/UserNav";
 import { LinearGradient } from "expo-linear-gradient";
 import AppText from "../../shared/components/uiApp/AppText";
 /*  import { REACT_APP_BE_URL } from "../../.env"; */
@@ -128,7 +129,11 @@ const ResetLogin = () => {
 
   return (
     <View style={styles.root}>
-     {/*  <AuthHeader subtext="Please Reset your Password" /> */}
+       <View style={styles.nav}>
+      <HomeNav 
+        />
+         
+      </View>
 <LinearGradient
           style={styles.parentContainer}
           colors={["#f9f295", "#E0AA3E", "#F7EF8A", "#B88A44"]}
@@ -201,15 +206,30 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor:"#F8F4D7",
   },
-  parentContainer: {
+    nav: {
     ...Platform.select({
       ios: {
+    top: -50,
+    marginLeft: 20, 
+    marginRight: 20,
+   
+  },
+    android: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  }),
+  },
+  parentContainer: {
+    ...Platform.select({
+        ios: {
     width: "65%",
     height: 170,
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 7,
-    marginTop: 20,
+    marginTop: -120,
     marginBottom: 45,
     marginHorizontal: 75,
     

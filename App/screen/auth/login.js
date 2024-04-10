@@ -192,7 +192,6 @@ const Login = () => {
     <View style={styles.root}>
       <View style={styles.nav}>
       <HomeNav 
-       
         />
          
       </View>
