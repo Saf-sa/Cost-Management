@@ -201,7 +201,7 @@ const getCustomDateStyles = () => {
 
   return (
     
-  <ScrollView style={styles.page}
+  <ScrollView style={styles.page} scrollEventThrottle={16}
   keyboardDismissMode="on-drag"
   onScroll={(evt) =>  (index++)}
   onScrollBeginDrag={(evt) => (index++)}
