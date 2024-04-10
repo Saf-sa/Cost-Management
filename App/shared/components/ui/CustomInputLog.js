@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     color: "#000",
     marginBottom: 10,
     marginTop: 5,
-    padding: 13,
+    padding: 14,
     backgroundColor: "#fff",
     borderRadius: 8,
     borderWidth: 1,
@@ -80,8 +80,8 @@ const styles = StyleSheet.create({
   },
   iconContainer: {
     position: "absolute",
-    top: 45,
-    right: 10,
+    top: 50,
+    right: 15,
   },
   errorMsg: {
     color: "#ff8080",
