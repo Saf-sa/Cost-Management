@@ -36,7 +36,7 @@ const userSchema = new mongoose.Schema(
 
     expiresIn: {
       type: String,
-      default: null,
+      default: 3600,
       expires: 3600,
     },
    
