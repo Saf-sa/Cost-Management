@@ -90,10 +90,10 @@ const [firstDurationValue, setFirstDurationValue] = useState(null);
           setStoredReminder(parsedReminders.reminders); // Send data to the state
           console.log('parsedReminders FrontEnd side ',parsedReminders);  
 
-          parsedReminders.reminders.forEach(reminder => {
-              const [firstDurationValue] = reminder.duration;
-              setFirstDurationValue(firstDurationValue);
-              console.log(firstDurationValue); // This will log the first value of duration for each reminder
+         parsedReminders.reminders.forEach(reminder => {
+  const firstDurationValue = Array.isArray(reminder.renewal) ? reminder.renewal[0] : reminder.renewal;
+  setFirstDurationValue(firstDurationValue);
+  console.log(firstDurationValue);
             
           });
         }
@@ -233,6 +233,7 @@ const getCustomDateStyles = () => {
   />
   <StatusBar style="auto" />
   
+
 {Array.isArray(storedReminder) && storedReminder.length > 0 && storedReminder.map((reminder, index) => (
     <View 
       key={index} 
@@ -251,7 +252,7 @@ const getCustomDateStyles = () => {
       <View /* style={styles.rowItem} */>
         <Text>Label : {reminder.label}</Text>
         <Text>Expired Date : {reminder.expireDate && !isNaN(Date.parse(reminder.expireDate)) ? new Date(reminder.expireDate).toISOString().split('T')[0] : 'Invalid date'}</Text>
-        <Text>Renewal every : {reminder.renewal}</Text>
+        <Text>Renewal every : {Array.isArray(reminder.renewal) ? reminder.renewal.join(', ') : reminder.renewal}</Text>
       </View>
     </View>
   ))}
