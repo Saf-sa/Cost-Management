@@ -187,7 +187,7 @@ const AddAgenda= () => {
 
   return (
     <View style={styles.root}>
-      {/* <AuthHeader subtext="Please add a new Rdv" /> */}
+
       <View style={styles.content}>
         <ScrollView style={styles.scrollView} scrollEventThrottle={16}>
           <Text style={styles.category}>Date</Text>

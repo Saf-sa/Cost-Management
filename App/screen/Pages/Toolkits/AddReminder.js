@@ -228,7 +228,7 @@ console.log("formData", formData);
          <TextInput
   style={styles.inputContainer}
   label="Start Date"
-  value={selectedStartDate}
+  value={moment(selectedStartDate).format("DD/MM/YYYY")}
   placeholder="DD/MM/YYYY"
   secureTextEntry={false}
   onFocus={showStartDatePicker}
@@ -244,7 +244,7 @@ console.log("formData", formData);
 <TextInput
   style={styles.inputContainer}
   label="date"
-  value={selectedExpireDate}
+  value={moment(selectedExpireDate).format("DD/MM/YYYY")} 
   placeholder="DD/MM/YYYY"
   secureTextEntry={false}
   onFocus={showExpireDatePicker}
