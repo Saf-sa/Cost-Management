@@ -44,6 +44,15 @@ const AddAgenda= () => {
     duration: null,
   });
 
+
+  const showDatePicker = () => {
+    setDatePickerVisibility(true);
+  };
+
+  const hideDatePicker = () => {
+    setDatePickerVisibility(false);
+  };
+
   const handleConfirm = (date) => {
     hideDatePicker();
     const formattedDate = moment(date).format("YYYY-MM-DD");
@@ -63,14 +72,6 @@ const AddAgenda= () => {
 
   const SendNameToBackend = (name) => {
     //send  categories to backend
-  };
-
-  const showDatePicker = () => {
-    setDatePickerVisibility(true);
-  };
-
-  const hideDatePicker = () => {
-    setDatePickerVisibility(false);
   };
 
 
@@ -196,7 +197,7 @@ const AddAgenda= () => {
             value={selectedDate}
             placeholder="DD/MM/YYYY"
             secureTextEntry={false}
-            onFocus={showDatePicker}
+             onFocus={() => { hideDatePicker(); showDatePicker(); }}
           />
           <DateTimePickerModal
             isVisible={isDatePickerVisible}
