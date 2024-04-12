@@ -77,6 +77,16 @@ const [firstDurationValue, setFirstDurationValue] = useState(null);
             
           }
         );
+         const filteredReminders = data.map(({ _id, reminderOwner, startDate, expireDate, contractName, label, email, renewal }) => ({
+        _id,
+        reminderOwner,
+        startDate,
+        expireDate,
+        contractName,
+        label,
+        email,
+        renewal
+      }));
          // Stocker les données récupérées dans AsyncStorage
        await AsyncStorage.setItem('reminders', JSON.stringify(data));// Store data in AsyncStorage
            console.log('data received from Backend ',data); 
