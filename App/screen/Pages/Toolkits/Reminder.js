@@ -232,7 +232,8 @@ const getCustomDateStyles = () => {
   customDatesStyles={getCustomDateStyles()} 
   />
   <StatusBar style="auto" />
-  {storedReminder.map((reminder, index) => (
+  
+{Array.isArray(storedReminder) && storedReminder.length > 0 && storedReminder.map((reminder, index) => (
     <View 
       key={index} 
       style={[
