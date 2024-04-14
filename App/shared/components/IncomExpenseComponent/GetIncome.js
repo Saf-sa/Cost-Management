@@ -1,52 +1,34 @@
-import axios from "axios";
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useState, useEffect } from "react";
-import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from "axios";
 
+export const useGetIncomes = (category) => {
+  const [storedIncomes, setStoredIncomes] = useState([]);
 
-
- const UpdateIncomes = ({}) => {
-  
-  const [storedIncomes, setStoredIncomes] = useState([]);// State to store data from AsyncStorage
-  const navigation = useNavigation();// Navigation
-
-  const {category} = route.params;// Get category from MyIcomes.js  
- /*  console.log('category from ViewIncomes ', category); */
-  useEffect(() => {// UseEffect to get data from AsyncStorage
+  useEffect(() => {
     const getIncomes = async () => {
       try {
-           const user = JSON.parse(await AsyncStorage.getItem("@storage_Key"));// Get user data from AsyncStorage
-           /* console.log('user token ',user.token);  */
+        const user = JSON.parse(await AsyncStorage.getItem("@storage_Key"));
         const { data } = await axios.get(
-          
-           /*  console.log('data ', data), */
-          `http://localhost:5555/api/incomes/${category}`,// Get data in DB collection from backend in DB
-                 /*    console.log('data category from backend  :', category), */
+          `http://localhost:5555/api/incomes/${category}`,
           {
             headers: {
-              Authorization: `Bearer ${user.token}`,// Send token to backend
+              Authorization: `Bearer ${user.token}`,
             },
-            
           }
         );
-         // Stocker les données récupérées dans AsyncStorage
-       await AsyncStorage.setItem('incomes', JSON.stringify(data));// Store data in AsyncStorage
-         /*      console.log('data received from Backend ',data);  */
-
-        //await AsyncStorage.clear('incomes')
-
-        const incomes = await AsyncStorage.getItem('incomes');// Get data from AsyncStorage
+        await AsyncStorage.setItem('incomes', JSON.stringify(data));
+        const incomes = await AsyncStorage.getItem('incomes');
         if (incomes) {
-       const parsedIncomes = JSON.parse(incomes);// Parse data from AsyncStorage
-          setStoredIncomes(parsedIncomes.incomes); // Send data to the state
-               /*  console.log('parsedExpenses FrontEnd side ',parsedExpenses);   */
+          const parsedIncomes = JSON.parse(incomes);
+          setStoredIncomes(parsedIncomes.incomes);
         }
-      } catch (error) {// Error handling
-        console.log(error);// Error handling
+      } catch (error) {
+        console.log(error);
       }
     };
-   
-  }, []);
+    getIncomes();
+  }, [category]);
 
-}
-export default UpdateIncomes;
+  return storedIncomes;
+};
