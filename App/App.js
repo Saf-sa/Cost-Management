@@ -157,7 +157,7 @@ export default function App() {
      
         <Stack.Screen name="AuthLoading" component={AuthLoading} />
         <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Dashboard" component={Dashboard} />
+        <Stack.Screen name="Dashboard" initialParams={{category:'all'}} component={Dashboard} />
         <Stack.Screen name="Signup" component={Signup} />
         <Stack.Screen name="Reset" component={Reset} />
         <Stack.Screen name="ResetPassword" component={ResetPassword} />
