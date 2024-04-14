@@ -21,17 +21,17 @@ import { useGetExpenses } from "../../shared/components/IncomExpenseComponent/Ge
 
 
 
-  function Dashboard() {
-      const [storedIncomes, setStoredIncomes] = useState([]);// State to store data from AsyncStorage
-      const [storedExpenses, setStoredExpenses] = useState([]);// State to store data from AsyncStorage
+  function Dashboard({route})  {
+  const { category= 'all' } = route.params;
+  const incomes = useGetIncomes(category);
+  const expenses = useGetExpenses(category);
+  const [storedIncomes, setStoredIncomes] = useState([]);// State to store data from AsyncStorage
+  const [storedExpenses, setStoredExpenses] = useState([]);// State to store data from AsyncStorage
 
 
     const navigation = useNavigation();
 
       useEffect(() => {
-    
- 
-
     const fetchUserData = async () => {
       try {
         const jsonValue = await AsyncStorage.getItem('@storage_Key');
@@ -47,36 +47,6 @@ import { useGetExpenses } from "../../shared/components/IncomExpenseComponent/Ge
     fetchUserData();
   
      
-  }, []);
-
-
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const jsonValue = await AsyncStorage.getItem('@storage_Key');
-        if (jsonValue != null) {
-          const user = JSON.parse(jsonValue);
-          setFirstName(user.firstName); // Update this line to use setFirstName
-        }
-          const incomes = await AsyncStorage.getItem('incomes');// Get data from AsyncStorage
-        if (incomes) {
-       const parsedIncomes = JSON.parse(incomes);// Parse data from AsyncStorage
-          setStoredIncomes(parsedIncomes.incomes); // Send data to the state
-               /*  console.log('parsedExpenses FrontEnd side ',parsedExpenses);   */
-        }
-         const expenses = await AsyncStorage.getItem('expenses');// Get data from AsyncStorage
-        if (expenses) {
-       const parsedExpenses = JSON.parse(expenses);// Parse data from AsyncStorage
-          setStoredExpenses(parsedExpenses.expenses); // Send data to the state
-               /*  console.log('parsedExpenses FrontEnd side ',parsedExpenses);   */
-        }
-      } catch (e) {
-        console.error("Failed to fetch user data from storage");
-      }
-    };
-
-    fetchUserData();
-   
   }, []);
 
 
@@ -101,8 +71,8 @@ import { useGetExpenses } from "../../shared/components/IncomExpenseComponent/Ge
 
 
    
-    const calculateTotalIncomes = storedIncomes.reduce((total, income) => total + Number(income.amount), 0);
-    const calculateTotalExpenses = storedExpenses.reduce((total, expense) => total + Number(expense.amount), 0);
+    const calculateTotalIncomes = incomes.reduce((total, income) => total + Number(income.amount), 0);
+    const calculateTotalExpenses = expenses.reduce((total, expense) => total + Number(expense.amount), 0);
 
 /*     console.log('calculateTotalIncomes', calculateTotalIncomes) */
     return (
