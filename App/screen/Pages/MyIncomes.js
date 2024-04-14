@@ -10,6 +10,10 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
 import moment from "moment";
 import { SelectList } from 'react-native-dropdown-select-list';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useGetIncomes } from '../../shared/components/IncomExpenseComponent/GetIncome';
+import { useGetExpenses } from "../../shared/components/IncomExpenseComponent/GetExpense";
+
+
 import axios from "axios";
 
 const isValidDate = (date) => {
@@ -162,7 +166,7 @@ const MyIncome= () => {
         autoHide: true,
       });
       setTimeout(() => {
-        navigation.navigate("Dashboard");
+        navigation.navigate("ViewIncomes");
       }, 3000);
     } catch (err) {
      /*  console.log("Test MyIncome", err.response.data); */

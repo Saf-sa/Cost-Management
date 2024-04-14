@@ -4,76 +4,35 @@ import {
   StyleSheet,
   ScrollView,
 } from "react-native";
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import CustomButton from "../../shared/components/ui/CustomButton";
 import UserNav from "../nav/UserNav";
 import Screen2 from "../../shared/components/Screen";
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
-import axios from "axios";
-
+import { useGetIncomes } from '../../shared/components/IncomExpenseComponent/GetIncome';
 
 const ViewIncomes = ({route}) => {
-  const [storedIncomes, setStoredIncomes] = useState([]);// State to store data from AsyncStorage
-  const navigation = useNavigation();// Navigation
+  const { category= 'all' } = route.params;
+  const incomes = useGetIncomes(category);
+  const navigation = useNavigation();
 
-  const {category} = route.params;// Get category from MyIcomes.js  
- /*  console.log('category from ViewIncomes ', category); */
-  useEffect(() => {// UseEffect to get data from AsyncStorage
-    const getIncomes = async () => {
-      try {
-           const user = JSON.parse(await AsyncStorage.getItem("@storage_Key"));// Get user data from AsyncStorage
-           /* console.log('user token ',user.token);  */
-        const { data } = await axios.get(
-          
-           /*  console.log('data ', data), */
-          `http://localhost:5555/api/incomes/${category}`,// Get data in DB collection from backend in DB
-                 /*    console.log('data category from backend  :', category), */
-          {
-            headers: {
-              Authorization: `Bearer ${user.token}`,// Send token to backend
-            },
-            
-          }
-        );
-         // Stocker les données récupérées dans AsyncStorage
-       await AsyncStorage.setItem('incomes', JSON.stringify(data));// Store data in AsyncStorage
-         /*      console.log('data received from Backend ',data);  */
-
-        //await AsyncStorage.clear('incomes')
-
-        const incomes = await AsyncStorage.getItem('incomes');// Get data from AsyncStorage
-        if (incomes) {
-       const parsedIncomes = JSON.parse(incomes);// Parse data from AsyncStorage
-          setStoredIncomes(parsedIncomes.incomes); // Send data to the state
-               /*  console.log('parsedExpenses FrontEnd side ',parsedExpenses);   */
-        }
-      } catch (error) {// Error handling
-        console.log(error);// Error handling
-      }
-    };
-    getIncomes();// Call the function to get data from AsyncStorage
+  useEffect(() => {
+    // Call the function to get data from useGetIncomes
   }, []);
-  
-  const calculateTotalIncomes = storedIncomes.reduce((total, income) => total + Number(income.amount), 0);
 
+  const calculateTotalIncomes = incomes.reduce((total, income) => total + Number(income.amount), 0);
 
-let index = 1;// index for scrollview
+  let index = 1;
 
-  return (// Display data from AsyncStorage
+  return (
      <ScrollView style={styles.page}
-     keyboardDismissMode="on-drag"// to dismiss the keyboard when the user drags the scroll view
-      onscroll={(evt) =>  (index++)}// to get the index of the scrollview
-      onScrollBeginDrag={(evt) => (index++)}// to get the index of the scrollview
+     keyboardDismissMode="on-drag"
+      onscroll={(evt) =>  (index++)}
+      onScrollBeginDrag={(evt) => (index++)}
       >
        <View >  
 <Screen2 >
-           {/* Button Start */}
-      
         <UserNav 
-
-        
           image={require("../../assets/iconPerson.png")}
     /> 
      <View style={styles.viewIncomesButton}>
@@ -86,11 +45,8 @@ let index = 1;// index for scrollview
        
         <Text style={styles.textAmount}>Total Incomes = + {calculateTotalIncomes} € </Text>
       
-    {storedIncomes.map((income, index) => (// Display data from AsyncStorage in a FlatList
-      /* console.log('storedIncomes ', storedIncomes), */
+    {incomes.map((income, index) => (
       <View key={index} style={styles.incomeContainer}>
-
-         
         <View style={styles.row}>
           <Text>Date : {income.date && !isNaN(Date.parse(income.date)) ? new Date(income.date).toISOString().split('T')[0] : 'Invalid date'}</Text>
           <Text>Categories : {income.categories.join(', ')}</Text>
@@ -100,7 +56,6 @@ let index = 1;// index for scrollview
           <Text style={{ color: "green"}}>Amount = + {income.amount}</Text>
         </View>
       </View>
-       
     ))}
     </Screen2>
      </View>
