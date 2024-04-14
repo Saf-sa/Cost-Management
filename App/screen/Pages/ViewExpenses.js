@@ -9,64 +9,19 @@ import CustomButton from "../../shared/components/ui/CustomButton";
 import { useNavigation } from "@react-navigation/native";
 import UserNav from "../nav/UserNav";
 import Screen2 from "../../shared/components/Screen";
-
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
-import axios from "axios";
-/*  import { REACT_APP_BE_URL } from "../../.env"; */
-
-
-// comment this line because solution not found if using .env file
-// go to ligne 84
-//import { API_URL, API_TOKEN } from "@env";
-/*  import { REACT_APP_BE_URL } from "../../.env";  */
-
+import { useGetExpenses } from '../../shared/components/IncomExpenseComponent/GetExpense';
 
 
 const ViewExpenses = ({route}) => {
-  const [storedExpenses, setStoredExpenses] = useState([]);// State to store data from AsyncStorage
+   const { category= 'all' } = route.params;
+  const expenses = useGetExpenses(category);
+
   const navigation = useNavigation();// Navigation
 
-  const {category} = route.params;// Get category from MyIcomes.js  
- /*  console.log('category from ViewExpenses ', category); */
-  
-  useEffect(() => {// UseEffect to get data from AsyncStorage
-    const getExpenses = async () => {
-      try {
-           const user = JSON.parse(await AsyncStorage.getItem("@storage_Key"));// Get user data from AsyncStorage
-           /* console.log('user token ',user.token);  */
-        const { data } = await axios.get(
-          
-           /*  console.log('data ', data), */
-          `http://localhost:5555/api/expenses/${category}`,// Get data in DB collection from backend in DB
-                 /*    console.log('data category from backend  :', category), */
-          {
-            headers: {
-              Authorization: `Bearer ${user.token}`,// Send token to backend
-            },
-            
-          }
-        );
-         // Stocker les données récupérées dans AsyncStorage
-       await AsyncStorage.setItem('expenses', JSON.stringify(data));// Store data in AsyncStorage
-         /*      console.log('data received from Backend ',data);  */
-
-        //await AsyncStorage.clear('expenses')
-
-        const expenses = await AsyncStorage.getItem('expenses');// Get data from AsyncStorage
-        if (expenses) {
-       const parsedExpenses = JSON.parse(expenses);// Parse data from AsyncStorage
-          setStoredExpenses(parsedExpenses.expenses); // Send data to the state
-               /*  console.log('parsedExpenses FrontEnd side ',parsedExpenses);   */
-        }
-      } catch (error) {// Error handling
-        console.log(error);// Error handling
-      }
-    };
-    getExpenses();// Call the function to get data from AsyncStorage
+    useEffect(() => {
+    // Call the function to get data from useGetIncomes
   }, []);
-
-  const calculateTotalExpenses = storedExpenses.reduce((total, expense) => total + Number(expense.amount), 0);
+  const calculateTotalExpenses = expenses.reduce((total, expense) => total + Number(expense.amount), 0);
 
 let index = 1;// index for scrollview
 
@@ -95,7 +50,7 @@ let index = 1;// index for scrollview
 
        <Text style={styles.textAmount}>Total Expenses = - {calculateTotalExpenses} € </Text>
       
-    {storedExpenses.map((expense, index) => (// Display data from AsyncStorage in a FlatList
+    {expenses.map((expense, index) => (// Display data from AsyncStorage in a FlatList
       /* console.log('storedExpenses ', storedExpenses), */
       <View key={index} style={styles.expenseContainer}>
 
