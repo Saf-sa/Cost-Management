@@ -15,8 +15,9 @@ import AppText from "../../shared/components/uiApp/AppText";
 import UserNav from "../nav/UserNav";
 import Screen2 from "../../shared/components/Screen";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import calculateTotalIncomes from "../Pages/ViewIncomes";
-import calculateTotalExpenses from "../Pages/ViewExpenses";
+import { useGetIncomes } from '../../shared/components/IncomExpenseComponent/GetIncome';
+import { useGetExpenses } from "../../shared/components/IncomExpenseComponent/GetExpense";
+
 
 
 
