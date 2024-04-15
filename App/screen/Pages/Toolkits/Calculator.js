@@ -22,7 +22,7 @@ const onButtonPress =(value) => {
     setInput("");
     setResult("0"); 
   }
-    else if (value === "<") {
+    else if (value === "<x") {
     setInput(input.slice(0, -1));
   }
 else {
@@ -40,6 +40,7 @@ else {
         return "green";
       case "C":
         case "-":
+        case "<x":
         return "red";
       default:
         return "black";
@@ -121,7 +122,7 @@ else {
 
        <View style={styles.buttonContainer}>
 
-        {["C", "+/-", "%", "/","7", "8", "9", "*","4","5","6","-","1", "2", "3", "+", ".", "0", "<", "="].map(
+        {["C", "+/-", "%", "/","7", "8", "9", "*","4","5","6","-","1", "2", "3", "+", ".", "0", "<x", "="].map(
           (item,index) => (
  
          <TouchableOpacity style={[styles.button, { backgroundColor: getButtonBackgroundColor(item) }]}
