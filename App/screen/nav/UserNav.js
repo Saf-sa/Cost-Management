@@ -99,25 +99,25 @@ function HomeNav({image }) {
                 }}
               />
             </TouchableOpacity>
-                 <TouchableOpacity onPress={() => navigation.navigate("AboutUs")}>
+                 <TouchableOpacity onPress={() => { navigation.navigate("AboutUs"); setModalVisible(false);}}>
               <Text style={styles.navText}> About us</Text>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => null}>
-              <TouchableOpacity onPress={() => navigation.navigate("Impressum")}>
+              <TouchableOpacity onPress={() =>{ navigation.navigate("Impressum"); setModalVisible(false)}}>
                 <Text style={styles.navText}>Impressum</Text>
               </TouchableOpacity>
             </TouchableOpacity>
        
                <TouchableOpacity onPress={() => null}>
-              <TouchableOpacity onPress={() => navigation.navigate("ContactForm")}>
+              <TouchableOpacity onPress={() =>{navigation.navigate("ContactForm"); setModalVisible(false)}} >
                 <Text style={styles.navText}>Contact Us</Text>
               </TouchableOpacity>
         
             </TouchableOpacity>
 
                <TouchableOpacity onPress={() => null}>
-              <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+              <TouchableOpacity onPress={() => {navigation.navigate("Login");setModalVisible(false)}}>
                 <Text style={styles.navText}>Logout</Text>
               </TouchableOpacity>
         
