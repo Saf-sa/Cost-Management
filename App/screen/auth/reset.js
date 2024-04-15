@@ -129,11 +129,7 @@ const ResetLogin = () => {
 
   return (
     <View style={styles.root}>
-       <View style={styles.nav}>
-      <HomeNavLog 
-        />
-         
-      </View>
+   
 <LinearGradient
           style={styles.parentContainer}
           colors={["#f9f295", "#E0AA3E", "#F7EF8A", "#B88A44"]}
@@ -206,21 +202,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor:"#F8F4D7",
   },
-    nav: {
-    ...Platform.select({
-      ios: {
-    top: -50,
-    marginLeft: 20, 
-    marginRight: 20,
-   
-  },
-    android: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  }),
-  },
+
   parentContainer: {
     ...Platform.select({
         ios: {
@@ -229,7 +211,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 7,
-    marginTop: -120,
+    marginTop: 20,
     marginBottom: 45,
     marginHorizontal: 75,
     

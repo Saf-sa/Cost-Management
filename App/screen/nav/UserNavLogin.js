@@ -12,6 +12,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import Icon from "../../shared/components/IncomExpenseComponent/Icon";
 import { useNavigation } from "@react-navigation/native";
 import { clearStorage } from "../../App";
+
 export function HomeNavLog({image }) {
   const [modalVisible, setModalVisible] = useState(false);
   const navigation = useNavigation();
@@ -96,8 +97,8 @@ export function HomeNavLog({image }) {
             </TouchableOpacity>
                  <TouchableOpacity onPress={() => { 
                   navigation.reset({
-                  index: 0,
-                  routes: [{ name: 'Login' }],
+                  index: 1,
+                  routes: [{ name: 'Dashboard' }],
                 });
                 navigation.navigate("AboutUs");
                 setModalVisible(false);
@@ -108,8 +109,8 @@ export function HomeNavLog({image }) {
              
                  <TouchableOpacity onPress={() => { 
                   navigation.reset({
-                  index: 0,
-                  routes: [{ name: 'Login' }],
+                  index: 1,
+                  routes: [{ name: 'Dashboard' }],
                 });
                 navigation.navigate("Impressum");
                 setModalVisible(false);
@@ -120,8 +121,8 @@ export function HomeNavLog({image }) {
        
                 <TouchableOpacity onPress={() => { 
                   navigation.reset({
-                  index: 0,
-                  routes: [{ name: 'Login' }],
+                  index: 1,
+                  routes: [{ name: 'Dashboard' }],
                 });
                 navigation.navigate("ContactForm");
                 setModalVisible(false);
@@ -131,7 +132,7 @@ export function HomeNavLog({image }) {
                <TouchableOpacity onPress={() => { 
                    clearStorage();
                   navigation.reset({
-                  index: 0,
+                  index: 1,
                   routes: [{ name: 'Login' }],
                 });
                 navigation.navigate("Login");
