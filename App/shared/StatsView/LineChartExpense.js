@@ -97,8 +97,8 @@ export default ViewExpenses = ({}) => {
         bezier
         style={{
         
-          marginVertical: 60,
-          /* marginHorizontal:10, */
+          marginVertical: 70,
+           marginHorizontal:7, 
           borderRadius: 16,
           
         }}

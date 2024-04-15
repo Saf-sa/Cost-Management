@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     paddingHorizontal: 19,
     paddingVertical: 30,
-    marginLeft: 9,
+    marginLeft: 1,
     alignItems: "center",
   },
 titleExpense: {

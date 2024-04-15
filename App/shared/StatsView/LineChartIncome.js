@@ -98,7 +98,7 @@ export default ViewIncomes = ({}) => {
         style={{
         
           marginVertical: 60,
-          /* marginHorizontal:10, */
+           marginHorizontal:7,
           borderRadius: 16,
           
         }}
