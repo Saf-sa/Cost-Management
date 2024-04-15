@@ -90,31 +90,45 @@ function HomeNav({image }) {
                 height: 45,
                 justifyContent: "center",
                 borderColor: "grey",
-            
-               
-              
-                
-                
-
                 }}
               />
             </TouchableOpacity>
-                 <TouchableOpacity onPress={() => { navigation.navigate("AboutUs"); setModalVisible(false);}}>
+                 <TouchableOpacity onPress={() => { 
+                  navigation.reset({
+                  index: 0,
+                  routes: [{ name: 'Login' }],
+                });
+                navigation.navigate("AboutUs");
+                setModalVisible(false);
+              }}>
               <Text style={styles.navText}> About us</Text>
-            </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => null}>
-              <TouchableOpacity onPress={() =>{ navigation.navigate("Impressum"); setModalVisible(false)}}>
-                <Text style={styles.navText}>Impressum</Text>
-              </TouchableOpacity>
-            </TouchableOpacity>
-       
-               <TouchableOpacity onPress={() => null}>
-              <TouchableOpacity onPress={() =>{navigation.navigate("ContactForm"); setModalVisible(false)}} >
-                <Text style={styles.navText}>Contact Us</Text>
-              </TouchableOpacity>
+             </TouchableOpacity>
+                 <TouchableOpacity onPress={() => { 
+                  navigation.reset({
+                  index: 0,
+                  routes: [{ name: 'Login' }],
+                });
+                navigation.navigate("Impressum");
+                setModalVisible(false);
+              }}>
+                 <Text style={styles.navText}>Impressum</Text>
+                  </TouchableOpacity>
         
-            </TouchableOpacity>
+       
+                <TouchableOpacity onPress={() => { 
+                  navigation.reset({
+                  index: 0,
+                  routes: [{ name: 'Login' }],
+                });
+                navigation.navigate("ContactForm");
+                setModalVisible(false);
+              }}>
+                 <Text style={styles.navText}>Contact</Text>
+                  </TouchableOpacity>
+        
+        
+           
           </View>
         </View>
       </Modal>
