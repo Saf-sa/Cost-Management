@@ -79,7 +79,7 @@ backgroundColor: "#F8F4D7",
   },
   expenseContainer: {
     marginTop: 20,
-    width: "96%",
+    width: "100%",
     borderWidth: 1,
     borderColor: "#E0AA3E",
     borderRadius: 10,
