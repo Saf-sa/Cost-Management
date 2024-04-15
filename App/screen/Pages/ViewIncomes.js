@@ -7,7 +7,7 @@ import {
 import React, { useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import CustomButton from "../../shared/components/ui/CustomButton";
-import UserNav from "../nav/UserNav";
+import HomeNav from "../nav/UserNav";
 import Screen2 from "../../shared/components/Screen";
 import { useGetIncomes } from '../../shared/components/IncomExpenseComponent/GetIncome';
 
@@ -32,7 +32,7 @@ const ViewIncomes = ({route}) => {
       >
        <View >  
 <Screen2 >
-        <UserNav 
+        <HomeNav 
           image={require("../../assets/iconPerson.png")}
     /> 
      <View style={styles.viewIncomesButton}>

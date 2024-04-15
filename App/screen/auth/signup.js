@@ -4,7 +4,7 @@ import Toast from "react-native-toast-message";
 import { useNavigation } from "@react-navigation/native";
 import CustomInputSingup from "../../shared/components/ui/CustomInputSignup";
 import CustomButton from "../../shared/components/ui/CustomButton";
-import HomeNav from "../../screen/nav/UserNavLogin";
+import HomeNavLog from "../../screen/nav/UserNavLogin";
 import { LinearGradient } from "expo-linear-gradient";
 import AppText from "../../shared/components/uiApp/AppText";
 
@@ -226,7 +226,7 @@ const Signup = () => {
   return (
     <View style={styles.root}>
      <View style={styles.nav}>
-      <HomeNav 
+      <HomeNavLog 
         />
          
       </View>

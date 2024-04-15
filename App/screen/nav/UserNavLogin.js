@@ -11,7 +11,8 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import Icon from "../../shared/components/IncomExpenseComponent/Icon";
 import { useNavigation } from "@react-navigation/native";
-function HomeNav({image }) {
+import { clearStorage } from "../../App";
+export function HomeNavLog({image }) {
   const [modalVisible, setModalVisible] = useState(false);
   const navigation = useNavigation();
   // const ContactLinking = () => {
@@ -127,7 +128,17 @@ function HomeNav({image }) {
               }}>
                  <Text style={styles.navText}>Contact</Text>
                   </TouchableOpacity>
-        
+               <TouchableOpacity onPress={() => { 
+                   clearStorage();
+                  navigation.reset({
+                  index: 0,
+                  routes: [{ name: 'Login' }],
+                });
+                navigation.navigate("Login");
+                setModalVisible(false);
+              }}>
+                <Text style={styles.navText}>Logout</Text>
+              </TouchableOpacity>
         
            
           </View>
@@ -207,4 +218,3 @@ const styles = StyleSheet.create({
 
 });
 
-export default HomeNav;

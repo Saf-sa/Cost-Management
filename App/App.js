@@ -50,10 +50,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from 'axios';
 
 
-
-
-/* 
-const clearStorage = async () => {
+export const clearStorage = async () => {
   try {
     await AsyncStorage.clear();
     console.log('Storage successfully cleared!');
@@ -62,8 +59,9 @@ const clearStorage = async () => {
   }
 }
 
+/* 
 // Call the function when you want to clear the storage
-clearStorage(); 
+clearStorage();  */
 
 /* if (Platform.OS === 'ios') {
   console.log('Your device is running iOS');

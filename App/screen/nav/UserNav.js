@@ -11,21 +11,12 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import Icon from "../../shared/components/IncomExpenseComponent/Icon";
 import { useNavigation } from "@react-navigation/native";
+import { clearStorage } from "../../App";
 
 
-
-export function HomeNav({image }) {
+function HomeNav({image }) {
   const [modalVisible, setModalVisible] = useState(false);
   const navigation = useNavigation();
-  
-  const clearStorage = async () => {
-    try {
-      await AsyncStorage.clear();
-      console.log('Storage successfully cleared!');
-    } catch (e) {
-      console.log('Failed to clear the async storage.');
-    }
-  };
 
 
   return (
@@ -113,7 +104,7 @@ export function HomeNav({image }) {
                  <TouchableOpacity onPress={() => { 
                   navigation.reset({
                   index: 0,
-                  routes: [{ name: 'Dashboard' }],
+                  routes: [{ name: 'Login' }],
                 });
                 navigation.navigate("AboutUs");
                 setModalVisible(false);
@@ -124,7 +115,7 @@ export function HomeNav({image }) {
            <TouchableOpacity onPress={() => { 
                   navigation.reset({
                   index: 0,
-                  routes: [{ name: 'Dashboard' }],
+                  routes: [{ name: 'Login' }],
                 });
                 navigation.navigate("Impressum");
                 setModalVisible(false);
@@ -135,7 +126,7 @@ export function HomeNav({image }) {
           <TouchableOpacity onPress={() => { 
                   navigation.reset({
                   index: 0,
-                  routes: [{ name: 'Dashboard' }],
+                  routes: [{ name: 'Login' }],
                 });
                 navigation.navigate("ContactForm");
                 setModalVisible(false);
@@ -143,17 +134,7 @@ export function HomeNav({image }) {
                 <Text style={styles.navText}>Contact Us</Text>
               </TouchableOpacity>
         
-                <TouchableOpacity onPress={() => { 
-                   clearStorage();
-                  navigation.reset({
-                  index: 0,
-                  routes: [{ name: 'Login' }],
-                });
-                navigation.navigate("Login");
-                setModalVisible(false);
-              }}>
-                <Text style={styles.navText}>Logout</Text>
-              </TouchableOpacity>
+               
         
             
           </View>
@@ -233,3 +214,4 @@ const styles = StyleSheet.create({
 
 });
 
+export default HomeNav;

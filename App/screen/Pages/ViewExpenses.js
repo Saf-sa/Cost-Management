@@ -7,7 +7,7 @@ import {
 import React, { useState, useEffect } from "react";
 import CustomButton from "../../shared/components/ui/CustomButton";
 import { useNavigation } from "@react-navigation/native";
-import UserNav from "../nav/UserNav";
+import HomeNav from "../nav/UserNav";
 import Screen2 from "../../shared/components/Screen";
 import { useGetExpenses } from '../../shared/components/IncomExpenseComponent/GetExpense';
 
@@ -35,7 +35,7 @@ let index = 1;// index for scrollview
  <Screen2>
            {/* Button Start */}
       
-        <UserNav 
+        <HomeNav 
 
         
           image={require("../../assets/iconPerson.png")}

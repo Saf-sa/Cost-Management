@@ -6,12 +6,13 @@ import CustomInputLog from "../../shared/components/ui/CustomInputLog";
 import CustomButton from "../../shared/components/ui/CustomButton";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import AppText from "../../shared/components/uiApp/AppText";
-import HomeNav from "../../screen/nav/UserNavLogin";
+import HomeNav from "../../screen/nav/UserNav";
 import axios from "axios";
 import { LinearGradient } from "expo-linear-gradient";
-/* 
 
-if (Platform.OS === 'ios') {
+
+
+/* if (Platform.OS === 'ios') {
   console.log('Your device is running iOS');
 } else if (Platform.OS === 'android') {
   console.log('Your device is running Android');

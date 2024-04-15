@@ -12,13 +12,21 @@ import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
 import Icon from "../../shared/components/IncomExpenseComponent/Icon";
 import AppText from "../../shared/components/uiApp/AppText";
-import {HomeNav} from "../nav/UserNav";
+import {HomeNavLog} from "../nav/UserNavLogin";
 import Screen2 from "../../shared/components/Screen";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useGetIncomes } from '../../shared/components/IncomExpenseComponent/GetIncome';
 import { useGetExpenses } from "../../shared/components/IncomExpenseComponent/GetExpense";
 
 
+const clearStorage = async () => {
+  try {
+    await AsyncStorage.clear();
+    console.log('Storage successfully cleared!');
+  } catch (e) {
+    console.log('Failed to clear the async storage.');
+  }
+}
 
 
   function Dashboard({route})  {
@@ -81,7 +89,7 @@ import { useGetExpenses } from "../../shared/components/IncomExpenseComponent/Ge
       
         <Text style={styles.title}>Welcome back {firstName} !</Text> 
        
-        <HomeNav
+        <HomeNavLog
           image={require("../../assets/iconPerson.png")}
   
         />
