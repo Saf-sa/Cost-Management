@@ -52,7 +52,7 @@ import axios from 'axios';
 
 
 
-/* 
+
 const clearStorage = async () => {
   try {
     await AsyncStorage.clear();

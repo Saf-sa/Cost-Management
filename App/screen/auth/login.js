@@ -6,7 +6,7 @@ import CustomInputLog from "../../shared/components/ui/CustomInputLog";
 import CustomButton from "../../shared/components/ui/CustomButton";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import AppText from "../../shared/components/uiApp/AppText";
-import HomeNav from "../../screen/nav/UserNav";
+import HomeNav from "../../screen/nav/UserNavLogin";
 import axios from "axios";
 import { LinearGradient } from "expo-linear-gradient";
 /* 
