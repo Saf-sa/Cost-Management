@@ -539,7 +539,7 @@ dashboardCat: {
   textCat:{
       ...Platform.select({
       ios: {
-    fontSize: 15,
+    fontSize: 13,
     paddingTop: 5,
     textAlign:"center"
   
