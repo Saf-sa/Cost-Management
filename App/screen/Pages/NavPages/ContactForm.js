@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, TextInput, Alert, StyleSheet, Text, Image } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import Mailer from 'react-native-mail';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { LinearGradient } from "expo-linear-gradient";
@@ -12,25 +13,31 @@ import CustomButton from "../../../shared/components/ui/CustomButton";
 import axios from "axios";
 
 const ContactForm = () => {
-  const [email, setEmail] = useState('');
-  const [subject, setSubject] = useState('');
-  const [body, setBody] = useState('');
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [email, setEmail] = useState('');
+    const [subject, setSubject] = useState('');
+    const [body, setBody] = useState('');
+ const navigation = useNavigation();
 
-  useEffect(() => {
-    // Récupérer l'e-mail depuis le local storage au chargement de l'application
-    retrieveEmail();
+      useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const jsonValue = await AsyncStorage.getItem('@storage_Key');
+        if (jsonValue != null) {
+          const user = JSON.parse(jsonValue);
+          setFirstName(user.firstName); // Update this line to use setFirstName
+          setLastName(user.lastName); // Update this line to use setFirstName
+          setEmail(user.email); // Update this line to use setFirstName
+        }
+      } catch (e) {
+        console.error("Failed to fetch user data from storage");
+      }
+    };
+
+    fetchUserData();
   }, []);
 
-  const retrieveEmail = async () => {
-    try {
-      const storedEmail = await AsyncStorage.getItem('user_email');
-      if (storedEmail !== null) {
-        setEmail(storedEmail);
-      }
-    } catch (error) {
-      console.error('Erreur lors de la récupération de l\'e-mail depuis le local storage', error);
-    }
-  };
 
   const handleSendEmail = () => {
     Mailer.mail(
@@ -115,7 +122,7 @@ const ContactForm = () => {
       <CustomButton
         onPress={handleSendEmail} 
         style={styles.button}
-        buttonText={"New Agenda"}
+        buttonText={"Send Email"}
       />
 </View>} 
       </Screen2>
