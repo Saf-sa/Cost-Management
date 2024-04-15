@@ -104,6 +104,7 @@ function HomeNav({image }) {
               <Text style={styles.navText}> About us</Text>
 
              </TouchableOpacity>
+             
                  <TouchableOpacity onPress={() => { 
                   navigation.reset({
                   index: 0,

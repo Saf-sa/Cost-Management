@@ -12,7 +12,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
 import Icon from "../../shared/components/IncomExpenseComponent/Icon";
 import AppText from "../../shared/components/uiApp/AppText";
-import UserNav from "../nav/UserNav";
+import {HomeNav} from "../nav/UserNav";
 import Screen2 from "../../shared/components/Screen";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useGetIncomes } from '../../shared/components/IncomExpenseComponent/GetIncome';
@@ -81,7 +81,7 @@ import { useGetExpenses } from "../../shared/components/IncomExpenseComponent/Ge
       
         <Text style={styles.title}>Welcome back {firstName} !</Text> 
        
-        <UserNav
+        <HomeNav
           image={require("../../assets/iconPerson.png")}
   
         />

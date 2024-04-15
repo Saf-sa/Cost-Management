@@ -11,12 +11,23 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import Icon from "../../shared/components/IncomExpenseComponent/Icon";
 import { useNavigation } from "@react-navigation/native";
-function HomeNav({image }) {
+
+
+
+export function HomeNav({image }) {
   const [modalVisible, setModalVisible] = useState(false);
   const navigation = useNavigation();
-  // const ContactLinking = () => {
-  //   Linking.openURL("https://www.google.com");
-  // };
+  
+  const clearStorage = async () => {
+    try {
+      await AsyncStorage.clear();
+      console.log('Storage successfully cleared!');
+    } catch (e) {
+      console.log('Failed to clear the async storage.');
+    }
+  };
+
+
   return (
     <SafeAreaView>
       <View style={styles.containerParent}>
@@ -98,30 +109,53 @@ function HomeNav({image }) {
 
                 }}
               />
-            </TouchableOpacity>
-                 <TouchableOpacity onPress={() => { navigation.navigate("AboutUs"); setModalVisible(false);}}>
+               </TouchableOpacity>
+                 <TouchableOpacity onPress={() => { 
+                  navigation.reset({
+                  index: 0,
+                  routes: [{ name: 'Dashboard' }],
+                });
+                navigation.navigate("AboutUs");
+                setModalVisible(false);
+              }}>
               <Text style={styles.navText}> About us</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => null}>
-              <TouchableOpacity onPress={() =>{ navigation.navigate("Impressum"); setModalVisible(false)}}>
+           <TouchableOpacity onPress={() => { 
+                  navigation.reset({
+                  index: 0,
+                  routes: [{ name: 'Dashboard' }],
+                });
+                navigation.navigate("Impressum");
+                setModalVisible(false);
+              }}>
                 <Text style={styles.navText}>Impressum</Text>
-              </TouchableOpacity>
             </TouchableOpacity>
        
-               <TouchableOpacity onPress={() => null}>
-              <TouchableOpacity onPress={() =>{navigation.navigate("ContactForm"); setModalVisible(false)}} >
+          <TouchableOpacity onPress={() => { 
+                  navigation.reset({
+                  index: 0,
+                  routes: [{ name: 'Dashboard' }],
+                });
+                navigation.navigate("ContactForm");
+                setModalVisible(false);
+              }}>
                 <Text style={styles.navText}>Contact Us</Text>
               </TouchableOpacity>
         
-            </TouchableOpacity>
-
-               <TouchableOpacity onPress={() => null}>
-              <TouchableOpacity onPress={() => {navigation.navigate("Login");setModalVisible(false)}}>
+                <TouchableOpacity onPress={() => { 
+                   clearStorage();
+                  navigation.reset({
+                  index: 0,
+                  routes: [{ name: 'Login' }],
+                });
+                navigation.navigate("Login");
+                setModalVisible(false);
+              }}>
                 <Text style={styles.navText}>Logout</Text>
               </TouchableOpacity>
         
-            </TouchableOpacity>
+            
           </View>
         </View>
       </Modal>
@@ -199,4 +233,3 @@ const styles = StyleSheet.create({
 
 });
 
-export default HomeNav;
