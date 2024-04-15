@@ -4,7 +4,6 @@ import Toast from "react-native-toast-message";
 import { useNavigation } from "@react-navigation/native";
 import CustomInputLog from "../../shared/components/ui/CustomInputLog";
 import CustomButton from "../../shared/components/ui/CustomButton";
-import HomeNavLog from "../../screen/nav/UserNavLogin";
 import { LinearGradient } from "expo-linear-gradient";
 import AppText from "../../shared/components/uiApp/AppText";
 /*  import { REACT_APP_BE_URL } from "../../.env"; */

@@ -1,5 +1,6 @@
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import React from 'react';
+import {HomeNavLog} from "../../nav/UserNavLogin";
 
 const Impressum = () => {
   return (

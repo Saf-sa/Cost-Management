@@ -11,7 +11,7 @@ import { useNavigation } from "@react-navigation/native";
 import moment from "moment";
 import Icon from "../../../shared/components/IncomExpenseComponent/Icon"
 import AppText from "../../../shared/components/uiApp/AppText";
-import UserNav from "../../../screen/nav/UserNav";
+import HomeNavLog from "../../../screen/nav/UserNavLogin";
 import Screen2 from "../../../shared/components/Screen";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -102,7 +102,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
     return (
        <View style={styles.page}>
       <Screen2 style={styles.header}>
-        <UserNav style={styles.userNav}
+        <HomeNavLog style={styles.userNav}
           image={require("../../../assets/iconPerson.png")}
         />
     

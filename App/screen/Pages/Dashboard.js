@@ -19,14 +19,7 @@ import { useGetIncomes } from '../../shared/components/IncomExpenseComponent/Get
 import { useGetExpenses } from "../../shared/components/IncomExpenseComponent/GetExpense";
 
 
-const clearStorage = async () => {
-  try {
-    await AsyncStorage.clear();
-    console.log('Storage successfully cleared!');
-  } catch (e) {
-    console.log('Failed to clear the async storage.');
-  }
-}
+
 
 
   function Dashboard({route})  {

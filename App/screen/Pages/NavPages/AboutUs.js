@@ -9,7 +9,7 @@ import {
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
 import AppText from "../../../shared/components/uiApp/AppText";
-import UserNav from "../../nav/UserNav";
+import HomeNavLog from "../../nav/UserNavLogin";
 import Screen2 from "../../../shared/components/Screen";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -102,7 +102,7 @@ const Settings = () => {
     <View style={styles.page} >
     <Screen2>
         <Text style={styles.title}> Get to know us better</Text> 
-        <UserNav 
+        <HomeNavLog 
           image={require("../../../assets/iconPerson.png")}
    
          

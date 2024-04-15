@@ -11,8 +11,16 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import Icon from "../../shared/components/IncomExpenseComponent/Icon";
 import { useNavigation } from "@react-navigation/native";
-import { clearStorage } from "../../App";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
+const clearStorage = async () => {
+  try {
+    await AsyncStorage.clear();
+    console.log('Storage successfully cleared!');
+  } catch (e) {
+    console.log('Failed to clear the async storage.');
+  }
+}
 export function HomeNavLog({image }) {
   const [modalVisible, setModalVisible] = useState(false);
   const navigation = useNavigation();
@@ -97,7 +105,7 @@ export function HomeNavLog({image }) {
             </TouchableOpacity>
                  <TouchableOpacity onPress={() => { 
                   navigation.reset({
-                  index: 1,
+                  index: 0,
                   routes: [{ name: 'Dashboard' }],
                 });
                 navigation.navigate("AboutUs");
@@ -109,7 +117,7 @@ export function HomeNavLog({image }) {
              
                  <TouchableOpacity onPress={() => { 
                   navigation.reset({
-                  index: 1,
+                  index: 0,
                   routes: [{ name: 'Dashboard' }],
                 });
                 navigation.navigate("Impressum");
@@ -121,7 +129,7 @@ export function HomeNavLog({image }) {
        
                 <TouchableOpacity onPress={() => { 
                   navigation.reset({
-                  index: 1,
+                  index: 0,
                   routes: [{ name: 'Dashboard' }],
                 });
                 navigation.navigate("ContactForm");
@@ -132,10 +140,9 @@ export function HomeNavLog({image }) {
                <TouchableOpacity onPress={() => { 
                    clearStorage();
                   navigation.reset({
-                  index: 1,
+                  index: 0,
                   routes: [{ name: 'Login' }],
                 });
-                navigation.navigate("Login");
                 setModalVisible(false);
               }}>
                 <Text style={styles.navText}>Logout</Text>

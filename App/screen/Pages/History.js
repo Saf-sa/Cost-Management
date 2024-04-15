@@ -7,7 +7,7 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import React, { useState, useEffect } from "react";
 import AppText from "../../shared/components/uiApp/AppText";
-import UserNav from "../nav/UserNav";
+import HomeNavLog from "../nav/UserNavLogin";
 import Screen2 from "../../shared/components/Screen";
 import { useGetExpenses } from '../../shared/components/IncomExpenseComponent/GetExpense';
 import { useGetIncomes } from '../../shared/components/IncomExpenseComponent/GetIncome';
@@ -45,7 +45,7 @@ all.sort((a, b) => new Date(a.date) - new Date(b.date));
  <Screen2 style={styles.nav}>
            {/* Button Start */}
       
-        <UserNav 
+        <HomeNavLog 
 
         
           image={require("../../assets/iconPerson.png")}

@@ -5,7 +5,7 @@ import Mailer from 'react-native-mail';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { LinearGradient } from "expo-linear-gradient";
 import AppText from "../../../shared/components/uiApp/AppText";
-import UserNav from "../../nav/UserNav";
+import HomeNavLog from "../../nav/UserNavLogin";
 import Screen2 from "../../../shared/components/Screen";
 import CustomButton from "../../../shared/components/ui/CustomButton";
 
@@ -61,7 +61,7 @@ const ContactForm = () => {
    <View style={styles.page}>
      <Screen2 >
         <Text style={styles.title}>Send us a Email</Text> 
-        <UserNav 
+        <HomeNavLog 
           image={require("../../../assets/iconPerson.png")}
    
         />

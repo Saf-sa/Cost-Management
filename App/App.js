@@ -49,7 +49,7 @@ import AddAgenda from "./screen/Pages/Toolkits/AddAgenda";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from 'axios';
 
-
+/* 
 export const clearStorage = async () => {
   try {
     await AsyncStorage.clear();
@@ -57,7 +57,7 @@ export const clearStorage = async () => {
   } catch (e) {
     console.log('Failed to clear the async storage.');
   }
-}
+} */
 
 /* 
 // Call the function when you want to clear the storage
