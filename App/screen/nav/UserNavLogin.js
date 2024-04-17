@@ -21,6 +21,7 @@ const clearStorage = async () => {
     console.log('Failed to clear the async storage.');
   }
 }
+
 export function HomeNavLog({image }) {
   const [modalVisible, setModalVisible] = useState(false);
   const navigation = useNavigation();
