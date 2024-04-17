@@ -4,21 +4,22 @@ import {
   StyleSheet,
   ScrollView,
 } from "react-native";
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import CustomButton from "../../shared/components/ui/CustomButton";
 import { useNavigation } from "@react-navigation/native";
-import HomeNavLog from "../nav/UserNavLogin";
+import {HomeNavLog} from "../nav/UserNavLogin";
 import Screen2 from "../../shared/components/Screen";
 import { useGetExpenses } from '../../shared/components/IncomExpenseComponent/GetExpense';
 
-
 const ViewExpenses = ({route}) => {
-   const { category= 'all' } = route.params;
+  const { category= 'all' } = route.params;
   const expenses = useGetExpenses(category);
-
   const navigation = useNavigation();// Navigation
 
-    useEffect(() => {
+
+ /*  console.log('category from ViewExpenses ', category); */
+  
+      useEffect(() => {
     // Call the function to get data from useGetIncomes
   }, []);
   const calculateTotalExpenses = expenses.reduce((total, expense) => total + Number(expense.amount), 0);
