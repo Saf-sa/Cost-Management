@@ -18,7 +18,7 @@ const AppButton = ({ AppButtonText, icon, onPress }) => {
         </View> 
       </LinearGradient>
   <View style={styles.CaText}>
-   <Text style={styles.buttonTitle}>{AppButtonText}Texttext</Text>
+   <Text style={styles.buttonTitle}>{AppButtonText}</Text>
       </View>
   
     </TouchableOpacity>
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
 
   buttonTitle: {
     color: 'black',
-    fontSize: 16,
+    fontSize: 13,
      alignItems: 'center',
     justifyContent: 'center',
   },

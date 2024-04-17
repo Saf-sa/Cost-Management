@@ -9,7 +9,6 @@ function Icon({
   name,
   styles,
   size = 60,
-
   bRadius = 10,
   iconColor = "black",
 }) {
