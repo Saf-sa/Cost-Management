@@ -57,12 +57,12 @@ export const clearStorage = async () => {
   } catch (e) {
     console.log('Failed to clear the async storage.');
   }
-} */
+} 
 
-/* 
+
 // Call the function when you want to clear the storage
-clearStorage();  */
-
+clearStorage();  
+ */
 /* if (Platform.OS === 'ios') {
   console.log('Your device is running iOS');
 } else if (Platform.OS === 'android') {

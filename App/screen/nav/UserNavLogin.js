@@ -101,13 +101,19 @@ export function HomeNavLog({image }) {
                 height: 45,
                 justifyContent: "center",
                 borderColor: "grey",
+            
+               
+              
+                
+                
+
                 }}
               />
             </TouchableOpacity>
                  <TouchableOpacity onPress={() => { 
                   navigation.reset({
                   index: 0,
-                  routes: [{ name: 'Dashboard' }],
+                  routes: [{ name: 'LogDashboardin' }],
                 });
                 navigation.navigate("AboutUs");
                 setModalVisible(false);
@@ -115,7 +121,6 @@ export function HomeNavLog({image }) {
               <Text style={styles.navText}> About us</Text>
 
              </TouchableOpacity>
-             
                  <TouchableOpacity onPress={() => { 
                   navigation.reset({
                   index: 0,
@@ -138,7 +143,8 @@ export function HomeNavLog({image }) {
               }}>
                  <Text style={styles.navText}>Contact</Text>
                   </TouchableOpacity>
-               <TouchableOpacity onPress={() => { 
+
+                 <TouchableOpacity onPress={() => { 
                    clearStorage();
                   navigation.reset({
                   index: 0,
@@ -148,8 +154,6 @@ export function HomeNavLog({image }) {
               }}>
                 <Text style={styles.navText}>Logout</Text>
               </TouchableOpacity>
-        
-           
           </View>
         </View>
       </Modal>
@@ -226,4 +230,5 @@ const styles = StyleSheet.create({
   }
 
 });
+
 

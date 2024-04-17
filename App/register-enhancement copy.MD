@@ -157,7 +157,7 @@ const handleSubmit = async () => {
   // return the JSX code to display the form
   return (
     <View style={styles.root}>
-      <AuthHeader subtext="Please Register" />
+      <!-- <AuthHeader subtext="Please Register" /> -->
       <View style={styles.content}>
         <CustomInputSingup
           label="First Name"

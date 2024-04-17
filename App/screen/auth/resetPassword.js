@@ -190,7 +190,7 @@ const isValidForm = () => {
 
   return (
     <View style={styles.root}>
-    {/*   <AuthHeader subtext="Please Reset Your Password" /> */}
+    {/*   < subtext="Please Reset Your Password" /> */}
     <LinearGradient
           style={styles.parentContainer}
           colors={["#f9f295", "#E0AA3E", "#F7EF8A", "#B88A44"]}
