@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { LinearGradient } from 'expo-linear-gradient';
 
-const AppButton = ({ buttonText, onPress }) => {
+const SendButton = ({ buttonText, onPress }) => {
 
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
@@ -18,7 +18,7 @@ const AppButton = ({ buttonText, onPress }) => {
         </View> 
       </LinearGradient>
   <View style={styles.CaText}>
-   <Text style={styles.buttonTitle}>{/* {buttonText} */}Text</Text>
+   <Text style={styles.buttonTitle}>{buttonText}Texttext</Text>
       </View>
   
     </TouchableOpacity>
@@ -26,7 +26,7 @@ const AppButton = ({ buttonText, onPress }) => {
   );
 };
 
-export default AppButton;
+export default SendButton;
 
 const styles = StyleSheet.create({
   container: {
