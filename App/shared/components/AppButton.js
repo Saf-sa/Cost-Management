@@ -4,45 +4,60 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import { LinearGradient } from 'expo-linear-gradient';
 
 const AppButton = ({ buttonText, onPress }) => {
+
   return (
-    <TouchableOpacity onPress={onPress}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       <LinearGradient
         style={styles.buttonContainer}
         colors={['#f9f295', '#E0AA3E', '#F7EF8A', '#B88A44']}
         start={{ x: 0.1, y: 0.1 }}
         end={{ x: 1, y: 3 }}>
-        <View style={styles.button}>
-          <Icon name="dollar-sign" size={60} color="black" />
+      <View style={styles.icon}>
+          <Icon style={styles.icon} name="dollar-sign"  />
           
-        </View>
-        
+        </View> 
       </LinearGradient>
-      <View style={styles.CaText}>
-      <Text style={styles.buttonText}>{buttonText}</Text>
+  <View style={styles.CaText}>
+   <Text style={styles.buttonTitle}>{/* {buttonText} */}Text</Text>
       </View>
+  
     </TouchableOpacity>
+  
   );
 };
 
 export default AppButton;
 
 const styles = StyleSheet.create({
-  buttonContainer: {
-    width: 100,
-    height: 100,
-    borderRadius: 10,
+  container: {
     justifyContent: 'center',
     alignItems: 'center',
-    paddingBottom: 10,
+    
   },
-  buttonText: {
+  buttonContainer: {
+    width: 65,
+    height: 60,
+    borderRadius: 6,
+    justifyContent: 'center',
+    alignItems: 'center',
+
+  },
+  CaText: {
+    color: 'black',
+
+  },  
+
+  buttonTitle: {
     color: 'black',
     fontSize: 16,
-    marginTop: 8,
-    textAlign: 'center',
-  },
-  button: {
+     alignItems: 'center',
     justifyContent: 'center',
-    alignItems: 'center',
+  },
+
+  icon: {
+    color: 'black',
+    fontSize: 35,
+    textAlign: 'center',
+    justifyContent: 'center',
   },
 });
