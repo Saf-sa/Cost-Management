@@ -3,10 +3,12 @@ import React from 'react'
 import AppButton from '../../shared/components/uiApp/AppButton'
 import SendButton from '../../shared/components/uiApp/SendButton'
 
+
 const Forecast = () => {
   return (
     <View style>
-      <AppButton />
+      <AppButton
+       />
    <SendButton />
     </View>
   )

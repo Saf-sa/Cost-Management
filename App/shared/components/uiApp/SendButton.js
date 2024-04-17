@@ -12,14 +12,11 @@ const SendButton = ({ buttonText, onPress }) => {
         colors={['#f9f295', '#E0AA3E', '#F7EF8A', '#B88A44']}
         start={{ x: 0.1, y: 0.1 }}
         end={{ x: 1, y: 3 }}>
-      <View style={styles.icon}>
-          <Icon style={styles.icon} name="dollar-sign"  />
-          
-        </View> 
-      </LinearGradient>
-  <View style={styles.CaText}>
-   <Text style={styles.buttonTitle}>{buttonText}Texttext</Text>
+         <View style={styles.CaText}>
+   <Text style={styles.buttonText}>{buttonText}Texttext</Text>
       </View>
+      </LinearGradient>
+ 
   
     </TouchableOpacity>
   
@@ -35,14 +32,14 @@ const styles = StyleSheet.create({
     
   },
   buttonContainer: {
-    width: 65,
-    height: 60,
+    width: 100,
+    height: 45,
     borderRadius: 6,
     justifyContent: 'center',
     alignItems: 'center',
 
   },
-  CaText: {
+  buttonText: {
     color: 'black',
 
   },  

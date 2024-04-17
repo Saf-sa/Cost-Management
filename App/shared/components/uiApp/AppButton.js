@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { LinearGradient } from 'expo-linear-gradient';
 
-const AppButton = ({ buttonText, onPress }) => {
+const AppButton = ({ buttonText, icon, onPress }) => {
 
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
@@ -13,7 +13,7 @@ const AppButton = ({ buttonText, onPress }) => {
         start={{ x: 0.1, y: 0.1 }}
         end={{ x: 1, y: 3 }}>
       <View style={styles.icon}>
-          <Icon style={styles.icon} name="dollar-sign"  />
+          <Icon style={styles.icon} name=/* {"dollar-sign"} */{icon}  />
           
         </View> 
       </LinearGradient>
@@ -35,8 +35,8 @@ const styles = StyleSheet.create({
     
   },
   buttonContainer: {
-    width: 65,
-    height: 60,
+    width: 60,
+    height: 55,
     borderRadius: 6,
     justifyContent: 'center',
     alignItems: 'center',
