@@ -7,43 +7,43 @@ import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";;
 
 const Forecast = () => {
     const GlobalCategories = [
-    { name: 'Income', icon: 'dollar-sign' },
-    { name: 'Expense', icon: 'shopping-cart' },
-    { name: 'Forecast', icon: 'file-invoice-dollar' },
-    { name: 'Statistics', icon: 'chart-line' },
-    { name: 'History', icon: 'history' },
+    {AppButtonText:'Income', name: 'Income', icon: 'dollar-sign' },
+    {AppButtonText:'Expense', name: 'Expense', icon: 'shopping-cart' },
+    {AppButtonText:'Forecast', name: 'Forecast', icon: 'file-invoice-dollar' },
+    {AppButtonText:'Statistics', name: 'Statistics', icon: 'chart-line' },
+    {AppButtonText:'History', name: 'History', icon: 'history' },
   ];
   const ExpenseCategories = [
-    { name: 'clothe', icon: 'tshirt' },
-    { name: 'food', icon: 'utensils' },
-    { name: 'Transport', icon: 'subway' },
-    { name: 'studie', icon: 'university' },
-    { name: 'holiday', icon: 'plane-departure' },
-    { name: 'tax', icon: 'cash-register' },
-    { name: 'hobbie', icon: 'laugh-wink' },
-    { name: 'money', icon: 'hand-holding-usd' },
-    { name: 'epargne', icon: 'search-dollar' },
-    { name: 'other', icon: 'newspaper' },
+    {AppButtonText: 'Clothe', name: 'clothe', icon: 'tshirt' },
+    {AppButtonText: 'Food', name: 'food', icon: 'utensils' },
+    {AppButtonText: 'Transport', name: 'Transport', icon: 'subway' },
+    {AppButtonText: 'Studie', name: 'studie', icon: 'university' },
+    {AppButtonText: 'Holiday', name: 'holiday', icon: 'plane-departure' },
+    {AppButtonText: 'Tax', name: 'tax', icon: 'cash-register' },
+    {AppButtonText: 'Hobbie', name: 'hobbie', icon: 'laugh-wink' },
+    {AppButtonText: 'Money', name: 'money', icon: 'hand-holding-usd' },
+    {AppButtonText: 'Epargne', name: 'epargne', icon: 'search-dollar' },
+    {AppButtonText: 'Other', name: 'other', icon: 'newspaper' },
   ];
 
   const IncomeCategories = [
-    { name: 'salary', icon: 'dollar-sign' },
-    { name: 'bonus', icon: 'trophy' },
-    { name: 'loan', icon: 'search-dollar' },
-    { name: 'sales', icon: 'store' },
-    { name: 'gift', icon: 'gift' },
-    { name: 'rent', icon: 'home' },
-    { name: 'allowance', icon: 'laugh-wink' },
-    { name: 'refund', icon: 'hand-holding-usd' }, 
-    { name: 'stocks', icon: 'search-dollar' },
-    { name: 'other', icon: 'newspaper' },
+    {AppButtonText: 'Salary', name: 'salary', icon: 'dollar-sign' },
+    {AppButtonText: 'Bonus', name: 'bonus', icon: 'trophy' },
+    {AppButtonText: 'Loan', name: 'loan', icon: 'search-dollar' },
+    {AppButtonText: 'Sales', name: 'sales', icon: 'store' },
+    {AppButtonText: 'Gift', name: 'gift', icon: 'gift' },
+    {AppButtonText: 'Rent', name: 'rent', icon: 'home' },
+    {AppButtonText: 'Allowance', name: 'allowance', icon: 'laugh-wink' },
+    {AppButtonText: 'Refund', name: 'refund', icon: 'hand-holding-usd' }, 
+    {AppButtonText: 'Stocks', name: 'stocks', icon: 'search-dollar' },
+    {AppButtonText: 'Other', name: 'other', icon: 'newspaper' },
   ];
   const Toolkits = [
-    { name: 'agenda', icon: 'calendar-alt' },
-    { name: 'reminder', icon: 'bell' },
-    { name: 'calculator', icon: 'calculator' },
-    { name: 'download', icon: 'download' },
-    { name: 'Settings', icon: 'user-cog' },
+    {AppButtonText: 'Agenda', name: 'agenda', icon: 'calendar-alt' },
+    {AppButtonText: 'Reminder', name: 'reminder', icon: 'bell' },
+    {AppButtonText: 'Calculator', name: 'calculator', icon: 'calculator' },
+    {AppButtonText: 'Download', name: 'download', icon: 'download' },
+    {AppButtonText: 'Settings', name: 'Settings', icon: 'user-cog' },
    
   ];
   return (
