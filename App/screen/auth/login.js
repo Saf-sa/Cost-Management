@@ -3,9 +3,9 @@ import Toast from "react-native-toast-message";
 import { View, Text, StyleSheet, Image, Platform} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import CustomInputLog from "../../shared/components/ui/CustomInputLog";
-import CustomButton from "../../shared/components/ui/CustomButton";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import AppText from "../../shared/components/uiApp/AppText";
+import SendButton from '../../shared//components/uiApp/AppSendButton'
 import axios from "axios";
 import { LinearGradient } from "expo-linear-gradient";
 
@@ -265,18 +265,17 @@ const Login = () => {
           Forget Your Password?
         </Text>
 <View style={styles.loginButton}>
-        <CustomButton
+        <SendButton
           onPress={handleSubmit}
           style={styles.button}
-  
-          buttonText={"Login"}
+          sendButtonText={"Login"}
         />
 
         <Text style={styles.login}>New to Expense Manager?</Text>
 
-        <CustomButton
+        <SendButton
           style={styles.button}
-          buttonText={"Sign up Now"}
+          sendButtonText={"Signup"}
           onPress={() => navigation.navigate("Signup")}
         />
       </View>

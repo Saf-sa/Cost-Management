@@ -13,7 +13,7 @@ const SendButton = ({ sendButtonText, onPress }) => {
         start={{ x: 0.1, y: 0.1 }}
         end={{ x: 1, y: 3 }}>
          <View style={styles.CaText}>
-   <Text style={styles.buttonText}>{sendButtonText}Texttext</Text>
+   <Text style={styles.buttonText}>{sendButtonText}</Text>
       </View>
       </LinearGradient>
  
@@ -32,15 +32,16 @@ const styles = StyleSheet.create({
     
   },
   buttonContainer: {
-    width: 100,
-    height: 45,
+    width: 140,
+    height: 50,
     borderRadius: 6,
     justifyContent: 'center',
     alignItems: 'center',
 
   },
   buttonText: {
-    color: 'black',
+    color: 'grey',
+    fontWeight: 'bold',
 
   },  
 
