@@ -1,8 +1,10 @@
-import { View, Text, StyleSheet } from 'react-native'
-import React from 'react'
-import AppButton from '../../shared/components/uiApp/AppButton'
-import SendButton from '../../shared/components/uiApp/AppSendButton' 
-import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";;
+import { View, Text, StyleSheet } from 'react-native';
+import React from 'react';
+import AppButton from '../../shared/components/uiApp/AppButton';
+import SendButton from '../../shared/components/uiApp/AppSendButton';
+import Card from '../../shared/components/uiApp/Card';
+import AppText from '../../shared/components/uiApp/AppText';
+import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
 
 
 const Forecast = () => {
@@ -54,7 +56,14 @@ const Forecast = () => {
         onPress={() => console.log('income')}
        /> 
   <SendButton /> 
+   <View>
+      <Card
+      cardText={"tesjhsdajshdkjahdsdhg"}
+      />
     </View>
+    </View>
+
+   
   )
 }
 
