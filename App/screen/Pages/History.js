@@ -7,7 +7,7 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import React, { useState, useEffect } from "react";
 import AppText from "../../shared/components/uiApp/AppText";
-import HomeNavLog from "../nav/UserNavLogin";
+import {HomeNavLog} from "../nav/UserNavLogin";
 import Screen2 from "../../shared/components/Screen";
 import { useGetExpenses } from '../../shared/components/IncomExpenseComponent/GetExpense';
 import { useGetIncomes } from '../../shared/components/IncomExpenseComponent/GetIncome';

@@ -78,6 +78,7 @@ export function HomeNavLog({image }) {
               borderRadius: 10,
               backgroundColor: "#faefd7",
               justifyContent: "center",
+              
             }}
           >
             <TouchableOpacity
@@ -100,7 +101,7 @@ export function HomeNavLog({image }) {
                 alignSelf: "center",
                 height: 45,
                 justifyContent: "center",
-                borderColor: "grey",
+               borderColor: "grey", 
             
                
               
