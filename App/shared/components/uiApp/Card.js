@@ -5,7 +5,7 @@ import AppText from './AppText';
 
 
 
-const Card = ({cardText}) => {
+const Card = ({cardText, result, balance, incomes, expenses, firstName, lastName, email }) => {
   return (
     <View>
       <LinearGradient
@@ -18,13 +18,13 @@ const Card = ({cardText}) => {
             <View>
             <AppText style= {{ flexDirection: 'row' }}>
                 <View>
-                <Text style={{ fontSize: 36, color:'blue', lineHeight: 34 }}>€</Text>
+                <Text style={{ fontSize: 36, color:'blue', lineHeight: 34, paddingBottom:4 }}>€</Text>
                 </View>
                  <View>
                 <Text style={{ fontSize: 45, color:'dodgerblue', lineHeight:50}}>X</Text>
                 </View>
                  <View>
-                <Text style={{ fontSize: 22, color:'blue', lineHeight: 51 }}>penses Manager</Text>
+                <Text style={{ fontSize: 22, color:'blue', lineHeight: 51, paddingBottom:2 }}>penses Manager</Text>
                 
                 </View>
             </AppText>
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
   CardNumber: {
      ...Platform.select({
       ios: {
-    position: "fixed",
+    position: "relative",
     fontSize: 15,
     marginTop: 10,
     marginBottom:-10,
