@@ -214,7 +214,6 @@ const styles = StyleSheet.create({
   }),
   },
   
-  
   textsTitle: {
     
     justifyContent: "center",

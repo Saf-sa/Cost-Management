@@ -35,9 +35,11 @@ const styles = StyleSheet.create({
     
   },
   buttonContainer: {
-    width: 60,
-    height: 55,
+    width: 66,
+    height: 61,
     borderRadius: 6,
+    borderWidth:0.2,
+    borderColor: 'brown',
     justifyContent: 'center',
     alignItems: 'center',
 
@@ -56,7 +58,7 @@ const styles = StyleSheet.create({
 
   icon: {
     color: 'black',
-    fontSize: 35,
+    fontSize: 30,
     textAlign: 'center',
     justifyContent: 'center',
   },
