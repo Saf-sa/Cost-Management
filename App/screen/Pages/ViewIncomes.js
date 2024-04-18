@@ -6,7 +6,7 @@ import {
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
-import CustomButton from "../../shared/components/ui/CustomButton";
+import SendButton from "../../shared/components/uiApp/AppSendButton";
 import {HomeNavLog} from "../nav/UserNavLogin";
 import Screen2 from "../../shared/components/Screen";
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -77,10 +77,10 @@ let index = 1;// index for scrollview
           image={require("../../assets/iconPerson.png")}
     /> 
      <View style={styles.viewIncomesButton}>
-        <CustomButton
+        <SendButton
           onPress={() => navigation.navigate("MyIncomes")}
           style={styles.button}
-          buttonText={"Add Income"}
+          sendButtonText={"Add Income"}
       />
         </View>
        
