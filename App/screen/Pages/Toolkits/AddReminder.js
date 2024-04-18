@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TextInput, ScrollView } from "react-native";
 import Toast from "react-native-toast-message";
 import { useNavigation } from "@react-navigation/native";
 import CustomInputSingup from "../../../shared/components/ui/CustomInputSignup";
-import CustomButton from "../../../shared/components/ui/CustomButton";
+import SendButton from '../../../shared/components/uiApp/AppSendButton'
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import moment from "moment";
 import { SelectList } from 'react-native-dropdown-select-list';
@@ -306,10 +306,10 @@ console.log("formData", formData);
         </ScrollView>
       </View>
  {<View style={styles.AgendaButton}>
-      <CustomButton
+      <SendButton
         onPress={handleSubmit}
         style={styles.button}
-        buttonText={"New reminder"}
+        sendButtonText={"New reminder"}
       />
 </View>} 
       <Toast />
