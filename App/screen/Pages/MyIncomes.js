@@ -5,7 +5,7 @@ import { useNavigation } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
 import AppText from "../../shared/components/uiApp/AppText";
 import CustomInputSingup from "../../shared/components/ui/CustomInputSignup";
-import CustomButton from "../../shared/components/ui/CustomButton";
+import SendButton from "../../shared/components/uiApp/AppSendButton";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import moment from "moment";
 import { SelectList } from 'react-native-dropdown-select-list';
@@ -290,10 +290,10 @@ const MyIncome= () => {
         </ScrollView>
       </View>
       <View style={styles.IncomesButton}>
-      <CustomButton
+      <SendButton
         onPress={handleSubmit}
         style={styles.button}
-        buttonText={"New Income"}
+        sendButtonText={"New Income"}
       />
       </View>
       <Toast />
