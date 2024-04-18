@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { useNavigation, } from "@react-navigation/native";
 import Toast from "react-native-toast-message";
 import CustomInputSingup from "../../shared/components/ui/CustomInputSignup";
-import CustomButton from "../../shared/components/ui/CustomButton";
+import SendButton from '../../shared//components/uiApp/AppSendButton'
 import { LinearGradient } from "expo-linear-gradient";
 import AppText from "../../shared/components/uiApp/AppText";
 import axios from "axios";
@@ -281,10 +281,10 @@ const isValidForm = () => {
           onIconPress={() => setShowPassword(!showPassword)}
         />
  <View style={styles.resetButton}>
-        <CustomButton
+        <SendButton
           onPress={handleSubmit}
           style={styles.button}
-          buttonText={" Password Reset"}
+          sendButtonText={" Password Reset"}
         />
         </View>
       </View>
