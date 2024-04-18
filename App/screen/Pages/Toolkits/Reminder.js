@@ -3,7 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView} from "react-native";
 import CalendarPicker from 'react-native-calendar-picker';
-import CustomButton from "../../../shared/components/ui/CustomButton";
+import SendButton from '../../../shared/components/uiApp/AppSendButton'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from "axios";
 import Calendar from 'expo-calendar';
@@ -220,10 +220,10 @@ const getCustomDateStyles = () => {
       >
 
       <View style={styles.viewReminderButton}>
-        <CustomButton
+        <SendButton
           onPress={() => navigation.navigate("AddReminder")}
           style={styles.button}
-          buttonText={"New Reminder"}
+          sendButtonText={"New Reminder"}
       />
         </View>
         
