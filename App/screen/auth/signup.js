@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from "react";
 import Toast from "react-native-toast-message";
 import { useNavigation } from "@react-navigation/native";
 import CustomInputSingup from "../../shared/components/ui/CustomInputSignup";
-import CustomButton from "../../shared/components/ui/CustomButton";
+import SendButton from '../../shared//components/uiApp/AppSendButton'
 import { LinearGradient } from "expo-linear-gradient";
 import AppText from "../../shared/components/uiApp/AppText";
 
@@ -303,10 +303,10 @@ const Signup = () => {
           errorMessage={formErrors.confirmPassword}
         />
  <View style={styles.signupButton}>
-        <CustomButton
+        <SendButton
           onPress={handleSubmit}
           style={styles.button}
-          buttonText={"Register"}
+          sendButtonText={"Register"}
         />
       </View>
       </View>
