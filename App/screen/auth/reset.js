@@ -5,6 +5,7 @@ import { useNavigation } from "@react-navigation/native";
 import CustomInputLog from "../../shared/components/ui/CustomInputLog";
 import SendButton from '../../shared//components/uiApp/AppSendButton'
 import { LinearGradient } from "expo-linear-gradient";
+import Card from "../../shared/components/uiApp/Card";
 import AppText from "../../shared/components/uiApp/AppText";
 /*  import { REACT_APP_BE_URL } from "../../.env"; */
 import axios from "axios";
@@ -128,41 +129,10 @@ const ResetLogin = () => {
 
   return (
     <View style={styles.root}>
-   
-<LinearGradient
-          style={styles.parentContainer}
-          colors={["#f9f295", "#E0AA3E", "#F7EF8A", "#B88A44"]}
-          start={{ x: 0.1, y: 0.1 }}
-          end={{ x: 1, y: 3 }}
-        >
-          <View style={styles.balanceContainer}>
-            <AppText style= {{ flexDirection: 'row' }}>
-                     <View>
-                <Text style={{ fontSize: 38, color:'blue', lineHeight: 35 }}>€</Text>
-                </View>
-                 <View>
-                <Text style={{ fontSize: 44, color:'dodgerblue', lineHeight:42}}>X</Text>
-                </View>
-                 <View>
-                <Text style={{ fontSize: 23, color:'midnightblue', lineHeight: 21 }}>penses Manager</Text>
-                
-                </View>
-
-            </AppText>
-            
-          </View>
-                       <Image style={styles.simCard} source={require('../../assets/sim-card.png')} />
-          <View style={styles.parentIncomeContainer}>
-              <View style={{ marginLeft:15,  marginTop:40 }}>
-                <AppText style={{ color: "darkslateblue", fontSize: 15, }}>
-                  4907 2024 1707 2778 1962
-                </AppText>
-              </View>
-              
-          </View>
-
-          
-        </LinearGradient>
+          <Card
+      cardText={"Please reset your password !"}
+      />
+ 
       <View style={styles.content}>
         <CustomInputLog
           label="Email"
