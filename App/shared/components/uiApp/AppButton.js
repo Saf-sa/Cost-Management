@@ -5,7 +5,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 const AppButton = ({ AppButtonText, icon, onPress }) => {
   return (
-    <TouchableOpacity style={styles.container} onPress={onPress}>
+    <TouchableOpacity style={styles.container}  onPress={() => onPress(AppButtonText)}>
       <LinearGradient
         style={styles.buttonContainer}
         colors={['#f9f295', '#E0AA3E', '#F7EF8A', '#B88A44']}
