@@ -114,7 +114,7 @@ export function HomeNavLog({image }) {
                  <TouchableOpacity onPress={() => { 
                   navigation.reset({
                   index: 0,
-                  routes: [{ name: 'LogDashboardin' }],
+                  routes: [{ name: 'Dashboard' }],
                 });
                 navigation.navigate("AboutUs");
                 setModalVisible(false);

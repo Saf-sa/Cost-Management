@@ -7,8 +7,8 @@ import { LinearGradient } from "expo-linear-gradient";
 import AppText from "../../../shared/components/uiApp/AppText";
 import {HomeNavLog} from "../../nav/UserNavLogin";
 import Screen2 from "../../../shared/components/Screen";
-import CustomButton from "../../../shared/components/ui/CustomButton";
-
+import Card from "../../../shared/components/uiApp/Card"
+import AppButton from "../../../shared/components/uiApp/AppSendButton"
 
 import axios from "axios";
 
@@ -60,40 +60,18 @@ const ContactForm = () => {
  
    <View style={styles.page}>
      <Screen2 >
-        <Text style={styles.title}>Send us a Email</Text> 
+     <View style={styles.nav}>
         <HomeNavLog 
           image={require("../../../assets/iconPerson.png")}
    
         />
-          <LinearGradient
-          style={styles.parentContainer}
-          colors={["#f9f295", "#E0AA3E", "#F7EF8A", "#B88A44"]}
-          start={{ x: 0.1, y: 0.1 }}
-          end={{ x: 1, y: 3 }}
-        >
-          <View style={styles.balanceContainer}>
-            
-            <AppText style= {{ flexDirection: 'row', paddingTop:20 }}>
-                     <View>
-                <Text style={{ fontSize: 36, color:'blue', lineHeight: 35 }}>€</Text>
-                </View>
-                 <View>
-                <Text style={{ fontSize: 45, color:'dodgerblue', lineHeight:45}}>X</Text>
-                </View>
-                 <View>
-                <Text style={{ fontSize: 22, color:'midnightblue', lineHeight: 21 }}>penses Manager</Text>
-              
-                </View>
+         </View>
 
-            </AppText>
-           <Image style={styles.simCard} source={require('../../../assets/sim-card.png')} />
-
-            <AppText style={{ color: "darkslateblue", fontSize: 15, paddingTop:40, marginLeft:-90, }}>
-                  4907 2024 1707 2778 1962
-                </AppText>
-
-          </View>
-        </LinearGradient>
+           <View style={styles.card}>
+        <Card 
+        cardText={"Send us a Email"}
+        />
+         </View> 
        
     <View style={styles.container}>
       <TextInput
@@ -119,10 +97,11 @@ const ContactForm = () => {
      
     </View>
     {<View style={styles.contactButton}>
-      <CustomButton
-        onPress={handleSendEmail} 
-        style={styles.button}
-        buttonText={"Send Email"}
+ 
+      <AppButton
+      onPress={handleSendEmail} 
+      sendButtonText={"Send Email"}
+
       />
 </View>} 
       </Screen2>
@@ -134,33 +113,22 @@ const styles = StyleSheet.create({
    page: {
     flex: 1,
     backgroundColor: "#F8F4D7",
+    
   },
+nav:{
+  top:20,
+},
 
-  parentContainer: {
-    flexDirection: "column",
-    borderRadius: 10,
-    marginHorizontal: 50,
-    marginVertical: 0,
-  },
+card:{
+  top:-20,
+ 
+margin:-15,
+  
+},
 
-  balanceContainer: {
-    justifyContent: "center",
-    alignItems: "center",
-    paddingVertical: 20,
-  },
-    simCard:{
-    position: "relative",
-    marginTop: -20,
-    marginBottom: 0,
-    borderRadius: 6,
-    marginRight: 220,
-    width: 40,
-    height:30,
-
-  },
 
   container: {
-    marginTop:60,
+    marginTop:40,
     padding: 10,
     
   },

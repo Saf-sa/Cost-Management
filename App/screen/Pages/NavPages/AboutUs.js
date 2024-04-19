@@ -9,7 +9,7 @@ import {
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
 import AppText from "../../../shared/components/uiApp/AppText";
-import HomeNavLog from "../../nav/UserNavLogin";
+import {HomeNavLog} from "../../nav/UserNavLogin";
 import Screen2 from "../../../shared/components/Screen";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
