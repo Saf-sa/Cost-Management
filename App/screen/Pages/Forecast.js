@@ -55,7 +55,9 @@ const Forecast = () => {
         icon="dollar-sign"
         onPress={() => console.log('income')}
        /> 
-  <SendButton /> 
+  <SendButton 
+  sendButtonText={"submit"}
+  /> 
    <View>
       <Card
       cardText={"tesjhsdajshdkjahdsdhg"}

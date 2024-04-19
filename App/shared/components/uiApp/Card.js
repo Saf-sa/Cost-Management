@@ -34,7 +34,7 @@ const Card = ({cardText, result, balance, incomes, expenses, firstName, lastName
                  <Image style={styles.simCard} source={require('../../../assets/sim-card.png')} />
                 </View>
            <View>
-             <Text style={styles.text}>{cardText} {result} </Text>
+             <Text style={styles.text}>{cardText}{result} </Text>
              
 
            </View>
