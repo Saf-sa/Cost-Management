@@ -23,16 +23,14 @@ import useButtonConfig from '../../shared/components/uiApp/ButtonCategories'
 
 function Dashboard({route})  {
 const { category= 'all' } = route.params;
+const navigation = useNavigation();
 const incomes = useGetIncomes(category);
 const expenses = useGetExpenses(category);
-const buttonConfig = useButtonConfig(navigation);
 const buttonConfigGlobal = useButtonConfig(navigation, 'global');
 const buttonConfigIncome = useButtonConfig(navigation, 'income');
 const buttonConfigExpense = useButtonConfig(navigation, 'expense');
 const buttonConfigToolkit = useButtonConfig(navigation, 'toolkit');
 
-
-  const navigation = useNavigation();
 
       useEffect(() => {
     const fetchUserData = async () => {
