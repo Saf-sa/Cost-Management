@@ -140,7 +140,7 @@ const buttonConfigToolkit = useButtonConfig(navigation, 'toolkit');
               >
                 <AntDesign name="arrowup" color="#25F333" size={30 * 0.5} />
               </View>
-              <View style={{ marginLeft: 5 }}>
+              <View style={{ marginLeft: 2 }}>
                 <AppText style={{ color: "black", fontSize: 12 }}>
                   Incomes
                 </AppText>
@@ -170,7 +170,7 @@ const buttonConfigToolkit = useButtonConfig(navigation, 'toolkit');
               >
                 <AntDesign name="arrowdown" color="#FB5D5D" size={30 * 0.5} />
               </View>
-              <View style={{ marginLeft: 5 }}>
+              <View style={{ marginLeft: 2 }}>
                 <AppText style={{ color: "black", fontSize: 12 }}>
                   Expenses
                 </AppText>
@@ -335,6 +335,27 @@ const styles = StyleSheet.create({
     },
     }),
   },
+   parentIncomeContainer: {
+   ...Platform.select({
+      ios: {
+    width: "90%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingBottom:10,
+ 
+  },
+    android: {
+    width: "85%",
+    height: 50,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingBottom:-10,
+
+           },
+    }),
+  },
 
     categorieContainer: {
    ...Platform.select({
@@ -360,98 +381,60 @@ const styles = StyleSheet.create({
     }),
   },
     section:{
+      ...Platform.select({
+      ios: {
     flexWrap:"wrap",
     flexDirection: "row",
     paddingLeft:5,
     justifyContent: "space-between",
     alignItems: "center",
-  
-
   },
+  android: {
+    flexWrap:"wrap",
+    flexDirection: "row",
+    paddingLeft:5,
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+     }),
+  },
+
 sectionTitle:{
+   ...Platform.select({
+      ios: {
   marginTop:5,
   fontSize: 15,
    color: "brown",
   fontWeight: 'bold',
   marginBottom:5,
-  textAlign: "center",
- 
-  
+  textAlign: "center", 
 },
+ android: {
+    marginTop:5,
+  fontSize: 15,
+   color: "brown",
+  fontWeight: 'bold',
+  marginBottom:5,
+  textAlign: "center", 
+},
+     }),
+  },
+
 AppButtonText:{
+    ...Platform.select({
+      ios: {
   paddingBottom:15,
-
 },
+android: {
+  paddingBottom:15,
+  },
+     }),
+  },
 
-  
-/* 
-  dashboardCat: {
-        ...Platform.select({
-      ios: {
-    flexWrap: "wrap",
-    fontWeight: 'bold',
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingHorizontal: 6,
-    marginTop: 15,
-    alignItems: "center",
-  },
-  
-    android: {
-    marginHorizontal: -10,
-    marginVertical: 5,
-    marginLeft : -10,
-    flexWrap: "wrap",
-    flexDirection: "row",
-    marginTop:-27,
-    alignItems: "center",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  }),
-  }, */
-  
-  /* dashboardTitle: {
-     ...Platform.select({
-      ios: {
-    fontSize: 17,
-    color: "brown",
-    }, 
-    android: {  
-      top: -22,
-      paddingBottom: 5,
-    fontSize: 11,
-    color: "brown",
-    },
-    }),
-  
-  }, */
-  
-/*   textCat:{
-      ...Platform.select({
-      ios: {
-    fontSize: 14,
-    paddingTop: 2,
-    textAlign:"center"
-  
-  },
-    android: {
-    marginBottom: 10,
-    fontSize: 11, 
-    paddingTop: 1,
-    paddingBottom: 1,
-    textAlign:"center"
-  
-    },
-    }),
-  },
- */
-   
- 
-  /*     title:{
+  title:{
  ...Platform.select({
       ios: {
-    top: 50,
+    top: 55,
     textAlign: "center",
     color: "#E0AA3E",
     fontSize: 20,
@@ -467,7 +450,9 @@ AppButtonText:{
   }
 
   }),
-  },   */
+  },  
+
+  
 });
 
 
