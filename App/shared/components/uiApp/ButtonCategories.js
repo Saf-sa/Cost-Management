@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 
-const useButtonConfig = (navigation) => {
-  const buttonConfig = [
+export default function useButtonConfig(navigation, buttonType) {
+  const globalButtons = [
   { 
     AppButtonText: "Income", 
     icon: "dollar-sign", 
@@ -27,6 +27,8 @@ const useButtonConfig = (navigation) => {
     icon: "history", 
     onPress: () => navigation.push("History") 
   },
+    ];
+   const expenseButtons = [
   { 
     AppButtonText: "Clothes", 
     icon: "tshirt", 
@@ -77,6 +79,8 @@ const useButtonConfig = (navigation) => {
     icon: "newspaper", 
     onPress: () => navigation.navigate("ViewExpenses", { category: 'other' }) 
   },
+  ];
+   const incomeButtons = [
   { 
     AppButtonText: "Salary", 
     icon: "dollar-sign", 
@@ -127,6 +131,8 @@ const useButtonConfig = (navigation) => {
     icon: "newspaper", 
     onPress: () => navigation.navigate("ViewIncomes", { category: 'Other' }) 
   },
+    ];
+     const toolkitButtons = [
   { 
     AppButtonText: "Agenda", 
     icon: "calendar-alt", 
@@ -152,13 +158,25 @@ const useButtonConfig = (navigation) => {
     icon: "user-cog", 
     onPress: () => navigation.push("Settings") 
   }
-
 ];
-  
-  
-  [navigation];
 
+ let buttonConfig;
+  switch (buttonType) {
+    case 'global':
+      buttonConfig = globalButtons;
+      break;
+    case 'income':
+      buttonConfig = incomeButtons;
+      break;
+    case 'expense':
+      buttonConfig = expenseButtons;
+      break;
+    case 'toolkit':
+      buttonConfig = toolkitButtons;
+      break;
+    default:
+      buttonConfig = [];
+
+ }
   return buttonConfig;
-};
-
-export default useButtonConfig;
+}

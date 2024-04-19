@@ -3,6 +3,7 @@ import { Text, View, TouchableOpacity, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { LinearGradient } from 'expo-linear-gradient';
 
+
 const AppButton = ({ AppButtonText, icon, onPress }) => {
   return (
     <TouchableOpacity style={styles.container}  onPress={() => onPress(AppButtonText)}>
