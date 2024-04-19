@@ -180,8 +180,8 @@ import useButtonConfig from '../../shared/components/uiApp/ButtonCategories'
           <AppText style={styles.dashboardTitle}>Global</AppText>
         </View>
     
-        <View>
-      <View style={styles.dashboardCat}>
+     
+     {/*  <View style={styles.dashboardCat}>
         {buttonConfig.map((button, index) => (
           <AppButton
             key={index}
@@ -190,7 +190,58 @@ import useButtonConfig from '../../shared/components/uiApp/ButtonCategories'
             onPress={button.onPress}
           />
         ))}
+      </View> */}
+ <View style={styles.dashboardCat}>
+      <Text style={styles.sectionTitle}>Global</Text>
+      <View style={styles.section}>
+        {buttonConfig.global.map((button, index) => (
+          <AppButton
+            key={index}
+            AppButtonText={button.AppButtonText}
+            icon={button.icon}
+            onPress={button.onPress}
+          />
+        ))}
       </View>
+
+      <Text style={styles.sectionTitle}>Income</Text>
+      <View style={styles.section}>
+        {buttonConfig.income.map((button, index) => (
+          <AppButton
+            key={index}
+            AppButtonText={button.AppButtonText}
+            icon={button.icon}
+            onPress={button.onPress}
+          />
+        ))}
+      </View>
+
+      <Text style={styles.sectionTitle}>Expense</Text>
+      <View style={styles.section}>
+        {buttonConfig.expense.map((button, index) => (
+          <AppButton
+            key={index}
+            AppButtonText={button.AppButtonText}
+            icon={button.icon}
+            onPress={button.onPress}
+          />
+        ))}
+      </View>
+
+      <Text style={styles.sectionTitle}>Toolkit</Text>
+      <View style={styles.section}>
+        {buttonConfig.toolkit.map((button, index) => (
+          <AppButton
+            key={index}
+            AppButtonText={button.AppButtonText}
+            icon={button.icon}
+            onPress={button.onPress}
+          />
+        ))}
+      </View>
+
+
+
     </View>
         
       </Screen2>

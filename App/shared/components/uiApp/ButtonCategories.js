@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-export default function useButtonConfig(navigation, buttonType) {
+export default function useButtonConfig(navigation, buttonType = 'global' ) {
   const globalButtons = [
   { 
     AppButtonText: "Income", 
