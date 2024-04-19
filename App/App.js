@@ -12,7 +12,7 @@ import MyIncomes from "./screen/Pages/MyIncomes";
 import ViewExpenses from "./screen/Pages/ViewExpenses";
 import MyExpenses from "./screen/Pages/MyExpenses";
 import Forecast from "./screen/Pages/Forecast";
-import Statistics from "./screen/Pages/Statistics";
+/* import Statistics from "./screen/Pages/Statistics"; */
 import History from "./screen/Pages/History";
 import Clothe from "./screen/Pages/Categories/Clothe";
 import Food from "./screen/Pages/Categories/Food";
@@ -164,7 +164,7 @@ export default function App() {
         <Stack.Screen name="MyIncomes" component={MyIncomes} />
         <Stack.Screen name="MyExpenses" component={MyExpenses} />
         <Stack.Screen name="Forecast" component={Forecast} />
-        <Stack.Screen name="Statistics" initialParams={{category:'all'}} component= {Statistics} />
+{/*         <Stack.Screen name="Statistics" initialParams={{category:'all'}} component= {Statistics} /> */}
         <Stack.Screen name="History" initialParams={{category:'all'}} component={History} />
         <Stack.Screen name="Clothe" component={Clothe} />
         <Stack.Screen name="Food" component={Food} />

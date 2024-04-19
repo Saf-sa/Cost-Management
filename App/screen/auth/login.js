@@ -6,6 +6,7 @@ import CustomInputLog from "../../shared/components/ui/CustomInputLog";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import AppText from "../../shared/components/uiApp/AppText";
 import SendButton from '../../shared//components/uiApp/AppSendButton'
+import Card from "../../shared/components/uiApp/Card";
 import axios from "axios";
 import { LinearGradient } from "expo-linear-gradient";
 
@@ -190,7 +191,10 @@ const Login = () => {
   };
   return (
     <View style={styles.root}>
-    
+      <Card
+      cardText={"Welcome Back !"}
+      />
+  {/*   
   <LinearGradient
           style={styles.parentContainer}
           colors={["#f9f295", "#E0AA3E", "#F7EF8A", "#B88A44"]}
@@ -239,7 +243,7 @@ const Login = () => {
           </View>
           
         </LinearGradient>
-
+ */}
       <View style={styles.content}>
         <CustomInputLog
           label="Email"

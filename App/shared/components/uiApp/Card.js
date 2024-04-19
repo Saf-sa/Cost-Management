@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     borderRadius: 7,
     borderWidth:0.3,
     borderColor: 'brown',
-    marginTop:10,
+    marginTop:20,
     marginHorizontal: 55,
     marginVertical: 10,
     shadowOffset: {
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
 ...Platform.select({
       ios: {
     position: "relative",
-    top: -35,
+    top: -25,
     marginBottom: -50,
     justifyContent: "center",
     alignItems: "center",
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
     }),
   },
   text:{
-    marginBottom:25,
+    marginBottom:30,
     justifyContent: "center",
     alignItems: "center",
     fontSize: 18,
@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
     position: "relative",
     fontSize: 15,
     marginTop: 10,
-    marginBottom:-10,
+    marginBottom:0,
     left: -45,
     color: "darkslateblue",
   },
