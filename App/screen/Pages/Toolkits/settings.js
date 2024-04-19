@@ -146,6 +146,8 @@ const styles = StyleSheet.create({
   parentContainer: {
     flexDirection: "column",
     borderRadius: 10,
+    borderWidth:0.2,
+    borderColor: 'brown',
     marginHorizontal: 50,
     marginVertical: 0,
   },
