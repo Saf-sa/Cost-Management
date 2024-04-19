@@ -30,6 +30,11 @@ import useButtonConfig from '../../shared/components/uiApp/ButtonCategories'
   const [storedIncomes, setStoredIncomes] = useState([]);// State to store data from AsyncStorage
   const [storedExpenses, setStoredExpenses] = useState([]);// State to store data from AsyncStorage
   const buttonConfig = useButtonConfig(navigation);
+const buttonConfigGlobal = useButtonConfig(navigation, 'global');
+const buttonConfigIncome = useButtonConfig(navigation, 'income');
+const buttonConfigExpense = useButtonConfig(navigation, 'expense');
+const buttonConfigToolkit = useButtonConfig(navigation, 'toolkit');
+
 
   const navigation = useNavigation();
 
@@ -176,25 +181,15 @@ import useButtonConfig from '../../shared/components/uiApp/ButtonCategories'
             </View>
           </View>
         </LinearGradient>
-        <View>
-          <AppText style={styles.dashboardTitle}>Global</AppText>
-        </View>
     
-     
-     {/*  <View style={styles.dashboardCat}>
-        {buttonConfig.map((button, index) => (
-          <AppButton
-            key={index}
-            AppButtonText={button.AppButtonText}
-            icon={button.icon}
-            onPress={button.onPress}
-          />
-        ))}
-      </View> */}
+      <View style={styles.categorieContainer}>
+       
+      
+
  <View style={styles.dashboardCat}>
-      <Text style={styles.sectionTitle}>Global</Text>
+  <Text style={styles.sectionTitle}>Global</Text>
       <View style={styles.section}>
-        {buttonConfig.global.map((button, index) => (
+        {buttonConfigGlobal.map((button, index) => (
           <AppButton
             key={index}
             AppButtonText={button.AppButtonText}
@@ -203,10 +198,11 @@ import useButtonConfig from '../../shared/components/uiApp/ButtonCategories'
           />
         ))}
       </View>
-
+<View>
       <Text style={styles.sectionTitle}>Income</Text>
+</View>
       <View style={styles.section}>
-        {buttonConfig.income.map((button, index) => (
+        {buttonConfigIncome.map((button, index) => (
           <AppButton
             key={index}
             AppButtonText={button.AppButtonText}
@@ -215,10 +211,12 @@ import useButtonConfig from '../../shared/components/uiApp/ButtonCategories'
           />
         ))}
       </View>
-
+<View>
       <Text style={styles.sectionTitle}>Expense</Text>
+</View>
+ 
       <View style={styles.section}>
-        {buttonConfig.expense.map((button, index) => (
+        {buttonConfigExpense.map((button, index) => (
           <AppButton
             key={index}
             AppButtonText={button.AppButtonText}
@@ -227,10 +225,12 @@ import useButtonConfig from '../../shared/components/uiApp/ButtonCategories'
           />
         ))}
       </View>
-
+<View>
       <Text style={styles.sectionTitle}>Toolkit</Text>
+</View>
+     
       <View style={styles.section}>
-        {buttonConfig.toolkit.map((button, index) => (
+        {buttonConfigToolkit.map((button, index) => (
           <AppButton
             key={index}
             AppButtonText={button.AppButtonText}
@@ -241,7 +241,7 @@ import useButtonConfig from '../../shared/components/uiApp/ButtonCategories'
       </View>
 
 
-
+</View>
     </View>
         
       </Screen2>
@@ -259,6 +259,7 @@ const styles = StyleSheet.create({
     parentContainer: {
       ...Platform.select({
       ios: {
+        
     width: "60%",
     height: 140,
     justifyContent: "center",
@@ -334,17 +335,17 @@ const styles = StyleSheet.create({
     },
     }),
   },
-  
 
-
-    parentIncomeContainer: {
+    categorieContainer: {
    ...Platform.select({
       ios: {
-    width: "90%",
+    top:20,
+    width: "100%",
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingBottom:10,
+    paddingHorizontal: -5,
+
  
   },
     android: {
@@ -358,8 +359,28 @@ const styles = StyleSheet.create({
            },
     }),
   },
+    section:{
+    flexWrap:"wrap",
+    flexDirection: "row",
+    paddingLeft:5,
+    justifyContent: "space-between",
+    alignItems: "center",
   
 
+  },
+sectionTitle:{
+  marginTop:10,
+  fontSize: 15,
+   color: "brown",
+  fontWeight: 'bold',
+  marginBottom:5,
+  textAlign: "center",
+ 
+  
+},
+
+  
+/* 
   dashboardCat: {
         ...Platform.select({
       ios: {
@@ -384,9 +405,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   }),
-  },
+  }, */
   
-  dashboardTitle: {
+  /* dashboardTitle: {
      ...Platform.select({
       ios: {
     fontSize: 17,
@@ -400,9 +421,9 @@ const styles = StyleSheet.create({
     },
     }),
   
-  },
+  }, */
   
-  textCat:{
+/*   textCat:{
       ...Platform.select({
       ios: {
     fontSize: 14,
@@ -420,10 +441,10 @@ const styles = StyleSheet.create({
     },
     }),
   },
-
+ */
    
  
-      title:{
+  /*     title:{
  ...Platform.select({
       ios: {
     top: 50,
@@ -442,7 +463,7 @@ const styles = StyleSheet.create({
   }
 
   }),
-  },  
+  },   */
 });
 
 

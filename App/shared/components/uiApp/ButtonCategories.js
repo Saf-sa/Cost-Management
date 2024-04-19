@@ -127,7 +127,7 @@ export default function useButtonConfig(navigation, buttonType = 'global' ) {
     onPress: () => navigation.navigate("ViewIncomes", { category: 'Stocks' }) 
   },
   { 
-    AppButtonText: "OtherIncome", 
+    AppButtonText: "Other", 
     icon: "newspaper", 
     onPress: () => navigation.navigate("ViewIncomes", { category: 'Other' }) 
   },
