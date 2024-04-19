@@ -251,7 +251,6 @@ const styles = StyleSheet.create({
     padding: 30,
   },
 
-
   login: {
     ...Platform.select({
       ios: {
