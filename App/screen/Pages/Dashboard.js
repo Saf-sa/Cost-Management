@@ -4,13 +4,11 @@ import {
   View,
   StyleSheet,
   Toast,
-  TouchableOpacity,
   Image,
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
-import Icon from "../../shared/components/IncomExpenseComponent/Icon";
 import AppText from "../../shared/components/uiApp/AppText";
 import {HomeNavLog} from "../nav/UserNavLogin";
 import Screen2 from "../../shared/components/Screen";
@@ -23,13 +21,11 @@ import useButtonConfig from '../../shared/components/uiApp/ButtonCategories'
 
 
 
-  function Dashboard({route})  {
-  const { category= 'all' } = route.params;
-  const incomes = useGetIncomes(category);
-  const expenses = useGetExpenses(category);
-  const [storedIncomes, setStoredIncomes] = useState([]);// State to store data from AsyncStorage
-  const [storedExpenses, setStoredExpenses] = useState([]);// State to store data from AsyncStorage
-  const buttonConfig = useButtonConfig(navigation);
+function Dashboard({route})  {
+const { category= 'all' } = route.params;
+const incomes = useGetIncomes(category);
+const expenses = useGetExpenses(category);
+const buttonConfig = useButtonConfig(navigation);
 const buttonConfigGlobal = useButtonConfig(navigation, 'global');
 const buttonConfigIncome = useButtonConfig(navigation, 'income');
 const buttonConfigExpense = useButtonConfig(navigation, 'expense');
@@ -52,13 +48,8 @@ const buttonConfigToolkit = useButtonConfig(navigation, 'toolkit');
     };
 
     fetchUserData();
-  
-     
+
   }, []);
-
-
-
-    //get Category when Clicked
     const [firstName, setFirstName] = useState("");
     const setSelectCategoryByName = (firstName) => {
       if (firstName === "All") {
@@ -76,8 +67,6 @@ const buttonConfigToolkit = useButtonConfig(navigation, 'toolkit');
       }
     };
 
-
-   
     const calculateTotalIncomes = incomes.reduce((total, income) => total + Number(income.amount), 0);
     const calculateTotalExpenses = expenses.reduce((total, expense) => total + Number(expense.amount), 0);
 
