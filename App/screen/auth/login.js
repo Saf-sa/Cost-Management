@@ -1,14 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
 import Toast from "react-native-toast-message";
-import { View, Text, StyleSheet, Image, Platform} from "react-native";
+import { View, Text, StyleSheet, Platform} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import CustomInputLog from "../../shared/components/ui/CustomInputLog";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import AppText from "../../shared/components/uiApp/AppText";
 import SendButton from '../../shared//components/uiApp/AppSendButton'
 import Card from "../../shared/components/uiApp/Card";
 import axios from "axios";
-import { LinearGradient } from "expo-linear-gradient";
+
 
 
 

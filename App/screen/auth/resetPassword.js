@@ -1,11 +1,10 @@
-import { View, Text, StyleSheet, Image, Platform } from "react-native";
+import { View, Text, StyleSheet, Platform } from "react-native";
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigation, } from "@react-navigation/native";
 import Toast from "react-native-toast-message";
 import CustomInputSingup from "../../shared/components/ui/CustomInputSignup";
 import SendButton from '../../shared//components/uiApp/AppSendButton'
-import { LinearGradient } from "expo-linear-gradient";
-import AppText from "../../shared/components/uiApp/AppText";
+import Card from "../../shared/components/uiApp/Card";
 import axios from "axios";
 
 const isValidEmail = (email) => {
@@ -189,62 +188,12 @@ const isValidForm = () => {
   };
 
   return (
-    <View style={styles.root}>
-    {/*   < subtext="Please Reset Your Password" /> */}
-    <LinearGradient
-          style={styles.parentContainer}
-          colors={["#f9f295", "#E0AA3E", "#F7EF8A", "#B88A44"]}
-          start={{ x: 0.1, y: 0.1 }}
-          end={{ x: 1, y: 3 }}
-        >
-          <View style={styles.balanceContainer}>
-            <AppText style= {{ flexDirection: 'row' }}>
-                     <View>
-                <Text style={{ fontSize: 38, color:'blue', lineHeight: 35 }}>€</Text>
-                </View>
-                 <View>
-                <Text style={{ fontSize: 44, color:'dodgerblue', lineHeight:42}}>X</Text>
-                </View>
-                 <View>
-                <Text style={{ fontSize: 23, color:'midnightblue', lineHeight: 21 }}>penses Manager</Text>
-                
-                </View>
-
-            </AppText>
-          </View>
-
-          <View style={styles.parentIncomeContainer}>
-            <View
-              style={{
-                color: "black",
-                flexDirection: "row",
-                justifyContent: "center",
-                alignItems: "center",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-             
-              <View style={{ marginLeft:15, marginTop:0 }}>
-                 <Image style={styles.simCard} source={require('../../assets/sim-card.png')} />
-
-                <AppText style={{ color: "darkslateblue", fontSize: 15, }}>
-                  4907 2024 1707 2778 1962
-                </AppText> 
-              </View>
-            </View>
-
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-            </View>
-          </View>
-
-        </LinearGradient>
+  
+     <View style={styles.root}>
+          <Card
+      cardText={"Please reset your password !"}
+      />
+   
       <View style={styles.content}>
         <CustomInputSingup
           label="Code"
