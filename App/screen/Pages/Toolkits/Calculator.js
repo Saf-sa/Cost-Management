@@ -72,6 +72,7 @@ else {
       <View style={styles.root}>
              <Card
       result= {result}
+      
       />
   
         </View>
@@ -117,83 +118,8 @@ else {
 export default Calculator;
 
 const styles = StyleSheet.create({
-   parentContainer: {
-      ...Platform.select({
-      ios: {
-    width: "75%",
-    height: 200,
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 7,
-    borderWidth:0.2,
-    borderColor: 'brown',
-    marginTop: 30,
-    marginHorizontal: 55,
-    marginVertical: 0,
-    shadowOffset: {
-      width: 0.8,
-      height: 2,},
-  },
-     android: {
-    width: "80%",
-    height: 180,
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 7,
-    borderWidth:0.2,
-    borderColor: 'brown',
-    top: 10,
-    marginBottom: 100,
-    marginHorizontal: 35,
-    marginVertical: 0,
-    shadowOffset: {
-      width: 0.8,
-      height: 2,},
-      },
-    }),
-  },
-  
-   balanceContainer: {
-...Platform.select({
-      ios: {
-    justifyContent: "center",
-    alignItems: "center",
-    paddingVertical: 17,
-    width: "80%",
-      },
-
-  android: {
-    justifyContent: "center",
-    alignItems: "center",
-    paddingVertical: 0,
-    width: "80%",
-  
-     },
-    }),
-  },
-  
- simCard:{
-    ...Platform.select({
-      ios: {
-    position: "relative",
-    marginTop: -25,
-    marginBottom:-20,
-    borderRadius: 6,
-    marginLeft: -100,
-    width: 40,
-    height:30,
-
-  }, 
-    android: {
-    position: "relative",
-    marginTop: -30,
-    marginBottom:-10,
-    borderRadius: 6,
-    marginLeft: -90,
-    width: 35,
-    height:25,
-    },
-    }),
+  root:{
+    fontSize:30,
   },
   container : {
     flex: 1,
