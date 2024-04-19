@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
   buttonTitle: {
     color: 'black',
     fontSize: 13,
+    paddingBottom:5,
   },
   iconContainer: {
     color: 'black',

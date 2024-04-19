@@ -339,7 +339,7 @@ const styles = StyleSheet.create({
     categorieContainer: {
    ...Platform.select({
       ios: {
-    top:20,
+    top:15,
     width: "100%",
     flexDirection: "row",
     justifyContent: "space-between",
@@ -369,7 +369,7 @@ const styles = StyleSheet.create({
 
   },
 sectionTitle:{
-  marginTop:10,
+  marginTop:5,
   fontSize: 15,
    color: "brown",
   fontWeight: 'bold',
@@ -377,6 +377,10 @@ sectionTitle:{
   textAlign: "center",
  
   
+},
+AppButtonText:{
+  paddingBottom:15,
+
 },
 
   
