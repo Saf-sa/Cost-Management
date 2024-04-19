@@ -249,57 +249,6 @@ const styles = StyleSheet.create({
     backgroundColor:"#F8F4D7",
   },
 
-  parentContainer: {
-...Platform.select({
-      ios: {
-    width: "65%",
-    height: 170,
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 7,
-    borderWidth:0.2,
-    borderColor: 'brown',
-    marginTop: 20,
-    marginBottom: 45,
-    marginHorizontal: 75,
-    
-  },
-   android: {
-    width: "75%",
-    height: 160,
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 10,
-    borderWidth:0.2,
-    borderColor: 'brown',
-    marginTop: 0,
-    marginBottom: 0,
-    marginHorizontal: 45,
-      },
-    }),
-  },
-
-    parentIncomeContainer: {
-    width: "90%",
-    flexDirection: "row",
-    paddingVertical: 5,
-   
-  },
-
-  balanceContainer: {
-    paddingVertical: 15,
-
-  },
-    simCard:{
-    position: "relative",
-    marginTop: -25,
-    marginBottom: 30,
-    borderRadius: 6,
-    marginLeft: -15,
-    width: 40,
-    height:30,
-
-  },
   content: {
     flex: 2,
     paddingHorizontal: 30,
