@@ -2,6 +2,7 @@ import { View, Text, StyleSheet, TextInput, TouchableOpacity, SafeAreaView, Imag
 import { useState } from 'react';
 import { StatusBar } from 'react-native'; 
 import { LinearGradient } from "expo-linear-gradient";
+import Card from '../../../shared/components/uiApp/Card';
 import AppText from "../../../shared/components/uiApp/AppText";
 
 const Calculator = () => {
@@ -67,43 +68,13 @@ else {
    
    
     <SafeAreaView style={styles.container}>
-      <LinearGradient
-          style={styles.parentContainer}
-          colors={["#f9f295", "#E0AA3E", "#F7EF8A", "#B88A44"]}
-          start={{ x: 0.1, y: 0.1 }}
-          end={{ x: 1, y: 3 }}
-        >
-          <View style={styles.balanceContainer}>
-            <AppText style= {{ flexDirection: 'row' }}>
-                     <View>
-                <Text style={{ fontSize: 36, color:'blue', lineHeight: 35 }}>€</Text>
-                </View>
-                 <View>
-                <Text style={{ fontSize: 45, color:'dodgerblue', lineHeight:45}}>X</Text>
-                </View>
-                 <View>
-                <Text style={{ fontSize: 22, color:'midnightblue', lineHeight: 21 }}>penses Manager</Text>
-                
-                </View>
 
-               
-            </AppText>
-                        
-
-              <View>
-                <Text style={{ fontSize: 18, color:'brown', lineHeight: 50,  }}>Calculator</Text>
-                 <Image style={styles.simCard} source={require('../../../assets/sim-card.png')} />
-                </View>
-                      <View style={{ position:'absolute',  }}>
-                <AppText  style={styles.CardNumber}>  
-                  4907 2024 1707 2778 1962
-                </AppText>
-              </View>
-                <Text style={styles.resultText }>= {result}</Text>
-          </View>
-         
-
-        </LinearGradient>
+      <View style={styles.root}>
+             <Card
+      result= {result}
+      />
+  
+        </View>
       <StatusBar style="auto" />
        
 
