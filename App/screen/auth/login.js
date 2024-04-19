@@ -190,7 +190,7 @@ const Login = () => {
   };
   return (
     <View style={styles.root}>
-      <Card
+      <Card style={styles.card}
       cardText={"Welcome Back !"}
       />
       <View style={styles.content}>
@@ -244,6 +244,7 @@ const styles = StyleSheet.create({
   root: {
     flex: 1,
     backgroundColor:"#F8F4D7",
+    
   },
   content: {
     flex: 2,
@@ -262,7 +263,7 @@ const styles = StyleSheet.create({
     borderColor: 'brown',
     marginTop: 20,
     marginBottom: 45,
-    marginHorizontal: 75,
+  
     
   },
    android: {
@@ -275,7 +276,7 @@ const styles = StyleSheet.create({
     borderColor: 'brown',
     marginTop: 0,
     marginBottom: 0,
-    marginHorizontal: 45,
+
       },
     }),
   },
@@ -293,7 +294,7 @@ const styles = StyleSheet.create({
   },
   simCard:{
     position: "relative",
-    marginTop: -50,
+    marginTop: -40,
     marginBottom: 40,
     borderRadius: 6,
     width: 40,
