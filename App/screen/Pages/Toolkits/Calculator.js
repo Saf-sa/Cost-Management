@@ -4,6 +4,7 @@ import { StatusBar } from 'react-native';
 import { LinearGradient } from "expo-linear-gradient";
 import Card from '../../../shared/components/uiApp/Card';
 import AppText from "../../../shared/components/uiApp/AppText";
+import ResetLogin from '../../auth/reset';
 
 const Calculator = () => {
   const [input, setInput] = useState("");
@@ -71,6 +72,7 @@ else {
 
       <View style={styles.root}>
              <Card
+      cardText={ " = "}      
       result= {result}
       
       />
