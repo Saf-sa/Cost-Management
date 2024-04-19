@@ -251,55 +251,6 @@ const styles = StyleSheet.create({
     padding: 30,
   },
 
-  parentContainer: {
-     ...Platform.select({
-      ios: {
-    width: "65%",
-    height: 170,
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 7,
-    borderWidth:0.2,
-    borderColor: 'brown',
-    marginTop: 20,
-    marginBottom: 45,
-  
-    
-  },
-   android: {
-    width: "75%",
-    height: 160,
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 10,
-    borderWidth:0.2,
-    borderColor: 'brown',
-    marginTop: 0,
-    marginBottom: 0,
-
-      },
-    }),
-  },
-    parentIncomeContainer: {
-    width: "90%",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    paddingTop: 7,
- 
-  },
-
-  balanceContainer: {
-    paddingVertical:15,
-  },
-  simCard:{
-    position: "relative",
-    marginTop: -40,
-    marginBottom: 40,
-    borderRadius: 6,
-    width: 40,
-    height:30,
-  },
 
   login: {
     ...Platform.select({
