@@ -238,9 +238,20 @@ const buttonConfigToolkit = useButtonConfig(navigation, 'toolkit');
 
 const styles = StyleSheet.create({
   page: {
+     ...Platform.select({
+      ios: {
     width: "100%",
     flex: 1,
     backgroundColor: "#F8F4D7",
+    marginTop: -25,
+  },
+   android: {
+    width: "100%",
+    flex: 1,
+    backgroundColor: "#F8F4D7",
+    marginTop: -25,
+          },
+    }),
   },
   
     parentContainer: {
@@ -254,7 +265,7 @@ const styles = StyleSheet.create({
     borderRadius: 7,
     borderWidth:0.2,
     borderColor: 'brown',
-    marginTop: -80,
+    marginTop: -50,
     marginHorizontal: 80,
     marginVertical: -15,
     shadowOffset: {
@@ -421,7 +432,7 @@ android: {
   title:{
  ...Platform.select({
       ios: {
-    top: 55,
+    top: 80,
     textAlign: "center",
     color: "#E0AA3E",
     fontSize: 20,
