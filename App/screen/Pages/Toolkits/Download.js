@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import {
   Text,
@@ -6,14 +7,16 @@ import {
   Toast,
   Platform,
   ScrollView,
+   Modal
+  ,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import AppButton from "../../../shared/components/uiApp/AppButton";
 import useButtonConfig from "../../../shared/components/uiApp/ButtonCategories";
-import Card from "../../../shared/components/uiApp/Card";
-import Screen2 from "../../../shared/components/Screen";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { HomeNavLog } from "../../../screen/nav/UserNavLogin";
+import Card from "../../../shared/components/uiApp/Card";
 
 function Download({ route }) {
   const { category = "all" } = route.params;
@@ -54,14 +57,15 @@ function Download({ route }) {
   };
 
   return (
-    <Screen2 style={styles.page}>
+    <SafeAreaView style={styles.page}>
+
       <View style={styles.userNav}>
         <HomeNavLog image={require("../../../assets/iconPerson.png")} />
       </View>
       <View style={styles.card}>
         <Card cardText={"Let's save your files"} />
       </View>
-      <ScrollView>
+      <View>
         <View style={styles.categoryContainer}>
           <Text style={styles.sectionTitle}>Global</Text>
           <View style={styles.buttonContainer}>
@@ -83,8 +87,8 @@ function Download({ route }) {
             {renderButtons(buttonConfigToolkit)}
           </View>
         </View>
-      </ScrollView>
-    </Screen2>
+      </View>
+    </SafeAreaView>
   );
 }
 
@@ -96,19 +100,22 @@ const styles = StyleSheet.create({
     backgroundColor: "#F8F4D7",
   },
   userNav: {
+    top:-110,
     marginLeft: 15,
     marginRight: 5,
   },
   card: {
     flex: 2,
-    top: -90,
-    height: 180,
+    top: -200,
+    height: 170,
+    left:5,
   },
   categoryContainer: {
-    padding: 30,
+    padding: 18,
+    left:5,
   },
   sectionTitle: {
-    top:55,
+    top:-6,
     textAlign: "center",
     fontSize: 15,
     fontWeight: "bold",
@@ -117,7 +124,7 @@ const styles = StyleSheet.create({
 
   },
   buttonContainer: {
-    top:55,
+    top:-5,
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "space-between",

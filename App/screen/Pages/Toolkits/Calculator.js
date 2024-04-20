@@ -1,11 +1,7 @@
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, SafeAreaView, Image} from 'react-native'
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, SafeAreaView} from 'react-native'
 import { useState } from 'react';
 import { StatusBar } from 'react-native'; 
-import { LinearGradient } from "expo-linear-gradient";
 import Card from '../../../shared/components/uiApp/Card';
-import AppText from "../../../shared/components/uiApp/AppText";
-import ResetLogin from '../../auth/reset';
-import Screen2 from "../../../shared/components/Screen";
 import {HomeNavLog} from "../../../screen/nav/UserNavLogin";
 
 const Calculator = () => {
