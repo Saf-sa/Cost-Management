@@ -13,6 +13,7 @@ const router = express.Router();
 // Routes
 
 router.post("/",authMiddleware, registerIncome, );
+router.get("/", authMiddleware, getIncomesByDate);
 router.get("/:category", authMiddleware, async (req, res) => {
            /* "/:category" */
   try {
