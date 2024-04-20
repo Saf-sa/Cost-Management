@@ -5,7 +5,7 @@ import Incomes from "../models/incomeModel.js";
 
 // Import userController
 
-import { registerIncome } from "../controllers/IncomesController.js";
+import { registerIncome, getIncomesByDate, getIncomesByCategory } from "../controllers/IncomesController.js";
  
 // Initialize express router
 const router = express.Router();
