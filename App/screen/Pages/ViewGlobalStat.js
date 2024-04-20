@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     paddingHorizontal: 19,
-     marginBottom: 50,
+     marginBottom: 40,
     marginLeft: 1,
     alignItems: "center",
   },
@@ -163,8 +163,8 @@ titleExpense: {
     fontSize: 20,
     fontWeight: "bold",
     textAlign: "center",
-    marginTop: 0,
-    marginBottom: 10,
+    marginTop: 10,
+    marginBottom:0,
   
   },
 
@@ -173,8 +173,8 @@ titleExpense: {
     fontSize: 20,
     fontWeight: "bold",
     textAlign: "center",
-    marginTop: 0,
-    marginBottom: 20,
+    marginTop: 10,
+    marginBottom: 30,
   },
     
 
