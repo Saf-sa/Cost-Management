@@ -166,7 +166,11 @@ const buttonConfigToolkit = useButtonConfig(navigation, 'toolkit');
                 </AppText>
               </View>
             </View>
+            
           </View>
+            <AppText  style={styles.CardNumber}>  
+                  4907 2024 1707 2778 1962
+                </AppText>
         </LinearGradient>
     
       <View style={styles.categorieContainer}>
@@ -449,7 +453,21 @@ android: {
 
   }),
   },  
-
+CardNumber: {
+     ...Platform.select({
+      ios: {
+    position: "relative",
+    fontSize: 15,
+    left: -15,
+    color: "darkslateblue",
+  },
+   android: {
+    fontSize: 15,
+    left: -15,
+    color: "darkslateblue",
+   },
+  }),
+  },  
   
 });
 
