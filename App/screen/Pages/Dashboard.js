@@ -382,6 +382,7 @@ const styles = StyleSheet.create({
            },
     }),
   },
+  
     section:{
       ...Platform.select({
       ios: {

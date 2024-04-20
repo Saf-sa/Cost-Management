@@ -18,7 +18,7 @@ import { useGetIncomes } from '../../../shared/components/IncomExpenseComponent/
 import { useGetExpenses } from '../../../shared/components/IncomExpenseComponent/GetExpense';
 import AppButton from '../../../shared/components/uiApp/AppButton';
 import useButtonConfig from '../../../shared/components/uiApp/ButtonCategories'
-  
+import Card from '../../../shared/components/uiApp/Card'
 
 function Download({route}) {
   const { category= 'all' } = route.params;
@@ -69,15 +69,19 @@ const buttonConfigToolkit = useButtonConfig(navigation, 'toolkit');
 
     return (
        <View style={styles.page}>
-      <Screen2 style={styles.header}>
+       
+      <Screen2 style={styles.parentContainer}>
+   <View>
         <HomeNavLog style={styles.userNav}
           image={require("../../../assets/iconPerson.png")}
         />
-    
-     <Text style={styles.title}> Let's save your files {firstName} !</Text> 
-       
-     
-
+    <View style={styles.card}>
+       <Card 
+      cardText={"Let's save your files"}
+      />
+     </View>
+     </View>
+     <View style={styles.categorieContainer}>
  <View style={styles.dashboardCat}>
   <Text style={styles.sectionTitle}>Global</Text>
       <View style={styles.section}>
@@ -131,7 +135,7 @@ const buttonConfigToolkit = useButtonConfig(navigation, 'toolkit');
           />
         ))}
       </View>
-
+</View>
 
 </View>
     
@@ -142,27 +146,109 @@ const buttonConfigToolkit = useButtonConfig(navigation, 'toolkit');
 
 const styles = StyleSheet.create({
   page: {
+     ...Platform.select({
+      ios: {
     width: "100%",
     flex: 1,
     backgroundColor: "#F8F4D7",
+    paddingTop:5,
   },
-
-
-    header: { 
-      ...Platform.select({
-      ios: {
-    marginTop: -70,
-    justifyContent: "center",
-  },
- android: {
-   marginTop: -40,
-    justifyContent: "center",
-
-        },
+   android: {
+    width: "100%",
+    flex: 1,
+    backgroundColor: "#F8F4D7",
+   paddingTop:5,
+          },
     }),
   },
+  
+  card:{
+   top:-60,
+  },
+
+    categorieContainer: {
+   ...Platform.select({
+      ios: {
+    top:-90,
+     
+  },
+    android: {
+    paddingBottom:-150,
+           },
+    }),
+  },
+  
+    section:{
+      ...Platform.select({
+      ios: {  
+    padding:4,
+    flexWrap:"wrap",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  android: {
+    flexWrap:"wrap",
+    flexDirection: "row",
+    paddingLeft:5,
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+     }),
+  },
+
+  sectionTitle:{
+   ...Platform.select({
+      ios: {
+
+  fontSize: 15,
+   color: "brown",
+  fontWeight: 'bold',
+ 
+
+},
+ android: {
+    marginTop:5,
+  fontSize: 15,
+   color: "brown",
+  fontWeight: 'bold',
+  marginBottom:5,
+  textAlign: "center", 
+},
+     }),
+  },
+
+AppButtonText:{
+    ...Platform.select({
+      ios: {
+  paddingBottom:5,
+},
+android: {
+  paddingBottom:15,
+  },
+     }),
+  },
 
 
+  title:{
+ ...Platform.select({
+      ios: {
+    textAlign: "center",
+    color: "#E0AA3E",
+    fontSize: 10,
+    fontWeight: "bold",
+  },
+
+      android: {
+    top: 20,
+    textAlign: "center",
+    color: "#E0AA3E",
+    fontSize: 15,
+    fontWeight: "bold",
+  }
+
+  }),
+  },  
 
 dashboardCat: {
         ...Platform.select({
@@ -170,10 +256,10 @@ dashboardCat: {
     flexWrap: "wrap",
     fontWeight: 'bold',
     flexDirection: "row",
-    justifyContent: "space-between",
-    paddingHorizontal: 6,
-    marginTop: 5,
-    alignItems: "center",
+    justifyContent: "center",
+    paddingHorizontal: 10,
+    marginTop: 55,
+    textAlign:"center",
   },
   
     android: {
@@ -194,6 +280,7 @@ dashboardCat: {
   dashboardTitle: {
      ...Platform.select({
       ios: {
+    top:-20,
     fontSize: 17,
     color: "brown",
     }, 
@@ -210,7 +297,7 @@ dashboardCat: {
       ...Platform.select({
       ios: {
     fontSize: 13,
-    paddingTop: 5,
+    paddingTop: -15,
     textAlign:"center"
   
   },
