@@ -14,14 +14,24 @@ import AppText from "../../../shared/components/uiApp/AppText";
 import {HomeNavLog} from "../../../screen/nav/UserNavLogin";
 import Screen2 from "../../../shared/components/Screen";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
-  function Download() {
+import { useGetIncomes } from '../../../shared/components/IncomExpenseComponent/GetIncome';
+import { useGetExpenses } from '../../../shared/components/IncomExpenseComponent/GetExpense';
+import AppButton from '../../../shared/components/uiApp/AppButton';
+import useButtonConfig from '../../../shared/components/uiApp/ButtonCategories'
   
-  const [storedIncomes, setStoredIncomes] = useState([]);// State to store data from AsyncStorage
-  const [storedExpenses, setStoredExpenses] = useState([]);// State to store data from AsyncStorage
-  const navigation = useNavigation();
 
-  useEffect(() => {
+function Download({route}) {
+  const { category= 'all' } = route.params;
+const navigation = useNavigation();
+const incomes = useGetIncomes(category);
+const expenses = useGetExpenses(category);
+const buttonConfigGlobal = useButtonConfig(navigation, 'global');
+const buttonConfigIncome = useButtonConfig(navigation, 'income');
+const buttonConfigExpense = useButtonConfig(navigation, 'expense');
+const buttonConfigToolkit = useButtonConfig(navigation, 'toolkit');
+
+
+      useEffect(() => {
     const fetchUserData = async () => {
       try {
         const jsonValue = await AsyncStorage.getItem('@storage_Key');
@@ -35,53 +45,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
     };
 
     fetchUserData();
+
   }, []);
-
-
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const jsonValue = await AsyncStorage.getItem('@storage_Key');
-        if (jsonValue != null) {
-          const user = JSON.parse(jsonValue);
-          setFirstName(user.firstName); // Update this line to use setFirstName
-        }
-          const incomes = await AsyncStorage.getItem('incomes');// Get data from AsyncStorage
-        if (incomes) {
-       const parsedIncomes = JSON.parse(incomes);// Parse data from AsyncStorage
-          setStoredIncomes(parsedIncomes.incomes); // Send data to the state
-               /*  console.log('parsedIncomes FrontEnd side ',parsedIncomes);   */
-        }
-         const expenses = await AsyncStorage.getItem('expenses');// Get data from AsyncStorage
-        if (expenses) {
-       const parsedExpenses = JSON.parse(expenses);// Parse data from AsyncStorage
-          setStoredExpenses(parsedExpenses.expenses); // Send data to the state
-               /*  console.log('parsedExpenses FrontEnd side ',parsedExpenses);   */
-        }
-      } catch (e) {
-        console.error("Failed to fetch user data from storage");
-      }
-    };
-
-    fetchUserData();
-   
-  }, []);
-
-    //get Date Today default
-    const dateToday = moment(new Date()).format("YYYYMMDD");
-    const yesterday = moment().subtract(1, "days");
-    const dateYesterday = moment(yesterday).format("YYYYMMDD");
-    const [formErrors, setFormErrors] = useState({
-      firstName: null,
-      lastName: null,
-    });
-
-    const [formData, setFormData] = useState({
-      firstName: "",
-      lastName: "",
-    });
-
-    //get Category when Clicked
     const [firstName, setFirstName] = useState("");
     const setSelectCategoryByName = (firstName) => {
       if (firstName === "All") {
@@ -98,6 +63,9 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
         /* console.log(payload); */
       }
     };
+
+    const calculateTotalIncomes = incomes.reduce((total, income) => total + Number(income.amount), 0);
+    const calculateTotalExpenses = expenses.reduce((total, expense) => total + Number(expense.amount), 0);
 
     return (
        <View style={styles.page}>
