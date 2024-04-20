@@ -75,13 +75,13 @@ const Settings = () => {
           <View style={styles.balanceContainer}>
             <AppText style= {{ flexDirection: 'row' }}>
                      <View>
-                <Text style={{ fontSize: 36, color:'blue', lineHeight: 59 }}>€</Text>
+                <Text style={{ fontSize: 36, color:'blue', lineHeight: 79 }}>€</Text>
                 </View>
                  <View>
-                <Text style={{ fontSize: 45, color:'dodgerblue', lineHeight:40}}>X</Text>
+                <Text style={{ fontSize: 45, color:'dodgerblue', lineHeight:70}}>X</Text>
                 </View>
                  <View>
-                <Text style={{ fontSize: 22, color:'blue', lineHeight: 41 }}>penses Manager</Text>
+                <Text style={{ fontSize: 22, color:'blue', lineHeight: 75 }}>penses Manager</Text>
                 
                 </View>
 
@@ -100,7 +100,9 @@ const Settings = () => {
                 <AppText style={{ color: "black", fontSize: 15, marginBottom: 10, marginLeft:17 }}>Email: {email}  </AppText>
 
             </View>
-    
+    <AppText  style={styles.CardNumber}>  
+                  4907 2024 1707 2778 1962
+                </AppText>
           </View>
 
         </LinearGradient>
@@ -138,14 +140,26 @@ const Settings = () => {
 }
 
 const styles = StyleSheet.create({
-  page: {
+   page: {
+     ...Platform.select({
+      ios: {
+    width: "100%",
     flex: 1,
     backgroundColor: "#F8F4D7",
+    marginTop: -25,
   },
-
+   android: {
+    width: "100%",
+    flex: 1,
+    backgroundColor: "#F8F4D7",
+    marginTop: -25,
+          },
+    }),
+  },
+  
   parentContainer: {
     flexDirection: "column",
-    marginTop:-30,
+    marginTop:-40,
     borderRadius: 10,
     borderWidth:0.2,
     borderColor: 'brown',
@@ -157,7 +171,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     paddingVertical:13,
-    width: "100%",
+    top:-10,
+    width: 300,
+    height:100,
   },
 
   simCard:{
@@ -165,7 +181,7 @@ const styles = StyleSheet.create({
     marginTop: -30,
     marginBottom: 0,
     borderRadius: 6,
-    marginLeft: -220,
+    marginLeft: -230,
     width: 40,
     height:30,
 
@@ -183,7 +199,23 @@ const styles = StyleSheet.create({
     color: "#E0AA3E",
     fontSize: 20,
     fontWeight: "bold",
-  }
+  },
+  CardNumber: {
+     ...Platform.select({
+      ios: {
+    position: "relative",
+    fontSize: 15,
+    left: -35,
+    color: "darkslateblue",
+  },
+   android: {
+    fontSize: 15,
+    left: -15,
+    color: "darkslateblue",
+   },
+  }),
+  },  
+  
   
 });
 
