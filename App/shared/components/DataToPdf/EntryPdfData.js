@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from "axios";
 
-const useEntryData = (entryType, subCategory) => {
+const useEntryData = (entryType, subCategory, startDate, endDate) => {
   const [entryData, setEntryData] = useState([]);
 
   useEffect(() => {
@@ -13,6 +13,12 @@ const useEntryData = (entryType, subCategory) => {
         if (subCategory) {
           url += `/${subCategory}`;
         }
+
+        // Ajouter la logique pour spécifier la plage de dates
+        if (startDate && endDate) {
+          url += `?start_date=${startDate}&end_date=${endDate}`;
+        }
+
         const { data } = await axios.get(
           url,
           {
@@ -33,7 +39,7 @@ const useEntryData = (entryType, subCategory) => {
     };
 
     fetchData();
-  }, [entryType, subCategory]);
+  }, [entryType, subCategory, startDate, endDate]);
 
   return entryData;
 };
