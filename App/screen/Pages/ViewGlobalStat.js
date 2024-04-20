@@ -35,7 +35,7 @@ import getIncomes from './ViewIncomes'; */
   return (
     <View style={styles.container} >
       <Text style={styles.titleExpense}>Expenses</Text>
-      <ShowLineChart/>
+            <ShowLineChart/>
         <View style={styles.dashboard}>
           <TouchableOpacity onPress={() => navigation.push("ViewCategorieStat")}>
             <Icon
@@ -63,11 +63,77 @@ import getIncomes from './ViewIncomes'; */
             <Text style={{ fontSize: 14, paddingTop: 5, textAlign:"center" }}>Month</Text>
           </TouchableOpacity>
      
+           <TouchableOpacity onPress={() => navigation.push("Forecast")}>
+            <Icon
+              name="chart-bar"
+              size={60}
+          
+            />
+            <Text style={{ fontSize: 14, paddingTop: 5, textAlign:"center" }}>Month</Text>
+          </TouchableOpacity>
  
+  <TouchableOpacity onPress={() => navigation.push("Forecast")}>
+            <Icon
+              name="chart-bar"
+              size={60}
+          
+            />
+            <Text style={{ fontSize: 14, paddingTop: 5, textAlign:"center" }}>Month</Text>
+          </TouchableOpacity>
         </View>
+
+     
+      
       
       <Text style={styles.titleIncome}>Incomes</Text>
-      <IncomeLineChart/>
+          <IncomeLineChart/>
+       <View style={styles.dashboard}>
+        
+          <TouchableOpacity onPress={() => navigation.push("ViewCategorieStat")}>
+            <Icon
+              name="chart-pie"
+              size={60}
+            />
+            <Text style={{ fontSize: 14, paddingTop: 5, textAlign:"center"}}>Category</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.push("ViewExpenses")}>
+            <Icon
+              name="chart-line"
+              size={60}
+        
+             
+            />
+            <Text style={{ fontSize: 14, paddingTop: 5, textAlign:"center" }}>Week</Text>
+          </TouchableOpacity>
+          
+         <TouchableOpacity onPress={() => navigation.push("Forecast")}>
+            <Icon
+              name="chart-bar"
+              size={60}
+          
+            />
+            <Text style={{ fontSize: 14, paddingTop: 5, textAlign:"center" }}>Month</Text>
+          </TouchableOpacity>
+     
+           <TouchableOpacity onPress={() => navigation.push("Forecast")}>
+            <Icon
+              name="chart-bar"
+              size={60}
+          
+            />
+            <Text style={{ fontSize: 14, paddingTop: 5, textAlign:"center" }}>Month</Text>
+          </TouchableOpacity>
+ 
+  <TouchableOpacity onPress={() => navigation.push("Forecast")}>
+            <Icon
+              name="chart-bar"
+              size={60}
+          
+            />
+            <Text style={{ fontSize: 14, paddingTop: 5, textAlign:"center" }}>Month</Text>
+          </TouchableOpacity>
+        </View>
+  
 
 
     
@@ -88,7 +154,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     paddingHorizontal: 19,
-    paddingVertical: 30,
+     marginBottom: 50,
     marginLeft: 1,
     alignItems: "center",
   },
@@ -97,8 +163,8 @@ titleExpense: {
     fontSize: 20,
     fontWeight: "bold",
     textAlign: "center",
-    marginTop: 10,
-    marginBottom: 30,
+    marginTop: 0,
+    marginBottom: 10,
   
   },
 
@@ -108,7 +174,7 @@ titleExpense: {
     fontWeight: "bold",
     textAlign: "center",
     marginTop: 0,
-    marginBottom: 30,
+    marginBottom: 20,
   },
     
 
