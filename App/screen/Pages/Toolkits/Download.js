@@ -79,10 +79,7 @@ function Download({ route }) {
             {renderButtons(buttonConfigExpense)}
           </View>
 
-          <Text style={styles.sectionTitle}>Toolkit</Text>
-          <View style={styles.buttonContainer}>
-            {renderButtons(buttonConfigToolkit)}
-          </View>
+          
         </View>
       </View>
     </SafeAreaView>
@@ -103,7 +100,7 @@ const styles = StyleSheet.create({
   },
   card: {
     flex: 2,
-    top: -200,
+    top: -160,
     height: 170,
     left:5,
   },
