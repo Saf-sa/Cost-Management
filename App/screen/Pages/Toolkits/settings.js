@@ -75,13 +75,13 @@ const Settings = () => {
           <View style={styles.balanceContainer}>
             <AppText style= {{ flexDirection: 'row' }}>
                      <View>
-                <Text style={{ fontSize: 36, color:'blue', lineHeight: 35 }}>€</Text>
+                <Text style={{ fontSize: 36, color:'blue', lineHeight: 59 }}>€</Text>
                 </View>
                  <View>
-                <Text style={{ fontSize: 45, color:'dodgerblue', lineHeight:45}}>X</Text>
+                <Text style={{ fontSize: 45, color:'dodgerblue', lineHeight:40}}>X</Text>
                 </View>
                  <View>
-                <Text style={{ fontSize: 22, color:'midnightblue', lineHeight: 21 }}>penses Manager</Text>
+                <Text style={{ fontSize: 22, color:'blue', lineHeight: 41 }}>penses Manager</Text>
                 
                 </View>
 
