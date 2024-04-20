@@ -5,6 +5,8 @@ import { LinearGradient } from "expo-linear-gradient";
 import Card from '../../../shared/components/uiApp/Card';
 import AppText from "../../../shared/components/uiApp/AppText";
 import ResetLogin from '../../auth/reset';
+import Screen2 from "../../../shared/components/Screen";
+import {HomeNavLog} from "../../../screen/nav/UserNavLogin";
 
 const Calculator = () => {
   const [input, setInput] = useState("");
@@ -69,11 +71,16 @@ else {
    
    
     <SafeAreaView style={styles.container}>
-
+           <HomeNavLog style={styles.userNav}
+          image={require("../../../assets/iconPerson.png")}
+        />
+    
+ <View style={styles.page}>
+      
       <View style={styles.root}>
-             <Card
+             <Card  
       cardText={ " = "}      
-      result= {result}
+      result = {result }
       
       />
   
@@ -112,7 +119,7 @@ else {
         
         </View>
          </View>
-           
+           </View>
     </SafeAreaView>
   );
 };
@@ -120,13 +127,39 @@ else {
 export default Calculator;
 
 const styles = StyleSheet.create({
+   page: {
+    width: "100%",
+    flex: 1,
+    backgroundColor: "#F8F4D7",
+    top:-30,
+  },
   root:{
     fontSize:30,
+    /* backgroundColor: "#F8F4D7", */
   },
   container : {
     flex: 1,
-     backgroundColor: "#F8F4D7",
+    backgroundColor: "#F8F4D7",
+   
+     marginTop:-50,
+     marginLeft:5,
+     marginRight:5,
+   
   },
+      header: { 
+      ...Platform.select({
+      ios: {
+    justifyContent: "center",
+  },
+ android: {
+    justifyContent: "center",
+
+        },
+    }),
+  },
+userNav:{
+ 
+},
 
 resultContainer : {
     flex: 1,
@@ -197,19 +230,22 @@ InputText:{
 button: {
      ...Platform.select({
       ios: {
-  width: '22%',
-  height: '28%',
+
+  width: '20%',
+  height: '34%',
   alignItems: 'center',
   justifyContent: 'center',
+  left:15,
   margin: 6,
+  padding:5,
   fontSize: 24,
   borderWidth:0.2,
   borderColor: 'lightGrey',
   borderRadius: 10,
 },
 android: {
-  width: '21%',
-  height: '20%',
+  width: '25%',
+  height: '25%',
   alignItems: 'center',
   justifyContent: 'center',
   margin: 7,
