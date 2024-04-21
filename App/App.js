@@ -197,7 +197,7 @@ export default function App() {
         <Stack.Screen name="ContactForm" component={ContactForm} />
         <Stack.Screen name="AboutUs" component={AboutUs} />
         <Stack.Screen name="AddAgenda" component={AddAgenda} />
-         <Stack.Screen name="SelectDownload" component={SelectDownload} />
+         <Stack.Screen name="SelectDownload" component={SelectDownload}/>
         <Stack.Screen name="ViewGlobalStat" initialParams={{category:'all'}} component={ViewGlobalStat} />
         <Stack.Screen name="ViewCategorieStat" initialParams={{category:'all'}} component={ViewCategorieStat} />  
       </Stack.Navigator>
