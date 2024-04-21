@@ -35,14 +35,11 @@ let index = 1;// index for scrollview
       >
          <View >
  <Screen2>
-           {/* Button Start */}
       
         <HomeNavLog 
-
-        
           image={require("../../assets/iconPerson.png")}
     /> 
-         <View style={styles.viewExpenseButton}>
+         <View style={styles.viewIncomesButton}>
         <SendButton
           onPress={() => navigation.navigate("MyExpenses")}
           style={styles.button}
@@ -78,29 +75,17 @@ let index = 1;// index for scrollview
 const styles = StyleSheet.create({
     page: {
     flex: 1,
-    left:-10,
-     width: "100%",
-
-     
-     
-backgroundColor: "#F8F4D7",
-  },
-
-
+  backgroundColor: "#F8F4D7",
+    },
   incomeContainer: {
     marginTop: 20,
-    width: "90%",
+    width: "100%",
     borderWidth: 1,
     borderColor: "#E0AA3E",
     borderRadius: 10,
     padding: 12,
-
-    
-
-    
   },
   row: {
-    
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginBottom: 8
@@ -117,14 +102,14 @@ backgroundColor: "#F8F4D7",
       fontWeight: "bold",
       fontSize: 20,
       textAlign: "center",
-      top: 70,
+      top: -60,
     },
       viewIncomesButton: {
     position: "absolute",
     alignSelf: "center",
     alignItems  : "center",
     marginTop: 110,
-  },
-});
+  },}
+);
 
 export default ViewIncomes;
