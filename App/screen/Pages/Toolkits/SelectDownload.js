@@ -2,7 +2,7 @@ import React, { useState, } from "react";
 import { View, Text, StyleSheet, TextInput, ScrollView } from "react-native";
 import Toast from "react-native-toast-message";
 import { useNavigation } from "@react-navigation/native";
-import CustomInputSingup from "../../../shared/components/ui/CustomInputSignup";
+import Card from "../../../shared/components/uiApp/Card";
 import SendButton from '../../../shared/components/uiApp/AppSendButton'
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import moment from "moment";
@@ -223,6 +223,7 @@ console.log("formData", formData);
 
   return (
     <View style={styles.root}>
+      <Card/>
          {<View style={styles.AgendaButton}>
       <SendButton
         onPress={handleSubmit}
@@ -353,7 +354,7 @@ const styles = StyleSheet.create({
   AgendaButton: {
     position: "absolute",
     alignSelf: "center",
-    marginTop: 30,
+    marginTop: 250,
   },
   
 });
