@@ -39,20 +39,7 @@ const SelectDownloadExpense= () => {
   });
   
   
-   const subCategories = category === 'incomes' ?
-    [
-      "All",
-      "Salary",
-      "Bonus",
-      "Loan",
-      "Sales",
-      "Gift",
-      "Rent",
-      "Allowance",
-      "Refund",
-      "Stocks",
-      "Other"
-    ] :
+   const subCategories =
     [
       "All",
       "Clothe",
@@ -154,7 +141,7 @@ const handleChange = (value, fieldName) => {
     startDate: selectedStartDate,
     endDate: selectedEndDate,
     category: category,
-    SubCategory: subCategory,
+    subCategory: subCategory,
   
   };
 console.log("formData", formData);
@@ -186,7 +173,7 @@ console.log("formData", formData);
     if (!isValidSubCategory(formData.subCategory)) {
       updateError(
         "subCategory",
-        !isValidSubCategory(formData.subCategoryegory)
+        !isValidSubCategory(formData.subCategory)
           ? "Please choose a valid Sub Category"
           : null
       );
@@ -201,7 +188,7 @@ console.log("formData", formData);
      console.log("143 get user Token from storage_Key ", user); 
         console.log("144 response.data", user.id); 
       const response = await axios.post(
-        `http://localhost:5555/api/incomes`,
+        `http://localhost:5555/api/expenses`,
         formData,
         {
           headers: {
@@ -295,7 +282,7 @@ console.log("formData", formData);
             }}
             boxStyles={{ borderRadius: 8, borderColor: '#E0AA3E', height: 42, backgroundColor:'white' }}
           defaultOption={{ value: 'Sélectionner une catégorie' }}
-          data={['incomes', 'expense']}
+          data={['expense']}
           setSelected={handleChangeCategory}
         />
 
