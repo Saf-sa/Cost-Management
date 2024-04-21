@@ -10,12 +10,14 @@ import SendButton from "../../shared/components/uiApp/AppSendButton";
 import {HomeNavLog} from "../nav/UserNavLogin";
 import Screen2 from "../../shared/components/Screen";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useGetIncomes } from '../../shared/components/IncomExpenseComponent/GetIncome';
 
 import axios from "axios";
 
 
 
 const ViewIncomes = ({route}) => {
+  const incomes = useGetIncomes(category);
   const [storedIncomes, setStoredIncomes] = useState([]);// State to store data from AsyncStorage
   const navigation = useNavigation();// Navigation
 
@@ -62,13 +64,13 @@ const calculateTotalIncomes = storedIncomes.reduce((total, income) => total + Nu
 let index = 1;// index for scrollview
 
   return (// Display data from AsyncStorage
-     <ScrollView 
+   <ScrollView style={styles.page}
      keyboardDismissMode="on-drag"// to dismiss the keyboard when the user drags the scroll view
       onscroll={(evt) =>  (index++)}// to get the index of the scrollview
       onScrollBeginDrag={(evt) => (index++)}// to get the index of the scrollview
       >
-       <View style={styles.page} >  
-<Screen2 >
+         <View >
+ <Screen2>
            {/* Button Start */}
       
         <HomeNavLog 
@@ -76,18 +78,18 @@ let index = 1;// index for scrollview
         
           image={require("../../assets/iconPerson.png")}
     /> 
-     <View style={styles.viewIncomesButton}>
+         <View style={styles.viewExpenseButton}>
         <SendButton
-          onPress={() => navigation.navigate("MyIncomes")}
+          onPress={() => navigation.navigate("MyExpenses")}
           style={styles.button}
-          sendButtonText={"Add Income"}
+          sendButtonText={"Add Expense"}
       />
         </View>
-       
-        <Text style={styles.textAmount}>Total Incomes = + {calculateTotalIncomes} € </Text>
+
+       <Text style={styles.textAmount}>Total Incomes = - {calculateTotalIncomes} € </Text>
       
-    {storedIncomes.map((income, index) => (// Display data from AsyncStorage in a FlatList
-      /* console.log('storedIncomes ', storedIncomes), */
+    {incomes.map((income, index) => (// Display data from AsyncStorage in a FlatList
+      /* console.log('storedInocomes ', storedInocomes), */
       <View key={index} style={styles.incomeContainer}>
 
          
@@ -102,28 +104,39 @@ let index = 1;// index for scrollview
       </View>
        
     ))}
-    </Screen2>
+ </Screen2>
      </View>
   </ScrollView>
+     
   );
 };
 
 const styles = StyleSheet.create({
     page: {
     flex: 1,
+    left:-10,
+     width: "100%",
+
+     
+     
 backgroundColor: "#F8F4D7",
   },
+
+
   incomeContainer: {
     marginTop: 20,
-    width: "96%",
+    width: "90%",
     borderWidth: 1,
     borderColor: "#E0AA3E",
     borderRadius: 10,
     padding: 12,
 
     
+
+    
   },
   row: {
+    
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginBottom: 8
@@ -140,7 +153,7 @@ backgroundColor: "#F8F4D7",
       fontWeight: "bold",
       fontSize: 20,
       textAlign: "center",
-      top: -70,
+      top: 70,
     },
       viewIncomesButton: {
     position: "absolute",
