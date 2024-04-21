@@ -27,18 +27,11 @@ const ViewExpenses = ({route}) => {
 let index = 1;// index for scrollview
 
   return (// Display data from AsyncStorage
-     <ScrollView style={styles.page}
-     keyboardDismissMode="on-drag"// to dismiss the keyboard when the user drags the scroll view
-      onscroll={(evt) =>  (index++)}// to get the index of the scrollview
-      onScrollBeginDrag={(evt) => (index++)}// to get the index of the scrollview
-      >
-         <View >
- <Screen2>
-      
-        <HomeNavLog 
-
-          image={require("../../assets/iconPerson.png")}
-    /> 
+   <View style={styles.container}>
+  <View style={styles.nav}>
+   <HomeNavLog image={require("../../assets/iconPerson.png")}   /> 
+ 
+    </View>
          <View style={styles.viewExpenseButton}>
         <SendButton
           onPress={() => navigation.navigate("MyExpenses")}
@@ -46,14 +39,17 @@ let index = 1;// index for scrollview
           sendButtonText={"Add Expense"}
       />
         </View>
-
        <Text style={styles.textAmount}>Total Expenses = - {calculateTotalExpenses} € </Text>
       
+     <ScrollView 
+     keyboardDismissMode="on-drag"// to dismiss the keyboard when the user drags the scroll view
+      onscroll={(evt) =>  (index++)}// to get the index of the scrollview
+      onScrollBeginDrag={(evt) => (index++)}// to get the index of the scrollview
+      >
+        <Screen2>
     {expenses.map((expense, index) => (// Display data from AsyncStorage in a FlatList
       /* console.log('storedExpenses ', storedExpenses), */
-      <View key={index} style={styles.expenseContainer}>
-
-         
+      <View key={index} style={styles.expenseContainer}>    
         <View style={styles.row}>
           <Text>Date : {expense.date && !isNaN(Date.parse(expense.date)) ? new Date(expense.date).toISOString().split('T')[0] : 'Invalid date'}</Text>
           <Text>Categories : {expense.categories.join(', ')}</Text>
@@ -66,49 +62,58 @@ let index = 1;// index for scrollview
        
     ))}
     </Screen2>
+      </ScrollView>
     </View>
-  </ScrollView>
+
   );
 };
 
 const styles = StyleSheet.create({
-      page: {
+    container: {
     flex: 1,
-backgroundColor: "#F8F4D7",
+    height:20,
+    backgroundColor: "#F8F4D7",
+   marginTop: -50,
+   padding:5,
   },
+  scrollView: {
+   
+    flex: 1,
+  },
+  nav:{
+  top:-11,
+paddingLeft:10,
+paddingRight:10,
+
+},
   expenseContainer: {
-    marginTop: 20,
+      top:58,
+    marginBottom: 10,
     width: "100%",
+    height:"90",
     borderWidth: 1,
     borderColor: "#E0AA3E",
     borderRadius: 10,
-    padding: 12,
+    padding: 10,
   },
 
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingBottom: 8,
+    padding:2,
   },
-
-    textButton:{
-      color: "#E0AA3E",
-      fontWeight: "bold",
-      fontSize: 15,
-      textAlign: "center",
-    },
     textAmount:{
       color: "red",
       fontWeight: "bold",
       fontSize: 20,
       textAlign: "center",
-      top: -60,
+      marginTop: -20,
     },
      viewExpenseButton: {
       position: "absolute",
       alignSelf: "center",
       alignItems  : "center",
-      marginTop: 110,
+      marginTop: 70,
   },
 });
 

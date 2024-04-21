@@ -78,8 +78,7 @@ paddingRight:10,
 
 },
   incomeContainer: {
-  top:58,
-    
+    top:58,
     marginBottom: 10,
     width: "100%",
     height:"90",
@@ -88,9 +87,11 @@ paddingRight:10,
     borderRadius: 10,
     padding: 10,
   },
+
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    padding:2,
   },
   textAmount: {
     color: "green",
