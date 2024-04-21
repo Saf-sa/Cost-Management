@@ -36,33 +36,21 @@ all.sort((a, b) => new Date(a.date) - new Date(b.date));
   let index = 1;// index for scrollview
 
   return (// Display data from AsyncStorage
+  <View style={styles.container}>
+    <View style={styles.nav}>
+         <HomeNavLog image={require("../../assets/iconPerson.png")} /> 
+    </View>
+   <Text style={{
+    color: calculateTotalIncomes - calculateTotalExpenses >= 0 ?  "green" : "red",
+    fontSize: 20, marginTop: -60, textAlign: "center", marginBottom: 10}}>Balance = { calculateTotalIncomes - calculateTotalExpenses >= 0 ? `+${calculateTotalIncomes - calculateTotalExpenses}` : `${calculateTotalIncomes - calculateTotalExpenses}` } € 
+</Text>
      <ScrollView
      keyboardDismissMode="on-drag"// to dismiss the keyboard when the user drags the scroll view
       onscroll={(evt) =>  (index++)}// to get the index of the scrollview
       onScrollBeginDrag={(evt) => (index++)}// to get the index of the scrollview
       >
-          <View style={styles.page}>
- <Screen2 style={styles.nav}>
-           {/* Button Start */}
-      
-        <HomeNavLog 
-
-        
-          image={require("../../assets/iconPerson.png")}
-    /> 
-    
-   
-       
-      <AppText
-  style={{
-    color: calculateTotalIncomes - calculateTotalExpenses >= 0 ?  "green" : "red",
-    fontSize: 25, top: -70,
-    
-  }}
->
- Balance = { calculateTotalIncomes - calculateTotalExpenses >= 0 ? `+${calculateTotalIncomes - calculateTotalExpenses}` : `${calculateTotalIncomes - calculateTotalExpenses}` } € 
-</AppText>
-
+         
+       <Screen2>
 
 {all.map((item, index) => (
   <View key={index} style={styles.expenseContainer}>
@@ -77,37 +65,44 @@ all.sort((a, b) => new Date(a.date) - new Date(b.date));
   </View>
 ))}
     </Screen2>
-    </View>
   </ScrollView>
+    </View>
   );
   };
 
 const styles = StyleSheet.create({
-   page: {
+   container: {
     flex: 1,
+    height:20,
     backgroundColor: "#F8F4D7",
+   marginTop: -50,
+
+ 
+
   },
 
-  nav: {
-    flex: 1,
-    backgroundColor: "#F8F4D7",
-   top: 10,
-  },
+  nav:{
+  top:-11,
+paddingLeft:10,
+paddingRight:10,
+
+},
 
   expenseContainer: {
     marginTop: -30,
-    width: "96%",
+    width: "100%",
     borderWidth: 1,
     borderColor: "#E0AA3E",
     borderRadius: 10,
     padding: 12,
     marginBottom: 40,
-   
+    
   },
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingBottom: 8,
+    
   },
 
   textLabel: {

@@ -75,11 +75,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#F8F4D7",
    marginTop: -50,
    padding:5,
-  },
-  scrollView: {
+     
    
-    flex: 1,
+   
   },
+
   nav:{
   top:-11,
 paddingLeft:10,
@@ -95,12 +95,16 @@ paddingRight:10,
     borderColor: "#E0AA3E",
     borderRadius: 10,
     padding: 10,
+    justifyContent: 'center',
+   
   },
 
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems:"center",
     padding:2,
+
   },
     textAmount:{
       color: "red",
