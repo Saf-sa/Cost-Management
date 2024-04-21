@@ -275,6 +275,26 @@ console.log("formData", formData);
             label="duration"
              setSelected={(value) => handleChange(value, "renewal")}
             data={[
+               "incomes",
+               "expense",
+            ]}
+            save="value"
+            categories={"value"}
+            search={false}
+            errorMessage={formErrors.renewal}
+          />
+
+ <SelectList
+            dropdownStyles={{
+              borderColor: '#E0AA3E',
+              borderWidth: 1,
+              borderRadius: 6,
+            }}
+            boxStyles={{ borderRadius: 8, borderColor: '#E0AA3E', height: 40, backgroundColor:'white' }}
+            defaultOption={{ value: 'Select a renewal' }}
+            label="duration"
+             setSelected={(value) => handleChange(value, "renewal")}
+            data={[
                "expemses",
                "incomes",
                "historic",
@@ -285,31 +305,6 @@ console.log("formData", formData);
             categories={"value"}
             search={false}
             errorMessage={formErrors.renewal}
-          />
-
-          <CustomInputSingup
-            label="contract Name"
-            value={contractName}
-            onChangeText={(value) => handleChange(value, "contractName")}
-            placeholder="Name of your contract"
-            secure={false}
-            errorMessage={formErrors.contractName}
-          />
-          <CustomInputSingup
-            label="Label"
-            value={selectedLabel}
-            onChangeText={(value) => handleChange(value, "label")}
-            placeholder="Description of your Contract"
-            secure={false}
-            errorMessage={formErrors.label}
-          />
-                    <CustomInputSingup
-            label="email"
-            value={selectedEmail}
-            onChangeText={(value) => handleChange(value, "email")}
-            placeholder="Email of your Contract"
-            secure={false}
-            errorMessage={formErrors.email}
           />
         </ScrollView>
       </View>
