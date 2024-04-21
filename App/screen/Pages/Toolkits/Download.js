@@ -10,7 +10,7 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import AppButton from "../../../shared/components/uiApp/AppButton";
-import useButtonConfig from "../../../shared/components/uiApp/ButtonCategories";
+import useButtonConfig from "../../../shared/components/uiApp/ButtonDownload";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { HomeNavLog } from "../../../screen/nav/UserNavLogin";
 import Card from "../../../shared/components/uiApp/Card";
