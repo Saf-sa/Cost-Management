@@ -82,9 +82,9 @@ const styles = StyleSheet.create({
   },
 
   nav:{
-  top:-11,
-paddingLeft:10,
-paddingRight:10,
+  top:-6,
+paddingLeft:15,
+paddingRight:15,
 
 },
 
