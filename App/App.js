@@ -47,6 +47,7 @@ import ViewGlobalStat from "./screen/Pages/ViewGlobalStat";
 import ViewCategorieStat from "./screen/Pages/ViewCategorieStat";
 import AddAgenda from "./screen/Pages/Toolkits/AddAgenda";
 import SelectDownloadExpense from "./screen/Pages/Toolkits/SelectDownloadExpense"
+import SelectDownloadIncome from './screen/Pages/Toolkits/SelectDownloadIncome';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from 'axios';
 
@@ -197,7 +198,8 @@ export default function App() {
         <Stack.Screen name="ContactForm" component={ContactForm} />
         <Stack.Screen name="AboutUs" component={AboutUs} />
         <Stack.Screen name="AddAgenda" component={AddAgenda} />
-         <Stack.Screen name="SelectDownloadExpense" component={SelectDownloadExpense}/>
+        <Stack.Screen name="SelectDownloadExpense" component={SelectDownloadExpense}/>
+        <Stack.Screen name="SelectDownloadIncome" component={SelectDownloadIncome}/>
         <Stack.Screen name="ViewGlobalStat" initialParams={{category:'all'}} component={ViewGlobalStat} />
         <Stack.Screen name="ViewCategorieStat" initialParams={{category:'all'}} component={ViewCategorieStat} />  
       </Stack.Navigator>
