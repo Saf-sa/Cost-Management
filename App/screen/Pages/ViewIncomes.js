@@ -62,12 +62,12 @@ const calculateTotalIncomes = storedIncomes.reduce((total, income) => total + Nu
 let index = 1;// index for scrollview
 
   return (// Display data from AsyncStorage
-     <ScrollView style={styles.page}
+     <ScrollView 
      keyboardDismissMode="on-drag"// to dismiss the keyboard when the user drags the scroll view
       onscroll={(evt) =>  (index++)}// to get the index of the scrollview
       onScrollBeginDrag={(evt) => (index++)}// to get the index of the scrollview
       >
-       <View >  
+       <View style={styles.page} >  
 <Screen2 >
            {/* Button Start */}
       
