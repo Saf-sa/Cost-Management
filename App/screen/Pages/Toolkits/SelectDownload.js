@@ -10,50 +10,66 @@ import { SelectList } from 'react-native-dropdown-select-list';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from "axios";
 
-
-const isValidEmail = (email) => {
-  // Should contain @
-  const re = /\S+@\S+\.\S+/;
-  return re.test(email);
-};
-
 const isValidDate = (date) => {
   const regex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[012])\/(19|20)\d\d$/;
   return regex.test(date);
 };
 
-const isValidContractName= (contractName) => {
-  return contractName !== '';
+const isValidCategory= (category) => {
+  return category !== '';
 };
-const isValidLabel = (label) => {
-  return label !== '';
+const isValidSubCategory= (subCategory) => {
+  return subCategory !== '';
 };
-
-const isValidRenewal = (renewal) => {
-  return !isNaN(renewal);
-};
-
-
 
 const SelectDownload= () => {
-  const [selectedStartDate, setSelectedStartDate] = useState(new Date());
-  const [selectedEndDate, setSelectedEndDate] = useState(new Date());
+  const [selectedStartDate, setSelectedStartDate] = useState('');
+  const [selectedEndDate, setSelectedEndDate] = useState('');
   const [isStartDatePickerVisible, setStartDatePickerVisibility] = useState(false);
   const [isEndDatePickerVisible, setEndDatePickerVisibility] = useState(false); 
-  const [selectedEmail, setSelectedEmail] = useState("");
-  const [contractName, setContractName] = useState("");
-  const [selectedLabel, setSelectedLabel] = useState("");
-  const [selectedRenewal, setSelectedRenewal] = useState("");
+  const [category, setCategory] = useState('');
+  const [subCategory, setSubCategory] = useState('');
   const navigation = useNavigation();
   const [formErrors, setFormErrors] = useState({
     selectedStartDate: null,
     selectedEndDate: null,
-    contractName: null,
-    selectedEmail: null,
-    selectedLabel: null,
-    selectedRenewal: null,
+    selectedCategory: null,
+    selectedSubCategory: null,
+
   });
   
+  
+   const subCategories = category === 'incomes' ?
+    [
+      "All",
+      "Salary",
+      "Bonus",
+      "Loan",
+      "Sales",
+      "Gift",
+      "Rent",
+      "Allowance",
+      "Refund",
+      "Stocks",
+      "Other"
+    ] :
+    [
+      "All",
+      "Clothe",
+      "Food",
+      "Transport",
+      "Studie",
+      "Holiday",
+      "Tax",
+      "Hobbie",
+      "Epargne",
+      "Money",
+      "epargne",
+      "Other",
+    ];
+
+
+
 const showStartDatePicker = () => {
   setStartDatePickerVisibility(true);
 };
@@ -84,6 +100,36 @@ const handleConfirmEndDate = (date) => {
 };
 
 
+  const handleChangeCategory = (value) => {
+    setCategory(value);
+    // Réinitialisez la sous-catégorie lorsque la catégorie change
+    setSubCategory('');
+  };
+
+  const handleChangeSubCategory = (value) => {
+    setSubCategory(value);
+  };
+
+
+    const handleConfirm = (date) => {
+    hideDatePicker();
+    const formattedStartDate = moment(date).format("DD/MM/YYYY"); 
+    setSelectedStartDate(formattedDate);
+
+    const formattedEndDate = moment(date).format("DD/MM/YYYY"); 
+    setSelectedEndDate(formattedEndDate);
+
+  };
+    const showDatePicker = () => {
+    setStartDatePickerVisibility(true);
+    setEndDatePickerVisibility(true);
+  };
+
+  const hideDatePicker = () => {
+    setStartDatePickerVisibility(false);
+    setEndDatePickerVisibility(false);
+  };
+
 const handleChange = (value, fieldName) => {
   switch (fieldName) {
     case "startDate":
@@ -92,17 +138,11 @@ const handleChange = (value, fieldName) => {
     case "endDate":
       setEndDate(value);
       break;
-    case "contractName":
-      setContractName(value);
+    case "category":
+      setCategory(value);
       break;
-    case "label":
-      setSelectedLabel(value);
-      break;
-    case "email":
-      setSelectedEmail(value);
-      break;
-    case "renewal":
-      setSelectedRenewal(value);
+    case "SubCategory":
+      setSubCategory(value);
       break;
       default: 
       break;
@@ -113,10 +153,9 @@ const handleChange = (value, fieldName) => {
   const formData = {
     startDate: selectedStartDate,
     endDate: selectedEndDate,
-    contractName: contractName,
-    label: selectedLabel,
-    email: selectedEmail,
-    renewal: selectedRenewal,
+    category: category,
+    SubCategory: subCategory,
+  
   };
 console.log("formData", formData);
  
@@ -135,41 +174,24 @@ console.log("formData", formData);
       );
     }
 
-    if (!isValidContractName(formData.contractName)) {
+    if (!isValidCategory(formData.category)) {
       updateError(
-        "contractName",
-        !isValidContractName(formData.contractName)
-          ? "Please choose a valid Contract name"
+        "category",
+        !isValidCategory(formData.category)
+          ? "Please choose a valid Category"
           : null
       );
     }
 
-    if (!isValidLabel(formData.label)) {
+    if (!isValidSubCategory(formData.subCategory)) {
       updateError(
-        "label",
-        !isValidLabel(formData.label)
-          ? "Please enter a label"
+        "subCategory",
+        !isValidSubCategory(formData.subCategoryegory)
+          ? "Please choose a valid Sub Category"
           : null
       );
     }
 
-    if (!isValidEmail(formData.email)) {
-      updateError(
-        "email",
-        !isValidEmail(formData.email)
-          ? "Please enter a valid email"
-          : null
-      );
-    }
-
-    if (!isValidRenewal(formData.renewal)) {
-      updateError(
-        "renewal",
-        !isValidRenewal(formData.renewal)
-        ? "Please enter a valid email"
-        : null
-      );
-    }
     console.log("formData", formData); 
   try {
         // Récupérer les données de l'utilisateur à partir de AsyncStorage
@@ -179,7 +201,7 @@ console.log("formData", formData);
      console.log("143 get user Token from storage_Key ", user); 
         console.log("144 response.data", user.id); 
       const response = await axios.post(
-        `http://localhost:5555/api/reminder`,
+        `http://localhost:5555/api/incomes`,
         formData,
         {
           headers: {
@@ -237,7 +259,7 @@ console.log("formData", formData);
          <TextInput
   style={styles.inputContainer}
   label="Start Date"
-  value={moment(selectedStartDate).format("DD/MM/YYYY")}
+ value={selectedStartDate}  
   placeholder="DD/MM/YYYY"
   secureTextEntry={false}
   onFocus={showStartDatePicker}
@@ -253,7 +275,7 @@ console.log("formData", formData);
 <TextInput
   style={styles.inputContainer}
   label="date"
-  value={moment(selectedEndDate).format("DD/MM/YYYY")} 
+  value={selectedEndDate}  
   placeholder="DD/MM/YYYY"
   secureTextEntry={false}
   onFocus={showEndDatePicker}
@@ -264,49 +286,32 @@ console.log("formData", formData);
   onConfirm={handleConfirmEndDate}
   onCancel={hideEndDatePicker}
 />
-          <Text style={styles.category}>Catégories</Text>
-          <SelectList
-            dropdownStyles={{
+ <Text style={styles.category}>Catégories</Text>
+        <SelectList
+         dropdownStyles={{
               borderColor: '#E0AA3E',
               borderWidth: 1,
               borderRadius: 6,
             }}
-            boxStyles={{ borderRadius: 8, borderColor: '#E0AA3E', height: 40, backgroundColor:'white' }}
-            defaultOption={{ value: 'Select a renewal' }}
-            label="duration"
-             setSelected={(value) => handleChange(value, "renewal")}
-            data={[
-               "incomes",
-               "expense",
-            ]}
-            save="value"
-            categories={"value"}
-            search={false}
-            errorMessage={formErrors.renewal}
-          />
+            boxStyles={{ borderRadius: 8, borderColor: '#E0AA3E', height: 42, backgroundColor:'white' }}
+          defaultOption={{ value: 'Sélectionner une catégorie' }}
+          data={['incomes', 'expense']}
+          setSelected={handleChangeCategory}
+        />
 
- <SelectList
-            dropdownStyles={{
+        <Text style={styles.category}>Sub-Catégories</Text>
+        <SelectList
+             dropdownStyles={{
               borderColor: '#E0AA3E',
               borderWidth: 1,
               borderRadius: 6,
             }}
-            boxStyles={{ borderRadius: 8, borderColor: '#E0AA3E', height: 40, backgroundColor:'white' }}
-            defaultOption={{ value: 'Select a renewal' }}
-            label="duration"
-             setSelected={(value) => handleChange(value, "renewal")}
-            data={[
-               "expemses",
-               "incomes",
-               "historic",
-               "statistic",
-               "forecast",
-            ]}
-            save="value"
-            categories={"value"}
-            search={false}
-            errorMessage={formErrors.renewal}
-          />
+        boxStyles={{ borderRadius: 8, borderColor: '#E0AA3E', height: 42, backgroundColor:'white' }}
+          defaultOption={{ value: 'Sélectionner une sous-catégorie' }}
+          data={subCategories}
+          setSelected={handleChangeSubCategory}
+        />
+
         </ScrollView>
       </View>
 
