@@ -22,7 +22,7 @@ const isValidSubCategory= (subCategory) => {
   return subCategory !== '';
 };
 
-const SelectDownload= () => {
+const SelectDownloadIncome= () => {
   const [selectedStartDate, setSelectedStartDate] = useState('');
   const [selectedEndDate, setSelectedEndDate] = useState('');
   const [isStartDatePickerVisible, setStartDatePickerVisibility] = useState(false);
@@ -39,21 +39,22 @@ const SelectDownload= () => {
   });
   
   
-   const subCategories = 
+   const subCategories =
     [
       "All",
-      "Clothe",
-      "Food",
-      "Transport",
-      "Studie",
-      "Holiday",
-      "Tax",
-      "Hobbie",
-      "Epargne",
-      "Money",
-      "epargne",
-      "Other",
-    ];
+      "Salary",
+      "Bonus",
+      "Loan",
+      "Sales",
+      "Gift",
+      "Rent",
+      "Allowance",
+      "Refund",
+      "Stocks",
+      "Other"
+    ] 
+    ;
+
 
 
 
@@ -282,7 +283,7 @@ console.log("formData", formData);
             }}
             boxStyles={{ borderRadius: 8, borderColor: '#E0AA3E', height: 42, backgroundColor:'white' }}
           defaultOption={{ value: 'Sélectionner une catégorie' }}
-          data={['expense']}
+          data={['incomes']}
           setSelected={handleChangeCategory}
         />
 
@@ -307,7 +308,7 @@ console.log("formData", formData);
   );
 };
 
-export default SelectDownload;
+export default SelectDownloadIncome;
 
 const styles = StyleSheet.create({
   root: {
