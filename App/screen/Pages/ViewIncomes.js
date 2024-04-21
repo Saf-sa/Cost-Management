@@ -1,115 +1,110 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-} from "react-native";
 import React, { useState, useEffect } from "react";
+import { View, Text, StyleSheet, ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import SendButton from "../../shared/components/uiApp/AppSendButton";
-import {HomeNavLog} from "../nav/UserNavLogin";
+import { HomeNavLog } from "../nav/UserNavLogin";
 import Screen2 from "../../shared/components/Screen";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useGetIncomes } from '../../shared/components/IncomExpenseComponent/GetIncome';
 
-
-
-const ViewIncomes = ({route}) => {
-  const { category= 'all' } = route.params;
+const ViewIncomes = ({ route }) => {
+  const { category = 'all' } = route.params;
   const incomes = useGetIncomes(category);
-  const navigation = useNavigation();// Navigation
+  const navigation = useNavigation(); // Navigation
 
-      useEffect(() => {
+  useEffect(() => {
     // Call the function to get data from useGetIncomes
   }, []);
- const calculateTotalIncomes = incomes.reduce((total, income) => total + Number(income.amount), 0);
 
+  const calculateTotalIncomes = incomes.reduce((total, income) => total + Number(income.amount), 0);
 
-let index = 1;// index for scrollview
-
-  return (// Display data from AsyncStorage
-   <ScrollView style={styles.page}
-     keyboardDismissMode="on-drag"// to dismiss the keyboard when the user drags the scroll view
-      onscroll={(evt) =>  (index++)}// to get the index of the scrollview
-      onScrollBeginDrag={(evt) => (index++)}// to get the index of the scrollview
+  return (
+    <View style={styles.container}>
+<View style={styles.nav}>
+        <HomeNavLog image={require("../../assets/iconPerson.png")} />
+</View>
+              <View style={styles.viewIncomesButton}>
+            <SendButton
+              onPress={() => navigation.navigate("MyExpenses")}
+              style={styles.button}
+              sendButtonText={"Add Expense"}
+            />
+          </View>
+           
+         <Text style={styles.textAmount}>Total Incomes = - {calculateTotalIncomes} € </Text>
+  
+      <ScrollView
+        style={styles.scrollView}
+        keyboardDismissMode="on-drag"
+        // onScroll={(evt) =>  (index++)} // No need for this event
+        // onScrollBeginDrag={(evt) => (index++)} // No need for this event
       >
-         <View >
- <Screen2>
-      
-        <HomeNavLog 
-          image={require("../../assets/iconPerson.png")}
-    /> 
-         <View style={styles.viewIncomesButton}>
-        <SendButton
-          onPress={() => navigation.navigate("MyExpenses")}
-          style={styles.button}
-          sendButtonText={"Add Expense"}
-      />
-        </View>
-
-       <Text style={styles.textAmount}>Total Incomes = - {calculateTotalIncomes} € </Text>
-      
-    {incomes.map((income, index) => (// Display data from AsyncStorage in a FlatList
-      /* console.log('storedInocomes ', storedInocomes), */
-      <View key={index} style={styles.incomeContainer}>
-
-         
-        <View style={styles.row}>
-          <Text>Date : {income.date && !isNaN(Date.parse(income.date)) ? new Date(income.date).toISOString().split('T')[0] : 'Invalid date'}</Text>
-          <Text>Categories : {income.categories.join(', ')}</Text>
-        </View>
-        <View style={styles.row}>
-          <Text>Label : {income.label}</Text>
-          <Text style={{ color: "green"}}>Amount = + {income.amount}</Text>
-        </View>
-      </View>
-       
-    ))}
- </Screen2>
-     </View>
-  </ScrollView>
-     
+        <Screen2>
+        
+          {incomes.map((income, index) => (
+            <View key={index} style={styles.incomeContainer}>
+              <View style={styles.row}>
+                <Text>Date : {income.date && !isNaN(Date.parse(income.date)) ? new Date(income.date).toISOString().split('T')[0] : 'Invalid date'}</Text>
+                <Text>Categories : {income.categories.join(', ')}</Text>
+              </View>
+              <View style={styles.row}>
+                <Text>Label : {income.label}</Text>
+                <Text style={{ color: "green" }}>Amount = + {income.amount}</Text>
+              </View>
+            </View>
+          ))}
+        </Screen2>
+      </ScrollView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-    page: {
+  container: {
     flex: 1,
-  backgroundColor: "#F8F4D7",
-    },
+    height:20,
+    backgroundColor: "#F8F4D7",
+   marginTop: -50,
+   padding:5,
+  },
+  scrollView: {
+   
+    flex: 1,
+  },
+nav:{
+  top:-11,
+paddingLeft:10,
+paddingRight:10,
+
+},
   incomeContainer: {
-    marginTop: 20,
+  top:58,
+    
+    marginBottom: 10,
     width: "100%",
+    height:"90",
     borderWidth: 1,
     borderColor: "#E0AA3E",
     borderRadius: 10,
-    padding: 12,
+    padding: 10,
   },
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 8
   },
-
-    textButton:{
-      color: "#E0AA3E",
-      fontWeight: "bold",
-      fontSize: 15,
-      textAlign: "center",
-    },
-      textAmount:{
-      color: "green",
-      fontWeight: "bold",
-      fontSize: 20,
-      textAlign: "center",
-      top: -60,
-    },
-      viewIncomesButton: {
+  textAmount: {
+    color: "green",
+    fontWeight: "bold",
+    fontSize: 20,
+    textAlign: "center",
+    marginTop: -20,
+  },
+  viewIncomesButton: {
     position: "absolute",
     alignSelf: "center",
-    alignItems  : "center",
-    marginTop: 110,
-  },}
-);
+    alignItems: "center",
+    marginTop: 70,
+  },
+});
 
 export default ViewIncomes;

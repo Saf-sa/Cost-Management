@@ -36,6 +36,7 @@ let index = 1;// index for scrollview
  <Screen2>
       
         <HomeNavLog 
+
           image={require("../../assets/iconPerson.png")}
     /> 
          <View style={styles.viewExpenseButton}>
