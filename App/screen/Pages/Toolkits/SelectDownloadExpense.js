@@ -30,10 +30,15 @@ const SelectDownloadExpense = ({ route }) => {
     selectedStartDate: null,
     selectedEndDate: null,
   });
+ console.log("getExpenses before submit", expenses);
+
+ 
 
     const handleGeneratePDF = () => {
     generatePDF(expenses);
   };
+
+      
 
   const handleSubmit = () => {
     // Filtrer les dépenses en fonction des dates sélectionnées
@@ -42,6 +47,7 @@ const SelectDownloadExpense = ({ route }) => {
       const startDate = moment(selectedStartDate, 'DD/MM/YYYY');
       const endDate = moment(selectedEndDate, 'DD/MM/YYYY');
       return expenseDate.isBetween(startDate, endDate, null, '[]');
+      
     });
 
     // Utilisez les données filtrées pour créer le PDF ou effectuer d'autres opérations nécessaires
