@@ -19,6 +19,8 @@ const SelectDownloadExpense= ({ route }) => {
   const expenses = useGetExpenses(category);
   const [selectedStartDate, setSelectedStartDate] = useState('');
   const [selectedEndDate, setSelectedEndDate] = useState('');
+  const [isStartDatePickerVisible, setStartDatePickerVisibility] = useState(false);
+  const [isEndDatePickerVisible, setEndDatePickerVisibility] = useState(false); 
   const navigation = useNavigation();
   const [formErrors, setFormErrors] = useState({
     selectedStartDate: null,
@@ -40,6 +42,65 @@ const SelectDownloadExpense= ({ route }) => {
     // Vous pouvez ajouter ici la logique pour créer le PDF avec les dépenses filtrées
   };
 
+const showStartDatePicker = () => {
+  setStartDatePickerVisibility(true);
+};
+
+const hideStartDatePicker = () => {
+  setStartDatePickerVisibility(false);
+};
+
+const showEndDatePicker = () => {
+  setEndDatePickerVisibility(true);
+};
+
+const hideEndDatePicker = () => {
+  setEndDatePickerVisibility(false);
+};
+const handleConfirmStartDate = (date) => {
+  hideStartDatePicker();
+  const formattedStartDate = moment(date).format("DD/MM/YYYY"); // Formatage en DD/MM/YYYY
+  setSelectedStartDate(formattedStartDate);
+  console.log("formattedStartDate", formattedStartDate);
+};
+
+const handleConfirmEndDate = (date) => {
+  hideEndDatePicker();
+  const formattedEndDate = moment(date).format("DD/MM/YYYY"); // Formatage en DD/MM/YYYY
+  setSelectedEndDate(formattedEndDate);
+  console.log("formattedEndeDate", formattedEndDate);
+};
+
+    const handleConfirm = (date) => {
+    hideDatePicker();
+    const formattedStartDate = moment(date).format("DD/MM/YYYY"); 
+    setSelectedStartDate(formattedDate);
+
+    const formattedEndDate = moment(date).format("DD/MM/YYYY"); 
+    setSelectedEndDate(formattedEndDate);
+
+  };
+    const showDatePicker = () => {
+    setStartDatePickerVisibility(true);
+    setEndDatePickerVisibility(true);
+  };
+
+  const hideDatePicker = () => {
+    setStartDatePickerVisibility(false);
+    setEndDatePickerVisibility(false);
+  };
+  const handleChange = (value, fieldName) => {
+  switch (fieldName) {
+    case "startDate":
+      setStartDate(value);
+      break;
+    case "endDate":
+      setEndDate(value);
+      break;
+    default: 
+      break;
+  }
+};
   return (
     <View style={styles.root}>
       <Card/>
@@ -52,9 +113,16 @@ const SelectDownloadExpense= ({ route }) => {
             value={selectedStartDate}
             placeholder="DD/MM/YYYY"
             secureTextEntry={false}
-            onFocus={() => setSelectedStartDate('')}
-            onChangeText={(text) => setSelectedStartDate(text)}
+            onFocus={showStartDatePicker}
+            
           />
+          <DateTimePickerModal
+            isVisible={isStartDatePickerVisible}
+            mode="date"
+            onConfirm={handleConfirmStartDate}
+            onCancel={hideStartDatePicker}
+            />
+
           <Text style={styles.category}>End Date</Text>
           <TextInput
             style={styles.inputContainer}
@@ -62,9 +130,14 @@ const SelectDownloadExpense= ({ route }) => {
             value={selectedEndDate}
             placeholder="DD/MM/YYYY"
             secureTextEntry={false}
-            onFocus={() => setSelectedEndDate('')}
-            onChangeText={(text) => setSelectedEndDate(text)}
+            onFocus={showEndDatePicker}
           />
+          <DateTimePickerModal
+            isVisible={isEndDatePickerVisible}
+            mode="date"
+            onConfirm={handleConfirmEndDate}
+            onCancel={hideEndDatePicker}
+/>
             <SendButton
         onPress={handleSubmit}
         style={styles.button}
