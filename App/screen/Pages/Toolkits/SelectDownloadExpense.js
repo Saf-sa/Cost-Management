@@ -20,7 +20,7 @@ const isValidDate = (date) => {
 const SelectDownloadExpense = ({ route }) => {
   const { category = 'all' } = route.params;
   const expenses = useGetExpenses(category);
-   const { pdfData, generatePDF } = usePDFGenerator();
+  const { pdfData, generatePDF } = usePDFGenerator();
   const [selectedStartDate, setSelectedStartDate] = useState('');
   const [selectedEndDate, setSelectedEndDate] = useState('');
   const [isStartDatePickerVisible, setStartDatePickerVisibility] = useState(false);
@@ -32,7 +32,8 @@ const SelectDownloadExpense = ({ route }) => {
   });
  console.log("getExpenses before submit", expenses);
 
- 
+ let filteredExpenses = expenses;
+ console.log("filteredExpenses :", filteredExpenses);
 
     const handleGeneratePDF = () => {
     generatePDF(expenses);
@@ -46,7 +47,11 @@ const SelectDownloadExpense = ({ route }) => {
       const expenseDate = moment(expense.date, 'DD/MM/YYYY');
       const startDate = moment(selectedStartDate, 'DD/MM/YYYY');
       const endDate = moment(selectedEndDate, 'DD/MM/YYYY');
-      return expenseDate.isBetween(startDate, endDate, null, '[]');
+      const label = moment(label);
+      const amount = moment(amount);
+      return expenseDate.isBetween(startDate, endDate, null, '[]' ) 
+      && expenseLabel.isBetween(label,null, '[]')
+       && expenseAmoount.isBetween(amount,null, '[]');
       
     });
 
