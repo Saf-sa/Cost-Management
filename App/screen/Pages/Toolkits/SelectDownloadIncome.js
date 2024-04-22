@@ -205,7 +205,7 @@ console.log("formData", formData);
       Toast.show({
         type: "success",
         position: "bottom",
-        text1: "Reminder created successfully",
+        text1: "Pdf Income created successfully",
         visibilityTime: 3000,
         autoHide: true,
       });
@@ -213,7 +213,7 @@ console.log("formData", formData);
         navigation.navigate("Dashboard");
       }, 3000);
     } catch (err) {
-     console.log("Test AddReminder", err.response); 
+     console.log("Test Income PDF", err.response); 
       Toast.show({
         type: "error",
         position: "bottom",
