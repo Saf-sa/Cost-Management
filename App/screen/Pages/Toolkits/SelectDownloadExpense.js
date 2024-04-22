@@ -9,6 +9,9 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
 import moment from "moment";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useGetExpenses } from "../../../shared/components/IncomExpenseComponent/GetExpense";
+import { PDFViewer } from "@react-pdf/renderer";
+import usePDFGenerator from "../../../shared/components/uiApp/PdfGenerator";
+
 
 const isValidDate = (date) => {
   const regex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[012])\/(19|20)\d\d$/;
