@@ -9,7 +9,7 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
 import moment from "moment";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useGetExpenses } from "../../../shared/components/IncomExpenseComponent/GetExpense";
-import { PDFViewer } from "@react-pdf/renderer";
+/* import { PDFViewer } from "@react-pdf/renderer"; */
 import usePDFGenerator from "../../../shared/components/uiApp/PdfGenerator";
 
 
