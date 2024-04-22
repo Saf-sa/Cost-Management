@@ -210,7 +210,7 @@ console.log("formData", formData);
         autoHide: true,
       });
       setTimeout(() => {
-        navigation.navigate("Dashboard");
+        navigation.navigate("Download");
       }, 3000);
     } catch (err) {
      console.log("Test Income PDF", err.response); 

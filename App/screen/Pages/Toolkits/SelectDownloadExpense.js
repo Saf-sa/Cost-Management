@@ -9,6 +9,7 @@ import moment from "moment";
 import { SelectList } from 'react-native-dropdown-select-list';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from "axios";
+import { useGetExpenses } from "../../../shared/components/IncomExpenseComponent/GetExpense";
 
 const isValidDate = (date) => {
   const regex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[012])\/(19|20)\d\d$/;
@@ -22,12 +23,14 @@ const isValidSubCategory= (subCategory) => {
   return subCategory !== '';
 };
 
-const SelectDownloadExpense= () => {
+const SelectDownloadExpense= (route) => {
+  const { category = 'all' } = route.params;
+const expenses = useGetExpenses(expenseCategory);
   const [selectedStartDate, setSelectedStartDate] = useState('');
   const [selectedEndDate, setSelectedEndDate] = useState('');
   const [isStartDatePickerVisible, setStartDatePickerVisibility] = useState(false);
   const [isEndDatePickerVisible, setEndDatePickerVisibility] = useState(false); 
-  const [category, setCategory] = useState('');
+  const [expenseCategory, setExpenseCategory] = useState('');
   const [subCategory, setSubCategory] = useState('');
   const navigation = useNavigation();
   const [formErrors, setFormErrors] = useState({
@@ -209,7 +212,7 @@ console.log("formData", formData);
         autoHide: true,
       });
       setTimeout(() => {
-        navigation.navigate("Dashboard");
+        navigation.navigate("Download");
       }, 3000);
     } catch (err) {
      console.log("Test Expense PDF", err.response); 
