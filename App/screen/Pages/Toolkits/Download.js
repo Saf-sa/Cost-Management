@@ -24,19 +24,7 @@ function Download({ route }) {
   const buttonConfigToolkit = useButtonConfig(navigation, "toolkit");
 
   useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const jsonValue = await AsyncStorage.getItem("@storage_Key");
-        if (jsonValue != null) {
-          const user = JSON.parse(jsonValue);
-          setFirstName(user.firstName); // Update this line to use setFirstName
-        }
-      } catch (e) {
-        console.error("Failed to fetch user data from storage");
-      }
-    };
-
-    fetchUserData();
+    // Call the function to get data from useGetIncomes
   }, []);
 
   const [firstName, setFirstName] = useState("");

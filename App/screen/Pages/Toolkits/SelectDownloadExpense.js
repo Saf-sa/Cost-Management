@@ -9,7 +9,6 @@ import moment from "moment";
 import { SelectList } from 'react-native-dropdown-select-list';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from "axios";
-import { useGetExpenses } from "../../../shared/components/IncomExpenseComponent/GetExpense";
 
 const isValidDate = (date) => {
   const regex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[012])\/(19|20)\d\d$/;
@@ -23,26 +22,23 @@ const isValidSubCategory= (subCategory) => {
   return subCategory !== '';
 };
 
-const SelectDownloadExpense= (route) => {
-  const { category = 'all' } = route.params;
-const expenses = useGetExpenses(expenseCategory);
+const SelectDownloadExpense= () => {
   const [selectedStartDate, setSelectedStartDate] = useState('');
   const [selectedEndDate, setSelectedEndDate] = useState('');
   const [isStartDatePickerVisible, setStartDatePickerVisibility] = useState(false);
   const [isEndDatePickerVisible, setEndDatePickerVisibility] = useState(false); 
-  const [expenseCategory, setExpenseCategory] = useState('');
-  const [subCategory, setSubCategory] = useState('');
+  const [category, setCategory] = useState('');
+/*   const [subCategory, setSubCategory] = useState(''); */
   const navigation = useNavigation();
   const [formErrors, setFormErrors] = useState({
     selectedStartDate: null,
     selectedEndDate: null,
     selectedCategory: null,
-    selectedSubCategory: null,
 
   });
   
   
-   const subCategories =
+   const categories =
     [
       "All",
       "Clothe",
@@ -93,12 +89,9 @@ const handleConfirmEndDate = (date) => {
   const handleChangeCategory = (value) => {
     setCategory(value);
     // Réinitialisez la sous-catégorie lorsque la catégorie change
-    setSubCategory('');
+
   };
 
-  const handleChangeSubCategory = (value) => {
-    setSubCategory(value);
-  };
 
 
     const handleConfirm = (date) => {
@@ -131,9 +124,6 @@ const handleChange = (value, fieldName) => {
     case "category":
       setCategory(value);
       break;
-    case "SubCategory":
-      setSubCategory(value);
-      break;
       default: 
       break;
   }
@@ -144,7 +134,6 @@ const handleChange = (value, fieldName) => {
     startDate: selectedStartDate,
     endDate: selectedEndDate,
     category: category,
-    subCategory: subCategory,
   
   };
 console.log("formData", formData);
@@ -169,15 +158,6 @@ console.log("formData", formData);
         "category",
         !isValidCategory(formData.category)
           ? "Please choose a valid Category"
-          : null
-      );
-    }
-
-    if (!isValidSubCategory(formData.subCategory)) {
-      updateError(
-        "subCategory",
-        !isValidSubCategory(formData.subCategory)
-          ? "Please choose a valid Sub Category"
           : null
       );
     }
@@ -212,7 +192,7 @@ console.log("formData", formData);
         autoHide: true,
       });
       setTimeout(() => {
-        navigation.navigate("Download");
+        navigation.navigate("Dashboard");
       }, 3000);
     } catch (err) {
      console.log("Test Expense PDF", err.response); 
@@ -276,20 +256,8 @@ console.log("formData", formData);
   onConfirm={handleConfirmEndDate}
   onCancel={hideEndDatePicker}
 />
- <Text style={styles.category}>Catégories</Text>
-        <SelectList
-         dropdownStyles={{
-              borderColor: '#E0AA3E',
-              borderWidth: 1,
-              borderRadius: 6,
-            }}
-            boxStyles={{ borderRadius: 8, borderColor: '#E0AA3E', height: 42, backgroundColor:'white' }}
-          defaultOption={{ value: 'Sélectionner une catégorie' }}
-          data={['expense']}
-          setSelected={handleChangeCategory}
-        />
 
-        <Text style={styles.category}>Sub-Catégories</Text>
+        <Text style={styles.category}>Catégories</Text>
         <SelectList
              dropdownStyles={{
               borderColor: '#E0AA3E',
@@ -297,9 +265,9 @@ console.log("formData", formData);
               borderRadius: 6,
             }}
         boxStyles={{ borderRadius: 8, borderColor: '#E0AA3E', height: 42, backgroundColor:'white' }}
-          defaultOption={{ value: 'Sélectionner une sous-catégorie' }}
-          data={subCategories}
-          setSelected={handleChangeSubCategory}
+          defaultOption={{ value: 'Sélectionner une catégorie' }}
+          data={categories}
+          setSelected={handleChangeCategory}
         />
 
         </ScrollView>

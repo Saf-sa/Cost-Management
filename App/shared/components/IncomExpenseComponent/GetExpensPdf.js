@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from "axios";
 
-export const useGetExpenses = (expenseCategory) => {
+export const useGetExpensesPdf = (expenseCategory) => {
   const [storedExpenses, setStoredExpenses] = useState([]);
 
   useEffect(() => {

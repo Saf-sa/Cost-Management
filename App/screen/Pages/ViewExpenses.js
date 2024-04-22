@@ -20,7 +20,7 @@ const ViewExpenses = ({route}) => {
  /*  console.log('category from ViewExpenses ', category); */
   
       useEffect(() => {
-    // Call the function to get data from useGetIncomes
+    // Call the function to get data from useGetExpenses
   }, []);
   const calculateTotalExpenses = expenses.reduce((total, expense) => total + Number(expense.amount), 0);
 

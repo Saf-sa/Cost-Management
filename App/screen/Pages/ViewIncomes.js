@@ -91,7 +91,7 @@ paddingRight:10,
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    padding:2,
+      padding:2,
   },
   textAmount: {
     color: "green",
