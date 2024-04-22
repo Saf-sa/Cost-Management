@@ -1,4 +1,4 @@
-import React, { useState, } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, TextInput, ScrollView } from "react-native";
 import Toast from "react-native-toast-message";
 import { useNavigation } from "@react-navigation/native";
@@ -6,273 +6,73 @@ import Card from "../../../shared/components/uiApp/Card";
 import SendButton from '../../../shared/components/uiApp/AppSendButton'
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import moment from "moment";
-import { SelectList } from 'react-native-dropdown-select-list';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import axios from "axios";
+import { useGetExpenses } from "../../../shared/components/IncomExpenseComponent/GetExpense";
 
 const isValidDate = (date) => {
   const regex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[012])\/(19|20)\d\d$/;
   return regex.test(date);
 };
 
-const isValidCategory= (category) => {
-  return category !== '';
-};
-const isValidSubCategory= (subCategory) => {
-  return subCategory !== '';
-};
-
-const SelectDownloadExpense= () => {
+const SelectDownloadExpense= ({ route }) => {
+  const { category = 'all' } = route.params;
+  const expenses = useGetExpenses(category);
   const [selectedStartDate, setSelectedStartDate] = useState('');
   const [selectedEndDate, setSelectedEndDate] = useState('');
-  const [isStartDatePickerVisible, setStartDatePickerVisibility] = useState(false);
-  const [isEndDatePickerVisible, setEndDatePickerVisibility] = useState(false); 
-  const [category, setCategory] = useState('');
-/*   const [subCategory, setSubCategory] = useState(''); */
   const navigation = useNavigation();
   const [formErrors, setFormErrors] = useState({
     selectedStartDate: null,
     selectedEndDate: null,
-    selectedCategory: null,
-
   });
-  
-  
-   const categories =
-    [
-      "All",
-      "Clothe",
-      "Food",
-      "Transport",
-      "Studie",
-      "Holiday",
-      "Tax",
-      "Hobbie",
-      "Epargne",
-      "Money",
-      "epargne",
-      "Other",
-    ];
 
+  const handleSubmit = () => {
+    // Filtrer les dépenses en fonction des dates sélectionnées
+    const filteredExpenses = expenses.filter(expense => {
+      const expenseDate = moment(expense.date, 'DD/MM/YYYY');
+      const startDate = moment(selectedStartDate, 'DD/MM/YYYY');
+      const endDate = moment(selectedEndDate, 'DD/MM/YYYY');
+      return expenseDate.isBetween(startDate, endDate, null, '[]');
+    });
 
+    // Utilisez les données filtrées pour créer le PDF ou effectuer d'autres opérations nécessaires
+    console.log("Dépenses filtrées :", filteredExpenses);
 
-const showStartDatePicker = () => {
-  setStartDatePickerVisibility(true);
-};
-
-const hideStartDatePicker = () => {
-  setStartDatePickerVisibility(false);
-};
-
-const showEndDatePicker = () => {
-  setEndDatePickerVisibility(true);
-};
-
-const hideEndDatePicker = () => {
-  setEndDatePickerVisibility(false);
-};
-const handleConfirmStartDate = (date) => {
-  hideStartDatePicker();
-  const formattedStartDate = moment(date).format("DD/MM/YYYY"); // Formatage en DD/MM/YYYY
-  setSelectedStartDate(formattedStartDate);
-  console.log("formattedStartDate", formattedStartDate);
-};
-
-const handleConfirmEndDate = (date) => {
-  hideEndDatePicker();
-  const formattedEndDate = moment(date).format("DD/MM/YYYY"); // Formatage en DD/MM/YYYY
-  setSelectedEndDate(formattedEndDate);
-  console.log("formattedEndeDate", formattedEndDate);
-};
-
-
-  const handleChangeCategory = (value) => {
-    setCategory(value);
-    // Réinitialisez la sous-catégorie lorsque la catégorie change
-
-  };
-
-
-
-    const handleConfirm = (date) => {
-    hideDatePicker();
-    const formattedStartDate = moment(date).format("DD/MM/YYYY"); 
-    setSelectedStartDate(formattedDate);
-
-    const formattedEndDate = moment(date).format("DD/MM/YYYY"); 
-    setSelectedEndDate(formattedEndDate);
-
-  };
-    const showDatePicker = () => {
-    setStartDatePickerVisibility(true);
-    setEndDatePickerVisibility(true);
-  };
-
-  const hideDatePicker = () => {
-    setStartDatePickerVisibility(false);
-    setEndDatePickerVisibility(false);
-  };
-
-const handleChange = (value, fieldName) => {
-  switch (fieldName) {
-    case "startDate":
-      setStartDate(value);
-      break;
-    case "endDate":
-      setEndDate(value);
-      break;
-    case "category":
-      setCategory(value);
-      break;
-      default: 
-      break;
-  }
-  console.log(fieldName, value);
-};
-  const handleSubmit = async () => {
-  const formData = {
-    startDate: selectedStartDate,
-    endDate: selectedEndDate,
-    category: category,
-  
-  };
-console.log("formData", formData);
- 
-
-    // Validation des champs
-    if (!isValidDate(formData.startDate)) {
-      updateError(
-        "startDate",
-        !isValidDate(formData.startDate) ? "Please enter a valid date" : null
-      );
-    }
-     if (!isValidDate(formData.endDate)) {
-      updateError(
-        "endDate",
-        !isValidDate(formData.endDate) ? "Please enter a valid date" : null
-      );
-    }
-
-    if (!isValidCategory(formData.category)) {
-      updateError(
-        "category",
-        !isValidCategory(formData.category)
-          ? "Please choose a valid Category"
-          : null
-      );
-    }
-
-    console.log("formData", formData); 
-  try {
-        // Récupérer les données de l'utilisateur à partir de AsyncStorage
-      const user = JSON.parse(await AsyncStorage.getItem("@storage_Key"));
-      // await AsyncStorage.setItem("@storage_Key", jsonValue);
-
-     console.log("143 get user Token from storage_Key ", user); 
-        console.log("144 response.data", user.id); 
-      const response = await axios.post(
-        `http://localhost:5555/api/expenses`,
-        formData,
-        {
-          headers: {
-            authorization: `Bearer ${user.token}` 
-          },
-        } 
-      );
-
-     
-      console.log('data send to BE',response.data); 
-      
-      
-      Toast.show({
-        type: "success",
-        position: "bottom",
-        text1: "Expense PDF created successfully",
-        visibilityTime: 3000,
-        autoHide: true,
-      });
-      setTimeout(() => {
-        navigation.navigate("Dashboard");
-      }, 3000);
-    } catch (err) {
-     console.log("Test Expense PDF", err.response); 
-      Toast.show({
-        type: "error",
-        position: "bottom",
-        text1: err.response.data.message,
-        visibilityTime: 3000,
-        autoHide: true,
-      });
-    }
-  };
-
-  const updateError = (type, errorMessage) => {
-    setFormErrors((prevFormErrors) => ({
-      ...prevFormErrors,
-      [type]: errorMessage,
-    }));
+    // Vous pouvez ajouter ici la logique pour créer le PDF avec les dépenses filtrées
   };
 
   return (
     <View style={styles.root}>
       <Card/>
-         {<View style={styles.AgendaButton}>
-      <SendButton
-        onPress={handleSubmit}
-        style={styles.button}
-        sendButtonText={"Create PDf"}
-      />
-</View>} 
       <View style={styles.content}>
         <ScrollView style={styles.scrollView}>
           <Text style={styles.category}>Start Date</Text>
-         <TextInput
-  style={styles.inputContainer}
-  label="Start Date"
- value={selectedStartDate}  
-  placeholder="DD/MM/YYYY"
-  secureTextEntry={false}
-  onFocus={showStartDatePicker}
-/>
-<DateTimePickerModal
-  isVisible={isStartDatePickerVisible}
-  mode="date"
-  onConfirm={handleConfirmStartDate}
-  onCancel={hideStartDatePicker}
-/>
-
-<Text style={styles.category}>End Date</Text>
-<TextInput
-  style={styles.inputContainer}
-  label="date"
-  value={selectedEndDate}  
-  placeholder="DD/MM/YYYY"
-  secureTextEntry={false}
-  onFocus={showEndDatePicker}
-/>
-<DateTimePickerModal
-  isVisible={isEndDatePickerVisible}
-  mode="date"
-  onConfirm={handleConfirmEndDate}
-  onCancel={hideEndDatePicker}
-/>
-
-        <Text style={styles.category}>Catégories</Text>
-        <SelectList
-             dropdownStyles={{
-              borderColor: '#E0AA3E',
-              borderWidth: 1,
-              borderRadius: 6,
-            }}
-        boxStyles={{ borderRadius: 8, borderColor: '#E0AA3E', height: 42, backgroundColor:'white' }}
-          defaultOption={{ value: 'Sélectionner une catégorie' }}
-          data={categories}
-          setSelected={handleChangeCategory}
-        />
-
+          <TextInput
+            style={styles.inputContainer}
+            label="Start Date"
+            value={selectedStartDate}
+            placeholder="DD/MM/YYYY"
+            secureTextEntry={false}
+            onFocus={() => setSelectedStartDate('')}
+            onChangeText={(text) => setSelectedStartDate(text)}
+          />
+          <Text style={styles.category}>End Date</Text>
+          <TextInput
+            style={styles.inputContainer}
+            label="End Date"
+            value={selectedEndDate}
+            placeholder="DD/MM/YYYY"
+            secureTextEntry={false}
+            onFocus={() => setSelectedEndDate('')}
+            onChangeText={(text) => setSelectedEndDate(text)}
+          />
+            <SendButton
+        onPress={handleSubmit}
+        style={styles.button}
+        sendButtonText={"Create PDF"}
+      />
         </ScrollView>
       </View>
-
+    
       <Toast />
     </View>
   );
@@ -301,23 +101,14 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 10,
   },
-  input: {
-    color: "#000",
-    flex: 1,
-  },
   category: {
     color: "#E0AA3E",
     fontSize: 18,
     fontWeight: "bold",
     marginBottom: 10,
   },
-  SelectList: {
-    marginBottom: 20,
-  },
-  AgendaButton: {
-    position: "absolute",
+  button: {
     alignSelf: "center",
-    marginTop: 250,
+    marginButton: 200,
   },
-  
 });
