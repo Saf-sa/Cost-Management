@@ -9,7 +9,6 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
 import moment from "moment";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useGetExpenses } from "../../../shared/components/IncomExpenseComponent/GetExpense";
-/* import { PDFViewer } from "@react-pdf/renderer"; */
 import usePDFGenerator from "../../../shared/components/uiApp/PdfGenerator";
 
 
@@ -21,6 +20,7 @@ const isValidDate = (date) => {
 const SelectDownloadExpense = ({ route }) => {
   const { category = 'all' } = route.params;
   const expenses = useGetExpenses(category);
+   const { pdfData, generatePDF } = usePDFGenerator();
   const [selectedStartDate, setSelectedStartDate] = useState('');
   const [selectedEndDate, setSelectedEndDate] = useState('');
   const [isStartDatePickerVisible, setStartDatePickerVisibility] = useState(false);
@@ -30,6 +30,10 @@ const SelectDownloadExpense = ({ route }) => {
     selectedStartDate: null,
     selectedEndDate: null,
   });
+
+    const handleGeneratePDF = () => {
+    generatePDF(expenses);
+  };
 
   const handleSubmit = () => {
     // Filtrer les dépenses en fonction des dates sélectionnées
@@ -138,11 +142,17 @@ const SelectDownloadExpense = ({ route }) => {
             onConfirm={handleConfirmEndDate}
             onCancel={hideEndDatePicker}
           />
-          <SendButton
-            onPress={handleSubmit}
-            style={styles.button}
-            sendButtonText={"Create PDF"}
-          />
+          {!pdfData && (
+        <SendButton onPress={handleGeneratePDF} 
+        sendButtonText={"Create PDF"}
+        style={styles.button}
+         />
+      )}
+      {pdfData && (
+        <PDFViewer style={{ flex: 1 }}>
+          <Document data={pdfData} />
+        </PDFViewer>
+      )}
         </ScrollView>
       </View>
       <Toast />
