@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, TextInput, ScrollView } from "react-native";
 import Toast from "react-native-toast-message";
@@ -14,7 +15,7 @@ const isValidDate = (date) => {
   return regex.test(date);
 };
 
-const SelectDownloadExpense= ({ route }) => {
+const SelectDownloadExpense = ({ route }) => {
   const { category = 'all' } = route.params;
   const expenses = useGetExpenses(category);
   const [selectedStartDate, setSelectedStartDate] = useState('');
@@ -39,68 +40,65 @@ const SelectDownloadExpense= ({ route }) => {
     // Utilisez les données filtrées pour créer le PDF ou effectuer d'autres opérations nécessaires
     console.log("Dépenses filtrées :", filteredExpenses);
 
-    // Vous pouvez ajouter ici la logique pour créer le PDF avec les dépenses filtrées
+    // Simuler la création du PDF (remplacez cette partie par votre logique de création de PDF réelle)
+    const isPdfCreatedSuccessfully = false; // Remplacez cela par votre logique réelle
+
+    if (isPdfCreatedSuccessfully) {
+      // Afficher un message de succès
+      Toast.show({
+        type: "success",
+        position: "bottom",
+        text1: "PDF Income created successfully",
+        visibilityTime: 3000,
+        autoHide: true,
+      });
+
+      // Rediriger vers la page de téléchargement après 3 secondes
+      setTimeout(() => {
+        navigation.navigate("Download");
+      }, 3000);
+    } else {
+      // Afficher un message d'erreur
+      Toast.show({
+        type: "error",
+        position: "bottom",
+        text1: "Error creating PDF Income",
+        visibilityTime: 3000,
+        autoHide: true,
+      });
+    }
   };
 
-const showStartDatePicker = () => {
-  setStartDatePickerVisibility(true);
-};
-
-const hideStartDatePicker = () => {
-  setStartDatePickerVisibility(false);
-};
-
-const showEndDatePicker = () => {
-  setEndDatePickerVisibility(true);
-};
-
-const hideEndDatePicker = () => {
-  setEndDatePickerVisibility(false);
-};
-const handleConfirmStartDate = (date) => {
-  hideStartDatePicker();
-  const formattedStartDate = moment(date).format("DD/MM/YYYY"); // Formatage en DD/MM/YYYY
-  setSelectedStartDate(formattedStartDate);
-  console.log("formattedStartDate", formattedStartDate);
-};
-
-const handleConfirmEndDate = (date) => {
-  hideEndDatePicker();
-  const formattedEndDate = moment(date).format("DD/MM/YYYY"); // Formatage en DD/MM/YYYY
-  setSelectedEndDate(formattedEndDate);
-  console.log("formattedEndeDate", formattedEndDate);
-};
-
-    const handleConfirm = (date) => {
-    hideDatePicker();
-    const formattedStartDate = moment(date).format("DD/MM/YYYY"); 
-    setSelectedStartDate(formattedDate);
-
-    const formattedEndDate = moment(date).format("DD/MM/YYYY"); 
-    setSelectedEndDate(formattedEndDate);
-
-  };
-    const showDatePicker = () => {
+  const showStartDatePicker = () => {
     setStartDatePickerVisibility(true);
+  };
+
+  const hideStartDatePicker = () => {
+    setStartDatePickerVisibility(false);
+  };
+
+  const showEndDatePicker = () => {
     setEndDatePickerVisibility(true);
   };
 
-  const hideDatePicker = () => {
-    setStartDatePickerVisibility(false);
+  const hideEndDatePicker = () => {
     setEndDatePickerVisibility(false);
   };
-  const handleChange = (value, fieldName) => {
-  switch (fieldName) {
-    case "startDate":
-      setStartDate(value);
-      break;
-    case "endDate":
-      setEndDate(value);
-      break;
-    default: 
-      break;
-  }
-};
+
+  const handleConfirmStartDate = (date) => {
+    hideStartDatePicker();
+    const formattedStartDate = moment(date).format("DD/MM/YYYY"); // Formatage en DD/MM/YYYY
+    setSelectedStartDate(formattedStartDate);
+    console.log("formattedStartDate", formattedStartDate);
+  };
+
+  const handleConfirmEndDate = (date) => {
+    hideEndDatePicker();
+    const formattedEndDate = moment(date).format("DD/MM/YYYY"); // Formatage en DD/MM/YYYY
+    setSelectedEndDate(formattedEndDate);
+    console.log("formattedEndeDate", formattedEndDate);
+  };
+
   return (
     <View style={styles.root}>
       <Card/>
@@ -114,14 +112,13 @@ const handleConfirmEndDate = (date) => {
             placeholder="DD/MM/YYYY"
             secureTextEntry={false}
             onFocus={showStartDatePicker}
-            
           />
           <DateTimePickerModal
             isVisible={isStartDatePickerVisible}
             mode="date"
             onConfirm={handleConfirmStartDate}
             onCancel={hideStartDatePicker}
-            />
+          />
 
           <Text style={styles.category}>End Date</Text>
           <TextInput
@@ -137,15 +134,14 @@ const handleConfirmEndDate = (date) => {
             mode="date"
             onConfirm={handleConfirmEndDate}
             onCancel={hideEndDatePicker}
-/>
-            <SendButton
-        onPress={handleSubmit}
-        style={styles.button}
-        sendButtonText={"Create PDF"}
-      />
+          />
+          <SendButton
+            onPress={handleSubmit}
+            style={styles.button}
+            sendButtonText={"Create PDF"}
+          />
         </ScrollView>
       </View>
-    
       <Toast />
     </View>
   );
