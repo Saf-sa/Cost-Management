@@ -20,8 +20,6 @@ const SelectDownloadIncome= (route) => {
   const [selectedStartDate, setSelectedStartDate] = useState('');
   const [selectedEndDate, setSelectedEndDate] = useState('');
   const [isStartDatePickerVisible, setStartDatePickerVisibility] = useState(false);
-  const [isEndDatePickerVisible, setEndDatePickerVisibility] = useState(false); 
-  const [subCategory, setSubCategory] = useState('');
   const navigation = useNavigation();
   const [formErrors, setFormErrors] = useState({
     selectedStartDate: null,
@@ -197,13 +195,8 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 10,
   },
-  SelectList: {
-    marginBottom: 20,
-  },
-  AgendaButton: {
-    position: "absolute",
+  button: {
     alignSelf: "center",
-    marginTop: 250,
+    marginButton: 200,
   },
-  
 });
