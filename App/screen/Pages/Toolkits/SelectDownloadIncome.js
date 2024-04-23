@@ -6,56 +6,50 @@ import Card from "../../../shared/components/uiApp/Card";
 import SendButton from '../../../shared/components/uiApp/AppSendButton'
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import moment from "moment";
-import { SelectList } from 'react-native-dropdown-select-list';
+import { useGetIncomes } from "../../../shared/components/IncomExpenseComponent/GetIncome";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import axios from "axios";
+
 
 const isValidDate = (date) => {
   const regex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[012])\/(19|20)\d\d$/;
   return regex.test(date);
 };
 
-const isValidCategory= (category) => {
-  return category !== '';
-};
-const isValidSubCategory= (subCategory) => {
-  return subCategory !== '';
-};
-
-const SelectDownloadIncome= () => {
+const SelectDownloadIncome= (route) => {
+  const { category = 'all' } = route.params;
+  const expenses = useGetIncomes(category);
   const [selectedStartDate, setSelectedStartDate] = useState('');
   const [selectedEndDate, setSelectedEndDate] = useState('');
   const [isStartDatePickerVisible, setStartDatePickerVisibility] = useState(false);
   const [isEndDatePickerVisible, setEndDatePickerVisibility] = useState(false); 
-  const [category, setCategory] = useState('');
   const [subCategory, setSubCategory] = useState('');
   const navigation = useNavigation();
   const [formErrors, setFormErrors] = useState({
     selectedStartDate: null,
     selectedEndDate: null,
-    selectedCategory: null,
-    selectedSubCategory: null,
-
   });
-  
-  
-   const subCategories =
-    [
-      "All",
-      "Salary",
-      "Bonus",
-      "Loan",
-      "Sales",
-      "Gift",
-      "Rent",
-      "Allowance",
-      "Refund",
-      "Stocks",
-      "Other"
-    ] 
-    ;
+   console.log("getIncomes before submit", incomes);
 
+   let filteredIncomes = incomes;
+ console.log("filteredExpenses :", filteredExpenses);
 
+    const handleGeneratePDF = () => {
+    generatePDF(incomes);
+  };
+
+  const handleSubmit = () => {
+    // Filtrer les dépenses en fonction des dates sélectionnées
+    const filteredIncomes = incomes.filter(income => {
+      const incomeDate = moment(income.date, 'DD/MM/YYYY');
+      const startDate = moment(selectedStartDate, 'DD/MM/YYYY');
+      const endDate = moment(selectedEndDate, 'DD/MM/YYYY');
+      const label = moment(label);
+      const amount = moment(amount);
+      return incomeDate.isBetween(startDate, endDate, null, '[]' ) 
+      && incomeLabel.isBetween(label,null, '[]')
+       && incomeAmoount.isBetween(amount,null, '[]');
+      
+    });
 
 
 const showStartDatePicker = () => {

@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { View, Text, StyleSheet, TextInput, ScrollView } from "react-native";
 import Toast from "react-native-toast-message";
 import { useNavigation } from "@react-navigation/native";
@@ -7,7 +7,6 @@ import Card from "../../../shared/components/uiApp/Card";
 import SendButton from '../../../shared/components/uiApp/AppSendButton'
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import moment from "moment";
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useGetExpenses } from "../../../shared/components/IncomExpenseComponent/GetExpense";
 import usePDFGenerator from "../../../shared/components/uiApp/PdfGenerator";
 
