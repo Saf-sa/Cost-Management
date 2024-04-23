@@ -50,6 +50,35 @@ const SelectDownloadIncome= (route) => {
        && incomeAmoount.isBetween(amount,null, '[]');
       
     });
+    console.log("Incomes filtrées :", filteredIncomes);
+ // Simuler la création du PDF (remplacez cette partie par votre logique de création de PDF réelle)
+    const isPdfCreatedSuccessfully = false; // Remplacez cela par votre logique réelle
+
+    if (isPdfCreatedSuccessfully) {
+      // Afficher un message de succès
+      Toast.show({
+        type: "success",
+        position: "bottom",
+        text1: "PDF Income created successfully",
+        visibilityTime: 3000,
+        autoHide: true,
+      });
+
+      // Rediriger vers la page de téléchargement après 3 secondes
+      setTimeout(() => {
+        navigation.navigate("Download");
+      }, 3000);
+    } else {
+      // Afficher un message d'erreur
+      Toast.show({
+        type: "error",
+        position: "bottom",
+        text1: "Error creating PDF Income",
+        visibilityTime: 3000,
+        autoHide: true,
+      });
+    }
+  };
 
 
 const showStartDatePicker = () => {
@@ -82,153 +111,10 @@ const handleConfirmEndDate = (date) => {
 };
 
 
-  const handleChangeCategory = (value) => {
-    setCategory(value);
-    // Réinitialisez la sous-catégorie lorsque la catégorie change
-    setSubCategory('');
-  };
-
-  const handleChangeSubCategory = (value) => {
-    setSubCategory(value);
-  };
-
-
-    const handleConfirm = (date) => {
-    hideDatePicker();
-    const formattedStartDate = moment(date).format("DD/MM/YYYY"); 
-    setSelectedStartDate(formattedDate);
-
-    const formattedEndDate = moment(date).format("DD/MM/YYYY"); 
-    setSelectedEndDate(formattedEndDate);
-
-  };
-    const showDatePicker = () => {
-    setStartDatePickerVisibility(true);
-    setEndDatePickerVisibility(true);
-  };
-
-  const hideDatePicker = () => {
-    setStartDatePickerVisibility(false);
-    setEndDatePickerVisibility(false);
-  };
-
-const handleChange = (value, fieldName) => {
-  switch (fieldName) {
-    case "startDate":
-      setStartDate(value);
-      break;
-    case "endDate":
-      setEndDate(value);
-      break;
-    case "category":
-      setCategory(value);
-      break;
-    case "SubCategory":
-      setSubCategory(value);
-      break;
-      default: 
-      break;
-  }
-  console.log(fieldName, value);
-};
-  const handleSubmit = async () => {
-  const formData = {
-    startDate: selectedStartDate,
-    endDate: selectedEndDate,
-    category: category,
-    SubCategory: subCategory,
-  
-  };
-console.log("formData", formData);
- 
-
-    // Validation des champs
-    if (!isValidDate(formData.startDate)) {
-      updateError(
-        "startDate",
-        !isValidDate(formData.startDate) ? "Please enter a valid date" : null
-      );
-    }
-     if (!isValidDate(formData.endDate)) {
-      updateError(
-        "endDate",
-        !isValidDate(formData.endDate) ? "Please enter a valid date" : null
-      );
-    }
-
-    if (!isValidCategory(formData.category)) {
-      updateError(
-        "category",
-        !isValidCategory(formData.category)
-          ? "Please choose a valid Category"
-          : null
-      );
-    }
-
-    if (!isValidSubCategory(formData.subCategory)) {
-      updateError(
-        "subCategory",
-        !isValidSubCategory(formData.subCategoryegory)
-          ? "Please choose a valid Sub Category"
-          : null
-      );
-    }
-
-    console.log("formData", formData); 
-  try {
-        // Récupérer les données de l'utilisateur à partir de AsyncStorage
-      const user = JSON.parse(await AsyncStorage.getItem("@storage_Key"));
-      // await AsyncStorage.setItem("@storage_Key", jsonValue);
-
-     console.log("143 get user Token from storage_Key ", user); 
-        console.log("144 response.data", user.id); 
-      const response = await axios.post(
-        `http://localhost:5555/api/incomes`,
-        formData,
-        {
-          headers: {
-            authorization: `Bearer ${user.token}` 
-          },
-        } 
-      );
-
-     
-      console.log('data send to BE',response.data); 
-      
-      
-      Toast.show({
-        type: "success",
-        position: "bottom",
-        text1: "Pdf Income created successfully",
-        visibilityTime: 3000,
-        autoHide: true,
-      });
-      setTimeout(() => {
-        navigation.navigate("Download");
-      }, 3000);
-    } catch (err) {
-     console.log("Test Income PDF", err.response); 
-      Toast.show({
-        type: "error",
-        position: "bottom",
-        text1: err.response.data.message,
-        visibilityTime: 3000,
-        autoHide: true,
-      });
-    }
-  };
-
-  const updateError = (type, errorMessage) => {
-    setFormErrors((prevFormErrors) => ({
-      ...prevFormErrors,
-      [type]: errorMessage,
-    }));
-  };
-
   return (
     <View style={styles.root}>
       <Card/>
-         {<View style={styles.AgendaButton}>
+         {<View style={styles.content}>
       <SendButton
         onPress={handleSubmit}
         style={styles.button}
