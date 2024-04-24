@@ -7,6 +7,7 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import {HomeNavLog} from "../../nav/UserNavLogin";
+import AppText from "../../../shared/components/uiApp/AppText";
 import Screen2 from "../../../shared/components/Screen";
 import Card from "../../../shared/components/uiApp/Card";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -63,8 +64,18 @@ const Settings = () => {
         <HomeNavLog 
           image={require("../../../assets/iconPerson.png")}
         />
+          <View style={styles.card}>
         <Card/>
-        
+         <View style={styles.UserContainer}>
+
+                <AppText style={{ color: "black", fontSize: 15, marginBottom: 10, marginLeft:-48}}>First Name : {firstName} </AppText>
+
+                <AppText style={{ color: "black", fontSize: 15, marginBottom: 10, marginLeft:-50  }}>  Last Name : {lastName}  </AppText>
+
+                <AppText style={{ color: "black", fontSize: 15, marginBottom: 10, marginLeft:17 }}>Email: {email}  </AppText>
+
+            </View>
+       
           <View 
             style={{
               flex: "culumn",
@@ -90,7 +101,7 @@ const Settings = () => {
         <Text  style={styles.settings}  onPress={() => navigation.navigate("ContactForm")} >
          Contact Us?
         </Text>
-
+       </View>
             </View>
          </Screen2>
          </View>
@@ -115,35 +126,16 @@ const styles = StyleSheet.create({
           },
     }),
   },
-  
-  parentContainer: {
-    flexDirection: "column",
-    marginTop:-40,
-    borderRadius: 10,
-    borderWidth:0.2,
-    borderColor: 'brown',
-    marginHorizontal: 50,
-    marginVertical: 0,
-  },
-  
-  balanceContainer: {
-    justifyContent: "center",
-    alignItems: "center",
-    paddingVertical:13,
-    top:-10,
-    width: 300,
-    height:100,
+    card:{
+    paddingTop:0,
+    margin:-15,
+    top:-30,
   },
 
-  simCard:{
-    position: "relative",
-    marginTop: -30,
-    marginBottom: 0,
-    borderRadius: 6,
-    marginLeft: -230,
-    width: 40,
-    height:30,
-
+   UserContainer:{
+    top:85,
+    left:120,
+    position:'absolute',
   },
 
   settings: {
@@ -159,22 +151,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
   },
-  CardNumber: {
-     ...Platform.select({
-      ios: {
-    position: "relative",
-    fontSize: 15,
-    left: -35,
-    color: "darkslateblue",
-  },
-   android: {
-    fontSize: 15,
-    left: -15,
-    color: "darkslateblue",
-   },
-  }),
-  },  
-  
   
 });
 

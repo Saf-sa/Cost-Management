@@ -6,7 +6,6 @@ import {
   Toast,
   useWindowDimensions,
 } from "react-native";
-
 import { useNavigation } from "@react-navigation/native";
 import AppText from "../../../shared/components/uiApp/AppText";
 import {HomeNavLog} from "../../nav/UserNavLogin";
@@ -163,14 +162,6 @@ const styles = StyleSheet.create({
     top:74,
     left:120,
     position:'absolute',
-  },
-
-  balanceContainer: {
-    top:10,
-    justifyContent: "center",
-    alignItems: "center",
-    paddingVertical: 0,
-    width: "100%",
   },
 
   card:{
