@@ -6,7 +6,7 @@ import {
   Toast,
   useWindowDimensions,
 } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
+
 import { useNavigation } from "@react-navigation/native";
 import AppText from "../../../shared/components/uiApp/AppText";
 import {HomeNavLog} from "../../nav/UserNavLogin";
@@ -14,15 +14,8 @@ import Screen2 from "../../../shared/components/Screen";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Card from "../../../shared/components/uiApp/Card";
 
-import axios from "axios";
-
-
-
 const Settings = () => {
-
   const navigation = useNavigation();
-
- 
       useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -42,7 +35,6 @@ const Settings = () => {
     fetchUserData();
   }, []);
 
-   
     const [formErrors, setFormErrors] = useState({
       firstName: null,
       lastName: null,
@@ -93,11 +85,9 @@ const Settings = () => {
       }
     };
 
-    
     //getDimension
     const { height, width } = useWindowDimensions();
     const [refreshing, setRefreshing] = useState(false);
-
 
   return (
     <View style={styles.page} >
@@ -105,8 +95,7 @@ const Settings = () => {
         <Text style={styles.title}> Get to know us better</Text> 
         <HomeNavLog 
           image={require("../../../assets/iconPerson.png")}
-   
-         
+
         />
         <View style={styles.card}>
         <Card/>
@@ -125,53 +114,6 @@ const Settings = () => {
             </View>
         </View>
       
-         {/*  <LinearGradient
-          style={styles.parentContainer}
-          colors={["#f9f295", "#E0AA3E", "#F7EF8A", "#B88A44"]}
-          start={{ x: 0.1, y: 0.1 }}
-          end={{ x: 1, y: 3 }}
-        >
-          <View style={styles.balanceContainer}>
-            <AppText style= {{ flexDirection: 'row' }}>
-                     <View>
-                <Text style={{ fontSize: 36, color:'blue', lineHeight: 34 }}>€</Text>
-                </View>
-                 <View>
-                <Text style={{ fontSize: 45, color:'dodgerblue', lineHeight:60}}>X</Text>
-                </View>
-                 <View>
-                <Text style={{ fontSize: 22, color:'blue', lineHeight: 62 }}>penses Manager</Text>
-                
-                </View>
-                <View>
-              
-                </View>
-
-            </AppText>
-            
-            
-            <AppText></AppText>
-          </View>
-          
-          <View style={styles.balanceContainer}>
-           
-              <View style={styles.UserContainer}>
-
-                <AppText style={{ color: "black", fontSize: 14, marginBottom: 5}}>Developper & Designer {firstName} {lastName} </AppText>
-                <AppText style={{ color: "black", fontSize: 14, marginBottom: 5}}> Teacher</AppText>
-
-                <AppText style={{ color: "black", fontSize: 12, marginBottom: 5  }}> Frontend & Javascript : Carlo Trimarchi </AppText>
-
-                <AppText style={{ color: "black", fontSize: 12, marginBottom: 5, marginLeft:40 }}> Backend : Ather Ahmad & Dilshod </AppText>
-
-                <AppText style={{ color: "black", fontSize: 12, marginBottom: 5 }}>Tutoring :  Ather Ahmad </AppText>
-
-                <AppText style={{ color: "black", fontSize: 12, marginBottom: 5 }}> Mentoring :Alkis Kastrisios </AppText>
-            </View>
-    
-          </View>
-
-        </LinearGradient> */}
         <View >
             <Text style={styles.text} >
             This App was developed for the 
@@ -200,30 +142,23 @@ A special thanks to my tutor Mr Ather Ahmad who supported me with patience and g
         I hope you'll enjoy
 
             </Text>
-
         </View>
-
-       
-      
 
         <Text  style={styles.settings}  onPress={() => navigation.navigate("ContactForm")} >
          
          Send a comment?
         </Text>
-
-            
          </Screen2>
          </View>
   )
 }
 
 const styles = StyleSheet.create({
-
   page: {
   flex: 1,
     backgroundColor: "#F8F4D7",
-   
   },
+  
   UserContainer:{
     top:74,
     left:120,
@@ -236,14 +171,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingVertical: 0,
     width: "100%",
-    
   },
+
   card:{
     paddingTop:0,
     margin:-15,
     top:-30,
-  
-
   },
 
   settings: {
@@ -262,8 +195,8 @@ const styles = StyleSheet.create({
      alignItems: "center",
     justifyContent: "center",
     padding: 20,
-
   },
+
   title:{
     top: 90,
     textAlign: "center",
@@ -271,7 +204,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
   }
-  
 });
 
 export default Settings;
