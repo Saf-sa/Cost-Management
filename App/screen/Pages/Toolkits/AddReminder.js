@@ -8,6 +8,7 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
 import moment from "moment";
 import { SelectList } from 'react-native-dropdown-select-list';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Card from "../../../shared/components/uiApp/Card";
 import axios from "axios";
 
 const isValidEmail = (email) => {
@@ -224,6 +225,9 @@ console.log("formData", formData);
     <View style={styles.root}>
       <View style={styles.content}>
         <ScrollView style={styles.scrollView}>
+          <Card
+          cardText={'Add a new Reminder'}
+          />
           <Text style={styles.category}>Start Date</Text>
          <TextInput
   style={styles.inputContainer}
@@ -327,7 +331,7 @@ const styles = StyleSheet.create({
   content: {
     flex: 2,
     padding: 10,
-    marginTop: 10,
+    marginTop: -10,
   },
   inputContainer: {
     backgroundColor:'white',
@@ -356,7 +360,7 @@ const styles = StyleSheet.create({
   AgendaButton: {
     position: "absolute",
     alignSelf: "center",
-    marginTop: 600,
+    marginTop: 750,
   },
   
 });
