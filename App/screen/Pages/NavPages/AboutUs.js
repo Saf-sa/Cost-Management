@@ -12,6 +12,7 @@ import AppText from "../../../shared/components/uiApp/AppText";
 import {HomeNavLog} from "../../nav/UserNavLogin";
 import Screen2 from "../../../shared/components/Screen";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import Card from "../../../shared/components/uiApp/Card";
 
 import axios from "axios";
 
@@ -107,7 +108,24 @@ const Settings = () => {
    
          
         />
-          <LinearGradient
+        <View style={styles.card}>
+        <Card/>
+         <View style={styles.UserContainer}>
+
+                <AppText style={{ color: "black", fontSize: 12, marginBottom: 1}}>Developper & Designer {firstName} {lastName} </AppText>
+                <AppText style={{ color: "black", fontSize: 12, marginBottom: 1}}> Teacher</AppText>
+
+                <AppText style={{ color: "black", fontSize: 12, marginBottom: 1  }}> Frontend & Javascript : Carlo Trimarchi </AppText>
+
+                <AppText style={{ color: "black", fontSize: 12, marginBottom: 1,}}> Backend : Ather Ahmad & Dilshod </AppText>
+
+                <AppText style={{ color: "black", fontSize: 12, marginBottom: 1 }}>Tutoring :  Ather Ahmad </AppText>
+
+                <AppText style={{ color: "black", fontSize: 12, marginBottom: 1 }}> Mentoring :Alkis Kastrisios </AppText>
+            </View>
+        </View>
+      
+         {/*  <LinearGradient
           style={styles.parentContainer}
           colors={["#f9f295", "#E0AA3E", "#F7EF8A", "#B88A44"]}
           start={{ x: 0.1, y: 0.1 }}
@@ -116,13 +134,13 @@ const Settings = () => {
           <View style={styles.balanceContainer}>
             <AppText style= {{ flexDirection: 'row' }}>
                      <View>
-                <Text style={{ fontSize: 36, color:'blue', lineHeight: 35 }}>€</Text>
+                <Text style={{ fontSize: 36, color:'blue', lineHeight: 34 }}>€</Text>
                 </View>
                  <View>
-                <Text style={{ fontSize: 45, color:'dodgerblue', lineHeight:45}}>X</Text>
+                <Text style={{ fontSize: 45, color:'dodgerblue', lineHeight:60}}>X</Text>
                 </View>
                  <View>
-                <Text style={{ fontSize: 22, color:'midnightblue', lineHeight: 22 }}>penses Manager</Text>
+                <Text style={{ fontSize: 22, color:'blue', lineHeight: 62 }}>penses Manager</Text>
                 
                 </View>
                 <View>
@@ -139,7 +157,7 @@ const Settings = () => {
            
               <View style={styles.UserContainer}>
 
-                <AppText style={{ color: "black", fontSize: 14, marginBottom: 5}}>Developper & Designer{firstName} {lastName} </AppText>
+                <AppText style={{ color: "black", fontSize: 14, marginBottom: 5}}>Developper & Designer {firstName} {lastName} </AppText>
                 <AppText style={{ color: "black", fontSize: 14, marginBottom: 5}}> Teacher</AppText>
 
                 <AppText style={{ color: "black", fontSize: 12, marginBottom: 5  }}> Frontend & Javascript : Carlo Trimarchi </AppText>
@@ -153,7 +171,7 @@ const Settings = () => {
     
           </View>
 
-        </LinearGradient>
+        </LinearGradient> */}
         <View >
             <Text style={styles.text} >
             This App was developed for the 
@@ -206,40 +224,38 @@ const styles = StyleSheet.create({
     backgroundColor: "#F8F4D7",
    
   },
-
-  parentContainer: {
-    flexDirection: "column",
-    borderRadius: 10,
-    marginHorizontal: 50,
-    marginVertical: -10,
-    shadowColor: "grey",
-    shadowOpacity: 0.05,
-    shadowRadius: 2,
-    shadowOffset: {
-      width: 0.8,
-      height: 2,
-    },
-    elevation: 8,
+  UserContainer:{
+    top:85,
+    left:120,
+    position:'absolute',
   },
+
   balanceContainer: {
-  
+    top:10,
     justifyContent: "center",
     alignItems: "center",
     paddingVertical: 0,
     width: "100%",
     
   },
+  card:{
+    paddingTop:0,
+    margin:-18,
+    top:-30,
+  
+
+  },
 
   settings: {
-   padding: 30,
+   padding: 10,
     color: "#E0AA3E",
-    fontSize: 18,
+    fontSize: 15,
     fontWeight: "bold",
   },
 
   text: {
     paddingTop: 20,
-    paddingBottom: 5,  
+    paddingBottom: 0,  
      marginVertical: 0,
     marginHorizontal: 45,
    width: "80%",
@@ -252,7 +268,7 @@ const styles = StyleSheet.create({
     top: 90,
     textAlign: "center",
     color: "#E0AA3E",
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: "bold",
   }
   
