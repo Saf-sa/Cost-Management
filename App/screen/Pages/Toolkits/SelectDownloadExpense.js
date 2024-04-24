@@ -184,7 +184,7 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     backgroundColor:'white',
-    marginBottom: 20,
+    marginBottom: 40,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
@@ -199,8 +199,5 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 10,
   },
-  button: {
-    alignSelf: "center",
-    marginButton: 200,
-  },
+
 });
