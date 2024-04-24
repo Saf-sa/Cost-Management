@@ -4,7 +4,7 @@ import axios from "axios";
 
 export const useGetIncomes = (category) => {
   const [storedIncomes, setStoredIncomes] = useState([]);
-
+console.log('useGetIncomes storedIncomes',storedIncomes )
   useEffect(() => {
     const getIncomes = async () => {
       try {

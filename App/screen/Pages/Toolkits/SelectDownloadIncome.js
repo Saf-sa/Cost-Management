@@ -14,12 +14,14 @@ const isValidDate = (date) => {
   return regex.test(date);
 };
 
-const SelectDownloadIncome= (route) => {
+const SelectDownloadIncome= ({route}) => {
   const { category = 'all' } = route.params;
   const incomes = useGetIncomes(category);
+  const { pdfData, generatePDF } = usePDFGenerator();
   const [selectedStartDate, setSelectedStartDate] = useState('');
   const [selectedEndDate, setSelectedEndDate] = useState('');
   const [isStartDatePickerVisible, setStartDatePickerVisibility] = useState(false);
+  const [isEndDatePickerVisible, setEndDatePickerVisibility] = useState(false); 
   const navigation = useNavigation();
   const [formErrors, setFormErrors] = useState({
     selectedStartDate: null,
@@ -28,7 +30,7 @@ const SelectDownloadIncome= (route) => {
    console.log("getIncomes before submit", incomes);
 
    let filteredIncomes = incomes;
- console.log("filteredExpenses :", filteredExpenses);
+ console.log("filteredIncomes :", filteredIncomes);
 
     const handleGeneratePDF = () => {
     generatePDF(incomes);
