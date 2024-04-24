@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
 ...Platform.select({
       ios: {
     position: "relative",
-    top: -5,
+    top: -20,
     marginBottom: -50,
     justifyContent: "center",
     alignItems: "center",
@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
       ios: {
     position: "relative",
     fontSize: 15,
-    marginTop: 10,
+    marginTop: 15,
     marginBottom:0,
     left: -45,
     color: "darkslateblue",

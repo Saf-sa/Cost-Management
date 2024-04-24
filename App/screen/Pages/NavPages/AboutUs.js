@@ -112,16 +112,16 @@ const Settings = () => {
         <Card/>
          <View style={styles.UserContainer}>
 
-                <AppText style={{ color: "black", fontSize: 12, marginBottom: 1}}>Developper & Designer {firstName} {lastName} </AppText>
-                <AppText style={{ color: "black", fontSize: 12, marginBottom: 1}}> Teacher</AppText>
+                <AppText style={{ color: "black", fontSize: 13, marginBottom: 1}}>Developper & Designer {firstName} {lastName} </AppText>
+                <AppText style={{ color: "black", fontSize: 13, marginBottom: 1}}> Teacher</AppText>
 
-                <AppText style={{ color: "black", fontSize: 12, marginBottom: 1  }}> Frontend & Javascript : Carlo Trimarchi </AppText>
+                <AppText style={{ color: "black", fontSize: 13, marginBottom: 1  }}> Frontend & Javascript : Carlo Trimarchi </AppText>
 
-                <AppText style={{ color: "black", fontSize: 12, marginBottom: 1,}}> Backend : Ather Ahmad & Dilshod </AppText>
+                <AppText style={{ color: "black", fontSize: 13, marginBottom: 1,}}> Backend : Ather Ahmad & Dilshod </AppText>
 
-                <AppText style={{ color: "black", fontSize: 12, marginBottom: 1 }}>Tutoring :  Ather Ahmad </AppText>
+                <AppText style={{ color: "black", fontSize: 13, marginBottom: 1 }}>Tutoring :  Ather Ahmad </AppText>
 
-                <AppText style={{ color: "black", fontSize: 12, marginBottom: 1 }}> Mentoring :Alkis Kastrisios </AppText>
+                <AppText style={{ color: "black", fontSize: 13, marginBottom: 1 }}> Mentoring :Alkis Kastrisios </AppText>
             </View>
         </View>
       
@@ -225,7 +225,7 @@ const styles = StyleSheet.create({
    
   },
   UserContainer:{
-    top:85,
+    top:74,
     left:120,
     position:'absolute',
   },
@@ -240,7 +240,7 @@ const styles = StyleSheet.create({
   },
   card:{
     paddingTop:0,
-    margin:-18,
+    margin:-15,
     top:-30,
   
 
@@ -255,13 +255,13 @@ const styles = StyleSheet.create({
 
   text: {
     paddingTop: 20,
-    paddingBottom: 0,  
+    paddingBottom: 5,  
      marginVertical: 0,
     marginHorizontal: 45,
    width: "80%",
      alignItems: "center",
     justifyContent: "center",
-    padding: 16,
+    padding: 20,
 
   },
   title:{
