@@ -8,7 +8,7 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
 import moment from "moment";
 import { SelectList } from 'react-native-dropdown-select-list';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import Card from "../../../shared/components/uiApp/Card";
 import axios from "axios";
 
 
@@ -188,7 +188,9 @@ const AddAgenda= () => {
 
   return (
     <View style={styles.root}>
-
+<View>
+  <Card/>
+</View>
       <View style={styles.content}>
         <ScrollView style={styles.scrollView} scrollEventThrottle={16}>
           <Text style={styles.category}>Date</Text>
