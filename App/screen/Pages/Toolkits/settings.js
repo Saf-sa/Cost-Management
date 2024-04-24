@@ -4,13 +4,11 @@ import {
   View,
   StyleSheet,
   Toast,
-  Image,
 } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
-import AppText from "../../../shared/components/uiApp/AppText";
 import {HomeNavLog} from "../../nav/UserNavLogin";
 import Screen2 from "../../../shared/components/Screen";
+import Card from "../../../shared/components/uiApp/Card";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
@@ -65,47 +63,8 @@ const Settings = () => {
         <HomeNavLog 
           image={require("../../../assets/iconPerson.png")}
         />
+        <Card/>
         
-          <LinearGradient
-          style={styles.parentContainer}
-          colors={["#f9f295", "#E0AA3E", "#F7EF8A", "#B88A44"]}
-          start={{ x: 0.1, y: 0.1 }}
-          end={{ x: 1, y: 3 }}
-        >
-          <View style={styles.balanceContainer}>
-            <AppText style= {{ flexDirection: 'row' }}>
-                     <View>
-                <Text style={{ fontSize: 36, color:'blue', lineHeight: 79 }}>€</Text>
-                </View>
-                 <View>
-                <Text style={{ fontSize: 45, color:'dodgerblue', lineHeight:70}}>X</Text>
-                </View>
-                 <View>
-                <Text style={{ fontSize: 22, color:'blue', lineHeight: 75 }}>penses Manager</Text>
-                
-                </View>
-
-            </AppText>
-           
-          </View>
-          
-          <View style={styles.balanceContainer}>
-            <Image style={styles.simCard} source={require('../../../assets/sim-card.png')} />
-              <View style={styles.UserContainer}>
-
-                <AppText style={{ color: "black", fontSize: 15, marginBottom: 10, marginLeft:-48}}>First Name : {firstName} </AppText>
-
-                <AppText style={{ color: "black", fontSize: 15, marginBottom: 10, marginLeft:-50  }}>  Last Name : {lastName}  </AppText>
-
-                <AppText style={{ color: "black", fontSize: 15, marginBottom: 10, marginLeft:17 }}>Email: {email}  </AppText>
-
-            </View>
-    <AppText  style={styles.CardNumber}>  
-                  4907 2024 1707 2778 1962
-                </AppText>
-          </View>
-
-        </LinearGradient>
           <View 
             style={{
               flex: "culumn",
