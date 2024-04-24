@@ -189,7 +189,9 @@ const AddAgenda= () => {
   return (
     <View style={styles.root}>
 <View>
-  <Card/>
+  <Card
+  cardText={'Add a new Agenda'}
+  />
 </View>
       <View style={styles.content}>
         <ScrollView style={styles.scrollView} scrollEventThrottle={16}>
