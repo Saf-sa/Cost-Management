@@ -128,10 +128,11 @@ const ResetLogin = () => {
 
   return (
     <View style={styles.root}>
+      <View style={styles.card}>
           <Card
       cardText={"Please reset your password !"}
       />
- 
+ </View>
       <View style={styles.content}>
         <CustomInputLog
           label="Email"
@@ -174,10 +175,15 @@ const styles = StyleSheet.create({
   content: {
     flex: 2,
     paddingHorizontal: 30,
-    marginTop:80,
+    marginTop:70,
     paddingTop: 50,
     
   },
+  card:{
+    paddingTop:5,
+
+  }
+,
   textEmail: {
     textAlign: "center",
     marginTop: 40,

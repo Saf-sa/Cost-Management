@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
       ios: {
     position: "relative",
     fontSize: 15,
-    marginTop: 15,
+    marginTop: 1,
     marginBottom:0,
     left: -45,
     color: "darkslateblue",
