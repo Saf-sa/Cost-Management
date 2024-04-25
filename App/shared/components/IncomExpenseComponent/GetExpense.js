@@ -6,6 +6,7 @@ import axios from "axios";
 
 export const useGetExpenses = (category) => {
   const [storedExpenses, setStoredExpenses] = useState([]);
+  /* console.log('useGetExpenses storedExpenses',storedExpenses ) */
 
   useEffect(() => {
     const getExpenses = async () => {

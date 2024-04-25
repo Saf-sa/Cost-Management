@@ -49,7 +49,7 @@ import AddAgenda from "./screen/Pages/Toolkits/AddAgenda";
 import SelectDownloadExpense from "./screen/Pages/Toolkits/SelectDownloadExpense"
 import SelectDownloadIncome from './screen/Pages/Toolkits/SelectDownloadIncome';
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import SQLite from "expo-Slite"
+import * as SQLite from "expo-sqlite"
 import axios from 'axios';
 
 /* 
@@ -72,8 +72,7 @@ clearStorage();
   console.log('Your device is running Android');
 } */
  
-const db = SQLite.openDatabase('ExpenseManager.db');
-const [isLoading, setIsLoading] = useState(true);
+
 const Stack = createStackNavigator();
 import moment from "moment";
 
@@ -131,6 +130,23 @@ if (!expiresIn ) {
 
 
 export default function App() {  
+const db = SQLite.openDatabase({ name: 'expenses-incomes.sqlite' });
+
+// Fonction pour initialiser la base de données
+const initializeDatabase = () => {
+  db.transaction(tx => {
+    tx.executeSql(
+      `CREATE TABLE IF NOT EXISTS "income-expense" (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT,
+        amount REAL
+      )`,
+      [],
+      () => console.log('Structure de la base de données créée avec succès'),
+      error => console.error('Erreur lors de la création de la structure de la base de données :', error)
+    );
+  });
+};
   return (
     <NavigationContainer >
      <Stack.Navigator initialRouteName="AuthLoading"
