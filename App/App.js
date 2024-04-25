@@ -146,7 +146,9 @@ const initializeDatabase = () => {
       error => console.error('Erreur lors de la création de la structure de la base de données :', error)
     );
   });
+  
 };
+
   return (
     <NavigationContainer >
      <Stack.Navigator initialRouteName="AuthLoading"
