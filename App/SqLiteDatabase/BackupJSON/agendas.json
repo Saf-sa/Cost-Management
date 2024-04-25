@@ -1,0 +1,149 @@
+[
+	{
+		"_id": {
+			"$oid": "66012fc27e6f055bdb34526a"
+		},
+		"agendaOwner": {
+			"$oid": "6570899233be88f2a5fe0158"
+		},
+		"date": "2024-03-25",
+		"name": "Doc",
+		"place": "Berlin",
+		"duration": [
+			"45mn"
+		],
+		"createdAt": {
+			"$date": "2024-03-25T08:03:14.494Z"
+		},
+		"updatedAt": {
+			"$date": "2024-03-25T08:03:14.494Z"
+		},
+		"__v": 0
+	},
+	{
+		"_id": {
+			"$oid": "6601d3f5d4e11911693b54c2"
+		},
+		"agendaOwner": {
+			"$oid": "6570899233be88f2a5fe0158"
+		},
+		"date": "2024-03-25",
+		"name": "Learning class",
+		"place": "Home office",
+		"duration": [
+			"2h"
+		],
+		"createdAt": {
+			"$date": "2024-03-25T19:43:49.061Z"
+		},
+		"updatedAt": {
+			"$date": "2024-03-25T19:43:49.061Z"
+		},
+		"__v": 0
+	},
+	{
+		"_id": {
+			"$oid": "6601d859f971c38133ef9d0a"
+		},
+		"agendaOwner": {
+			"$oid": "6570899233be88f2a5fe0158"
+		},
+		"date": "2024-03-28",
+		"name": "Drink with Cyril",
+		"place": "Bar bei!",
+		"duration": [
+			"1h"
+		],
+		"createdAt": {
+			"$date": "2024-03-25T20:02:33.949Z"
+		},
+		"updatedAt": {
+			"$date": "2024-03-25T20:02:33.949Z"
+		},
+		"__v": 0
+	},
+	{
+		"_id": {
+			"$oid": "6601d97ef971c38133ef9d0d"
+		},
+		"agendaOwner": {
+			"$oid": "6570899233be88f2a5fe0158"
+		},
+		"date": "2024-03-26",
+		"name": "Post",
+		"place": "Arcaden",
+		"duration": [
+			"15mn"
+		],
+		"createdAt": {
+			"$date": "2024-03-25T20:07:26.196Z"
+		},
+		"updatedAt": {
+			"$date": "2024-03-25T20:07:26.196Z"
+		},
+		"__v": 0
+	},
+	{
+		"_id": {
+			"$oid": "6601d9b6f971c38133ef9d10"
+		},
+		"agendaOwner": {
+			"$oid": "6570899233be88f2a5fe0158"
+		},
+		"date": "2024-03-27",
+		"name": "Dinner with Max",
+		"place": "Resto",
+		"duration": [
+			"2h"
+		],
+		"createdAt": {
+			"$date": "2024-03-25T20:08:22.497Z"
+		},
+		"updatedAt": {
+			"$date": "2024-03-25T20:08:22.497Z"
+		},
+		"__v": 0
+	},
+	{
+		"_id": {
+			"$oid": "6607135c965abbd487afd665"
+		},
+		"agendaOwner": {
+			"$oid": "6570899233be88f2a5fe0158"
+		},
+		"date": "2024-03-29",
+		"name": "Speed Date",
+		"place": "Bar tender",
+		"duration": [
+			"1h"
+		],
+		"createdAt": {
+			"$date": "2024-03-29T19:15:40.619Z"
+		},
+		"updatedAt": {
+			"$date": "2024-03-29T19:15:40.619Z"
+		},
+		"__v": 0
+	},
+	{
+		"_id": {
+			"$oid": "6616b2d1ce6b7330f1f9028f"
+		},
+		"agendaOwner": {
+			"$oid": "6570899233be88f2a5fe0158"
+		},
+		"date": "2024-04-10",
+		"name": "Café Witz Lara",
+		"place": "Neo 1 Café",
+		"duration": [
+			"1h"
+		],
+		"createdAt": {
+			"$date": "2024-04-10T15:40:01.648Z"
+		},
+		"updatedAt": {
+			"$date": "2024-04-10T15:40:01.648Z"
+		},
+		"__v": 0
+	}
+]

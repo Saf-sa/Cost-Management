@@ -1,0 +1,464 @@
+[
+	{
+		"_id": {
+			"$oid": "65b687bc513b3372b323fe21"
+		},
+		"incomeOwner": {
+			"$oid": "6570899233be88f2a5fe0158"
+		},
+		"date": "2023-01-02",
+		"categories": [
+			"Salary"
+		],
+		"label": "January",
+		"amount": 17000,
+		"createdAt": {
+			"$date": "2024-01-28T16:58:36.934Z"
+		},
+		"updatedAt": {
+			"$date": "2024-01-28T16:58:36.934Z"
+		},
+		"__v": 0
+	},
+	{
+		"_id": {
+			"$oid": "65b689ac513b3372b323fe31"
+		},
+		"incomeOwner": {
+			"$oid": "6570899233be88f2a5fe0158"
+		},
+		"date": "2023-01-16",
+		"categories": [
+			"Gift"
+		],
+		"label": "Birthday",
+		"amount": 10000,
+		"createdAt": {
+			"$date": "2024-01-28T17:06:52.335Z"
+		},
+		"updatedAt": {
+			"$date": "2024-01-28T17:06:52.335Z"
+		},
+		"__v": 0
+	},
+	{
+		"_id": {
+			"$oid": "65b7b3fb513b3372b323fe3a"
+		},
+		"incomeOwner": {
+			"$oid": "6570899233be88f2a5fe0158"
+		},
+		"date": "2023-02-02",
+		"categories": [
+			"Salary"
+		],
+		"label": "Fabuary",
+		"amount": 50000,
+		"createdAt": {
+			"$date": "2024-01-29T14:19:39.518Z"
+		},
+		"updatedAt": {
+			"$date": "2024-01-29T14:19:39.518Z"
+		},
+		"__v": 0
+	},
+	{
+		"_id": {
+			"$oid": "65b7b42a513b3372b323fe3e"
+		},
+		"incomeOwner": {
+			"$oid": "6570899233be88f2a5fe0158"
+		},
+		"date": "2023-03-02",
+		"categories": [
+			"Salary"
+		],
+		"label": "March",
+		"amount": 17000,
+		"createdAt": {
+			"$date": "2024-01-29T14:20:26.879Z"
+		},
+		"updatedAt": {
+			"$date": "2024-01-29T14:20:26.879Z"
+		},
+		"__v": 0
+	},
+	{
+		"_id": {
+			"$oid": "65b7b454513b3372b323fe42"
+		},
+		"incomeOwner": {
+			"$oid": "6570899233be88f2a5fe0158"
+		},
+		"date": "2023-04-01",
+		"categories": [
+			"Salary"
+		],
+		"label": "april",
+		"amount": 80000,
+		"createdAt": {
+			"$date": "2024-01-29T14:21:08.812Z"
+		},
+		"updatedAt": {
+			"$date": "2024-01-29T14:21:08.812Z"
+		},
+		"__v": 0
+	},
+	{
+		"_id": {
+			"$oid": "65b7b475513b3372b323fe45"
+		},
+		"incomeOwner": {
+			"$oid": "6570899233be88f2a5fe0158"
+		},
+		"date": "2023-05-02",
+		"categories": [
+			"Salary"
+		],
+		"label": "May",
+		"amount": 17000,
+		"createdAt": {
+			"$date": "2024-01-29T14:21:41.734Z"
+		},
+		"updatedAt": {
+			"$date": "2024-01-29T14:21:41.734Z"
+		},
+		"__v": 0
+	},
+	{
+		"_id": {
+			"$oid": "65b7b4a2513b3372b323fe48"
+		},
+		"incomeOwner": {
+			"$oid": "6570899233be88f2a5fe0158"
+		},
+		"date": "2023-06-03",
+		"categories": [
+			"Salary"
+		],
+		"label": "June",
+		"amount": 17000,
+		"createdAt": {
+			"$date": "2024-01-29T14:22:26.712Z"
+		},
+		"updatedAt": {
+			"$date": "2024-01-29T14:22:26.712Z"
+		},
+		"__v": 0
+	},
+	{
+		"_id": {
+			"$oid": "65b7b4c7513b3372b323fe4b"
+		},
+		"incomeOwner": {
+			"$oid": "6570899233be88f2a5fe0158"
+		},
+		"date": "2023-07-03",
+		"categories": [
+			"Salary"
+		],
+		"label": "July",
+		"amount": 10000,
+		"createdAt": {
+			"$date": "2024-01-29T14:23:03.789Z"
+		},
+		"updatedAt": {
+			"$date": "2024-01-29T14:23:03.789Z"
+		},
+		"__v": 0
+	},
+	{
+		"_id": {
+			"$oid": "65b7b4f6513b3372b323fe4e"
+		},
+		"incomeOwner": {
+			"$oid": "6570899233be88f2a5fe0158"
+		},
+		"date": "2023-08-03",
+		"categories": [
+			"Salary"
+		],
+		"label": "August",
+		"amount": 16000,
+		"createdAt": {
+			"$date": "2024-01-29T14:23:50.723Z"
+		},
+		"updatedAt": {
+			"$date": "2024-01-29T14:23:50.723Z"
+		},
+		"__v": 0
+	},
+	{
+		"_id": {
+			"$oid": "65b7b517513b3372b323fe51"
+		},
+		"incomeOwner": {
+			"$oid": "6570899233be88f2a5fe0158"
+		},
+		"date": "2023-09-01",
+		"categories": [
+			"Salary"
+		],
+		"label": "September",
+		"amount": 70000,
+		"createdAt": {
+			"$date": "2024-01-29T14:24:23.689Z"
+		},
+		"updatedAt": {
+			"$date": "2024-01-29T14:24:23.689Z"
+		},
+		"__v": 0
+	},
+	{
+		"_id": {
+			"$oid": "65b7b549513b3372b323fe54"
+		},
+		"incomeOwner": {
+			"$oid": "6570899233be88f2a5fe0158"
+		},
+		"date": "2023-10-03",
+		"categories": [
+			"Salary"
+		],
+		"label": "October",
+		"amount": 22000,
+		"createdAt": {
+			"$date": "2024-01-29T14:25:13.937Z"
+		},
+		"updatedAt": {
+			"$date": "2024-01-29T14:25:13.937Z"
+		},
+		"__v": 0
+	},
+	{
+		"_id": {
+			"$oid": "65b7b567513b3372b323fe57"
+		},
+		"incomeOwner": {
+			"$oid": "6570899233be88f2a5fe0158"
+		},
+		"date": "2023-11-02",
+		"categories": [
+			"Salary"
+		],
+		"label": "November",
+		"amount": 16000,
+		"createdAt": {
+			"$date": "2024-01-29T14:25:43.306Z"
+		},
+		"updatedAt": {
+			"$date": "2024-01-29T14:25:43.306Z"
+		},
+		"__v": 0
+	},
+	{
+		"_id": {
+			"$oid": "65b7b568513b3372b323fe59"
+		},
+		"incomeOwner": {
+			"$oid": "6570899233be88f2a5fe0158"
+		},
+		"date": "2023-11-02",
+		"categories": [
+			"Salary"
+		],
+		"label": "November",
+		"amount": 1600,
+		"createdAt": {
+			"$date": "2024-01-29T14:25:44.537Z"
+		},
+		"updatedAt": {
+			"$date": "2024-01-29T14:25:44.537Z"
+		},
+		"__v": 0
+	},
+	{
+		"_id": {
+			"$oid": "65b7b584513b3372b323fe5c"
+		},
+		"incomeOwner": {
+			"$oid": "6570899233be88f2a5fe0158"
+		},
+		"date": "2023-12-02",
+		"categories": [
+			"Salary"
+		],
+		"label": "December",
+		"amount": 1875,
+		"createdAt": {
+			"$date": "2024-01-29T14:26:12.075Z"
+		},
+		"updatedAt": {
+			"$date": "2024-01-29T14:26:12.075Z"
+		},
+		"__v": 0
+	},
+	{
+		"_id": {
+			"$oid": "65b7b5ba513b3372b323fe60"
+		},
+		"incomeOwner": {
+			"$oid": "6570899233be88f2a5fe0158"
+		},
+		"date": "2024-02-03",
+		"categories": [
+			"Salary"
+		],
+		"label": "Fabruary",
+		"amount": 16800,
+		"createdAt": {
+			"$date": "2024-01-29T14:27:06.038Z"
+		},
+		"updatedAt": {
+			"$date": "2024-01-29T14:27:06.038Z"
+		},
+		"__v": 0
+	},
+	{
+		"_id": {
+			"$oid": "65df0a7c3a98f931e47da1b9"
+		},
+		"incomeOwner": {
+			"$oid": "6570899233be88f2a5fe0158"
+		},
+		"date": "2024-02-28",
+		"categories": [
+			"Stocks"
+		],
+		"label": "Benefiz",
+		"amount": 10000,
+		"createdAt": {
+			"$date": "2024-02-28T10:27:08.74Z"
+		},
+		"updatedAt": {
+			"$date": "2024-02-28T10:27:08.74Z"
+		},
+		"__v": 0
+	},
+	{
+		"_id": {
+			"$oid": "65e4981ee46808032afe6ed2"
+		},
+		"incomeOwner": {
+			"$oid": "6570899233be88f2a5fe0158"
+		},
+		"date": "2024-02-03",
+		"categories": [
+			"Rent"
+		],
+		"label": "Rent last year",
+		"amount": 5000,
+		"createdAt": {
+			"$date": "2024-03-03T15:32:46.833Z"
+		},
+		"updatedAt": {
+			"$date": "2024-03-03T15:32:46.833Z"
+		},
+		"__v": 0
+	},
+	{
+		"_id": {
+			"$oid": "65e498aae46808032afe6ed6"
+		},
+		"incomeOwner": {
+			"$oid": "6570899233be88f2a5fe0158"
+		},
+		"date": "2024-03-03",
+		"categories": [
+			"Sales"
+		],
+		"label": "vintage car",
+		"amount": 20000,
+		"createdAt": {
+			"$date": "2024-03-03T15:35:06.689Z"
+		},
+		"updatedAt": {
+			"$date": "2024-03-03T15:35:06.689Z"
+		},
+		"__v": 0
+	},
+	{
+		"_id": {
+			"$oid": "66012a67a5f176dd765f3c64"
+		},
+		"incomeOwner": {
+			"$oid": "6570899233be88f2a5fe0158"
+		},
+		"date": "2024-03-25",
+		"categories": [
+			"Gift"
+		],
+		"label": "Birthday",
+		"amount": 200,
+		"createdAt": {
+			"$date": "2024-03-25T07:40:23.643Z"
+		},
+		"updatedAt": {
+			"$date": "2024-03-25T07:40:23.643Z"
+		},
+		"__v": 0
+	},
+	{
+		"_id": {
+			"$oid": "661c08b0106370e2757c45e6"
+		},
+		"incomeOwner": {
+			"$oid": "6570899233be88f2a5fe0158"
+		},
+		"date": "2024-04-14",
+		"categories": [
+			"Bonus"
+		],
+		"label": "New day",
+		"amount": 2,
+		"createdAt": {
+			"$date": "2024-04-14T16:47:44.91Z"
+		},
+		"updatedAt": {
+			"$date": "2024-04-14T16:47:44.91Z"
+		},
+		"__v": 0
+	},
+	{
+		"_id": {
+			"$oid": "661c0dc3854afa0eea0b8ca8"
+		},
+		"incomeOwner": {
+			"$oid": "6570899233be88f2a5fe0158"
+		},
+		"date": "2024-03-08",
+		"categories": [
+			"Salary"
+		],
+		"label": "March salary",
+		"amount": 1200,
+		"createdAt": {
+			"$date": "2024-04-14T17:09:23.026Z"
+		},
+		"updatedAt": {
+			"$date": "2024-04-14T17:09:23.026Z"
+		},
+		"__v": 0
+	},
+	{
+		"_id": {
+			"$oid": "661c0ec5854afa0eea0b8cb0"
+		},
+		"incomeOwner": {
+			"$oid": "6570899233be88f2a5fe0158"
+		},
+		"date": "2024-04-07",
+		"categories": [
+			"Refund"
+		],
+		"label": "Amazon ",
+		"amount": 23,
+		"createdAt": {
+			"$date": "2024-04-14T17:13:41.134Z"
+		},
+		"updatedAt": {
+			"$date": "2024-04-14T17:13:41.134Z"
+		},
+		"__v": 0
+	}
+]

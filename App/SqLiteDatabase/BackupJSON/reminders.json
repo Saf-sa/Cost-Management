@@ -1,0 +1,46 @@
+[
+	{
+		"_id": {
+			"$oid": "66067e0cda66744a55f5db2f"
+		},
+		"reminderOwner": {
+			"$oid": "6570899233be88f2a5fe0158"
+		},
+		"startDate": "2024-03-29T08:33:11.628Z",
+		"expireDate": "2025-03-29T08:33:11.628Z",
+		"contractName": "ELEKTRO",
+		"label": "Home Electricity",
+		"email": "Elektro@web.de",
+		"renewal": "1 year",
+		"createdAt": {
+			"$date": "2024-03-29T08:38:36.948Z"
+		},
+		"updatedAt": {
+			"$date": "2024-03-29T08:38:36.948Z"
+		},
+		"__v": 0
+	},
+	{
+		"_id": {
+			"$oid": "66069b39aa61bb4408069aac"
+		},
+		"reminderOwner": {
+			"$oid": "6570899233be88f2a5fe0158"
+		},
+		"startDate": "2024-03-29T10:40:59.070Z",
+		"expireDate": "2025-03-29T10:40:59.070Z",
+		"contractName": "Telekom",
+		"label": "mobile phone",
+		"email": "Telekom@tek.de",
+		"renewal": [
+			"1 year"
+		],
+		"createdAt": {
+			"$date": "2024-03-29T10:43:05.761Z"
+		},
+		"updatedAt": {
+			"$date": "2024-03-29T10:43:05.761Z"
+		},
+		"__v": 0
+	}
+]

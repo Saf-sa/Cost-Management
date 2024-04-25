@@ -1,0 +1,212 @@
+[
+	{
+		"_id": {
+			"$oid": "65b67d8b513b3372b323fdf9"
+		},
+		"expenseOwner": {
+			"$oid": "6570899233be88f2a5fe0158"
+		},
+		"date": "2024-01-02",
+		"categories": [
+			"Clothe"
+		],
+		"label": "Shopping",
+		"amount": 12000,
+		"createdAt": {
+			"$date": "2024-01-28T16:15:07.088Z"
+		},
+		"updatedAt": {
+			"$date": "2024-01-28T16:15:07.088Z"
+		},
+		"__v": 0
+	},
+	{
+		"_id": {
+			"$oid": "65b67dc4513b3372b323fdfd"
+		},
+		"expenseOwner": {
+			"$oid": "6570899233be88f2a5fe0158"
+		},
+		"date": "2023-01-08",
+		"categories": [
+			"Food"
+		],
+		"label": "Market",
+		"amount": 34000,
+		"createdAt": {
+			"$date": "2024-01-28T16:16:04.343Z"
+		},
+		"updatedAt": {
+			"$date": "2024-01-28T16:16:04.343Z"
+		},
+		"__v": 0
+	},
+	{
+		"_id": {
+			"$oid": "65b67eb7513b3372b323fe00"
+		},
+		"expenseOwner": {
+			"$oid": "6570899233be88f2a5fe0158"
+		},
+		"date": "2023-01-15",
+		"categories": [
+			"Studie"
+		],
+		"label": "English lesson",
+		"amount": 56000,
+		"createdAt": {
+			"$date": "2024-01-28T16:20:07.778Z"
+		},
+		"updatedAt": {
+			"$date": "2024-01-28T16:20:07.778Z"
+		},
+		"__v": 0
+	},
+	{
+		"_id": {
+			"$oid": "65b7daf0513b3372b323feb0"
+		},
+		"expenseOwner": {
+			"$oid": "6570899233be88f2a5fe0158"
+		},
+		"date": "2024-01-29",
+		"categories": [
+			"Holiday"
+		],
+		"label": "World tour",
+		"amount": 10000,
+		"createdAt": {
+			"$date": "2024-01-29T17:05:52.074Z"
+		},
+		"updatedAt": {
+			"$date": "2024-01-29T17:05:52.074Z"
+		},
+		"__v": 0
+	},
+	{
+		"_id": {
+			"$oid": "65b7dca7513b3372b323feb6"
+		},
+		"expenseOwner": {
+			"$oid": "6570899233be88f2a5fe0158"
+		},
+		"date": "2024-01-02",
+		"categories": [
+			"Transport"
+		],
+		"label": "Holiday tunisia",
+		"amount": 50000,
+		"createdAt": {
+			"$date": "2024-01-29T17:13:11.625Z"
+		},
+		"updatedAt": {
+			"$date": "2024-01-29T17:13:11.625Z"
+		},
+		"__v": 0
+	},
+	{
+		"_id": {
+			"$oid": "65b7ddb7513b3372b323febf"
+		},
+		"expenseOwner": {
+			"$oid": "6570899233be88f2a5fe0158"
+		},
+		"date": "2024-01-29",
+		"categories": [
+			"Other"
+		],
+		"label": "Epargne",
+		"amount": 22000,
+		"createdAt": {
+			"$date": "2024-01-29T17:17:43.491Z"
+		},
+		"updatedAt": {
+			"$date": "2024-01-29T17:17:43.491Z"
+		},
+		"__v": 0
+	},
+	{
+		"_id": {
+			"$oid": "65e496ece46808032afe6eca"
+		},
+		"expenseOwner": {
+			"$oid": "6570899233be88f2a5fe0158"
+		},
+		"date": "2024-02-03",
+		"categories": [
+			"Tax"
+		],
+		"label": "tax on my stocks",
+		"amount": 10000,
+		"createdAt": {
+			"$date": "2024-03-03T15:27:40.407Z"
+		},
+		"updatedAt": {
+			"$date": "2024-03-03T15:27:40.407Z"
+		},
+		"__v": 0
+	},
+	{
+		"_id": {
+			"$oid": "65e49775e46808032afe6ece"
+		},
+		"expenseOwner": {
+			"$oid": "6570899233be88f2a5fe0158"
+		},
+		"date": "2024-03-01",
+		"categories": [
+			"Transport"
+		],
+		"label": "yearly rail ticket",
+		"amount": 7000,
+		"createdAt": {
+			"$date": "2024-03-03T15:29:57.67Z"
+		},
+		"updatedAt": {
+			"$date": "2024-03-03T15:29:57.67Z"
+		},
+		"__v": 0
+	},
+	{
+		"_id": {
+			"$oid": "65e4d872e46808032afe6eed"
+		},
+		"expenseOwner": {
+			"$oid": "6570899233be88f2a5fe0158"
+		},
+		"date": "2024-03-03",
+		"categories": [
+			"Tax"
+		],
+		"label": "Test",
+		"amount": 40000,
+		"createdAt": {
+			"$date": "2024-03-03T20:07:14.061Z"
+		},
+		"updatedAt": {
+			"$date": "2024-03-03T20:07:14.061Z"
+		},
+		"__v": 0
+	},
+	{
+		"_id": {
+			"$oid": "66012aeea5f176dd765f3c67"
+		},
+		"expenseOwner": {
+			"$oid": "6570899233be88f2a5fe0158"
+		},
+		"date": "2024-03-25",
+		"categories": [
+			"Other"
+		],
+		"label": "Nothing",
+		"amount": 200,
+		"createdAt": {
+			"$date": "2024-03-25T07:42:38.938Z"
+		},
+		"updatedAt": {
+			"$date": "2024-03-25T07:42:38.938Z"
+		},
+		"__v": 0
+	}
+]
