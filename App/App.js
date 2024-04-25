@@ -72,7 +72,8 @@ clearStorage();
   console.log('Your device is running Android');
 } */
  
-
+const db = SQLite.openDatabase('ExpenseManager.db');
+const [isLoading, setIsLoading] = useState(true);
 const Stack = createStackNavigator();
 import moment from "moment";
 
