@@ -71,7 +71,8 @@ clearStorage();
 } else if (Platform.OS === 'android') {
   console.log('Your device is running Android');
 } */
- 
+
+
 
 const Stack = createStackNavigator();
 import moment from "moment";
@@ -129,26 +130,30 @@ if (!expiresIn ) {
 }
 
 
+
+
 export default function App() {  
+
 const db = SQLite.openDatabase({ name: 'expenses-incomes.sqlite' });
 
-// Fonction pour initialiser la base de données
-const initializeDatabase = () => {
-  db.transaction(tx => {
-    tx.executeSql(
-      `CREATE TABLE IF NOT EXISTS "income-expense" (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT,
-        amount REAL
-      )`,
-      [],
-      () => console.log('Structure de la base de données créée avec succès'),
-      error => console.error('Erreur lors de la création de la structure de la base de données :', error)
-    );
-  });
-  
-};
+  const initializeDatabase = () => {
+    db.transaction(tx => {
+      tx.executeSql(
+        `CREATE TABLE IF NOT EXISTS "income-expense" (
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          name TEXT,
+          amount REAL
+        )`,
+        [],
+        () => console.log('Structure de la base de données créée avec succès'),
+        error => console.error('Erreur lors de la création de la structure de la base de données :', error)
+      );
+    });
+  };
 
+  useEffect(() => {
+    initializeDatabase();
+  }, []);
   return (
     <NavigationContainer >
      <Stack.Navigator initialRouteName="AuthLoading"
