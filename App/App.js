@@ -76,7 +76,6 @@ clearStorage();
 
 const Stack = createStackNavigator();
 import moment from "moment";
-import db from './SqLiteDatabase/DbConnection';
 
 function AuthLoading({ navigation }) {
   useEffect(() => {
@@ -136,7 +135,7 @@ if (!expiresIn ) {
 export default function App() {  
  useEffect(() => {
     // Ouvrez et initialisez la base de données SQLite
-    const db = SQLite.openDatabase({ name: './expenses-incomes.sqlite' });
+    const db = SQLite.openDatabase({ name: 'expenses-incomes.sqlite' });
 
     db.transaction(tx => {
       tx.executeSql(
@@ -166,8 +165,8 @@ export default function App() {
       );
     });
   }, []);
-  console.log('App rendered'); // Log pour confirmer que le composant App est rendu
- 
+  console.log('App rendered', ); // Log pour confirmer que le composant App est rendu
+
   return (
     <NavigationContainer >
      <Stack.Navigator initialRouteName="AuthLoading"
