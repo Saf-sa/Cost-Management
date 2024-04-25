@@ -76,6 +76,7 @@ clearStorage();
 
 const Stack = createStackNavigator();
 import moment from "moment";
+import db from './SqLiteDatabase/DbConnection';
 
 function AuthLoading({ navigation }) {
   useEffect(() => {
@@ -133,10 +134,10 @@ if (!expiresIn ) {
 
 
 export default function App() {  
+ useEffect(() => {
+    // Ouvrez et initialisez la base de données SQLite
+    const db = SQLite.openDatabase({ name: './expenses-incomes.sqlite' });
 
-const db = SQLite.openDatabase({ name: 'expenses-incomes.sqlite' });
-
-  const initializeDatabase = () => {
     db.transaction(tx => {
       tx.executeSql(
         `CREATE TABLE IF NOT EXISTS "income-expense" (
@@ -145,15 +146,28 @@ const db = SQLite.openDatabase({ name: 'expenses-incomes.sqlite' });
           amount REAL
         )`,
         [],
-        () => console.log('Structure de la base de données créée avec succès'),
+        () => {
+          console.log('Structure de la base de données créée avec succès');
+          // Vérifiez si la table existe
+          tx.executeSql(
+            `SELECT name FROM sqlite_master WHERE type='table' AND name='income-expense';`,
+            [],
+            (_, result) => {
+              if (result.rows.length > 0) {
+                console.log('La table "income-expense" existe dans la base de données.');
+              } else {
+                console.log('La table "income-expense" n\'a pas été trouvée dans la base de données.');
+              }
+            },
+            error => console.error('Erreur lors de la vérification de l\'existence de la table :', error)
+          );
+        },
         error => console.error('Erreur lors de la création de la structure de la base de données :', error)
       );
     });
-  };
-
-  useEffect(() => {
-    initializeDatabase();
   }, []);
+  console.log('App rendered'); // Log pour confirmer que le composant App est rendu
+ 
   return (
     <NavigationContainer >
      <Stack.Navigator initialRouteName="AuthLoading"
