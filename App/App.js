@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Platform } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator, TransitionPresets, CardStyleInterpolators  } from "@react-navigation/stack";
+import { createStackNavigator, CardStyleInterpolators  } from "@react-navigation/stack";
 import Login from "./screen/auth/login";
 import Signup from "./screen/auth/signup";
 import Reset from "./screen/auth/reset";
@@ -131,42 +131,9 @@ if (!expiresIn ) {
 
 
 
-
-export default function App() {  
- useEffect(() => {
-    // Ouvrez et initialisez la base de données SQLite
-    const db = SQLite.openDatabase({ name: 'expenses-incomes.sqlite' });
-
-    db.transaction(tx => {
-      tx.executeSql(
-        `CREATE TABLE IF NOT EXISTS "income-expense" (
-          id INTEGER PRIMARY KEY AUTOINCREMENT,
-          name TEXT,
-          amount REAL
-        )`,
-        [],
-        () => {
-          console.log('Structure de la base de données créée avec succès');
-          // Vérifiez si la table existe
-          tx.executeSql(
-            `SELECT name FROM sqlite_master WHERE type='table' AND name='income-expense';`,
-            [],
-            (_, result) => {
-              if (result.rows.length > 0) {
-                console.log('La table "income-expense" existe dans la base de données.');
-              } else {
-                console.log('La table "income-expense" n\'a pas été trouvée dans la base de données.');
-              }
-            },
-            error => console.error('Erreur lors de la vérification de l\'existence de la table :', error)
-          );
-        },
-        error => console.error('Erreur lors de la création de la structure de la base de données :', error)
-      );
-    });
-  }, []);
-  console.log('App rendered', ); // Log pour confirmer que le composant App est rendu
-
+ 
+  export default function App() {  
+  
   return (
     <NavigationContainer >
      <Stack.Navigator initialRouteName="AuthLoading"
