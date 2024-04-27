@@ -4,7 +4,7 @@ import SQLite from 'react-native-sqlite-storage';
 const initializeDatabase = () => {
   // Ouvrir la base de données
   const db = SQLite.openDatabase(
-    { name: 'expenses-incomes.sqlite' },
+    { name: '../tracker.db' },
     () => {
       console.log('Base de données ouverte avec succès');
       // Créer les tables si elles n'existent pas déjà

@@ -12,7 +12,7 @@ const Forecast = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const db = SQLite.openDatabase('./tracker.db');
+    const db = SQLite.openDatabase('../../SqLiteDatabase/tracker.db');
     console.log('DB connected', db);
     db.transaction(tx => {
     tx.executeSql(
@@ -72,7 +72,7 @@ const Forecast = () => {
       <AppButton
         AppButtonText="Incomes"
         icon="dollar-sign"
-        onPress={() => console.log('incomes')}
+        onPress={() => console.log('income')}
       /> 
       <SendButton 
         sendButtonText={"submit"}

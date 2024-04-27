@@ -1,4 +1,4 @@
-import db from './DbConnection.js';
+import db from  '../../SqLiteDatabase/DbConnection';
 
 const incomeController = {
   createIncome: (incomeData) => {

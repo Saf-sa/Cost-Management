@@ -49,7 +49,6 @@ import AddAgenda from "./screen/Pages/Toolkits/AddAgenda";
 import SelectDownloadExpense from "./screen/Pages/Toolkits/SelectDownloadExpense"
 import SelectDownloadIncome from './screen/Pages/Toolkits/SelectDownloadIncome';
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import * as SQLite from "expo-sqlite"
 import axios from 'axios';
 
 /* 
