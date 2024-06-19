@@ -40,7 +40,7 @@
     "moment": "^2.29.4",
     "pdf-lib": "^1.17.1",
     "react": "18.2.0",
-    "react-native": "0.72.10",
+    "react-native": "0.72.15",
     "react-native-calendar-picker": "^7.1.4",
     "react-native-chart-kit": "^6.12.0",
     "react-native-date-picker": "^4.3.5",
